@@ -1,0 +1,103 @@
+.main {
+  border-right: 2px solid rgba(235, 235, 235, 0.4);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5%;
+}
+
+.sectionsList {
+  margin: 5px 0 0 0;
+  list-style: none;
+}
+
+.sectionItem {
+  margin: 0 0 23px 0;
+}
+
+.sectionTitle {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 15px;
+
+  background-color: rgb(245, 245, 254);
+
+  font-family: inherit;
+  font-size: .8em;
+  font-weight: 500;
+  line-height: 100%;
+
+  cursor: default;
+}
+
+.docsList {
+  margin: 8px 0 0 0;
+  list-style: none;
+}
+
+.docsItem {
+  margin: 0;
+}
+
+.itemLink {
+  display: block;
+  padding: 4px 15px;
+  overflow: hidden;
+  color: rgb(0, 40, 75);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.itemLink:hover,
+.itemLink.active {
+  color: rgb(105, 220, 210);
+}
+
+.backToTop {
+  display: none;
+}
+
+@media screen and (min-width: 850px) {
+
+  .main {
+    width: 250px;
+  }
+
+  .sectionsList {
+    margin-top: 15px;
+  }
+
+  .sectionTitle {
+    padding-bottom: 2px;
+    padding-left: 10px;
+
+    background: none;
+
+
+    font-weight: 500;
+  }
+
+  .docsItem {
+    font-size: .85em;
+
+    font-weight: normal;
+  }
+
+  .itemLink {
+    padding: 2px 15px;
+    font-weight: 400;
+  }
+
+  .backToTop {
+    display: block;
+
+    position: sticky;
+    top: 143px;
+
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+
+}

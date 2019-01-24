@@ -1,0 +1,243 @@
+.content {
+  composes: prettylink from '../layouts/mixins.module.css';
+  grid-column: 1 / span 4;
+}
+
+.heroContainer {
+  background: url('../../static/img/pattern.svg');
+  background-color: rgb(0, 40, 75);
+  background-position: 10vw bottom;
+  background-repeat: no-repeat;
+  background-size: 150vw;
+  width: 100%;
+}
+
+.heroContent {
+  padding: 5%;
+  min-height: calc(100vh - 60px);
+  height: 100%;
+  width: 100%;
+}
+
+.heroTitle {
+  color: rgb(255, 255, 255);
+  font-family: "Avenir Next Demi";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.heroTitleBreak {
+  content: "";
+  display: block;
+  margin: 6px 0;
+}
+
+.heroDescription {
+  color: rgb(239, 244, 249);
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: "Avenir Next Light";
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 400px;
+  text-align: left;
+  width: 100%;
+}
+
+.textExplainer {
+  display: none;
+}
+
+.projectContainer {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  padding: 60px 5%;
+}
+
+.projectContainerItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  padding: 0 5%;
+  text-align: center;
+}
+
+.projectContainerItem + .projectContainerItem {
+  margin-top: 60px;
+}
+
+.projectContainerItem :last-child {
+  margin-bottom: 0;
+}
+
+.projectLogo {
+  height: 90px;
+}
+
+.projectDescription {
+  color: rgb(0, 40, 75);
+}
+
+.linkContainer a {
+  align-items: center;
+  background-color: rgb(105, 220, 210);
+  border: 2px solid rgb(105, 220, 210);
+  border-radius: 4px;
+  color: rgb(0, 40, 75);
+  display: inline-flex;
+  font-size: 15px;
+  font-family: 'Avenir Next Demi';
+  height: 45px;
+  justify-content: center;
+  min-width: 130px;
+  padding: 11px 15px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.linkContainer a:hover {
+  background-color: transparent !important;
+  border: 2px solid rgb(105, 220, 210) !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+@media screen and (min-width: 360px) {
+
+  .heroContainer {
+    background-size: 200vw;
+    min-height: 600px;
+  }
+
+}
+
+@media screen and (min-width: 400px) {
+
+  .heroContainer {
+    min-height: 700px;
+  }
+
+  .heroContent {
+    padding: 10%;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+  }
+
+}
+
+@media screen and (min-width: 480px) {
+
+  .heroContainer {
+    background-size: 160vw;
+    min-height: 900px;
+  }
+
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .heroTitle {
+    font-size: 38px;
+  }
+
+  .heroDescription {
+    font-size: 18px;
+    max-width: 460px;
+  }
+
+}
+
+@media screen and (min-width: 850px) {
+
+  .heroContainer {
+    background-size: 150vw;
+    min-height: 1000px;
+  }
+
+  .textExplainer {
+    display: block;
+  }
+
+  .projectContainer {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 40px 5% 80px;
+  }
+
+  .projectContainerItem {
+    margin: 0 auto;
+    padding: 40px 20px;
+    max-width: 400px;
+    min-height: 100%;
+  }
+
+  .projectDescription {
+    flex: 1;
+  }
+
+  .projectContainerItem + .projectContainerItem {
+    margin-top: 0;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+  .heroContainer {
+    background-position: 40vw bottom;
+    background-size: 120vw;
+    min-height: 900px;
+  }
+
+  .heroContent {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: auto;
+    max-width: 1450px;
+    padding-bottom: 10%;
+  }
+
+  .heroTitle {
+    font-size: 46px;
+    margin-bottom: 20px;
+  }
+
+}
+
+@media screen and (min-width: 1450px) {
+
+  .heroContainer {
+    background-position: 50vw bottom;
+    background-size: 100vw;
+  }
+
+  .projectContainer {
+    margin: 0 auto;
+    max-width: 1450px;
+    width: 100vw;
+  }
+
+}
+
+@media screen and (min-width: 2000px) {
+
+  .heroContainer {
+    background-position: 60vw bottom;
+    background-size: 80vw;
+  }
+
+}

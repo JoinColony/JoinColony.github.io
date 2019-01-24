@@ -1,0 +1,36 @@
+.searchInput {
+  height: 34px;
+  background: transparent;
+  border: 2px solid rgb(120, 142, 162);
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: 0.2s;
+  -webkit-appearance: none;
+}
+
+.searchInput:focus {
+  outline: none;
+  border: 2px solid rgb(105, 220, 210);
+}
+
+.searchInput::placeholder {
+  color: rgba(120, 142, 162, 1);
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.searchInput:focus::placeholder {
+  color: rgba(120, 142, 162, 0.4);
+}
+
+@media screen and (min-width: 480px) {
+
+  .searchInput {
+    height: 45px;
+    font-size: 15px;
+    padding: 10px 12px;
+    min-width: 200px;
+  }
+
+}

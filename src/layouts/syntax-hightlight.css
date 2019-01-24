@@ -1,0 +1,26 @@
+pre[class*="language-"] {
+  font-size: 16px !important; /* Sorry about that, all those external styles */
+  box-shadow: 0 0 0 1px rgba(120, 142, 162, 0.5);
+}
+
+code[class*="language-"], pre[class*="language-"] {
+  font-size: inherit;
+  background-color: rgb(240, 245, 250);
+  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+    "Liberation Mono", Menlo, Courier, monospace;
+}
+
+:global(.fonts-loaded) code[class*="language-"], pre[class*="language-"] {
+  font-family: "Inconsolata", "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
+    "Liberation Mono", Menlo, Courier, monospace;
+}
+
+pre[class*="language-"] .token.comment {
+  font-style: italic;
+}
+
+:global(.fonts-loaded) pre[class*="language-"] .token.comment {
+  font-family: "Fantasque Sans Mono", monospace;
+  font-size: 15px;
+  font-style: italic;
+}

@@ -1,0 +1,36 @@
+.container {
+  background: rgb(0, 40, 75);
+  color: #FAD14F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -60px;
+  position: fixed;
+  transition: 0.2s;
+  width: 100vw;
+  height: 60px;
+  z-index: 200;
+}
+
+.container:hover {
+  background: #FAD14F;
+  color: rgb(0, 40, 75);
+  cursor: pointer;
+}
+
+.boldText {
+  font-weight: 500;
+}
+
+.leftText {
+  display: none;
+}
+
+@media screen and (min-width: 850px) {
+
+  .leftText {
+    display: inline-block;
+    margin: 0 20px;
+  }
+
+}
