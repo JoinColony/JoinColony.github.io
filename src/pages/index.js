@@ -21,7 +21,9 @@ const IndexPage = ({ projects }) => {
         <section className={styles.heroContainer}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              The Colony<br className={styles.heroTitleBreak} />Developer Docs
+              The Colony
+              <br className={styles.heroTitleBreak} />
+              Developer Docs
             </h1>
             <div className={styles.heroDescription}>
               <p className={styles.textExplainer}>{introText}</p>

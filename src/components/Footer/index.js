@@ -42,7 +42,9 @@ const Footer = ({ projects }) => {
               </svg>
             </a>
             <p className={styles.logoTagline}>
-              A Platform for<br />Open Organizations
+              A Platform for
+              <br />
+              Open Organizations
             </p>
           </div>
           <ul className={styles.socials}>
