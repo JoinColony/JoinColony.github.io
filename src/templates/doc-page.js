@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import rehypeReact from 'rehype-react'
 import Helmet from 'react-helmet'
 import withProps from 'recompose/withProps'
-import { withPrefix } from 'gatsby-link'
+import { StaticQuery, graphql } from 'gatsby'
 
 import Link from '../components/Link'
 import Sidebar from '../components/Sidebar'
@@ -61,88 +61,89 @@ class DocPage extends Component {
   }
 
   render() {
-    const {
-      data: { project, doc },
-    } = this.props
-
-    doc.htmlAst.children.forEach(section => {
-      if (this.isTagName(section, 'h3')) {
-        if (this.isMethodHeading(section)) {
-          if (
-            section.properties.className &&
-            Array.isArray(section.properties.className)
-          ) {
-            section.properties.className.push(styles.methodHeading)
-          } else {
-            section.properties['className'] = [styles.methodHeading]
-          }
-        }
-      }
-    })
-    const metaTitle = `${doc.frontmatter.title} - ${project.name}`
-
-    const seoDescription =
-      this.getElementTextValue(
-        doc.htmlAst.children.find(child => this.isTagName(child, 'p'))
-      ) || metaTitle
-
-    const seoImages = this.getAllImages(doc.htmlAst, [project.logo])
-
     return (
-      <Fragment>
-        <Helmet>
-          <title>{metaTitle}</title>
-        </Helmet>
-        <SEO
-          title={metaTitle}
-          description={seoDescription}
-          images={seoImages}
-          project={this.props.data.project.name}
-          isDocPage={true}
-        />
-        <nav className={styles.sidebar}>
-          <Sidebar project={project} />
-        </nav>
-        <main className={styles.content}>
-          <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
-          <div className={styles.editUrlContainer}>
-            <p>
-              <Link href={doc.editUrl}>Improve this doc</Link>
-            </p>
-          </div>
-          {this.renderAst(doc.htmlAst)}
-        </main>
-      </Fragment>
+      <StaticQuery
+        query={graphql`
+          query projectAndDocQuery($docId: String!, $projectName: String!) {
+            doc: markdownRemark(id: { eq: $docId }) {
+              frontmatter {
+                title
+              }
+              editUrl
+              htmlAst
+            }
+            project(name: { eq: $projectName }) {
+              slug
+              name
+              logo
+              sectionOrder
+              sections {
+                name
+                slug
+                docs {
+                  slug
+                  frontmatter {
+                    title
+                    order
+                  }
+                }
+              }
+            }
+          }
+        `}
+        render={({ project, doc }) => {
+          doc.htmlAst.children.forEach(section => {
+            if (this.isTagName(section, 'h3')) {
+              if (this.isMethodHeading(section)) {
+                if (
+                  section.properties.className &&
+                  Array.isArray(section.properties.className)
+                ) {
+                  section.properties.className.push(styles.methodHeading)
+                } else {
+                  section.properties['className'] = [styles.methodHeading]
+                }
+              }
+            }
+          })
+          const metaTitle = `${doc.frontmatter.title} - ${project.name}`
+
+          const seoDescription =
+            this.getElementTextValue(
+              doc.htmlAst.children.find(child => this.isTagName(child, 'p'))
+            ) || metaTitle
+
+          const seoImages = this.getAllImages(doc.htmlAst, [project.logo])
+          return (
+            <Fragment>
+              <Helmet>
+                <title>{metaTitle}</title>
+              </Helmet>
+              <SEO
+                title={metaTitle}
+                description={seoDescription}
+                images={seoImages}
+                project={this.props.data.project.name}
+                isDocPage={true}
+              />
+              <nav className={styles.sidebar}>
+                <Sidebar project={project} />
+              </nav>
+              <main className={styles.content}>
+                <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
+                <div className={styles.editUrlContainer}>
+                  <p>
+                    <Link href={doc.editUrl}>Improve this doc</Link>
+                  </p>
+                </div>
+                {this.renderAst(doc.htmlAst)}
+              </main>
+            </Fragment>
+          )
+        }}
+      />
     )
   }
 }
 
 export default DocPage
-export const query = graphql`
-  query projectAndDocQuery($docId: String!, $projectName: String!) {
-    doc: markdownRemark(id: { eq: $docId }) {
-      frontmatter {
-        title
-      }
-      editUrl
-      htmlAst
-    }
-    project(name: { eq: $projectName }) {
-      slug
-      name
-      logo
-      sectionOrder
-      sections {
-        name
-        slug
-        docs {
-          slug
-          frontmatter {
-            title
-            order
-          }
-        }
-      }
-    }
-  }
-`
