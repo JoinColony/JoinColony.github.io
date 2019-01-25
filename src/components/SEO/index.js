@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { withPrefix } from 'gatsby-link'
-import { withRouter } from 'react-router'
+import { Location } from '@reach/router'
 import FileContext from '../../contexts/FileContext'
 
 class SEO extends Component {
@@ -125,8 +125,12 @@ class SEO extends Component {
   }
 }
 
-export default withRouter(props => (
-  <FileContext.Consumer>
-    {files => <SEO {...props} files={files} />}
-  </FileContext.Consumer>
-))
+export default () => props => (
+  <Location>
+    {locationProps => (
+      <FileContext.Consumer>
+        {files => <SEO {...props} files={files} {...locationProps} />}
+      </FileContext.Consumer>
+    )}
+  </Location>
+)

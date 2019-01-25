@@ -1,7 +1,6 @@
 import React from 'react'
 import Link, { withPrefix } from 'gatsby-link'
-
-import { withRouter } from 'react-router'
+import { Location } from '@reach/router'
 
 import styles from './Header.module.css'
 import Search from '../Search'
@@ -211,4 +210,9 @@ class Header extends React.Component {
   }
 }
 
-export default withRouter(Header)
+export default () => props =>
+  console.log(props) || (
+    <Location>
+      {locationProps => <Header {...props} {...locationProps} />}
+    </Location>
+  )
