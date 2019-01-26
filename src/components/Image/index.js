@@ -1,18 +1,19 @@
 import React from 'react'
 
-import { Consumer } from '../../contexts/FileContext'
+import FileContext from '../../contexts/FileContext'
 
-const Image = ({ src, files, project, ...props }) => (
-  <Consumer>
+const Image = ({ alt, src, files, project, ...props }) => (
+  <FileContext.Consumer>
     {files => (
       <img
         {...props}
+        alt={alt}
         src={
           files && files[`${project}/${src}`] ? files[`${project}/${src}`] : src
         }
       />
     )}
-  </Consumer>
+  </FileContext.Consumer>
 )
 
 export default Image
