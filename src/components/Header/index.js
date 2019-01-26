@@ -1,6 +1,7 @@
 import React from 'react'
 import Link, { withPrefix } from 'gatsby-link'
 import { Location } from '@reach/router'
+import { compose, fromRenderProps } from 'recompose'
 
 import styles from './Header.module.css'
 import Search from '../Search'
@@ -210,9 +211,8 @@ class Header extends React.Component {
   }
 }
 
-export default () => props =>
-  console.log(props) || (
-    <Location>
-      {locationProps => <Header {...props} {...locationProps} />}
-    </Location>
-  )
+const enhance = compose(
+  fromRenderProps(Location, locationProps => ({ ...locationProps }))
+)
+
+export default enhance(Header)

@@ -1,11 +1,8 @@
 import React from 'react'
-import Link from 'gatsby-link'
 
 import styles from './Footer.module.css'
 
-import Image from '../Image'
-
-const Footer = ({ projects }) => {
+const Footer = () => {
   const socialIconPath = '/img/'
   const socialLinks = [
     {
