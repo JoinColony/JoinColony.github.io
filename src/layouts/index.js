@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children, cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
@@ -11,7 +11,7 @@ import './syntax-hightlight.css'
 import styles from './index.module.css'
 
 import { orderSections, orderDocs } from '../utils'
-import { Provider as FileContextProvider } from '../contexts/FileContext'
+import FileContext from '../contexts/FileContext'
 
 import BugBounty from '../components/BugBounty' /* BUG BOUNTY */
 
@@ -20,7 +20,6 @@ import Footer from '../components/Footer'
 
 const MainLayout = props => {
   const { children } = props
-  const projects = data.projects.edges.map(transformProjectData)
   return (
     <StaticQuery
       query={graphql`
@@ -57,24 +56,30 @@ const MainLayout = props => {
           }
         }
       `}
-      render={data => (
-        <div className={styles.gridContainer}>
-          <Helmet>
-            <link
-              rel="shortcut icon"
-              type="image/png"
-              href={withPrefix('/img/favicon.ico')}
-            />
-            <script src={withPrefix('/js/fontloader.js')} />
-          </Helmet>
-          <FileContextProvider value={getFileMapping(data.files.edges)}>
-            <BugBounty /> {/* BUG BOUNTY */}
-            <Header projects={projects} />
-            {children({ ...props, projects })}
-            <Footer projects={projects} />
-          </FileContextProvider>
-        </div>
-      )}
+      render={data => {
+        const projects = data.projects.edges.map(transformProjectData) || []
+        const childrenWithProps = Children.map(children.children, child =>
+          cloneElement(child, { ...props, projects })
+        )
+        return (
+          <div className={styles.gridContainer}>
+            <Helmet>
+              <link
+                rel="shortcut icon"
+                type="image/png"
+                href={withPrefix('/img/favicon.ico')}
+              />
+              <script src={withPrefix('/js/fontloader.js')} />
+            </Helmet>
+            <FileContext.Provider value={getFileMapping(data.files.edges)}>
+              <BugBounty /> {/* BUG BOUNTY */}
+              <Header projects={projects} />
+              {childrenWithProps}
+              <Footer projects={projects} />
+            </FileContext.Provider>
+          </div>
+        )
+      }}
     />
   )
 }
