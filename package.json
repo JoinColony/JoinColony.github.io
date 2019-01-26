@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "docsearch.js": "^2.6.2",
+    "gatsby-plugin-flow": "^1.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
@@ -20,6 +21,7 @@
     "build": "yarn run clean && gatsby build",
     "clean": "rm -rf .cache",
     "dev": "yarn run clean && gatsby develop",
+    "flow": "flow check",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages -b master -d public"
