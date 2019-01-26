@@ -1,9 +1,9 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from 'react';
+import Link from 'gatsby-link';
 
-import styles from './Sidebar.module.css'
+import styles from './Sidebar.module.css';
 
-import { orderSections, orderDocs } from '../../utils'
+import { orderSections, orderDocs } from '../../utils';
 
 const Sidebar = ({ project }) => (
   <nav className={styles.main}>
@@ -36,14 +36,14 @@ const Sidebar = ({ project }) => (
       </a>
     </div>
   </nav>
-)
+);
 
 function handleBackToTop(e) {
   if (typeof window != 'undefined') {
-    e.preventDefault()
-    window.scrollTo(0, 0)
+    e.preventDefault();
+    window.scrollTo(0, 0);
   }
-  return
+  return;
 }
 
-export default Sidebar
+export default Sidebar;

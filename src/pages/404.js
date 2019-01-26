@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from '../components/Link'
+import React from 'react';
+import Link from '../components/Link';
 
-import styles from './404.module.css'
+import styles from './404.module.css';
 
 const NotFoundPage = () => (
   <main className={styles.main}>
@@ -11,6 +11,6 @@ const NotFoundPage = () => (
       <Link href={'/'}>Home</Link>
     </div>
   </main>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;

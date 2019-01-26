@@ -1,18 +1,18 @@
-import React, { Fragment } from 'react'
-import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
+import React, { Fragment } from 'react';
+import Link from 'gatsby-link';
+import Helmet from 'react-helmet';
 
-import styles from './index.module.css'
+import styles from './index.module.css';
 
-import MainLayout from '../layouts/index'
+import MainLayout from '../layouts/index';
 
-import Image from '../components/Image'
-import SEO from '../components/SEO'
+import Image from '../components/Image';
+import SEO from '../components/SEO';
 
 const IndexPage = ({ projects }) => {
-  const title = 'Colony Open Source Docs'
+  const title = 'Colony Open Source Docs';
   const introText =
-    "Just like the organizations that will run on Colony, each component in the colony stack is the product of collaboration and open engagement. Here, you'll find the up-to-date documentation for all of the Colony projects."
+    "Just like the organizations that will run on Colony, each component in the colony stack is the product of collaboration and open engagement. Here, you'll find the up-to-date documentation for all of the Colony projects.";
   return (
     <MainLayout>
       <Fragment>
@@ -63,7 +63,7 @@ const IndexPage = ({ projects }) => {
         </main>
       </Fragment>
     </MainLayout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

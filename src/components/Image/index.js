@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import FileContext from '../../contexts/FileContext'
+import FileContext from '../../contexts/FileContext';
 
 const Image = ({ alt, src, files, project, ...props }) => (
   <FileContext.Consumer>
@@ -14,6 +14,6 @@ const Image = ({ alt, src, files, project, ...props }) => (
       />
     )}
   </FileContext.Consumer>
-)
+);
 
-export default Image
+export default Image;

@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
+import React from 'react';
+import { Link as GatsbyLink } from 'gatsby';
 
 function isExternal(url) {
   if ((url && url.startsWith('http')) || url.startsWith('mailto')) {
-    return true
+    return true;
   }
-  return false
+  return false;
 }
 
 const Link = ({ children, href, ...props }) =>
@@ -17,6 +17,6 @@ const Link = ({ children, href, ...props }) =>
     <GatsbyLink to={href} {...props}>
       {children}
     </GatsbyLink>
-  )
+  );
 
-export default Link
+export default Link;

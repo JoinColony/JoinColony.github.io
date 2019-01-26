@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import styles from './Footer.module.css'
+import styles from './Footer.module.css';
 
 const Footer = () => {
-  const socialIconPath = '/img/'
+  const socialIconPath = '/img/';
   const socialLinks = [
     {
       name: 'Github',
@@ -25,7 +25,7 @@ const Footer = () => {
       url: 'https://twitter.com/joincolony',
       icon: 'social_twitter.svg#social_twitter',
     },
-  ]
+  ];
 
   return (
     <footer className={styles.footer}>
@@ -105,7 +105,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

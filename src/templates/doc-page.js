@@ -1,18 +1,18 @@
-import React, { Component, createElement, Fragment } from 'react'
-import rehypeReact from 'rehype-react'
-import Helmet from 'react-helmet'
-import { withProps } from 'recompose'
-import { graphql } from 'gatsby'
+import React, { Component, createElement, Fragment } from 'react';
+import rehypeReact from 'rehype-react';
+import Helmet from 'react-helmet';
+import { withProps } from 'recompose';
+import { graphql } from 'gatsby';
 
-import Link from '../components/Link'
-import Sidebar from '../components/Sidebar'
-import Image from '../components/Image'
-import styles from './doc-page.module.css'
-import SEO from '../components/SEO'
+import Link from '../components/Link';
+import Sidebar from '../components/Sidebar';
+import Image from '../components/Image';
+import styles from './doc-page.module.css';
+import SEO from '../components/SEO';
 
 class DocPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.renderAst = new rehypeReact({
       createElement,
@@ -20,15 +20,15 @@ class DocPage extends Component {
         a: Link,
         img: withProps({ project: props.data.project.name })(Image),
       },
-    }).Compiler
+    }).Compiler;
   }
 
   hasChildren(node) {
-    return node.children && node.children.length > 0
+    return node.children && node.children.length > 0;
   }
 
   isTagName(element, tagName) {
-    return element.tagName && element.tagName === tagName
+    return element.tagName && element.tagName === tagName;
   }
 
   isMethodHeading(section) {
@@ -36,35 +36,35 @@ class DocPage extends Component {
       section.children.length === 2 &&
       this.isTagName(section.children[0], 'a') &&
       this.isTagName(section.children[1], 'code')
-    )
+    );
   }
 
   getElementTextValue(node) {
     if (this.hasChildren(node)) {
       let textValues = node.children.map(child => {
         if (this.hasChildren(child)) {
-          return this.getElementTextValue(child)
+          return this.getElementTextValue(child);
         }
-        return child.value
-      })
-      return textValues.join('')
+        return child.value;
+      });
+      return textValues.join('');
     }
-    return ''
+    return '';
   }
 
   getAllImages(node, imagePaths = []) {
     if (this.isTagName(node, 'img')) {
-      imagePaths.push(node.properties.src)
+      imagePaths.push(node.properties.src);
     } else if (this.hasChildren(node)) {
-      node.children.map(child => this.getAllImages(child, imagePaths))
+      node.children.map(child => this.getAllImages(child, imagePaths));
     }
-    return imagePaths
+    return imagePaths;
   }
 
   render() {
     const {
       data: { project, doc },
-    } = this.props
+    } = this.props;
     doc.htmlAst.children.forEach(section => {
       if (this.isTagName(section, 'h3')) {
         if (this.isMethodHeading(section)) {
@@ -72,21 +72,21 @@ class DocPage extends Component {
             section.properties.className &&
             Array.isArray(section.properties.className)
           ) {
-            section.properties.className.push(styles.methodHeading)
+            section.properties.className.push(styles.methodHeading);
           } else {
-            section.properties['className'] = [styles.methodHeading]
+            section.properties['className'] = [styles.methodHeading];
           }
         }
       }
-    })
-    const metaTitle = `${doc.frontmatter.title} - ${project.name}`
+    });
+    const metaTitle = `${doc.frontmatter.title} - ${project.name}`;
 
     const seoDescription =
       this.getElementTextValue(
         doc.htmlAst.children.find(child => this.isTagName(child, 'p'))
-      ) || metaTitle
+      ) || metaTitle;
 
-    const seoImages = this.getAllImages(doc.htmlAst, [project.logo])
+    const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
     return (
       <Fragment>
         <Helmet>
@@ -112,7 +112,7 @@ class DocPage extends Component {
           {this.renderAst(doc.htmlAst)}
         </main>
       </Fragment>
-    )
+    );
   }
 }
 
@@ -143,6 +143,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default DocPage
+export default DocPage;

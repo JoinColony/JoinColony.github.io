@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from 'react';
+import Link from 'gatsby-link';
 
-import styles from './BugBounty.module.css'
+import styles from './BugBounty.module.css';
 
 const BugBounty = () => (
   <Link
@@ -11,6 +11,6 @@ const BugBounty = () => (
     <span className={styles.leftText}>{'Secure the network'}</span>
     <span className={styles.boldText}>{'Bug Bounty 2019'}</span>
   </Link>
-)
+);
 
-export default BugBounty
+export default BugBounty;

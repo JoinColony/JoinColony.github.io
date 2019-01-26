@@ -1,45 +1,45 @@
-import React, { Component } from 'react'
-import Helmet from 'react-helmet'
-import { withPrefix } from 'gatsby-link'
-import { Location } from '@reach/router'
-import { compose, fromRenderProps } from 'recompose'
-import FileContext from '../../contexts/FileContext'
+import React, { Component } from 'react';
+import Helmet from 'react-helmet';
+import { withPrefix } from 'gatsby-link';
+import { Location } from '@reach/router';
+import { compose, fromRenderProps } from 'recompose';
+import FileContext from '../../contexts/FileContext';
 
 class SEO extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.getAbsoluteImagePath = this.getAbsoluteImagePath.bind(this)
+    this.getAbsoluteImagePath = this.getAbsoluteImagePath.bind(this);
   }
 
-  baseUrl = 'https://docs.colony.io'
+  baseUrl = 'https://docs.colony.io';
 
   getAbsoluteImagePath(imagePath) {
-    const { files, project } = this.props
+    const { files, project } = this.props;
     return imagePath.startsWith('http')
       ? imagePath
       : `${this.baseUrl}${
           files && files[`${project}/${imagePath}`]
             ? files[`${project}/${imagePath}`]
             : imagePath
-        }`
+        }`;
   }
 
   render() {
-    const siteLogo = this.getAbsoluteImagePath('/img/colonyDocs_combomark.svg')
+    const siteLogo = this.getAbsoluteImagePath('/img/colonyDocs_combomark.svg');
     const {
       description,
       location,
       title,
       isDocPage = false,
       images = [siteLogo],
-    } = this.props
+    } = this.props;
 
-    const absolutePath = `${this.baseUrl}${withPrefix(location.pathname)}`
-    const imagePaths = images.map(this.getAbsoluteImagePath)
-    if (imagePaths.indexOf(siteLogo) < 0) imagePaths.push(siteLogo)
-    const ogType = location.pathname === '/' ? 'website' : 'article'
-    const siteName = 'Colony Open Source Docs'
+    const absolutePath = `${this.baseUrl}${withPrefix(location.pathname)}`;
+    const imagePaths = images.map(this.getAbsoluteImagePath);
+    if (imagePaths.indexOf(siteLogo) < 0) imagePaths.push(siteLogo);
+    const ogType = location.pathname === '/' ? 'website' : 'article';
+    const siteName = 'Colony Open Source Docs';
 
     const schemaOrgJSONLD = [
       {
@@ -48,7 +48,7 @@ class SEO extends Component {
         url: this.baseUrl,
         name: siteName,
       },
-    ]
+    ];
 
     if (isDocPage) {
       schemaOrgJSONLD.push(
@@ -80,7 +80,7 @@ class SEO extends Component {
           },
           description,
         }
-      )
+      );
     }
 
     return (
@@ -122,13 +122,13 @@ class SEO extends Component {
           <meta name="twitter:image" content={imagePath} key={imagePath} />
         ))}
       </Helmet>
-    )
+    );
   }
 }
 
 const enhance = compose(
   fromRenderProps(FileContext.Consumer, files => ({ files })),
   fromRenderProps(Location, locationProps => ({ ...locationProps }))
-)
+);
 
-export default enhance(SEO)
+export default enhance(SEO);
