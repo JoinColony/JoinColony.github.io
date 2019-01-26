@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { withPrefix } from 'gatsby-link'
 import { Location } from '@reach/router'
+import { compose, fromRenderProps } from 'recompose'
 import FileContext from '../../contexts/FileContext'
 
 class SEO extends Component {
@@ -125,12 +126,9 @@ class SEO extends Component {
   }
 }
 
-export default () => props => (
-  <Location>
-    {locationProps => (
-      <FileContext.Consumer>
-        {files => <SEO {...props} files={files} {...locationProps} />}
-      </FileContext.Consumer>
-    )}
-  </Location>
+const enhance = compose(
+  fromRenderProps(FileContext.Consumer, files => ({ files })),
+  fromRenderProps(Location, locationProps => ({ ...locationProps }))
 )
+
+export default enhance(SEO)
