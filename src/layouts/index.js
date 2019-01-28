@@ -1,9 +1,9 @@
 /* @flow */
-import React, { Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
+
+import React from 'react';
 import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
-import { withPrefix } from 'gatsby-link';
+import { StaticQuery, graphql, withPrefix } from 'gatsby';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
 import './normalize.css';
@@ -19,8 +19,11 @@ import BugBounty from '../components/BugBounty'; /* BUG BOUNTY */
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const MainLayout = props => {
-  const { children } = props;
+type Props = {
+  children: Node,
+};
+
+const MainLayout = ({ children }: Props) => {
   return (
     <StaticQuery
       query={graphql`
@@ -59,9 +62,6 @@ const MainLayout = props => {
       `}
       render={data => {
         const projects = data.projects.edges.map(transformProjectData) || [];
-        const childrenWithProps = Children.map(children.children, child =>
-          cloneElement(child, { ...props, projects }),
-        );
         return (
           <div className={styles.gridContainer}>
             <Helmet>
@@ -75,7 +75,7 @@ const MainLayout = props => {
             <FileContext.Provider value={getFileMapping(data.files.edges)}>
               <BugBounty /> {/* BUG BOUNTY */}
               <Header projects={projects} />
-              {childrenWithProps}
+              {children}
               <Footer projects={projects} />
             </FileContext.Provider>
           </div>
@@ -85,29 +85,25 @@ const MainLayout = props => {
   );
 };
 
-MainLayout.propTypes = {
-  children: PropTypes.func,
-};
-
 export default MainLayout;
 
-function getFileMapping(files) {
-  return files.reduce((current, next) => {
-    current[`${next.node.sourceInstanceName}/${next.node.relativePath}`] =
-      next.node.publicURL;
-    return current;
-  }, {});
-}
-
-function transformProjectData(edge) {
-  edge.node.entryPoint = getEntryPoint(edge.node);
-  return edge.node;
-}
-
-function getEntryPoint(project) {
+const getEntryPoint = project => {
   const firstSection = project.sections.sort((a, b) =>
     orderSections(project.sectionOrder, a, b),
   )[0];
   const firstDoc = firstSection.docs.sort(orderDocs)[0];
   return `${firstSection.slug}-${firstDoc.slug}`;
-}
+};
+
+const getFileMapping = files => {
+  return files.reduce((current, next) => {
+    current[`${next.node.sourceInstanceName}/${next.node.relativePath}`] =
+      next.node.publicURL;
+    return current;
+  }, {});
+};
+
+const transformProjectData = edge => {
+  edge.node.entryPoint = getEntryPoint(edge.node);
+  return edge.node;
+};
