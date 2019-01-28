@@ -29,12 +29,12 @@ const nodeQuery = `
   }
 `
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
+exports.onCreateNode = ({ node, actions, getNode }) => {
   const {
     createNode,
     createNodeField,
     createParentChildLink,
-  } = boundActionCreators
+  } = actions
 
   let projectNode
   let sectionNode
@@ -137,8 +137,8 @@ function getNodeEditUrl(parent) {
   return `https://github.com/JoinColony/${projectName}/edit/master/docs/${parent.relativePath}`
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   return graphql(nodeQuery).then(({ data }) => {
     data.projects.edges.forEach(({ node: project }) => {
       project.sections.forEach(section => {

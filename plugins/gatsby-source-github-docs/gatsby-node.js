@@ -66,12 +66,12 @@ const generateRequests = ({ projects, githubAccessToken }) => {
 }
 
 exports.sourceNodes = async (
-  { boundActionCreators, loadNodeContent },
+  { actions, loadNodeContent },
   options
 ) => {
   if (!options.githubAccessToken)
     throw new Error('GitHub access token not defined!')
-  const { createNode, createParentChildLink } = boundActionCreators
+  const { createNode, createParentChildLink } = actions
   const results = await Promise.all(generateRequests(options))
   results.forEach(project => {
     const { repository } = project.response.data
