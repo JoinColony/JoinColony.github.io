@@ -85,6 +85,7 @@ class DocPage extends Component<Props> {
           ) {
             section.properties.className.push(styles.methodHeading);
           } else {
+            // eslint-disable-next-line no-param-reassign
             section.properties.className = [styles.methodHeading];
           }
         }
