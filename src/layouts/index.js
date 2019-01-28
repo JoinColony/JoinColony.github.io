@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
@@ -59,7 +60,7 @@ const MainLayout = props => {
       render={data => {
         const projects = data.projects.edges.map(transformProjectData) || [];
         const childrenWithProps = Children.map(children.children, child =>
-          cloneElement(child, { ...props, projects })
+          cloneElement(child, { ...props, projects }),
         );
         return (
           <div className={styles.gridContainer}>
@@ -105,7 +106,7 @@ function transformProjectData(edge) {
 
 function getEntryPoint(project) {
   const firstSection = project.sections.sort((a, b) =>
-    orderSections(project.sectionOrder, a, b)
+    orderSections(project.sectionOrder, a, b),
   )[0];
   const firstDoc = firstSection.docs.sort(orderDocs)[0];
   return `${firstSection.slug}-${firstDoc.slug}`;
