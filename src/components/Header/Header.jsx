@@ -6,11 +6,13 @@ import { Link, withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 import { compose, fromRenderProps } from 'recompose';
 
+import type { Project } from '../../types';
+
 import styles from './Header.module.css';
 import Search from '../Search';
 
 type Props = RouteProps & {
-  projects: Array<Object>, // @TODO better typing
+  projects: Array<Project>,
 };
 
 type State = {
@@ -36,11 +38,9 @@ class Header extends React.Component<Props, State> {
     });
   }
 
-  isProjectActive = project => {
-    const {
-      location: { pathname },
-    } = this.props;
-    return pathname && pathname.split('/').indexOf(project.slug) > -1;
+  isProjectActive = (project: Project) => {
+    const { location } = this.props;
+    return location && location.pathname.split('/').indexOf(project.slug) > -1;
   };
 
   handleCloseNavigation = () => {
@@ -63,22 +63,22 @@ class Header extends React.Component<Props, State> {
     const activeProject = projects.find(this.isProjectActive);
     const selectedProject = (activeProject && activeProject.name) || '';
 
-    const navLinks = projects.map(project => {
-      return (
-        <Link
-          key={project.slug}
-          to={`/${project.slug}/${project.entryPoint}/`}
-          className={styles.projectLink}
-          activeClassName={styles.projectLinkActive}
-          onClick={this.handleCloseNavigation}
-          isActive={() =>
-            selectedProject && project.slug === activeProject.slug
-          }
-        >
-          {project.name}
-        </Link>
-      );
-    });
+    const navLinks = projects.map(project => (
+      <Link
+        key={project.slug}
+        to={`/${project.slug}/${project.entryPoint}/`}
+        className={styles.projectLink}
+        activeClassName={styles.projectLinkActive}
+        onClick={this.handleCloseNavigation}
+        isActive={() =>
+          activeProject &&
+          selectedProject &&
+          project.slug === activeProject.slug
+        }
+      >
+        {project.name}
+      </Link>
+    ));
 
     return (
       <div id="header" className={styles.container}>
@@ -217,6 +217,7 @@ class Header extends React.Component<Props, State> {
 }
 
 const enhance = compose(
+  // $FlowFixMe
   fromRenderProps(Location, locationProps => ({ ...locationProps })),
 );
 

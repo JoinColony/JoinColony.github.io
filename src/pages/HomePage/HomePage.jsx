@@ -51,6 +51,7 @@ Colony projects.`;
               projects.map(project => (
                 <div key={project.name} className={styles.projectContainerItem}>
                   <Image
+                    alt={project.name}
                     className={styles.projectLogo}
                     project={project.name}
                     src={project.logo}

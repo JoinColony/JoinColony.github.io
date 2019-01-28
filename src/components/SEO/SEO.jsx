@@ -41,10 +41,12 @@ class SEO extends Component<Props> {
       images = [siteLogo],
     } = this.props;
 
-    const absolutePath = `${this.baseUrl}${withPrefix(location.pathname)}`;
+    const absolutePath =
+      location && `${this.baseUrl}${withPrefix(location.pathname)}`;
     const imagePaths = images.map(this.getAbsoluteImagePath);
     if (imagePaths.indexOf(siteLogo) < 0) imagePaths.push(siteLogo);
-    const ogType = location.pathname === '/' ? 'website' : 'article';
+    const ogType =
+      location && location.pathname === '/' ? 'website' : 'article';
     const siteName = 'Colony Open Source Docs';
 
     const schemaOrgJSONLD = [
@@ -133,7 +135,9 @@ class SEO extends Component<Props> {
 }
 
 const enhance = compose(
+  // $FlowFixMe
   fromRenderProps(FileContext.Consumer, files => ({ files })),
+  // $FlowFixMe
   fromRenderProps(Location, locationProps => ({ ...locationProps })),
 );
 

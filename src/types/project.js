@@ -15,7 +15,10 @@ export type Section = {
 };
 
 export type Project = {
+  description: string,
+  entryPoint: string,
   logo: string,
+  logoSmall: string,
   name: string,
   sectionOrder: Array<string>,
   sections: Array<Section>,

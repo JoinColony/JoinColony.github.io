@@ -1,7 +1,7 @@
 /* @flow */
 import type { Node } from 'react';
 
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql, withPrefix } from 'gatsby';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
@@ -84,6 +84,9 @@ const MainLayout = ({ children }: Props) => {
       `}
       render={data => {
         const projects = data.projects.edges.map(transformProjectData) || [];
+        const childrenWithProps = Children.map(children, child =>
+          cloneElement(child, { projects }),
+        );
         return (
           <div className={styles.gridContainer}>
             <Helmet>
@@ -97,7 +100,7 @@ const MainLayout = ({ children }: Props) => {
             <FileContext.Provider value={getFileMapping(data.files.edges)}>
               <BugBounty /> {/* BUG BOUNTY */}
               <Header projects={projects} />
-              {children}
+              {childrenWithProps}
               <Footer projects={projects} />
             </FileContext.Provider>
           </div>

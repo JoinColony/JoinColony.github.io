@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
 
-import type { Doc, Project } from '../../types';
+import type { Doc, HtmlAst, Project } from '../../types';
 
 import Link from '../../components/Link';
 import Sidebar from '../../components/Sidebar';
@@ -22,16 +22,15 @@ type Props = {
 };
 
 class DocPage extends Component<Props> {
-  static hasChildren(node) {
-    return node.children && node.children.length > 0;
+  renderAst: (node: Object) => void;
+
+  static isTagName(element: HtmlAst, tagName: string): boolean {
+    return !!element.tagName && element.tagName === tagName;
   }
 
-  static isTagName(element, tagName) {
-    return element.tagName && element.tagName === tagName;
-  }
-
-  static isMethodHeading(section) {
+  static isMethodHeading(section: HtmlAst) {
     return (
+      section.children &&
       section.children.length === 2 &&
       DocPage.isTagName(section.children[0], 'a') &&
       DocPage.isTagName(section.children[1], 'code')
@@ -50,10 +49,10 @@ class DocPage extends Component<Props> {
     }).Compiler;
   }
 
-  getElementTextValue = node => {
-    if (DocPage.hasChildren(node)) {
+  getElementTextValue = (node?: HtmlAst) => {
+    if (node && node.children && node.children.length > 0) {
       const textValues = node.children.map(child => {
-        if (DocPage.hasChildren(child)) {
+        if (child.children && child.children.length > 0) {
           return this.getElementTextValue(child);
         }
         return child.value;
@@ -63,10 +62,10 @@ class DocPage extends Component<Props> {
     return '';
   };
 
-  getAllImages = (node, imagePaths = []) => {
-    if (DocPage.isTagName(node, 'img')) {
+  getAllImages = (node: HtmlAst, imagePaths: Array<string> = []) => {
+    if (DocPage.isTagName(node, 'img') && node.properties) {
       imagePaths.push(node.properties.src);
-    } else if (DocPage.hasChildren(node)) {
+    } else if (node.children && node.children.length > 0) {
       node.children.map(child => this.getAllImages(child, imagePaths));
     }
     return imagePaths;
@@ -76,27 +75,32 @@ class DocPage extends Component<Props> {
     const {
       data: { project, doc },
     } = this.props;
-    doc.htmlAst.children.forEach(section => {
-      if (DocPage.isTagName(section, 'h3')) {
-        if (DocPage.isMethodHeading(section)) {
-          if (
-            section.properties.className &&
-            Array.isArray(section.properties.className)
-          ) {
-            section.properties.className.push(styles.methodHeading);
-          } else {
-            // eslint-disable-next-line no-param-reassign
-            section.properties.className = [styles.methodHeading];
+    if (doc.htmlAst.children) {
+      doc.htmlAst.children.forEach(section => {
+        if (DocPage.isTagName(section, 'h3')) {
+          if (DocPage.isMethodHeading(section) && section.properties) {
+            if (
+              section.properties.className &&
+              Array.isArray(section.properties.className)
+            ) {
+              section.properties.className.push(styles.methodHeading);
+            } else {
+              // eslint-disable-next-line no-param-reassign
+              section.properties.className = [styles.methodHeading];
+            }
           }
         }
-      }
-    });
+      });
+    }
     const metaTitle = `${doc.frontmatter.title} - ${project.name}`;
 
     const seoDescription =
-      this.getElementTextValue(
-        doc.htmlAst.children.find(child => DocPage.isTagName(child, 'p')),
-      ) || metaTitle;
+      (doc.htmlAst.children &&
+        doc.htmlAst.children.length > 0 &&
+        this.getElementTextValue(
+          doc.htmlAst.children.find(child => DocPage.isTagName(child, 'p')),
+        )) ||
+      metaTitle;
 
     const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
     return (
