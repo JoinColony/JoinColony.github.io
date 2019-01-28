@@ -36,9 +36,13 @@ const Sidebar = ({ project }: Props) => (
         ))}
     </ul>
     <div className={styles.backToTop}>
-      <a className={styles.itemLink} onClick={handleBackToTop} href="#">
+      <button
+        className={styles.itemLink}
+        onClick={handleBackToTop}
+        type="button"
+      >
         <small>Back to Top</small>
-      </a>
+      </button>
     </div>
   </nav>
 );
