@@ -1,20 +1,47 @@
+/* @flow */
 import React, { Component, createElement, Fragment } from 'react';
-import rehypeReact from 'rehype-react';
+import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
 
-import Link from '../components/Link';
-import Sidebar from '../components/Sidebar';
-import Image from '../components/Image';
-import styles from './doc-page.module.css';
-import SEO from '../components/SEO';
+import type { Doc, Project } from '../../types';
 
-class DocPage extends Component {
-  constructor(props) {
+import Link from '../../components/Link';
+import Sidebar from '../../components/Sidebar';
+import Image from '../../components/Image';
+import SEO from '../../components/SEO';
+
+import styles from './DocPage.module.css';
+
+type Props = {
+  data: {
+    project: Project,
+    doc: Doc,
+  }, // @TODO better typing
+};
+
+class DocPage extends Component<Props> {
+  static hasChildren(node) {
+    return node.children && node.children.length > 0;
+  }
+
+  static isTagName(element, tagName) {
+    return element.tagName && element.tagName === tagName;
+  }
+
+  static isMethodHeading(section) {
+    return (
+      section.children.length === 2 &&
+      DocPage.isTagName(section.children[0], 'a') &&
+      DocPage.isTagName(section.children[1], 'code')
+    );
+  }
+
+  constructor(props: Props) {
     super(props);
 
-    this.renderAst = new rehypeReact({
+    this.renderAst = new RehypeReact({
       createElement,
       components: {
         a: Link,
@@ -23,26 +50,10 @@ class DocPage extends Component {
     }).Compiler;
   }
 
-  hasChildren(node) {
-    return node.children && node.children.length > 0;
-  }
-
-  isTagName(element, tagName) {
-    return element.tagName && element.tagName === tagName;
-  }
-
-  isMethodHeading(section) {
-    return (
-      section.children.length === 2 &&
-      this.isTagName(section.children[0], 'a') &&
-      this.isTagName(section.children[1], 'code')
-    );
-  }
-
-  getElementTextValue(node) {
-    if (this.hasChildren(node)) {
-      let textValues = node.children.map(child => {
-        if (this.hasChildren(child)) {
+  getElementTextValue = node => {
+    if (DocPage.hasChildren(node)) {
+      const textValues = node.children.map(child => {
+        if (DocPage.hasChildren(child)) {
           return this.getElementTextValue(child);
         }
         return child.value;
@@ -50,31 +61,31 @@ class DocPage extends Component {
       return textValues.join('');
     }
     return '';
-  }
+  };
 
-  getAllImages(node, imagePaths = []) {
-    if (this.isTagName(node, 'img')) {
+  getAllImages = (node, imagePaths = []) => {
+    if (DocPage.isTagName(node, 'img')) {
       imagePaths.push(node.properties.src);
-    } else if (this.hasChildren(node)) {
+    } else if (DocPage.hasChildren(node)) {
       node.children.map(child => this.getAllImages(child, imagePaths));
     }
     return imagePaths;
-  }
+  };
 
   render() {
     const {
       data: { project, doc },
     } = this.props;
     doc.htmlAst.children.forEach(section => {
-      if (this.isTagName(section, 'h3')) {
-        if (this.isMethodHeading(section)) {
+      if (DocPage.isTagName(section, 'h3')) {
+        if (DocPage.isMethodHeading(section)) {
           if (
             section.properties.className &&
             Array.isArray(section.properties.className)
           ) {
             section.properties.className.push(styles.methodHeading);
           } else {
-            section.properties['className'] = [styles.methodHeading];
+            section.properties.className = [styles.methodHeading];
           }
         }
       }
@@ -83,7 +94,7 @@ class DocPage extends Component {
 
     const seoDescription =
       this.getElementTextValue(
-        doc.htmlAst.children.find(child => this.isTagName(child, 'p'))
+        doc.htmlAst.children.find(child => DocPage.isTagName(child, 'p')),
       ) || metaTitle;
 
     const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
@@ -97,7 +108,7 @@ class DocPage extends Component {
           description={seoDescription}
           images={seoImages}
           project={project.name}
-          isDocPage={true}
+          isDocPage
         />
         <nav className={styles.sidebar}>
           <Sidebar project={project} />

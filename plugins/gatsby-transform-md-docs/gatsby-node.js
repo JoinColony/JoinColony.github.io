@@ -176,7 +176,7 @@ function createDocPage(project, section, doc, createPage) {
   createPage({
     // TODO: define own layout page?
     path: `/${slug}`,
-    component: getTemplatePath('doc-page.js'),
+    component: getTemplatePath('DocPage/DocPage.jsx'),
     context: {
       docId: doc.id,
       projectName: project.name,
