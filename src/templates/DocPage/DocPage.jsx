@@ -1,11 +1,13 @@
 /* @flow */
-import React, { Component, createElement, Fragment } from 'react';
+import React, { Component, createElement } from 'react';
 import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
 
 import type { Doc, HtmlAst, Project } from '../../types';
+
+import MainLayout from '../../layouts';
 
 import Link from '../../components/Link';
 import Sidebar from '../../components/Sidebar';
@@ -104,7 +106,7 @@ class DocPage extends Component<Props> {
 
     const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
     return (
-      <Fragment>
+      <MainLayout>
         <Helmet>
           <title>{metaTitle}</title>
         </Helmet>
@@ -127,7 +129,7 @@ class DocPage extends Component<Props> {
           </div>
           {this.renderAst(doc.htmlAst)}
         </main>
-      </Fragment>
+      </MainLayout>
     );
   }
 }
