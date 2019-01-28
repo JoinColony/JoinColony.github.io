@@ -6,7 +6,7 @@
 }
 
 .content {
-    composes: prettylink from '../layouts/mixins.module.css';
+    composes: prettylink from '../../layouts/mixins.module.css';
 
     display: block;
 }
