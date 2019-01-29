@@ -89,7 +89,6 @@ module.exports = {
     title: 'Colony Open Source Docs',
   },
   plugins: [
-    'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
     'gatsby-transform-md-docs',
@@ -117,5 +116,6 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-flow',
   ],
 }

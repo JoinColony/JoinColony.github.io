@@ -1,10 +1,10 @@
 .content {
-  composes: prettylink from '../layouts/mixins.module.css';
+  composes: prettylink from '../../layouts/mixins.module.css';
   grid-column: 1 / span 4;
 }
 
 .heroContainer {
-  background: url('../../static/img/pattern.svg');
+  background: url('../../../static/img/pattern.svg');
   background-color: rgb(0, 40, 75);
   background-position: 10vw bottom;
   background-repeat: no-repeat;
