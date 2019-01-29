@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react';
-import { Link } from 'gatsby';
 
 import styles from './Sidebar.module.css';
+import Link from '../Link';
 
 import { orderSections, orderDocs } from '../../utils';
 
@@ -22,7 +22,7 @@ const Sidebar = ({ project }: Props) => (
               {section.docs.sort(orderDocs).map(doc => (
                 <li key={doc.slug} className={styles.docsItem}>
                   <Link
-                    to={`/${project.slug}/${section.slug}-${doc.slug}/`}
+                    href={`/${project.slug}/${section.slug}-${doc.slug}/`}
                     title={doc.frontmatter.title}
                     className={styles.itemLink}
                     activeClassName={styles.active}

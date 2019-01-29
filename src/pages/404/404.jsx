@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react';
+
 import Link from '../../components/Link';
 
 import styles from './404.module.css';

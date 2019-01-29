@@ -1,6 +1,8 @@
 /* @flow */
 import React from 'react';
 
+import Link from '../Link';
+
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -33,13 +35,13 @@ const Footer = () => {
       <div className={styles.wrapper}>
         <div className={styles.section}>
           <div className={styles.logoContainer}>
-            <a href="https://colony.io" className={styles.logo}>
+            <Link href="https://colony.io" className={styles.logo}>
               <svg viewBox="0 0 122 112" role="img" aria-label="Colony">
                 <title>Colony</title>
                 {/* eslint-disable-next-line max-len */}
                 <use xlinkHref="/img/colony_logo_vertical_white.svg#colony_logo_vertical_white" />
               </svg>
-            </a>
+            </Link>
             <p className={styles.logoTagline}>
               A Platform for
               <br />
@@ -48,12 +50,10 @@ const Footer = () => {
           </div>
           <ul className={styles.socials}>
             {socialLinks.map(socialLink => (
-              <a
+              <Link
                 key={socialLink.name}
                 className={styles.socialItem}
                 href={socialLink.url}
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 <span className={styles.hide} aria-hidden>
                   Colony on {socialLink.name}
@@ -70,42 +70,25 @@ const Footer = () => {
                   </title>
                   <use xlinkHref={`${socialIconPath}${socialLink.icon}`} />
                 </svg>
-              </a>
+              </Link>
             ))}
           </ul>
           <nav className={styles.nav} role="navigation">
-            <a
+            <Link
               className={styles.navLink}
               href="https://colony.io/get-involved"
-              rel="noopener noreferrer"
-              target="_blank"
             >
               Get Involved
-            </a>
-            <a
-              className={styles.navLink}
-              href="https://blog.colony.io"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            </Link>
+            <Link className={styles.navLink} href="https://blog.colony.io">
               Blog
-            </a>
-            <a
-              className={styles.navLink}
-              href="https://colony.io/terms"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            </Link>
+            <Link className={styles.navLink} href="https://colony.io/terms">
               Terms
-            </a>
-            <a
-              className={styles.navLink}
-              href="https://colony.io/login"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            </Link>
+            <Link className={styles.navLink} href="https://colony.io/login">
               Login
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

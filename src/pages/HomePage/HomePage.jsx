@@ -1,6 +1,5 @@
 /* @flow */
 import React, { Fragment } from 'react';
-import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import type { Project } from '../../types';
@@ -9,6 +8,7 @@ import styles from './HomePage.module.css';
 
 import MainLayout from '../../layouts/index';
 
+import Link from '../../components/Link';
 import Image from '../../components/Image';
 import SEO from '../../components/SEO';
 
@@ -62,7 +62,7 @@ Colony projects.`;
                   <p className={styles.linkContainer}>
                     <Link
                       id="projectButton"
-                      to={`/${project.slug}/${project.entryPoint}`}
+                      href={`/${project.slug}/${project.entryPoint}`}
                     >
                       View Docs
                     </Link>

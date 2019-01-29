@@ -2,13 +2,14 @@
 import type { RouteProps } from '@reach/router';
 
 import React from 'react';
-import { Link, withPrefix } from 'gatsby';
+import { withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 import { compose, fromRenderProps } from 'recompose';
 
 import type { Project } from '../../types';
 
 import styles from './Header.module.css';
+import Link from '../Link';
 import Search from '../Search';
 
 type Props = RouteProps & {
@@ -66,7 +67,7 @@ class Header extends React.Component<Props, State> {
     const navLinks = projects.map(project => (
       <Link
         key={project.slug}
-        to={`/${project.slug}/${project.entryPoint}/`}
+        href={`/${project.slug}/${project.entryPoint}/`}
         className={styles.projectLink}
         activeClassName={styles.projectLinkActive}
         onClick={this.handleCloseNavigation}
@@ -93,7 +94,7 @@ class Header extends React.Component<Props, State> {
           <div className={styles.headerContent}>
             <div className={styles.wrapper}>
               <Link
-                to="/"
+                href="/"
                 className={styles.logo}
                 onClick={this.handleCloseNavigation}
               >
@@ -118,11 +119,9 @@ class Header extends React.Component<Props, State> {
                 </nav>
                 <ul className={styles.secondaryLinkList}>
                   <li className={styles.secondaryLinkListItem}>
-                    <a
+                    <Link
                       className={styles.repoLink}
                       href={`https://github.com/JoinColony/${selectedProject}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       <span className={styles.hide} aria-hidden>
                         {selectedProject || 'Colony'} on GitHub
@@ -140,14 +139,12 @@ class Header extends React.Component<Props, State> {
                           )}
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </li>
                   <li className={styles.secondaryLinkListItem}>
-                    <a
+                    <Link
                       className={styles.repoLink}
                       href={`https://gitter.im/JoinColony/${selectedProject}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       <span className={styles.hide} aria-hidden>
                         {selectedProject || 'Colony'} on Gitter
@@ -165,14 +162,12 @@ class Header extends React.Component<Props, State> {
                           )}
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </li>
                   <li className={styles.secondaryLinkListItem}>
-                    <a
+                    <Link
                       className={styles.repoLink}
                       href="https://build.colony.io"
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       <span className={styles.hide} aria-hidden>
                         {'Colony on Discourse'}
@@ -190,7 +185,7 @@ class Header extends React.Component<Props, State> {
                           )}
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <div className={styles.searchContainer}>
