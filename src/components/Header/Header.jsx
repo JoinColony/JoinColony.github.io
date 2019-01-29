@@ -28,16 +28,22 @@ class Header extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    const { isScrolled } = this.state;
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 0) {
-        if (isScrolled) return;
-        this.setState({ isScrolled: true });
-      } else {
-        this.setState({ isScrolled: false });
-      }
-    });
+    window.addEventListener('scroll', this.handleScroll);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { isScrolled } = this.state;
+    if (window.pageYOffset > 0) {
+      if (isScrolled) return;
+      this.setState({ isScrolled: true });
+    } else {
+      this.setState({ isScrolled: false });
+    }
+  };
 
   isProjectActive = (project: Project) => {
     const { location } = this.props;
