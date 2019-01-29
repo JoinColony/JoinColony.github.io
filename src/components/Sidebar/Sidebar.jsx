@@ -1,13 +1,15 @@
 /* @flow */
 import React from 'react';
 
+import type { Project } from '../../types';
+
 import styles from './Sidebar.module.css';
 import Link from '../Link';
 
 import { orderSections, orderDocs } from '../../utils';
 
 type Props = {
-  project: Object, // @TODO type better
+  project: Project,
 };
 
 const Sidebar = ({ project }: Props) => (

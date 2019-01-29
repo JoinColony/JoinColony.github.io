@@ -1,14 +1,6 @@
 /* @flow */
 
-type Doc = {
-  frontmatter: {
-    order: number,
-  },
-};
-type Section = {
-  docs: Array<Doc>,
-  slug: string,
-};
+import type { Doc, Section } from './types';
 
 export const orderDocs = (a: Doc, b: Doc): number =>
   a.frontmatter.order - b.frontmatter.order;

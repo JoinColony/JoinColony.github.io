@@ -20,7 +20,7 @@ type Props = {
   data: {
     project: Project,
     doc: Doc,
-  }, // @TODO better typing
+  },
 };
 
 class DocPage extends Component<Props> {

@@ -6,11 +6,14 @@ import Helmet from 'react-helmet';
 import { withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 import { compose, fromRenderProps } from 'recompose';
+
+import type { FileContext as FileContextType } from '../../types';
+
 import FileContext from '../../contexts/FileContext';
 
 type Props = RouteProps & {
   description: string,
-  files?: Object, // @TODO type better
+  files?: FileContextType,
   images: Array<string>,
   isDocPage: boolean,
   project: string,

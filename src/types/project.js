@@ -1,6 +1,8 @@
 /* @flow */
 
-export type SectionDoc = {
+import type { Doc } from './doc';
+
+export type SectionDoc = Doc & {
   frontmatter: {
     title: string,
     order: number,
