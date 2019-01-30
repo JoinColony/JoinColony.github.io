@@ -5,14 +5,14 @@ import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
 
-import type { Doc, HtmlAst, Project } from '../../types';
+import type { Doc, HtmlAst, Project } from '~types';
 
-import MainLayout from '../../layouts';
+import MainLayout from '~layouts/MainLayout';
 
-import Link from '../../components/Link';
-import Sidebar from '../../components/Sidebar';
-import Image from '../../components/Image';
-import SEO from '../../components/SEO';
+import Link from '~core/Link';
+import Image from '~core/Image';
+import Sidebar from '~parts/Sidebar';
+import SEO from '~parts/SEO';
 
 import styles from './DocPage.module.css';
 

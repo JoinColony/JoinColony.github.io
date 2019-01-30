@@ -197,5 +197,5 @@ function addChildNode(parent, child, name) {
 }
 
 function getTemplatePath(file) {
-  return path.resolve(__dirname, '..', '..', 'src', 'templates', file)
+  return path.resolve(__dirname, '..', '..', 'src', 'modules', 'templates', 'components', file)
 }

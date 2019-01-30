@@ -7,9 +7,9 @@ import { withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 import { compose, fromRenderProps } from 'recompose';
 
-import type { FileContext as FileContextType } from '../../types';
+import type { FileContext as FileContextType } from '~types';
 
-import FileContext from '../../contexts/FileContext';
+import FileContext from '~context/FileContext';
 
 type Props = RouteProps & {
   description: string,

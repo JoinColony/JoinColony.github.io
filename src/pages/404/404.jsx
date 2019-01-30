@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 
-import Link from '../../components/Link';
+import Link from '~core/Link';
 
 import styles from './404.module.css';
 

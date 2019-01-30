@@ -8,7 +8,10 @@ import 'docsearch.js/dist/cdn/docsearch.min.css';
 import styles from './Search.module.css';
 import './algolia-overrides.css';
 
-import { docSearchApiKey, docSearcIndexName } from '../../docsearch-settings';
+import {
+  docSearchApiKey,
+  docSearcIndexName,
+} from '../../../../docsearch-settings';
 
 type State = {
   isEnabled: boolean,

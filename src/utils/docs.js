@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { Doc, Section } from './types';
+import type { Doc, Section } from '~types';
 
 export const orderDocs = (a: Doc, b: Doc): number =>
   a.frontmatter.order - b.frontmatter.order;

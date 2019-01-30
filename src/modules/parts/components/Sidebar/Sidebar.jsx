@@ -1,12 +1,12 @@
 /* @flow */
 import React from 'react';
 
-import type { Project } from '../../types';
+import type { Project } from '~types';
 
 import styles from './Sidebar.module.css';
-import Link from '../Link';
+import Link from '~core/Link';
 
-import { orderSections, orderDocs } from '../../utils';
+import { orderSections, orderDocs } from '~utils';
 
 type Props = {
   project: Project,

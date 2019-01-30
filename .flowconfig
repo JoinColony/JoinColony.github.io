@@ -1,6 +1,7 @@
 [ignore]
 
 [include]
+.*/scripts/.*
 .*/src/.*
 
 [libs]
@@ -8,5 +9,11 @@
 [lints]
 
 [options]
+module.name_mapper='^\~context\/?\(.*\)$' -> '<PROJECT_ROOT>/src/context/\1'
+module.name_mapper='^\~static\/?\(.*\)$' -> '<PROJECT_ROOT>/static/\1'
+module.name_mapper='^\~styles\/?\(.*\)$' -> '<PROJECT_ROOT>/src/styles/\1'
+module.name_mapper='^\~types\/?\(.*\)$' -> '<PROJECT_ROOT>/src/types/\1'
+module.name_mapper='^\~utils\/?\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
+module.name_mapper='\~\([a-zA-Z0-9\-\_]+\)\/\(.*\)' -> '<PROJECT_ROOT>/src/modules/\1/components/\2'
 
 [strict]

@@ -6,11 +6,11 @@ import { withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 import { compose, fromRenderProps } from 'recompose';
 
-import type { Project } from '../../types';
+import type { Project } from '~types';
 
 import styles from './Header.module.css';
-import Link from '../Link';
-import Search from '../Search';
+import Link from '~core/Link';
+import Search from '~parts/Search';
 
 type Props = RouteProps & {
   projects: Array<Project>,

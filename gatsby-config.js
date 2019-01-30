@@ -1,5 +1,8 @@
 const path = require('path')
 const dotenv = require('dotenv')
+const fs = require('fs')
+
+const utils = require('./scripts/utils');
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -117,5 +120,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-flow',
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: utils.getModuleAliases(),
+        extensions: []
+      }
+    }
   ],
 }

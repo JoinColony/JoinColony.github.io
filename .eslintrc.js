@@ -1,3 +1,7 @@
+const utils = require('./scripts/utils');
+
+const modules = utils.getModuleAliases();
+
 module.exports = {
   extends: [
     'standard',
@@ -73,4 +77,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 8, // optional, recommended 6+
   },
+  settings: {
+    'import/resolver': {
+      alias: Object.keys(modules).map(key => [key, modules[key]]),
+    }
+  }
 }

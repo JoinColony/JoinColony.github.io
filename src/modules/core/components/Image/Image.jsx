@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 
-import FileContext from '../../contexts/FileContext';
+import FileContext from '~context/FileContext';
 
 type Props = {
   alt: string,

@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 
-import Link from '../Link';
+import Link from '~core/Link';
 
 import styles from './Footer.module.css';
 

@@ -6,17 +6,17 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql, withPrefix } from 'gatsby';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
-import './normalize.css';
-import './fonts.css';
-import './syntax-hightlight.css';
+import '~styles/normalize.css';
+import '~styles/fonts.css';
+import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
 
-import { orderSections, orderDocs } from '../../utils';
-import FileContext from '../../contexts/FileContext';
+import { orderSections, orderDocs } from '~utils';
+import FileContext from '~context/FileContext';
 
-import BugBounty from '../../components/BugBounty';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import BugBounty from '~parts/BugBounty';
+import Header from '~parts/Header';
+import Footer from '~parts/Footer';
 
 type Props = {
   children: Node,
