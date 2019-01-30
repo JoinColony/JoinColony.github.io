@@ -70,17 +70,21 @@ class Header extends React.Component<Props, State> {
     const activeProject = projects.find(this.isProjectActive);
     const selectedProject = (activeProject && activeProject.name) || '';
 
+    const activeLinkClassNames = `${styles.projectLink} ${
+      styles.projectLinkActive
+    }`;
+
     const navLinks = projects.map(project => (
       <Link
         key={project.slug}
         href={`/${project.slug}/${project.entryPoint}/`}
-        className={styles.projectLink}
-        activeClassName={styles.projectLinkActive}
         onClick={this.handleCloseNavigation}
-        isActive={() =>
+        getProps={() =>
           activeProject &&
           selectedProject &&
           project.slug === activeProject.slug
+            ? { className: activeLinkClassNames }
+            : { className: styles.projectLink }
         }
       >
         {project.name}
