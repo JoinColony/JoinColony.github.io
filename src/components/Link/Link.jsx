@@ -27,7 +27,7 @@ const isOnPageAnchor = (url: string): boolean => /^#(?!\/)/.test(url);
 /*
  * If the anchor is an on-page-anchor (i.e. #get-started),
  * gatsby warns not to use the `Link` component, as it
- * refers to these as tehcnically being external links.
+ * refers to these as technically being external links.
  */
 const getUrlProps = (url: string): ExtraUrlProps | void => {
   if (!isOnPageAnchor(url))
