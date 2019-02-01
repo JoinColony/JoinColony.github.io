@@ -4,6 +4,7 @@ import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
+import slugify from 'slugify';
 
 import type { Doc, HtmlAst, Project } from '~types';
 
@@ -20,6 +21,17 @@ type Props = {
   data: {
     project: Project,
     doc: Doc,
+    // allProject is trimmed-down query
+    allProject: {
+      edges: Array<{
+        node: {
+          name: string,
+        },
+      }>,
+    },
+  },
+  pageContext: {
+    slugPrefix: string,
   },
 };
 
@@ -45,7 +57,7 @@ class DocPage extends Component<Props> {
     this.renderAst = new RehypeReact({
       createElement,
       components: {
-        a: Link,
+        a: withProps({ getLinkPrefix: this.getLinkPrefix })(Link),
         img: withProps({ project: props.data.project.name })(Image),
       },
     }).Compiler;
@@ -71,6 +83,21 @@ class DocPage extends Component<Props> {
       node.children.map(child => this.getAllImages(child, imagePaths));
     }
     return imagePaths;
+  };
+
+  getLinkPrefix = (url: string): string | void => {
+    const {
+      data: {
+        allProject: { edges: projectNodes },
+      },
+      pageContext: { slugPrefix },
+    } = this.props;
+    const projectNames = projectNodes.map(({ node }) =>
+      slugify(node.name, { lower: true }),
+    );
+    return projectNames.some(projectName => url.startsWith(`/${projectName}/`))
+      ? slugPrefix
+      : undefined;
   };
 
   render() {
@@ -157,6 +184,13 @@ export const pageQuery = graphql`
             title
             order
           }
+        }
+      }
+    }
+    allProject {
+      edges {
+        node {
+          name
         }
       }
     }

@@ -1,3 +1,3 @@
 /* @flow */
 
-export { default } from './Link.jsx';
+export { default } from './Link';

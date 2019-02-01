@@ -29,7 +29,7 @@ const nodeQuery = `
   }
 `
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions, getNode }, { slugPrefix }) => {
   const {
     createNode,
     createNodeField,
@@ -43,7 +43,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const { projectName, projectId } = getProjectInfo(node)
     projectNode = getNode(projectId)
     if (!projectNode) {
-      projectNode = createProjectNode(projectName, null, createNode)
+      projectNode = createProjectNode(projectName, null, createNode, slugPrefix)
     }
     let config
     if (node.internal.content) {
@@ -89,7 +89,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         node,
         createNode
       )
-      projectNode = createProjectNode(projectName, sectionNode, createNode)
+      projectNode = createProjectNode(projectName, sectionNode, createNode, slugPrefix)
     } else {
       // ProjectNode exists
       sectionNode = createSectionNode(
@@ -137,13 +137,13 @@ function getNodeEditUrl(parent) {
   return `https://github.com/JoinColony/${projectName}/edit/master/docs/${parent.relativePath}`
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = ({ graphql, actions }, { slugPrefix }) => {
   const { createPage } = actions
   return graphql(nodeQuery).then(({ data }) => {
     data.projects.edges.forEach(({ node: project }) => {
       project.sections.forEach(section => {
         section.docs.forEach(doc => {
-          createDocPage(project, section, doc, createPage)
+          createDocPage(project, section, doc, createPage, slugPrefix)
         })
       })
     })
@@ -161,17 +161,17 @@ function createSectionNode(name, project, docNode, createNode) {
   return sectionNode
 }
 
-function createProjectNode(name, sectionNode, createNode) {
+function createProjectNode(name, sectionNode, createNode, slugPrefix) {
   const projectNode = ProjectNode({
     name,
-    slug: slugify(name, { lower: true }),
+    slug: `${slugify(slugPrefix, { lower: true })}/${slugify(name, { lower: true })}`,
   })
   if (sectionNode) addChildNode(projectNode, sectionNode, 'sections')
   createNode(projectNode)
   return projectNode
 }
 
-function createDocPage(project, section, doc, createPage) {
+function createDocPage(project, section, doc, createPage, slugPrefix) {
   const slug = `${project.slug}/${section.slug}-${doc.slug}`
   createPage({
     // TODO: define own layout page?
@@ -180,6 +180,7 @@ function createDocPage(project, section, doc, createPage) {
     context: {
       docId: doc.id,
       projectName: project.name,
+      slugPrefix,
     },
   })
 }

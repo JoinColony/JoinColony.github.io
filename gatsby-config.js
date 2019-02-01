@@ -94,9 +94,14 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
-    'gatsby-transform-md-docs',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-transform-md-docs',
+      options: {
+        slugPrefix: 'docs'
+      }
+    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
