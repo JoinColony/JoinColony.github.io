@@ -21,7 +21,6 @@ type Props = {
   data: {
     project: Project,
     doc: Doc,
-    // allProject is trimmed-down query
     allProject: {
       edges: Array<{
         node: {
@@ -163,37 +162,9 @@ class DocPage extends Component<Props> {
 
 export const pageQuery = graphql`
   query projectAndDocQuery($docId: String!, $projectName: String!) {
-    doc: markdownRemark(id: { eq: $docId }) {
-      frontmatter {
-        title
-      }
-      editUrl
-      htmlAst
-    }
-    project(name: { eq: $projectName }) {
-      slug
-      name
-      logo
-      sectionOrder
-      sections {
-        name
-        slug
-        docs {
-          slug
-          frontmatter {
-            title
-            order
-          }
-        }
-      }
-    }
-    allProject {
-      edges {
-        node {
-          name
-        }
-      }
-    }
+    ...singleDocFragment
+    ...singleProjectFragment
+    ...allProjectNamesFragment
   }
 `;
 
