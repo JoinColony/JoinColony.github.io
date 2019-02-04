@@ -112,7 +112,7 @@
   display: none;
 }
 
-.repoIcon {
+.repoIcon svg {
   display: block;
   fill: rgb(0, 40, 75);
   margin: 0 16px;
@@ -120,7 +120,7 @@
   width: 32px;
 }
 
-.repoIcon:hover {
+.repoIcon:hover svg {
   fill: rgb(105, 220, 210);
 }
 
@@ -297,7 +297,7 @@
     margin: 0 10px;
   }
 
-  .repoIcon {
+  .repoIcon svg {
     margin: 0 auto;
   }
 

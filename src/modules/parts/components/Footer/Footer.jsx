@@ -1,32 +1,32 @@
 /* @flow */
 import React from 'react';
 
+import Icon from '~core/Icon';
 import Link from '~core/Link';
 
 import styles from './Footer.module.css';
 
 const Footer = () => {
-  const socialIconPath = '/img/';
   const socialLinks = [
     {
       name: 'Github',
       url: 'https://github.com/JoinColony',
-      icon: 'social_github.svg#social_github',
+      icon: 'social_github',
     },
     {
       name: 'Reddit',
       url: 'https://www.reddit.com/r/joincolony/',
-      icon: 'social_reddit.svg#social_reddit',
+      icon: 'social_reddit',
     },
     {
       name: 'Medium',
       url: 'https://blog.colony.io/',
-      icon: 'social_medium.svg#social_medium',
+      icon: 'social_medium',
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/joincolony',
-      icon: 'social_twitter.svg#social_twitter',
+      icon: 'social_twitter',
     },
   ];
 
@@ -36,11 +36,11 @@ const Footer = () => {
         <div className={styles.section}>
           <div className={styles.logoContainer}>
             <Link href="https://colony.io" className={styles.logo}>
-              <svg viewBox="0 0 122 112" role="img" aria-label="Colony">
-                <title>Colony</title>
-                {/* eslint-disable-next-line max-len */}
-                <use xlinkHref="/img/colony_logo_vertical_white.svg#colony_logo_vertical_white" />
-              </svg>
+              <Icon
+                name="colony_logo_vertical_white"
+                title="Colony"
+                viewBox="0 0 122 112"
+              />
             </Link>
             <p className={styles.logoTagline}>
               A Platform for
@@ -55,21 +55,11 @@ const Footer = () => {
                 className={styles.socialItem}
                 href={socialLink.url}
               >
-                <span className={styles.hide} aria-hidden>
-                  Colony on {socialLink.name}
-                </span>
-                <svg
+                <Icon
                   className={styles.socialIcon}
-                  viewBox="0 0 32 32"
-                  role="img"
-                  aria-label={socialLink.name}
-                >
-                  <title>
-                    Colony on
-                    {socialLink.name}
-                  </title>
-                  <use xlinkHref={`${socialIconPath}${socialLink.icon}`} />
-                </svg>
+                  title={`Colony on ${socialLink.name}`}
+                  name={socialLink.icon}
+                />
               </Link>
             ))}
           </ul>

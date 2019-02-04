@@ -58,11 +58,11 @@
   border-radius: 25px;
 }
 
-.socialIcon:hover, .socialIcon:focus {
+.socialIcon:hover svg, .socialIcon:focus svg {
   fill: rgb(105, 220, 210);
 }
 
-.socialIcon {
+.socialIcon svg {
   width: 100%;
   height: 100%;
   background: rgb(0, 40, 75);
