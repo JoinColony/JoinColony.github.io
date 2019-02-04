@@ -6,7 +6,7 @@ import type { Project } from '~types';
 import styles from './Sidebar.module.css';
 import Link from '~core/Link';
 
-import { orderSections, orderDocs } from '~utils';
+import { orderSections, orderDocs } from '~utils/docs';
 
 type Props = {
   project: Project,

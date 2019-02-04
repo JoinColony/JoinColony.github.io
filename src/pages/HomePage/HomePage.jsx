@@ -10,7 +10,7 @@ import Image from '~core/Image';
 import MainLayout from '~layouts/MainLayout';
 import SEO from '~parts/SEO';
 
-import { orderSections, orderDocs } from '~utils';
+import { orderSections, orderDocs } from '~utils/docs';
 
 const getEntryPoint = project => {
   const firstSection = project.sections.sort((a, b) =>

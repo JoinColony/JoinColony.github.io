@@ -11,7 +11,7 @@ import '~styles/fonts.css';
 import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
 
-import { orderSections, orderDocs } from '~utils';
+import { orderSections, orderDocs } from '~utils/docs';
 import FileContext from '~context/FileContext';
 
 import BugBounty from '~parts/BugBounty';
