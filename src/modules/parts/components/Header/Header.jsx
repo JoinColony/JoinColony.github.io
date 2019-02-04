@@ -47,7 +47,7 @@ class Header extends React.Component<Props, State> {
 
   isProjectActive = (project: Project) => {
     const { location } = this.props;
-    return location && location.pathname.split('/').indexOf(project.slug) > -1;
+    return location && location.pathname.startsWith(`/${project.slug}`);
   };
 
   handleCloseNavigation = () => {
