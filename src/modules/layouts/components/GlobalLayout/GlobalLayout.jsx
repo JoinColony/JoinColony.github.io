@@ -26,6 +26,8 @@ type Props = {
   children: Node,
 };
 
+const displayName = 'layouts.GlobalLayout';
+
 const GlobalLayout = ({ children }: Props) => (
   <IntlProvider locale="en" defaultLocale="en" messages={messages}>
     <StaticQuery
@@ -60,5 +62,7 @@ const GlobalLayout = ({ children }: Props) => (
     />
   </IntlProvider>
 );
+
+GlobalLayout.displayName = displayName;
 
 export default GlobalLayout;
