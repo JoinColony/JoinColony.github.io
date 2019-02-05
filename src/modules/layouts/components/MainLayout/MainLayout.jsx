@@ -1,22 +1,21 @@
 /* @flow */
 import type { Node } from 'react';
 
-import React, { Children, cloneElement } from 'react';
-import Helmet from 'react-helmet';
-import { StaticQuery, graphql, withPrefix } from 'gatsby';
+import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
+
+import { orderSections, orderDocs } from '~utils/docs';
+
+import GlobalLayout from '~layouts/GlobalLayout';
+import BugBounty from '~parts/BugBounty';
+import Header from '~parts/Header';
+import Footer from '~parts/Footer';
 
 import '~styles/normalize.css';
 import '~styles/fonts.css';
 import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
-
-import { orderSections, orderDocs } from '~utils/docs';
-import FileContext from '~context/FileContext';
-
-import BugBounty from '~parts/BugBounty';
-import Header from '~parts/Header';
-import Footer from '~parts/Footer';
 
 type Props = {
   children: Node,
@@ -30,15 +29,6 @@ const getEntryPoint = project => {
   return `${firstSection.slug}-${firstDoc.slug}`;
 };
 
-const getFileMapping = files => {
-  return files.reduce((current, next) => {
-    // eslint-disable-next-line no-param-reassign
-    current[`${next.node.sourceInstanceName}/${next.node.relativePath}`] =
-      next.node.publicURL;
-    return current;
-  }, {});
-};
-
 const transformProjectData = edge => {
   const edgeNode = edge.node;
   edgeNode.entryPoint = getEntryPoint(edge.node);
@@ -49,66 +39,46 @@ const displayName = 'layouts.MainLayout';
 
 const MainLayout = ({ children }: Props) => {
   return (
-    <StaticQuery
-      query={graphql`
-        query AllProjectQuery {
-          projects: allProject {
-            edges {
-              node {
-                name
-                slug
-                logo
-                logoSmall
-                description
-                sections {
+    <GlobalLayout>
+      <StaticQuery
+        query={graphql`
+          query AllProjectQuery {
+            projects: allProject {
+              edges {
+                node {
+                  name
                   slug
-                  docs {
+                  logo
+                  logoSmall
+                  description
+                  sections {
                     slug
-                    frontmatter {
-                      order
+                    docs {
+                      slug
+                      frontmatter {
+                        order
+                      }
                     }
                   }
+                  sectionOrder
                 }
-                sectionOrder
               }
             }
           }
-          files: allFile {
-            edges {
-              node {
-                sourceInstanceName
-                relativePath
-                publicURL
-              }
-            }
-          }
-        }
-      `}
-      render={data => {
-        const projects = data.projects.edges.map(transformProjectData) || [];
-        const childrenWithProps = Children.map(children, child =>
-          cloneElement(child, { projects }),
-        );
-        return (
-          <div className={styles.gridContainer}>
-            <Helmet>
-              <link
-                rel="shortcut icon"
-                type="image/png"
-                href={withPrefix('/img/favicon.ico')}
-              />
-              <script src={withPrefix('/js/fontloader.js')} />
-            </Helmet>
-            <FileContext.Provider value={getFileMapping(data.files.edges)}>
+        `}
+        render={data => {
+          const projects = data.projects.edges.map(transformProjectData) || [];
+          return (
+            <div className={styles.gridContainer}>
               <BugBounty /> {/* BUG BOUNTY */}
               <Header projects={projects} />
-              {childrenWithProps}
+              {children}
               <Footer projects={projects} />
-            </FileContext.Provider>
-          </div>
-        );
-      }}
-    />
+            </div>
+          );
+        }}
+      />
+    </GlobalLayout>
   );
 };
 
