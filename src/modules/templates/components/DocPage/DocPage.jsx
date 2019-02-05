@@ -37,6 +37,8 @@ type Props = {
 class DocPage extends Component<Props> {
   renderAst: (node: Object) => void;
 
+  static displayName = 'templates.DocPage';
+
   static isTagName(element: HtmlAst, tagName: string): boolean {
     return !!element.tagName && element.tagName === tagName;
   }

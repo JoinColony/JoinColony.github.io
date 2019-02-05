@@ -9,6 +9,8 @@ type Props = {
   project: string,
 };
 
+const displayName = 'Image';
+
 const Image = ({ alt, src, project, ...props }: Props) => (
   <FileContext.Consumer>
     {files => (
@@ -22,5 +24,7 @@ const Image = ({ alt, src, project, ...props }: Props) => (
     )}
   </FileContext.Consumer>
 );
+
+Image.displayName = displayName;
 
 export default Image;

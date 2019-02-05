@@ -4,6 +4,8 @@ import Link from '~core/Link';
 
 import styles from './BugBounty.module.css';
 
+const displayName = 'parts.BugBounty';
+
 const BugBounty = () => (
   <Link
     className={styles.container}
@@ -13,5 +15,7 @@ const BugBounty = () => (
     <span className={styles.boldText}>Bug Bounty 2019</span>
   </Link>
 );
+
+BugBounty.displayName = displayName;
 
 export default BugBounty;

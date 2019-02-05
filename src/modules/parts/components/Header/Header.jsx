@@ -25,6 +25,8 @@ type State = {
 };
 
 class Header extends React.Component<Props, State> {
+  static displayName = 'parts.Header';
+
   state = {
     isNavExpanded: false,
     isScrolled: false,

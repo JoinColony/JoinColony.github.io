@@ -21,6 +21,8 @@ type Props = RouteProps & {
 };
 
 class SEO extends Component<Props> {
+  static displayName = 'parts.SEO';
+
   baseUrl = 'https://docs.colony.io';
 
   getAbsoluteImagePath = (imagePath: string) => {

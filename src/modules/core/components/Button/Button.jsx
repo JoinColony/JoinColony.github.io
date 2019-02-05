@@ -22,6 +22,8 @@ type Props = {
   type?: string,
 };
 
+const displayName = 'Button';
+
 const Button = ({
   appearance = { theme: 'primary' },
   children,
@@ -47,5 +49,7 @@ const Button = ({
     </button>
   );
 };
+
+Button.displayName = displayName;
 
 export default Button;

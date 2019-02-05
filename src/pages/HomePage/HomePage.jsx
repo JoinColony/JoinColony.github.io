@@ -26,7 +26,9 @@ const transformProjectData = edge => {
   return edgeNode;
 };
 
-const IndexPage = () => {
+const displayName = 'pages.HomePage';
+
+const HomePage = () => {
   const title = 'Colony Open Source Docs';
   const introText = `Just like the organizations that will run on Colony,
 each component in the colony stack is the product of collaboration and open
@@ -130,4 +132,6 @@ Colony projects.`;
   );
 };
 
-export default IndexPage;
+HomePage.displayName = displayName;
+
+export default HomePage;

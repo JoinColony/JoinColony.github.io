@@ -45,6 +45,8 @@ const transformProjectData = edge => {
   return edgeNode;
 };
 
+const displayName = 'layouts.MainLayout';
+
 const MainLayout = ({ children }: Props) => {
   return (
     <StaticQuery
@@ -109,5 +111,7 @@ const MainLayout = ({ children }: Props) => {
     />
   );
 };
+
+MainLayout.displayName = displayName;
 
 export default MainLayout;

@@ -6,6 +6,8 @@ import Link from '~core/Link';
 
 import styles from './Footer.module.css';
 
+const displayName = 'parts.Footer';
+
 const Footer = () => {
   const socialLinks = [
     {
@@ -85,5 +87,7 @@ const Footer = () => {
     </footer>
   );
 };
+
+Footer.displayName = displayName;
 
 export default Footer;

@@ -4,6 +4,8 @@ import { Link as GatsbyLink } from 'gatsby';
 
 import type { OutProps } from './types';
 
+const displayName = 'Link';
+
 const Link = ({
   children,
   href,
@@ -20,5 +22,7 @@ const Link = ({
       {children}
     </a>
   );
+
+Link.displayName = displayName;
 
 export default Link;

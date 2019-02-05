@@ -13,6 +13,8 @@ type Props = {
   project: Project,
 };
 
+const displayName = 'parts.Sidebar';
+
 const Sidebar = ({ project }: Props) => (
   <nav className={styles.main}>
     <ul className={styles.sectionsList}>
@@ -45,6 +47,8 @@ const Sidebar = ({ project }: Props) => (
     </div>
   </nav>
 );
+
+Sidebar.displayName = displayName;
 
 function handleBackToTop(e) {
   if (typeof window !== 'undefined') {

@@ -20,6 +20,8 @@ const getIcons = (map: Array<string>) =>
 
 const icons = getIcons(iconNames);
 
+const displayName = 'Icon';
+
 const Icon = ({
   className,
   name,
@@ -36,5 +38,7 @@ const Icon = ({
     </i>
   );
 };
+
+Icon.displayName = displayName;
 
 export default Icon;
