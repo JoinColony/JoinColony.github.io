@@ -1,5 +1,8 @@
 const path = require('path')
 const dotenv = require('dotenv')
+const fs = require('fs')
+
+const utils = require('./scripts/utils');
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -91,9 +94,14 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
-    'gatsby-transform-md-docs',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-transform-md-docs',
+      options: {
+        slugPrefix: 'docs'
+      }
+    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -117,5 +125,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-flow',
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: utils.getModuleAliases(),
+        extensions: []
+      }
+    }
   ],
 }

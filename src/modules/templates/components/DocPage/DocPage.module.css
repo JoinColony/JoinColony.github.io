@@ -1,0 +1,202 @@
+.sidebar {
+  grid-column: 1 / span 4;
+}
+
+.content {
+  composes: prettylink from '~styles/mixins.module.css';
+}
+
+:global(.gatsby-toc) + ul {
+  margin: 0;
+  list-style: none;
+  margin-bottom: 1.45rem;
+}
+
+:global(.gatsby-toc) + ul > li {
+  /* Style first level indentation */
+  list-style: none;
+}
+
+:global(.gatsby-toc) + ul > li li {
+  /* Style second level indentation */
+  list-style: none;
+}
+
+.content {
+  color: rgb(0, 40, 75);
+  grid-column: 1 / span 4;
+  grid-row: 3 / span 4;
+
+  box-sizing: border-box;
+  padding: 25px;
+
+  margin: 0;
+
+  overflow-x: hidden;
+}
+
+.content h1 {
+  font-family: "Avenir Next Demi";
+  font-weight: 600;
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.content h2 {
+  font-family: "Avenir Next Demi";
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.content h3 {
+  font-family: "Avenir Next Demi";
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.content h4 {
+  font-family: "Avenir Next Demi";
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.content p {
+  font-size: 15px;
+}
+
+.content table {
+  max-width: 100%;
+}
+
+.content table thead {
+  background: rgb(240, 245, 250);
+}
+
+.content table th,
+.content table td {
+  padding: .5rem .7rem calc(.5rem - 1px) .7rem;
+}
+
+.content table th:first-child,
+.content table td:first-child {
+  padding-left: 8px;
+}
+
+.content table th:last-child,
+.content table td:last-child {
+  padding-right: 8px;
+}
+
+.content table th {
+  font-size: .9rem;
+}
+
+.content table td {
+  font-size: .85rem;
+}
+
+.content table tbody tr:nth-child(even) {
+  background: rgba(245, 245, 254, 0.4);
+}
+
+.content table td {
+  font-size: .85rem;
+}
+
+.content table tbody tr:nth-child(even) {
+  background: rgba(245, 245, 254, 0.4);
+}
+
+.content pre {
+  margin: 0 3% 1.45rem 3%;
+  overflow-x: auto;
+}
+
+.content code {
+  overflow-x: auto;
+}
+
+.content [class*="methodHeading"] a[class*="anchor"] {
+  margin-top: 16px;
+}
+
+.content .methodHeading code {
+  display: block;
+  padding: 12px 25px 12px 12px;
+  border-left: inset 4px rgb(105, 220, 210);
+}
+
+@media screen and (min-width: 850px) {
+  .sidebar {
+    grid-column: 2 / span 1;
+  }
+
+  .content {
+    grid-column: 3 / span 1;
+    grid-row: auto;
+    margin: 0 0 5% 0;
+    position: relative;
+  }
+
+  .content h1 {
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 50px;
+
+    font-size: 32px;
+  }
+
+  .content h2 {
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 48px;
+
+    font-size: 24px;
+  }
+
+  .content h3 {
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size: 20px;
+  }
+
+  .content h4 {
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size: 20px;
+  }
+
+  .content p, .content ul {
+    font-size: 16px;
+  }
+
+  .content :not(li) > p, .content ul, .content ul > li {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  :global(.gatsby-toc) + ul li {
+    margin-left: 0;
+  }
+
+  .content table {
+    max-width: 80%;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .content .editUrlContainer {
+    position: absolute;
+    text-align: right;
+    top: 50px;
+    right: 5%;
+    width: 150px;
+  }
+
+  .content .editUrlContainer p {
+    font-size: 18px;
+    margin: 0;
+  }
+
+}

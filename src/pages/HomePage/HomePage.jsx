@@ -5,13 +5,12 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import styles from './HomePage.module.css';
 
-import MainLayout from '../../layouts/index';
+import Link from '~core/Link';
+import Image from '~core/Image';
+import MainLayout from '~layouts/MainLayout';
+import SEO from '~parts/SEO';
 
-import Link from '../../components/Link';
-import Image from '../../components/Image';
-import SEO from '../../components/SEO';
-
-import { orderSections, orderDocs } from '../../utils';
+import { orderSections, orderDocs } from '~utils';
 
 const getEntryPoint = project => {
   const firstSection = project.sections.sort((a, b) =>
