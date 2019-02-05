@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import styles from './HomePage.module.css';
 
-import Link from '~core/Link';
+import Button from '~core/Button';
 import Image from '~core/Image';
 import MainLayout from '~layouts/MainLayout';
 import SEO from '~parts/SEO';
@@ -112,12 +112,11 @@ Colony projects.`;
                           {project.description}
                         </p>
                         <p className={styles.linkContainer}>
-                          <Link
-                            id="projectButton"
-                            href={`/${project.slug}/${project.entryPoint}`}
+                          <Button
+                            linkTo={`/${project.slug}/${project.entryPoint}`}
                           >
                             View Docs
-                          </Link>
+                          </Button>
                         </p>
                       </div>
                     ))}
