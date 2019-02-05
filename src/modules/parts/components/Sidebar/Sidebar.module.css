@@ -106,8 +106,8 @@
 
   .backToTop .itemLink {
     border: none;
-    font: inherit;
     color: inherit;
+    font-size: .75rem;
     background: none;
   }
 

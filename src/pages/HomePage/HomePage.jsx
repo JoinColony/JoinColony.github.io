@@ -116,9 +116,8 @@ Colony projects.`;
                         <p className={styles.linkContainer}>
                           <Button
                             linkTo={`/${project.slug}/${project.entryPoint}`}
-                          >
-                            View Docs
-                          </Button>
+                            text={{ id: 'btn.viewDocs' }}
+                          />
                         </p>
                       </div>
                     ))}

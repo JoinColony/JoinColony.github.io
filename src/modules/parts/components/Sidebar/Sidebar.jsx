@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react';
+import { defineMessages } from 'react-intl';
 
 import type { Project } from '~types';
 
@@ -8,6 +9,13 @@ import Link from '~core/Link';
 import { orderSections, orderDocs } from '~utils/docs';
 
 import styles from './Sidebar.module.css';
+
+const MSG = defineMessages({
+  btnBackToTop: {
+    id: 'parts.Sidebar.btnBackToTop',
+    defaultMessage: 'Back to Top',
+  },
+});
 
 type Props = {
   project: Project,
@@ -41,9 +49,11 @@ const Sidebar = ({ project }: Props) => (
         ))}
     </ul>
     <div className={styles.backToTop}>
-      <Button className={styles.itemLink} onClick={handleBackToTop}>
-        <small>Back to Top</small>
-      </Button>
+      <Button
+        className={styles.itemLink}
+        onClick={handleBackToTop}
+        text={MSG.btnBackToTop}
+      />
     </div>
   </nav>
 );
