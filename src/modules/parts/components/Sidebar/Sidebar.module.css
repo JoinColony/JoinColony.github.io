@@ -50,6 +50,10 @@
   white-space: nowrap;
 }
 
+.itemLink:hover {
+  cursor: pointer;
+}
+
 .itemLink:hover,
 .itemLink.active {
   color: rgb(105, 220, 210);
@@ -94,7 +98,7 @@
     display: block;
 
     position: sticky;
-    top: 143px;
+    top: 220px;
 
     margin-top: 30px;
     margin-bottom: 60px;
@@ -105,6 +109,10 @@
     font: inherit;
     color: inherit;
     background: none;
+  }
+
+  .backToTop .itemLink:hover {
+    color: rgb(105, 220, 210);
   }
 
 }
