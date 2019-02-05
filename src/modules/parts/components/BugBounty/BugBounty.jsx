@@ -9,7 +9,7 @@ const displayName = 'parts.BugBounty';
 const BugBounty = () => (
   <Link
     className={styles.container}
-    href="/colonynetwork/bug-bounty-program-overview/"
+    href="/docs/colonynetwork/bug-bounty-program-overview/"
   >
     <span className={styles.leftText}>Secure the network</span>
     <span className={styles.boldText}>Bug Bounty 2019</span>
