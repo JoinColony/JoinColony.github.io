@@ -1,10 +1,19 @@
 /* @flow */
 import React from 'react';
+import { defineMessages } from 'react-intl';
 
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 
 import styles from './Footer.module.css';
+
+const MSG = defineMessages({
+  socialIconTitle: {
+    id: 'parts.Footer.socialIconTitle',
+    defaultMessage: 'Colony on {platform}',
+    description: 'For instance, `Colony on GitHub`',
+  },
+});
 
 const displayName = 'parts.Footer';
 
@@ -59,7 +68,10 @@ const Footer = () => {
               >
                 <Icon
                   className={styles.socialIcon}
-                  title={`Colony on ${socialLink.name}`}
+                  title={MSG.socialIconTitle}
+                  titleValues={{
+                    platform: socialLink.name,
+                  }}
                   name={socialLink.icon}
                 />
               </Link>
