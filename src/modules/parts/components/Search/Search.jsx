@@ -18,6 +18,8 @@ type State = {
 };
 
 class Search extends Component<{}, State> {
+  static displayName = 'parts.Search';
+
   state = {
     isEnabled: true,
   };

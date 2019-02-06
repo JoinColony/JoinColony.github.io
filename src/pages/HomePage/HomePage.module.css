@@ -85,31 +85,6 @@
   color: rgb(0, 40, 75);
 }
 
-.linkContainer a {
-  align-items: center;
-  background-color: rgb(105, 220, 210);
-  border: 2px solid rgb(105, 220, 210);
-  border-radius: 4px;
-  color: rgb(0, 40, 75);
-  display: inline-flex;
-  font-size: 15px;
-  font-family: 'Avenir Next Demi';
-  height: 45px;
-  justify-content: center;
-  min-width: 130px;
-  padding: 11px 15px;
-  text-align: center;
-  transition: 0.2s;
-}
-
-.linkContainer a:hover {
-  background-color: transparent !important;
-  border: 2px solid rgb(105, 220, 210) !important;
-  box-shadow: none !important;
-  cursor: pointer !important;
-  text-decoration: none !important;
-}
-
 @media screen and (min-width: 360px) {
 
   .heroContainer {

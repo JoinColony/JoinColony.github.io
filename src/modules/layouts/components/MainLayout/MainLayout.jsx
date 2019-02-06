@@ -11,7 +11,7 @@ import '~styles/fonts.css';
 import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
 
-import { orderSections, orderDocs } from '~utils';
+import { orderSections, orderDocs } from '~utils/docs';
 import FileContext from '~context/FileContext';
 
 import BugBounty from '~parts/BugBounty';
@@ -44,6 +44,8 @@ const transformProjectData = edge => {
   edgeNode.entryPoint = getEntryPoint(edge.node);
   return edgeNode;
 };
+
+const displayName = 'layouts.MainLayout';
 
 const MainLayout = ({ children }: Props) => {
   return (
@@ -109,5 +111,7 @@ const MainLayout = ({ children }: Props) => {
     />
   );
 };
+
+MainLayout.displayName = displayName;
 
 export default MainLayout;

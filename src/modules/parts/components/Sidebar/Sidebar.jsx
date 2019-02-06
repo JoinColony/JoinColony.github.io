@@ -3,14 +3,17 @@ import React from 'react';
 
 import type { Project } from '~types';
 
-import styles from './Sidebar.module.css';
+import Button from '~core/Button';
 import Link from '~core/Link';
+import { orderSections, orderDocs } from '~utils/docs';
 
-import { orderSections, orderDocs } from '~utils';
+import styles from './Sidebar.module.css';
 
 type Props = {
   project: Project,
 };
+
+const displayName = 'parts.Sidebar';
 
 const Sidebar = ({ project }: Props) => (
   <nav className={styles.main}>
@@ -38,16 +41,14 @@ const Sidebar = ({ project }: Props) => (
         ))}
     </ul>
     <div className={styles.backToTop}>
-      <button
-        className={styles.itemLink}
-        onClick={handleBackToTop}
-        type="button"
-      >
+      <Button className={styles.itemLink} onClick={handleBackToTop}>
         <small>Back to Top</small>
-      </button>
+      </Button>
     </div>
   </nav>
 );
+
+Sidebar.displayName = displayName;
 
 function handleBackToTop(e) {
   if (typeof window !== 'undefined') {

@@ -5,12 +5,12 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import styles from './HomePage.module.css';
 
-import Link from '~core/Link';
+import Button from '~core/Button';
 import Image from '~core/Image';
 import MainLayout from '~layouts/MainLayout';
 import SEO from '~parts/SEO';
 
-import { orderSections, orderDocs } from '~utils';
+import { orderSections, orderDocs } from '~utils/docs';
 
 const getEntryPoint = project => {
   const firstSection = project.sections.sort((a, b) =>
@@ -26,7 +26,9 @@ const transformProjectData = edge => {
   return edgeNode;
 };
 
-const IndexPage = () => {
+const displayName = 'pages.HomePage';
+
+const HomePage = () => {
   const title = 'Colony Open Source Docs';
   const introText = `Just like the organizations that will run on Colony,
 each component in the colony stack is the product of collaboration and open
@@ -112,12 +114,11 @@ Colony projects.`;
                           {project.description}
                         </p>
                         <p className={styles.linkContainer}>
-                          <Link
-                            id="projectButton"
-                            href={`/${project.slug}/${project.entryPoint}`}
+                          <Button
+                            linkTo={`/${project.slug}/${project.entryPoint}`}
                           >
                             View Docs
-                          </Link>
+                          </Button>
                         </p>
                       </div>
                     ))}
@@ -131,4 +132,6 @@ Colony projects.`;
   );
 };
 
-export default IndexPage;
+HomePage.displayName = displayName;
+
+export default HomePage;

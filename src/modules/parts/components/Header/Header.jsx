@@ -8,9 +8,12 @@ import { compose, fromRenderProps } from 'recompose';
 
 import type { Project } from '~types';
 
-import styles from './Header.module.css';
+import Button from '~core/Button';
+import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Search from '~parts/Search';
+
+import styles from './Header.module.css';
 
 type Props = RouteProps & {
   projects: Array<Project>,
@@ -22,6 +25,8 @@ type State = {
 };
 
 class Header extends React.Component<Props, State> {
+  static displayName = 'parts.Header';
+
   state = {
     isNavExpanded: false,
     isScrolled: false,
@@ -116,10 +121,10 @@ class Header extends React.Component<Props, State> {
               <div className={styles.mainNavigation}>
                 <div className={styles.emptySpace} />
                 <nav className={styles.navigation}>
-                  <button className={styles.navigationButton} type="button">
+                  <Button className={styles.navigationButton}>
                     {'Products'}
                     <i className={styles.navigationArrow} />
-                  </button>
+                  </Button>
                   <div
                     id="navigationContent"
                     className={styles.navigationContent}
@@ -133,22 +138,11 @@ class Header extends React.Component<Props, State> {
                       className={styles.repoLink}
                       href={`https://github.com/JoinColony/${selectedProject}`}
                     >
-                      <span className={styles.hide} aria-hidden>
-                        {selectedProject || 'Colony'} on GitHub
-                      </span>
-                      <svg
+                      <Icon
                         className={styles.repoIcon}
-                        viewBox="0 0 32 32"
-                        role="img"
-                        aria-label="GitHub"
-                      >
-                        <title>{selectedProject || 'Colony'} on GitHub</title>
-                        <use
-                          xlinkHref={withPrefix(
-                            '/img/social_github.svg#social_github',
-                          )}
-                        />
-                      </svg>
+                        name="social_github"
+                        title={`${selectedProject || 'Colony'} on GitHub`}
+                      />
                     </Link>
                   </li>
                   <li className={styles.secondaryLinkListItem}>
@@ -156,22 +150,11 @@ class Header extends React.Component<Props, State> {
                       className={styles.repoLink}
                       href={`https://gitter.im/JoinColony/${selectedProject}`}
                     >
-                      <span className={styles.hide} aria-hidden>
-                        {selectedProject || 'Colony'} on Gitter
-                      </span>
-                      <svg
+                      <Icon
                         className={styles.repoIcon}
-                        viewBox="0 0 32 32"
-                        role="img"
-                        aria-label="Gitter"
-                      >
-                        <title>{selectedProject || 'Colony'} on Gitter</title>
-                        <use
-                          xlinkHref={withPrefix(
-                            '/img/social_gitter.svg#social_gitter',
-                          )}
-                        />
-                      </svg>
+                        name="social_gitter"
+                        title={`${selectedProject || 'Colony'} on Gitter`}
+                      />
                     </Link>
                   </li>
                   <li className={styles.secondaryLinkListItem}>
@@ -179,22 +162,11 @@ class Header extends React.Component<Props, State> {
                       className={styles.repoLink}
                       href="https://build.colony.io"
                     >
-                      <span className={styles.hide} aria-hidden>
-                        {'Colony on Discourse'}
-                      </span>
-                      <svg
+                      <Icon
                         className={styles.repoIcon}
-                        viewBox="0 0 32 32"
-                        role="img"
-                        aria-label="Discourse"
-                      >
-                        <title>Colony on Discourse</title>
-                        <use
-                          xlinkHref={withPrefix(
-                            '/img/social_discourse.svg#social_discourse',
-                          )}
-                        />
-                      </svg>
+                        name="social_discourse"
+                        title="Colony on Discourse"
+                      />
                     </Link>
                   </li>
                 </ul>
@@ -202,8 +174,7 @@ class Header extends React.Component<Props, State> {
                   <Search />
                 </div>
               </div>
-              <button
-                type="button"
+              <Button
                 className={styles.mobileIcon}
                 aria-hidden
                 onClick={this.handleToggleNavigation}
@@ -212,7 +183,7 @@ class Header extends React.Component<Props, State> {
                 <span className={styles.mobileIconLine} />
                 <span className={styles.mobileIconLine} />
                 <span className={styles.mobileIconLine} />
-              </button>
+              </Button>
             </div>
           </div>
         </header>

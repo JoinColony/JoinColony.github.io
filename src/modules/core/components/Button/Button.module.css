@@ -1,0 +1,43 @@
+.main {
+  cursor: pointer;
+  align-items: center;
+  border-radius: 4px;
+  display: inline-flex;
+  height: 45px;
+  font-size: 15px;
+  justify-content: center;
+  font-family: 'Avenir Next Demi';
+  text-align: center;
+  transition: 0.2s;
+}
+
+.themePrimary {
+  composes: main;
+  background-color: rgb(105, 220, 210);
+  border: 2px solid rgb(105, 220, 210);
+  color: rgb(0, 40, 75);
+  min-width: 130px;
+  padding: 11px 15px;
+}
+
+.themePrimary:hover {
+  background-color: transparent !important;
+  border: 2px solid rgb(105, 220, 210) !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.themeReset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
+.themeReset:hover {
+  text-decoration: none !important;
+  cursor: pointer !important;
+}

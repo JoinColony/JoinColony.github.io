@@ -5,6 +5,8 @@ import Link from '~core/Link';
 
 import styles from './404.module.css';
 
+const displayName = 'pages.NotFoundPage';
+
 const NotFoundPage = () => (
   <main className={styles.main}>
     <div className={styles.content}>
@@ -14,5 +16,7 @@ const NotFoundPage = () => (
     </div>
   </main>
 );
+
+NotFoundPage.displayName = displayName;
 
 export default NotFoundPage;
