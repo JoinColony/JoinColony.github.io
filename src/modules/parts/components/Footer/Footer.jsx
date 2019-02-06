@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Icon from '~core/Icon';
 import Link from '~core/Link';
@@ -8,6 +8,10 @@ import Link from '~core/Link';
 import styles from './Footer.module.css';
 
 const MSG = defineMessages({
+  contentTagline: {
+    id: 'parts.Footer.contentTagline',
+    defaultMessage: 'A Platform for {lineBreak} Open Organizations',
+  },
   linkBlog: {
     id: 'parts.Footer.linkBlog',
     defaultMessage: 'Blog',
@@ -70,9 +74,10 @@ const Footer = () => {
               />
             </Link>
             <p className={styles.logoTagline}>
-              A Platform for
-              <br />
-              Open Organizations
+              <FormattedMessage
+                {...MSG.contentTagline}
+                values={{ lineBreak: <br /> }}
+              />
             </p>
           </div>
           <ul className={styles.socials}>

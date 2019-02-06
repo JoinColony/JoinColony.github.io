@@ -10,7 +10,7 @@ type Props = {
   alt: MessageDescriptor | string,
   altValues?: Object,
   intl: IntlShape,
-  project: string,
+  project?: string,
   src: string,
 };
 
@@ -32,7 +32,7 @@ const Image = ({
           {...props}
           alt={altText}
           src={
-            files && files[`${project}/${src}`]
+            files && project && files[`${project}/${src}`]
               ? files[`${project}/${src}`]
               : src
           }

@@ -2,7 +2,7 @@
 import type { RouteProps } from '@reach/router';
 
 import React from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import { withPrefix } from 'gatsby';
 import { Location } from '@reach/router';
 import { compose, fromRenderProps } from 'recompose';
@@ -11,12 +11,25 @@ import type { Project } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
+import Image from '~core/Image';
 import Link from '~core/Link';
 import Search from '~parts/Search';
 
 import styles from './Header.module.css';
 
 const MSG = defineMessages({
+  btnTitleToggleNavigation: {
+    id: 'parts.Header.btnTitleToggleNavigation',
+    defaultMessage: 'Toggle Navigation',
+  },
+  imageAltColonyDocs: {
+    id: 'parts.Header.imageAltColonyDocs',
+    defaultMessage: 'Colony Docs',
+  },
+  linkProducts: {
+    id: 'parts.Header.linkProducts',
+    defaultMessage: 'Products',
+  },
   socialIconTitle: {
     id: 'parts.Header.socialIconTitle',
     defaultMessage: '{projectOrOrg} on {platform}',
@@ -123,16 +136,16 @@ class Header extends React.Component<Props, State> {
                 className={styles.logo}
                 onClick={this.handleCloseNavigation}
               >
-                <img
+                <Image
                   src={withPrefix('/img/colonyDocs_navy.svg')}
-                  alt="Colony Docs"
+                  alt={MSG.imageAltColonyDocs}
                 />
               </Link>
               <div className={styles.mainNavigation}>
                 <div className={styles.emptySpace} />
                 <nav className={styles.navigation}>
                   <Button className={styles.navigationButton}>
-                    {'Products'}
+                    <FormattedMessage {...MSG.linkProducts} />
                     <i className={styles.navigationArrow} />
                   </Button>
                   <div
@@ -197,9 +210,10 @@ class Header extends React.Component<Props, State> {
                 </div>
               </div>
               <Button
-                className={styles.mobileIcon}
                 aria-hidden
+                className={styles.mobileIcon}
                 onClick={this.handleToggleNavigation}
+                title={MSG.btnTitleToggleNavigation}
               >
                 <span className={styles.mobileIconLine} />
                 <span className={styles.mobileIconLine} />
