@@ -1,16 +1,11 @@
 /* @flow */
-import React, { Fragment } from 'react';
-import Helmet from 'react-helmet';
+import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
-import styles from './HomePage.module.css';
-
-import Button from '~core/Button';
-import Image from '~core/Image';
 import MainLayout from '~layouts/MainLayout';
-import SEO from '~parts/SEO';
-
 import { orderSections, orderDocs } from '~utils/docs';
+
+import HomePageContent from '~parts/HomePageContent';
 
 const getEntryPoint = project => {
   const firstSection = project.sections.sort((a, b) =>
@@ -29,11 +24,6 @@ const transformProjectData = edge => {
 const displayName = 'pages.HomePage';
 
 const HomePage = () => {
-  const title = 'Colony Open Source Docs';
-  const introText = `Just like the organizations that will run on Colony,
-each component in the colony stack is the product of collaboration and open
-engagement. Here, you'll find the up-to-date documentation for all of the
-Colony projects.`;
   return (
     <MainLayout>
       <StaticQuery
@@ -60,71 +50,11 @@ Colony projects.`;
                 }
               }
             }
-            files: allFile {
-              edges {
-                node {
-                  sourceInstanceName
-                  relativePath
-                  publicURL
-                }
-              }
-            }
           }
         `}
         render={data => {
           const projects = data.projects.edges.map(transformProjectData) || [];
-          return (
-            <Fragment>
-              <Helmet>
-                <title>{title}</title>
-              </Helmet>
-              <SEO title={title} description={introText} />
-              <main className={styles.content}>
-                <section className={styles.heroContainer}>
-                  <div className={styles.heroContent}>
-                    <h1 className={styles.heroTitle}>
-                      The Colony
-                      <br className={styles.heroTitleBreak} />
-                      Developer Docs
-                    </h1>
-                    <div className={styles.heroDescription}>
-                      <p className={styles.textExplainer}>{introText}</p>
-                      <p>
-                        If you&apos;re a developer looking to contribute, you
-                        can find all of Colony&apos;s open-source repositories
-                        on GitHub.
-                      </p>
-                    </div>
-                  </div>
-                </section>
-                <section className={styles.projectContainer}>
-                  {projects &&
-                    projects.map(project => (
-                      <div
-                        key={project.name}
-                        className={styles.projectContainerItem}
-                      >
-                        <Image
-                          alt={project.name}
-                          className={styles.projectLogo}
-                          project={project.name}
-                          src={project.logo}
-                        />
-                        <p className={styles.projectDescription}>
-                          {project.description}
-                        </p>
-                        <p className={styles.linkContainer}>
-                          <Button
-                            linkTo={`/${project.slug}/${project.entryPoint}`}
-                            text={{ id: 'btn.viewDocs' }}
-                          />
-                        </p>
-                      </div>
-                    ))}
-                </section>
-              </main>
-            </Fragment>
-          );
+          return <HomePageContent projects={projects} />;
         }}
       />
     </MainLayout>
