@@ -2,6 +2,7 @@
 import type { HOC } from 'recompose';
 
 import { compose, withProps } from 'recompose';
+import { injectIntl } from 'react-intl';
 
 import type { InProps } from './types';
 
@@ -30,6 +31,7 @@ const enhance: HOC<*, InProps> = compose(
       rel: !isOnPageAnchor ? 'noopener noreferrer' : undefined,
     };
   }),
+  injectIntl,
 );
 
 export default enhance(Link);

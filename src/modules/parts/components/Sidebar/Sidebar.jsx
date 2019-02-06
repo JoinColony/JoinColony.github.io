@@ -39,9 +39,8 @@ const Sidebar = ({ project }: Props) => (
                     title={doc.frontmatter.title}
                     className={styles.itemLink}
                     activeClassName={styles.active}
-                  >
-                    {doc.frontmatter.title}
-                  </Link>
+                    text={doc.frontmatter.title}
+                  />
                 </li>
               ))}
             </ul>

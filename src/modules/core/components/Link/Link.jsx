@@ -9,19 +9,26 @@ const displayName = 'Link';
 const Link = ({
   children,
   href,
+  intl: { formatMessage },
   isInternal,
   getLinkPrefix,
+  text,
+  textValues,
   ...props
-}: OutProps) =>
-  isInternal ? (
+}: OutProps) => {
+  const linkText =
+    typeof text === 'string' ? text : text && formatMessage(text, textValues);
+  const linkContent = linkText || children || null;
+  return isInternal ? (
     <GatsbyLink to={href} {...props}>
-      {children}
+      {linkContent}
     </GatsbyLink>
   ) : (
     <a href={href} {...props}>
-      {children}
+      {linkContent}
     </a>
   );
+};
 
 Link.displayName = displayName;
 

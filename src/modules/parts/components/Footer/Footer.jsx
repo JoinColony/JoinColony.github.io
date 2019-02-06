@@ -8,6 +8,22 @@ import Link from '~core/Link';
 import styles from './Footer.module.css';
 
 const MSG = defineMessages({
+  linkBlog: {
+    id: 'parts.Footer.linkBlog',
+    defaultMessage: 'Blog',
+  },
+  linkGetInvolved: {
+    id: 'parts.Footer.linkGetInvolved',
+    defaultMessage: 'Get Involved',
+  },
+  linkLogin: {
+    id: 'parts.Footer.linkLogin',
+    defaultMessage: 'Login',
+  },
+  linkTerms: {
+    id: 'parts.Footer.linkTerms',
+    defaultMessage: 'Terms',
+  },
   socialIconTitle: {
     id: 'parts.Footer.socialIconTitle',
     defaultMessage: 'Colony on {platform}',
@@ -81,18 +97,23 @@ const Footer = () => {
             <Link
               className={styles.navLink}
               href="https://colony.io/get-involved"
-            >
-              Get Involved
-            </Link>
-            <Link className={styles.navLink} href="https://blog.colony.io">
-              Blog
-            </Link>
-            <Link className={styles.navLink} href="https://colony.io/terms">
-              Terms
-            </Link>
-            <Link className={styles.navLink} href="https://colony.io/login">
-              Login
-            </Link>
+              text={MSG.linkGetInvolved}
+            />
+            <Link
+              className={styles.navLink}
+              href="https://blog.colony.io"
+              text={MSG.linkBlog}
+            />
+            <Link
+              className={styles.navLink}
+              href="https://colony.io/terms"
+              text={MSG.linkTerms}
+            />
+            <Link
+              className={styles.navLink}
+              href="https://colony.io/login"
+              text={MSG.linkLogin}
+            />
           </nav>
         </div>
       </div>

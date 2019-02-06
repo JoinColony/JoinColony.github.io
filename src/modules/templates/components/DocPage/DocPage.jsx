@@ -1,5 +1,6 @@
 /* @flow */
 import React, { Component, createElement } from 'react';
+import { defineMessages } from 'react-intl';
 import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
@@ -16,6 +17,13 @@ import Sidebar from '~parts/Sidebar';
 import SEO from '~parts/SEO';
 
 import styles from './DocPage.module.css';
+
+const MSG = defineMessages({
+  linkImproveDoc: {
+    id: 'templates.DocPage.linkImproveDoc',
+    defaultMessage: 'Improve this doc',
+  },
+});
 
 type Props = {
   data: {
@@ -152,7 +160,7 @@ class DocPage extends Component<Props> {
           <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
           <div className={styles.editUrlContainer}>
             <p>
-              <Link href={doc.editUrl}>Improve this doc</Link>
+              <Link href={doc.editUrl} text={MSG.linkImproveDoc} />
             </p>
           </div>
           {this.renderAst(doc.htmlAst)}
