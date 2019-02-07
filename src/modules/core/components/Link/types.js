@@ -7,7 +7,8 @@ export type InProps = {
   href: string,
   text?: MessageDescriptor | string,
   textValues?: Object,
-  getLinkPrefix?: (href: string) => string,
+  /** Text transformation to apply to the `href`. Only called if `isInernal` is true. */
+  transformUrl?: (href: string) => string,
 };
 
 export type OutProps = InProps & {

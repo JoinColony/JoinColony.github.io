@@ -66,7 +66,7 @@ class DocPage extends Component<Props> {
     this.renderAst = new RehypeReact({
       createElement,
       components: {
-        a: withProps({ getLinkPrefix: this.getLinkPrefix })(Link),
+        a: withProps({ transformUrl: this.transformInternalUrls })(Link),
         img: withProps({ project: props.data.project.name })(Image),
       },
     }).Compiler;
@@ -94,19 +94,25 @@ class DocPage extends Component<Props> {
     return imagePaths;
   };
 
-  getLinkPrefix = (url: string): string | void => {
+  transformInternalUrls = (href: string): string => {
+    const url = href.toLowerCase();
     const {
       data: {
         allProject: { edges: projectNodes },
       },
       pageContext: { slugPrefix },
     } = this.props;
-    const projectNames = projectNodes.map(({ node }) =>
-      slugify(node.name, { lower: true }),
+    // Get project names (both camelCase & lowercase for each project)
+    const projectNames = projectNodes.reduce((names, { node }) => {
+      names.push(slugify(node.name), slugify(node.name, { lower: true }));
+      return names;
+    }, []);
+    // Docs links within the docs are written in the form `/projectSlug/docPageSlug/`
+    const isDocPage = projectNames.some(projectName =>
+      url.startsWith(`/${projectName}/`),
     );
-    return projectNames.some(projectName => url.startsWith(`/${projectName}/`))
-      ? slugPrefix
-      : undefined;
+    // If it's a doc page and a slug prefix is configured, add the prefix to the url
+    return isDocPage && slugPrefix ? `/${slugPrefix}${url}` : url;
   };
 
   render() {

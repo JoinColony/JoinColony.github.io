@@ -9,26 +9,26 @@ import type { InProps } from './types';
 import Link from './Link.jsx';
 
 const enhance: HOC<*, InProps> = compose(
-  withProps(({ href, getLinkPrefix }) => {
+  withProps(({ href: url, transformUrl }) => {
     /*
      * A url is only considered to be "internal" if it starts with one slash.
      */
-    const isInternal = /^\/(?!\/)/.test(href);
+    const isInternal = /^\/(?!\/)/.test(url);
     /*
      * On-page anchors are considered "external" by Gatsby.
      */
-    const isOnPageAnchor = /^#(?!\/)/.test(href);
+    const isOnPageAnchor = /^#(?!\/)/.test(url);
 
-    let url = href;
-    if (isInternal && getLinkPrefix) {
-      url = `/${getLinkPrefix(url)}${url}`;
-    }
+    const href =
+      isInternal && typeof transformUrl === 'function'
+        ? transformUrl(url)
+        : url;
 
     return {
-      href: url,
+      href,
       isInternal,
-      target: !isOnPageAnchor ? '_blank' : undefined,
       rel: !isOnPageAnchor ? 'noopener noreferrer' : undefined,
+      target: !isOnPageAnchor ? '_blank' : undefined,
     };
   }),
   injectIntl,

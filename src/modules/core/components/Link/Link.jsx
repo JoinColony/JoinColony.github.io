@@ -11,9 +11,9 @@ const Link = ({
   href,
   intl: { formatMessage },
   isInternal,
-  getLinkPrefix,
   text,
   textValues,
+  transformUrl,
   ...props
 }: OutProps) => {
   const linkText =
