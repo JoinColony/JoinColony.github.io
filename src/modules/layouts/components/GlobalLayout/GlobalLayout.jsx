@@ -1,6 +1,7 @@
 /* @flow */
 import type { Node } from 'react';
 import type { RouteProps } from '@reach/router';
+import type { $npm$ReactIntl$LocaleData } from 'react-intl';
 
 import React, { Fragment } from 'react';
 import { compose, fromRenderProps } from 'recompose';
@@ -8,14 +9,51 @@ import { Location } from '@reach/router';
 import { parse } from 'query-string';
 import Helmet from 'react-helmet';
 import { addLocaleData, IntlProvider } from 'react-intl';
-import en from 'react-intl/locale-data/en';
+import enLocaleData from 'react-intl/locale-data/en';
 import { StaticQuery, graphql, withPrefix } from 'gatsby';
 
 import FileContext from '~context/FileContext';
 
-import messages from '../../../../i18n/en.json';
+import enMessages from '../../../../i18n/en.json';
 
-addLocaleData(en);
+type LocaleMessage = { [key: string]: string };
+
+type LocaleConfig = {|
+  messages: LocaleMessage,
+  data: $npm$ReactIntl$LocaleData,
+|};
+type LocaleConfigs = {
+  [locale: string]: LocaleConfig,
+};
+
+type Props = RouteProps & {
+  children: Node,
+};
+
+const DEFAULT_LOCALE = 'en';
+
+const localeMessages: LocaleConfigs = {
+  en: {
+    messages: enMessages,
+    data: enLocaleData,
+  },
+};
+
+const configuredLocalesData = Object.keys(localeMessages).reduce(
+  (accumulator, configKey) => {
+    const locales = [...accumulator, ...localeMessages[configKey].data];
+    return locales;
+  },
+  [],
+);
+
+addLocaleData(configuredLocalesData);
+
+const localeIsConfigured = (locale: string): boolean =>
+  !!localeMessages[locale];
+
+const getMessagesForLocale = (locale: string): LocaleMessage =>
+  localeMessages[locale].messages || localeMessages[DEFAULT_LOCALE].messages;
 
 const getFileMapping = files => {
   return files.reduce((current, next) => {
@@ -26,18 +64,22 @@ const getFileMapping = files => {
   }, {});
 };
 
-type Props = RouteProps & {
-  children: Node,
-};
-
 const displayName = 'layouts.GlobalLayout';
 
 const GlobalLayout = ({ children, location }: Props) => {
-  const searchParams =
+  const searchParams: Object =
     location && location.search ? parse(location.search) : {};
-  const locale = searchParams.locale || 'en';
+  const requestedLocale: string = searchParams.locale || DEFAULT_LOCALE;
+  const locale: string = localeIsConfigured(requestedLocale)
+    ? requestedLocale
+    : DEFAULT_LOCALE;
+  const messages: LocaleMessage = getMessagesForLocale(locale);
   return (
-    <IntlProvider locale={locale} defaultLocale="en" messages={messages}>
+    <IntlProvider
+      locale={locale}
+      defaultLocale={DEFAULT_LOCALE}
+      messages={messages}
+    >
       <StaticQuery
         query={graphql`
           query {
