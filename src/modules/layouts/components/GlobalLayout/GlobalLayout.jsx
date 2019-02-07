@@ -14,7 +14,8 @@ import { StaticQuery, graphql, withPrefix } from 'gatsby';
 
 import FileContext from '~context/FileContext';
 
-import enMessages from '../../../../i18n/en.json';
+import { DEFAULT_LOCALE } from '~i18n/locale';
+import enMessages from '~i18n/en.json';
 
 type LocaleMessage = { [key: string]: string };
 
@@ -29,8 +30,6 @@ type LocaleConfigs = {
 type Props = RouteProps & {
   children: Node,
 };
-
-const DEFAULT_LOCALE = 'en';
 
 const localeMessages: LocaleConfigs = {
   en: {

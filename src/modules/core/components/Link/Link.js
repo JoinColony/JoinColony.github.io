@@ -4,12 +4,15 @@ import type { HOC } from 'recompose';
 import { compose, withProps } from 'recompose';
 import { injectIntl } from 'react-intl';
 
+import { DEFAULT_LOCALE } from '~i18n/locale';
+
 import type { InProps } from './types';
 
 import Link from './Link.jsx';
 
 const enhance: HOC<*, InProps> = compose(
-  withProps(({ href: url, transformUrl }) => {
+  injectIntl,
+  withProps(({ href: url, transformUrl, intl: { locale } }) => {
     /*
      * A url is only considered to be "internal" if it starts with one slash.
      */
@@ -19,10 +22,17 @@ const enhance: HOC<*, InProps> = compose(
      */
     const isOnPageAnchor = /^#(?!\/)/.test(url);
 
-    const href =
+    let href: string =
       isInternal && typeof transformUrl === 'function'
         ? transformUrl(url)
         : url;
+
+    const shouldPersistLocale: boolean =
+      isInternal && locale && locale !== DEFAULT_LOCALE;
+
+    if (shouldPersistLocale) {
+      href = `${href}?locale=${locale}`;
+    }
 
     return {
       href,
@@ -31,7 +41,6 @@ const enhance: HOC<*, InProps> = compose(
       target: !isOnPageAnchor ? '_blank' : undefined,
     };
   }),
-  injectIntl,
 );
 
 export default enhance(Link);
