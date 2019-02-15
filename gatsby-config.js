@@ -8,6 +8,10 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const langs = ['en'];
+const defaultLangKey = 'en';
+const prefixDefaultLangKey = false;
+
 const sourcePlugins = {
   development: [
     {
@@ -92,6 +96,14 @@ module.exports = {
     title: 'Colony Open Source Docs',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {        
+        langKeyDefault: defaultLangKey,
+        useLangKeyLayout: false,
+        prefixDefault: prefixDefaultLangKey,
+      }
+    },
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
     'gatsby-plugin-robots-txt',
@@ -99,7 +111,12 @@ module.exports = {
     {
       resolve: 'gatsby-transform-md-docs',
       options: {
-        slugPrefix: 'docs'
+        slugPrefix: 'docs',
+        langConfig: {
+          langs,
+          defaultLangKey,
+          prefixDefaultLangKey,
+        }
       }
     },
     {
@@ -131,6 +148,6 @@ module.exports = {
         alias: utils.getModuleAliases(),
         extensions: []
       }
-    }
+    },
   ],
 }

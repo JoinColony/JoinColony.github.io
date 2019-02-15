@@ -105,8 +105,9 @@ class Header extends React.Component<Props, State> {
     const navLinks = projects.map(project => (
       <Link
         key={project.slug}
-        href={`/${project.slug}/${project.entryPoint}/`}
+        href={project.entryPoint}
         onClick={this.handleCloseNavigation}
+        persistLocale={false}
         getProps={() =>
           activeProject &&
           selectedProject &&

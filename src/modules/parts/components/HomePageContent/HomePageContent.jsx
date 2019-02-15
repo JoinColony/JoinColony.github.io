@@ -2,7 +2,7 @@
 import type { IntlShape } from 'react-intl';
 
 import React, { Fragment } from 'react';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import Helmet from 'react-helmet';
 
 import type { Project } from '~types';
@@ -87,7 +87,8 @@ const HomePageContent = ({ intl: { formatMessage }, projects }: Props) => {
                 </p>
                 <p className={styles.linkContainer}>
                   <Button
-                    linkTo={`/${project.slug}/${project.entryPoint}`}
+                    linkTo={project.entryPoint}
+                    persistLocale={false}
                     text={{ id: 'btn.viewDocs' }}
                   />
                 </p>
@@ -101,4 +102,4 @@ const HomePageContent = ({ intl: { formatMessage }, projects }: Props) => {
 
 HomePageContent.displayName = displayName;
 
-export default injectIntl(HomePageContent);
+export default HomePageContent;

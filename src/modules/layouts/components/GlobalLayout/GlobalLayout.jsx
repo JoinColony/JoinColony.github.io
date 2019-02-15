@@ -6,7 +6,6 @@ import type { $npm$ReactIntl$LocaleData } from 'react-intl';
 import React, { Fragment } from 'react';
 import { compose, fromRenderProps } from 'recompose';
 import { Location } from '@reach/router';
-import { parse } from 'query-string';
 import Helmet from 'react-helmet';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
@@ -27,9 +26,11 @@ type LocaleConfigs = {
   [locale: string]: LocaleConfig,
 };
 
-type Props = RouteProps & {
+export type GlobalLayoutProps = {
   children: Node,
 };
+
+type Props = RouteProps & GlobalLayoutProps;
 
 const localeMessages: LocaleConfigs = {
   en: {
@@ -48,11 +49,11 @@ const configuredLocalesData = Object.keys(localeMessages).reduce(
 
 addLocaleData(configuredLocalesData);
 
-const localeIsConfigured = (locale: string): boolean =>
-  !!localeMessages[locale];
-
 const getMessagesForLocale = (locale: string): LocaleMessage =>
   localeMessages[locale].messages || localeMessages[DEFAULT_LOCALE].messages;
+
+const getLocaleString = (locale?: string): string =>
+  !!locale && !!localeMessages[locale] ? locale : DEFAULT_LOCALE;
 
 const getFileMapping = files => {
   return files.reduce((current, next) => {
@@ -66,50 +67,46 @@ const getFileMapping = files => {
 const displayName = 'layouts.GlobalLayout';
 
 const GlobalLayout = ({ children, location }: Props) => {
-  const searchParams: Object =
-    location && location.search ? parse(location.search) : {};
-  const requestedLocale: string = searchParams.locale || DEFAULT_LOCALE;
-  const locale: string = localeIsConfigured(requestedLocale)
-    ? requestedLocale
-    : DEFAULT_LOCALE;
+  const potentialLocale = location && location.pathname.split('/')[1];
+  const locale = getLocaleString(potentialLocale);
   const messages: LocaleMessage = getMessagesForLocale(locale);
   return (
-    <IntlProvider
-      locale={locale}
-      defaultLocale={DEFAULT_LOCALE}
-      messages={messages}
-    >
-      <StaticQuery
-        query={graphql`
-          query {
-            files: allFile {
-              edges {
-                node {
-                  sourceInstanceName
-                  relativePath
-                  publicURL
-                }
+    <StaticQuery
+      query={graphql`
+        query {
+          files: allFile {
+            edges {
+              node {
+                sourceInstanceName
+                relativePath
+                publicURL
               }
             }
           }
-        `}
-        render={data => (
-          <Fragment>
-            <Helmet>
-              <link
-                rel="shortcut icon"
-                type="image/png"
-                href={withPrefix('/img/favicon.ico')}
-              />
-              <script src={withPrefix('/js/fontloader.js')} />
-            </Helmet>
-            <FileContext.Provider value={getFileMapping(data.files.edges)}>
+        }
+      `}
+      render={data => (
+        <Fragment>
+          <Helmet>
+            <link
+              rel="shortcut icon"
+              type="image/png"
+              href={withPrefix('/img/favicon.ico')}
+            />
+            <script src={withPrefix('/js/fontloader.js')} />
+          </Helmet>
+          <FileContext.Provider value={getFileMapping(data.files.edges)}>
+            <IntlProvider
+              locale={locale}
+              defaultLocale={DEFAULT_LOCALE}
+              messages={messages}
+            >
               {children}
-            </FileContext.Provider>
-          </Fragment>
-        )}
-      />
-    </IntlProvider>
+            </IntlProvider>
+          </FileContext.Provider>
+        </Fragment>
+      )}
+    />
   );
 };
 

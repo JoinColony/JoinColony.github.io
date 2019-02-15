@@ -2,18 +2,10 @@
 
 import type { Doc } from './doc';
 
-export type SectionDoc = Doc & {
-  frontmatter: {
-    title: string,
-    order: number,
-  },
-  slug: string,
-};
-
 export type Section = {
   name: string,
   slug: string,
-  docs: Array<SectionDoc>,
+  docs: Array<Doc>,
 };
 
 export type Project = {

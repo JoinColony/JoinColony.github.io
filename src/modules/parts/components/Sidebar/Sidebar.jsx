@@ -1,12 +1,14 @@
 /* @flow */
+import type { IntlShape } from 'react-intl';
+
 import React from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import type { Project } from '~types';
 
 import Button from '~core/Button';
 import Link from '~core/Link';
-import { orderSections, orderDocs } from '~utils/docs';
+import { getDocsForLocale, orderSections, orderDocs } from '~utils/docs';
 
 import styles from './Sidebar.module.css';
 
@@ -18,31 +20,35 @@ const MSG = defineMessages({
 });
 
 type Props = {
+  intl: IntlShape,
   project: Project,
 };
 
 const displayName = 'parts.Sidebar';
 
-const Sidebar = ({ project }: Props) => (
+const Sidebar = ({ intl: { locale }, project }: Props) => (
   <nav className={styles.main}>
     <ul className={styles.sectionsList}>
       {project.sections
         .sort(orderSections.bind(null, project.sectionOrder))
-        .map(section => (
-          <li key={section.slug} className={styles.sectionItem}>
-            <h5 className={styles.sectionTitle}>{section.name}</h5>
+        .map(({ docs, name, slug }) => (
+          <li key={slug} className={styles.sectionItem}>
+            <h5 className={styles.sectionTitle}>{name}</h5>
             <ul className={styles.docsList}>
-              {section.docs.sort(orderDocs).map(doc => (
-                <li key={doc.slug} className={styles.docsItem}>
-                  <Link
-                    href={`/${project.slug}/${section.slug}-${doc.slug}/`}
-                    title={doc.frontmatter.title}
-                    className={styles.itemLink}
-                    activeClassName={styles.active}
-                    text={doc.frontmatter.title}
-                  />
-                </li>
-              ))}
+              {getDocsForLocale(docs, locale)
+                .sort(orderDocs)
+                .map(doc => (
+                  <li key={doc.slug} className={styles.docsItem}>
+                    <Link
+                      href={doc.fields.slug}
+                      title={doc.frontmatter.title}
+                      className={styles.itemLink}
+                      activeClassName={styles.active}
+                      text={doc.frontmatter.title}
+                      persistLocale={false}
+                    />
+                  </li>
+                ))}
             </ul>
           </li>
         ))}
@@ -66,4 +72,4 @@ function handleBackToTop(e) {
   }
 }
 
-export default Sidebar;
+export default injectIntl(Sidebar);

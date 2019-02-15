@@ -5,6 +5,7 @@ import type { IntlShape, MessageDescriptor } from 'react-intl';
 export type InProps = {
   children?: Node,
   href: string,
+  persistLocale?: boolean,
   text?: MessageDescriptor | string,
   textValues?: Object,
   /** Text transformation to apply to the `href`. Only called if `isInernal` is true. */

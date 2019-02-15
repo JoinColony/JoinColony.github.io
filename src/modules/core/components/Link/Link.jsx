@@ -11,6 +11,7 @@ const Link = ({
   href,
   intl: { formatMessage },
   isInternal,
+  persistLocale,
   text,
   textValues,
   transformUrl,

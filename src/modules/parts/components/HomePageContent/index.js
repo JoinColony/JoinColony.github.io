@@ -1,3 +1,3 @@
 /* @flow */
 
-export { default } from './HomePageContent.jsx';
+export { default } from './HomePageContent';

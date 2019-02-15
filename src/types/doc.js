@@ -1,5 +1,9 @@
 /* @flow */
 
+export type DocFields = {
+  slug: string,
+};
+
 export type HtmlAst = {
   children?: Array<HtmlAst>,
   data?: {
@@ -13,6 +17,8 @@ export type HtmlAst = {
 
 export type Doc = {
   editUrl: string,
+  fields: DocFields,
   frontmatter: Object,
   htmlAst: HtmlAst,
+  slug: string,
 };

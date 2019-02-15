@@ -23,6 +23,7 @@ const BugBounty = () => (
   <Link
     className={styles.container}
     href="/docs/colonynetwork/bug-bounty-program-overview/"
+    persistLocale={false}
   >
     <span className={styles.leftText}>
       <FormattedMessage {...MSG.title} />

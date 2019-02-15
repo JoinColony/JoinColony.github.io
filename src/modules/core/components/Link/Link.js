@@ -1,7 +1,7 @@
 /* @flow */
 import type { HOC } from 'recompose';
 
-import { compose, withProps } from 'recompose';
+import { compose, defaultProps, withProps } from 'recompose';
 import { injectIntl } from 'react-intl';
 
 import { DEFAULT_LOCALE } from '~i18n/locale';
@@ -12,7 +12,8 @@ import Link from './Link.jsx';
 
 const enhance: HOC<*, InProps> = compose(
   injectIntl,
-  withProps(({ href: url, transformUrl, intl: { locale } }) => {
+  defaultProps({ persistLocale: true }),
+  withProps(({ href: url, intl: { locale }, persistLocale, transformUrl }) => {
     /*
      * A url is only considered to be "internal" if it starts with one slash.
      */
@@ -30,8 +31,8 @@ const enhance: HOC<*, InProps> = compose(
     const shouldPersistLocale: boolean =
       isInternal && locale && locale !== DEFAULT_LOCALE;
 
-    if (shouldPersistLocale) {
-      href = `${href}?locale=${locale}`;
+    if (persistLocale && shouldPersistLocale) {
+      href = `/${locale}${href}`;
     }
 
     return {

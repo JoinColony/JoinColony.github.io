@@ -17,8 +17,12 @@ const nodeQuery = `
             docs {
               id
               slug
+              fields {
+                slug
+              }
               frontmatter {
                 title
+                locale
               }
               html
             }
@@ -29,7 +33,7 @@ const nodeQuery = `
   }
 `
 
-exports.onCreateNode = ({ node, actions, getNode }, { slugPrefix }) => {
+exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
   const {
     createNode,
     createNodeField,
@@ -43,7 +47,7 @@ exports.onCreateNode = ({ node, actions, getNode }, { slugPrefix }) => {
     const { projectName, projectId } = getProjectInfo(node)
     projectNode = getNode(projectId)
     if (!projectNode) {
-      projectNode = createProjectNode(projectName, null, createNode, slugPrefix)
+      projectNode = createProjectNode(projectName, null, createNode, nodeOptions)
     }
     let config
     if (node.internal.content) {
@@ -89,7 +93,7 @@ exports.onCreateNode = ({ node, actions, getNode }, { slugPrefix }) => {
         node,
         createNode
       )
-      projectNode = createProjectNode(projectName, sectionNode, createNode, slugPrefix)
+      projectNode = createProjectNode(projectName, sectionNode, createNode, nodeOptions)
     } else {
       // ProjectNode exists
       sectionNode = createSectionNode(
@@ -101,14 +105,17 @@ exports.onCreateNode = ({ node, actions, getNode }, { slugPrefix }) => {
       addChildNode(projectNode, sectionNode, 'sections')
     }
 
+    const nodeLocale = node.frontmatter.locale;
+    const localeSlugPrefix = !!nodeLocale ? `${nodeLocale}/` : '';
+    // Add a slug as the TOC creation requires that (for linking)
+    node.slug = slugify(node.frontmatter.title, { lower: true })
+
     // Slug for the actual page
     createNodeField({
       node,
       name: 'slug',
-      value: `${projectNode.slug}/${sectionNode.slug}-${node.slug}`,
+      value: `/${localeSlugPrefix}${projectNode.slug}/${sectionNode.slug}-${node.slug}`,
     })
-    // Add a slug as the TOC creation requires that (for linking)
-    node.slug = slugify(node.frontmatter.title, { lower: true })
 
     const editUrl = getNodeEditUrl(getNode(node.parent))
     createNodeField({
@@ -137,13 +144,13 @@ function getNodeEditUrl(parent) {
   return `https://github.com/JoinColony/${projectName}/edit/master/docs/${parent.relativePath}`
 }
 
-exports.createPages = ({ graphql, actions }, { slugPrefix }) => {
+exports.createPages = ({ graphql, actions }, nodeOptions) => {
   const { createPage } = actions
   return graphql(nodeQuery).then(({ data }) => {
     data.projects.edges.forEach(({ node: project }) => {
       project.sections.forEach(section => {
         section.docs.forEach(doc => {
-          createDocPage(project, section, doc, createPage, slugPrefix)
+          createDocPage(project, section, doc, createPage, nodeOptions)
         })
       })
     })
@@ -161,7 +168,7 @@ function createSectionNode(name, project, docNode, createNode) {
   return sectionNode
 }
 
-function createProjectNode(name, sectionNode, createNode, slugPrefix) {
+function createProjectNode(name, sectionNode, createNode, { slugPrefix }) {
   const projectNode = ProjectNode({
     name,
     slug: `${slugify(slugPrefix, { lower: true })}/${slugify(name, { lower: true })}`,
@@ -171,18 +178,20 @@ function createProjectNode(name, sectionNode, createNode, slugPrefix) {
   return projectNode
 }
 
-function createDocPage(project, section, doc, createPage, slugPrefix) {
-  const slug = `${project.slug}/${section.slug}-${doc.slug}`
-  createPage({
-    // TODO: define own layout page?
-    path: `/${slug}`,
-    component: getTemplatePath('DocPage/DocPage.jsx'),
-    context: {
-      docId: doc.id,
-      projectName: project.name,
-      slugPrefix,
-    },
-  })
+function createDocPage(project, section, doc, createPage, { langConfig: { langs: configuredLocales }, slugPrefix }) {
+  const { fields: { slug }, frontmatter: { locale: docLocale } } = doc;
+  if (!docLocale || configuredLocales.includes(docLocale)) {
+    createPage({
+      // TODO: define own layout page?
+      path: slug,
+      component: getTemplatePath('DocPage/DocPage.jsx'),
+      context: {
+        docId: doc.id,
+        projectName: project.name,
+        slugPrefix,
+      },
+    })
+  }
 }
 
 function addChildNode(parent, child, name) {

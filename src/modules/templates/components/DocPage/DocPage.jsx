@@ -66,7 +66,10 @@ class DocPage extends Component<Props> {
     this.renderAst = new RehypeReact({
       createElement,
       components: {
-        a: withProps({ transformUrl: this.transformInternalUrls })(Link),
+        a: withProps({
+          transformUrl: this.transformInternalUrls,
+          persistLocale: false,
+        })(Link),
         img: withProps({ project: props.data.project.name })(Image),
       },
     }).Compiler;
@@ -95,24 +98,43 @@ class DocPage extends Component<Props> {
   };
 
   transformInternalUrls = (href: string): string => {
-    const url = href.toLowerCase();
     const {
       data: {
         allProject: { edges: projectNodes },
       },
       pageContext: { slugPrefix },
     } = this.props;
-    // Get project names (both camelCase & lowercase for each project)
-    const projectNames = projectNodes.reduce((names, { node }) => {
-      names.push(slugify(node.name), slugify(node.name, { lower: true }));
-      return names;
-    }, []);
-    // Docs links within the docs are written in the form `/projectSlug/docPageSlug/`
-    const isDocPage = projectNames.some(projectName =>
-      url.startsWith(`/${projectName}/`),
+    let url: string = href.toLowerCase();
+
+    // Get possible project slugs (both camelCase & lowercase for each project)
+    const projectNameSlugs: Array<string> = projectNodes.reduce(
+      (names, { node }) => {
+        names.push(slugify(node.name), slugify(node.name, { lower: true }));
+        return names;
+      },
+      [],
     );
+
+    // Get the non-empty url parts
+    const urlParts: Array<string> = url.split('/').filter(part => !!part);
+
+    /*
+     * Docs links within the docs are written in 1 of 2 forms:
+     *     1) With locale (non-default): `/locale/projectSlug/docPageSlug/`
+     *     2) Without locale (default language): `/projectSlug/docPageSlug/`
+     */
+    const hasLocale: boolean = urlParts.length === 3;
+    const localePrefix: string = hasLocale ? `/${urlParts[0]}` : '';
+    const isDocPage: boolean = projectNameSlugs.some(projectName =>
+      url.startsWith(`${localePrefix}/${projectName}/`),
+    );
+    if (isDocPage && hasLocale) {
+      url = url.replace(localePrefix, '');
+    }
     // If it's a doc page and a slug prefix is configured, add the prefix to the url
-    return isDocPage && slugPrefix ? `/${slugPrefix}${url}` : url;
+    return isDocPage && slugPrefix
+      ? `${localePrefix}/${slugPrefix}${url}`
+      : url;
   };
 
   render() {
