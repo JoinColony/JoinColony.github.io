@@ -8,7 +8,12 @@ import type { Project } from '~types';
 
 import Button from '~core/Button';
 import Link from '~core/Link';
-import { getDocsForLocale, orderSections, orderDocs } from '~utils/docs';
+import {
+  getDocsForLocale,
+  getSectionsForLocale,
+  orderSections,
+  orderDocs,
+} from '~utils/docs';
 
 import styles from './Sidebar.module.css';
 
@@ -29,7 +34,7 @@ const displayName = 'parts.Sidebar';
 const Sidebar = ({ intl: { locale }, project }: Props) => (
   <nav className={styles.main}>
     <ul className={styles.sectionsList}>
-      {project.sections
+      {getSectionsForLocale(project.sections, locale)
         .sort(orderSections.bind(null, project.sectionOrder))
         .map(({ docs, name, slug }) => (
           <li key={slug} className={styles.sectionItem}>

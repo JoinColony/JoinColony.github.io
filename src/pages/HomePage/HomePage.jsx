@@ -27,12 +27,12 @@ const HomePage = () => {
                     docs {
                       slug
                       fields {
+                        locale
                         slug
                       }
                       frontmatter {
                         order
                         section
-                        locale
                       }
                     }
                   }

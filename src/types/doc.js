@@ -1,6 +1,7 @@
 /* @flow */
 
 export type DocFields = {
+  locale: string,
   slug: string,
 };
 

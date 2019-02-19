@@ -18,6 +18,7 @@ const nodeQuery = `
               id
               slug
               fields {
+                locale
                 slug
               }
               frontmatter {
@@ -39,6 +40,8 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     createNodeField,
     createParentChildLink,
   } = actions
+
+  const { langConfig: { defaultLangKey, prefixDefaultLangKey } } = nodeOptions;
 
   let projectNode
   let sectionNode
@@ -106,10 +109,9 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     }
 
     const nodeLocale = node.frontmatter.locale;
-    const localeSlugPrefix = !!nodeLocale ? `${nodeLocale}/` : '';
+    const localeSlugPrefix = !!nodeLocale ? `${nodeLocale}/` : prefixDefaultLangKey ? `${defaultLangKey}/` : '';
     // Add a slug as the TOC creation requires that (for linking)
     node.slug = slugify(node.frontmatter.title, { lower: true })
-
     // Slug for the actual page
     createNodeField({
       node,
@@ -123,8 +125,15 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       name: 'editUrl',
       value: editUrl,
     })
-
     node.editUrl = editUrl
+
+    const docLocaleField = nodeLocale ? nodeLocale : defaultLangKey;
+    createNodeField({
+      node,
+      name: 'locale',
+      value: docLocaleField,
+    })
+    node.locale = docLocaleField
   }
 }
 

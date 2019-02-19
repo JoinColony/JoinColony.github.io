@@ -1,4 +1,5 @@
 /* @flow */
+import { DEFAULT_LOCALE } from '~i18n/locale';
 import type { Doc, Project, Section } from '~types';
 
 type ProjectEdge = {
@@ -17,56 +18,42 @@ export const orderSections = (
     ? sectionOrder.indexOf(a.slug) - sectionOrder.indexOf(b.slug)
     : 0;
 
-/*
- * Given a user's locale, get docs for said locale. If a doc doesn't exist for a locale,
- * a doc in the default locale (english) will be used instead.
- */
+export const getSectionsForLocale = (
+  sections: Array<Section>,
+  locale: string,
+): Array<Section> =>
+  sections.filter(({ docs }) =>
+    docs.some(({ fields: { locale: docLocale } }) => docLocale === locale),
+  );
+
 export const getDocsForLocale = (
   docs: Array<Doc>,
   locale: string,
-): Array<Doc> => {
-  return docs.filter(doc => {
+): Array<Doc> =>
+  docs.filter(doc => {
     const {
-      frontmatter: { locale: docLocale, order: docOrder, section: docSection },
+      fields: { locale: docLocale },
     } = doc;
-    // doc locale matches user locale
     if (docLocale === locale) {
-      return true;
-    }
-    /* if the doc has no locale, see if any other docs exist that match the locale, section &
-     * order (signifying same doc, different language). If none do, return default doc.
-     */
-    if (
-      !docLocale &&
-      !docs.some(someDoc => {
-        const {
-          frontmatter: {
-            locale: someDocLocale,
-            order: someDocOrder,
-            section: someDocSection,
-          },
-        } = someDoc;
-        return (
-          someDocLocale === locale &&
-          someDocOrder === docOrder &&
-          someDocSection === docSection
-        );
-      })
-    ) {
       return true;
     }
     return false;
   });
-};
 
 export const getProjectEntryPoint = (project: Project, locale: string) => {
-  const firstSection = project.sections.sort((a, b) =>
+  let docSections = getSectionsForLocale(project.sections, locale);
+  if (!docSections || !(docSections.length > 0)) {
+    docSections = getSectionsForLocale(project.sections, DEFAULT_LOCALE);
+  }
+  const { docs: firstSectionDocs } = docSections.sort((a, b) =>
     orderSections(project.sectionOrder, a, b),
   )[0];
-  const firstDoc = getDocsForLocale(firstSection.docs, locale).sort(
-    orderDocs,
-  )[0];
-  return firstDoc.fields.slug;
+  let docsForLocale = getDocsForLocale(firstSectionDocs, locale);
+  if (!docsForLocale || !(docsForLocale.length > 0)) {
+    docsForLocale = getDocsForLocale(firstSectionDocs, DEFAULT_LOCALE);
+  }
+  const firstDoc = docsForLocale.sort(orderDocs)[0];
+  return (firstDoc && firstDoc.fields && firstDoc.fields.slug) || '/';
 };
 
 export const transformProjectData = (edge: ProjectEdge, locale: string) => {

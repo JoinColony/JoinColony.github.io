@@ -42,12 +42,12 @@ const MainLayout = ({ children, intl: { locale } }: Props) => {
                   docs {
                     id
                     fields {
+                      locale
                       slug
                     }
                     frontmatter {
                       order
                       section
-                      locale
                     }
                   }
                 }

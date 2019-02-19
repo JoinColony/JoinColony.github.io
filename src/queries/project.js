@@ -26,13 +26,13 @@ export const singleProjectFragment = graphql`
         docs {
           slug
           fields {
+            locale
             slug
           }
           frontmatter {
             title
             order
             section
-            locale
           }
         }
       }
