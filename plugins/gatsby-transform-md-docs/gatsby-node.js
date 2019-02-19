@@ -163,6 +163,7 @@ exports.createPages = ({ graphql, actions }, nodeOptions) => {
         })
       })
     })
+    return null;
   })
 }
 
