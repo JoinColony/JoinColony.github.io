@@ -104,6 +104,12 @@ module.exports = {
         prefixDefault: prefixDefaultLangKey,
       }
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: path.resolve(__dirname, 'src', 'DocFrontmatterSchema.md'),
+      },
+    },
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
     'gatsby-plugin-robots-txt',
