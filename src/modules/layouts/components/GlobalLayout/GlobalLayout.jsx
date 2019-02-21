@@ -13,7 +13,7 @@ import { StaticQuery, graphql, withPrefix } from 'gatsby';
 
 import FileContext from '~context/FileContext';
 
-import { DEFAULT_LOCALE } from '~i18n/locale';
+import { DEFAULT_LOCALE } from '~i18nConfig';
 import enMessages from '~i18n/en.json';
 
 type LocaleMessage = { [key: string]: string };

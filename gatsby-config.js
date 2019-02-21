@@ -2,14 +2,17 @@ const path = require('path')
 const dotenv = require('dotenv')
 const fs = require('fs')
 
+const i18nConfig = require('./i18nConfig');
 const utils = require('./scripts/utils');
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const langs = ['en'];
-const defaultLangKey = 'en';
+const { DEFAULT_LOCALE } = i18nConfig;
+
+const langs = [DEFAULT_LOCALE];
+const defaultLangKey = DEFAULT_LOCALE;
 const prefixDefaultLangKey = false;
 
 const sourcePlugins = {

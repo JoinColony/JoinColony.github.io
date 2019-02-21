@@ -4,7 +4,7 @@ import type { HOC } from 'recompose';
 import { compose, defaultProps, withProps } from 'recompose';
 import { injectIntl } from 'react-intl';
 
-import { DEFAULT_LOCALE } from '~i18n/locale';
+import { DEFAULT_LOCALE } from '~i18nConfig';
 
 import type { InProps } from './types';
 
