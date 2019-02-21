@@ -17,10 +17,10 @@ import '~styles/fonts.css';
 import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
 
-type Props = {
+type Props = {|
   children: Node,
   intl: IntlShape,
-};
+|};
 
 const displayName = 'layouts.MainLayout';
 

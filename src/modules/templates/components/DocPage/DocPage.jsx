@@ -25,7 +25,7 @@ const MSG = defineMessages({
   },
 });
 
-type Props = {
+type Props = {|
   data: {
     project: Project,
     doc: Doc,
@@ -40,7 +40,7 @@ type Props = {
   pageContext: {
     slugPrefix: string,
   },
-};
+|};
 
 class DocPage extends Component<Props> {
   renderAst: (node: Object) => void;

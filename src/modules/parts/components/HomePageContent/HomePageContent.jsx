@@ -37,11 +37,11 @@ all of Colony's open-source repositories on GitHub.`,
   },
 });
 
-type Props = {
+type Props = {|
   /** Injected by `injectIntl` */
   intl: IntlShape,
   projects: Array<Project>,
-};
+|};
 
 const displayName = 'parts.HomePageContent';
 

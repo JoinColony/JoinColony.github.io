@@ -42,10 +42,10 @@ type Props = RouteProps & {
   projects: Array<Project>,
 };
 
-type State = {
+type State = {|
   isNavExpanded: boolean,
   isScrolled: boolean,
-};
+|};
 
 class Header extends React.Component<Props, State> {
   static displayName = 'parts.Header';

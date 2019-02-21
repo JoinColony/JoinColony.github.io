@@ -21,14 +21,14 @@ const MSG = defineMessages({
   },
 });
 
-type Props = {
+type Props = {|
   /** Injected by `injectIntl` */
   intl: IntlShape,
-};
+|};
 
-type State = {
+type State = {|
   isEnabled: boolean,
-};
+|};
 
 class Search extends Component<Props, State> {
   static displayName = 'parts.Search';

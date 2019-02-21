@@ -24,10 +24,10 @@ const MSG = defineMessages({
   },
 });
 
-type Props = {
+type Props = {|
   intl: IntlShape,
   project: Project,
-};
+|};
 
 const displayName = 'parts.Sidebar';
 

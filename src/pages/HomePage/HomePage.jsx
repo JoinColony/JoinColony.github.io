@@ -2,9 +2,16 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
-import MainLayout from '~layouts/MainLayout';
+import type { Project } from '~types';
 
+import MainLayout from '~layouts/MainLayout';
 import HomePageContent from '~parts/HomePageContent';
+
+type QueryData = {
+  projects: {
+    edges: Array<Project>,
+  },
+};
 
 const displayName = 'pages.HomePage';
 
@@ -42,7 +49,7 @@ const HomePage = () => {
             }
           }
         `}
-        render={data => {
+        render={(data: QueryData) => {
           return <HomePageContent projects={data.projects.edges} />;
         }}
       />

@@ -2,9 +2,9 @@
 import { DEFAULT_LOCALE } from '~i18nConfig';
 import type { Doc, Project, Section } from '~types';
 
-type ProjectEdge = {
+type ProjectEdge = {|
   node: Project,
-};
+|};
 
 export const orderDocs = (a: Doc, b: Doc): number =>
   a.frontmatter.order - b.frontmatter.order;

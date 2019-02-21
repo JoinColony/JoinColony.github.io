@@ -2,13 +2,13 @@
 
 import type { Doc } from './doc';
 
-export type Section = {
+export type Section = {|
   name: string,
   slug: string,
   docs: Array<Doc>,
-};
+|};
 
-export type Project = {
+export type Project = {|
   description: string,
   entryPoint: string,
   logo: string,
@@ -17,4 +17,4 @@ export type Project = {
   sectionOrder: Array<string>,
   sections: Array<Section>,
   slug: string,
-};
+|};

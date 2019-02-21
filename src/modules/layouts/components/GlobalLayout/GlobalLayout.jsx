@@ -22,6 +22,7 @@ type LocaleConfig = {|
   messages: LocaleMessage,
   data: $npm$ReactIntl$LocaleData,
 |};
+
 type LocaleConfigs = {
   [locale: string]: LocaleConfig,
 };
@@ -39,13 +40,12 @@ const localeMessages: LocaleConfigs = {
   },
 };
 
-const configuredLocalesData = Object.keys(localeMessages).reduce(
-  (accumulator, configKey) => {
-    const locales = [...accumulator, ...localeMessages[configKey].data];
-    return locales;
-  },
-  [],
-);
+const configuredLocalesData: Array<$npm$ReactIntl$LocaleData> = Object.keys(
+  localeMessages,
+).reduce((accumulator, configKey) => {
+  const locales = [...accumulator, ...localeMessages[configKey].data];
+  return locales;
+}, []);
 
 addLocaleData(configuredLocalesData);
 
