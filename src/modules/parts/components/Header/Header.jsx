@@ -1,13 +1,10 @@
 /* @flow */
-import type { RouteProps } from '@reach/router';
-
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { withPrefix } from 'gatsby';
-import { Location } from '@reach/router';
-import { compose, fromRenderProps } from 'recompose';
 
 import type { Project } from '~types';
+import type { EnhancedProps as Props } from './types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -37,10 +34,6 @@ const MSG = defineMessages({
       'For instance, `Colony on GitHub` or `colonyNetwork on GitHub`',
   },
 });
-
-type Props = RouteProps & {
-  projects: Array<Project>,
-};
 
 type State = {|
   isNavExpanded: boolean,
@@ -229,9 +222,4 @@ class Header extends React.Component<Props, State> {
   }
 }
 
-const enhance = compose(
-  // $FlowFixMe
-  fromRenderProps(Location, locationProps => ({ ...locationProps })),
-);
-
-export default enhance(Header);
+export default Header;

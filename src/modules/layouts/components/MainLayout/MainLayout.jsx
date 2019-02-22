@@ -3,7 +3,6 @@ import type { Node } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import React from 'react';
-import { injectIntl } from 'react-intl';
 import { StaticQuery, graphql } from 'gatsby';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
@@ -76,4 +75,4 @@ const MainLayout = ({ children, intl: { locale } }: Props) => {
 
 MainLayout.displayName = displayName;
 
-export default injectIntl(MainLayout);
+export default MainLayout;
