@@ -40,16 +40,19 @@ export const getDocsForLocale = (
     return false;
   });
 
-export const getProjectEntryPoint = (project: Project, locale: string) => {
+export const getProjectEntryPoint = (
+  project: Project,
+  locale: string,
+): string => {
   let docSections = getSectionsForLocale(project.sections, locale);
-  if (!docSections || !(docSections.length > 0)) {
+  if (!docSections || !docSections.length) {
     docSections = getSectionsForLocale(project.sections, DEFAULT_LOCALE);
   }
   const { docs: firstSectionDocs } = docSections.sort((a, b) =>
     orderSections(project.sectionOrder, a, b),
   )[0];
   let docsForLocale = getDocsForLocale(firstSectionDocs, locale);
-  if (!docsForLocale || !(docsForLocale.length > 0)) {
+  if (!docsForLocale || !docsForLocale.length) {
     docsForLocale = getDocsForLocale(firstSectionDocs, DEFAULT_LOCALE);
   }
   const firstDoc = docsForLocale.sort(orderDocs)[0];

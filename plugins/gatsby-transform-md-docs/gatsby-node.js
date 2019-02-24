@@ -43,15 +43,8 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
 
   const { langConfig: { defaultLangKey, prefixDefaultLangKey } } = nodeOptions;
 
-  let projectNode
-  let sectionNode
-
   if (node.base === 'doc.config.json') {
     const { projectName, projectId } = getProjectInfo(node)
-    projectNode = getNode(projectId)
-    if (!projectNode) {
-      projectNode = createProjectNode(projectName, null, createNode, nodeOptions)
-    }
     let config
     if (node.internal.content) {
       // GitHub sourced
@@ -64,9 +57,29 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       // Filesystem sourced
       config = require(node.absolutePath)
     }
+
+    const { isSchema } = config;
+    if (isSchema) return;
+    
+    let projectNode
+    let sectionNode
+    projectNode = getNode(projectId)
+    if (!projectNode) {
+      projectNode = createProjectNode(projectName, null, createNode, nodeOptions)
+    }
     projectNode.sectionOrder =
       config.sectionOrder &&
       config.sectionOrder.map(section => slugify(section, { lower: true }))
+    projectNode.sectionTranslations =
+      config.sectionTranslations &&
+      Object.entries(config.sectionTranslations).reduce((accumulator, [locale, sectionOrder]) => {
+        const sectionTranslationsObj = {
+          locale,
+          sectionOrder: sectionOrder.map(section => slugify(section, { lower: true })),
+        };
+        accumulator.push(sectionTranslationsObj);
+        return accumulator;
+      }, []);
     projectNode.logo = config.logo
     projectNode.logoSmall = config.logoSmall
     projectNode.description = config.description
@@ -157,7 +170,7 @@ exports.createPages = ({ graphql, actions }, nodeOptions) => {
   const { createPage } = actions
   return graphql(nodeQuery).then(({ data }) => {
     data.projects.edges.forEach(({ node: project }) => {
-      project.sections.forEach(section => {
+      project.sections && project.sections.forEach(section => {
         section.docs.forEach(doc => {
           createDocPage(project, section, doc, createPage, nodeOptions)
         })

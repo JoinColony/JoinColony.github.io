@@ -44,6 +44,10 @@ const HomePage = () => {
                     }
                   }
                   sectionOrder
+                  sectionTranslations {
+                    locale
+                    sectionOrder
+                  }
                 }
               }
             }

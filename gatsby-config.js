@@ -110,7 +110,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: path.resolve(__dirname, 'src', 'DocFrontmatterSchema.md'),
+        path: path.resolve(__dirname, 'src', 'schemas'),
       },
     },
     'gatsby-plugin-react-helmet',
