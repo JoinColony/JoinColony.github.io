@@ -21,7 +21,7 @@ const HomePage = () => {
       <StaticQuery
         query={graphql`
           {
-            projects: allProject {
+            projects: allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
               edges {
                 node {
                   name

@@ -57,9 +57,6 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       // Filesystem sourced
       config = require(node.absolutePath)
     }
-
-    const { isSchema } = config;
-    if (isSchema) return;
     
     let projectNode
     let sectionNode

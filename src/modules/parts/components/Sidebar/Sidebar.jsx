@@ -8,12 +8,7 @@ import type { Project } from '~types';
 
 import Button from '~core/Button';
 import Link from '~core/Link';
-import {
-  getDocsForLocale,
-  getSectionsForLocale,
-  orderSections,
-  orderDocs,
-} from '~utils/docs';
+import { getDocsForLocale, getSectionsForLocale, orderDocs } from '~utils/docs';
 
 import styles from './Sidebar.module.css';
 
@@ -34,29 +29,27 @@ const displayName = 'parts.Sidebar';
 const Sidebar = ({ intl: { locale }, project }: Props) => (
   <nav className={styles.main}>
     <ul className={styles.sectionsList}>
-      {getSectionsForLocale(project.sections, locale)
-        .sort(orderSections.bind(null, project.sectionOrder))
-        .map(({ docs, name, slug }) => (
-          <li key={slug} className={styles.sectionItem}>
-            <h5 className={styles.sectionTitle}>{name}</h5>
-            <ul className={styles.docsList}>
-              {getDocsForLocale(docs, locale)
-                .sort(orderDocs)
-                .map(doc => (
-                  <li key={doc.slug} className={styles.docsItem}>
-                    <Link
-                      href={doc.fields.slug}
-                      title={doc.frontmatter.title}
-                      className={styles.itemLink}
-                      activeClassName={styles.active}
-                      text={doc.frontmatter.title}
-                      persistLocale={false}
-                    />
-                  </li>
-                ))}
-            </ul>
-          </li>
-        ))}
+      {getSectionsForLocale(project, locale).map(({ docs, name, slug }) => (
+        <li key={slug} className={styles.sectionItem}>
+          <h5 className={styles.sectionTitle}>{name}</h5>
+          <ul className={styles.docsList}>
+            {getDocsForLocale(docs, locale)
+              .sort(orderDocs)
+              .map(doc => (
+                <li key={doc.slug} className={styles.docsItem}>
+                  <Link
+                    href={doc.fields.slug}
+                    title={doc.frontmatter.title}
+                    className={styles.itemLink}
+                    activeClassName={styles.active}
+                    text={doc.frontmatter.title}
+                    persistLocale={false}
+                  />
+                </li>
+              ))}
+          </ul>
+        </li>
+      ))}
     </ul>
     <div className={styles.backToTop}>
       <Button

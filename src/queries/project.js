@@ -20,6 +20,10 @@ export const singleProjectFragment = graphql`
       name
       logo
       sectionOrder
+      sectionTranslations {
+        locale
+        sectionOrder
+      }
       sections {
         name
         slug

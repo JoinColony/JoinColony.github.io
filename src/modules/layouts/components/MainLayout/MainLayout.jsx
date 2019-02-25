@@ -28,7 +28,7 @@ const MainLayout = ({ children, intl: { locale } }: Props) => {
     <StaticQuery
       query={graphql`
         query AllProjectQuery {
-          projects: allProject {
+          projects: allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
             edges {
               node {
                 name
@@ -51,6 +51,10 @@ const MainLayout = ({ children, intl: { locale } }: Props) => {
                   }
                 }
                 sectionOrder
+                sectionTranslations {
+                  locale
+                  sectionOrder
+                }
               }
             }
           }

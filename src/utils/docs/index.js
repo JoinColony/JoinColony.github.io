@@ -19,12 +19,28 @@ export const orderSections = (
     : 0;
 
 export const getSectionsForLocale = (
-  sections: Array<Section>,
+  project: Project,
   locale: string,
-): Array<Section> =>
-  sections.filter(({ docs }) =>
-    docs.some(({ fields: { locale: docLocale } }) => docLocale === locale),
-  );
+): Array<Section> => {
+  let { sectionOrder: sectionOrderForLocale } = project;
+  if (locale !== DEFAULT_LOCALE && project.sectionTranslations) {
+    const localeTranslatedSectionConfig = project.sectionTranslations.find(
+      ({ locale: sectionTranslationLocale }) =>
+        sectionTranslationLocale === locale,
+    );
+    if (
+      localeTranslatedSectionConfig &&
+      localeTranslatedSectionConfig.sectionOrder
+    ) {
+      sectionOrderForLocale = localeTranslatedSectionConfig.sectionOrder;
+    }
+  }
+  return project.sections
+    .filter(({ docs }) =>
+      docs.some(({ fields: { locale: docLocale } }) => docLocale === locale),
+    )
+    .sort(orderSections.bind(null, sectionOrderForLocale));
+};
 
 export const getDocsForLocale = (
   docs: Array<Doc>,
@@ -44,13 +60,11 @@ export const getProjectEntryPoint = (
   project: Project,
   locale: string,
 ): string => {
-  let docSections = getSectionsForLocale(project.sections, locale);
+  let docSections = getSectionsForLocale(project, locale);
   if (!docSections || !docSections.length) {
-    docSections = getSectionsForLocale(project.sections, DEFAULT_LOCALE);
+    docSections = getSectionsForLocale(project, DEFAULT_LOCALE);
   }
-  const { docs: firstSectionDocs } = docSections.sort((a, b) =>
-    orderSections(project.sectionOrder, a, b),
-  )[0];
+  const { docs: firstSectionDocs } = docSections[0];
   let docsForLocale = getDocsForLocale(firstSectionDocs, locale);
   if (!docsForLocale || !docsForLocale.length) {
     docsForLocale = getDocsForLocale(firstSectionDocs, DEFAULT_LOCALE);
