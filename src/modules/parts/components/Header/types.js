@@ -3,7 +3,7 @@ import type { CommonRouteProps } from '@reach/router';
 
 import type { Project } from '~types';
 
-export type InProps = {|
+type InProps = {|
   projects: Array<Project>,
 |};
 

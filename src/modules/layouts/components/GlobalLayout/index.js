@@ -1,3 +1,3 @@
 /* @flow */
 
-export { default } from './GlobalLayout.jsx';
+export { default } from './GlobalLayout';

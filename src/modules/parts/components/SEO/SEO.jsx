@@ -3,14 +3,11 @@ import type { RouteProps } from '@reach/router';
 import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 import React, { Component } from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import Helmet from 'react-helmet';
 import { withPrefix } from 'gatsby';
-import { Location } from '@reach/router';
-import { compose, fromRenderProps } from 'recompose';
 
 import type { FileContext as FileContextType } from '~types';
-import FileContext from '~context/FileContext';
 
 const MSG = defineMessages({
   siteName: {
@@ -162,12 +159,4 @@ class SEO extends Component<Props> {
   }
 }
 
-const enhance = compose(
-  // $FlowFixMe
-  fromRenderProps(FileContext.Consumer, files => ({ files })),
-  // $FlowFixMe
-  fromRenderProps(Location, locationProps => ({ ...locationProps })),
-  injectIntl,
-);
-
-export default enhance(SEO);
+export default SEO;

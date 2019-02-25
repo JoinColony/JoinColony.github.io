@@ -4,8 +4,6 @@ import type { RouteProps } from '@reach/router';
 import type { $npm$ReactIntl$LocaleData } from 'react-intl';
 
 import React, { Fragment } from 'react';
-import { compose, fromRenderProps } from 'recompose';
-import { Location } from '@reach/router';
 import Helmet from 'react-helmet';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
@@ -112,9 +110,4 @@ const GlobalLayout = ({ children, location }: Props) => {
 
 GlobalLayout.displayName = displayName;
 
-const enhance = compose(
-  // $FlowFixMe
-  fromRenderProps(Location, locationProps => ({ ...locationProps })),
-);
-
-export default enhance(GlobalLayout);
+export default GlobalLayout;
