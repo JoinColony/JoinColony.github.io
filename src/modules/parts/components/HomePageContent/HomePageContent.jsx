@@ -35,6 +35,10 @@ Colony projects.`,
     defaultMessage: `If you're a developer looking to contribute, you can find
 all of Colony's open-source repositories on GitHub.`,
   },
+  btnViewDocs: {
+    id: 'parts.HomePageContent.btnViewDocs',
+    defaultMessage: 'View Docs',
+  },
 });
 
 type Props = {|
@@ -89,7 +93,7 @@ const HomePageContent = ({ intl: { formatMessage }, projects }: Props) => {
                   <Button
                     linkTo={project.entryPoint}
                     persistLocale={false}
-                    text={{ id: 'btn.viewDocs' }}
+                    text={MSG.btnViewDocs}
                   />
                 </p>
               </div>
