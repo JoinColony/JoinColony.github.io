@@ -80,6 +80,16 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     projectNode.logo = config.logo
     projectNode.logoSmall = config.logoSmall
     projectNode.description = config.description
+    projectNode.descriptionTranslations =
+      config.descriptionTranslations &&
+      Object.entries(config.descriptionTranslations).reduce((accumulator, [locale, description]) => {
+        const descriptionTranslationsObj = {
+          locale,
+          description,
+        };
+        accumulator.push(descriptionTranslationsObj);
+        return accumulator;
+      }, []);
   } else if (node.internal.type === 'MarkdownRemark') {
     const sectionName = node.frontmatter.section
 
