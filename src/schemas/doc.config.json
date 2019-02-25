@@ -1,5 +1,8 @@
 {
   "description": "",
+  "descriptionTranslations": {
+    "key": "value"
+  },
   "isSchema": true,
   "logo": "",
   "logoSmall": "",
