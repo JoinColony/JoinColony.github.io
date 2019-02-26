@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 export const allProjectNamesFragment = graphql`
   fragment allProjectNamesFragment on Query {
-    allProject {
+    allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
       edges {
         node {
           name
