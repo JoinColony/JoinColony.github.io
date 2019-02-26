@@ -56,6 +56,19 @@ export const getDocsForLocale = (
     return false;
   });
 
+export const getProjectDescriptionForLocale = (
+  project: Project,
+  locale: string,
+): string => {
+  const projectOrLocaleDescription =
+    locale !== DEFAULT_LOCALE && project.descriptionTranslations
+      ? project.descriptionTranslations.find(
+          ({ locale: descriptionLocale }) => descriptionLocale === locale,
+        ) || project
+      : project;
+  return projectOrLocaleDescription.description;
+};
+
 export const getProjectEntryPoint = (
   project: Project,
   locale: string,

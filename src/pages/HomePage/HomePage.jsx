@@ -29,6 +29,10 @@ const HomePage = () => {
                   logo
                   logoSmall
                   description
+                  descriptionTranslations {
+                    locale
+                    description
+                  }
                   sections {
                     slug
                     docs {

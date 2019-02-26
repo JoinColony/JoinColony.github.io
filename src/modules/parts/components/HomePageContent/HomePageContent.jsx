@@ -11,6 +11,7 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import SEO from '~parts/SEO';
+import { getProjectDescriptionForLocale } from '~utils/docs';
 
 import styles from './HomePageContent.module.css';
 
@@ -49,7 +50,10 @@ type Props = {|
 
 const displayName = 'parts.HomePageContent';
 
-const HomePageContent = ({ intl: { formatMessage }, projects }: Props) => {
+const HomePageContent = ({
+  intl: { formatMessage, locale },
+  projects,
+}: Props) => {
   const title = formatMessage(MSG.title);
   return (
     <Fragment>
@@ -87,7 +91,7 @@ const HomePageContent = ({ intl: { formatMessage }, projects }: Props) => {
                   src={project.logo}
                 />
                 <p className={styles.projectDescription}>
-                  {project.description}
+                  {getProjectDescriptionForLocale(project, locale)}
                 </p>
                 <p className={styles.linkContainer}>
                   <Button

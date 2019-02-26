@@ -2,6 +2,11 @@
 
 import type { Doc } from './doc';
 
+type DescriptionTranslationConfig = {|
+  locale: string,
+  description: string,
+|};
+
 export type SectionTranslationConfig = {|
   locale: string,
   sectionOrder: Array<string>,
@@ -15,6 +20,7 @@ export type Section = {|
 
 export type Project = {|
   description: string,
+  descriptionTranslations?: Array<DescriptionTranslationConfig>,
   entryPoint: string,
   logo: string,
   logoSmall: string,
