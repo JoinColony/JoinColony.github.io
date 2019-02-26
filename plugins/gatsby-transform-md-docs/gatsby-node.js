@@ -67,29 +67,11 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     projectNode.sectionOrder =
       config.sectionOrder &&
       config.sectionOrder.map(section => slugify(section, { lower: true }))
-    projectNode.sectionTranslations =
-      config.sectionTranslations &&
-      Object.entries(config.sectionTranslations).reduce((accumulator, [locale, sectionOrder]) => {
-        const sectionTranslationsObj = {
-          locale,
-          sectionOrder: sectionOrder.map(section => slugify(section, { lower: true })),
-        };
-        accumulator.push(sectionTranslationsObj);
-        return accumulator;
-      }, []);
+    projectNode.sectionTranslations = getProjectSectionTranslations(config);
     projectNode.logo = config.logo
     projectNode.logoSmall = config.logoSmall
     projectNode.description = config.description
-    projectNode.descriptionTranslations =
-      config.descriptionTranslations &&
-      Object.entries(config.descriptionTranslations).reduce((accumulator, [locale, description]) => {
-        const descriptionTranslationsObj = {
-          locale,
-          description,
-        };
-        accumulator.push(descriptionTranslationsObj);
-        return accumulator;
-      }, []);
+    projectNode.descriptionTranslations = getProjectDescriptionTranslations(config);
   } else if (node.internal.type === 'MarkdownRemark') {
     const sectionName = node.frontmatter.section
 
@@ -156,6 +138,28 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     node.locale = docLocaleField
   }
 }
+
+const getProjectDescriptionTranslations = config =>
+  config.descriptionTranslations &&
+    Object.entries(config.descriptionTranslations).reduce((accumulator, [locale, description]) => {
+      const descriptionTranslationsObj = {
+        locale,
+        description,
+      };
+      accumulator.push(descriptionTranslationsObj);
+      return accumulator;
+    }, []);
+
+const getProjectSectionTranslations = config =>
+  config.sectionTranslations &&
+    Object.entries(config.sectionTranslations).reduce((accumulator, [locale, sectionOrder]) => {
+      const sectionTranslationsObj = {
+        locale,
+        sectionOrder: sectionOrder.map(section => slugify(section, { lower: true })),
+      };
+      accumulator.push(sectionTranslationsObj);
+      return accumulator;
+    }, []);
 
 function getProjectInfo(parent) {
   const projectName = parent.sourceInstanceName
