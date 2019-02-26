@@ -1,3 +1,3 @@
 /* @flow */
 
-export { default } from './HomePage';
+export { default } from '~pages/HomePage';
