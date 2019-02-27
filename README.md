@@ -1,26 +1,38 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# The Colony Website
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+This project was built with [Gatsby](https://www.gatsbyjs.org/).
 
-## Install
+## Installation, Run Development Server, and Deploy
 
-Make sure that you have the Gatsby CLI program installed:
+#### Install Dependencies
+
 ```sh
-npm install --global gatsby-cli
+yarn
 ```
 
-And run from your CLI:
+#### Lint & Flow Checks
+
 ```sh
-gatsby new gatsby-example-site
+yarn lint
+yarn flow
 ```
 
-Then you can run it by:
+#### Run Local Dev Server
+
 ```sh
-cd gatsby-example-site
-npm run develop
+yarn dev
 ```
 
-## Deploy
+This will start a local development server on port `8000`.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+- Website: `http://localhost:8000/`
+- GraphiQL: `http://localhost:8000/___graphql`
+
+#### Building & Deploying
+
+Running `deploy` will deploy this project to github pages (if configured to do so).
+
+```sh
+yarn build
+yarn deploy
+```
