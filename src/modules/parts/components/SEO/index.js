@@ -1,3 +1,3 @@
 /* @flow */
 
-export { default } from './SEO.jsx';
+export { default } from './SEO';

@@ -1,23 +1,32 @@
 /* @flow */
 import type { RouteProps } from '@reach/router';
+import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 import React, { Component } from 'react';
+import { defineMessages } from 'react-intl';
 import Helmet from 'react-helmet';
 import { withPrefix } from 'gatsby';
-import { Location } from '@reach/router';
-import { compose, fromRenderProps } from 'recompose';
 
 import type { FileContext as FileContextType } from '~types';
 
-import FileContext from '~context/FileContext';
+const MSG = defineMessages({
+  siteName: {
+    id: 'parts.SEO.siteName',
+    defaultMessage: 'Colony Open Source Docs',
+  },
+});
 
 type Props = RouteProps & {
-  description: string,
+  description: MessageDescriptor | string,
+  descriptionValues?: Object,
   files?: FileContextType,
   images: Array<string>,
+  /** Injected by `injectIntl` */
+  intl: IntlShape,
   isDocPage: boolean,
   project: string,
-  title: string,
+  title: MessageDescriptor | string,
+  titleValues?: Object,
 };
 
 class SEO extends Component<Props> {
@@ -39,11 +48,14 @@ class SEO extends Component<Props> {
   render() {
     const siteLogo = this.getAbsoluteImagePath('/img/colonyDocs_combomark.svg');
     const {
-      description,
-      location,
-      title,
-      isDocPage = false,
+      description: descriptionContent,
+      descriptionValues,
       images = [siteLogo],
+      intl: { formatMessage },
+      isDocPage = false,
+      location,
+      title: titleContent,
+      titleValues,
     } = this.props;
 
     const absolutePath =
@@ -52,7 +64,15 @@ class SEO extends Component<Props> {
     if (imagePaths.indexOf(siteLogo) < 0) imagePaths.push(siteLogo);
     const ogType =
       location && location.pathname === '/' ? 'website' : 'article';
-    const siteName = 'Colony Open Source Docs';
+    const siteName = formatMessage(MSG.siteName);
+    const title =
+      typeof titleContent === 'string'
+        ? titleContent
+        : formatMessage(titleContent, titleValues);
+    const description =
+      typeof descriptionContent === 'string'
+        ? descriptionContent
+        : formatMessage(descriptionContent, descriptionValues);
 
     const schemaOrgJSONLD = [
       {
@@ -139,11 +159,4 @@ class SEO extends Component<Props> {
   }
 }
 
-const enhance = compose(
-  // $FlowFixMe
-  fromRenderProps(FileContext.Consumer, files => ({ files })),
-  // $FlowFixMe
-  fromRenderProps(Location, locationProps => ({ ...locationProps })),
-);
-
-export default enhance(SEO);
+export default SEO;

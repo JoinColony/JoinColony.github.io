@@ -2,27 +2,31 @@
 
 import type { Doc } from './doc';
 
-export type SectionDoc = Doc & {
-  frontmatter: {
-    title: string,
-    order: number,
-  },
-  slug: string,
-};
+type DescriptionTranslationConfig = {|
+  locale: string,
+  description: string,
+|};
 
-export type Section = {
+export type SectionTranslationConfig = {|
+  locale: string,
+  sectionOrder: Array<string>,
+|};
+
+export type Section = {|
   name: string,
   slug: string,
-  docs: Array<SectionDoc>,
-};
+  docs: Array<Doc>,
+|};
 
-export type Project = {
+export type Project = {|
   description: string,
+  descriptionTranslations?: Array<DescriptionTranslationConfig>,
   entryPoint: string,
   logo: string,
   logoSmall: string,
   name: string,
   sectionOrder: Array<string>,
   sections: Array<Section>,
+  sectionTranslations?: Array<SectionTranslationConfig>,
   slug: string,
-};
+|};

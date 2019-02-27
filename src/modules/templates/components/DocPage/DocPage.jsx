@@ -1,5 +1,6 @@
 /* @flow */
 import React, { Component, createElement } from 'react';
+import { defineMessages } from 'react-intl';
 import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
@@ -17,7 +18,14 @@ import SEO from '~parts/SEO';
 
 import styles from './DocPage.module.css';
 
-type Props = {
+const MSG = defineMessages({
+  linkImproveDoc: {
+    id: 'templates.DocPage.linkImproveDoc',
+    defaultMessage: 'Improve this doc',
+  },
+});
+
+type Props = {|
   data: {
     project: Project,
     doc: Doc,
@@ -32,7 +40,7 @@ type Props = {
   pageContext: {
     slugPrefix: string,
   },
-};
+|};
 
 class DocPage extends Component<Props> {
   renderAst: (node: Object) => void;
@@ -58,7 +66,10 @@ class DocPage extends Component<Props> {
     this.renderAst = new RehypeReact({
       createElement,
       components: {
-        a: withProps({ getLinkPrefix: this.getLinkPrefix })(Link),
+        a: withProps({
+          transformUrl: this.transformInternalUrls,
+          persistLocale: false,
+        })(Link),
         img: withProps({ project: props.data.project.name })(Image),
       },
     }).Compiler;
@@ -86,19 +97,44 @@ class DocPage extends Component<Props> {
     return imagePaths;
   };
 
-  getLinkPrefix = (url: string): string | void => {
+  transformInternalUrls = (href: string): string => {
     const {
       data: {
         allProject: { edges: projectNodes },
       },
       pageContext: { slugPrefix },
     } = this.props;
-    const projectNames = projectNodes.map(({ node }) =>
-      slugify(node.name, { lower: true }),
+    let url: string = href.toLowerCase();
+
+    // Get possible project slugs (both camelCase & lowercase for each project)
+    const projectNameSlugs: Array<string> = projectNodes.reduce(
+      (names, { node }) => {
+        names.push(slugify(node.name), slugify(node.name, { lower: true }));
+        return names;
+      },
+      [],
     );
-    return projectNames.some(projectName => url.startsWith(`/${projectName}/`))
-      ? slugPrefix
-      : undefined;
+
+    // Get the non-empty url parts
+    const urlParts: Array<string> = url.split('/').filter(part => !!part);
+
+    /*
+     * Docs links within the docs are written in 1 of 2 forms:
+     *     1) With locale (non-default): `/locale/projectSlug/docPageSlug/`
+     *     2) Without locale (default language): `/projectSlug/docPageSlug/`
+     */
+    const hasLocale: boolean = urlParts.length === 3;
+    const localePrefix: string = hasLocale ? `/${urlParts[0]}` : '';
+    const isDocPage: boolean = projectNameSlugs.some(projectName =>
+      url.startsWith(`${localePrefix}/${projectName}/`),
+    );
+    if (isDocPage && hasLocale) {
+      url = url.replace(localePrefix, '');
+    }
+    // If it's a doc page and a slug prefix is configured, add the prefix to the url
+    return isDocPage && slugPrefix
+      ? `${localePrefix}/${slugPrefix}${url}`
+      : url;
   };
 
   render() {
@@ -152,7 +188,7 @@ class DocPage extends Component<Props> {
           <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
           <div className={styles.editUrlContainer}>
             <p>
-              <Link href={doc.editUrl}>Improve this doc</Link>
+              <Link href={doc.editUrl} text={MSG.linkImproveDoc} />
             </p>
           </div>
           {this.renderAst(doc.htmlAst)}

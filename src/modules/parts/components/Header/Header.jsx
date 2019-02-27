@@ -1,28 +1,44 @@
 /* @flow */
-import type { RouteProps } from '@reach/router';
-
 import React from 'react';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import { withPrefix } from 'gatsby';
-import { Location } from '@reach/router';
-import { compose, fromRenderProps } from 'recompose';
 
 import type { Project } from '~types';
+import type { EnhancedProps as Props } from './types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
+import Image from '~core/Image';
 import Link from '~core/Link';
 import Search from '~parts/Search';
 
 import styles from './Header.module.css';
 
-type Props = RouteProps & {
-  projects: Array<Project>,
-};
+const MSG = defineMessages({
+  btnTitleToggleNavigation: {
+    id: 'parts.Header.btnTitleToggleNavigation',
+    defaultMessage: 'Toggle Navigation',
+  },
+  imageAltColonyDocs: {
+    id: 'parts.Header.imageAltColonyDocs',
+    defaultMessage: 'Colony Docs',
+  },
+  linkProducts: {
+    id: 'parts.Header.linkProducts',
+    defaultMessage: 'Products',
+  },
+  socialIconTitle: {
+    id: 'parts.Header.socialIconTitle',
+    defaultMessage: '{projectOrOrg} on {platform}',
+    description:
+      'For instance, `Colony on GitHub` or `colonyNetwork on GitHub`',
+  },
+});
 
-type State = {
+type State = {|
   isNavExpanded: boolean,
   isScrolled: boolean,
-};
+|};
 
 class Header extends React.Component<Props, State> {
   static displayName = 'parts.Header';
@@ -82,8 +98,9 @@ class Header extends React.Component<Props, State> {
     const navLinks = projects.map(project => (
       <Link
         key={project.slug}
-        href={`/${project.slug}/${project.entryPoint}/`}
+        href={project.entryPoint}
         onClick={this.handleCloseNavigation}
+        persistLocale={false}
         getProps={() =>
           activeProject &&
           selectedProject &&
@@ -113,16 +130,16 @@ class Header extends React.Component<Props, State> {
                 className={styles.logo}
                 onClick={this.handleCloseNavigation}
               >
-                <img
+                <Image
                   src={withPrefix('/img/colonyDocs_navy.svg')}
-                  alt="Colony Docs"
+                  alt={MSG.imageAltColonyDocs}
                 />
               </Link>
               <div className={styles.mainNavigation}>
                 <div className={styles.emptySpace} />
                 <nav className={styles.navigation}>
                   <Button className={styles.navigationButton}>
-                    {'Products'}
+                    <FormattedMessage {...MSG.linkProducts} />
                     <i className={styles.navigationArrow} />
                   </Button>
                   <div
@@ -141,7 +158,11 @@ class Header extends React.Component<Props, State> {
                       <Icon
                         className={styles.repoIcon}
                         name="social_github"
-                        title={`${selectedProject || 'Colony'} on GitHub`}
+                        title={MSG.socialIconTitle}
+                        titleValues={{
+                          projectOrOrg: selectedProject || 'Colony',
+                          platform: 'GitHub',
+                        }}
                       />
                     </Link>
                   </li>
@@ -153,7 +174,11 @@ class Header extends React.Component<Props, State> {
                       <Icon
                         className={styles.repoIcon}
                         name="social_gitter"
-                        title={`${selectedProject || 'Colony'} on Gitter`}
+                        title={MSG.socialIconTitle}
+                        titleValues={{
+                          projectOrOrg: selectedProject || 'Colony',
+                          platform: 'Gitter',
+                        }}
                       />
                     </Link>
                   </li>
@@ -165,7 +190,11 @@ class Header extends React.Component<Props, State> {
                       <Icon
                         className={styles.repoIcon}
                         name="social_discourse"
-                        title="Colony on Discourse"
+                        title={MSG.socialIconTitle}
+                        titleValues={{
+                          projectOrOrg: 'Colony',
+                          platform: 'Discourse',
+                        }}
                       />
                     </Link>
                   </li>
@@ -175,9 +204,10 @@ class Header extends React.Component<Props, State> {
                 </div>
               </div>
               <Button
-                className={styles.mobileIcon}
                 aria-hidden
+                className={styles.mobileIcon}
                 onClick={this.handleToggleNavigation}
+                title={MSG.btnTitleToggleNavigation}
               >
                 <span className={styles.mobileIconLine} />
                 <span className={styles.mobileIconLine} />
@@ -192,9 +222,4 @@ class Header extends React.Component<Props, State> {
   }
 }
 
-const enhance = compose(
-  // $FlowFixMe
-  fromRenderProps(Location, locationProps => ({ ...locationProps })),
-);
-
-export default enhance(Header);
+export default Header;

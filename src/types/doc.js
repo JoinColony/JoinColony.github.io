@@ -1,6 +1,11 @@
 /* @flow */
 
-export type HtmlAst = {
+export type DocFields = {|
+  locale: string,
+  slug: string,
+|};
+
+export type HtmlAst = {|
   children?: Array<HtmlAst>,
   data?: {
     quirksMode: boolean,
@@ -9,10 +14,12 @@ export type HtmlAst = {
   tagName?: string,
   type: string,
   value?: string,
-};
+|};
 
-export type Doc = {
+export type Doc = {|
   editUrl: string,
+  fields: DocFields,
   frontmatter: Object,
   htmlAst: HtmlAst,
-};
+  slug: string,
+|};

@@ -1,45 +1,27 @@
 /* @flow */
-import React, { Fragment } from 'react';
-import Helmet from 'react-helmet';
+import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
-import styles from './HomePage.module.css';
+import type { Project } from '~types';
 
-import Button from '~core/Button';
-import Image from '~core/Image';
 import MainLayout from '~layouts/MainLayout';
-import SEO from '~parts/SEO';
+import HomePageContent from '~parts/HomePageContent';
 
-import { orderSections, orderDocs } from '~utils/docs';
-
-const getEntryPoint = project => {
-  const firstSection = project.sections.sort((a, b) =>
-    orderSections(project.sectionOrder, a, b),
-  )[0];
-  const firstDoc = firstSection.docs.sort(orderDocs)[0];
-  return `${firstSection.slug}-${firstDoc.slug}`;
-};
-
-const transformProjectData = edge => {
-  const edgeNode = edge.node;
-  edgeNode.entryPoint = getEntryPoint(edge.node);
-  return edgeNode;
+type QueryData = {
+  projects: {
+    edges: Array<Project>,
+  },
 };
 
 const displayName = 'pages.HomePage';
 
 const HomePage = () => {
-  const title = 'Colony Open Source Docs';
-  const introText = `Just like the organizations that will run on Colony,
-each component in the colony stack is the product of collaboration and open
-engagement. Here, you'll find the up-to-date documentation for all of the
-Colony projects.`;
   return (
     <MainLayout>
       <StaticQuery
         query={graphql`
           {
-            projects: allProject {
+            projects: allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
               edges {
                 node {
                   name
@@ -47,85 +29,36 @@ Colony projects.`;
                   logo
                   logoSmall
                   description
+                  descriptionTranslations {
+                    locale
+                    description
+                  }
                   sections {
                     slug
                     docs {
                       slug
+                      fields {
+                        locale
+                        slug
+                      }
                       frontmatter {
                         order
+                        section
                       }
                     }
                   }
                   sectionOrder
-                }
-              }
-            }
-            files: allFile {
-              edges {
-                node {
-                  sourceInstanceName
-                  relativePath
-                  publicURL
+                  sectionTranslations {
+                    locale
+                    sectionOrder
+                  }
                 }
               }
             }
           }
         `}
-        render={data => {
-          const projects = data.projects.edges.map(transformProjectData) || [];
-          return (
-            <Fragment>
-              <Helmet>
-                <title>{title}</title>
-              </Helmet>
-              <SEO title={title} description={introText} />
-              <main className={styles.content}>
-                <section className={styles.heroContainer}>
-                  <div className={styles.heroContent}>
-                    <h1 className={styles.heroTitle}>
-                      The Colony
-                      <br className={styles.heroTitleBreak} />
-                      Developer Docs
-                    </h1>
-                    <div className={styles.heroDescription}>
-                      <p className={styles.textExplainer}>{introText}</p>
-                      <p>
-                        If you&apos;re a developer looking to contribute, you
-                        can find all of Colony&apos;s open-source repositories
-                        on GitHub.
-                      </p>
-                    </div>
-                  </div>
-                </section>
-                <section className={styles.projectContainer}>
-                  {projects &&
-                    projects.map(project => (
-                      <div
-                        key={project.name}
-                        className={styles.projectContainerItem}
-                      >
-                        <Image
-                          alt={project.name}
-                          className={styles.projectLogo}
-                          project={project.name}
-                          src={project.logo}
-                        />
-                        <p className={styles.projectDescription}>
-                          {project.description}
-                        </p>
-                        <p className={styles.linkContainer}>
-                          <Button
-                            linkTo={`/${project.slug}/${project.entryPoint}`}
-                          >
-                            View Docs
-                          </Button>
-                        </p>
-                      </div>
-                    ))}
-                </section>
-              </main>
-            </Fragment>
-          );
+        render={(data: QueryData) => {
+          return <HomePageContent projects={data.projects.edges} />;
         }}
       />
     </MainLayout>

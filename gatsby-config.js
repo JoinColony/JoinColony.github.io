@@ -2,11 +2,17 @@ const path = require('path')
 const dotenv = require('dotenv')
 const fs = require('fs')
 
+const i18nConfig = require('./i18nConfig');
 const utils = require('./scripts/utils');
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+
+const { CONFIGURED_LOCALES, DEFAULT_LOCALE } = i18nConfig;
+
+const defaultLangKey = DEFAULT_LOCALE;
+const prefixDefaultLangKey = false;
 
 const sourcePlugins = {
   development: [
@@ -92,6 +98,20 @@ module.exports = {
     title: 'Colony Open Source Docs',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {        
+        langKeyDefault: defaultLangKey,
+        useLangKeyLayout: false,
+        prefixDefault: prefixDefaultLangKey,
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: path.resolve(__dirname, 'src', 'schemas'),
+      },
+    },
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
     'gatsby-plugin-robots-txt',
@@ -99,7 +119,12 @@ module.exports = {
     {
       resolve: 'gatsby-transform-md-docs',
       options: {
-        slugPrefix: 'docs'
+        slugPrefix: 'docs',
+        langConfig: {
+          langs: CONFIGURED_LOCALES,
+          defaultLangKey,
+          prefixDefaultLangKey,
+        }
       }
     },
     {
@@ -131,6 +156,6 @@ module.exports = {
         alias: utils.getModuleAliases(),
         extensions: []
       }
-    }
+    },
   ],
 }

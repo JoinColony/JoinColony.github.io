@@ -1,58 +1,34 @@
 /* @flow */
 import type { Node } from 'react';
+import type { IntlShape } from 'react-intl';
 
-import React, { Children, cloneElement } from 'react';
-import Helmet from 'react-helmet';
-import { StaticQuery, graphql, withPrefix } from 'gatsby';
+import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
+
+import BugBounty from '~parts/BugBounty';
+import Header from '~parts/Header';
+import Footer from '~parts/Footer';
+import { transformProjectData } from '~utils/docs';
 
 import '~styles/normalize.css';
 import '~styles/fonts.css';
 import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
 
-import { orderSections, orderDocs } from '~utils/docs';
-import FileContext from '~context/FileContext';
-
-import BugBounty from '~parts/BugBounty';
-import Header from '~parts/Header';
-import Footer from '~parts/Footer';
-
-type Props = {
+type Props = {|
   children: Node,
-};
-
-const getEntryPoint = project => {
-  const firstSection = project.sections.sort((a, b) =>
-    orderSections(project.sectionOrder, a, b),
-  )[0];
-  const firstDoc = firstSection.docs.sort(orderDocs)[0];
-  return `${firstSection.slug}-${firstDoc.slug}`;
-};
-
-const getFileMapping = files => {
-  return files.reduce((current, next) => {
-    // eslint-disable-next-line no-param-reassign
-    current[`${next.node.sourceInstanceName}/${next.node.relativePath}`] =
-      next.node.publicURL;
-    return current;
-  }, {});
-};
-
-const transformProjectData = edge => {
-  const edgeNode = edge.node;
-  edgeNode.entryPoint = getEntryPoint(edge.node);
-  return edgeNode;
-};
+  intl: IntlShape,
+|};
 
 const displayName = 'layouts.MainLayout';
 
-const MainLayout = ({ children }: Props) => {
+const MainLayout = ({ children, intl: { locale } }: Props) => {
   return (
     <StaticQuery
       query={graphql`
         query AllProjectQuery {
-          projects: allProject {
+          projects: allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
             edges {
               node {
                 name
@@ -63,48 +39,37 @@ const MainLayout = ({ children }: Props) => {
                 sections {
                   slug
                   docs {
-                    slug
+                    id
+                    fields {
+                      locale
+                      slug
+                    }
                     frontmatter {
                       order
+                      section
                     }
                   }
                 }
                 sectionOrder
-              }
-            }
-          }
-          files: allFile {
-            edges {
-              node {
-                sourceInstanceName
-                relativePath
-                publicURL
+                sectionTranslations {
+                  locale
+                  sectionOrder
+                }
               }
             }
           }
         }
       `}
       render={data => {
-        const projects = data.projects.edges.map(transformProjectData) || [];
-        const childrenWithProps = Children.map(children, child =>
-          cloneElement(child, { projects }),
-        );
+        const projects =
+          data.projects.edges.map(edge => transformProjectData(edge, locale)) ||
+          [];
         return (
           <div className={styles.gridContainer}>
-            <Helmet>
-              <link
-                rel="shortcut icon"
-                type="image/png"
-                href={withPrefix('/img/favicon.ico')}
-              />
-              <script src={withPrefix('/js/fontloader.js')} />
-            </Helmet>
-            <FileContext.Provider value={getFileMapping(data.files.edges)}>
-              <BugBounty /> {/* BUG BOUNTY */}
-              <Header projects={projects} />
-              {childrenWithProps}
-              <Footer projects={projects} />
-            </FileContext.Provider>
+            <BugBounty /> {/* BUG BOUNTY */}
+            <Header projects={projects} />
+            {children}
+            <Footer projects={projects} />
           </div>
         );
       }}

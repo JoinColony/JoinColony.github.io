@@ -34,7 +34,7 @@ declare module '@reach/router' {
     replace?: boolean;
   }
 
-  declare type CommonRouteProps = {|
+  declare export type CommonRouteProps = {|
     children?: React$Node,
     location?: typeof location,
     navigate?: NavigateFn,
