@@ -43,8 +43,15 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
 
   const { langConfig: { defaultLangKey, prefixDefaultLangKey } } = nodeOptions;
 
+  let projectNode
+  let sectionNode
+
   if (node.base === 'doc.config.json') {
     const { projectName, projectId } = getProjectInfo(node)
+    projectNode = getNode(projectId)
+    if (!projectNode) {
+      projectNode = createProjectNode(projectName, null, createNode, nodeOptions)
+    }
     let config
     if (node.internal.content) {
       // GitHub sourced
@@ -57,13 +64,7 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       // Filesystem sourced
       config = require(node.absolutePath)
     }
-    
-    let projectNode
-    let sectionNode
-    projectNode = getNode(projectId)
-    if (!projectNode) {
-      projectNode = createProjectNode(projectName, null, createNode, nodeOptions)
-    }
+
     projectNode.sectionOrder =
       config.sectionOrder &&
       config.sectionOrder.map(section => slugify(section, { lower: true }))
