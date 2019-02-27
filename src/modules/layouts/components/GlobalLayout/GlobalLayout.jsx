@@ -40,10 +40,13 @@ const localeMessages: LocaleConfigs = {
 
 const configuredLocalesData: Array<$npm$ReactIntl$LocaleData> = Object.keys(
   localeMessages,
-).reduce((accumulator, configKey) => {
-  const locales = [...accumulator, ...localeMessages[configKey].data];
-  return locales;
-}, []);
+).reduce(
+  (accumulator, configKey) => [
+    ...accumulator,
+    ...localeMessages[configKey].data,
+  ],
+  [],
+);
 
 addLocaleData(configuredLocalesData);
 
@@ -54,12 +57,14 @@ const getLocaleString = (locale?: string): string =>
   !!locale && !!localeMessages[locale] ? locale : DEFAULT_LOCALE;
 
 const getFileMapping = files => {
-  return files.reduce((current, next) => {
-    // eslint-disable-next-line no-param-reassign
-    current[`${next.node.sourceInstanceName}/${next.node.relativePath}`] =
-      next.node.publicURL;
-    return current;
-  }, {});
+  return files.reduce(
+    (current, next) => ({
+      ...current,
+      [`${next.node.sourceInstanceName}/${next.node.relativePath}`]: next.node
+        .publicURL,
+    }),
+    {},
+  );
 };
 
 const displayName = 'layouts.GlobalLayout';
