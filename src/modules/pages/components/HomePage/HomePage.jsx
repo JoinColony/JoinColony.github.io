@@ -21,40 +21,7 @@ const HomePage = () => {
       <StaticQuery
         query={graphql`
           {
-            projects: allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
-              edges {
-                node {
-                  name
-                  slug
-                  logo
-                  logoSmall
-                  description
-                  descriptionTranslations {
-                    locale
-                    description
-                  }
-                  sections {
-                    slug
-                    docs {
-                      slug
-                      fields {
-                        locale
-                        slug
-                      }
-                      frontmatter {
-                        order
-                        section
-                      }
-                    }
-                  }
-                  sectionOrder
-                  sectionTranslations {
-                    locale
-                    sectionOrder
-                  }
-                }
-              }
-            }
+            ...allProjectsFragment
           }
         `}
         render={(data: QueryData) => {
