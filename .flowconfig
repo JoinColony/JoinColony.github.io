@@ -11,6 +11,7 @@
 
 [options]
 module.name_mapper='^\~context\/?\(.*\)$' -> '<PROJECT_ROOT>/src/context/\1'
+module.name_mapper='^\~hoc\/?\(.*\)$' -> '<PROJECT_ROOT>/src/hoc/\1'
 module.name_mapper='^\~i18n\/?\(.*\)$' -> '<PROJECT_ROOT>/src/i18n/\1'
 module.name_mapper='^\~i18nConfig\/?\(.*\)$' -> '<PROJECT_ROOT>/i18nConfig.js\1'
 module.name_mapper='^\~static\/?\(.*\)$' -> '<PROJECT_ROOT>/static/\1'

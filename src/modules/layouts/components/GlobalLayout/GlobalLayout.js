@@ -1,5 +1,5 @@
 /* @flow */
-import { withLocation } from '../../../core/hoc/location';
+import { withLocation } from '~hoc/location';
 
 import GlobalLayout from './GlobalLayout.jsx';
 

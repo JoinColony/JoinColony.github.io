@@ -2,8 +2,8 @@
 import { injectIntl } from 'react-intl';
 import { compose } from 'recompose';
 
-import { withFileContext } from '../../../core/hoc/files';
-import { withLocation } from '../../../core/hoc/location';
+import { withFileContext } from '~hoc/files';
+import { withLocation } from '~hoc/location';
 
 import SEO from './SEO.jsx';
 
