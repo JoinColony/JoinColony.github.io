@@ -6,6 +6,7 @@ import React from 'react';
 import { injectIntl } from 'react-intl';
 
 import { getMainClasses } from '~utils/css';
+import { getChildrenOrText } from '~utils/strings';
 
 import styles from './Heading.module.css';
 
@@ -33,24 +34,6 @@ type Props = {
   textValues?: Object,
 };
 
-const getText = (
-  children?: Node,
-  text?: MessageDescriptor | string,
-  textValues?,
-  { formatMessage }: IntlShape,
-): Node | string => {
-  if (children) {
-    return children;
-  }
-  if (!text) {
-    return '';
-  }
-  if (typeof text == 'string') {
-    return text;
-  }
-  return formatMessage(text, textValues);
-};
-
 const displayName = 'Heading';
 
 const Heading = ({
@@ -73,7 +56,7 @@ const Heading = ({
       small: 'h5',
       tiny: 'h6',
     }[size || 'huge'];
-  const value = getText(children, text, textValues, intl);
+  const value = getChildrenOrText(children, text, textValues, intl);
   return (
     <HeadingElement
       title={typeof value === 'string' ? value : undefined}

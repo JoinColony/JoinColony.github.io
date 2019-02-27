@@ -1,5 +1,6 @@
 /* @flow */
-/* eslint-disable import/prefer-default-export */
+import type { Node } from 'react';
+import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 /**
  * Capitalize a word (converts the first letter of the word to upper case)
@@ -11,3 +12,21 @@
  */
 export const capitalize = (word: string): string =>
   word && word.charAt(0).toUpperCase() + word.slice(1);
+
+export const getChildrenOrText = (
+  children?: Node,
+  text?: MessageDescriptor | string,
+  textValues?: Object,
+  { formatMessage }: IntlShape,
+): Node | string => {
+  if (children) {
+    return children;
+  }
+  if (!text) {
+    return '';
+  }
+  if (typeof text == 'string') {
+    return text;
+  }
+  return formatMessage(text, textValues);
+};
