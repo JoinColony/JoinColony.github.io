@@ -11,7 +11,7 @@ import { StaticQuery, graphql, withPrefix } from 'gatsby';
 
 import FileContext from '~context/FileContext';
 
-import { DEFAULT_LOCALE } from '~i18nConfig';
+import { CONFIGURED_LOCALES, DEFAULT_LOCALE } from '~i18nConfig';
 import enMessages from '~i18n/en.json';
 
 type LocaleMessage = { [key: string]: string };
@@ -56,7 +56,7 @@ const getMessagesForLocale = (locale: string): LocaleMessage =>
 const getLocaleString = (locale?: string): string =>
   !!locale && !!localeMessages[locale] ? locale : DEFAULT_LOCALE;
 
-const getFileMapping = files => {
+const getFileMapping = (files): Object => {
   return files.reduce(
     (current, next) => ({
       ...current,
@@ -66,6 +66,41 @@ const getFileMapping = files => {
     {},
   );
 };
+
+/*
+ * Check that the configured locales in `~i18nConfig` match the locale messages
+ * configured here with the `IntlProvider`. If locales aren't configured, accessing
+ * those locales on gatsby pages will yield a 404 (doc pages will likely work partially).
+ *
+ * This will merely `warn` to the console of the issue, as this shouldn't be a breaking
+ * error.
+ */
+const checkLocaleConfig = (): void => {
+  const configuredMessageLocales: Array<string> = Object.keys(localeMessages);
+  const localesWithoutMessages: Array<string> = CONFIGURED_LOCALES.filter(
+    locale => configuredMessageLocales.indexOf(locale) === -1,
+  );
+  if (localesWithoutMessages.length > 0) {
+    const missingLocalesString: string = localesWithoutMessages.reduce(
+      (accumulator, locale) => {
+        let localesString = accumulator;
+        localesString += accumulator.length > 0 ? `, ${locale}` : locale;
+        return localesString;
+      },
+      '',
+    );
+    console.warn(
+      'i18n messages have not been configured with' +
+        ' the IntlProvider for the following locales:',
+      missingLocalesString,
+      '\n\nAs a result, translated content & links may be inconsistent' +
+        ' across the site. To supress this warning, add locale messages' +
+        ' for the above locales in the `GlobalLayout` component.',
+    );
+  }
+};
+
+checkLocaleConfig();
 
 const displayName = 'layouts.GlobalLayout';
 

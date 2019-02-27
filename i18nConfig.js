@@ -2,4 +2,9 @@
 
 const DEFAULT_LOCALE = 'en';
 
-module.exports.DEFAULT_LOCALE = DEFAULT_LOCALE;
+const CONFIGURED_LOCALES = [DEFAULT_LOCALE];
+
+module.exports = {
+  CONFIGURED_LOCALES,
+  DEFAULT_LOCALE,
+};

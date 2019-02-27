@@ -9,9 +9,8 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const { DEFAULT_LOCALE } = i18nConfig;
+const { CONFIGURED_LOCALES, DEFAULT_LOCALE } = i18nConfig;
 
-const langs = [DEFAULT_LOCALE];
 const defaultLangKey = DEFAULT_LOCALE;
 const prefixDefaultLangKey = false;
 
@@ -122,7 +121,7 @@ module.exports = {
       options: {
         slugPrefix: 'docs',
         langConfig: {
-          langs,
+          langs: CONFIGURED_LOCALES,
           defaultLangKey,
           prefixDefaultLangKey,
         }
