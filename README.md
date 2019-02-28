@@ -80,6 +80,8 @@ Let's break these down...
 By using translated section names in [doc frontmatter](#frontmatter), the section names will already be translated. **However the translated section names must still be ordered**. This is achieved with a map-like object. The locale is the key, and the value is an array of translated section names **in order**:
 
 ```javascript
+// doc.config.json
+
 {
     "sectionOrder": ["Docs", "Interface", "Modules"], // <-- Default language section order
     "sectionTranslations": {
@@ -93,6 +95,8 @@ By using translated section names in [doc frontmatter](#frontmatter), the sectio
 Similar to the Translated Section Order above, the project description must also be translated, and is done so with a map-like object. The locale is the key, and the value is the translated string:
 
 ```javascript
+// doc.config.json
+
 {
     "description": "The purser library is a...", // <-- Default language project description
     "descriptionTranslations": {
@@ -175,6 +179,8 @@ Create a messages file and import it, along with the correct language data set f
 Here's an example with both `en` and `es`:
 
 ```javascript
+// GlobalLayout.jsx
+
 import enLocaleData from 'react-intl/locale-data/en';
 import esLocaleData from 'react-intl/locale-data/es';
 
