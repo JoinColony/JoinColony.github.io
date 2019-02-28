@@ -27,37 +27,8 @@ const MainLayout = ({ children, intl: { locale } }: Props) => {
   return (
     <StaticQuery
       query={graphql`
-        query AllProjectQuery {
-          projects: allProject(filter: { name: { ne: "__PROGRAMMATIC__" } }) {
-            edges {
-              node {
-                name
-                slug
-                logo
-                logoSmall
-                description
-                sections {
-                  slug
-                  docs {
-                    id
-                    fields {
-                      locale
-                      slug
-                    }
-                    frontmatter {
-                      order
-                      section
-                    }
-                  }
-                }
-                sectionOrder
-                sectionTranslations {
-                  locale
-                  sectionOrder
-                }
-              }
-            }
-          }
+        {
+          ...allProjectsFragment
         }
       `}
       render={data => {
