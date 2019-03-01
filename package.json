@@ -1,11 +1,11 @@
 {
-  "name": "colony-docs",
-  "description": "Colony docs gatsby.js generator",
+  "name": "colony-website",
+  "description": "Colony Website",
   "version": "1.0.0",
   "contributors": [
     "Christian Maniewski <chris@colony.io>",
     "Curtis Olson <curtis@colony.io>",
-    "Jan Kassel <jan@colony.io>"
+    "Ryan Christoffersen <ryan@colony.io>"
   ],
   "dependencies": {
     "@reach/router": "^1.2.1",
