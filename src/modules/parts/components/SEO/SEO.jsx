@@ -7,7 +7,7 @@ import { defineMessages } from 'react-intl';
 import Helmet from 'react-helmet';
 import { withPrefix } from 'gatsby';
 
-import type { FileContext as FileContextType } from '~types';
+import type { AltLocalePagePath, FileContext as FileContextType } from '~types';
 
 const MSG = defineMessages({
   siteName: {
@@ -16,7 +16,8 @@ const MSG = defineMessages({
   },
 });
 
-type Props = RouteProps & {
+type Props = RouteProps & {|
+  alternatePagePaths: Array<AltLocalePagePath>,
   description: MessageDescriptor | string,
   descriptionValues?: Object,
   files?: FileContextType,
@@ -27,7 +28,7 @@ type Props = RouteProps & {
   project: string,
   title: MessageDescriptor | string,
   titleValues?: Object,
-};
+|};
 
 class SEO extends Component<Props> {
   static displayName = 'parts.SEO';
@@ -48,6 +49,7 @@ class SEO extends Component<Props> {
   render() {
     const siteLogo = this.getAbsoluteImagePath('/img/colonyDocs_combomark.svg');
     const {
+      alternatePagePaths,
       description: descriptionContent,
       descriptionValues,
       images = [siteLogo],
@@ -122,6 +124,16 @@ class SEO extends Component<Props> {
         <meta name="description" content={description} />
         {imagePaths.map(imagePath => (
           <meta name="image" content={imagePath} key={imagePath} />
+        ))}
+
+        {/* Locale tags */}
+        {alternatePagePaths.map(({ locale, pagePath }) => (
+          <link
+            key={locale}
+            rel="alternate"
+            hrefLang={locale}
+            href={`${this.baseUrl}${withPrefix(pagePath)}`}
+          />
         ))}
 
         {/* Schema.org tags */}
