@@ -9,10 +9,7 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const { CONFIGURED_LOCALES, DEFAULT_LOCALE } = i18nConfig;
-
-const defaultLangKey = DEFAULT_LOCALE;
-const prefixDefaultLangKey = false;
+const { langConfig } = i18nConfig;
 
 const sourcePlugins = {
   development: [
@@ -101,9 +98,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-i18n',
       options: {        
-        langKeyDefault: defaultLangKey,
+        langKeyDefault: langConfig.defaultLangKey,
         useLangKeyLayout: false,
-        prefixDefault: prefixDefaultLangKey,
+        prefixDefault: langConfig.prefixDefaultLangKey,
       }
     },
     {
@@ -120,11 +117,7 @@ module.exports = {
       resolve: 'gatsby-transform-md-docs',
       options: {
         slugPrefix: 'docs',
-        langConfig: {
-          langs: CONFIGURED_LOCALES,
-          defaultLangKey,
-          prefixDefaultLangKey,
-        }
+        langConfig,
       }
     },
     {
