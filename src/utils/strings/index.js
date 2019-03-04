@@ -30,3 +30,8 @@ export const getChildrenOrText = (
   }
   return formatMessage(text, textValues);
 };
+
+export const normalizePathname = (preNormalizedPathname: string): string =>
+  preNormalizedPathname.endsWith('/') || preNormalizedPathname.endsWith('.html')
+    ? preNormalizedPathname
+    : `${preNormalizedPathname}/`;
