@@ -93,7 +93,6 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://docs.colony.io`,
     title: 'Colony Open Source Docs',
-    langConfig,
   },
   plugins: [
     {
