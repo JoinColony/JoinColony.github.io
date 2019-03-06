@@ -222,6 +222,7 @@ function createDocPage(project, section, doc, createPage, { langConfig: { langs:
       component: getTemplatePath('DocPage/DocPage.jsx'),
       context: {
         docId: doc.id,
+        docLocale,
         projectName: project.name,
         slugPrefix,
       },
