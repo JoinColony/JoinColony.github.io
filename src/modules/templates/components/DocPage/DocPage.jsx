@@ -7,10 +7,10 @@ import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
 import slugify from 'slugify';
 
-import type { Doc, HtmlAst, Project } from '~types';
+import type { AltLocalePagePath, Doc, HtmlAst, Project } from '~types';
 
+import { DEFAULT_LOCALE } from '~i18nConfig';
 import MainLayout from '~layouts/MainLayout';
-
 import Link from '~core/Link';
 import Image from '~core/Image';
 import Sidebar from '~parts/Sidebar';
@@ -38,6 +38,7 @@ type Props = {|
     },
   },
   pageContext: {
+    docLocale?: string,
     slugPrefix: string,
   },
 |};
@@ -137,10 +138,92 @@ class DocPage extends Component<Props> {
       : url;
   };
 
+  getAltLocaleVersions = (): Array<AltLocalePagePath> => {
+    const {
+      data: {
+        doc: {
+          frontmatter: { order, section },
+        },
+        project: { sectionOrder, sections, sectionTranslations },
+      },
+      pageContext: { docLocale },
+    } = this.props;
+    /**
+     * Alt versions have different locale, same section index, same order
+     */
+    const alternateDocPaths: Array<AltLocalePagePath> = [];
+    const currentLocale = docLocale || DEFAULT_LOCALE;
+    let sectionIndex = sectionOrder.indexOf(slugify(section, { lower: true }));
+    if (sectionIndex < 0 && sectionTranslations) {
+      const translatedSection = sectionTranslations.find(
+        ({ sectionOrder: translatedSectionOrder }) =>
+          translatedSectionOrder.find(
+            translatedSectionName =>
+              translatedSectionName === slugify(section, { lower: true }),
+          ),
+      );
+      if (translatedSection) {
+        sectionIndex = translatedSection.sectionOrder.indexOf(
+          slugify(section, { lower: true }),
+        );
+      }
+    }
+    if (currentLocale !== DEFAULT_LOCALE) {
+      // include default language doc
+      const defaultLocaleDocSlug = sectionOrder[sectionIndex];
+      const defaultDocSection = sections.find(
+        ({ slug }) => slug === defaultLocaleDocSlug,
+      );
+      const defaultLocaleDoc =
+        defaultDocSection &&
+        defaultDocSection.docs.find(
+          doc =>
+            doc.frontmatter.order === order &&
+            doc.fields.locale !== currentLocale,
+        );
+      if (defaultLocaleDoc) {
+        alternateDocPaths.push({
+          locale: DEFAULT_LOCALE,
+          pagePath: defaultLocaleDoc.fields.slug,
+        });
+      }
+    }
+    // now add alternate languages
+    if (sectionTranslations) {
+      sectionTranslations
+        .filter(({ locale: sectionLocale }) => sectionLocale !== currentLocale)
+        .forEach(({ sectionOrder: localeSectionOrder }) => {
+          const potentialSections = sections.filter(
+            ({ slug: sectionSlug }) =>
+              localeSectionOrder[sectionIndex] === sectionSlug,
+          );
+          if (potentialSections) {
+            potentialSections.forEach(({ docs }) => {
+              const equivalentDoc = docs.find(
+                doc =>
+                  doc.frontmatter.order === order &&
+                  doc.fields.locale !== currentLocale,
+              );
+              if (equivalentDoc) {
+                alternateDocPaths.push({
+                  locale: equivalentDoc.fields.locale,
+                  pagePath: equivalentDoc.fields.slug,
+                });
+              }
+            });
+          }
+        });
+    }
+    return alternateDocPaths;
+  };
+
   render() {
     const {
       data: { project, doc },
     } = this.props;
+
+    const altLocaleVersions = this.getAltLocaleVersions();
+
     if (doc.htmlAst.children) {
       doc.htmlAst.children.forEach(section => {
         if (DocPage.isTagName(section, 'h3')) {
@@ -175,6 +258,7 @@ class DocPage extends Component<Props> {
           <title>{metaTitle}</title>
         </Helmet>
         <SEO
+          alternatePagePaths={altLocaleVersions}
           title={metaTitle}
           description={seoDescription}
           images={seoImages}
