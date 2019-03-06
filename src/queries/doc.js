@@ -26,6 +26,8 @@ export const singleDocFragment = graphql`
   fragment singleDocFragment on Query {
     doc: markdownRemark(id: { eq: $docId }) {
       frontmatter {
+        order
+        section
         title
       }
       editUrl

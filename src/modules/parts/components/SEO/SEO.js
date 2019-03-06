@@ -19,14 +19,13 @@ const enhance = compose(
   withProps(
     ({
       allSitePagePaths,
+      alternatePagePaths,
       intl: { locale },
       location: { pathname: preNormalizedPathname },
     }): { alternatePagePaths: Array<AltLocalePagePath> } => ({
-      alternatePagePaths: getAltLocalePages(
-        preNormalizedPathname,
-        allSitePagePaths,
-        locale,
-      ),
+      alternatePagePaths:
+        alternatePagePaths ||
+        getAltLocalePages(preNormalizedPathname, allSitePagePaths, locale),
     }),
   ),
 );

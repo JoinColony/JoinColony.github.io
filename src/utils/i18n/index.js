@@ -7,7 +7,13 @@ import { normalizePathname } from '~utils/strings';
 
 const { defaultLangKey, langs, prefixDefaultLangKey } = langConfig;
 
-// eslint-disable-next-line import/prefer-default-export
+export const getAltLocales = (
+  currentLocale: string,
+  configuredLocales?: Array<string> = langs,
+): Array<string> => {
+  return configuredLocales.filter(lang => lang !== currentLocale);
+};
+
 export const getAltLocalePages = (
   preNormalizedPathname: string,
   allSitePagePaths: Array<string>,
@@ -17,7 +23,7 @@ export const getAltLocalePages = (
   const pathname: string = normalizePathname(preNormalizedPathname);
 
   // Get configured locales, excluding current locale
-  const otherLocales: Array<string> = langs.filter(lang => lang !== locale);
+  const otherLocales: Array<string> = getAltLocales(locale);
 
   // Locale prefix on the url - we want to remove this for when we check to make sure the page exists
   const currentPathnameLocalePrefix: string =

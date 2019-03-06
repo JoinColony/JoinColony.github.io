@@ -19,7 +19,11 @@ export type HtmlAst = {|
 export type Doc = {|
   editUrl: string,
   fields: DocFields,
-  frontmatter: Object,
+  frontmatter: {
+    order: number,
+    title: string,
+    section: string,
+  },
   htmlAst: HtmlAst,
   slug: string,
 |};
