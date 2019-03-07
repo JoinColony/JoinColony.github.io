@@ -24,8 +24,14 @@
 .navGroup {
   display: flex;
   justify-content: space-evenly;
+  font-size: .9rem;
 }
 
 .navGroupItem {
   min-width: 158px;
+}
+
+.metaNavContainer {
+  font-family: 'Avenir Next Light';
+  font-size: .9rem;
 }

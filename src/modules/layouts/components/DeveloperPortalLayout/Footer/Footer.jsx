@@ -33,6 +33,18 @@ const MSG = defineMessages({
     id: 'layouts.DeveloperPortalLayout.Footer.navTitleCoreProducts',
     defaultMessage: 'Colony Core',
   },
+  metaLinkTos: {
+    id: 'layouts.DeveloperPortalLayout.Footer.metaLinkTos',
+    defaultMessage: 'Terms & Service',
+  },
+  metaLinkPrivacy: {
+    id: 'layouts.DeveloperPortalLayout.Footer.metaLinkPrivacy',
+    defaultMessage: 'Privacy Policy',
+  },
+  metaLinkMediaKit: {
+    id: 'layouts.DeveloperPortalLayout.Footer.metaLinkMediaKit',
+    defaultMessage: 'Media Kit',
+  },
 });
 
 const displayName = 'layouts.DeveloperPortalLayout.Footer';
@@ -90,7 +102,24 @@ const Footer = () => (
       </div>
       <div className={styles.metaRow}>
         <div className={styles.metaNavContainer}>
-          {/* @TODO: nav items here */}
+          <nav className={styles.metaNav}>
+            {/* @TODO: fix these links... */}
+            <Link
+              href="/terms-and-service"
+              className={styles.metaNavLink}
+              text={MSG.metaLinkTos}
+            />
+            <Link
+              href="/privacy-policy"
+              className={styles.metaNavLink}
+              text={MSG.metaLinkPrivacy}
+            />
+            <Link
+              href="/media-kit"
+              className={styles.metaNavLink}
+              text={MSG.metaLinkMediaKit}
+            />
+          </nav>
         </div>
         <div className={styles.iconContainer}>
           {/* @TODO: icon list here */}

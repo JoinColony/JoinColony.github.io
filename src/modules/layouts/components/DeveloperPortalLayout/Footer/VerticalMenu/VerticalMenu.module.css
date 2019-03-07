@@ -3,6 +3,10 @@
   margin-left: 0;
 }
 
+.menuItem {
+  font-family: 'Avenir Next Light';
+}
+
 .menuItem a:hover {
   color: #788CA0;
 }
