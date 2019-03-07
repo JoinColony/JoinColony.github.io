@@ -9,10 +9,15 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import { StaticQuery, graphql, withPrefix } from 'gatsby';
 
-import FileContext from '~context/FileContext';
+import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
+import FileContext from '~context/FileContext';
 import { CONFIGURED_LOCALES, DEFAULT_LOCALE } from '~i18nConfig';
 import enMessages from '~i18n/en.json';
+
+import '~styles/normalize.css';
+import '~styles/fonts.css';
+import '~styles/syntax-hightlight.css';
 
 type LocaleMessage = { [key: string]: string };
 

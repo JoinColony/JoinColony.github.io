@@ -4,16 +4,12 @@ import type { IntlShape } from 'react-intl';
 
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
 import BugBounty from '~parts/BugBounty';
 import Header from '~parts/Header';
 import Footer from '~parts/Footer';
 import { transformProjectData } from '~utils/docs';
 
-import '~styles/normalize.css';
-import '~styles/fonts.css';
-import '~styles/syntax-hightlight.css';
 import styles from './MainLayout.module.css';
 
 type Props = {|
