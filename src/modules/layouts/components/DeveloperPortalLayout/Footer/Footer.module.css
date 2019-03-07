@@ -1,0 +1,27 @@
+.main {
+  background-color: #021C2B;
+  padding: 85px 0;
+}
+
+.footerContent {
+  max-width: 1200px;
+}
+
+.navRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoContainer a {
+  color: #ffffff;
+}
+
+.navGroup {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navGroupItem {
+  min-width: 158px;
+}

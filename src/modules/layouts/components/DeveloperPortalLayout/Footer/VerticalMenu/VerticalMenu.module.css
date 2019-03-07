@@ -1,0 +1,8 @@
+.menu {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+.menuItem a {
+  color: #ffffff;
+}

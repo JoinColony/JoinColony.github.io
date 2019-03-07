@@ -8,6 +8,8 @@ import type { InProps as LinkProps } from '~core/Link/types';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 
+import styles from './VerticalMenu.module.css';
+
 type Props = {|
   headingText?: MessageDescriptor | string,
   headingTextValues?: Object,
@@ -18,7 +20,7 @@ const displayName = 'layouts.DeveloperPortalLayout.Footer.VerticalMenu';
 
 const VerticalMenu = ({ headingText, headingTextValues, menuItems }: Props) => {
   return (
-    <div>
+    <>
       {headingText && (
         <Heading
           appearance={{ size: 'small', theme: 'invert', weight: 'medium' }}
@@ -27,13 +29,15 @@ const VerticalMenu = ({ headingText, headingTextValues, menuItems }: Props) => {
         />
       )}
       {menuItems.length > 0 && (
-        <nav>
+        <ul className={styles.menu}>
           {menuItems.map(menuItemProps => (
-            <Link {...menuItemProps} />
+            <li className={styles.menuItem} key={menuItemProps.href}>
+              <Link {...menuItemProps} />
+            </li>
           ))}
-        </nav>
+        </ul>
       )}
-    </div>
+    </>
   );
 };
 
