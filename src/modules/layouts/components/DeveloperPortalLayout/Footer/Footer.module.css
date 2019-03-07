@@ -7,6 +7,10 @@
   color: #ffffff;
 }
 
+.main a:hover {
+  color: #788CA0;
+}
+
 .footerContent {
   margin: 0 auto;
   max-width: 1200px;
@@ -31,7 +35,17 @@
   min-width: 158px;
 }
 
+.metaRow {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .metaNavContainer {
   font-family: 'Avenir Next Light';
   font-size: .9rem;
+}
+
+.metaNavLink + .metaNavLink {
+  margin-left: 45px;
 }
