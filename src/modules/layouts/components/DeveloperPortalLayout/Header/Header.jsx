@@ -30,7 +30,11 @@ const Header = () => (
         {/* @TODO: developer portal logo here */}
       </div>
       <div className={styles.navContainer}>
-        <nav className={styles.navigation}>
+        <nav
+          className={styles.navigation}
+          role="navigation"
+          aria-label="Main Navigation"
+        >
           <Link className={styles.navLink} href="/docs">
             <FormattedMessage {...MSG.navLinkDocs} />
             {/* @TODO: dropdown nav here */}
