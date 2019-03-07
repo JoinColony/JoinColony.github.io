@@ -25,23 +25,30 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = () => (
   <div className={styles.main}>
-    <div className={styles.logo}>{/* @TODO: developer portal logo here */}</div>
-    <div className={styles.navContainer}>
-      <nav className={styles.navigation}>
-        <Link className={styles.navLink} href="/docs">
-          <FormattedMessage {...MSG.navLinkDocs} />
-          {/* @TODO: dropdown nav here */}
-        </Link>
-        <Link className={styles.navLink} href="/tutorials">
-          <FormattedMessage {...MSG.navLinkTutorials} />
-          {/* @TODO: dropdown nav here */}
-        </Link>
-        <Link
-          className={styles.navLink}
-          href="/support"
-          linkText={MSG.navLinkSupport}
-        />
-      </nav>
+    <div className={styles.menuWrapper}>
+      <div className={styles.logo}>
+        {/* @TODO: developer portal logo here */}
+      </div>
+      <div className={styles.navContainer}>
+        <nav className={styles.navigation}>
+          <Link className={styles.navLink} href="/docs">
+            <FormattedMessage {...MSG.navLinkDocs} />
+            {/* @TODO: dropdown nav here */}
+          </Link>
+          <Link className={styles.navLink} href="/tutorials">
+            <FormattedMessage {...MSG.navLinkTutorials} />
+            {/* @TODO: dropdown nav here */}
+          </Link>
+          <Link
+            className={styles.navLink}
+            href="/support"
+            text={MSG.navLinkSupport}
+          />
+        </nav>
+        <div className={styles.searchContainer}>
+          {/* @TODO: search component here */}
+        </div>
+      </div>
     </div>
   </div>
 );

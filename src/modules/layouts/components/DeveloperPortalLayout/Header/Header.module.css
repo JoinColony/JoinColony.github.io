@@ -1,0 +1,31 @@
+.main {
+  background-color: #021C2B;
+}
+
+.menuWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  padding: 12px 4%;
+}
+
+.navContainer {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navLink {
+  color: #ffffff;
+  display: inline-block;
+  padding: 12px 6px;
+}
+
+.navLink:hover {
+  color: #788CA0;
+}
+
+.navLink + .navLink {
+  margin-left: 30px;
+}
