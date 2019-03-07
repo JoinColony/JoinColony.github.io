@@ -6,8 +6,8 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
 import BugBounty from '~parts/BugBounty';
-import Header from '~layouts/MainLayout/Header';
-import Footer from '~layouts/MainLayout/Footer';
+import Header from './Header';
+import Footer from './Footer';
 import { transformProjectData } from '~utils/docs';
 
 import styles from './DeveloperPortalLayout.module.css';
