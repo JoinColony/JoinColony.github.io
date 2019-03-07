@@ -6,6 +6,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
   max-width: 1200px;
   padding: 12px 4%;
 }
