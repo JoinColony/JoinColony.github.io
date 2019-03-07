@@ -1,9 +1,12 @@
 .menu {
+  column-gap: 20px;
   font-family: 'Avenir Next Light';
 }
 
 .menuItem {
   display: block;
+  line-height: 52px;
+  white-space: nowrap;
 }
 
 .menuItem:hover {

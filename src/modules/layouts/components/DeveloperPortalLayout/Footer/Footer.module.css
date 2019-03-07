@@ -38,6 +38,10 @@
   min-width: 158px;
 }
 
+.navGroupItem + .navGroupItem {
+  margin-left: 40px;
+}
+
 .metaRow {
   align-items: center;
   display: flex;
