@@ -3,6 +3,10 @@
   padding: 85px 0;
 }
 
+.main a {
+  color: #ffffff;
+}
+
 .footerContent {
   max-width: 1200px;
 }
@@ -13,7 +17,7 @@
   justify-content: space-between;
 }
 
-.logoContainer a {
+.logoContainer a:hover {
   color: #ffffff;
 }
 

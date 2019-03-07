@@ -3,6 +3,6 @@
   margin-left: 0;
 }
 
-.menuItem a {
-  color: #ffffff;
+.menuItem a:hover {
+  color: #788CA0;
 }
