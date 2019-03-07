@@ -1,6 +1,8 @@
 .main {
   background-color: #021C2B;
   padding: 85px 0;
+  display: flex;
+  justify-content: center;
 }
 
 .main a {
@@ -12,8 +14,9 @@
 }
 
 .footerContent {
-  margin: 0 auto;
+  margin: 0 4%;
   max-width: 1200px;
+  width: 100%;
 }
 
 .navRow {
@@ -39,6 +42,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-top: 150px;
 }
 
 .metaNavContainer {

@@ -1,14 +1,17 @@
 .main {
   background-color: #021C2B;
+  display: flex;
+  justify-content: center;
 }
 
 .menuWrapper {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 0 4%;
   max-width: 1200px;
-  padding: 12px 4%;
+  padding: 12px 0;
+  width: 100%;
 }
 
 .navContainer {
