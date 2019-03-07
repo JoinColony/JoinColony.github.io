@@ -5,10 +5,14 @@
 }
 
 /* Weights */
+.weightThin {
+  font-family: 'Avenir Next Light';
+}
+
 .weightMedium {
-  font-weight: normal;
+  font-family: 'Avenir Next Demi';
 }
 
 .weightBold {
-  font-weight: 700;
+  font-weight: 500;
 }
