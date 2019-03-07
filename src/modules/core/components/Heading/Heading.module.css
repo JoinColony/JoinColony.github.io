@@ -1,0 +1,14 @@
+
+/* Themes */
+.themeInvert {
+  color: #ffffff;
+}
+
+/* Weights */
+.weightMedium {
+  font-weight: normal;
+}
+
+.weightBold {
+  font-weight: 700;
+}
