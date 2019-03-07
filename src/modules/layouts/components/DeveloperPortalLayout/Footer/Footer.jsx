@@ -73,6 +73,7 @@ const Footer = () => (
           </div>
           <div className={styles.navGroupItem}>
             <VerticalMenu
+              numColumns={2}
               headingText={MSG.navTitleOpenSourceTools}
               menuItems={[
                 // @TODO fix these links...

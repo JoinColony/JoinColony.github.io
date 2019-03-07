@@ -14,11 +14,20 @@ type Props = {|
   headingText?: MessageDescriptor | string,
   headingTextValues?: Object,
   menuItems: Array<LinkProps>,
+  numColumns?: number,
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout.Footer.VerticalMenu';
 
-const VerticalMenu = ({ headingText, headingTextValues, menuItems }: Props) => {
+const VerticalMenu = ({
+  headingText,
+  headingTextValues,
+  menuItems,
+  numColumns = 1,
+}: Props) => {
+  const columnStyles = {
+    columnCount: `${numColumns}`,
+  };
   return (
     <>
       {headingText && (
@@ -29,7 +38,7 @@ const VerticalMenu = ({ headingText, headingTextValues, menuItems }: Props) => {
         />
       )}
       {menuItems.length > 0 && (
-        <ul className={styles.menu}>
+        <ul className={styles.menu} style={columnStyles}>
           {menuItems.map(menuItemProps => (
             <li className={styles.menuItem} key={menuItemProps.href}>
               <Link {...menuItemProps} />
