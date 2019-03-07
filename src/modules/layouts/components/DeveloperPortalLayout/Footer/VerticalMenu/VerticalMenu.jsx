@@ -20,7 +20,11 @@ const VerticalMenu = ({ headingText, headingTextValues, menuItems }: Props) => {
   return (
     <div>
       {headingText && (
-        <Heading text={headingText} textValues={headingTextValues} />
+        <Heading
+          appearance={{ size: 'small', theme: 'invert', weight: 'medium' }}
+          text={headingText}
+          textValues={headingTextValues}
+        />
       )}
       {menuItems.length > 0 && (
         <nav>
