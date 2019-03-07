@@ -6,8 +6,8 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
 import BugBounty from '~parts/BugBounty';
-import Header from '~parts/Header';
-import Footer from '~parts/Footer';
+import Header from './Header';
+import Footer from './Footer';
 import { transformProjectData } from '~utils/docs';
 
 import styles from './MainLayout.module.css';
