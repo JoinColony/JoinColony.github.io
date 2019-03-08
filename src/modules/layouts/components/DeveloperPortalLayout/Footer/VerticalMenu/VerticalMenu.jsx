@@ -54,7 +54,12 @@ const VerticalMenu = ({
     <>
       {headingText && (
         <Heading
-          appearance={{ size: 'small', theme: 'invert', weight: 'medium' }}
+          appearance={{
+            margin: 'small',
+            size: 'small',
+            theme: 'invert',
+            weight: 'medium',
+          }}
           id={slugify(labelText)}
           text={headingText}
           textValues={headingTextValues}

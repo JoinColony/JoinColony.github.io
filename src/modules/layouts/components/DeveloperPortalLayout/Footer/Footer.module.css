@@ -1,6 +1,6 @@
 .main {
   background-color: #021C2B;
-  padding: 85px 0 55px;
+  padding: 88px 0 70px;
   display: flex;
   justify-content: center;
 }
@@ -14,7 +14,7 @@
 }
 
 .footerContent {
-  margin: 0 4%;
+  margin: 0 9.5%;
   max-width: 1200px;
   width: 100%;
 }
@@ -34,12 +34,8 @@
   font-size: .9rem;
 }
 
-.navGroupItem {
-  min-width: 158px;
-}
-
 .navGroupItem + .navGroupItem {
-  margin-left: 40px;
+  margin-left: 115px;
 }
 
 .metaRow {
