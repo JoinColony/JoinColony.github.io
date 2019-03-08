@@ -1,0 +1,18 @@
+<svg
+  id="logomark_colony"
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108.1 108.1">
+  <title>Colony</title>
+  <g id="logo">
+    <g id="logos">
+      <circle cx="54" cy="13.7" r="13.7" style="fill:#fff"/>
+      <circle cx="54" cy="94.4" r="13.7" style="fill:#fff"/>
+      <circle cx="94.4" cy="54" r="13.7" style="fill:#fff"/>
+      <circle cx="13.7" cy="54" r="13.7" style="fill:#fff"/>
+      <rect x="38.5" y="38.5" width="31" height="31" transform="translate(-22.37 54) rotate(-45)" style="fill:#fff"/>
+      <polygon points="78.7 29.3 78.7 5.8 102.1 29.3 78.7 29.3" style="fill:#fff"/>
+      <polygon points="29.3 29.3 5.9 29.3 29.3 5.9 29.3 29.3" style="fill:#fff"/>
+      <polygon points="29.3 78.7 29.3 102.1 5.9 78.7 29.3 78.7" style="fill:#fff"/>
+      <polygon points="78.7 78.7 102.1 78.7 78.7 102.1 78.7 78.7" style="fill:#fff"/>
+    </g>
+  </g>
+</svg>
