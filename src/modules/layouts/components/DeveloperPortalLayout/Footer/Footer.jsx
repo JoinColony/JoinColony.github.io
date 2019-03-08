@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Icon from '~core/Icon';
@@ -57,17 +57,18 @@ const Footer = () => (
     <div className={styles.footerContent}>
       <div className={styles.navRow}>
         <div className={styles.logoContainer}>
-          <Link href="https://colony.io">
-            {/* @TODO: logo here */}
-            <Image
-              alt="Colony"
-              src={withPrefix('/img/colony_logomark_white.svg')}
+          <Image
+            alt="Colony"
+            className={styles.logo}
+            src={withPrefix('/img/devPortal/logomark_colony.svg')}
+          />
+          <div>
+            <Link
+              href="https://colony.io"
+              text={MSG.linkVisitColony}
+              textValues={{ domain: 'colony.io' }}
             />
-            <FormattedMessage
-              {...MSG.linkVisitColony}
-              values={{ domain: 'colony.io' }}
-            />
-          </Link>
+          </div>
         </div>
         <div className={styles.navGroup}>
           <div className={styles.navGroupItem}>
