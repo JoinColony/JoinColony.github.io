@@ -1,4 +1,18 @@
 
+/* Margins */
+.marginNone {
+  /* Need to overwrite the size class */
+  margin-bottom: 0 !important;
+}
+
+.marginSmall {
+  margin-bottom: 6px !important;
+}
+
+.marginDouble {
+  margin-bottom: 40px;
+}
+
 /* Themes */
 .themeInvert {
   color: #ffffff;
