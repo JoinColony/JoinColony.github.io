@@ -53,3 +53,19 @@
 .metaNavLink + .metaNavLink {
   margin-left: 45px;
 }
+
+.socialIcon {
+  display: inline-block;
+  height: 46px;
+  width: 46px;
+}
+
+.socialIconContainer .socialIcon:not(:first-child) {
+  margin-left: 22px;
+}
+
+.socialIcon svg {
+  fill:#A4B6C7;
+  height: 46px;
+  width: 46px;
+}

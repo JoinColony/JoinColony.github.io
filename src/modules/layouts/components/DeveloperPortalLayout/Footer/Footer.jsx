@@ -1,7 +1,10 @@
 /* @flow */
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
+import Icon from '~core/Icon';
+import Image from '~core/Image';
 import Link from '~core/Link';
 
 import VerticalMenu from './VerticalMenu';
@@ -56,6 +59,10 @@ const Footer = () => (
         <div className={styles.logoContainer}>
           <Link href="https://colony.io">
             {/* @TODO: logo here */}
+            <Image
+              alt="Colony"
+              src={withPrefix('/img/colony_logomark_white.svg')}
+            />
             <FormattedMessage
               {...MSG.linkVisitColony}
               values={{ domain: 'colony.io' }}
@@ -121,8 +128,32 @@ const Footer = () => (
             />
           </nav>
         </div>
-        <div className={styles.iconContainer}>
-          {/* @TODO: icon list here */}
+        <div className={styles.socialIconContainer}>
+          <Icon
+            className={styles.socialIcon}
+            title="Ghost"
+            name="social_ghost_devPortal"
+          />
+          <Icon
+            className={styles.socialIcon}
+            title="Twitter"
+            name="social_twitter_devPortal"
+          />
+          <Icon
+            className={styles.socialIcon}
+            title="Discourse"
+            name="social_discourse_devPortal"
+          />
+          <Icon
+            className={styles.socialIcon}
+            title="GitHub"
+            name="social_github_devPortal"
+          />
+          <Icon
+            className={styles.socialIcon}
+            title="Gitter"
+            name="social_gitter_devPortal"
+          />
         </div>
       </div>
     </div>
