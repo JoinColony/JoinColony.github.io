@@ -1,12 +1,18 @@
 /* @flow */
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
+import Image from '~core/Image';
 import Link from '~core/Link';
 
 import styles from './Header.module.css';
 
 const MSG = defineMessages({
+  imageAltDevPortal: {
+    id: 'layouts.DeveloperPortalLayout.Header.imageAltDevPortal',
+    defaultMessage: 'Colony Developer Portal',
+  },
   navLinkDocs: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkDocs',
     defaultMessage: 'Docs',
@@ -26,9 +32,12 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 const Header = () => (
   <div className={styles.main}>
     <div className={styles.menuWrapper}>
-      <div className={styles.logo}>
-        {/* @TODO: developer portal logo here */}
-      </div>
+      <Link className={styles.logo} href="/developers">
+        <Image
+          alt={MSG.imageAltDevPortal}
+          src={withPrefix('/img/devPortal/developerPortal_white.svg')}
+        />
+      </Link>
       <div className={styles.navContainer}>
         <nav
           className={styles.navigation}
