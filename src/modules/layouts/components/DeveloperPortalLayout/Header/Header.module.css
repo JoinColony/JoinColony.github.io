@@ -8,9 +8,9 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin: 0 4%;
+  margin: 0 9.5%;
   max-width: 1200px;
-  padding: 12px 0;
+  padding: 12px 0 11px;
   width: 100%;
 }
 
