@@ -6,7 +6,7 @@
 }
 
 .main a {
-  color: #ffffff;
+  color: #A4B6C7;
 }
 
 .main a:hover {
@@ -29,7 +29,7 @@
   margin-bottom: 20px;
 }
 
-.logoContainer a:hover {
+.logoContainer a {
   color: #ffffff;
 }
 
