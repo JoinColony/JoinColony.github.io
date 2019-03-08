@@ -35,11 +35,16 @@
   color: #ffffff;
   display: inline-block;
   font-size: .9rem;
-  padding: 12px 6px;
+  margin-top: 12px;
+  padding: 0 6px 12px;
 }
 
 .navLink:hover {
   color: #788CA0;
+}
+
+.dropdownParent {
+  cursor: pointer;
 }
 
 .navLink + .navLink {
