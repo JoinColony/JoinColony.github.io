@@ -129,31 +129,41 @@ const Footer = () => (
           </nav>
         </div>
         <div className={styles.socialIconContainer}>
-          <Icon
-            className={styles.socialIcon}
-            title="Ghost"
-            name="social_ghost_devPortal"
-          />
-          <Icon
-            className={styles.socialIcon}
-            title="Twitter"
-            name="social_twitter_devPortal"
-          />
-          <Icon
-            className={styles.socialIcon}
-            title="Discourse"
-            name="social_discourse_devPortal"
-          />
-          <Icon
-            className={styles.socialIcon}
-            title="GitHub"
-            name="social_github_devPortal"
-          />
-          <Icon
-            className={styles.socialIcon}
-            title="Gitter"
-            name="social_gitter_devPortal"
-          />
+          <Link alt="Ghost" href="https://blog.colony.io/">
+            <Icon
+              className={styles.socialIcon}
+              title="Ghost"
+              name="social_ghost_devPortal"
+            />
+          </Link>
+          <Link alt="Twitter" href="https://twitter.com/joincolony">
+            <Icon
+              className={styles.socialIcon}
+              title="Twitter"
+              name="social_twitter_devPortal"
+            />
+          </Link>
+          <Link alt="Discourse" href="https://build.colony.io/">
+            <Icon
+              className={styles.socialIcon}
+              title="Discourse"
+              name="social_discourse_devPortal"
+            />
+          </Link>
+          <Link alt="GitHub" href="https://github.com/JoinColony">
+            <Icon
+              className={styles.socialIcon}
+              title="GitHub"
+              name="social_github_devPortal"
+            />
+          </Link>
+          <Link alt="Gitter" href="https://gitter.im/JoinColony/colonyJS">
+            <Icon
+              className={styles.socialIcon}
+              title="Gitter"
+              name="social_gitter_devPortal"
+            />
+          </Link>
         </div>
       </div>
     </div>

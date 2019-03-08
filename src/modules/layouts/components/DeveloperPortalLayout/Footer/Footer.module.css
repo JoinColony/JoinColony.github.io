@@ -57,11 +57,8 @@
 .socialIcon {
   display: inline-block;
   height: 46px;
-  width: 46px;
-}
-
-.socialIconContainer .socialIcon:not(:first-child) {
   margin-left: 22px;
+  width: 46px;
 }
 
 .socialIcon svg {
