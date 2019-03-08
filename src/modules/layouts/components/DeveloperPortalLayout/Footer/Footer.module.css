@@ -66,3 +66,7 @@
   height: 46px;
   width: 46px;
 }
+
+a:hover .socialIcon svg {
+  fill: #788CA0;
+}
