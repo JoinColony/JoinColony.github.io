@@ -13,6 +13,32 @@
   margin-bottom: 40px;
 }
 
+/* Sizing */
+.sizeTiny {
+  font-size: 11px;
+}
+
+.sizeSmall {
+  font-size: 12px;
+}
+
+.sizeNormal {
+  font-size: 14px;
+}
+
+.sizeMedium {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.sizeLarge {
+  font-size: 28px;
+}
+
+.sizeHuge {
+  font-size: 36px;
+}
+
 /* Themes */
 .themeInvert {
   color: #ffffff;
