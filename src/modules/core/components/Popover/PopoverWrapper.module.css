@@ -8,7 +8,6 @@
   z-index: 8;
   background-color: backgroundColor;
   color: rgb(124, 124, 124);
-  box-shadow: 0 0 20px -2px rgb(200, 214, 247);
 }
 
 .arrow {
@@ -130,7 +129,6 @@
 .themeGrey {
   composes: main;
   background-color: themeGreyBackgroundColor;
-  box-shadow: 0 0 20px -2px rgb(173, 186, 189);
 }
 
 .themeGreyTopArrow { border-top-color: transparent; }
