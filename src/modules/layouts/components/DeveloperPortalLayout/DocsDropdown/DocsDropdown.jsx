@@ -32,24 +32,38 @@ const displayName = 'layouts.DeveloperPortalLayout.DocsDropdown';
 
 const DocsDropdown = () => (
   <div className={styles.main}>
-    <div className={styles.hero}>
-      <div className={styles.logo}>
-        <Image
-          alt={MSG.heroTitle}
-          src={withPrefix('/img/devPortal/logomark_colonyJS.svg')}
-        />
+    {/* @TODO: fix url */}
+    <Link className={styles.heroLink} href="/">
+      <div className={styles.hero}>
+        <div className={styles.logoContainer}>
+          <Image
+            alt={MSG.heroTitle}
+            className={styles.logo}
+            src={withPrefix('/img/devPortal/logomark_colonyJS.svg')}
+          />
+        </div>
+        <div className={styles.cta}>
+          <Heading
+            appearance={{
+              margin: 'small',
+              size: 'small',
+              theme: 'light',
+              weight: 'thin',
+            }}
+            text={MSG.heroSubTitle}
+          />
+          <Heading
+            appearance={{
+              margin: 'tiny',
+              size: 'medium',
+              theme: 'dark',
+              weight: 'thin',
+            }}
+            text={MSG.heroTitle}
+          />
+        </div>
       </div>
-      <div className={styles.cta}>
-        <Heading
-          appearance={{ margin: 'small', size: 'tiny', weight: 'thin' }}
-          text={MSG.heroSubTitle}
-        />
-        <Heading
-          appearance={{ margin: 'none', size: 'normal', weight: 'thin' }}
-          text={MSG.heroTitle}
-        />
-      </div>
-    </div>
+    </Link>
     <div className={styles.content}>{/* Menu items here */}</div>
   </div>
 );

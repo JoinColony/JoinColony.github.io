@@ -1,24 +1,50 @@
+@value borderRadius: 4px;
+@value boxShadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
+
 .main {
   padding: 40px 51px 43px 63px;
 }
 
 .hero {
-  display: flex;
   align-items: center;
+  border-radius: borderRadius;
+  display: flex;
+}
+
+.logoContainer {
+  background-color: #ffffff;
+  border-radius: borderRadius;
+  box-shadow: boxShadow;
+  display: flex;
+  align-items: center
 }
 
 .logo {
-  background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
   height: 54px;
+  margin: 5px;
   padding: 5px;
   width: 54px;
 }
 
 .cta {
   background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
+  border-radius: borderRadius;
+  box-shadow: boxShadow;
+  margin: 0 0 0 10px;
   padding: 11px 20px;
+}
+
+.heroLink:hover .hero {
+  background-color: #00284B;
+}
+
+.heroLink:hover .logoContainer,
+.heroLink:hover .cta {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.heroLink:hover .cta * {
+  /* not the most elegant rule - need to override `Heading` colors on hover */
+  color: #ffffff;
 }
