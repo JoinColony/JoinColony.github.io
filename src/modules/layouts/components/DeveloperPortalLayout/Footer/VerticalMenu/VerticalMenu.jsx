@@ -56,7 +56,7 @@ const VerticalMenu = ({
         <Heading
           appearance={{
             margin: 'small',
-            size: 'small',
+            size: 'normal',
             theme: 'invert',
             weight: 'medium',
           }}
