@@ -68,6 +68,7 @@ const DocsDropdown = () => (
     <div className={styles.menuContent}>
       <div className={styles.menuContainer}>
         <VerticalMenu
+          appearance={{ margins: 'small' }}
           headingAppearance={{ size: 'small', theme: 'light', weight: 'thin' }}
           headingText={MSG.headingCoreProducts}
           menuItems={[
@@ -80,16 +81,17 @@ const DocsDropdown = () => (
       </div>
       <div className={styles.menuContainer}>
         <VerticalMenu
+          appearance={{ margins: 'small' }}
           headingAppearance={{ size: 'small', theme: 'light', weight: 'thin' }}
           headingText={MSG.headingOpenSourceProducts}
           menuItems={[
             // @TODO fix these links...
             { href: '/budgetbox', text: 'budgetBox' },
-            { href: '/pinion', text: 'pinion' },
             { href: '/purser', text: 'purser' },
-            { href: '/solidity-coverage', text: 'solidity-coverage' },
             { href: '/tailor', text: 'tailor' },
+            { href: '/pinion', text: 'pinion' },
             { href: '/trufflepig', text: 'trufflepig' },
+            { href: '/solidity-coverage', text: 'solcoverage' },
           ]}
           numColumns={2}
         />
