@@ -46,8 +46,16 @@
 }
 
 /* Themes */
+.themeDark {
+  color: #00284B;
+}
+
 .themeInvert {
   color: #ffffff;
+}
+
+.themeLight {
+  color: #788CA0;
 }
 
 /* Weights */

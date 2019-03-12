@@ -11,7 +11,7 @@ import { getChildrenOrText } from '~utils/strings';
 import styles from './Heading.module.css';
 
 type Appearance = {
-  theme?: 'primary' | 'dark' | 'invert' | 'uppercase',
+  theme?: 'dark' | 'light' | 'invert',
   margin?: 'none' | 'tiny' | 'small' | 'double',
   size: 'tiny' | 'small' | 'normal' | 'medium' | 'large' | 'huge',
   weight?: 'thin' | 'medium' | 'bold',
