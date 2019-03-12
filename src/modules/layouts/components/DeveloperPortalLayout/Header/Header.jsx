@@ -33,9 +33,9 @@ type State = {
   isDocsOpen: boolean,
 };
 
-const displayName = 'layouts.DeveloperPortalLayout.Header';
-
 class Header extends Component<Props, State> {
+  static displayName = 'layouts.DeveloperPortalLayout.Header';
+
   state = {
     isDocsOpen: false,
   };
@@ -108,7 +108,5 @@ class Header extends Component<Props, State> {
     );
   }
 }
-
-Header.displayName = displayName;
 
 export default Header;
