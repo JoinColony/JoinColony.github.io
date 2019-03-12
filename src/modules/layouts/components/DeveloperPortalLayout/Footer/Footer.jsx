@@ -33,7 +33,7 @@ const MSG = defineMessages({
     defaultMessage: 'Colony Core',
   },
   navTitleOpenSourceTools: {
-    id: 'layouts.DeveloperPortalLayout.Footer.navTitleCoreProducts',
+    id: 'layouts.DeveloperPortalLayout.Footer.navTitleOpenSourceTools',
     defaultMessage: 'Open Source Tools',
   },
   metaLinkTos: {
