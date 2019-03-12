@@ -7,6 +7,7 @@ import slugify from 'slugify';
 
 import type { Appearance as HeadingAppearance } from '~core/Heading';
 import type { InProps as LinkProps } from '~core/Link/types';
+import { getMainClasses } from '~utils/css';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
@@ -20,7 +21,12 @@ const MSG = defineMessages({
   },
 });
 
+type Appearance = {|
+  margins?: 'none' | 'small' | 'large',
+|};
+
 type Props = {|
+  appearance?: Appearance,
   headingAppearance?: HeadingAppearance,
   headingText?: MessageDescriptor | string,
   headingTextValues?: Object,
@@ -33,6 +39,7 @@ type Props = {|
 const displayName = 'VerticalMenu';
 
 const VerticalMenu = ({
+  appearance,
   headingAppearance = {},
   headingText,
   headingTextValues,
@@ -54,7 +61,7 @@ const VerticalMenu = ({
     ariaProps['aria-label'] = formatMessage(MSG.navAriaLabelDefault);
   }
   return (
-    <>
+    <div className={getMainClasses(appearance, styles)}>
       {headingText && (
         <Heading
           appearance={{
@@ -76,15 +83,13 @@ const VerticalMenu = ({
           {...ariaProps}
         >
           {menuItems.map(menuItemProps => (
-            <Link
-              className={styles.menuItem}
-              key={menuItemProps.href}
-              {...menuItemProps}
-            />
+            <div key={menuItemProps.href} className={styles.menuItem}>
+              <Link {...menuItemProps} />
+            </div>
           ))}
         </nav>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,15 +1,36 @@
 .menu {
-  column-gap: 40%;
   font-family: 'Avenir Next Light';
-  margin-top: 18px;
 }
 
 .menuItem {
   display: block;
-  line-height: 51px;
   white-space: nowrap;
+  width: max-content;
 }
 
-.menuItem:hover {
-  color: #788CA0;
+/* Margins */
+.marginsNone .menu {
+  column-gap: 0;
+}
+
+.marginsNone .menuItem {
+  line-height: inherit;
+}
+
+.marginsSmall .menu {
+  column-gap: 45px;
+  margin-top: 10px;
+}
+
+.marginsSmall .menuItem {
+  line-height: 35px;
+}
+
+.marginsLarge .menu {
+  column-gap: 40%;
+  margin-top: 18px;
+}
+
+.marginsLarge .menuItem {
+  line-height: 51px;
 }
