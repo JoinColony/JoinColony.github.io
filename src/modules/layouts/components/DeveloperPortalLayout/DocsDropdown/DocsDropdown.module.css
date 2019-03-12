@@ -66,3 +66,7 @@
 .menuContent a {
   color: #00284B;
 }
+
+.menuContent a:hover {
+  text-decoration: underline;
+}
