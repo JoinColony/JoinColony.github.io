@@ -1,10 +1,9 @@
 /* @flow */
 import React from 'react';
 import { defineMessages } from 'react-intl';
-import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
-import Image from '~core/Image';
+import Icon from '~core/Icon';
 import Link from '~core/Link';
 
 import styles from './DocsDropdown.module.css';
@@ -36,10 +35,11 @@ const DocsDropdown = () => (
     <Link className={styles.heroLink} href="/">
       <div className={styles.hero}>
         <div className={styles.logoContainer}>
-          <Image
-            alt={MSG.heroTitle}
+          <Icon
             className={styles.logo}
-            src={withPrefix('/img/devPortal/logomark_colonyJS.svg')}
+            name="logomark_colonyjs"
+            title={MSG.heroTitle}
+            viewBox="0 0 94.292442 94.068138"
           />
         </div>
         <div className={styles.cta}>

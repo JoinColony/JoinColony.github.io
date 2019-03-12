@@ -26,6 +26,11 @@
   width: 54px;
 }
 
+.logo svg {
+  fill: #F5416E;
+  stroke: #F5416E;
+}
+
 .cta {
   background-color: #ffffff;
   border-radius: borderRadius;
@@ -36,6 +41,7 @@
 
 .heroLink:hover .hero {
   background-color: #00284B;
+  box-shadow: boxShadow;
 }
 
 .heroLink:hover .logoContainer,
