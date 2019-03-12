@@ -1,6 +1,11 @@
 /* @flow */
 import React from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
+
+import Heading from '~core/Heading';
+import Image from '~core/Image';
+import Link from '~core/Link';
 
 import styles from './DocsDropdown.module.css';
 
@@ -27,7 +32,24 @@ const displayName = 'layouts.DeveloperPortalLayout.DocsDropdown';
 
 const DocsDropdown = () => (
   <div className={styles.main}>
-    <div className={styles.hero}>{/* Hero here */}</div>
+    <div className={styles.hero}>
+      <div className={styles.logo}>
+        <Image
+          alt={MSG.heroTitle}
+          src={withPrefix('/img/devPortal/logomark_colonyJS.svg')}
+        />
+      </div>
+      <div className={styles.cta}>
+        <Heading
+          appearance={{ margin: 'small', size: 'tiny', weight: 'thin' }}
+          text={MSG.heroSubTitle}
+        />
+        <Heading
+          appearance={{ margin: 'none', size: 'normal', weight: 'thin' }}
+          text={MSG.heroTitle}
+        />
+      </div>
+    </div>
     <div className={styles.content}>{/* Menu items here */}</div>
   </div>
 );

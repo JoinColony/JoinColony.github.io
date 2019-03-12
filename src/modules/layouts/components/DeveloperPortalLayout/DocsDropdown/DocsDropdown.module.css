@@ -1,0 +1,24 @@
+.main {
+  padding: 40px 51px 43px 63px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
+  height: 54px;
+  padding: 5px;
+  width: 54px;
+}
+
+.cta {
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
+  padding: 11px 20px;
+}
