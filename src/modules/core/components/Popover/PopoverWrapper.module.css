@@ -1,15 +1,14 @@
 @value arrowSize: 8px;
 @value arrowBorder: 1px;
-@value backgroundColor: rgb(251, 251, 251); /* --colony-white */
-@value themeDarkBackgroundColor: rgb(58, 58, 58); /* --grey-1 */
-@value themeGreyBackgroundColor: rgb(244, 246, 250);
+@value backgroundColor: rgb(251, 251, 251);
+@value themeDarkBackgroundColor: rgb(58, 58, 58);
+@value themeGreyBackgroundColor: #F0F5F7;
 
 .main {
-  z-index: calc(var(--z-index-notification) + 1);
-  border-radius: var(--radius-small);
+  z-index: 8;
   background-color: backgroundColor;
-  color: var(--grey-4);
-  box-shadow: 0 0 20px -2px var(--temp-grey-blue-4);
+  color: rgb(124, 124, 124);
+  box-shadow: 0 0 20px -2px rgb(200, 214, 247);
 }
 
 .arrow {
@@ -104,7 +103,7 @@
 .themeDark {
   composes: main;
   background-color: themeDarkBackgroundColor;
-  color: var(--colony-white);
+  color: rgb(251, 251, 251);
 }
 
 /*
@@ -131,7 +130,7 @@
 .themeGrey {
   composes: main;
   background-color: themeGreyBackgroundColor;
-  box-shadow: 0 0 20px -2px var(--grey-5);
+  box-shadow: 0 0 20px -2px rgb(173, 186, 189);
 }
 
 .themeGreyTopArrow { border-top-color: transparent; }
