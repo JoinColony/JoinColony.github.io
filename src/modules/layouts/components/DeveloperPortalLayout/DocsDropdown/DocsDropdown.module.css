@@ -35,7 +35,9 @@
   background-color: #ffffff;
   border-radius: borderRadius;
   box-shadow: boxShadow;
+  flex: 1 0 auto;
   margin: 0 0 0 10px;
+  min-width: 315px;
   padding: 11px 20px;
 }
 
@@ -53,4 +55,14 @@
 .heroLink:hover .cta * {
   /* not the most elegant rule - need to override `Heading` colors on hover */
   color: #ffffff;
+}
+
+.menuContent {
+  display: flex;
+  justify-content: space-between;
+  margin: 45px 0 0;
+}
+
+.menuContent a {
+  color: #00284B;
 }

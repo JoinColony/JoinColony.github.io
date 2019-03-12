@@ -5,6 +5,7 @@ import { defineMessages } from 'react-intl';
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
+import VerticalMenu from '~core/VerticalMenu';
 
 import styles from './DocsDropdown.module.css';
 
@@ -64,7 +65,36 @@ const DocsDropdown = () => (
         </div>
       </div>
     </Link>
-    <div className={styles.content}>{/* Menu items here */}</div>
+    <div className={styles.menuContent}>
+      <div className={styles.menuContainer}>
+        <VerticalMenu
+          headingAppearance={{ size: 'small', theme: 'light', weight: 'thin' }}
+          headingText={MSG.headingCoreProducts}
+          menuItems={[
+            // @TODO fix these links...
+            { href: '/network', text: 'colonyNetwork' },
+            { href: '/js', text: 'colonyJS' },
+            { href: '/starter', text: 'colonyStarter' },
+          ]}
+        />
+      </div>
+      <div className={styles.menuContainer}>
+        <VerticalMenu
+          headingAppearance={{ size: 'small', theme: 'light', weight: 'thin' }}
+          headingText={MSG.headingOpenSourceProducts}
+          menuItems={[
+            // @TODO fix these links...
+            { href: '/budgetbox', text: 'budgetBox' },
+            { href: '/pinion', text: 'pinion' },
+            { href: '/purser', text: 'purser' },
+            { href: '/solidity-coverage', text: 'solidity-coverage' },
+            { href: '/tailor', text: 'tailor' },
+            { href: '/trufflepig', text: 'trufflepig' },
+          ]}
+          numColumns={2}
+        />
+      </div>
+    </div>
   </div>
 );
 
