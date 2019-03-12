@@ -6,6 +6,8 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Popover from '~core/Popover';
 
+import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
+
 import styles from './Header.module.css';
 
 const MSG = defineMessages({
@@ -76,7 +78,7 @@ class Header extends Component<Props, State> {
                 onMouseLeave={this.closeDocsDropdown}
               >
                 <Popover
-                  content={() => <span>Render prop content</span>}
+                  content={() => <DocsDropdown />}
                   isOpen={isDocsOpen}
                   placement="bottom"
                   trigger="disabled"
