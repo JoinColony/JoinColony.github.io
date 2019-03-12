@@ -65,7 +65,7 @@ const VerticalMenu = ({
           textValues={headingTextValues}
         />
       )}
-      {menuItems.length > 0 && (
+      {menuItems && menuItems.length > 0 && (
         <nav
           className={styles.menu}
           role="navigation"
