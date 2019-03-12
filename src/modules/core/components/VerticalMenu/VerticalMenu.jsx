@@ -5,6 +5,7 @@ import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import slugify from 'slugify';
 
+import type { Appearance as HeadingAppearance } from '~core/Heading';
 import type { InProps as LinkProps } from '~core/Link/types';
 
 import Heading from '~core/Heading';
@@ -14,12 +15,13 @@ import styles from './VerticalMenu.module.css';
 
 const MSG = defineMessages({
   navAriaLabelDefault: {
-    id: 'latyous.DeveloperPortalLayout.Footer.VerticalMenu.navAriaLabelDefault',
-    defaultMessage: 'Footer Site Navigation',
+    id: 'VerticalMenu.navAriaLabelDefault',
+    defaultMessage: 'Alternate Navigation',
   },
 });
 
 type Props = {|
+  headingAppearance?: HeadingAppearance,
   headingText?: MessageDescriptor | string,
   headingTextValues?: Object,
   /* Injected via `injectIntl` */
@@ -28,9 +30,10 @@ type Props = {|
   numColumns?: number,
 |};
 
-const displayName = 'layouts.DeveloperPortalLayout.Footer.VerticalMenu';
+const displayName = 'VerticalMenu';
 
 const VerticalMenu = ({
+  headingAppearance = {},
   headingText,
   headingTextValues,
   intl: { formatMessage },
@@ -57,8 +60,8 @@ const VerticalMenu = ({
           appearance={{
             margin: 'small',
             size: 'normal',
-            theme: 'invert',
             weight: 'medium',
+            ...headingAppearance,
           }}
           id={slugify(labelText)}
           text={headingText}
@@ -74,9 +77,9 @@ const VerticalMenu = ({
         >
           {menuItems.map(menuItemProps => (
             <Link
-              {...menuItemProps}
               className={styles.menuItem}
               key={menuItemProps.href}
+              {...menuItemProps}
             />
           ))}
         </nav>
