@@ -78,6 +78,7 @@ class Header extends Component<Props, State> {
                 onMouseLeave={this.closeDocsDropdown}
               >
                 <Popover
+                  appearance={{ theme: 'grey' }}
                   content={() => <DocsDropdown />}
                   isOpen={isDocsOpen}
                   placement="bottom"
