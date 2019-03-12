@@ -66,6 +66,7 @@ const Footer = () => (
         <div className={styles.navGroup}>
           <div className={styles.navGroupItem}>
             <VerticalMenu
+              appearance={{ margins: 'large' }}
               headingAppearance={{ theme: 'invert' }}
               headingText={MSG.navTitleGetStarted}
               menuItems={[
@@ -76,6 +77,7 @@ const Footer = () => (
           </div>
           <div className={styles.navGroupItem}>
             <VerticalMenu
+              appearance={{ margins: 'large' }}
               headingAppearance={{ theme: 'invert' }}
               headingText={MSG.navTitleCoreProducts}
               menuItems={[
@@ -88,6 +90,7 @@ const Footer = () => (
           </div>
           <div className={styles.navGroupItem}>
             <VerticalMenu
+              appearance={{ margins: 'large' }}
               headingAppearance={{ theme: 'invert' }}
               headingText={MSG.navTitleOpenSourceTools}
               menuItems={[
