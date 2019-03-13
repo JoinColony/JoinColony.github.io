@@ -44,7 +44,7 @@
 }
 
 .dropdownParent {
-  cursor: pointer;
+  cursor: default;
 }
 
 .navLink + .navLink {

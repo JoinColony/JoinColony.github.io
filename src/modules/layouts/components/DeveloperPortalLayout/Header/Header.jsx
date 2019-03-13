@@ -75,6 +75,7 @@ class Header extends Component<Props, State> {
             >
               <span
                 className={styles.navLink}
+                onMouseEnter={this.openDocsDropdown}
                 onMouseLeave={this.closeDocsDropdown}
               >
                 <Popover
@@ -84,10 +85,7 @@ class Header extends Component<Props, State> {
                   placement="bottom"
                   trigger="disabled"
                 >
-                  <div
-                    className={styles.dropdownParent}
-                    onMouseEnter={this.openDocsDropdown}
-                  >
+                  <div className={styles.dropdownParent}>
                     <FormattedMessage {...MSG.navLinkDocs} />
                   </div>
                 </Popover>
