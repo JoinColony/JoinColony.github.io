@@ -1,10 +1,8 @@
 /* @flow */
 import React from 'react';
 import { defineMessages } from 'react-intl';
-import { withPrefix } from 'gatsby';
 
 import Icon from '~core/Icon';
-import Image from '~core/Image';
 import Link from '~core/Link';
 
 import VerticalMenu from './VerticalMenu';
@@ -57,11 +55,7 @@ const Footer = () => (
     <div className={styles.footerContent}>
       <div className={styles.navRow}>
         <div className={styles.logoContainer}>
-          <Image
-            alt="Colony"
-            className={styles.logo}
-            src={withPrefix('/img/devPortal/logomark_colony.svg')}
-          />
+          <Icon className={styles.logo} name="colony_logomark" title="Colony" />
           <div>
             <Link
               href="https://colony.io"

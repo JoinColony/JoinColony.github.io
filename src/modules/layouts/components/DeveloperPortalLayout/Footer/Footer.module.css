@@ -25,8 +25,15 @@
 }
 
 .logo {
-  height: 50px;
+  display: block;
   margin-bottom: 20px;
+}
+
+.logo svg {
+  fill: #ffffff;
+  height: 50px;
+  width: 50px;
+  stroke: #ffffff;
 }
 
 .logoContainer a {

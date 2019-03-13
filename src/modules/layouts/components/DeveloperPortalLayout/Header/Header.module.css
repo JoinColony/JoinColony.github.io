@@ -15,12 +15,14 @@
 }
 
 .logo {
-  min-width: 134px;
+  display: block;
+  height: 33px;
+  width: 134px;
 }
 
-.logo img {
-  display: block;
-  margin: 0 auto;
+.logo svg {
+  fill: white;
+  stroke: white;
 }
 
 .navContainer {

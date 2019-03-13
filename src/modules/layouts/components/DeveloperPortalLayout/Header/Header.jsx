@@ -1,9 +1,8 @@
 /* @flow */
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
-import { withPrefix } from 'gatsby';
 
-import Image from '~core/Image';
+import Icon from '~core/Icon';
 import Link from '~core/Link';
 
 import styles from './Header.module.css';
@@ -32,10 +31,12 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 const Header = () => (
   <div className={styles.main}>
     <div className={styles.menuWrapper}>
-      <Link className={styles.logo} href="/developers">
-        <Image
-          alt={MSG.imageAltDevPortal}
-          src={withPrefix('/img/devPortal/developerPortal_white.svg')}
+      <Link href="/developers">
+        <Icon
+          className={styles.logo}
+          name="developerPortal_white"
+          title={MSG.imageAltDevPortal}
+          viewBox="0 0 134 33"
         />
       </Link>
       <div className={styles.navContainer}>
