@@ -1,0 +1,32 @@
+
+/* Margins */
+.marginNone {
+  /* Need to overwrite the size class */
+  margin-bottom: 0 !important;
+}
+
+.marginSmall {
+  margin-bottom: 6px !important;
+}
+
+.marginDouble {
+  margin-bottom: 40px;
+}
+
+/* Themes */
+.themeInvert {
+  color: #ffffff;
+}
+
+/* Weights */
+.weightThin {
+  font-family: 'Avenir Next Light';
+}
+
+.weightMedium {
+  font-family: 'Avenir Next Demi';
+}
+
+.weightBold {
+  font-weight: 500;
+}

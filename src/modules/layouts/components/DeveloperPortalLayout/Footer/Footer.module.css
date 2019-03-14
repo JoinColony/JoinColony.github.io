@@ -1,0 +1,84 @@
+.main {
+  background-color: #021C2B;
+  padding: 85px 0 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.main a {
+  color: #A4B6C7;
+}
+
+.main a:hover {
+  color: #788CA0;
+}
+
+.footerContent {
+  margin: 0 9.5%;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.navRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.logo svg {
+  fill: #ffffff;
+  height: 50px;
+  width: 50px;
+  stroke: #ffffff;
+}
+
+.logoContainer a {
+  color: #ffffff;
+}
+
+.navGroup {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: .9rem;
+}
+
+.navGroupItem + .navGroupItem {
+  margin-left: 115px;
+}
+
+.metaRow {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 150px;
+}
+
+.metaNavContainer {
+  font-family: 'Avenir Next Light';
+  font-size: .9rem;
+}
+
+.metaNavLink + .metaNavLink {
+  margin-left: 45px;
+}
+
+.socialIcon {
+  display: inline-block;
+  height: 46px;
+  margin-left: 22px;
+  width: 46px;
+}
+
+.socialIcon svg {
+  fill: #A4B6C7;
+  height: 46px;
+  width: 46px;
+}
+
+a:hover .socialIcon svg {
+  fill: #788CA0;
+}

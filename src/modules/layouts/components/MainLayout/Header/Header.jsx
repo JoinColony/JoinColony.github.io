@@ -16,19 +16,19 @@ import styles from './Header.module.css';
 
 const MSG = defineMessages({
   btnTitleToggleNavigation: {
-    id: 'parts.Header.btnTitleToggleNavigation',
+    id: 'layouts.MainLayout.Header.btnTitleToggleNavigation',
     defaultMessage: 'Toggle Navigation',
   },
   imageAltColonyDocs: {
-    id: 'parts.Header.imageAltColonyDocs',
+    id: 'layouts.MainLayout.Header.imageAltColonyDocs',
     defaultMessage: 'Colony Docs',
   },
   linkProducts: {
-    id: 'parts.Header.linkProducts',
+    id: 'layouts.MainLayout.Header.linkProducts',
     defaultMessage: 'Products',
   },
   socialIconTitle: {
-    id: 'parts.Header.socialIconTitle',
+    id: 'layouts.MainLayout.Header.socialIconTitle',
     defaultMessage: '{projectOrOrg} on {platform}',
     description:
       'For instance, `Colony on GitHub` or `colonyNetwork on GitHub`',
@@ -41,7 +41,7 @@ type State = {|
 |};
 
 class Header extends React.Component<Props, State> {
-  static displayName = 'parts.Header';
+  static displayName = 'layouts.MainLayout.Header';
 
   state = {
     isNavExpanded: false,

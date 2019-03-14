@@ -1,0 +1,15 @@
+.menu {
+  column-gap: 54px;
+  font-family: 'Avenir Next Light';
+  margin-top: 18px;
+}
+
+.menuItem {
+  display: block;
+  line-height: 51px;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  color: #788CA0;
+}

@@ -1,0 +1,7 @@
+.gridContainer {
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  max-width: 100%;
+  min-height: 100vh;
+  width: 100vw;
+}

@@ -9,33 +9,33 @@ import styles from './Footer.module.css';
 
 const MSG = defineMessages({
   contentTagline: {
-    id: 'parts.Footer.contentTagline',
+    id: 'layouts.MainLayout.Footer.contentTagline',
     defaultMessage: 'A Platform for {lineBreak} Open Organizations',
   },
   linkBlog: {
-    id: 'parts.Footer.linkBlog',
+    id: 'layouts.MainLayout.Footer.linkBlog',
     defaultMessage: 'Blog',
   },
   linkGetInvolved: {
-    id: 'parts.Footer.linkGetInvolved',
+    id: 'layouts.MainLayout.Footer.linkGetInvolved',
     defaultMessage: 'Get Involved',
   },
   linkLogin: {
-    id: 'parts.Footer.linkLogin',
+    id: 'layouts.MainLayout.Footer.linkLogin',
     defaultMessage: 'Login',
   },
   linkTerms: {
-    id: 'parts.Footer.linkTerms',
+    id: 'layouts.MainLayout.Footer.linkTerms',
     defaultMessage: 'Terms',
   },
   socialIconTitle: {
-    id: 'parts.Footer.socialIconTitle',
+    id: 'layouts.MainLayout.Footer.socialIconTitle',
     defaultMessage: 'Colony on {platform}',
     description: 'For instance, `Colony on GitHub`',
   },
 });
 
-const displayName = 'parts.Footer';
+const displayName = 'layouts.MainLayout.Footer';
 
 const Footer = () => {
   const socialLinks = [
