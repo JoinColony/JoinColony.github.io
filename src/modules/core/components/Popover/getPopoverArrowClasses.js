@@ -1,4 +1,5 @@
 /* @flow */
+import camelcase from 'camelcase';
 
 import { capitalize } from '~utils/strings';
 
@@ -27,7 +28,7 @@ const getPopoverArrowClasses = (
   /*
    * @NOTE Arrows have the position encoded in the class's name
    */
-  const placementClass = `${placement}Arrow`;
+  const placementClass = `${camelcase(placement)}Arrow`;
   const styleArray = [styleObject[placementClass]];
   if (theme) {
     /*
