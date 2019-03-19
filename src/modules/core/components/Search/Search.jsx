@@ -4,6 +4,8 @@ import type { IntlShape } from 'react-intl';
 import React, { Component } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import docsearch from 'docsearch.js';
+import nanoid from 'nanoid';
+
 import 'docsearch.js/dist/cdn/docsearch.min.css';
 
 import { getMainClasses } from '~utils/css';
@@ -35,6 +37,7 @@ type Props = {|
 |};
 
 type State = {|
+  inputId: string,
   isEnabled: boolean,
 |};
 
@@ -42,15 +45,17 @@ class Search extends Component<Props, State> {
   static displayName = 'parts.Search';
 
   state = {
+    inputId: `searchInput${nanoid()}`,
     isEnabled: true,
   };
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
+      const { inputId } = this.state;
       docsearch({
         apiKey: docSearchApiKey,
         indexName: docSearcIndexName,
-        inputSelector: `.${styles.searchInput}`,
+        inputSelector: `#${inputId}`,
       });
     } else {
       this.setState({ isEnabled: false });
@@ -62,17 +67,16 @@ class Search extends Component<Props, State> {
       appearance,
       intl: { formatMessage },
     } = this.props;
-    const { isEnabled } = this.state;
+    const { inputId, isEnabled } = this.state;
     const placeholderText = formatMessage(MSG.placeholderText);
     return isEnabled ? (
-      <span className={getMainClasses(appearance, styles)}>
-        <input
-          className={styles.searchInput}
-          type="text"
-          placeholder={placeholderText}
-          title={placeholderText}
-        />
-      </span>
+      <input
+        className={getMainClasses(appearance, styles)}
+        id={inputId}
+        type="text"
+        placeholder={placeholderText}
+        title={placeholderText}
+      />
     ) : null;
   }
 }

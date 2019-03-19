@@ -1,11 +1,9 @@
 .algolia-autocomplete {
   margin: 0 10px;
-  position: static !important;
 }
 
 .algolia-autocomplete-right .ds-dropdown-menu {
   margin-right: 10px;
-  top: calc(100% - 20px) !important;
 }
 
 .algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor  .algolia-docsearch-suggestion:not(.suggestion-layout-simple) .algolia-docsearch-suggestion--content {
