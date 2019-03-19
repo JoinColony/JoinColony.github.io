@@ -9,13 +9,17 @@
 
 .defaultStyles .searchInput {
   background: transparent;
+  border-radius: 4px;
   border-style: solid;
   border-width: 2px;
-  height: 34px;
-  padding: 10px;
   font-size: 12px;
-  border-radius: 4px;
+  height: 34px;
+  padding: 10px 12px;
   -webkit-appearance: none;
+}
+
+.defaultStyles:not(.typeQuickSearch) .searchInput {
+  min-width: 200px;
 }
 
 .defaultStyles .searchInput:focus {
@@ -61,20 +65,20 @@
 }
 
 .typeQuickSearch .searchInput:not(:focus) {
-  background-color: transparent;
+  opacity: 0;
 }
 
 .typeQuickSearch .searchInput:focus {
   padding-right: 32px !important;
-  width: 200px;
+  width: 300px;
+  opacity: 1;
 }
 
 .quickSearchIcon {
   background-repeat: no-repeat;
   height: 100%;
-  padding-right: 5px;
   position: absolute;
-  right: 0;
+  right: 12px;
   top: 10px;
   z-index: 2;
 }
