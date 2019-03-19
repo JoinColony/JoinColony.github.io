@@ -13,7 +13,13 @@ import type { ReactRef } from './types';
 // eslint-disable-next-line import/no-cycle
 import PopoverWrapper from './PopoverWrapper.jsx';
 
-export type Placement = 'auto' | 'top' | 'right' | 'bottom' | 'left';
+export type Placement =
+  | 'auto'
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'bottom-end'
+  | 'left';
 
 // This might be an eslint hiccup. Don't know where this is unused
 // eslint-disable-next-line react/no-unused-prop-types
@@ -285,14 +291,14 @@ class Popover extends Component<Props, State> {
             placement={origPlacement}
             {...popperProps}
           >
-            {({ ref, style, placement, arrowProps }) => (
+            {({ ref, style, arrowProps }) => (
               // $FlowFixMe see above renderContent
               <PopoverWrapper
-                appearance={{ ...appearance, placement }}
+                appearance={{ ...appearance, placement: origPlacement }}
                 id={this.id}
                 innerRef={ref}
                 style={style}
-                placement={placement}
+                placement={origPlacement}
                 arrowProps={{
                   ...arrowProps,
                   showArrow,

@@ -36,7 +36,8 @@
   left: calc(arrowSize + arrowBorder * 2) !important;
 }
 
-.placementBottom {
+.placementBottom,
+.placementBottomEnd {
   top: arrowSize !important;
 }
 
@@ -76,13 +77,15 @@
   left: calc(-1 * (arrowSize - arrowBorder));
 }
 
-.bottomArrow {
+.bottomArrow,
+.bottomEndArrow {
   composes: arrow;
   top: calc(-2 * (arrowSize + arrowBorder));
   border-bottom-color: backgroundColor;
 }
 
-.bottomArrow::before {
+.bottomArrow::before,
+.bottomEndArrow::before {
   top: calc(-1 * (arrowSize - arrowBorder));
   left: calc(-1 * arrowSize);
 }
@@ -120,8 +123,8 @@
 .themeDarkRightArrow { border-right-color: transparent; }
 .themeDarkRightArrow::before { border-right-color: themeDarkBackgroundColor; }
 
-.themeDarkBottomArrow { border-bottom-color: transparent; }
-.themeDarkBottomArrow::before { border-bottom-color: themeDarkBackgroundColor; }
+.themeDarkBottomArrow, .themeDarkBottomEndArrow { border-bottom-color: transparent; }
+.themeDarkBottomArrow::before, .themeDarkBottomEndArrow::before { border-bottom-color: themeDarkBackgroundColor; }
 
 .themeDarkLeftArrow { border-left-color: transparent; }
 .themeDarkLeftArrow::before { border-left-color: themeDarkBackgroundColor; }
@@ -137,8 +140,8 @@
 .themeGreyRightArrow { border-right-color: transparent; }
 .themeGreyRightArrow::before { border-right-color: themeGreyBackgroundColor; }
 
-.themeGreyBottomArrow { border-bottom-color: transparent; }
-.themeGreyBottomArrow::before { border-bottom-color: themeGreyBackgroundColor; }
+.themeGreyBottomArrow, .themeGreyBottomEndArrow { border-bottom-color: transparent; }
+.themeGreyBottomArrow::before, .themeGreyBottomEndArrow::before { border-bottom-color: themeGreyBackgroundColor; }
 
 .themeGreyLeftArrow { border-left-color: transparent; }
 .themeGreyLeftArrow::before { border-left-color: themeGreyBackgroundColor; }
