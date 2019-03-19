@@ -1,5 +1,5 @@
 /* @flow */
-import type { IntlShape } from 'react-intl';
+import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 import React, { Component, createRef } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -21,8 +21,8 @@ import styles from './Search.module.css';
 import './algolia-overrides.css';
 
 const MSG = defineMessages({
-  placeholderText: {
-    id: 'parts.Search.placeholderText',
+  defaultPlaceholderText: {
+    id: 'Search.defaultPlaceholderText',
     defaultMessage: 'Search Docs',
   },
 });
@@ -36,6 +36,8 @@ type Props = {|
   appearance?: Appearance,
   /** Injected by `injectIntl` */
   intl: IntlShape,
+  placeholderText?: MessageDescriptor | string,
+  placeholderTextValues?: Object,
 |};
 
 type State = {|
@@ -82,18 +84,23 @@ class Search extends Component<Props, State> {
     const {
       appearance,
       intl: { formatMessage },
+      placeholderText = MSG.defaultPlaceholderText,
+      placeholderTextValues,
     } = this.props;
     const { inputId, isEnabled } = this.state;
-    const placeholderText = formatMessage(MSG.placeholderText);
+    const placeholderTextContent =
+      typeof placeholderText === 'string'
+        ? placeholderText
+        : formatMessage(placeholderText, placeholderTextValues);
     const isQuickSearch = appearance && appearance.type === 'quickSearch';
     return isEnabled ? (
       <div className={getMainClasses(appearance, styles)}>
         <input
           className={styles.searchInput}
           id={inputId}
-          placeholder={placeholderText}
+          placeholder={placeholderTextContent}
           ref={this.inputRef}
-          title={placeholderText}
+          title={placeholderTextContent}
           type="text"
         />
         {isQuickSearch && (
@@ -109,7 +116,7 @@ class Search extends Component<Props, State> {
             <Icon
               className={styles.quickSearchIcon}
               name="search"
-              title="search"
+              title={placeholderTextContent}
               viewBox="0 0 25 25"
             />
           </Button>
