@@ -76,7 +76,6 @@ const Header = () => (
           </span>
           <Link className={styles.navLink} href="/tutorials">
             <FormattedMessage {...MSG.navLinkTutorials} />
-            {/* @TODO: dropdown nav here */}
           </Link>
           <Link
             className={styles.navLink}
@@ -85,7 +84,6 @@ const Header = () => (
           />
         </nav>
         <div className={styles.searchContainer}>
-          {/* @TODO: search component here */}
           <Search appearance={{ theme: 'light', type: 'quickSearch' }} />
         </div>
       </div>
