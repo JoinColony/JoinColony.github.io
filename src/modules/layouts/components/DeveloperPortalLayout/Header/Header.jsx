@@ -2,6 +2,7 @@
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import Button from '~core/Button';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Popover from '~core/Popover';
@@ -50,29 +51,31 @@ const Header = () => (
           aria-label="Main Navigation"
         >
           <span className={`${styles.navLink} ${styles.docsDropdownParent}`}>
-            <Popover
-              appearance={{ theme: 'grey' }}
-              content={() => <DocsDropdown />}
-              /*
-               * `isOpen` is always true for a11y purposes. This ensures the dropdown
-               * menu is always in the DOM, and visibility is controlled via CSS.
-               */
-              isOpen
-              placement="bottom-end"
-              popperProps={{
-                modifiers: {
-                  offset: {
-                    offset: '140px',
+            <Button appearance={{ theme: 'reset' }}>
+              <Popover
+                appearance={{ theme: 'grey' }}
+                content={() => <DocsDropdown />}
+                /*
+                 * `isOpen` is always true for a11y purposes. This ensures the dropdown
+                 * menu is always in the DOM, and visibility is controlled via CSS.
+                 */
+                isOpen
+                placement="bottom-end"
+                popperProps={{
+                  modifiers: {
+                    offset: {
+                      offset: '140px',
+                    },
                   },
-                },
-              }}
-              trigger="disabled"
-              wrapperClassName={styles.docsDropdownContainer}
-            >
-              <div className={styles.dropdownParent} aria-haspopup="true">
-                <FormattedMessage {...MSG.navLinkDocs} />
-              </div>
-            </Popover>
+                }}
+                trigger="disabled"
+                wrapperClassName={styles.docsDropdownContainer}
+              >
+                <div className={styles.dropdownParent} aria-haspopup="true">
+                  <FormattedMessage {...MSG.navLinkDocs} />
+                </div>
+              </Popover>
+            </Button>
           </span>
           <Link className={styles.navLink} href="/tutorials">
             <FormattedMessage {...MSG.navLinkTutorials} />
