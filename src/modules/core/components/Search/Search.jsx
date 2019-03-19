@@ -1,13 +1,14 @@
 /* @flow */
 import type { IntlShape } from 'react-intl';
 
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import docsearch from 'docsearch.js';
 import nanoid from 'nanoid';
 
 import 'docsearch.js/dist/cdn/docsearch.min.css';
 
+import Button from '~core/Button';
 import Icon from '~core/Icon';
 import { getMainClasses } from '~utils/css';
 
@@ -43,7 +44,15 @@ type State = {|
 |};
 
 class Search extends Component<Props, State> {
+  inputRef: { current: null | HTMLInputElement };
+
   static displayName = 'Search';
+
+  constructor(props) {
+    super(props);
+
+    this.inputRef = createRef();
+  }
 
   state = {
     inputId: `searchInput${nanoid()}`,
@@ -63,6 +72,12 @@ class Search extends Component<Props, State> {
     }
   }
 
+  focusInput = () => {
+    if (this.inputRef && this.inputRef.current) {
+      this.inputRef.current.focus();
+    }
+  };
+
   render() {
     const {
       appearance,
@@ -76,17 +91,28 @@ class Search extends Component<Props, State> {
         <input
           className={styles.searchInput}
           id={inputId}
-          type="text"
           placeholder={placeholderText}
+          ref={this.inputRef}
           title={placeholderText}
+          type="text"
         />
         {isQuickSearch && (
-          <Icon
-            className={styles.quickSearchIcon}
-            name="search"
-            title="search"
-            viewBox="0 0 25 25"
-          />
+          <Button
+            appearance={{ theme: 'reset' }}
+            onClick={this.focusInput}
+            /*
+             * Because the adjacent `input` is naturally focusable,
+             * let's disable tabstop on this button.
+             */
+            tabIndex="-1"
+          >
+            <Icon
+              className={styles.quickSearchIcon}
+              name="search"
+              title="search"
+              viewBox="0 0 25 25"
+            />
+          </Button>
         )}
       </div>
     ) : null;
