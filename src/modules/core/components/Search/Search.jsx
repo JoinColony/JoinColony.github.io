@@ -6,6 +6,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import docsearch from 'docsearch.js';
 import 'docsearch.js/dist/cdn/docsearch.min.css';
 
+import { getMainClasses } from '~utils/css';
+
 import {
   docSearchApiKey,
   docSearcIndexName,
@@ -21,7 +23,13 @@ const MSG = defineMessages({
   },
 });
 
+type Appearance = {|
+  theme?: 'light',
+  type?: 'quickSearch',
+|};
+
 type Props = {|
+  appearance?: Appearance,
   /** Injected by `injectIntl` */
   intl: IntlShape,
 |};
@@ -51,17 +59,20 @@ class Search extends Component<Props, State> {
 
   render() {
     const {
+      appearance,
       intl: { formatMessage },
     } = this.props;
     const { isEnabled } = this.state;
     const placeholderText = formatMessage(MSG.placeholderText);
     return isEnabled ? (
-      <input
-        className={styles.searchInput}
-        type="text"
-        placeholder={placeholderText}
-        title={placeholderText}
-      />
+      <span className={getMainClasses(appearance, styles)}>
+        <input
+          className={styles.searchInput}
+          type="text"
+          placeholder={placeholderText}
+          title={placeholderText}
+        />
+      </span>
     ) : null;
   }
 }
