@@ -21,8 +21,6 @@ export type Placement =
   | 'bottom-end'
   | 'left';
 
-// This might be an eslint hiccup. Don't know where this is unused
-// eslint-disable-next-line react/no-unused-prop-types
 type RefObj = { ref: ReactRef };
 
 export type Appearance = {
@@ -38,7 +36,6 @@ export type PopoverTrigger = ({
   toggle: () => void,
 }) => ReactNode;
 
-// Left intentionally unsealed (passing props)
 export type Props = {|
   appearance?: Appearance,
   /** Child element to trigger the popover */
