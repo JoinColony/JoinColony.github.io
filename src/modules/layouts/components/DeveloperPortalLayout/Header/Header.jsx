@@ -82,8 +82,15 @@ class Header extends Component<Props, State> {
                   appearance={{ theme: 'grey' }}
                   content={() => <DocsDropdown />}
                   isOpen={isDocsOpen}
-                  placement="bottom"
+                  placement="bottom-end"
                   trigger="disabled"
+                  popperProps={{
+                    modifiers: {
+                      offset: {
+                        offset: '140px',
+                      },
+                    },
+                  }}
                 >
                   <div className={styles.dropdownParent}>
                     <FormattedMessage {...MSG.navLinkDocs} />
