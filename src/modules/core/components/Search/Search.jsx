@@ -23,7 +23,7 @@ import './algolia-overrides.css';
 const MSG = defineMessages({
   defaultPlaceholderText: {
     id: 'Search.defaultPlaceholderText',
-    defaultMessage: 'Search Docs',
+    defaultMessage: 'Search',
   },
 });
 
