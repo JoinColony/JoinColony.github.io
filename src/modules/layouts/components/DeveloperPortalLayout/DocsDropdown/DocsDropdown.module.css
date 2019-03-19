@@ -1,0 +1,72 @@
+@value borderRadius: 4px;
+@value boxShadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
+
+.main {
+  padding: 40px 51px 38px 63px;
+}
+
+.hero {
+  align-items: center;
+  border-radius: borderRadius;
+  display: flex;
+}
+
+.logoContainer {
+  background-color: #ffffff;
+  border-radius: borderRadius;
+  box-shadow: boxShadow;
+  display: flex;
+  align-items: center
+}
+
+.logo {
+  height: 54px;
+  margin: 5px;
+  padding: 5px;
+  width: 54px;
+}
+
+.logo svg {
+  fill: #F5416E;
+  stroke: #F5416E;
+}
+
+.cta {
+  background-color: #ffffff;
+  border-radius: borderRadius;
+  box-shadow: boxShadow;
+  flex: 1 0 auto;
+  margin: 0 0 0 10px;
+  min-width: 315px;
+  padding: 11px 20px;
+}
+
+.heroLink:hover .hero {
+  background-color: #00284B;
+  box-shadow: boxShadow;
+}
+
+.heroLink:hover .logoContainer,
+.heroLink:hover .cta {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.heroLink:hover .cta * {
+  /* not the most elegant rule - need to override `Heading` colors on hover */
+  color: #ffffff;
+}
+
+.menuContent {
+  display: flex;
+  justify-content: space-between;
+  margin: 45px 0 0;
+}
+
+.menuContent a {
+  color: #00284B;
+}
+
+.menuContent a:hover {
+  text-decoration: underline;
+}

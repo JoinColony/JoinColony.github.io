@@ -4,8 +4,7 @@ import { defineMessages } from 'react-intl';
 
 import Icon from '~core/Icon';
 import Link from '~core/Link';
-
-import VerticalMenu from './VerticalMenu';
+import VerticalMenu from '~core/VerticalMenu';
 
 import styles from './Footer.module.css';
 
@@ -67,6 +66,8 @@ const Footer = () => (
         <div className={styles.navGroup}>
           <div className={styles.navGroupItem}>
             <VerticalMenu
+              appearance={{ margins: 'large' }}
+              headingAppearance={{ theme: 'invert' }}
               headingText={MSG.navTitleGetStarted}
               menuItems={[
                 { href: '/tutorials', text: MSG.navLinkTutorials },
@@ -76,6 +77,8 @@ const Footer = () => (
           </div>
           <div className={styles.navGroupItem}>
             <VerticalMenu
+              appearance={{ margins: 'large' }}
+              headingAppearance={{ theme: 'invert' }}
               headingText={MSG.navTitleCoreProducts}
               menuItems={[
                 // @TODO fix these links...
@@ -87,7 +90,8 @@ const Footer = () => (
           </div>
           <div className={styles.navGroupItem}>
             <VerticalMenu
-              numColumns={2}
+              appearance={{ margins: 'large' }}
+              headingAppearance={{ theme: 'invert' }}
               headingText={MSG.navTitleOpenSourceTools}
               menuItems={[
                 // @TODO fix these links...
@@ -98,6 +102,7 @@ const Footer = () => (
                 { href: '/tailor', text: 'tailor' },
                 { href: '/trufflepig', text: 'trufflepig' },
               ]}
+              numColumns={2}
             />
           </div>
         </div>

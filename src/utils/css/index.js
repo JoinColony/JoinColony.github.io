@@ -1,5 +1,6 @@
 /* @flow */
 /* eslint-disable import/prefer-default-export */
+import camelcase from 'camelcase';
 
 import { capitalize } from '../strings';
 
@@ -31,16 +32,22 @@ export const getMainClasses = (
   const { theme, ...modifiers } = appearance;
   const styleArray = [];
   if (theme) {
-    const themeClass = `theme${capitalize(theme)}`;
+    const themeClass = `theme${capitalize(camelcase(theme))}`;
     styleArray.push(styleObject[themeClass]);
   } else {
     styleArray.push(styleObject.main);
   }
   const modifierClasses = Object.keys(modifiers)
-    .map(key => styleObject[`${key}${capitalize(modifiers[key])}`])
+    .map(key =>
+      modifiers[key]
+        ? styleObject[`${key}${capitalize(camelcase(modifiers[key]))}`]
+        : undefined,
+    )
     .filter(i => !!i);
   const stateClasses = Object.keys(state)
-    .map(key => (state[key] ? styleObject[`state${capitalize(key)}`] : ''))
+    .map(key =>
+      state[key] ? styleObject[`state${capitalize(camelcase(key))}`] : '',
+    )
     .filter(i => !!i);
   return [...styleArray, ...modifierClasses, ...stateClasses].join(' ');
 };

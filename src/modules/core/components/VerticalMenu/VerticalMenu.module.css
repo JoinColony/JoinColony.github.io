@@ -1,0 +1,36 @@
+.menu {
+  font-family: 'Avenir Next Light';
+}
+
+.menuItem {
+  display: block;
+  white-space: nowrap;
+  width: max-content;
+}
+
+/* Margins */
+.marginsNone .menu {
+  column-gap: 0;
+}
+
+.marginsNone .menuItem {
+  line-height: inherit;
+}
+
+.marginsSmall .menu {
+  column-gap: 45px;
+  margin-top: 10px;
+}
+
+.marginsSmall .menuItem {
+  line-height: 35px;
+}
+
+.marginsLarge .menu {
+  column-gap: 40%;
+  margin-top: 18px;
+}
+
+.marginsLarge .menuItem {
+  line-height: 51px;
+}

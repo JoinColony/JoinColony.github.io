@@ -10,12 +10,12 @@ import { getChildrenOrText } from '~utils/strings';
 
 import styles from './Heading.module.css';
 
-type Appearance = {
-  theme?: 'primary' | 'dark' | 'invert' | 'uppercase',
-  margin?: 'none' | 'small' | 'double',
-  size: 'tiny' | 'small' | 'normal' | 'medium' | 'large' | 'huge',
+export type Appearance = {|
+  theme?: 'dark' | 'light' | 'invert',
+  margin?: 'none' | 'tiny' | 'small' | 'double',
+  size?: 'tiny' | 'small' | 'normal' | 'medium' | 'large' | 'huge',
   weight?: 'thin' | 'medium' | 'bold',
-};
+|};
 
 type ValidTagNames = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 

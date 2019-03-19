@@ -4,6 +4,9 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Icon from '~core/Icon';
 import Link from '~core/Link';
+import Popover from '~core/Popover';
+
+import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
 
 import styles from './Header.module.css';
 
@@ -45,10 +48,31 @@ const Header = () => (
           role="navigation"
           aria-label="Main Navigation"
         >
-          <Link className={styles.navLink} href="/docs">
-            <FormattedMessage {...MSG.navLinkDocs} />
-            {/* @TODO: dropdown nav here */}
-          </Link>
+          <span className={`${styles.navLink} ${styles.docsDropdownParent}`}>
+            <Popover
+              appearance={{ theme: 'grey' }}
+              content={() => <DocsDropdown />}
+              /*
+               * `isOpen` is always true for a11y purposes. This ensures the dropdown
+               * menu is always in the DOM, and visibility is controlled via CSS.
+               */
+              isOpen
+              placement="bottom-end"
+              popperProps={{
+                modifiers: {
+                  offset: {
+                    offset: '140px',
+                  },
+                },
+              }}
+              trigger="disabled"
+              wrapperClassName={styles.docsDropdownContainer}
+            >
+              <div className={styles.dropdownParent} aria-haspopup="true">
+                <FormattedMessage {...MSG.navLinkDocs} />
+              </div>
+            </Popover>
+          </span>
           <Link className={styles.navLink} href="/tutorials">
             <FormattedMessage {...MSG.navLinkTutorials} />
             {/* @TODO: dropdown nav here */}

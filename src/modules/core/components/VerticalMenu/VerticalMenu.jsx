@@ -5,7 +5,9 @@ import React from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import slugify from 'slugify';
 
+import type { Appearance as HeadingAppearance } from '~core/Heading';
 import type { InProps as LinkProps } from '~core/Link/types';
+import { getMainClasses } from '~utils/css';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
@@ -14,12 +16,18 @@ import styles from './VerticalMenu.module.css';
 
 const MSG = defineMessages({
   navAriaLabelDefault: {
-    id: 'latyous.DeveloperPortalLayout.Footer.VerticalMenu.navAriaLabelDefault',
-    defaultMessage: 'Footer Site Navigation',
+    id: 'VerticalMenu.navAriaLabelDefault',
+    defaultMessage: 'Alternate Navigation',
   },
 });
 
+type Appearance = {|
+  margins?: 'none' | 'small' | 'large',
+|};
+
 type Props = {|
+  appearance?: Appearance,
+  headingAppearance?: HeadingAppearance,
   headingText?: MessageDescriptor | string,
   headingTextValues?: Object,
   /* Injected via `injectIntl` */
@@ -28,9 +36,11 @@ type Props = {|
   numColumns?: number,
 |};
 
-const displayName = 'layouts.DeveloperPortalLayout.Footer.VerticalMenu';
+const displayName = 'VerticalMenu';
 
 const VerticalMenu = ({
+  appearance,
+  headingAppearance = {},
   headingText,
   headingTextValues,
   intl: { formatMessage },
@@ -51,14 +61,14 @@ const VerticalMenu = ({
     ariaProps['aria-label'] = formatMessage(MSG.navAriaLabelDefault);
   }
   return (
-    <>
+    <div className={getMainClasses(appearance, styles)}>
       {headingText && (
         <Heading
           appearance={{
             margin: 'small',
-            size: 'small',
-            theme: 'invert',
+            size: 'normal',
             weight: 'medium',
+            ...headingAppearance,
           }}
           id={slugify(labelText)}
           text={headingText}
@@ -73,15 +83,13 @@ const VerticalMenu = ({
           {...ariaProps}
         >
           {menuItems.map(menuItemProps => (
-            <Link
-              {...menuItemProps}
-              className={styles.menuItem}
-              key={menuItemProps.href}
-            />
+            <div key={menuItemProps.href} className={styles.menuItem}>
+              <Link {...menuItemProps} />
+            </div>
           ))}
         </nav>
       )}
-    </>
+    </div>
   );
 };
 

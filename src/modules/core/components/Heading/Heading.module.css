@@ -1,8 +1,15 @@
+.main {
+  color: rgba(0, 0, 0, 0.8);
+}
 
 /* Margins */
 .marginNone {
   /* Need to overwrite the size class */
   margin-bottom: 0 !important;
+}
+
+.marginTiny {
+  margin-bottom: 4px;
 }
 
 .marginSmall {
@@ -13,9 +20,42 @@
   margin-bottom: 40px;
 }
 
+/* Sizing */
+.sizeTiny {
+  font-size: 11px;
+}
+
+.sizeSmall {
+  font-size: 12px;
+}
+
+.sizeNormal {
+  font-size: 14px;
+}
+
+.sizeMedium {
+  font-size: 18px;
+}
+
+.sizeLarge {
+  font-size: 28px;
+}
+
+.sizeHuge {
+  font-size: 36px;
+}
+
 /* Themes */
+.themeDark {
+  color: #00284B;
+}
+
 .themeInvert {
   color: #ffffff;
+}
+
+.themeLight {
+  color: #788CA0;
 }
 
 /* Weights */
