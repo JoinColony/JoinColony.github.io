@@ -47,6 +47,14 @@
   cursor: default;
 }
 
+.docsDropdownParent .docsDropdownContainer {
+  visibility: hidden;
+}
+
+.docsDropdownParent:hover .docsDropdownContainer {
+  visibility: visible;
+}
+
 .navLink + .navLink {
   margin-left: 30px;
 }

@@ -70,6 +70,8 @@ export type Props = {|
   trigger?: 'hover' | 'click' | 'disabled',
   /** @ignore injected by `react-intl` */
   intl: IntlShape,
+  /** `className` to be used IN ADDITION TO the normal wrapper classNames */
+  wrapperClassName?: string,
 |};
 
 type State = {
@@ -276,6 +278,7 @@ class Popover extends Component<Props, State> {
       popperProps,
       retainRefFocus,
       showArrow,
+      wrapperClassName,
     } = this.props;
 
     const { isOpen } = this.state;
@@ -305,6 +308,7 @@ class Popover extends Component<Props, State> {
                 }}
                 onFocus={this.handleWrapperFocus}
                 retainRefFocus={retainRefFocus}
+                wrapperClassName={wrapperClassName}
               >
                 {content}
               </PopoverWrapper>

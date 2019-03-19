@@ -30,6 +30,7 @@ type Props = {|
   retainRefFocus?: boolean,
   placement: string,
   style: any,
+  wrapperClassName?: string,
 |};
 
 const PopoverWrapper = ({
@@ -42,12 +43,13 @@ const PopoverWrapper = ({
   placement,
   retainRefFocus,
   style,
+  wrapperClassName = '',
 }: Props) => (
   <div
-    className={getMainClasses(appearance, styles, {
+    className={`${getMainClasses(appearance, styles, {
       hideArrow: !arrowProps.showArrow,
       showArrow: arrowProps.showArrow,
-    })}
+    })} ${wrapperClassName}`}
     id={id}
     role="tooltip"
     ref={innerRef}
