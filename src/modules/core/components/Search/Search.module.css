@@ -1,4 +1,13 @@
 .defaultStyles {
+  position: relative;
+  margin: 0 10px;
+}
+
+.defaultStyles:not(:focus-within) .quickSearchIcon {
+  cursor: pointer;
+}
+
+.defaultStyles .searchInput {
   background: transparent;
   border-style: solid;
   border-width: 2px;
@@ -9,17 +18,15 @@
   -webkit-appearance: none;
 }
 
-.defaultStyles:focus {
+.defaultStyles .searchInput:focus {
   outline: none;
 }
 
 @media screen and (min-width: 480px) {
 
-  .defaultStyles {
+  .defaultStyles .searchInput {
     height: 45px;
     font-size: 15px;
-    padding: 10px 12px;
-    min-width: 200px;
   }
 
 }
@@ -28,35 +35,76 @@
 
 .themeLight {
   composes: defaultStyles;
+}
+
+.themeLight .searchInput {
   background-color: #2E4153;
   border-color: #2E4153;
   color: #ffffff;
 }
 
-/* Types */
-
-.typeQuickSearch {
-  
+.themeLight .quickSearchIcon svg {
+  fill: #788CA0;
+  stroke: #788CA0;
 }
 
+/* Types */
+
+.typeQuickSearch .searchInput {
+  border-width: 0;
+  margin: 0 0 0 35px;
+  transition: all .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  width: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.typeQuickSearch .searchInput:not(:focus) {
+  background-color: transparent;
+}
+
+.typeQuickSearch .searchInput:focus {
+  padding-right: 32px !important;
+  width: 200px;
+}
+
+.quickSearchIcon {
+  background-repeat: no-repeat;
+  height: 100%;
+  padding-right: 5px;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  z-index: 2;
+}
+
+.quickSearchIcon svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* Regular Styles */
 
 .main {
   composes: defaultStyles;
+}
+
+.main .searchInput {
   border-color: rgb(120, 142, 162);
   transition: 0.2s;
 }
 
-.main:focus {
+.main .searchInput:focus {
   border-color: rgb(105, 220, 210);
 }
 
-.main::placeholder {
+.main .searchInput::placeholder {
   color: rgba(120, 142, 162, 1);
   opacity: 1;
   transition: 0.2s;
 }
 
-.main:focus::placeholder {
+.main .searchInput:focus::placeholder {
   color: rgba(120, 142, 162, 0.4);
 }
-

@@ -8,6 +8,7 @@ import nanoid from 'nanoid';
 
 import 'docsearch.js/dist/cdn/docsearch.min.css';
 
+import Icon from '~core/Icon';
 import { getMainClasses } from '~utils/css';
 
 import {
@@ -42,7 +43,7 @@ type State = {|
 |};
 
 class Search extends Component<Props, State> {
-  static displayName = 'parts.Search';
+  static displayName = 'Search';
 
   state = {
     inputId: `searchInput${nanoid()}`,
@@ -69,14 +70,25 @@ class Search extends Component<Props, State> {
     } = this.props;
     const { inputId, isEnabled } = this.state;
     const placeholderText = formatMessage(MSG.placeholderText);
+    const isQuickSearch = appearance && appearance.type === 'quickSearch';
     return isEnabled ? (
-      <input
-        className={getMainClasses(appearance, styles)}
-        id={inputId}
-        type="text"
-        placeholder={placeholderText}
-        title={placeholderText}
-      />
+      <div className={getMainClasses(appearance, styles)}>
+        <input
+          className={styles.searchInput}
+          id={inputId}
+          type="text"
+          placeholder={placeholderText}
+          title={placeholderText}
+        />
+        {isQuickSearch && (
+          <Icon
+            className={styles.quickSearchIcon}
+            name="search"
+            title="search"
+            viewBox="0 0 25 25"
+          />
+        )}
+      </div>
     ) : null;
   }
 }
