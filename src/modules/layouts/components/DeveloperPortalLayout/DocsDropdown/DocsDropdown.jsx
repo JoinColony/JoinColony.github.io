@@ -40,7 +40,7 @@ const DocsDropdown = () => (
             className={styles.logo}
             name="logomark_colonyjs"
             title={MSG.heroTitle}
-            viewBox="0 0 94.292442 94.068138"
+            viewBox="0 0 94 94"
           />
         </div>
         <div className={styles.cta}>
