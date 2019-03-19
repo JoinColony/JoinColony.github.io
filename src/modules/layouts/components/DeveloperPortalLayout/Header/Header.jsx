@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Popover from '~core/Popover';
+import Search from '~core/Search';
 
 import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
 
@@ -85,6 +86,7 @@ const Header = () => (
         </nav>
         <div className={styles.searchContainer}>
           {/* @TODO: search component here */}
+          <Search appearance={{ theme: 'light', type: 'quickSearch' }} />
         </div>
       </div>
     </div>
