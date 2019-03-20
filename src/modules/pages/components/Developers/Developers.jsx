@@ -3,6 +3,7 @@ import React from 'react';
 
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 
+import CoreProducts from './CoreProducts';
 import Hero from './Hero';
 
 import styles from './Developers.module.css';
@@ -13,7 +14,7 @@ const Developers = () => (
   <DeveloperPortalLayout>
     <main className={styles.main}>
       <Hero />
-      <div className={styles.coreProductsContainer} />
+      <CoreProducts />
       <div className={styles.openSourceProductsContainer} />
       <div className={styles.supportCta} />
     </main>
