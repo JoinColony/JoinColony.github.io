@@ -1,0 +1,14 @@
+.bodyText {
+  font-family: 'Avenir Next Light';
+  font-size: 16px;
+}
+
+.heroFeatureText {
+  composes: bodyText;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.heroFeatureLink {
+  composes: bodyText;
+}
