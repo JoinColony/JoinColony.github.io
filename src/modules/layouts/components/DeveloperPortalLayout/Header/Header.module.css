@@ -51,7 +51,8 @@
   visibility: hidden;
 }
 
-.docsDropdownParent:hover .docsDropdownContainer {
+.docsDropdownParent:hover .docsDropdownContainer,
+.docsDropdownParent:focus-within .docsDropdownContainer {
   visibility: visible;
 }
 

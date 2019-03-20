@@ -10,7 +10,7 @@ import Button from '~core/Button';
 import Icon from '~core/Icon';
 import Image from '~core/Image';
 import Link from '~core/Link';
-import Search from '~parts/Search';
+import Search from '~core/Search';
 
 import styles from './Header.module.css';
 
