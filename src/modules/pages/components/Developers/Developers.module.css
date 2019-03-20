@@ -3,3 +3,30 @@
   height: 100%;
   width: 100%;
 }
+
+.heroContainer {
+  padding: 130px 0;
+}
+
+.heroContainer a {
+  color: #289BDC;
+}
+
+.heroTitle {
+  text-align: center;
+}
+
+.heroFeature {
+  display: flex;
+  justify-content: space-between;
+  margin: 100px auto 0;
+  max-width: 1000px;
+}
+
+.heroFeatureItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 43px;
+  max-width: 240px;
+}
