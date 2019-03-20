@@ -36,7 +36,7 @@ type Props = {|
   appearance?: Appearance,
   /** Injected by `injectIntl` */
   intl: IntlShape,
-  placeholderText?: MessageDescriptor | string,
+  placeholderText: MessageDescriptor | string,
   placeholderTextValues?: Object,
 |};
 
@@ -47,6 +47,10 @@ type State = {|
 
 class Search extends Component<Props, State> {
   inputRef: { current: null | HTMLInputElement };
+
+  static defaultProps = {
+    placeholderText: MSG.defaultPlaceholderText,
+  };
 
   static displayName = 'Search';
 
@@ -84,7 +88,7 @@ class Search extends Component<Props, State> {
     const {
       appearance,
       intl: { formatMessage },
-      placeholderText = MSG.defaultPlaceholderText,
+      placeholderText,
       placeholderTextValues,
     } = this.props;
     const { inputId, isEnabled } = this.state;
