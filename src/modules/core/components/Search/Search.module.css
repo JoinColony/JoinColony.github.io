@@ -67,7 +67,7 @@
   opacity: 0;
 }
 
-.typeQuickSearch .searchInput:focus {
+.typeQuickSearch:focus-within .searchInput {
   padding-right: 32px !important;
   width: 300px;
   opacity: 1;
