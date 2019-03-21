@@ -1,3 +1,8 @@
 /* @flow */
+import { createElement } from 'react';
 
-export { default } from '~pages/Developers';
+import Developers from '~pages/Developers';
+
+const DeveloperPortal = () => createElement(Developers);
+
+export default DeveloperPortal;
