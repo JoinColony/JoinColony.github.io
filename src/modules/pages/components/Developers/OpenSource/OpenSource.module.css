@@ -1,4 +1,6 @@
 .main {
+  margin: 0 auto;
+  max-width: 985px;
   padding: 40px 0;
 }
 
@@ -17,4 +19,16 @@
 
 .introSection {
   text-align: center;
+}
+
+.openSourceProductGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 90px;
+}
+
+.openSourceItem {
+  padding: 0 2.5%;
+  width: 45%;
 }
