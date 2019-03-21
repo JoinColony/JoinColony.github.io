@@ -12,7 +12,7 @@ const AssetFile = createNodeFactory(ASSET_FILE_TYPE, node => {
     `${node.sourceInstanceName}__${node.name}`
   )
   node.internal = {
-    type: 'File',
+    type: 'GitHubDocFile',
     contentDigest: node.meta.oid,
   }
   if (node.meta.content) {
