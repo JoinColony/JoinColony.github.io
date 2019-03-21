@@ -58,6 +58,10 @@
   color: #788CA0;
 }
 
+.themePrimary {
+  color: #289BDC;
+}
+
 /* Weights */
 .weightThin {
   font-family: 'Avenir Next Light';
