@@ -6,6 +6,10 @@
   color: #289BDC;
 }
 
+.main a:hover {
+  text-decoration: underline;
+}
+
 .heroTitle {
   text-align: center;
 }
