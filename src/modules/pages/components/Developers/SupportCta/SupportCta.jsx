@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
@@ -18,26 +19,33 @@ const MSG = defineMessages({
 const displayName = 'pages.Developers.SupportCta';
 
 const SupportCta = () => (
-  <div className={styles.main}>
-    <Heading
-      appearance={{
-        size: 'huge',
-        theme: 'primary',
-        weight: 'medium',
-      }}
-      text={MSG.sectionTitle}
-    />
-    <div className={styles.iconRow}>
-      {/* @TODO fix links */}
-      <Link className={styles.iconItemLink} href="/aslkdfjalf">
-        <Icon name="social_discourse" title="Discourse" />
-      </Link>
-      <Link className={styles.iconItemLink} href="/aslkdfjalf">
-        <Icon name="social_github" title="GitHub" />
-      </Link>
-      <Link className={styles.iconItemLink} href="/aslkdfjalf">
-        <Icon name="social_gitter_devPortal" title="Gitter" />
-      </Link>
+  <div
+    className={styles.main}
+    style={{
+      backgroundImage: `url(${withPrefix('/img/devPortal_pattern_bg.svg')})`,
+    }}
+  >
+    <div className={styles.contentWrapper}>
+      <Heading
+        appearance={{
+          size: 'huge',
+          theme: 'primary',
+          weight: 'medium',
+        }}
+        text={MSG.sectionTitle}
+      />
+      <div className={styles.iconRow}>
+        {/* @TODO fix links */}
+        <Link className={styles.iconItemLink} href="/aslkdfjalf">
+          <Icon name="social_discourse" title="Discourse" />
+        </Link>
+        <Link className={styles.iconItemLink} href="/aslkdfjalf">
+          <Icon name="social_github" title="GitHub" />
+        </Link>
+        <Link className={styles.iconItemLink} href="/aslkdfjalf">
+          <Icon name="social_gitter_devPortal" title="Gitter" />
+        </Link>
+      </div>
     </div>
   </div>
 );

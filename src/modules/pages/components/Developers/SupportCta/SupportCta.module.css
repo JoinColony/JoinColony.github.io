@@ -1,7 +1,14 @@
 .main {
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-size: cover;
+  margin-top: 132px;
+  padding: 0 0 214px;
+}
+
+.contentWrapper {
   margin: 0 auto;
   max-width: 561px;
-  padding: 36px 0 114px;
   text-align: center;
 }
 
