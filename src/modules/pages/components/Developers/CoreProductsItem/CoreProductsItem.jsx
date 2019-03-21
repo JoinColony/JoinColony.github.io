@@ -46,7 +46,7 @@ const CoreProductsItem = ({
         )}
       </p>
     </div>
-    <p className={styles}>
+    <p>
       <Link
         className={styles.itemLink}
         href={docsUrl}
