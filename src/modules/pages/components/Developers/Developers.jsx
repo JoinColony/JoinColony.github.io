@@ -6,6 +6,7 @@ import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import CoreProducts from './CoreProducts';
 import Hero from './Hero';
 import OpenSource from './OpenSource';
+import SupportCta from './SupportCta';
 
 import styles from './Developers.module.css';
 
@@ -17,7 +18,7 @@ const Developers = () => (
       <Hero />
       <CoreProducts />
       <OpenSource />
-      <div className={styles.supportCta} />
+      <SupportCta />
     </main>
   </DeveloperPortalLayout>
 );
