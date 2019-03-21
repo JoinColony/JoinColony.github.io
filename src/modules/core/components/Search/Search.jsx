@@ -3,7 +3,6 @@ import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 import React, { Component, createRef } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
-import docsearch from 'docsearch.js';
 import nanoid from 'nanoid';
 
 import 'docsearch.js/dist/cdn/docsearch.min.css';
@@ -68,10 +67,12 @@ class Search extends Component<Props, State> {
   componentDidMount() {
     if (typeof window !== 'undefined') {
       const { inputId } = this.state;
-      docsearch({
-        apiKey: docSearchApiKey,
-        indexName: docSearcIndexName,
-        inputSelector: `#${inputId}`,
+      import('docsearch.js').then(({ default: docsearch }) => {
+        docsearch({
+          apiKey: docSearchApiKey,
+          indexName: docSearcIndexName,
+          inputSelector: `#${inputId}`,
+        });
       });
     } else {
       this.setState({ isEnabled: false });
