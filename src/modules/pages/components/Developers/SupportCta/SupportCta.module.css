@@ -4,3 +4,18 @@
   padding: 36px 0 114px;
   text-align: center;
 }
+
+.iconRow {
+  padding-top: 25px;
+}
+
+.iconRow svg {
+  height: 44px;
+  width: 44px;
+  fill: #289BDC;
+  stroke: #289BDC;
+}
+
+.iconItemLink + .iconItemLink {
+  margin-left: 37px;
+}
