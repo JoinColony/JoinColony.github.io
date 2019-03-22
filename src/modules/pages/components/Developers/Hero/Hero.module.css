@@ -1,13 +1,19 @@
-.main {
-  padding: 130px 0;
-}
-
 .main a {
   color: #289BDC;
 }
 
 .main a:hover {
   text-decoration: underline;
+}
+
+.heroBackgroundImage {
+  position: absolute;
+  width: 100%;
+}
+
+.contentContainer {
+  padding: 130px 0;
+  position: relative;
 }
 
 .heroTitle {

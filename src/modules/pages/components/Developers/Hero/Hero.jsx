@@ -1,8 +1,10 @@
 /* @flow */
 import React from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
+import Image from '~core/Image';
 
 import HeroFeatureItem from '../HeroFeatureItem';
 
@@ -51,33 +53,41 @@ const displayName = 'pages.Developers.Hero';
 
 const Hero = () => (
   <div className={styles.main}>
-    <div className={styles.heroTitle}>
-      <Heading appearance={{ theme: 'invert' }} text={MSG.heroTitle} />
+    <div className={styles.heroBackgroundImage}>
+      <Image
+        alt={MSG.heroTitle}
+        src={withPrefix('img/devPortal_banner_bg.svg')}
+      />
     </div>
-    <div className={styles.heroFeature}>
-      <div className={styles.heroFeatureItem}>
-        <HeroFeatureItem
-          contentText={MSG.heroFeatureGetStartedText}
-          headingText={MSG.heroFeatureGetStartedTitle}
-          linkText={MSG.heroFeatureGetStartedLinkText}
-          linkUrl="/asf"
-        />
+    <div className={styles.contentContainer}>
+      <div className={styles.heroTitle}>
+        <Heading appearance={{ theme: 'invert' }} text={MSG.heroTitle} />
       </div>
-      <div className={styles.heroFeatureItem}>
-        <HeroFeatureItem
-          contentText={MSG.heroFeatureContributeText}
-          headingText={MSG.heroFeatureContributeTitle}
-          linkText="GitHub"
-          linkUrl="/asf"
-        />
-      </div>
-      <div className={styles.heroFeatureItem}>
-        <HeroFeatureItem
-          contentText={MSG.heroFeatureForumText}
-          headingText={MSG.heroFeatureForumTitle}
-          linkText="Discourse"
-          linkUrl="/asf"
-        />
+      <div className={styles.heroFeature}>
+        <div className={styles.heroFeatureItem}>
+          <HeroFeatureItem
+            contentText={MSG.heroFeatureGetStartedText}
+            headingText={MSG.heroFeatureGetStartedTitle}
+            linkText={MSG.heroFeatureGetStartedLinkText}
+            linkUrl="/asf"
+          />
+        </div>
+        <div className={styles.heroFeatureItem}>
+          <HeroFeatureItem
+            contentText={MSG.heroFeatureContributeText}
+            headingText={MSG.heroFeatureContributeTitle}
+            linkText="GitHub"
+            linkUrl="/asf"
+          />
+        </div>
+        <div className={styles.heroFeatureItem}>
+          <HeroFeatureItem
+            contentText={MSG.heroFeatureForumText}
+            headingText={MSG.heroFeatureForumTitle}
+            linkText="Discourse"
+            linkUrl="/asf"
+          />
+        </div>
       </div>
     </div>
   </div>
