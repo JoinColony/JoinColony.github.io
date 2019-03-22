@@ -71,7 +71,7 @@ const Footer = () => (
               headingText={MSG.navTitleGetStarted}
               menuItems={[
                 { href: '/tutorials', text: MSG.navLinkTutorials },
-                { href: '/support', text: MSG.navLinkSupport },
+                { href: 'https://build.colony.io/', text: MSG.navLinkSupport },
               ]}
             />
           </div>

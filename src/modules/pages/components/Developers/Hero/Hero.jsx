@@ -77,7 +77,7 @@ const Hero = () => (
             contentText={MSG.heroFeatureContributeText}
             headingText={MSG.heroFeatureContributeTitle}
             linkText="GitHub"
-            linkUrl="/asf"
+            linkUrl="https://github.com/JoinColony"
           />
         </div>
         <div className={styles.heroFeatureItem}>
@@ -85,7 +85,7 @@ const Hero = () => (
             contentText={MSG.heroFeatureForumText}
             headingText={MSG.heroFeatureForumTitle}
             linkText="Discourse"
-            linkUrl="/asf"
+            linkUrl="https://build.colony.io/"
           />
         </div>
       </div>

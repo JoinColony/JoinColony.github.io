@@ -35,14 +35,19 @@ const SupportCta = () => (
         text={MSG.sectionTitle}
       />
       <div className={styles.iconRow}>
-        {/* @TODO fix links */}
-        <Link className={styles.iconItemLink} href="/aslkdfjalf">
+        <Link className={styles.iconItemLink} href="https://build.colony.io/">
           <Icon name="social_discourse" title="Discourse" />
         </Link>
-        <Link className={styles.iconItemLink} href="/aslkdfjalf">
+        <Link
+          className={styles.iconItemLink}
+          href="https://github.com/JoinColony"
+        >
           <Icon name="social_github" title="GitHub" />
         </Link>
-        <Link className={styles.iconItemLink} href="/aslkdfjalf">
+        <Link
+          className={styles.iconItemLink}
+          href="https://gitter.im/JoinColony/colonyJS"
+        >
           <Icon name="social_gitter_devPortal" title="Gitter" />
         </Link>
       </div>
