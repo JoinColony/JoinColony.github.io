@@ -29,7 +29,12 @@ const CoreProductsItem = ({
   <>
     <div>
       <div className={styles.imageContainer}>
-        <Image alt={name} project={name} src={logoSmall} />
+        <Image
+          alt={name}
+          className={styles.image}
+          project={name}
+          src={logoSmall}
+        />
       </div>
       <Heading
         appearance={{ theme: 'invert', size: 'medium', weight: 'medium' }}

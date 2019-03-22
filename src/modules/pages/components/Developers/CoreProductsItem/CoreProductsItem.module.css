@@ -1,3 +1,19 @@
+.imageContainer {
+  align-items: center;
+  background-color: #00284B;
+  display: flex;
+  height: 180px;
+  justify-content: center;
+  margin-bottom: 64px;
+  width: 100%;
+}
+
+.image {
+  height: 58px;
+  margin: 0;
+  width: auto;
+}
+
 .itemLink + .itemLink {
   margin-left: 25px;
 }
