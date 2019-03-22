@@ -16,13 +16,13 @@ const prefixDefaultLangKey = false;
 
 const sourcePlugins = {
   development: [
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'colonyNetwork',
-        path: path.resolve(__dirname, '..', 'colonyNetwork', 'docs'),
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'budgetBox',
+    //     path: path.resolve(__dirname, '..', 'budgetBox', 'docs'),
+    //   },
+    // },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -33,10 +33,24 @@ const sourcePlugins = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'colonyNetwork',
+        path: path.resolve(__dirname, '..', 'colonyNetwork', 'docs'),
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: 'colonyStarter',
         path: path.resolve(__dirname, '..', 'colonyStarter', 'docs'),
       },
     },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'pinion',
+    //     path: path.resolve(__dirname, '..', 'pinion', 'docs'),
+    //   },
+    // },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -44,6 +58,13 @@ const sourcePlugins = {
         path: path.resolve(__dirname, '..', 'purser', 'docs'),
       },
     },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'solcover',
+    //     path: path.resolve(__dirname, '..', 'solcover', 'docs'),
+    //   },
+    // },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -51,12 +72,25 @@ const sourcePlugins = {
         path: path.resolve(__dirname, '..', 'tailor', 'docs'),
       },
     },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'trufflepig',
+    //     path: path.resolve(__dirname, '..', 'trufflepig', 'docs'),
+    //   },
+    // },
   ],
   production: [{
     resolve: 'gatsby-source-github-docs',
     options: {
       githubAccessToken: process.env.DOCS_GITHUB_TOKEN,
       projects: [
+        // {
+        //   owner: 'JoinColony',
+        //   repo: 'budgetBox',
+        //   expression: 'master:docs/',
+        //   name: 'budgetBox',
+        // },
         {
           owner: 'JoinColony',
           repo: 'colonyNetwork',
@@ -75,18 +109,36 @@ const sourcePlugins = {
           expression: 'master:docs/',
           name: 'colonyStarter',
         },
+        // {
+        //   owner: 'JoinColony',
+        //   repo: 'pinion',
+        //   expression: 'master:docs/',
+        //   name: 'pinion',
+        // },
         {
           owner: 'JoinColony',
           repo: 'purser',
           expression: 'master:docs/',
           name: 'purser',
         },
+        // {
+        //   owner: 'JoinColony',
+        //   repo: 'solcover',
+        //   expression: 'master:docs/',
+        //   name: 'solcover',
+        // },
         {
           owner: 'JoinColony',
           repo: 'tailor',
           expression: 'master:docs/',
           name: 'tailor',
         },
+        // {
+        //   owner: 'JoinColony',
+        //   repo: 'trufflepig',
+        //   expression: 'master:docs/',
+        //   name: 'trufflepig',
+        // },
       ],
     },
   }],
