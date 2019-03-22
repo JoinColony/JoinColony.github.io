@@ -91,6 +91,56 @@ export const coreProjectsFragment = graphql`
   }
 `;
 
+export const openSourceProjectsFragment = graphql`
+  fragment openSourceProjectsFragment on Query {
+    projects: allProject(
+      filter: {
+        name: {
+          in: [
+            "budgetBox"
+            "tailor"
+            "pinion"
+            "trufflepig"
+            "purser"
+            "solcover"
+          ]
+        }
+      }
+    ) {
+      edges {
+        node {
+          slug
+          name
+          description
+          logo
+          logoSmall
+          sectionOrder
+          sectionTranslations {
+            locale
+            sectionOrder
+          }
+          sections {
+            name
+            slug
+            docs {
+              slug
+              fields {
+                locale
+                slug
+              }
+              frontmatter {
+                title
+                order
+                section
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const singleProjectFragment = graphql`
   fragment singleProjectFragment on Query {
     project(name: { eq: $projectName }) {
