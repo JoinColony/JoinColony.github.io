@@ -1,6 +1,6 @@
 .main {
   margin: 0 auto;
-  max-width: 985px;
+  max-width: 1035px;
   padding: 40px 0;
 }
 
@@ -28,6 +28,6 @@
 }
 
 .openSourceItem {
-  padding: 86px 2.5% 0;
+  padding: 86px 0 0;
   width: 45%;
 }

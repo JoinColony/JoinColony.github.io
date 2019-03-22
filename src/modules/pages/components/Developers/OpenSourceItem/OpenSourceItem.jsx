@@ -1,10 +1,11 @@
 /* @flow */
-import type { MessageDescriptor } from 'react-intl';
-
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
+
+import type { Project } from '~types';
 
 import Heading from '~core/Heading';
+import Image from '~core/Image';
 import Link from '~core/Link';
 
 import styles from './OpenSourceItem.module.css';
@@ -17,46 +18,53 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  docsUrl: string,
-  githubUrl: string,
-  headingText: string,
-  textContent: MessageDescriptor | string,
+  project: Project,
 |};
 
 const displayName = 'pages.Developers.OpenSourceItem';
 
 const OpenSourceItem = ({
-  docsUrl,
-  githubUrl,
-  headingText,
-  textContent,
+  project: { description, entryPoint, logoSmall, name },
 }: Props) => (
-  <>
-    <div className={styles.imageContainer}>{/* @TODO add image */}</div>
-    <div className={styles.contentContainer}>
-      <Heading
-        appearance={{ size: 'medium', theme: 'invert', weight: 'medium' }}
-        text={headingText}
+  <div className={styles.main}>
+    <div className={styles.imageContainer}>
+      <Image
+        alt={name}
+        className={styles.image}
+        project={name}
+        src={logoSmall}
       />
-      <p>
-        {typeof textContent === 'string' ? (
-          textContent
-        ) : (
-          <FormattedMessage {...textContent} />
-        )}
-      </p>
-      <p>
-        <Link
-          className={styles.itemLink}
-          href={docsUrl}
-          text={MSG.docsLinkText}
-        />
-        <Link className={styles.itemLink} href={githubUrl}>
-          GitHub <span className={styles.linkArrow}>&rarr;</span>
-        </Link>
-      </p>
     </div>
-  </>
+    <div className={styles.contentContainer}>
+      <div>
+        <Heading
+          appearance={{
+            margin: 'none',
+            size: 'medium',
+            theme: 'invert',
+            weight: 'medium',
+          }}
+          text={name}
+        />
+        <div className={styles.description}>
+          <p>{description}</p>
+        </div>
+      </div>
+      <div>
+        <p>
+          <Link
+            className={styles.itemLink}
+            href={entryPoint}
+            text={MSG.docsLinkText}
+          />
+          {/* @TODO fix url */}
+          <Link className={styles.itemLink} href="/">
+            GitHub <span className={styles.linkArrow}>&rarr;</span>
+          </Link>
+        </p>
+      </div>
+    </div>
+  </div>
 );
 
 OpenSourceItem.displayName = displayName;
