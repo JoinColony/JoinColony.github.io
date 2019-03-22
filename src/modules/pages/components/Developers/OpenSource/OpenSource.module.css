@@ -25,10 +25,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 90px;
 }
 
 .openSourceItem {
-  padding: 0 2.5%;
+  padding: 86px 2.5% 0;
   width: 45%;
 }
