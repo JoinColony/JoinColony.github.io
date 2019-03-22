@@ -3,7 +3,6 @@ import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 import React, { Component, createRef } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
-import nanoid from 'nanoid';
 
 import 'docsearch.js/dist/cdn/docsearch.min.css';
 
@@ -33,6 +32,8 @@ type Appearance = {|
 
 type Props = {|
   appearance?: Appearance,
+  /** Required by `docsearch`, can't be dynamic because of static build process */
+  inputId: string,
   /** Injected by `injectIntl` */
   intl: IntlShape,
   placeholderText: MessageDescriptor | string,
@@ -40,7 +41,6 @@ type Props = {|
 |};
 
 type State = {|
-  inputId: string,
   isEnabled: boolean,
 |};
 
@@ -60,13 +60,12 @@ class Search extends Component<Props, State> {
   }
 
   state = {
-    inputId: `searchInput${nanoid()}`,
     isEnabled: true,
   };
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
-      const { inputId } = this.state;
+      const { inputId } = this.props;
       import('docsearch.js').then(({ default: docsearch }) => {
         docsearch({
           apiKey: docSearchApiKey,
@@ -88,11 +87,12 @@ class Search extends Component<Props, State> {
   render() {
     const {
       appearance,
+      inputId,
       intl: { formatMessage },
       placeholderText,
       placeholderTextValues,
     } = this.props;
-    const { inputId, isEnabled } = this.state;
+    const { isEnabled } = this.state;
     const placeholderTextContent =
       typeof placeholderText === 'string'
         ? placeholderText

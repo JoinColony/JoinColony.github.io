@@ -200,7 +200,7 @@ class Header extends React.Component<Props, State> {
                   </li>
                 </ul>
                 <div className={styles.searchContainer}>
-                  <Search />
+                  <Search inputId="mainLayoutHeaderSearch" />
                 </div>
               </div>
               <Button
