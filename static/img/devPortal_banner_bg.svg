@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1083">
+  <linearGradient id="SVGID_1_" x1="830.16" x2="1635.2" y1="1139.8201" y2="1139.8201" gradientTransform="matrix(1 0 0 -1 0 1082)" gradientUnits="userSpaceOnUse">
+    <stop id="stop163" offset="0" stop-color="#00284b"/>
+    <stop id="stop165" offset=".18" stop-color="#042b4e"/>
+    <stop id="stop167" offset=".36" stop-color="#103657"/>
+    <stop id="stop169" offset=".55" stop-color="#254766"/>
+    <stop id="stop171" offset=".73" stop-color="#415f7a"/>
+    <stop id="stop173" offset=".92" stop-color="#657e95"/>
+    <stop id="stop175" offset="1" stop-color="#788ea2"/>
+  </linearGradient>
+  <path id="circle178" fill="url(#SVGID_1_)" d="M1332.3-57.799999A402.5 402.5 0 0 1 929.79999 344.7a402.5 402.5 0 0 1-402.5-402.499999A402.5 402.5 0 0 1 929.79999-460.3 402.5 402.5 0 0 1 1332.3-57.799999z"/>
+  <radialGradient id="SVGID_2_" cx="934.5461" cy="-61.6998" r="956.4889" gradientUnits="userSpaceOnUse">
+    <stop id="stop180" offset=".24" stop-color="#557088"/>
+    <stop id="stop182" offset=".4151" stop-color="#536e87"/>
+    <stop id="stop184" offset=".4807" stop-color="#4c6982"/>
+    <stop id="stop186" offset=".528" stop-color="#405e79"/>
+    <stop id="stop188" offset=".5661" stop-color="#2f506d"/>
+    <stop id="stop190" offset=".58" stop-color="#274967"/>
+    <stop id="stop192" offset=".85" stop-color="#0b3153"/>
+    <stop id="stop194" offset="1" stop-color="#00284b"/>
+  </radialGradient>
+  <path id="path197" fill="url(#SVGID_2_)" d="M310.5 499.9h549.1V1049H310.5V499.9zm723.2 152.7l336.5-336.5 336.5 336.5-336.5 336.5-336.5-336.5zM1.5-148.4L-372 225.1l372 372 1.5 1.5L375 225.1 1.5-148.4z"/>
+  <path id="polygon199" fill="none" d="M1439 0v809.5H0V597.1l1.5 1.6 373.6-373.6L150 0z"/>
+</svg>
