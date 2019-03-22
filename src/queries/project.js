@@ -52,6 +52,45 @@ export const allProjectsFragment = graphql`
   }
 `;
 
+export const coreProjectsFragment = graphql`
+  fragment coreProjectsFragment on Query {
+    projects: allProject(
+      filter: { name: { in: ["colonyJS", "colonyNetwork", "colonyStarter"] } }
+    ) {
+      edges {
+        node {
+          slug
+          name
+          description
+          logo
+          logoSmall
+          sectionOrder
+          sectionTranslations {
+            locale
+            sectionOrder
+          }
+          sections {
+            name
+            slug
+            docs {
+              slug
+              fields {
+                locale
+                slug
+              }
+              frontmatter {
+                title
+                order
+                section
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const singleProjectFragment = graphql`
   fragment singleProjectFragment on Query {
     project(name: { eq: $projectName }) {

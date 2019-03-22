@@ -1,10 +1,11 @@
 /* @flow */
-import type { MessageDescriptor } from 'react-intl';
-
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
+
+import type { Project } from '~types';
 
 import Heading from '~core/Heading';
+import Image from '~core/Image';
 import Link from '~core/Link';
 
 import styles from './CoreProductsItem.module.css';
@@ -17,42 +18,33 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  contentText: MessageDescriptor | string,
-  titleText: string,
-  docsUrl: string,
-  githubUrl: string,
+  project: Project,
 |};
 
 const displayName = 'pages.Developers.CoreProductsItem';
 
 const CoreProductsItem = ({
-  contentText,
-  docsUrl,
-  githubUrl,
-  titleText,
+  project: { description, entryPoint, logoSmall, name },
 }: Props) => (
   <>
     <div>
-      {/* @TODO image here */}
+      <div className={styles.imageContainer}>
+        <Image alt={name} project={name} src={logoSmall} />
+      </div>
       <Heading
         appearance={{ theme: 'invert', size: 'medium', weight: 'medium' }}
-        text={titleText}
+        text={name}
       />
-      <p>
-        {typeof contentText === 'string' ? (
-          contentText
-        ) : (
-          <FormattedMessage {...contentText} />
-        )}
-      </p>
+      <p>{description}</p>
     </div>
     <p>
       <Link
         className={styles.itemLink}
-        href={docsUrl}
+        href={entryPoint}
         text={MSG.docsLinkText}
       />
-      <Link className={styles.itemLink} href={githubUrl}>
+      {/* @TODO get github url */}
+      <Link className={styles.itemLink} href="/">
         GitHub <span className={styles.linkArrow}>&rarr;</span>
       </Link>
     </p>

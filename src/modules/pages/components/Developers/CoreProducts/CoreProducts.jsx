@@ -1,8 +1,14 @@
 /* @flow */
+import type { IntlShape } from 'react-intl';
+
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { useStaticQuery, graphql } from 'gatsby';
+
+import type { Project } from '~types';
 
 import Heading from '~core/Heading';
+import { transformProjectData } from '~utils/docs';
 
 import CoreProductsItem from '../CoreProductsItem';
 
@@ -39,51 +45,53 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  /** Injected via `injectIntl` */
+  intl: IntlShape,
+|};
+
 const displayName = 'pages.Developers.CoreProducts';
 
-const CoreProducts = () => (
-  <div className={styles.main}>
-    <div className={styles.gradientWrapper}>
-      <div className={styles.sectionIntroContent}>
-        <Heading appearance={{ theme: 'invert' }} text={MSG.sectionTitle} />
-        <p>
-          <FormattedMessage {...MSG.sectionText} />
-        </p>
-      </div>
-      {/* @TODO StaticQuery for projects here? */}
-      <div className={styles.coreProductsRow}>
-        <div className={styles.coreProductsItem}>
-          <CoreProductsItem
-            contentText={MSG.colonyJsDescription}
-            // @TODO correct links
-            docsUrl="/docs/something"
-            githubUrl="/another/github"
-            titleText="colonyJS"
-          />
+const CoreProducts = ({ intl: { locale } }: Props) => {
+  const projectQueryData = useStaticQuery(graphql`
+    {
+      ...coreProjectsFragment
+    }
+  `);
+
+  const projects: Array<Project> = projectQueryData.projects.edges
+    .map(projectEdge => transformProjectData(projectEdge, locale))
+    // Order the projects alphabetically
+    .sort(({ name: nameARaw }, { name: nameBRaw }) => {
+      const nameA = nameARaw.toLowerCase();
+      const nameB = nameBRaw.toLowerCase();
+      if (nameA === nameB) {
+        return 0;
+      }
+      return nameA < nameB ? -1 : 1;
+    });
+
+  return (
+    <div className={styles.main}>
+      <div className={styles.gradientWrapper}>
+        <div className={styles.sectionIntroContent}>
+          <Heading appearance={{ theme: 'invert' }} text={MSG.sectionTitle} />
+          <p>
+            <FormattedMessage {...MSG.sectionText} />
+          </p>
         </div>
-        <div className={styles.coreProductsItem}>
-          <CoreProductsItem
-            contentText={MSG.colonyNetworkDescription}
-            // @TODO correct links
-            docsUrl="/docs/something"
-            githubUrl="/another/github"
-            titleText="colonyNetwork"
-          />
-        </div>
-        <div className={styles.coreProductsItem}>
-          <CoreProductsItem
-            contentText={MSG.colonyStarterDescription}
-            // @TODO correct links
-            docsUrl="/docs/something"
-            githubUrl="/another/github"
-            titleText="colonyStarter"
-          />
+        <div className={styles.coreProductsRow}>
+          {projects.map(project => (
+            <div className={styles.coreProductsItem} key={project.name}>
+              <CoreProductsItem project={project} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 CoreProducts.displayName = displayName;
 
-export default CoreProducts;
+export default injectIntl(CoreProducts);
