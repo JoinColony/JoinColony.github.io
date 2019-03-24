@@ -3,11 +3,11 @@ import type { Node } from 'react';
 import type { RouteProps } from '@reach/router';
 import type { $npm$ReactIntl$LocaleData } from 'react-intl';
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
-import { StaticQuery, graphql, withPrefix } from 'gatsby';
+import { graphql, useStaticQuery, withPrefix } from 'gatsby';
 
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
@@ -113,43 +113,39 @@ const GlobalLayout = ({ children, location }: Props) => {
   const potentialLocale = location && location.pathname.split('/')[1];
   const locale = getLocaleString(potentialLocale);
   const messages: LocaleMessage = getMessagesForLocale(locale);
-  return (
-    <StaticQuery
-      query={graphql`
-        query {
-          files: allFile {
-            edges {
-              node {
-                sourceInstanceName
-                relativePath
-                publicURL
-              }
-            }
+  const data = useStaticQuery(graphql`
+    query {
+      files: allFile {
+        edges {
+          node {
+            sourceInstanceName
+            relativePath
+            publicURL
           }
         }
-      `}
-      render={data => (
-        <Fragment>
-          <Helmet>
-            <link
-              rel="shortcut icon"
-              type="image/png"
-              href={withPrefix('/img/favicon.ico')}
-            />
-            <script src={withPrefix('/js/fontloader.js')} />
-          </Helmet>
-          <FileContext.Provider value={getFileMapping(data.files.edges)}>
-            <IntlProvider
-              locale={locale}
-              defaultLocale={DEFAULT_LOCALE}
-              messages={messages}
-            >
-              {children}
-            </IntlProvider>
-          </FileContext.Provider>
-        </Fragment>
-      )}
-    />
+      }
+    }
+  `);
+  return (
+    <>
+      <Helmet>
+        <link
+          rel="shortcut icon"
+          type="image/png"
+          href={withPrefix('/img/favicon.ico')}
+        />
+        <script src={withPrefix('/js/fontloader.js')} />
+      </Helmet>
+      <FileContext.Provider value={getFileMapping(data.files.edges)}>
+        <IntlProvider
+          locale={locale}
+          defaultLocale={DEFAULT_LOCALE}
+          messages={messages}
+        >
+          {children}
+        </IntlProvider>
+      </FileContext.Provider>
+    </>
   );
 };
 
