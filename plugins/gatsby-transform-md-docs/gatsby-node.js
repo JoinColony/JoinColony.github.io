@@ -1,6 +1,7 @@
 const path = require('path')
 const slugify = require('slugify')
 const { ProjectNode, SectionNode } = require('./nodes')
+const { GraphQLList, GraphQLObjectType, GraphQLString } = require('gatsby/graphql');
 
 const nodeQuery = `
   {
@@ -243,4 +244,38 @@ function addChildNode(parent, child, name) {
 
 function getTemplatePath(file) {
   return path.resolve(__dirname, '..', '..', 'src', 'modules', 'templates', 'components', file)
+}
+
+const DescriptionTranslationType = new GraphQLObjectType({
+  name: 'DescriptionTranslation',
+  fields: {
+    locale: { type: GraphQLString },
+    description: { type: GraphQLString },
+  },
+});
+
+const SectionTranslationType = new GraphQLObjectType({
+  name: 'SectionTranslation',
+  fields: {
+    locale: { type: GraphQLString },
+    sectionOrder: { type: new GraphQLList(GraphQLString) }
+  },
+});
+
+exports.setFieldsOnGraphQLNodeType = ({
+  type
+}) => {
+  if (type.name === 'Project') {
+    return {
+      descriptionTranslations: {
+        type: new GraphQLList(DescriptionTranslationType),
+        description: 'Add project description translations.',
+      },
+      sectionTranslations: {
+        type: new GraphQLList(SectionTranslationType),
+        description: 'Add section order for other locales for each project.',
+      },
+    };
+  }
+  return {};
 }
