@@ -61,7 +61,10 @@ const Hero = () => (
     </div>
     <div className={styles.contentContainer}>
       <div className={styles.heroTitle}>
-        <Heading appearance={{ theme: 'invert' }} text={MSG.heroTitle} />
+        <Heading
+          appearance={{ theme: 'invert', weight: 'medium' }}
+          text={MSG.heroTitle}
+        />
       </div>
       <div className={styles.heroFeature}>
         <div className={styles.heroFeatureItem}>
