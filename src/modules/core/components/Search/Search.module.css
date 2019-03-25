@@ -56,7 +56,7 @@
 .typeQuickSearch .searchInput {
   border-width: 0;
   margin: 0 0 0 35px;
-  transition: all .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  transition: all .4s cubic-bezier(0.000, 0.795, 0.495, 1.000);
   width: 0;
   right: 0;
   position: absolute;
@@ -104,10 +104,11 @@
 
 .main .searchInput::placeholder {
   color: rgba(120, 142, 162, 1);
-  opacity: 1;
+  opacity: 0;
   transition: 0.2s;
 }
 
 .main .searchInput:focus::placeholder {
   color: rgba(120, 142, 162, 0.4);
+  opacity: 1;
 }
