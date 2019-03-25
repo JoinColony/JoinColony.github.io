@@ -8,7 +8,7 @@ module.exports = async ({
   getNodeAndSavePathDependency,
   pathPrefix = '',
 }) => {
-  if (type.name !== 'GitHubDocFile') {
+  if (type.name !== 'File') {
     return {}
   }
   return {
