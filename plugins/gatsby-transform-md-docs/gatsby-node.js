@@ -112,6 +112,9 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       addChildNode(projectNode, sectionNode, 'sections')
     }
 
+    if (!node.frontmatter.locale) {
+      node.frontmatter.locale = defaultLangKey;
+    }
     const nodeLocale = node.frontmatter.locale;
     const localeSlugPrefix = !!nodeLocale ? `${nodeLocale}/` : prefixDefaultLangKey ? `${defaultLangKey}/` : '';
     // Add a slug as the TOC creation requires that (for linking)
