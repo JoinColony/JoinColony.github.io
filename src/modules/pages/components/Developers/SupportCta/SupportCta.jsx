@@ -28,7 +28,7 @@ const SupportCta = () => (
     <div className={styles.contentWrapper}>
       <Heading
         appearance={{
-          size: 'huge',
+          size: 'large',
           theme: 'primary',
           weight: 'medium',
         }}

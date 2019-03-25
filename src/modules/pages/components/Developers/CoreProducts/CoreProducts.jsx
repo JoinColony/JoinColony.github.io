@@ -58,7 +58,7 @@ const CoreProducts = ({ intl: { locale } }: Props) => {
       <div className={styles.gradientWrapper}>
         <div className={styles.sectionIntroContent}>
           <Heading
-            appearance={{ theme: 'invert', weight: 'medium' }}
+            appearance={{ size: 'large', theme: 'invert', weight: 'medium' }}
             text={MSG.sectionTitle}
           />
           <p>

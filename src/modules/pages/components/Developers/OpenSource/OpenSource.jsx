@@ -60,7 +60,12 @@ const OpenSource = ({ intl: { locale } }: Props) => {
     <div className={styles.main}>
       <div className={styles.introSection}>
         <Heading
-          appearance={{ margin: 'double', theme: 'invert', weight: 'medium' }}
+          appearance={{
+            margin: 'double',
+            size: 'large',
+            theme: 'invert',
+            weight: 'medium',
+          }}
           text={MSG.sectionIntroTitle}
         />
         <p>
