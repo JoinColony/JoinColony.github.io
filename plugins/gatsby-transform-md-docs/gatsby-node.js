@@ -116,7 +116,7 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       node.frontmatter.locale = defaultLangKey;
     }
     const nodeLocale = node.frontmatter.locale;
-    const localeSlugPrefix = !!nodeLocale ? `${nodeLocale}/` : prefixDefaultLangKey ? `${defaultLangKey}/` : '';
+    const localeSlugPrefix = nodeLocale === defaultLangKey && !prefixDefaultLangKey ? '' : `${nodeLocale}/`;
     // Add a slug as the TOC creation requires that (for linking)
     node.slug = slugify(node.frontmatter.title, { lower: true })
     // Slug for the actual page
