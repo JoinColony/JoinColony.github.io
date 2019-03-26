@@ -36,13 +36,13 @@ const SupportCta = () => (
       />
       <div className={styles.iconRow}>
         <Link className={styles.iconItemLink} href="https://build.colony.io/">
-          <Icon name="social_discourse" title="Discourse" />
+          <Icon name="social_discourse_devPortal" title="Discourse" />
         </Link>
         <Link
           className={styles.iconItemLink}
           href="https://github.com/JoinColony"
         >
-          <Icon name="social_github" title="GitHub" />
+          <Icon name="social_github_devPortal" title="GitHub" />
         </Link>
         <Link
           className={styles.iconItemLink}
