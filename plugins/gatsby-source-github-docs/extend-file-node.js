@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const { GraphQLString } = require('graphql/graphql')
+const { GraphQLString } = require('gatsby/graphql')
 const rp = require('request-promise-native')
 
 module.exports = async ({

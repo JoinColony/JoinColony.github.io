@@ -1,5 +1,5 @@
 const createNodeHelpers = require('gatsby-node-helpers').default
-const { getContentDigest } = require('~utils')
+const { getContentDigest } = require('../utils')
 
 const { createNodeFactory, generateNodeId } = createNodeHelpers({
   typePrefix: 'Docs',

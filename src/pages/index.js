@@ -1,3 +1,8 @@
 /* @flow */
+import { createElement } from 'react';
 
-export { default } from '~pages/HomePage';
+import HomePage from '~pages/HomePage';
+
+const Home = () => createElement(HomePage);
+
+export default Home;

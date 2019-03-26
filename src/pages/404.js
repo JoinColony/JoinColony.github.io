@@ -1,3 +1,8 @@
 /* @flow */
+import { createElement } from 'react';
 
-export { default } from '~pages/404';
+import NotFoundPage from '~pages/404';
+
+const NotFound = () => createElement(NotFoundPage);
+
+export default NotFound;

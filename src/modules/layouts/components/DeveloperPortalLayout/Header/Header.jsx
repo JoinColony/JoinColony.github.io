@@ -87,7 +87,10 @@ const Header = () => (
           />
         </nav>
         <div className={styles.searchContainer}>
-          <Search appearance={{ theme: 'light', type: 'quickSearch' }} />
+          <Search
+            appearance={{ theme: 'light', type: 'quickSearch' }}
+            inputId="devPortalLayoutHeaderSearch"
+          />
         </div>
       </div>
     </div>

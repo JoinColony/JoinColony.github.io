@@ -1,6 +1,7 @@
 const path = require('path')
 const slugify = require('slugify')
 const { ProjectNode, SectionNode } = require('./nodes')
+const { GraphQLList, GraphQLObjectType, GraphQLString } = require('gatsby/graphql');
 
 const nodeQuery = `
   {
@@ -111,8 +112,11 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
       addChildNode(projectNode, sectionNode, 'sections')
     }
 
+    if (!node.frontmatter.locale) {
+      node.frontmatter.locale = defaultLangKey;
+    }
     const nodeLocale = node.frontmatter.locale;
-    const localeSlugPrefix = !!nodeLocale ? `${nodeLocale}/` : prefixDefaultLangKey ? `${defaultLangKey}/` : '';
+    const localeSlugPrefix = nodeLocale === defaultLangKey && !prefixDefaultLangKey ? '' : `${nodeLocale}/`;
     // Add a slug as the TOC creation requires that (for linking)
     node.slug = slugify(node.frontmatter.title, { lower: true })
     // Slug for the actual page
@@ -243,4 +247,38 @@ function addChildNode(parent, child, name) {
 
 function getTemplatePath(file) {
   return path.resolve(__dirname, '..', '..', 'src', 'modules', 'templates', 'components', file)
+}
+
+const DescriptionTranslationType = new GraphQLObjectType({
+  name: 'DescriptionTranslation',
+  fields: {
+    locale: { type: GraphQLString },
+    description: { type: GraphQLString },
+  },
+});
+
+const SectionTranslationType = new GraphQLObjectType({
+  name: 'SectionTranslation',
+  fields: {
+    locale: { type: GraphQLString },
+    sectionOrder: { type: new GraphQLList(GraphQLString) }
+  },
+});
+
+exports.setFieldsOnGraphQLNodeType = ({
+  type
+}) => {
+  if (type.name === 'Project') {
+    return {
+      descriptionTranslations: {
+        type: new GraphQLList(DescriptionTranslationType),
+        description: 'Add project description translations.',
+      },
+      sectionTranslations: {
+        type: new GraphQLList(SectionTranslationType),
+        description: 'Add section order for other locales for each project.',
+      },
+    };
+  }
+  return {};
 }
