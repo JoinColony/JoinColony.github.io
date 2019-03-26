@@ -41,7 +41,7 @@ const CoreProducts = ({ intl: { locale } }: Props) => {
     }
   `);
 
-  const projects: Array<Project> = projectQueryData.projects.edges
+  const projects: Array<Project> = projectQueryData.coreProjects.edges
     .map(projectEdge => transformProjectData(projectEdge, locale))
     // Order the projects alphabetically
     .sort(({ name: nameARaw }, { name: nameBRaw }) => {

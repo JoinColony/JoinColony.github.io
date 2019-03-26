@@ -54,7 +54,7 @@ export const allProjectsFragment = graphql`
 
 export const coreProjectsFragment = graphql`
   fragment coreProjectsFragment on Query {
-    projects: allProject(
+    coreProjects: allProject(
       filter: { name: { in: ["colonyJS", "colonyNetwork", "colonyStarter"] } }
     ) {
       edges {
@@ -93,7 +93,7 @@ export const coreProjectsFragment = graphql`
 
 export const openSourceProjectsFragment = graphql`
   fragment openSourceProjectsFragment on Query {
-    projects: allProject(
+    openSourceProjects: allProject(
       filter: {
         name: {
           in: [

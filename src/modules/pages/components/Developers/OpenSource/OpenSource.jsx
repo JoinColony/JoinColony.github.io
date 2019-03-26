@@ -48,7 +48,7 @@ const OpenSource = ({ intl: { locale } }: Props) => {
     }
   `);
 
-  const projects: Array<Project> = projectQueryData.projects.edges
+  const projects: Array<Project> = projectQueryData.openSourceProjects.edges
     .map(edge => transformProjectData(edge, locale))
     // Sort projects by order defined in above array
     .sort(
