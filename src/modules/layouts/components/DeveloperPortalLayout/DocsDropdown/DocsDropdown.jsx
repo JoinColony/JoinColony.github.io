@@ -45,13 +45,14 @@ const displayName = 'layouts.DeveloperPortalLayout.DocsDropdown';
 const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
   const coreProjectsLinks = coreProjects.map(getProjectLinks);
   const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
-  const colonyJSProject = coreProjects.find(({ name }) => name === 'colonyJS');
+  const featureProject = coreProjects.find(({ name }) => name === 'colonyJS');
   return (
     <div className={styles.main}>
-      {colonyJSProject && (
-        <Link className={styles.heroLink} href={colonyJSProject.entryPoint}>
+      {featureProject && (
+        <Link className={styles.heroLink} href={featureProject.entryPoint}>
           <div className={styles.hero}>
             <div className={styles.logoContainer}>
+              {/* @TODO use logomark from GitHub docs once added there */}
               <Icon
                 className={styles.logo}
                 name="logomark_colonyjs"
