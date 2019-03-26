@@ -66,13 +66,15 @@ class Search extends Component<Props, State> {
   componentDidMount() {
     if (typeof window !== 'undefined') {
       const { inputId } = this.props;
-      import('docsearch.js').then(({ default: docsearch }) => {
-        docsearch({
-          apiKey: docSearchApiKey,
-          indexName: docSearcIndexName,
-          inputSelector: `#${inputId}`,
-        });
-      });
+      import(/* webpackChunkName: "docSearch" */ 'docsearch.js').then(
+        ({ default: docsearch }) => {
+          docsearch({
+            apiKey: docSearchApiKey,
+            indexName: docSearcIndexName,
+            inputSelector: `#${inputId}`,
+          });
+        },
+      );
     } else {
       this.setState({ isEnabled: false });
     }
