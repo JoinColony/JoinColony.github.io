@@ -25,6 +25,7 @@ export type Project = {|
   logo: string,
   logoSmall: string,
   name: string,
+  repoUrl: string,
   sectionOrder: Array<string>,
   sections: Array<Section>,
   sectionTranslations?: Array<SectionTranslationConfig>,

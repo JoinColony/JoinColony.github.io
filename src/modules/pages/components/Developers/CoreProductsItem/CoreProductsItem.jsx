@@ -24,7 +24,7 @@ type Props = {|
 const displayName = 'pages.Developers.CoreProductsItem';
 
 const CoreProductsItem = ({
-  project: { description, entryPoint, logoSmall, name },
+  project: { description, entryPoint, logoSmall, name, repoUrl },
 }: Props) => (
   <>
     <div>
@@ -48,8 +48,7 @@ const CoreProductsItem = ({
         href={entryPoint}
         text={MSG.docsLinkText}
       />
-      {/* @TODO get github url */}
-      <Link className={styles.itemLink} href="/">
+      <Link className={styles.itemLink} href={repoUrl}>
         GitHub <span className={styles.linkArrow}>&rarr;</span>
       </Link>
     </p>

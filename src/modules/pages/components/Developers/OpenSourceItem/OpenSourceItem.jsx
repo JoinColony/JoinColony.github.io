@@ -24,7 +24,7 @@ type Props = {|
 const displayName = 'pages.Developers.OpenSourceItem';
 
 const OpenSourceItem = ({
-  project: { description, entryPoint, logoSmall, name },
+  project: { description, entryPoint, logoSmall, name, repoUrl },
 }: Props) => (
   <div className={styles.main}>
     <div className={styles.imageContainer}>
@@ -57,8 +57,7 @@ const OpenSourceItem = ({
             href={entryPoint}
             text={MSG.docsLinkText}
           />
-          {/* @TODO fix url */}
-          <Link className={styles.itemLink} href="/">
+          <Link className={styles.itemLink} href={repoUrl}>
             GitHub <span className={styles.linkArrow}>&rarr;</span>
           </Link>
         </p>

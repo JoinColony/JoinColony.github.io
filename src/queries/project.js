@@ -27,6 +27,7 @@ export const allProjectsFragment = graphql`
             locale
             description
           }
+          repoUrl
           sections {
             slug
             docs {
@@ -64,6 +65,7 @@ export const coreProjectsFragment = graphql`
           description
           logo
           logoSmall
+          repoUrl
           sectionOrder
           sectionTranslations {
             locale
@@ -114,6 +116,7 @@ export const openSourceProjectsFragment = graphql`
           description
           logo
           logoSmall
+          repoUrl
           sectionOrder
           sectionTranslations {
             locale
@@ -147,6 +150,7 @@ export const singleProjectFragment = graphql`
       slug
       name
       logo
+      repoUrl
       sectionOrder
       sectionTranslations {
         locale

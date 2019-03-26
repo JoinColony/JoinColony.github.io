@@ -74,6 +74,7 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     projectNode.logoSmall = config.logoSmall
     projectNode.description = config.description
     projectNode.descriptionTranslations = getProjectDescriptionTranslations(config);
+    projectNode.repoUrl = `https://github.com/JoinColony/${projectNode.name}`;
   } else if (node.internal.type === 'MarkdownRemark') {
     const sectionName = node.frontmatter.section
 
