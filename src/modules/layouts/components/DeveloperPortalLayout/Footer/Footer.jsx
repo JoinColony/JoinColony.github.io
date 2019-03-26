@@ -2,6 +2,8 @@
 import React from 'react';
 import { defineMessages } from 'react-intl';
 
+import type { Project } from '~types';
+
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
@@ -47,128 +49,136 @@ const MSG = defineMessages({
   },
 });
 
+const getProjectLinks = ({ entryPoint, name }: Project) => ({
+  href: entryPoint,
+  text: name,
+});
+
+type Props = {|
+  coreProjects: Array<Project>,
+  openSourceProjects: Array<Project>,
+|};
+
 const displayName = 'layouts.DeveloperPortalLayout.Footer';
 
-const Footer = () => (
-  <div className={styles.main}>
-    <div className={styles.footerContent}>
-      <div className={styles.navRow}>
-        <div className={styles.logoContainer}>
-          <Icon className={styles.logo} name="colony_logomark" title="Colony" />
-          <div>
-            <Link
-              href="https://colony.io"
-              text={MSG.linkVisitColony}
-              textValues={{ domain: 'colony.io' }}
+const Footer = ({ coreProjects, openSourceProjects }: Props) => {
+  const coreProjectsLinks = coreProjects.map(getProjectLinks);
+  const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
+  return (
+    <div className={styles.main}>
+      <div className={styles.footerContent}>
+        <div className={styles.navRow}>
+          <div className={styles.logoContainer}>
+            <Icon
+              className={styles.logo}
+              name="colony_logomark"
+              title="Colony"
             />
+            <div>
+              <Link
+                href="https://colony.io"
+                text={MSG.linkVisitColony}
+                textValues={{ domain: 'colony.io' }}
+              />
+            </div>
+          </div>
+          <div className={styles.navGroup}>
+            <div className={styles.navGroupItem}>
+              <VerticalMenu
+                appearance={{ margins: 'large' }}
+                headingAppearance={{ theme: 'invert' }}
+                headingText={MSG.navTitleGetStarted}
+                menuItems={[
+                  { href: '/tutorials', text: MSG.navLinkTutorials },
+                  {
+                    href: 'https://build.colony.io/',
+                    text: MSG.navLinkSupport,
+                  },
+                ]}
+              />
+            </div>
+            <div className={styles.navGroupItem}>
+              <VerticalMenu
+                appearance={{ margins: 'large' }}
+                headingAppearance={{ theme: 'invert' }}
+                headingText={MSG.navTitleCoreProducts}
+                menuItems={coreProjectsLinks}
+              />
+            </div>
+            <div className={styles.navGroupItem}>
+              <VerticalMenu
+                appearance={{ margins: 'large' }}
+                headingAppearance={{ theme: 'invert' }}
+                headingText={MSG.navTitleOpenSourceTools}
+                menuItems={openSourceProjectsLinks}
+                numColumns={2}
+              />
+            </div>
           </div>
         </div>
-        <div className={styles.navGroup}>
-          <div className={styles.navGroupItem}>
-            <VerticalMenu
-              appearance={{ margins: 'large' }}
-              headingAppearance={{ theme: 'invert' }}
-              headingText={MSG.navTitleGetStarted}
-              menuItems={[
-                { href: '/tutorials', text: MSG.navLinkTutorials },
-                { href: 'https://build.colony.io/', text: MSG.navLinkSupport },
-              ]}
-            />
+        <div className={styles.metaRow}>
+          <div className={styles.metaNavContainer}>
+            <nav className={styles.metaNav}>
+              {/* @TODO: fix these links... */}
+              <Link
+                href="/terms-and-service"
+                className={styles.metaNavLink}
+                text={MSG.metaLinkTos}
+              />
+              <Link
+                href="/privacy-policy"
+                className={styles.metaNavLink}
+                text={MSG.metaLinkPrivacy}
+              />
+              <Link
+                href="/media-kit"
+                className={styles.metaNavLink}
+                text={MSG.metaLinkMediaKit}
+              />
+            </nav>
           </div>
-          <div className={styles.navGroupItem}>
-            <VerticalMenu
-              appearance={{ margins: 'large' }}
-              headingAppearance={{ theme: 'invert' }}
-              headingText={MSG.navTitleCoreProducts}
-              menuItems={[
-                // @TODO fix these links...
-                { href: '/network', text: 'colonyNetwork' },
-                { href: '/starter', text: 'colonyStarter' },
-                { href: '/js', text: 'colonyJS' },
-              ]}
-            />
+          <div className={styles.socialIconContainer}>
+            <Link alt="Ghost" href="https://blog.colony.io/">
+              <Icon
+                className={styles.socialIcon}
+                title="Ghost"
+                name="social_ghost_devPortal"
+              />
+            </Link>
+            <Link alt="Twitter" href="https://twitter.com/joincolony">
+              <Icon
+                className={styles.socialIcon}
+                title="Twitter"
+                name="social_twitter_devPortal"
+              />
+            </Link>
+            <Link alt="Discourse" href="https://build.colony.io/">
+              <Icon
+                className={styles.socialIcon}
+                title="Discourse"
+                name="social_discourse_devPortal"
+              />
+            </Link>
+            <Link alt="GitHub" href="https://github.com/JoinColony">
+              <Icon
+                className={styles.socialIcon}
+                title="GitHub"
+                name="social_github_devPortal"
+              />
+            </Link>
+            <Link alt="Gitter" href="https://gitter.im/JoinColony/colonyJS">
+              <Icon
+                className={styles.socialIcon}
+                title="Gitter"
+                name="social_gitter_devPortal"
+              />
+            </Link>
           </div>
-          <div className={styles.navGroupItem}>
-            <VerticalMenu
-              appearance={{ margins: 'large' }}
-              headingAppearance={{ theme: 'invert' }}
-              headingText={MSG.navTitleOpenSourceTools}
-              menuItems={[
-                // @TODO fix these links...
-                { href: '/budgetbox', text: 'budgetBox' },
-                { href: '/pinion', text: 'pinion' },
-                { href: '/purser', text: 'purser' },
-                { href: '/solidity-coverage', text: 'solidity-coverage' },
-                { href: '/tailor', text: 'tailor' },
-                { href: '/trufflepig', text: 'trufflepig' },
-              ]}
-              numColumns={2}
-            />
-          </div>
-        </div>
-      </div>
-      <div className={styles.metaRow}>
-        <div className={styles.metaNavContainer}>
-          <nav className={styles.metaNav}>
-            {/* @TODO: fix these links... */}
-            <Link
-              href="/terms-and-service"
-              className={styles.metaNavLink}
-              text={MSG.metaLinkTos}
-            />
-            <Link
-              href="/privacy-policy"
-              className={styles.metaNavLink}
-              text={MSG.metaLinkPrivacy}
-            />
-            <Link
-              href="/media-kit"
-              className={styles.metaNavLink}
-              text={MSG.metaLinkMediaKit}
-            />
-          </nav>
-        </div>
-        <div className={styles.socialIconContainer}>
-          <Link alt="Ghost" href="https://blog.colony.io/">
-            <Icon
-              className={styles.socialIcon}
-              title="Ghost"
-              name="social_ghost_devPortal"
-            />
-          </Link>
-          <Link alt="Twitter" href="https://twitter.com/joincolony">
-            <Icon
-              className={styles.socialIcon}
-              title="Twitter"
-              name="social_twitter_devPortal"
-            />
-          </Link>
-          <Link alt="Discourse" href="https://build.colony.io/">
-            <Icon
-              className={styles.socialIcon}
-              title="Discourse"
-              name="social_discourse_devPortal"
-            />
-          </Link>
-          <Link alt="GitHub" href="https://github.com/JoinColony">
-            <Icon
-              className={styles.socialIcon}
-              title="GitHub"
-              name="social_github_devPortal"
-            />
-          </Link>
-          <Link alt="Gitter" href="https://gitter.im/JoinColony/colonyJS">
-            <Icon
-              className={styles.socialIcon}
-              title="Gitter"
-              name="social_gitter_devPortal"
-            />
-          </Link>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 Footer.displayName = displayName;
 

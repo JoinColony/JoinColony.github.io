@@ -2,12 +2,13 @@
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import type { Project } from '~types';
+
 import Button from '~core/Button';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
-
 import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
 
 import styles from './Header.module.css';
@@ -31,9 +32,14 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  coreProjects: Array<Project>,
+  openSourceProjects: Array<Project>,
+|};
+
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
-const Header = () => (
+const Header = ({ coreProjects, openSourceProjects }: Props) => (
   <div className={styles.main}>
     <div className={styles.menuWrapper}>
       <Link href="/developers">
@@ -54,7 +60,12 @@ const Header = () => (
             <Button appearance={{ theme: 'reset' }}>
               <Popover
                 appearance={{ theme: 'grey' }}
-                content={() => <DocsDropdown />}
+                content={() => (
+                  <DocsDropdown
+                    coreProjects={coreProjects}
+                    openSourceProjects={openSourceProjects}
+                  />
+                )}
                 /*
                  * `isOpen` is always true for a11y purposes. This ensures the dropdown
                  * menu is always in the DOM, and visibility is controlled via CSS.
