@@ -5,6 +5,11 @@ import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import {
+  COLONY_DISCOURSE,
+  COLONY_GITHUB,
+  PAGE_GET_STARTED_COLONYJS,
+} from '~routes';
 
 import HeroFeatureItem from '../HeroFeatureItem';
 
@@ -72,7 +77,7 @@ const Hero = () => (
             contentText={MSG.heroFeatureGetStartedText}
             headingText={MSG.heroFeatureGetStartedTitle}
             linkText={MSG.heroFeatureGetStartedLinkText}
-            linkUrl="/asf"
+            linkUrl={PAGE_GET_STARTED_COLONYJS}
           />
         </div>
         <div className={styles.heroFeatureItem}>
@@ -80,7 +85,7 @@ const Hero = () => (
             contentText={MSG.heroFeatureContributeText}
             headingText={MSG.heroFeatureContributeTitle}
             linkText="GitHub"
-            linkUrl="https://github.com/JoinColony"
+            linkUrl={COLONY_GITHUB}
           />
         </div>
         <div className={styles.heroFeatureItem}>
@@ -88,7 +93,7 @@ const Hero = () => (
             contentText={MSG.heroFeatureForumText}
             headingText={MSG.heroFeatureForumTitle}
             linkText="Discourse"
-            linkUrl="https://build.colony.io/"
+            linkUrl={COLONY_DISCOURSE}
           />
         </div>
       </div>

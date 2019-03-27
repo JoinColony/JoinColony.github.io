@@ -7,6 +7,18 @@ import type { Project } from '~types';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
+import {
+  COLONY_BLOG,
+  COLONY_DISCOURSE,
+  COLONY_GITHUB,
+  COLONY_GITTER,
+  COLONY_TWITTER,
+  COLONY_WEBSITE,
+  PAGE_MEDIA_KIT,
+  PAGE_PRIVACY_POLICY,
+  PAGE_TERMS_SERVICE,
+  PAGE_TUTORIALS,
+} from '~routes';
 
 import styles from './Footer.module.css';
 
@@ -76,7 +88,7 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
             />
             <div>
               <Link
-                href="https://colony.io"
+                href={COLONY_WEBSITE}
                 text={MSG.linkVisitColony}
                 textValues={{ domain: 'colony.io' }}
               />
@@ -89,9 +101,9 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
                 headingAppearance={{ theme: 'invert' }}
                 headingText={MSG.navTitleGetStarted}
                 menuItems={[
-                  { href: '/tutorials', text: MSG.navLinkTutorials },
+                  { href: PAGE_TUTORIALS, text: MSG.navLinkTutorials },
                   {
-                    href: 'https://build.colony.io/',
+                    href: COLONY_DISCOURSE,
                     text: MSG.navLinkSupport,
                   },
                 ]}
@@ -121,52 +133,52 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
             <nav className={styles.metaNav}>
               {/* @TODO: fix these links... */}
               <Link
-                href="/terms-and-service"
+                href={PAGE_TERMS_SERVICE}
                 className={styles.metaNavLink}
                 text={MSG.metaLinkTos}
               />
               <Link
-                href="/privacy-policy"
+                href={PAGE_PRIVACY_POLICY}
                 className={styles.metaNavLink}
                 text={MSG.metaLinkPrivacy}
               />
               <Link
-                href="/media-kit"
+                href={PAGE_MEDIA_KIT}
                 className={styles.metaNavLink}
                 text={MSG.metaLinkMediaKit}
               />
             </nav>
           </div>
           <div className={styles.socialIconContainer}>
-            <Link alt="Ghost" href="https://blog.colony.io/">
+            <Link alt="Ghost" href={COLONY_BLOG}>
               <Icon
                 className={styles.socialIcon}
                 title="Ghost"
                 name="social_ghost_devPortal"
               />
             </Link>
-            <Link alt="Twitter" href="https://twitter.com/joincolony">
+            <Link alt="Twitter" href={COLONY_TWITTER}>
               <Icon
                 className={styles.socialIcon}
                 title="Twitter"
                 name="social_twitter_devPortal"
               />
             </Link>
-            <Link alt="Discourse" href="https://build.colony.io/">
+            <Link alt="Discourse" href={COLONY_DISCOURSE}>
               <Icon
                 className={styles.socialIcon}
                 title="Discourse"
                 name="social_discourse_devPortal"
               />
             </Link>
-            <Link alt="GitHub" href="https://github.com/JoinColony">
+            <Link alt="GitHub" href={COLONY_GITHUB}>
               <Icon
                 className={styles.socialIcon}
                 title="GitHub"
                 name="social_github_devPortal"
               />
             </Link>
-            <Link alt="Gitter" href="https://gitter.im/JoinColony/colonyJS">
+            <Link alt="Gitter" href={COLONY_GITTER}>
               <Icon
                 className={styles.socialIcon}
                 title="Gitter"

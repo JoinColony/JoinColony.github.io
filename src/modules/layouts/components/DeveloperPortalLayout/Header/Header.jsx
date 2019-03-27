@@ -10,6 +10,11 @@ import Link from '~core/Link';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
 import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
+import {
+  COLONY_DISCOURSE_SUPPORT,
+  PAGE_DEVELOPER_PORTAL,
+  PAGE_TUTORIALS,
+} from '~routes';
 
 import styles from './Header.module.css';
 
@@ -42,7 +47,7 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 const Header = ({ coreProjects, openSourceProjects }: Props) => (
   <div className={styles.main}>
     <div className={styles.menuWrapper}>
-      <Link href="/developers">
+      <Link href={PAGE_DEVELOPER_PORTAL}>
         <Icon
           className={styles.logo}
           name="developerPortal_white"
@@ -88,12 +93,12 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => (
               </Popover>
             </Button>
           </span>
-          <Link className={styles.navLink} href="/tutorials">
+          <Link className={styles.navLink} href={PAGE_TUTORIALS}>
             <FormattedMessage {...MSG.navLinkTutorials} />
           </Link>
           <Link
             className={styles.navLink}
-            href="/support"
+            href={COLONY_DISCOURSE_SUPPORT}
             text={MSG.navLinkSupport}
           />
         </nav>

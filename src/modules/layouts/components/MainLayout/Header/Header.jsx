@@ -11,6 +11,12 @@ import Icon from '~core/Icon';
 import Image from '~core/Image';
 import Link from '~core/Link';
 import Search from '~core/Search';
+import {
+  COLONY_DISCOURSE,
+  COLONY_GITHUB,
+  COLONY_GITTER,
+  PAGE_INDEX,
+} from '~routes';
 
 import styles from './Header.module.css';
 
@@ -126,7 +132,7 @@ class Header extends React.Component<Props, State> {
           <div className={styles.headerContent}>
             <div className={styles.wrapper}>
               <Link
-                href="/"
+                href={PAGE_INDEX}
                 className={styles.logo}
                 onClick={this.handleCloseNavigation}
               >
@@ -153,7 +159,7 @@ class Header extends React.Component<Props, State> {
                   <li className={styles.secondaryLinkListItem}>
                     <Link
                       className={styles.repoLink}
-                      href={`https://github.com/JoinColony/${selectedProject}`}
+                      href={`${COLONY_GITHUB}/${selectedProject}`}
                     >
                       <Icon
                         className={styles.repoIcon}
@@ -169,7 +175,7 @@ class Header extends React.Component<Props, State> {
                   <li className={styles.secondaryLinkListItem}>
                     <Link
                       className={styles.repoLink}
-                      href={`https://gitter.im/JoinColony/${selectedProject}`}
+                      href={`${COLONY_GITTER}/${selectedProject}`}
                     >
                       <Icon
                         className={styles.repoIcon}
@@ -183,10 +189,7 @@ class Header extends React.Component<Props, State> {
                     </Link>
                   </li>
                   <li className={styles.secondaryLinkListItem}>
-                    <Link
-                      className={styles.repoLink}
-                      href="https://build.colony.io"
-                    >
+                    <Link className={styles.repoLink} href={COLONY_DISCOURSE}>
                       <Icon
                         className={styles.repoIcon}
                         name="social_discourse"

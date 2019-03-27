@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 import MainLayout from '~layouts/MainLayout';
+import { PAGE_INDEX } from '~routes';
 
 import styles from './404.module.css';
 
@@ -33,7 +34,7 @@ const NotFoundPage = () => (
         <p>
           <FormattedMessage {...MSG.contentExplanation} />
         </p>
-        <Link href="/" text={MSG.linkHome} />
+        <Link href={PAGE_INDEX} text={MSG.linkHome} />
       </div>
     </main>
   </MainLayout>

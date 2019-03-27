@@ -4,6 +4,16 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Icon from '~core/Icon';
 import Link from '~core/Link';
+import {
+  COLONY_BLOG,
+  COLONY_GITHUB,
+  COLONY_REDDIT,
+  COLONY_TWITTER,
+  COLONY_WEBSITE,
+  PAGE_GET_INVOLVED,
+  PAGE_LOGIN,
+  PAGE_TERMS_SERVICE,
+} from '~routes';
 
 import styles from './Footer.module.css';
 
@@ -41,22 +51,22 @@ const Footer = () => {
   const socialLinks = [
     {
       name: 'Github',
-      url: 'https://github.com/JoinColony',
+      url: COLONY_GITHUB,
       icon: 'social_github',
     },
     {
       name: 'Reddit',
-      url: 'https://www.reddit.com/r/joincolony/',
+      url: COLONY_REDDIT,
       icon: 'social_reddit',
     },
     {
       name: 'Medium',
-      url: 'https://blog.colony.io/',
+      url: COLONY_BLOG,
       icon: 'social_medium',
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/joincolony',
+      url: COLONY_TWITTER,
       icon: 'social_twitter',
     },
   ];
@@ -66,7 +76,7 @@ const Footer = () => {
       <div className={styles.wrapper}>
         <div className={styles.section}>
           <div className={styles.logoContainer}>
-            <Link href="https://colony.io" className={styles.logo}>
+            <Link href={COLONY_WEBSITE} className={styles.logo}>
               <Icon
                 name="colony_logo_vertical_white"
                 title="Colony"
@@ -101,22 +111,22 @@ const Footer = () => {
           <nav className={styles.nav} role="navigation">
             <Link
               className={styles.navLink}
-              href="https://colony.io/get-involved"
+              href={PAGE_GET_INVOLVED}
               text={MSG.linkGetInvolved}
             />
             <Link
               className={styles.navLink}
-              href="https://blog.colony.io"
+              href={COLONY_BLOG}
               text={MSG.linkBlog}
             />
             <Link
               className={styles.navLink}
-              href="https://colony.io/terms"
+              href={PAGE_TERMS_SERVICE}
               text={MSG.linkTerms}
             />
             <Link
               className={styles.navLink}
-              href="https://colony.io/login"
+              href={PAGE_LOGIN}
               text={MSG.linkLogin}
             />
           </nav>
