@@ -61,8 +61,8 @@ const MSG = defineMessages({
   },
 });
 
-const getProjectLinks = ({ entryPoint, name }: Project) => ({
-  href: entryPoint,
+const getProjectLinks = ({ repoUrl, name }: Project) => ({
+  href: repoUrl,
   text: name,
 });
 
