@@ -9,10 +9,9 @@ import slugify from 'slugify';
 
 import type { Doc, HtmlAst, Project } from '~types';
 
-import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
-
 import Link from '~core/Link';
 import Image from '~core/Image';
+import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import Sidebar from '~parts/Sidebar';
 import SEO from '~parts/SEO';
 
