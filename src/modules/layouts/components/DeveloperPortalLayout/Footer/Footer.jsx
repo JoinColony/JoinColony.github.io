@@ -131,7 +131,6 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
         <div className={styles.metaRow}>
           <div className={styles.metaNavContainer}>
             <nav className={styles.metaNav}>
-              {/* @TODO: fix these links... */}
               <Link
                 href={PAGE_TERMS_SERVICE}
                 className={styles.metaNavLink}
