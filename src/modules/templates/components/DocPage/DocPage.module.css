@@ -134,6 +134,7 @@
 @media screen and (min-width: 850px) {
   .sidebar {
     grid-column: 2 / span 1;
+    padding-left: 31%;
   }
 
   .content {
