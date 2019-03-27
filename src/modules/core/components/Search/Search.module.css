@@ -104,11 +104,8 @@
 
 .main .searchInput::placeholder {
   color: rgba(120, 142, 162, 1);
-  opacity: 0;
-  transition: 0.2s;
 }
 
 .main .searchInput:focus::placeholder {
   color: rgba(120, 142, 162, 0.4);
-  opacity: 1;
 }
