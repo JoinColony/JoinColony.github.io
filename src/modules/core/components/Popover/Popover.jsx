@@ -1,5 +1,4 @@
 /* @flow */
-
 import type { Node as ReactNode } from 'react';
 import type { IntlShape, MessageDescriptor } from 'react-intl';
 
