@@ -41,7 +41,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}
       />
-      {children}
+      <div>{children}</div>
       <Footer
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}

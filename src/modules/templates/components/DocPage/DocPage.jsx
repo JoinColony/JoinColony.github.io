@@ -9,7 +9,7 @@ import slugify from 'slugify';
 
 import type { Doc, HtmlAst, Project } from '~types';
 
-import MainLayout from '~layouts/MainLayout';
+import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 
 import Link from '~core/Link';
 import Image from '~core/Image';
@@ -170,7 +170,7 @@ class DocPage extends Component<Props> {
 
     const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
     return (
-      <MainLayout>
+      <DeveloperPortalLayout>
         <Helmet>
           <title>{metaTitle}</title>
         </Helmet>
@@ -181,19 +181,21 @@ class DocPage extends Component<Props> {
           project={project.name}
           isDocPage
         />
-        <nav className={styles.sidebar}>
-          <Sidebar project={project} />
-        </nav>
-        <main className={styles.content}>
-          <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
-          <div className={styles.editUrlContainer}>
-            <p>
-              <Link href={doc.editUrl} text={MSG.linkImproveDoc} />
-            </p>
-          </div>
-          {this.renderAst(doc.htmlAst)}
-        </main>
-      </MainLayout>
+        <div className={styles.main}>
+          <nav className={styles.sidebar}>
+            <Sidebar project={project} />
+          </nav>
+          <main className={styles.content}>
+            <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
+            <div className={styles.editUrlContainer}>
+              <p>
+                <Link href={doc.editUrl} text={MSG.linkImproveDoc} />
+              </p>
+            </div>
+            {this.renderAst(doc.htmlAst)}
+          </main>
+        </div>
+      </DeveloperPortalLayout>
     );
   }
 }
