@@ -2,6 +2,7 @@
 @value boxShadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
 
 .main {
+  cursor: default;
   padding: 40px 51px 38px 63px;
   text-align: left;
 }
