@@ -34,14 +34,12 @@ const HeroFeatureItem = ({
         <FormattedMessage {...contentText} />
       </p>
     </div>
-    <Link className={styles.heroFeatureLink} href={linkUrl}>
-      {typeof linkText === 'string' ? (
-        linkText
-      ) : (
-        <FormattedMessage {...linkText} />
-      )}{' '}
-      <span className={styles.linkArrow}>&rarr;</span>
-    </Link>
+    <Link
+      arrow="right"
+      className={styles.heroFeatureLink}
+      href={linkUrl}
+      text={linkText}
+    />
   </>
 );
 
