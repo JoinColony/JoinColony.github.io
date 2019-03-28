@@ -7,6 +7,7 @@ export type Arrow = 'right' | 'left';
 export type InProps = {
   arrow?: Arrow,
   children?: Node,
+  className?: string,
   href: string,
   persistLocale?: boolean,
   text?: MessageDescriptor | string,
