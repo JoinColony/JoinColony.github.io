@@ -10,6 +10,11 @@
   composes: prettylink from '~styles/mixins.module.css';
 }
 
+.mainImage {
+  max-width: 330px;
+  margin: 0 auto;
+}
+
 :global(.gatsby-toc) + ul {
   margin: 0;
   list-style: none;
@@ -201,6 +206,10 @@
   .content .editUrlContainer p {
     font-size: 18px;
     margin: 0;
+  }
+
+  .mainImage {
+    margin: 103px auto 0;
   }
 
 }

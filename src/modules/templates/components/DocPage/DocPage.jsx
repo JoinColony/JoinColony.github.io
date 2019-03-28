@@ -185,12 +185,14 @@ class DocPage extends Component<Props> {
             <Sidebar project={project} />
           </nav>
           <main className={styles.content}>
-            <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
-            <div className={styles.editUrlContainer}>
-              <p>
-                <Link href={doc.editUrl} text={MSG.linkImproveDoc} />
-              </p>
+            <div className={styles.mainImage}>
+              <Image
+                alt={project.name}
+                project={project.name}
+                src={project.logo}
+              />
             </div>
+            <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
             {this.renderAst(doc.htmlAst)}
           </main>
         </div>
