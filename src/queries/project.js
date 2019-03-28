@@ -27,6 +27,7 @@ export const allProjectsFragment = graphql`
             locale
             description
           }
+          repoUrl
           sections {
             slug
             docs {
@@ -52,12 +53,104 @@ export const allProjectsFragment = graphql`
   }
 `;
 
+export const coreProjectsFragment = graphql`
+  fragment coreProjectsFragment on Query {
+    coreProjects: allProject(
+      filter: { name: { in: ["colonyJS", "colonyNetwork", "colonyStarter"] } }
+    ) {
+      edges {
+        node {
+          slug
+          name
+          description
+          logo
+          logoSmall
+          repoUrl
+          sectionOrder
+          sectionTranslations {
+            locale
+            sectionOrder
+          }
+          sections {
+            name
+            slug
+            docs {
+              slug
+              fields {
+                locale
+                slug
+              }
+              frontmatter {
+                title
+                order
+                section
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const openSourceProjectsFragment = graphql`
+  fragment openSourceProjectsFragment on Query {
+    openSourceProjects: allProject(
+      filter: {
+        name: {
+          in: [
+            "budgetBox"
+            "tailor"
+            "pinion"
+            "trufflepig"
+            "purser"
+            "solcover"
+          ]
+        }
+      }
+    ) {
+      edges {
+        node {
+          slug
+          name
+          description
+          logo
+          logoSmall
+          repoUrl
+          sectionOrder
+          sectionTranslations {
+            locale
+            sectionOrder
+          }
+          sections {
+            name
+            slug
+            docs {
+              slug
+              fields {
+                locale
+                slug
+              }
+              frontmatter {
+                title
+                order
+                section
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const singleProjectFragment = graphql`
   fragment singleProjectFragment on Query {
     project(name: { eq: $projectName }) {
       slug
       name
       logo
+      repoUrl
       sectionOrder
       sectionTranslations {
         locale

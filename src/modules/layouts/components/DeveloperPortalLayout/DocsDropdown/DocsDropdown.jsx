@@ -2,6 +2,8 @@
 import React from 'react';
 import { defineMessages } from 'react-intl';
 
+import type { Project } from '~types';
+
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
@@ -28,77 +30,89 @@ const MSG = defineMessages({
   },
 });
 
+const getProjectLinks = ({ entryPoint, name }: Project) => ({
+  href: entryPoint,
+  text: name,
+});
+
+type Props = {|
+  coreProjects: Array<Project>,
+  openSourceProjects: Array<Project>,
+|};
+
 const displayName = 'layouts.DeveloperPortalLayout.DocsDropdown';
 
-const DocsDropdown = () => (
-  <div className={styles.main}>
-    {/* @TODO: fix url */}
-    <Link className={styles.heroLink} href="/">
-      <div className={styles.hero}>
-        <div className={styles.logoContainer}>
-          <Icon
-            className={styles.logo}
-            name="logomark_colonyjs"
-            title={MSG.heroTitle}
-            viewBox="0 0 94 94"
-          />
-        </div>
-        <div className={styles.cta}>
-          <Heading
-            appearance={{
-              margin: 'small',
+const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
+  const coreProjectsLinks = coreProjects.map(getProjectLinks);
+  const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
+  const featureProject = coreProjects.find(({ name }) => name === 'colonyJS');
+  return (
+    <div className={styles.main}>
+      {featureProject && (
+        <Link className={styles.heroLink} href={featureProject.entryPoint}>
+          <div className={styles.hero}>
+            <div className={styles.logoContainer}>
+              {/* @TODO use logomark from GitHub docs once added there */}
+              <Icon
+                className={styles.logo}
+                name="logomark_colonyjs"
+                title={MSG.heroTitle}
+                viewBox="0 0 94 94"
+              />
+            </div>
+            <div className={styles.cta}>
+              <Heading
+                appearance={{
+                  margin: 'small',
+                  size: 'small',
+                  theme: 'light',
+                  weight: 'thin',
+                }}
+                text={MSG.heroSubTitle}
+              />
+              <Heading
+                appearance={{
+                  margin: 'tiny',
+                  size: 'medium',
+                  theme: 'dark',
+                  weight: 'thin',
+                }}
+                text={MSG.heroTitle}
+              />
+            </div>
+          </div>
+        </Link>
+      )}
+      <div className={styles.menuContent}>
+        <div className={styles.menuContainer}>
+          <VerticalMenu
+            appearance={{ margins: 'small' }}
+            headingAppearance={{
               size: 'small',
               theme: 'light',
               weight: 'thin',
             }}
-            text={MSG.heroSubTitle}
+            headingText={MSG.headingCoreProducts}
+            menuItems={coreProjectsLinks}
           />
-          <Heading
-            appearance={{
-              margin: 'tiny',
-              size: 'medium',
-              theme: 'dark',
+        </div>
+        <div className={styles.menuContainer}>
+          <VerticalMenu
+            appearance={{ margins: 'small' }}
+            headingAppearance={{
+              size: 'small',
+              theme: 'light',
               weight: 'thin',
             }}
-            text={MSG.heroTitle}
+            headingText={MSG.headingOpenSourceProducts}
+            menuItems={openSourceProjectsLinks}
+            numColumns={2}
           />
         </div>
       </div>
-    </Link>
-    <div className={styles.menuContent}>
-      <div className={styles.menuContainer}>
-        <VerticalMenu
-          appearance={{ margins: 'small' }}
-          headingAppearance={{ size: 'small', theme: 'light', weight: 'thin' }}
-          headingText={MSG.headingCoreProducts}
-          menuItems={[
-            // @TODO fix these links...
-            { href: '/network', text: 'colonyNetwork' },
-            { href: '/js', text: 'colonyJS' },
-            { href: '/starter', text: 'colonyStarter' },
-          ]}
-        />
-      </div>
-      <div className={styles.menuContainer}>
-        <VerticalMenu
-          appearance={{ margins: 'small' }}
-          headingAppearance={{ size: 'small', theme: 'light', weight: 'thin' }}
-          headingText={MSG.headingOpenSourceProducts}
-          menuItems={[
-            // @TODO fix these links...
-            { href: '/budgetbox', text: 'budgetBox' },
-            { href: '/purser', text: 'purser' },
-            { href: '/tailor', text: 'tailor' },
-            { href: '/pinion', text: 'pinion' },
-            { href: '/trufflepig', text: 'trufflepig' },
-            { href: '/solidity-coverage', text: 'solcoverage' },
-          ]}
-          numColumns={2}
-        />
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 DocsDropdown.displayName = displayName;
 

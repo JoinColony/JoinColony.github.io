@@ -3,6 +3,7 @@ import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Link from '~core/Link';
+import { PAGE_BUG_BOUNTY } from '~routes';
 
 import styles from './BugBounty.module.css';
 
@@ -22,7 +23,7 @@ const displayName = 'parts.BugBounty';
 const BugBounty = () => (
   <Link
     className={styles.container}
-    href="/docs/colonynetwork/bug-bounty-program-overview/"
+    href={PAGE_BUG_BOUNTY}
     persistLocale={false}
   >
     <span className={styles.leftText}>

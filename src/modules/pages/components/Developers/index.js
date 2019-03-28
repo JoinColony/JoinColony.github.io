@@ -1,3 +1,2 @@
 /* @flow */
-
-export { default } from './Developers.jsx';
+export { default } from './Developers';

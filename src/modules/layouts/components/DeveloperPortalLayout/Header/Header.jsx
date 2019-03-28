@@ -2,13 +2,19 @@
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import type { Project } from '~types';
+
 import Button from '~core/Button';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
-
 import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
+import {
+  COLONY_DISCOURSE_SUPPORT,
+  PAGE_DEVELOPER_PORTAL,
+  PAGE_TUTORIALS,
+} from '~routes';
 
 import styles from './Header.module.css';
 
@@ -31,12 +37,17 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  coreProjects: Array<Project>,
+  openSourceProjects: Array<Project>,
+|};
+
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
-const Header = () => (
+const Header = ({ coreProjects, openSourceProjects }: Props) => (
   <div className={styles.main}>
     <div className={styles.menuWrapper}>
-      <Link href="/developers">
+      <Link href={PAGE_DEVELOPER_PORTAL}>
         <Icon
           className={styles.logo}
           name="developerPortal_white"
@@ -54,7 +65,12 @@ const Header = () => (
             <Button appearance={{ theme: 'reset' }}>
               <Popover
                 appearance={{ theme: 'grey' }}
-                content={() => <DocsDropdown />}
+                content={() => (
+                  <DocsDropdown
+                    coreProjects={coreProjects}
+                    openSourceProjects={openSourceProjects}
+                  />
+                )}
                 /*
                  * `isOpen` is always true for a11y purposes. This ensures the dropdown
                  * menu is always in the DOM, and visibility is controlled via CSS.
@@ -77,12 +93,12 @@ const Header = () => (
               </Popover>
             </Button>
           </span>
-          <Link className={styles.navLink} href="/tutorials">
+          <Link className={styles.navLink} href={PAGE_TUTORIALS}>
             <FormattedMessage {...MSG.navLinkTutorials} />
           </Link>
           <Link
             className={styles.navLink}
-            href="/support"
+            href={COLONY_DISCOURSE_SUPPORT}
             text={MSG.navLinkSupport}
           />
         </nav>

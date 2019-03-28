@@ -31,18 +31,21 @@
 
 .sizeNormal {
   font-size: 14px;
+  letter-spacing: .2px;
 }
 
 .sizeMedium {
   font-size: 18px;
+  letter-spacing: .2px;
 }
 
 .sizeLarge {
-  font-size: 28px;
+  font-size: 32px;
+  line-height: 45px;
 }
 
 .sizeHuge {
-  font-size: 36px;
+  font-size: 48px;
 }
 
 /* Themes */
@@ -56,6 +59,10 @@
 
 .themeLight {
   color: #788CA0;
+}
+
+.themePrimary {
+  color: #289BDC;
 }
 
 /* Weights */

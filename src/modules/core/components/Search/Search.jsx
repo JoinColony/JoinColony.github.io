@@ -124,7 +124,7 @@ class Search extends Component<Props, State> {
               className={styles.quickSearchIcon}
               name="search"
               title={placeholderTextContent}
-              viewBox="0 0 25 25"
+              viewBox="0 0 25 34"
             />
           </Button>
         )}

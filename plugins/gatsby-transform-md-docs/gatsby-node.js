@@ -74,6 +74,7 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     projectNode.logoSmall = config.logoSmall
     projectNode.description = config.description
     projectNode.descriptionTranslations = getProjectDescriptionTranslations(config);
+    projectNode.repoUrl = `https://github.com/JoinColony/${projectNode.name}`;
   } else if (node.internal.type === 'MarkdownRemark') {
     const sectionName = node.frontmatter.section
 
@@ -223,7 +224,7 @@ function createDocPage(project, section, doc, createPage, { langConfig: { langs:
     createPage({
       // TODO: define own layout page?
       path: slug,
-      component: getTemplatePath('DocPage/DocPage.jsx'),
+      component: path.resolve(__dirname, '..', '..', 'src', 'modules', 'templates', 'components', 'DocPage', 'DocPage.jsx'),
       context: {
         docId: doc.id,
         projectName: project.name,
@@ -243,10 +244,6 @@ function addChildNode(parent, child, name) {
     return
   }
   parent[children].push(child.id)
-}
-
-function getTemplatePath(file) {
-  return path.resolve(__dirname, '..', '..', 'src', 'modules', 'templates', 'components', file)
 }
 
 const DescriptionTranslationType = new GraphQLObjectType({

@@ -1,0 +1,42 @@
+.main {
+  padding: 0 4% 50px;
+  position: relative;
+}
+
+.main a {
+  color: #289BDC;
+}
+
+.main a:hover {
+  text-decoration: underline;
+}
+
+.main p {
+  color: #A4B6C7;
+  font-size: 16px;
+}
+
+.gradientWrapper {
+  background: linear-gradient(180deg, rgba(2, 28, 43, 0.6) 7.45%, rgba(0, 40, 75, 0.6) 108.89%);
+  margin: 0 auto;
+  max-width: 1315px;
+  padding-bottom: 110px;
+}
+
+.sectionIntroContent {
+  padding: 100px 25% 80px;
+  text-align: center;
+}
+
+.coreProductsRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 74px;
+}
+
+.coreProductsItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 370px;
+}

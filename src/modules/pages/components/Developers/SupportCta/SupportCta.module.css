@@ -1,0 +1,26 @@
+.main {
+  background-position: center bottom;
+  background-size: cover;
+  padding: 132px 0 214px;
+}
+
+.contentWrapper {
+  margin: 0 auto;
+  max-width: 561px;
+  text-align: center;
+}
+
+.iconRow {
+  padding-top: 25px;
+}
+
+.iconRow svg {
+  height: 40px;
+  width: 40px;
+  fill: #289BDC;
+  stroke: #289BDC;
+}
+
+.iconItemLink + .iconItemLink {
+  margin-left: 37px;
+}
