@@ -1,3 +1,17 @@
-.arrow {
+@value arrowMargin: 5px;
+
+.left::before,
+.right::after {
+  display: inline-block; /* Removes text-decoration for arrow */
   font-size: 14px;
+}
+
+.left::before {
+  content: '\2190'; /* Unicode left arrow */
+  margin-right: arrowMargin;
+}
+
+.right::after {
+  content: '\2192'; /* Unicode right arrow */
+  margin-left: arrowMargin;
 }

@@ -16,19 +16,7 @@ const displayName = 'Link.WithArrow';
 
 const WithArrow = ({ arrow, children }: Props) => {
   if (!arrow) return children;
-  return (
-    <>
-      {arrow === 'left' ? (
-        <>
-          <span className={styles.arrow}>&larr;</span> {children}
-        </>
-      ) : (
-        <>
-          {children} <span className={styles.arrow}>&rarr;</span>
-        </>
-      )}
-    </>
-  );
+  return <span className={styles[arrow]}>{children}</span>;
 };
 
 WithArrow.displayName = displayName;
