@@ -32,7 +32,8 @@
 }
 
 .content {
-  color: rgb(0, 40, 75);
+  color: #00284B;
+  font-family: 'Avenir Next Light';
   grid-column: 1 / span 4;
   grid-row: 3 / span 4;
 
