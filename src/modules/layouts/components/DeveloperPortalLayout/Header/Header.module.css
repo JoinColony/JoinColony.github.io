@@ -1,3 +1,5 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   background-color: #021C2B;
   display: flex;
@@ -26,9 +28,9 @@
 }
 
 .navContainer {
-  align-items: center;
-  display: flex;
-  justify-content: flex-end;
+  display: block;
+  height: 0;
+  overflow: hidden;
 }
 
 .navLink {
@@ -67,4 +69,13 @@
    * with parent nav items
    */
   min-width: 79px;
+}
+
+@media (mediumUp) {
+  .navContainer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    height: auto;
+  }
 }

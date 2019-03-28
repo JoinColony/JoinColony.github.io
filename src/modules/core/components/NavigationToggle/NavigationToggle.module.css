@@ -2,6 +2,12 @@
 @value mediumUp from '~styles/breakpoints.css';
 @value largeUp from '~styles/breakpoints.css';
 
+.main {
+  height: 24px;
+  width: 28px;
+  position: relative;
+}
+
 .mobileIcon {
   background: none;
   border: none;
@@ -10,8 +16,7 @@
   outline: none;
   padding: 0;
   position: absolute;
-  top: 28px;
-  right: 26px;
+  top: 0;
   z-index: 101;
 }
 
@@ -41,6 +46,10 @@
 }
 
 /* Theme */
+
+.themeLight {
+  composes: main;
+}
 
 .main .mobileIconLine {
   background: rgb(58, 62, 67);

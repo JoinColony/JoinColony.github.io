@@ -28,7 +28,7 @@ type Props = {|
 const displayName = 'NavigationToggle';
 
 const NavigationToggle = ({ appearance, isNavOpen, onClick }: Props) => (
-  <span
+  <div
     className={getMainClasses(appearance, styles, {
       isNavOpen,
     })}
@@ -44,7 +44,7 @@ const NavigationToggle = ({ appearance, isNavOpen, onClick }: Props) => (
       <span className={styles.mobileIconLine} />
       <span className={styles.mobileIconLine} />
     </Button>
-  </span>
+  </div>
 );
 
 NavigationToggle.displayName = displayName;
