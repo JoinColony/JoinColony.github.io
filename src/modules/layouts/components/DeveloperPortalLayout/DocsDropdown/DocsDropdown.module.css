@@ -22,10 +22,10 @@
 }
 
 .logo {
-  height: 54px;
+  height: 59px;
   margin: 5px;
   padding: 10px;
-  width: 54px;
+  width: 59px;
 }
 
 .logo svg {
@@ -34,13 +34,16 @@
 }
 
 .cta {
+  align-self: stretch;
   background-color: #ffffff;
   border-radius: borderRadius;
   box-shadow: boxShadow;
-  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 0 0 0 10px;
   min-width: 315px;
-  padding: 11px 20px;
+  padding: 15px 20px;
 }
 
 .heroLink:hover .hero {
