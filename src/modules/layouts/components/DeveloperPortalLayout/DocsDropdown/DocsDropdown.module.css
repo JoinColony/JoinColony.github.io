@@ -72,3 +72,7 @@
 .menuContent a:hover {
   text-decoration: underline;
 }
+
+.menuContainer {
+  width: 50%;
+}
