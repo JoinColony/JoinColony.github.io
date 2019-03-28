@@ -1,14 +1,7 @@
 .prettylink {}
 
 .prettylink a:not(:global(.anchor)) {
-  padding: 1px 3px;
-  color: inherit;
+  color: #289BDC;
   text-decoration: none;
   transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 1px solid rgb(105, 220, 210);
-  box-shadow: inset 0 -1px 0px 0px rgb(105, 220, 210);
-}
-
-.prettylink a:not(:global(.anchor)):hover {
-  background-color: rgb(105, 220, 210);
 }
