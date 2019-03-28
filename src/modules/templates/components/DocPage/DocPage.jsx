@@ -14,13 +14,39 @@ import Image from '~core/Image';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import Sidebar from '~parts/Sidebar';
 import SEO from '~parts/SEO';
+import { COLONY_DISCOURSE_SUPPORT } from '~routes';
+
+import CtaItem from './CtaItem';
 
 import styles from './DocPage.module.css';
 
 const MSG = defineMessages({
-  linkImproveDoc: {
-    id: 'templates.DocPage.linkImproveDoc',
-    defaultMessage: 'Improve this doc',
+  ctaSupportHeading: {
+    id: 'templates.DocPage.ctaSupportHeading',
+    defaultMessage: 'Support',
+  },
+  ctaSupportContent: {
+    id: 'templates.DocPage.ctaSupportContent',
+    defaultMessage:
+      'Questions? Problems? Existential dilemmas? We’re here to help!',
+  },
+  ctaSupportLinkText: {
+    id: 'templates.DocPage.ctaSupportLinkText',
+    defaultMessage: 'Contact DevRel',
+  },
+  ctaImproveDocHeading: {
+    id: 'templates.DocPage.ctaImproveDocHeading',
+    defaultMessage: 'Improve this doc.',
+  },
+  ctaImproveDocContent: {
+    id: 'templates.DocPage.ctaImproveDocContent',
+    defaultMessage:
+      // eslint-disable-next-line max-len
+      'All improvements to documentation are welcome and encouraged. Submit a PR for documentation on GitHub.',
+  },
+  ctaImproveDocLinkText: {
+    id: 'templates.DocPage.ctaSupportLinkText',
+    defaultMessage: 'To the repo!',
   },
 });
 
@@ -192,8 +218,28 @@ class DocPage extends Component<Props> {
                 src={project.logo}
               />
             </div>
-            <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
-            {this.renderAst(doc.htmlAst)}
+            <div className={styles.astContent}>
+              <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
+              {this.renderAst(doc.htmlAst)}
+            </div>
+            <div className={styles.ctaContainer}>
+              <div className={styles.ctaItem}>
+                <CtaItem
+                  contentText={MSG.ctaSupportContent}
+                  headingText={MSG.ctaSupportHeading}
+                  linkText={MSG.ctaSupportLinkText}
+                  linkUrl={COLONY_DISCOURSE_SUPPORT}
+                />
+              </div>
+              <div className={styles.ctaItem}>
+                <CtaItem
+                  contentText={MSG.ctaImproveDocContent}
+                  headingText={MSG.ctaImproveDocHeading}
+                  linkText={MSG.ctaImproveDocLinkText}
+                  linkUrl={doc.editUrl}
+                />
+              </div>
+            </div>
           </main>
         </div>
       </DeveloperPortalLayout>
