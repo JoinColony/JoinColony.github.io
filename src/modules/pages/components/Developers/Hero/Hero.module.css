@@ -1,3 +1,5 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .main a {
   color: #289BDC;
 }
@@ -21,8 +23,10 @@
 }
 
 .heroFeature {
+  align-items: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   margin: 100px auto 0;
   max-width: 1000px;
 }
@@ -33,4 +37,20 @@
   justify-content: space-between;
   margin: 0 43px;
   max-width: 240px;
+}
+
+.heroFeatureItem + .heroFeatureItem {
+  margin-top: 60px;
+}
+
+@media (mediumUp) {
+  .heroFeature {
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .heroFeatureItem + .heroFeatureItem {
+    margin-top: 0;
+  }
 }
