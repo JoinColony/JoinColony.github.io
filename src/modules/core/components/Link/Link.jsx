@@ -4,9 +4,12 @@ import { Link as GatsbyLink } from 'gatsby';
 
 import type { OutProps } from './types';
 
+import WithArrow from './WithArrow';
+
 const displayName = 'Link';
 
 const Link = ({
+  arrow,
   children,
   href,
   intl: { formatMessage },
@@ -22,11 +25,11 @@ const Link = ({
   const linkContent = linkText || children || null;
   return isInternal ? (
     <GatsbyLink to={href} {...props}>
-      {linkContent}
+      <WithArrow arrow={arrow}>{linkContent}</WithArrow>
     </GatsbyLink>
   ) : (
     <a href={href} {...props}>
-      {linkContent}
+      <WithArrow arrow={arrow}>{linkContent}</WithArrow>
     </a>
   );
 };
