@@ -1,7 +1,7 @@
 @value textColor: #2E4153;
 
 .main {
-  border-right: 2px solid rgba(235, 235, 235, 0.4);
+  border-right: 1px solid #C8D2DC;
   display: flex;
   flex-direction: column;
   height: 100%;
