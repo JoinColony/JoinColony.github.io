@@ -68,15 +68,15 @@
 
 .socialIcon {
   display: inline-block;
-  height: 46px;
+  height: 35px;
   margin-left: 22px;
-  width: 46px;
+  width: 35px;
 }
 
 .socialIcon svg {
   fill: #A4B6C7;
-  height: 46px;
-  width: 46px;
+  height: 35px;
+  width: 35px;
 }
 
 a:hover .socialIcon svg {
