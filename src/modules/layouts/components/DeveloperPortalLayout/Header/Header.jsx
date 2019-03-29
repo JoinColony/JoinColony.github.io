@@ -1,6 +1,8 @@
 /* @flow */
+import type { IntlShape } from 'react-intl';
+
 import React, { useState } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import type { Project } from '~types';
 
@@ -24,6 +26,10 @@ const MSG = defineMessages({
     id: 'layouts.DeveloperPortalLayout.Header.imageAltDevPortal',
     defaultMessage: 'Colony Developer Portal',
   },
+  navAriaLabel: {
+    id: 'layouts.DeveloperPortalLayout.Header.navAriaLabel',
+    defaultMessage: 'Main Navigation',
+  },
   navLinkDocs: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkDocs',
     defaultMessage: 'Docs',
@@ -40,13 +46,21 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
+  /* Injected via `injectIntl` */
+  intl: IntlShape,
   openSourceProjects: Array<Project>,
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
-const Header = ({ coreProjects, openSourceProjects }: Props) => {
+const Header = ({
+  coreProjects,
+  intl: { formatMessage },
+  intl,
+  openSourceProjects,
+}: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navAriaLabel = formatMessage(MSG.navAriaLabel);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -62,7 +76,7 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
           <nav
             className={styles.navigation}
             role="navigation"
-            aria-label="Main Navigation"
+            aria-label={navAriaLabel}
           >
             <span className={`${styles.navLink} ${styles.docsDropdownParent}`}>
               <Button appearance={{ theme: 'reset' }}>
@@ -71,6 +85,7 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
                   content={() => (
                     <DocsDropdownContent
                       coreProjects={coreProjects}
+                      intl={intl}
                       openSourceProjects={openSourceProjects}
                     />
                   )}
@@ -98,6 +113,7 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
               <div className={styles.mobileDocsDropdown}>
                 <DocsDropdownContent
                   coreProjects={coreProjects}
+                  intl={intl}
                   openSourceProjects={openSourceProjects}
                 />
               </div>
@@ -132,4 +148,4 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
 
 Header.displayName = displayName;
 
-export default Header;
+export default injectIntl(Header);
