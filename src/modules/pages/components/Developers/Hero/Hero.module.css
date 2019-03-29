@@ -36,7 +36,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0 43px;
-  max-width: 240px;
+  width: 75%;
 }
 
 .heroFeatureItem + .heroFeatureItem {
@@ -48,6 +48,11 @@
     align-items: stretch;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .heroFeatureItem {
+    max-width: 240px;
+    width: auto;
   }
 
   .heroFeatureItem + .heroFeatureItem {
