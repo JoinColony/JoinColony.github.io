@@ -9,23 +9,25 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
 
-import styles from './DocsDropdown.module.css';
+import styles from './DocsDropdownContent.module.css';
 
 const MSG = defineMessages({
   heroTitle: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.heroTitle',
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.heroTitle',
     defaultMessage: 'Start building with Colony',
   },
   heroSubTitle: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.heroSubTitle',
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.heroSubTitle',
     defaultMessage: 'Get started',
   },
   headingCoreProducts: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.headingCoreProducts',
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.headingCoreProducts',
     defaultMessage: 'Colony Core',
   },
   headingOpenSourceProducts: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.headingOpenSourceProducts',
+    id:
+      // eslint-disable-next-line max-len
+      'layouts.DeveloperPortalLayout.DocsDropdownContent.headingOpenSourceProducts',
     defaultMessage: 'Open Source Tools',
   },
 });
@@ -40,9 +42,9 @@ type Props = {|
   openSourceProjects: Array<Project>,
 |};
 
-const displayName = 'layouts.DeveloperPortalLayout.DocsDropdown';
+const displayName = 'layouts.DeveloperPortalLayout.DocsDropdownContent';
 
-const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
+const DocsDropdownContent = ({ coreProjects, openSourceProjects }: Props) => {
   const coreProjectsLinks = coreProjects.map(getProjectLinks);
   const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
   const featureProject = coreProjects.find(({ name }) => name === 'colonyJS');
@@ -114,6 +116,6 @@ const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
   );
 };
 
-DocsDropdown.displayName = displayName;
+DocsDropdownContent.displayName = displayName;
 
-export default DocsDropdown;
+export default DocsDropdownContent;

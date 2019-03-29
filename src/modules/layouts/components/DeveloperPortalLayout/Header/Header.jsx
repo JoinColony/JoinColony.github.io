@@ -10,7 +10,7 @@ import Link from '~core/Link';
 import NavigationToggle from '~core/NavigationToggle';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
-import DocsDropdown from '~layouts/DeveloperPortalLayout/DocsDropdown';
+import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
 import {
   COLONY_DISCOURSE_SUPPORT,
   PAGE_DEVELOPER_PORTAL,
@@ -69,7 +69,7 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
                 <Popover
                   appearance={{ theme: 'grey' }}
                   content={() => (
-                    <DocsDropdown
+                    <DocsDropdownContent
                       coreProjects={coreProjects}
                       openSourceProjects={openSourceProjects}
                     />
@@ -96,7 +96,7 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
                 </Popover>
               </Button>
               <div className={styles.mobileDocsDropdown}>
-                <DocsDropdown
+                <DocsDropdownContent
                   coreProjects={coreProjects}
                   openSourceProjects={openSourceProjects}
                 />
