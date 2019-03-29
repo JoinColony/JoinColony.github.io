@@ -15,6 +15,10 @@ const MSG = defineMessages({
 });
 
 type Appearance = {|
+  /*
+   * Hides this component at a given viewport size (and up). Will
+   * be visible at all viewport sizes below this value.
+   */
   hideAtSize?: 'small' | 'medium' | 'large',
   theme?: 'light',
 |};

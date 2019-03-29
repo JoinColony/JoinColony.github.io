@@ -43,17 +43,20 @@
 
 @media (smallDown) {
   .expandForViewportSmall .menu {
+    /* `important` used to override inline styles */
     column-count: 1 !important;
   }
 }
 
 @media (mediumDown) {
+  /* `important` used to override inline styles */
   .expandForViewportMedium .menu {
     column-count: 1 !important;
   }
 }
 
 @media (largeDown) {
+  /* `important` used to override inline styles */
   .expandForViewportLarge .menu {
     column-count: 1 !important;
   }
