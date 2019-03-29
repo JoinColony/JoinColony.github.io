@@ -44,6 +44,10 @@
   justify-content: space-between;
 }
 
+.coreProductsItem + .coreProductsItem {
+  margin-top: 60px;
+}
+
 @media (mediumUp) {
   .coreProductsRow {
     align-items: stretch;
@@ -53,8 +57,12 @@
   }
 
   .coreProductsItem {
-    padding: 0 2.3%;
     flex: 1 0 0;
+    padding: 0 2.3%;
+  }
+
+  .coreProductsItem + .coreProductsItem {
+    margin-top: 0;
   }
 }
 
