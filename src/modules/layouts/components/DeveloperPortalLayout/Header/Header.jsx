@@ -58,7 +58,7 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
             viewBox="0 0 134 33"
           />
         </Link>
-        <div className={styles.navContainer}>
+        <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
             className={styles.navigation}
             role="navigation"
@@ -95,6 +95,12 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
                   </div>
                 </Popover>
               </Button>
+              <div className={styles.mobileDocsDropdown}>
+                <DocsDropdown
+                  coreProjects={coreProjects}
+                  openSourceProjects={openSourceProjects}
+                />
+              </div>
             </span>
             <Link className={styles.navLink} href={PAGE_TUTORIALS}>
               <FormattedMessage {...MSG.navLinkTutorials} />
@@ -112,11 +118,13 @@ const Header = ({ coreProjects, openSourceProjects }: Props) => {
             />
           </div>
         </div>
-        <NavigationToggle
-          appearance={{ hideAtSize: 'medium', theme: 'light' }}
-          isNavOpen={isNavOpen}
-          onClick={() => setIsNavOpen(!isNavOpen)}
-        />
+        <div className={styles.navToggle}>
+          <NavigationToggle
+            appearance={{ hideAtSize: 'medium', theme: 'light' }}
+            isNavOpen={isNavOpen}
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          />
+        </div>
       </div>
     </div>
   );

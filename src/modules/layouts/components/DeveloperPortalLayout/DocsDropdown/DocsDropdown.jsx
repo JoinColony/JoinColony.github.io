@@ -98,7 +98,7 @@ const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
         </div>
         <div className={styles.menuContainer}>
           <VerticalMenu
-            appearance={{ margins: 'small' }}
+            appearance={{ expandForViewport: 'medium', margins: 'small' }}
             headingAppearance={{
               size: 'small',
               theme: 'light',

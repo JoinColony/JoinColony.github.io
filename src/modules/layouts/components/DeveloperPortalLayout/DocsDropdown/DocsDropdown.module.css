@@ -1,9 +1,12 @@
 @value borderRadius: 4px;
 @value boxShadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
+  border-bottom: 1px solid #788CA0;
   cursor: default;
-  padding: 40px;
+  padding: 15px 0;
   text-align: left;
 }
 
@@ -42,7 +45,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0 0 0 10px;
-  min-width: 315px;
+  width: 100%;
   padding: 15px 20px;
 }
 
@@ -69,7 +72,7 @@
 }
 
 .menuContent a {
-  color: #00284B;
+  color: #ffffff;
 }
 
 .menuContent a:hover {
@@ -78,4 +81,19 @@
 
 .menuContainer {
   width: 50%;
+}
+
+@media (mediumUp) {
+  .main {
+    border-bottom: none;
+    padding: 40px;
+  }
+
+  .cta {
+    min-width: 315px;
+  }
+
+  .menuContent a {
+    color: #00284B;
+  }
 }
