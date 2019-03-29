@@ -1,3 +1,14 @@
-@value largeUp: min-width: 1440px;
-@value mediumUp: min-width: 850px;
-@value smallUp: min-width: 480px;
+/* Viewport Sizes */
+@value large: 1440px;
+@value medium: 850px;
+@value small: 480px;
+
+/* Breakpoints + */
+@value largeUp: min-width: large;
+@value mediumUp: min-width: medium;
+@value smallUp: min-width: small;
+
+/* Breakpoints - */
+@value largeDown: max-width: calc(large - 1px);
+@value mediumDown: max-width: calc(medium - 1px);
+@value smallDown: max-width: calc(small - 1px);

@@ -22,6 +22,7 @@ const MSG = defineMessages({
 });
 
 type Appearance = {|
+  expandForViewport?: 'small' | 'medium' | 'large',
   margins?: 'none' | 'small' | 'large',
 |};
 
