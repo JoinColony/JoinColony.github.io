@@ -1,3 +1,6 @@
+@value mediumUp from '~styles/breakpoints.css';
+@value largeUp from '~styles/breakpoints.css';
+
 .main {
   padding: 0 4% 50px;
   position: relative;
@@ -29,14 +32,34 @@
 }
 
 .coreProductsRow {
+  align-items: center;
   display: flex;
-  justify-content: space-between;
-  padding: 0 74px;
+  flex-direction: column;
+  padding: 0 20%;
 }
 
 .coreProductsItem {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 370px;
+}
+
+@media (mediumUp) {
+  .coreProductsRow {
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+
+  .coreProductsItem {
+    padding: 0 2.3%;
+    flex: 1 0 0;
+  }
+}
+
+@media (largeUp) {
+  .coreProductsRow {
+    padding: 0 74px;
+  }
 }
