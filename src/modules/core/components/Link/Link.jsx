@@ -4,10 +4,14 @@ import { Link as GatsbyLink } from 'gatsby';
 
 import type { OutProps } from './types';
 
+import styles from './Link.module.css';
+
 const displayName = 'Link';
 
 const Link = ({
+  arrow,
   children,
+  className,
   href,
   intl: { formatMessage },
   isInternal,
@@ -20,13 +24,14 @@ const Link = ({
   const linkText =
     typeof text === 'string' ? text : text && formatMessage(text, textValues);
   const linkContent = linkText || children || null;
+  const classNames = className ? `${styles.main} ${className}` : styles.main;
   return isInternal ? (
-    <GatsbyLink to={href} {...props}>
-      {linkContent}
+    <GatsbyLink className={classNames} to={href} {...props}>
+      <span className={styles[arrow]}>{linkContent}</span>
     </GatsbyLink>
   ) : (
-    <a href={href} {...props}>
-      {linkContent}
+    <a className={classNames} href={href} {...props}>
+      <span className={styles[arrow]}>{linkContent}</span>
     </a>
   );
 };

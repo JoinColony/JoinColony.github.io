@@ -14,7 +14,7 @@
   border-width: 2px;
   font-size: 12px;
   height: 34px;
-  padding: 10px 12px;
+  padding: 10px 15px;
 }
 
 .defaultStyles:not(.typeQuickSearch) .searchInput {

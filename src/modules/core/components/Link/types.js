@@ -2,8 +2,12 @@
 import type { Node } from 'react';
 import type { IntlShape, MessageDescriptor } from 'react-intl';
 
+export type Arrow = 'right' | 'left';
+
 export type InProps = {
+  arrow?: Arrow,
   children?: Node,
+  className?: string,
   href: string,
   persistLocale?: boolean,
   text?: MessageDescriptor | string,

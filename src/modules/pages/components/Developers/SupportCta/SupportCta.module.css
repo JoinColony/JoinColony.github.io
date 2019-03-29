@@ -11,14 +11,13 @@
 }
 
 .iconRow {
-  padding-top: 25px;
+  padding-top: 5px;
 }
 
 .iconRow svg {
   height: 40px;
   width: 40px;
   fill: #289BDC;
-  stroke: #289BDC;
 }
 
 .iconItemLink + .iconItemLink {

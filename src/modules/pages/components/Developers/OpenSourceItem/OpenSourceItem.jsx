@@ -57,9 +57,12 @@ const OpenSourceItem = ({
             href={entryPoint}
             text={MSG.docsLinkText}
           />
-          <Link className={styles.itemLink} href={repoUrl}>
-            GitHub <span className={styles.linkArrow}>&rarr;</span>
-          </Link>
+          <Link
+            arrow="right"
+            className={styles.itemLink}
+            href={repoUrl}
+            text="GitHub"
+          />
         </p>
       </div>
     </div>

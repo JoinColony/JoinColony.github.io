@@ -63,7 +63,7 @@ const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
             <div className={styles.cta}>
               <Heading
                 appearance={{
-                  margin: 'small',
+                  margin: 'none',
                   size: 'small',
                   theme: 'light',
                   weight: 'thin',
@@ -72,7 +72,7 @@ const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
               />
               <Heading
                 appearance={{
-                  margin: 'tiny',
+                  margin: 'none',
                   size: 'medium',
                   theme: 'dark',
                   weight: 'thin',
