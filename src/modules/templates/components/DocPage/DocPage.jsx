@@ -207,40 +207,42 @@ class DocPage extends Component<Props> {
           isDocPage
         />
         <div className={styles.main}>
-          <nav className={styles.sidebar}>
-            <Sidebar project={project} />
-          </nav>
-          <main className={styles.content}>
-            <div className={styles.mainImage}>
-              <Image
-                alt={project.name}
-                project={project.name}
-                src={project.logo}
-              />
-            </div>
-            <div className={styles.astContent}>
-              <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
-              {this.renderAst(doc.htmlAst)}
-            </div>
-            <div className={styles.ctaContainer}>
-              <div className={styles.ctaItem}>
-                <CtaItem
-                  contentText={MSG.ctaSupportContent}
-                  headingText={MSG.ctaSupportHeading}
-                  linkText={MSG.ctaSupportLinkText}
-                  linkUrl={COLONY_DISCOURSE_SUPPORT}
+          <div className={styles.mainInnerContainer}>
+            <nav className={styles.sidebar}>
+              <Sidebar project={project} />
+            </nav>
+            <main className={styles.content}>
+              <div className={styles.mainImage}>
+                <Image
+                  alt={project.name}
+                  project={project.name}
+                  src={project.logo}
                 />
               </div>
-              <div className={styles.ctaItem}>
-                <CtaItem
-                  contentText={MSG.ctaImproveDocContent}
-                  headingText={MSG.ctaImproveDocHeading}
-                  linkText={MSG.ctaImproveDocLinkText}
-                  linkUrl={doc.editUrl}
-                />
+              <div className={styles.astContent}>
+                <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
+                {this.renderAst(doc.htmlAst)}
               </div>
-            </div>
-          </main>
+              <div className={styles.ctaContainer}>
+                <div className={styles.ctaItem}>
+                  <CtaItem
+                    contentText={MSG.ctaSupportContent}
+                    headingText={MSG.ctaSupportHeading}
+                    linkText={MSG.ctaSupportLinkText}
+                    linkUrl={COLONY_DISCOURSE_SUPPORT}
+                  />
+                </div>
+                <div className={styles.ctaItem}>
+                  <CtaItem
+                    contentText={MSG.ctaImproveDocContent}
+                    headingText={MSG.ctaImproveDocHeading}
+                    linkText={MSG.ctaImproveDocLinkText}
+                    linkUrl={doc.editUrl}
+                  />
+                </div>
+              </div>
+            </main>
+          </div>
         </div>
       </DeveloperPortalLayout>
     );

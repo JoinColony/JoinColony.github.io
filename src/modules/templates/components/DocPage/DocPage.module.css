@@ -1,13 +1,24 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 .main {
-  display: grid;
+  display: flex;
+  justify-content: center;
 }
 
-.sidebar {
-  grid-column: 1 / span 4;
+.mainInnerContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 9.5%;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.content {
+  padding: 0 5%;
 }
 
 .mainImage {
-  max-width: 330px;
+  max-width: 415px;
   margin: 0 auto;
 }
 
@@ -29,9 +40,6 @@
 
 .content {
   composes: prettylink from '~styles/mixins.module.css';
-  grid-column: 1 / span 4;
-  grid-row: 3 / span 4;
-  padding: 25px;
 }
 
 .astContent {
@@ -47,14 +55,12 @@
 
 .astContent h1 {
   font-family: "Avenir Next Demi";
-  font-weight: 600;
   font-size: 24px;
   margin-top: 0;
 }
 
 .astContent h2 {
   font-family: "Avenir Next Demi";
-  font-weight: 600;
   font-size: 20px;
   margin-top: 0;
 }
@@ -137,18 +143,21 @@
   border-left: inset 4px rgb(105, 220, 210);
 }
 
-@media screen and (min-width: 850px) {
-  .sidebar {
-    grid-column: 2 / span 1;
-    padding-left: 31%;
+.ctaContainer {
+  margin: 60px 0;
+}
+
+.ctaItem + .ctaItem {
+  margin-top: 40px;
+}
+
+@media screen and (mediumUp) {
+  .mainInnerContainer {
+    flex-direction: row;
   }
 
   .content {
-    grid-column: 3 / span 1;
-    grid-row: auto;
-    margin: 0 0 5% 0;
-    max-width: 900px;
-    position: relative;
+    padding: 0 0 0 80px;
   }
 
   .astContent h1 {
@@ -163,8 +172,6 @@
     margin-left: 3%;
     margin-right: 3%;
     margin-top: 48px;
-
-    font-size: 24px;
   }
 
   .astContent h3 {
@@ -211,12 +218,12 @@
   }
 
   .mainImage {
-    margin: 103px auto 0;
+    margin: 68px auto 0;
   }
 
   .ctaContainer {
     display: flex;
-    margin: 100px 3% 0;
+    margin: 100px 3%;
   }
 
   .ctaItem {
@@ -224,7 +231,13 @@
   }
 
   .ctaItem + .ctaItem {
-    margin-left: 25%;
+    margin: 0 0 0 25%;
   }
 
+}
+
+@media (largeUp) {
+  .content {
+    padding: 0 0 0 130px;
+  }
 }
