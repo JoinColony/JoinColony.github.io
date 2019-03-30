@@ -18,6 +18,10 @@
   text-decoration: underline;
 }
 
+.projectTitle {
+  display: none;
+}
+
 .sectionsList {
   margin: 5px 0 0 0;
   list-style: none;
@@ -90,6 +94,7 @@
   }
 
   .projectTitle {
+    display: block;
     margin-top: 78px;
   }
 
