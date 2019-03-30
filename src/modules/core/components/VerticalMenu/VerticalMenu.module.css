@@ -1,6 +1,4 @@
-@value smallDown from '~styles/breakpoints.css';
-@value mediumDown from '~styles/breakpoints.css';
-@value largeDown from '~styles/breakpoints.css';
+@value smallDown, mediumDown, largeDown from '~styles/breakpoints.css';
 
 .menu {
   font-family: 'Avenir Next Light';

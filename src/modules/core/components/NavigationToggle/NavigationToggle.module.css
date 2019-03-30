@@ -1,6 +1,4 @@
-@value smallUp from '~styles/breakpoints.css';
-@value mediumUp from '~styles/breakpoints.css';
-@value largeUp from '~styles/breakpoints.css';
+@value smallUp, mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
   height: 24px;

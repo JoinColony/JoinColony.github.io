@@ -1,5 +1,4 @@
-@value mediumUp from '~styles/breakpoints.css';
-@value largeUp from '~styles/breakpoints.css';
+@value mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
   background-color: #021C2B;
