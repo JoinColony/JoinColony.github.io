@@ -208,9 +208,9 @@ class DocPage extends Component<Props> {
         />
         <div className={styles.main}>
           <div className={styles.mainInnerContainer}>
-            <nav className={styles.sidebar}>
+            <div>
               <Sidebar project={project} />
-            </nav>
+            </div>
             <main className={styles.content}>
               <div className={styles.mainImage}>
                 <Image
