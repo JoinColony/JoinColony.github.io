@@ -3,7 +3,7 @@
 .main {
   display: flex;
   justify-content: center;
-  margin: 0 9.5%;
+  margin: 0 4;
 }
 
 .mainInnerContainer {
@@ -145,6 +145,10 @@
 }
 
 @media screen and (mediumUp) {
+  .main {
+    margin: 0 9.5%;
+  }
+
   .mainInnerContainer {
     flex-direction: row;
   }
