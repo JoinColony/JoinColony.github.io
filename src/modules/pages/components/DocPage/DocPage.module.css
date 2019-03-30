@@ -14,6 +14,8 @@
 }
 
 .content {
+  composes: prettylink from '~styles/mixins.module.css';
+  overflow-x: hidden;
   padding: 0 5%;
 }
 
@@ -36,11 +38,6 @@
 :global(.gatsby-toc) + ul > li li {
   /* Style second level indentation */
   list-style: none;
-}
-
-.content {
-  composes: prettylink from '~styles/mixins.module.css';
-  overflow-x: hidden;
 }
 
 .astContent {
@@ -121,7 +118,7 @@
 }
 
 .astContent pre {
-  margin: 0 3% 1.45rem 3%;
+  margin: 0 0 1.45rem 0;
   overflow-x: auto;
 }
 
@@ -157,38 +154,24 @@
   }
 
   .astContent h1 {
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-top: 50px;
-
     font-size: 32px;
+    margin-top: 50px;
   }
 
   .astContent h2 {
-    margin-left: 3%;
-    margin-right: 3%;
     margin-top: 48px;
   }
 
   .astContent h3 {
-    margin-left: 3%;
-    margin-right: 3%;
     font-size: 20px;
   }
 
   .astContent h4 {
-    margin-left: 3%;
-    margin-right: 3%;
     font-size: 20px;
   }
 
   .astContent p, .astContent ul {
     font-size: 16px;
-  }
-
-  .astContent :not(li) > p, .astContent ul, .astContent ul > li {
-    margin-left: 3%;
-    margin-right: 3%;
   }
 
   :global(.gatsby-toc) + ul li {
@@ -197,20 +180,6 @@
 
   .astContent table {
     max-width: 80%;
-    margin-left: 3%;
-    margin-right: 3%;
-  }
-
-  .astContent .editUrlContainer {
-    position: absolute;
-    text-align: right;
-    top: 50px;
-    right: 5%;
-  }
-
-  .astContent .editUrlContainer p {
-    font-size: 18px;
-    margin: 0;
   }
 
   .mainImage {
@@ -219,7 +188,7 @@
 
   .ctaContainer {
     display: flex;
-    margin: 100px 3%;
+    margin: 100px 0;
   }
 
   .ctaItem {
