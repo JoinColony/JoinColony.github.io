@@ -2,7 +2,7 @@
 import type { IntlShape } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import type { Project } from '~types';
 
@@ -38,9 +38,12 @@ const Sidebar = ({
   project,
 }: Props) => (
   <nav className={styles.main}>
-    <Link className={styles.homeLink} href={PAGE_DEVELOPER_PORTAL}>
-      &larr; <FormattedMessage {...MSG.linkHome} />
-    </Link>
+    <Link
+      arrow="left"
+      className={styles.homeLink}
+      href={PAGE_DEVELOPER_PORTAL}
+      text={MSG.linkHome}
+    />
     <div className={styles.projectTitle}>
       <Heading
         appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}

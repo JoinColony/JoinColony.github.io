@@ -13,6 +13,10 @@
   font-size: 14px;
 }
 
+.homeLink:hover {
+  text-decoration: underline;
+}
+
 .sectionsList {
   margin: 5px 0 0 0;
   list-style: none;
