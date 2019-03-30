@@ -11,8 +11,6 @@ import Header from './Header';
 import Footer from './Footer';
 import { transformProjectData } from '~utils/docs';
 
-import styles from './DeveloperPortalLayout.module.css';
-
 type Props = {|
   children: Node,
   intl: IntlShape,
@@ -36,7 +34,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       transformProjectData(edge, locale),
     ) || [];
   return (
-    <div className={styles.gridContainer}>
+    <>
       <Header
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}
@@ -46,7 +44,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}
       />
-    </div>
+    </>
   );
 };
 
