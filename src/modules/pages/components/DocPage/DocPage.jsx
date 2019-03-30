@@ -12,11 +12,11 @@ import type { Doc, HtmlAst, Project } from '~types';
 import Link from '~core/Link';
 import Image from '~core/Image';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
-import Sidebar from '~parts/Sidebar';
 import SEO from '~parts/SEO';
 import { COLONY_DISCOURSE_SUPPORT } from '~routes';
 
 import CtaItem from './CtaItem';
+import Sidebar from './Sidebar';
 
 import styles from './DocPage.module.css';
 
