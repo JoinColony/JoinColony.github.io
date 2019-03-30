@@ -40,6 +40,7 @@
 
 .content {
   composes: prettylink from '~styles/mixins.module.css';
+  overflow-x: hidden;
 }
 
 .astContent {
@@ -49,8 +50,6 @@
   box-sizing: border-box;
 
   margin: 0;
-
-  overflow-x: hidden;
 }
 
 .astContent h1 {
