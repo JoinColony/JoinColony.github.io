@@ -82,11 +82,12 @@
 }
 
 .astContent table {
+  border-collapse: collapse;
   max-width: 100%;
 }
 
 .astContent table thead {
-  background: rgb(240, 245, 250);
+  background: #F0F5F7;
 }
 
 .astContent table th,
@@ -105,23 +106,19 @@
 }
 
 .astContent table th {
+  border: none;
+  font-family: 'Avenir Next Demi';
   font-size: .9rem;
 }
 
 .astContent table td {
+  border: none;
+  font-family: 'Avenir Next Light';
   font-size: .85rem;
 }
 
 .astContent table tbody tr:nth-child(even) {
-  background: rgba(245, 245, 254, 0.4);
-}
-
-.astContent table td {
-  font-size: .85rem;
-}
-
-.astContent table tbody tr:nth-child(even) {
-  background: rgba(245, 245, 254, 0.4);
+  background: rgba(240, 245, 247, 0.6);
 }
 
 .astContent pre {
