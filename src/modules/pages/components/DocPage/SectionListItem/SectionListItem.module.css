@@ -1,0 +1,46 @@
+@value mediumUp from '~styles/breakpoints.css';
+
+.sectionItem {
+  margin: 0 0 23px 0;
+}
+
+.docsList {
+  margin: 8px 0 0 0;
+  list-style: none;
+}
+
+.docsItem {
+  margin: 0;
+}
+
+.itemLink {
+  display: block;
+  padding: 4px 0;
+  overflow: hidden;
+  color: #2E4153;
+  font-family: 'Avenir Next Light';
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: 0.2s;
+}
+
+.itemLink:hover {
+  cursor: pointer;
+}
+
+.itemLink:hover,
+.itemLink.active {
+  color: #289BDC;
+}
+
+@media (mediumUp) {
+  .docsList {
+    /* Use of `important` is to override `normalize.css` */
+    margin-bottom: 48px !important;
+  }
+
+  .docsItem {
+    font-size: .85em;
+    font-weight: normal;
+  }
+}
