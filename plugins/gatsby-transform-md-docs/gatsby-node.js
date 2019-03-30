@@ -224,7 +224,7 @@ function createDocPage(project, section, doc, createPage, { langConfig: { langs:
     createPage({
       // TODO: define own layout page?
       path: slug,
-      component: path.resolve(__dirname, '..', '..', 'src', 'modules', 'templates', 'components', 'DocPage', 'DocPage.jsx'),
+      component: path.resolve(__dirname, '..', '..', 'src', 'modules', 'pages', 'components', 'DocPage', 'DocPage.jsx'),
       context: {
         docId: doc.id,
         projectName: project.name,

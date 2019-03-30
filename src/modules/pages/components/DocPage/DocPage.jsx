@@ -22,30 +22,30 @@ import styles from './DocPage.module.css';
 
 const MSG = defineMessages({
   ctaSupportHeading: {
-    id: 'templates.DocPage.ctaSupportHeading',
+    id: 'pages.DocPage.ctaSupportHeading',
     defaultMessage: 'Support',
   },
   ctaSupportContent: {
-    id: 'templates.DocPage.ctaSupportContent',
+    id: 'pages.DocPage.ctaSupportContent',
     defaultMessage:
       'Questions? Problems? Existential dilemmas? We’re here to help!',
   },
   ctaSupportLinkText: {
-    id: 'templates.DocPage.ctaSupportLinkText',
+    id: 'pages.DocPage.ctaSupportLinkText',
     defaultMessage: 'Contact DevRel',
   },
   ctaImproveDocHeading: {
-    id: 'templates.DocPage.ctaImproveDocHeading',
+    id: 'pages.DocPage.ctaImproveDocHeading',
     defaultMessage: 'Improve this doc.',
   },
   ctaImproveDocContent: {
-    id: 'templates.DocPage.ctaImproveDocContent',
+    id: 'pages.DocPage.ctaImproveDocContent',
     defaultMessage:
       // eslint-disable-next-line max-len
       'All improvements to documentation are welcome and encouraged. Submit a PR for documentation on GitHub.',
   },
   ctaImproveDocLinkText: {
-    id: 'templates.DocPage.ctaSupportLinkText',
+    id: 'pages.DocPage.ctaSupportLinkText',
     defaultMessage: 'To the repo!',
   },
 });
@@ -70,7 +70,7 @@ type Props = {|
 class DocPage extends Component<Props> {
   renderAst: (node: Object) => void;
 
-  static displayName = 'templates.DocPage';
+  static displayName = 'pages.DocPage';
 
   static isTagName(element: HtmlAst, tagName: string): boolean {
     return !!element.tagName && element.tagName === tagName;
