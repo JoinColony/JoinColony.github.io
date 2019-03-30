@@ -1,7 +1,43 @@
 @value mediumUp from '~styles/breakpoints.css';
 
-.sectionItem {
-  margin: 0 0 23px 0;
+.main {
+  margin: 10px 10% 23px;
+}
+
+.main .docsList {
+  display: none;
+}
+
+.main[aria-expanded="true"] .docsList {
+  display: block;
+}
+
+.mobileSectionExpander button {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mobileSectionExpander button * {
+  display: inline-block;
+}
+
+.expandArrow {
+  width: 22px;
+  height: 22px;
+  margin-left: 10px;
+  padding-top: 4px;
+  transition: all 0.3s;
+}
+
+.main[aria-expanded="true"] .expandArrow {
+  transform: rotate(90deg);
+}
+
+.sectionTitle {
+  display: none;
 }
 
 .docsList {
@@ -34,9 +70,26 @@
 }
 
 @media (mediumUp) {
+  .main {
+    margin: 0 0 23px 0;
+  }
+
+  .main .docsList {
+    display: block;
+  }
+
+  .mobileSectionExpander {
+    display: none;
+  }
+
+  .sectionTitle {
+    display: block;
+  }
+
   .docsList {
     /* Use of `important` is to override `normalize.css` */
     margin-bottom: 48px !important;
+    margin-top: 30px;
   }
 
   .docsItem {
