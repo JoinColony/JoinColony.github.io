@@ -1,7 +1,5 @@
 @value mediumUp, largeUp from '~styles/breakpoints.css';
 
-@value textColor: #2E4153;
-
 .main {
   display: flex;
   flex-direction: column;
@@ -22,16 +20,6 @@
   display: none;
 }
 
-.sectionsList {
-  margin: 5px 0 0 0;
-  list-style: none;
-  color: textColor;
-}
-
-.sectionItem {
-  margin: 0 0 23px 0;
-}
-
 .sectionTitle {
   box-sizing: border-box;
   margin: 0;
@@ -47,20 +35,11 @@
   cursor: default;
 }
 
-.docsList {
-  margin: 8px 0 0 0;
-  list-style: none;
-}
-
-.docsItem {
-  margin: 0;
-}
-
 .itemLink {
   display: block;
-  padding: 4px 15px;
+  padding: 4px 0;
   overflow: hidden;
-  color: textColor;
+  color: #2E4153;
   font-family: 'Avenir Next Light';
   text-decoration: none;
   text-overflow: ellipsis;
@@ -98,10 +77,6 @@
     margin-top: 78px;
   }
 
-  .sectionsList {
-    margin-top: 18px;
-  }
-
   .sectionTitle {
     padding-bottom: 2px;
 
@@ -109,22 +84,6 @@
 
 
     font-weight: 500;
-  }
-
-  .docsList {
-    /* Use of `important` is to override `normalize.css` */
-    margin-bottom: 48px !important;
-  }
-
-  .docsItem {
-    font-size: .85em;
-
-    font-weight: normal;
-  }
-
-  .itemLink {
-    padding: 4px 0;
-    font-weight: 400;
   }
 
   .backToTop {
