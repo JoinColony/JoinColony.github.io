@@ -190,6 +190,7 @@ html {
 }
 * {
   box-sizing: inherit;
+  outline-color: #289BDC;
 }
 *:before {
   box-sizing: inherit;
