@@ -75,7 +75,7 @@ const sourcePlugins = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'tutorials',
+        name: 'colonyTutorials',
         path: path.resolve(__dirname, '..', 'colonyTutorials', 'tutorials'),
       }
     },

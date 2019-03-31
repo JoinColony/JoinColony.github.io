@@ -21,7 +21,7 @@ const nodeQuery = `
 `;
 
 const onCreateNode = async ({ actions: { createNode, createNodeField }, getNode, node }, nodeOptions) => {
-  if (node.internal.type === 'MarkdownRemark' && getNode(node.parent).sourceInstanceName === 'tutorials') {
+  if (node.internal.type === 'MarkdownRemark' && getNode(node.parent).sourceInstanceName === 'colonyTutorials') {
     let tutorialNode;
     const { tutorialName, tutorialId } = getTutorialInfo(node);
     tutorialNode = getNode(tutorialId);
@@ -29,6 +29,14 @@ const onCreateNode = async ({ actions: { createNode, createNodeField }, getNode,
       tutorialNode = createTutorialNode(tutorialName, createNode, nodeOptions);
     }
     createNodeField({ node: tutorialNode, name: 'markdownNodeId', value: node.id });
+    
+    const editUrl = getNodeEditUrl(getNode(node.parent))
+    createNodeField({
+      node: tutorialNode,
+      name: 'editUrl',
+      value: editUrl,
+    })
+    node.editUrl = editUrl;
   }
 };
 
@@ -57,6 +65,16 @@ const createTutorialPage = ({ slug, fields: { markdownNodeId } }, createPage, no
       tutorialId: markdownNodeId,
     },
   });
+};
+
+const getNodeEditUrl = parent => {
+  // github sourced
+  if(parent && parent.githubEditPath) {
+    return `https://github.com/${parent.githubEditPath}`;
+  }
+  // filesystem sourced - assume master branch
+  const projectName = parent.sourceInstanceName;
+  return `https://github.com/JoinColony/${projectName}/edit/master/tutorials/${parent.relativePath}`;
 };
 
 const getTutorialInfo = node => {
