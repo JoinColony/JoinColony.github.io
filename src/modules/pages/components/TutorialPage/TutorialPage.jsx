@@ -12,6 +12,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
+import DevRelCta from '~parts/DevRelCta';
 
 import styles from './TutorialPage.module.css';
 
@@ -37,9 +38,10 @@ const displayName = 'pages.TutorialPage';
 const TutorialPage = ({
   data: {
     tutorial: {
-      name,
+      editUrl,
       frontmatter: { author, publishDate, title },
       htmlAst,
+      name,
     },
   },
 }: Props) => {
@@ -90,6 +92,7 @@ const TutorialPage = ({
             </div>
           </div>
           {tutorialContent}
+          <DevRelCta editUrl={editUrl} />
         </div>
       </div>
     </DeveloperPortalLayout>

@@ -11,6 +11,7 @@ export type TutorialFrontmatter = {|
 |};
 
 export type Tutorial = {|
+  editUrl: string,
   frontmatter: TutorialFrontmatter,
   name: string,
   slug: string,
