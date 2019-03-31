@@ -16,12 +16,12 @@ import styles from './SupportCta.module.css';
 
 const MSG = defineMessages({
   sectionTitle: {
-    id: 'pages.Developers.SupportCta.sectionTitle',
+    id: 'parts.SupportCta.sectionTitle',
     defaultMessage: 'Questions? Problems? Existential dilemmas? We can help!',
   },
 });
 
-const displayName = 'pages.Developers.SupportCta';
+const displayName = 'parts.SupportCta';
 
 const SupportCta = () => (
   <div
