@@ -7,7 +7,9 @@ export const allTutorialsFragment = graphql`
       edges {
         node {
           name
-          slug
+          fields {
+            slug
+          }
         }
       }
     }
