@@ -16,7 +16,7 @@ type Props = {|
   linkUrl: string,
 |};
 
-const displayName = 'pages.DocPage.CtaItem';
+const displayName = 'parts.DevRelCta.CtaItem';
 
 const CtaItem = ({ contentText, headingText, linkText, linkUrl }: Props) => (
   <div className={styles.main}>
