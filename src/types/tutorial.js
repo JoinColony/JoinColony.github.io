@@ -6,7 +6,7 @@ export type TutorialFrontmatter = {|
   exampleUrl?: string,
   exampleLinkText?: string,
   order: number,
-  publishDate: Date,
+  publishDate: string,
   title: string,
 |};
 
