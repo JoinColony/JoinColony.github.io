@@ -11,20 +11,24 @@ const nodeQuery = `
           id
           name
           slug
+          fields {
+            markdownNodeId
+          }
         }
       }
     }
   }
 `;
 
-const onCreateNode = async ({ actions: { createNode }, getNode, node }, nodeOptions) => {
+const onCreateNode = async ({ actions: { createNode, createNodeField }, getNode, node }, nodeOptions) => {
   if (node.internal.type === 'MarkdownRemark' && getNode(node.parent).sourceInstanceName === 'tutorials') {
     let tutorialNode;
     const { tutorialName, tutorialId } = getTutorialInfo(node);
     tutorialNode = getNode(tutorialId);
     if (!tutorialNode) {
-      tutorialNode = createTutorialNode(tutorialName, null, createNode, nodeOptions);
+      tutorialNode = createTutorialNode(tutorialName, createNode, nodeOptions);
     }
+    createNodeField({ node: tutorialNode, name: 'markdownNodeId', value: node.id });
   }
 };
 
@@ -36,22 +40,21 @@ const createPages = ({ graphql, actions: { createPage } }, nodeOptions) => {
   });
 };
 
-const createTutorialNode = (name, sectionNode, createNode, { slugPrefix }) => {
+const createTutorialNode = (name, createNode, { slugPrefix }) => {
   const tutorialNode = TutorialNode({
     name,
     slug: `${slugify(slugPrefix, { lower: true })}/${slugify(name, { lower: true })}`,
   });
-  if (sectionNode) addChildNode(tutorialNode, sectionNode, 'sections');
   createNode(tutorialNode);
   return tutorialNode;
 };
 
-const createTutorialPage = ({ id, slug }, createPage, nodeOptions) => {
+const createTutorialPage = ({ slug, fields: { markdownNodeId } }, createPage, nodeOptions) => {
   createPage({
     path: slug,
     component: path.resolve(__dirname, '..', '..', 'src', 'modules', 'pages', 'components', 'TutorialPage', 'TutorialPage.jsx'),
     context: {
-      tutorialId: id,
+      tutorialId: markdownNodeId,
     },
   });
 };
