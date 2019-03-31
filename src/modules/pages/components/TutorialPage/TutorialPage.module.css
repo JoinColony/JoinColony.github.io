@@ -1,0 +1,38 @@
+@value mediumUp from '~styles/breakpoints.css';
+
+.main {
+  display: flex;
+  justify-content: center;
+  margin: 0 9.5%;
+}
+
+.mainInnerContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.metaContainer {
+  text-align: center;
+}
+
+.metaContent {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.metaItem {
+  padding: 0 10px;
+}
+
+@media screen and (mediumUp) {
+  .metaContainer {
+    padding: 96px 15%;
+  }
+
+  .metaContent {
+    margin: 50px 0 0;
+  }
+}

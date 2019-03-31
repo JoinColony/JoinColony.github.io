@@ -3,6 +3,7 @@ import React, { createElement } from 'react';
 import { graphql } from 'gatsby';
 import RehypeReact from 'rehype-react';
 import { withProps } from 'recompose';
+import { FormattedDate } from 'react-intl';
 
 import type { Tutorial } from '~types';
 import type { Appearance as HeadingAppearance } from '~core/Heading';
@@ -11,6 +12,8 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
+
+import styles from './TutorialPage.module.css';
 
 type Props = {|
   data: {
@@ -35,7 +38,7 @@ const TutorialPage = ({
   data: {
     tutorial: {
       name,
-      frontmatter: { author, title },
+      frontmatter: { author, publishDate, title },
       htmlAst,
     },
   },
@@ -60,12 +63,35 @@ const TutorialPage = ({
   const tutorialContent = renderAst(htmlAst);
   return (
     <DeveloperPortalLayout>
-      <Heading appearance={{ weight: 'medium' }} text={title} />
-      <Heading
-        appearance={{ ...commonHeadingAppearanceProps, size: 'small' }}
-        text={author}
-      />
-      {tutorialContent}
+      <div className={styles.main}>
+        <div className={styles.mainInnerContainer}>
+          <div className={styles.metaContainer}>
+            <Heading appearance={{ weight: 'medium' }} text={title} />
+            <div className={styles.metaContent}>
+              <div className={styles.metaItem}>
+                <Heading
+                  appearance={{
+                    ...commonHeadingAppearanceProps,
+                    size: 'small',
+                  }}
+                  text={author}
+                />
+              </div>
+              <div className={styles.metaItem}>
+                <Heading
+                  appearance={{
+                    ...commonHeadingAppearanceProps,
+                    size: 'small',
+                  }}
+                >
+                  <FormattedDate format="YYYY-MM-DD" value={publishDate} />
+                </Heading>
+              </div>
+            </div>
+          </div>
+          {tutorialContent}
+        </div>
+      </div>
     </DeveloperPortalLayout>
   );
 };
