@@ -17,3 +17,10 @@ export type Tutorial = {|
   slug: string,
   htmlAst: HtmlAst,
 |};
+
+export type TutorialNode = {|
+  name: string,
+  fields: {
+    slug: string,
+  },
+|};

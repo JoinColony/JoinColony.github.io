@@ -22,6 +22,8 @@ const nodeQuery = `
 
 const onCreateNode = async ({ actions: { createNode, createNodeField }, getNode, node }, nodeOptions) => {
   if (node.internal.type === 'MarkdownRemark' && getNode(node.parent).sourceInstanceName === 'colonyTutorials') {
+    const { langConfig: { defaultLangKey, prefixDefaultLangKey } } = nodeOptions;
+
     let tutorialNode;
     const { tutorialName, tutorialId } = getTutorialInfo(node);
     tutorialNode = getNode(tutorialId);
@@ -37,6 +39,20 @@ const onCreateNode = async ({ actions: { createNode, createNodeField }, getNode,
       value: editUrl,
     })
     node.editUrl = editUrl;
+
+    if (!node.frontmatter.locale) {
+      node.frontmatter.locale = defaultLangKey;
+    }
+    const nodeLocale = node.frontmatter.locale;
+    const localeSlugPrefix = nodeLocale === defaultLangKey && !prefixDefaultLangKey ? '' : `${nodeLocale}/`;
+    // Add a slug as the TOC creation requires that (for linking)
+    node.slug = slugify(node.frontmatter.title, { lower: true })
+    // Slug for the actual page
+    createNodeField({
+      node: tutorialNode,
+      name: 'slug',
+      value: `/${localeSlugPrefix}${tutorialNode.slug}`,
+    })
   }
 };
 

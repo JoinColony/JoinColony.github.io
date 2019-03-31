@@ -1,6 +1,19 @@
 /* @flow */
 import { graphql } from 'gatsby';
 
+export const allTutorialsFragment = graphql`
+  fragment allTutorialsFragment on Query {
+    allTutorials: allTutorial {
+      edges {
+        node {
+          name
+          slug
+        }
+      }
+    }
+  }
+`;
+
 // eslint-disable-next-line import/prefer-default-export
 export const singleTutorialFragment = graphql`
   fragment singleTutorialFragment on Query {
