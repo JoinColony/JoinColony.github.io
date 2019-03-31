@@ -25,15 +25,10 @@
 }
 
 .logo {
-  height: 59px;
+  height: auto;
   margin: 5px;
   padding: 10px;
   width: 59px;
-}
-
-.logo svg {
-  fill: #F5416E;
-  stroke: #F5416E;
 }
 
 .cta {
