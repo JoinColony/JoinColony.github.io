@@ -11,7 +11,7 @@
 }
 
 .hero {
-  align-items: center;
+  align-items: stretch;
   border-radius: borderRadius;
   display: flex;
 }
