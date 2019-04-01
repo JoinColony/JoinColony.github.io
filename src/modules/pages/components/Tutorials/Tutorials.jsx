@@ -2,7 +2,7 @@
 import type { IntlShape } from 'react-intl';
 
 import React from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { graphql, useStaticQuery } from 'gatsby';
 
@@ -12,6 +12,8 @@ import Heading from '~core/Heading';
 import Link from '~core/Link';
 import Search from '~core/Search';
 
+import styles from './Tutorials.module.css';
+
 const MSG = defineMessages({
   pageTitle: {
     id: 'pages.Tutorials.pageTitle',
@@ -20,6 +22,10 @@ const MSG = defineMessages({
   pageSubtitle: {
     id: 'pages.Tutorials.pageSubtitle',
     defaultMessage: 'Tutorials',
+  },
+  searchPlaceholder: {
+    id: 'pages.Tutorials.searchPlaceholder',
+    defaultMessage: 'Search tutorials',
   },
 });
 
@@ -46,21 +52,40 @@ const Tutorials = () => {
   `);
   return (
     <>
-      <Heading text={MSG.pageTitle} />
-      <Search inputId="pagesTutorialsSearch" />
-      <Heading text={MSG.pageSubtitle} />
-      {tutorialsQueryData.allTutorials.edges.map(
-        ({
-          node: {
-            fields: { slug },
-            name,
-          },
-        }) => (
-          <Link href={slug}>
-            <Heading text={name} />
-          </Link>
-        ),
-      )}
+      <div className={styles.metaContainer}>
+        <Heading
+          appearance={{ size: 'large', theme: 'dark' }}
+          text={MSG.pageTitle}
+        />
+        <div className={styles.searchContainer}>
+          <Search
+            inputId="pagesTutorialsSearch"
+            placeholderText={MSG.searchPlaceholder}
+          />
+        </div>
+      </div>
+      <div className={styles.tutorialsContainer}>
+        <Heading
+          appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
+          text={MSG.pageSubtitle}
+        />
+        <div className={styles.tutorialList}>
+          {tutorialsQueryData.allTutorials.edges.map(
+            ({
+              node: {
+                fields: { slug },
+                name,
+              },
+            }) => (
+              <Link href={slug} key={slug}>
+                <div className={styles.tutorialListItem}>
+                  <p>{name}</p>
+                </div>
+              </Link>
+            ),
+          )}
+        </div>
+      </div>
     </>
   );
 };
