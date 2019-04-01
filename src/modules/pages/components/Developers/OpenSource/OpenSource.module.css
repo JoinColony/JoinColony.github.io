@@ -4,6 +4,7 @@
   margin: 0 auto;
   max-width: 1035px;
   padding: 40px 0;
+  position: relative;
 }
 
 .main a {
