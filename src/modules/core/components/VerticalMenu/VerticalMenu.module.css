@@ -1,3 +1,5 @@
+@value smallDown, mediumDown, largeDown from '~styles/breakpoints.css';
+
 .menu {
   font-family: 'Avenir Next Light';
 }
@@ -5,7 +7,6 @@
 .menuItem {
   display: block;
   white-space: nowrap;
-  width: max-content;
 }
 
 /* Margins */
@@ -33,4 +34,27 @@
 
 .marginsLarge .menuItem {
   line-height: 51px;
+}
+
+/* Expand for Viewport */
+
+@media (smallDown) {
+  .expandForViewportSmall .menu {
+    /* `important` used to override inline styles */
+    column-count: 1 !important;
+  }
+}
+
+@media (mediumDown) {
+  /* `important` used to override inline styles */
+  .expandForViewportMedium .menu {
+    column-count: 1 !important;
+  }
+}
+
+@media (largeDown) {
+  /* `important` used to override inline styles */
+  .expandForViewportLarge .menu {
+    column-count: 1 !important;
+  }
 }

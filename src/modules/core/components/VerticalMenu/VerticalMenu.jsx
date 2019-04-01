@@ -22,6 +22,15 @@ const MSG = defineMessages({
 });
 
 type Appearance = {|
+  /*
+   * Only has impact if `numColumns` is provided, and > 1.
+   *
+   * Since responsiveness is mobile-first, this will determine at
+   * which viewport size (and up) the menu will be multi-column.
+   *
+   * Below this size, items will be in 1 column.
+   */
+  expandForViewport?: 'small' | 'medium' | 'large',
   margins?: 'none' | 'small' | 'large',
 |};
 

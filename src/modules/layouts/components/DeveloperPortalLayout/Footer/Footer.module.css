@@ -1,8 +1,9 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 .main {
   background-color: #021C2B;
   padding: 85px 0 70px;
-  display: flex;
-  justify-content: center;
+  position: relative;
 }
 
 .main a {
@@ -14,14 +15,7 @@
 }
 
 .footerContent {
-  margin: 0 9.5%;
-  max-width: 1200px;
-  width: 100%;
-}
-
-.navRow {
-  display: flex;
-  justify-content: space-between;
+  margin: 0 auto;
 }
 
 .logo {
@@ -40,21 +34,21 @@
   color: #ffffff;
 }
 
+.navRow {
+  text-align: center;
+}
+
 .navGroup {
-  display: flex;
-  justify-content: space-evenly;
   font-size: .9rem;
 }
 
-.navGroupItem + .navGroupItem {
-  margin-left: 115px;
+.navGroupItem {
+  margin-top: 60px;
 }
 
 .metaRow {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 150px;
+  margin-top: 100px;
+  text-align: center;
 }
 
 .metaNavContainer {
@@ -64,6 +58,10 @@
 
 .metaNavLink + .metaNavLink {
   margin-left: 45px;
+}
+
+.socialIconContainer {
+  margin-top: 40px;
 }
 
 .socialIcon {
@@ -81,4 +79,54 @@
 
 a:hover .socialIcon svg {
   fill: #788CA0;
+}
+
+@media (mediumUp) {
+  .main {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footerContent {
+    margin: 0 9.5%;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .navRow {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .navGroup {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .navGroupItem {
+    margin-top: 0;
+  }
+
+  .navGroupItem + .navGroupItem {
+    margin-left: 85px;
+  }
+
+  .metaRow {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 150px;
+    text-align: left;
+  }
+
+  .socialIconContainer {
+    margin-top: 0;
+  }
+}
+
+@media (largeUp) {
+  .navGroupItem + .navGroupItem {
+    margin-left: 115px;
+  }
 }

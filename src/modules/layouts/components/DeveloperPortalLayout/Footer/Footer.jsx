@@ -119,7 +119,7 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
             </div>
             <div className={styles.navGroupItem}>
               <VerticalMenu
-                appearance={{ margins: 'large' }}
+                appearance={{ expandForViewport: 'medium', margins: 'large' }}
                 headingAppearance={{ theme: 'invert' }}
                 headingText={MSG.navTitleOpenSourceTools}
                 menuItems={openSourceProjectsLinks}

@@ -1,7 +1,10 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   margin: 0 auto;
   max-width: 1035px;
   padding: 40px 0;
+  position: relative;
 }
 
 .main a {
@@ -22,12 +25,24 @@
 }
 
 .openSourceProductGrid {
+  align-items: stretch;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .openSourceItem {
-  padding: 86px 0 0;
-  width: 45%;
+  padding: 86px 5% 0;
+}
+
+@media (mediumUp) {
+  .openSourceProductGrid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .openSourceItem {
+    padding: 86px 0 0;
+    width: 45%;
+  }
 }

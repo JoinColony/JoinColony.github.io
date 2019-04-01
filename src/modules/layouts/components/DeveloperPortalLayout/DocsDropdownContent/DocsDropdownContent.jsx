@@ -1,4 +1,6 @@
 /* @flow */
+import type { IntlShape } from 'react-intl';
+
 import React from 'react';
 import { defineMessages } from 'react-intl';
 
@@ -9,23 +11,29 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
 
-import styles from './DocsDropdown.module.css';
+import styles from './DocsDropdownContent.module.css';
 
 const MSG = defineMessages({
+  ariaLabel: {
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.ariaLabel',
+    defaultMessage: 'Docs Menu',
+  },
   heroTitle: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.heroTitle',
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.heroTitle',
     defaultMessage: 'Start building with Colony',
   },
   heroSubTitle: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.heroSubTitle',
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.heroSubTitle',
     defaultMessage: 'Get started',
   },
   headingCoreProducts: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.headingCoreProducts',
+    id: 'layouts.DeveloperPortalLayout.DocsDropdownContent.headingCoreProducts',
     defaultMessage: 'Colony Core',
   },
   headingOpenSourceProducts: {
-    id: 'layouts.DeveloperPortalLayout.DocsDropdown.headingOpenSourceProducts',
+    id:
+      // eslint-disable-next-line max-len
+      'layouts.DeveloperPortalLayout.DocsDropdownContent.headingOpenSourceProducts',
     defaultMessage: 'Open Source Tools',
   },
 });
@@ -37,17 +45,23 @@ const getProjectLinks = ({ entryPoint, name }: Project) => ({
 
 type Props = {|
   coreProjects: Array<Project>,
+  intl: IntlShape,
   openSourceProjects: Array<Project>,
 |};
 
-const displayName = 'layouts.DeveloperPortalLayout.DocsDropdown';
+const displayName = 'layouts.DeveloperPortalLayout.DocsDropdownContent';
 
-const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
+const DocsDropdownContent = ({
+  coreProjects,
+  intl: { formatMessage },
+  openSourceProjects,
+}: Props) => {
   const coreProjectsLinks = coreProjects.map(getProjectLinks);
   const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
   const featureProject = coreProjects.find(({ name }) => name === 'colonyJS');
+  const ariaLabel = formatMessage(MSG.ariaLabel);
   return (
-    <div className={styles.main}>
+    <div className={styles.main} aria-label={ariaLabel}>
       {featureProject && (
         <Link className={styles.heroLink} href={featureProject.entryPoint}>
           <div className={styles.hero}>
@@ -98,7 +112,7 @@ const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
         </div>
         <div className={styles.menuContainer}>
           <VerticalMenu
-            appearance={{ margins: 'small' }}
+            appearance={{ expandForViewport: 'medium', margins: 'small' }}
             headingAppearance={{
               size: 'small',
               theme: 'light',
@@ -114,6 +128,6 @@ const DocsDropdown = ({ coreProjects, openSourceProjects }: Props) => {
   );
 };
 
-DocsDropdown.displayName = displayName;
+DocsDropdownContent.displayName = displayName;
 
-export default DocsDropdown;
+export default DocsDropdownContent;

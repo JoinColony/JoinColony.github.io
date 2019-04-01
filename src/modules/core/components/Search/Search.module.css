@@ -1,3 +1,5 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 .defaultStyles {
   position: relative;
   margin: 0 10px;
@@ -69,7 +71,7 @@
 
 .typeQuickSearch:focus-within .searchInput {
   padding-right: 32px !important;
-  width: 300px;
+  width: 150px;
   opacity: 1;
 }
 
@@ -108,4 +110,16 @@
 
 .main .searchInput:focus::placeholder {
   color: rgba(120, 142, 162, 0.4);
+}
+
+@media (mediumUp) {
+  .typeQuickSearch:focus-within .searchInput {
+    width: 200px;
+  }
+}
+
+@media (largeUp) {
+  .typeQuickSearch:focus-within .searchInput {
+    width: 300px;
+  }
 }
