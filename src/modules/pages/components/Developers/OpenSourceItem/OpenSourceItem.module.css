@@ -7,7 +7,7 @@
   align-items: center;
   background-color: rgba(2, 28, 43, 0.6);
   display: flex;
-  flex: 1 0 auto;
+  flex-shrink: 0;
   height: 150px;
   justify-content: center;
   width: 150px;

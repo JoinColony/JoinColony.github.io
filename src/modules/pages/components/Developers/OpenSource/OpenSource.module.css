@@ -24,7 +24,7 @@
 }
 
 .openSourceProductGrid {
-  align-items: center;
+  align-items: stretch;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -36,7 +36,6 @@
 
 @media (mediumUp) {
   .openSourceProductGrid {
-    align-items: stretch;
     flex-direction: row;
     justify-content: space-between;
   }
