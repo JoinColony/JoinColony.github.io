@@ -16,6 +16,7 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 pre[class*="language-"] .token.comment {
+  color: #a6a8b1;
   font-style: italic;
 }
 
