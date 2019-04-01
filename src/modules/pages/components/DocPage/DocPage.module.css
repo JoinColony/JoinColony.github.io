@@ -1,0 +1,211 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.mainInnerContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.content {
+  composes: prettylink from '~styles/mixins.module.css';
+  overflow-x: hidden;
+  padding: 0 5%;
+}
+
+.mainImage {
+  max-width: 415px;
+  margin: 0 auto;
+}
+
+:global(.gatsby-toc) + ul {
+  margin: 0;
+  list-style: none;
+  margin-bottom: 1.45rem;
+}
+
+:global(.gatsby-toc) + ul > li {
+  /* Style first level indentation */
+  list-style: none;
+}
+
+:global(.gatsby-toc) + ul > li li {
+  /* Style second level indentation */
+  list-style: none;
+}
+
+.astContent {
+  color: #00284B;
+  font-family: 'Avenir Next Light';
+
+  box-sizing: border-box;
+
+  margin: 0;
+}
+
+.astContent h1 {
+  font-family: "Avenir Next Demi";
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.astContent h2 {
+  font-family: "Avenir Next Demi";
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.astContent h3 {
+  font-family: "Avenir Next Demi";
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.astContent h4 {
+  font-family: "Avenir Next Demi";
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.astContent p {
+  font-size: 15px;
+}
+
+.astContent table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+
+.astContent table thead {
+  background: #F0F5F7;
+}
+
+.astContent table th,
+.astContent table td {
+  padding: .5rem .7rem calc(.5rem - 1px) .7rem;
+}
+
+.astContent table th:first-child,
+.astContent table td:first-child {
+  padding-left: 8px;
+}
+
+.astContent table th:last-child,
+.astContent table td:last-child {
+  padding-right: 8px;
+}
+
+.astContent table th {
+  border: none;
+  font-family: 'Avenir Next Demi';
+  font-size: .9rem;
+}
+
+.astContent table td {
+  border: none;
+  font-family: 'Avenir Next Light';
+  font-size: .85rem;
+}
+
+.astContent table tbody tr:nth-child(even) {
+  background: rgba(240, 245, 247, 0.6);
+}
+
+.astContent pre {
+  margin: 0 0 1.45rem 0;
+  overflow-x: auto;
+}
+
+.astContent code {
+  overflow-x: auto;
+}
+
+.astContent [class*="methodHeading"] a[class*="anchor"] {
+  margin-top: 16px;
+}
+
+.astContent .methodHeading code {
+  display: block;
+  padding: 12px 25px 12px 12px;
+  border-left: inset 4px rgb(105, 220, 210);
+}
+
+.ctaContainer {
+  margin: 60px 0;
+}
+
+.ctaItem + .ctaItem {
+  margin-top: 40px;
+}
+
+@media screen and (mediumUp) {
+  .main {
+    margin: 0 9.5%;
+  }
+
+  .mainInnerContainer {
+    flex-direction: row;
+  }
+
+  .content {
+    padding: 0 0 0 80px;
+  }
+
+  .astContent h1 {
+    font-size: 32px;
+    margin-top: 50px;
+  }
+
+  .astContent h2 {
+    margin-top: 48px;
+  }
+
+  .astContent h3 {
+    font-size: 20px;
+  }
+
+  .astContent h4 {
+    font-size: 20px;
+  }
+
+  .astContent p, .astContent ul {
+    font-size: 16px;
+  }
+
+  :global(.gatsby-toc) + ul li {
+    margin-left: 0;
+  }
+
+  .astContent table {
+    max-width: 80%;
+  }
+
+  .mainImage {
+    margin: 68px auto 0;
+  }
+
+  .ctaContainer {
+    display: flex;
+    margin: 100px 0;
+  }
+
+  .ctaItem {
+    width: 35%;
+  }
+
+  .ctaItem + .ctaItem {
+    margin: 0 0 0 25%;
+  }
+
+}
+
+@media (largeUp) {
+  .content {
+    padding: 0 0 0 130px;
+  }
+}

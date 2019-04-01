@@ -13,7 +13,14 @@ import styles from './Heading.module.css';
 export type Appearance = {|
   theme?: 'dark' | 'light' | 'invert' | 'primary',
   margin?: 'none' | 'tiny' | 'small' | 'double',
-  size?: 'tiny' | 'small' | 'normal' | 'medium' | 'large' | 'huge',
+  size?:
+    | 'tiny'
+    | 'small'
+    | 'normal'
+    | 'medium'
+    | 'mediumLarge'
+    | 'large'
+    | 'huge',
   weight?: 'thin' | 'medium' | 'bold',
 |};
 
@@ -52,6 +59,7 @@ const Heading = ({
       huge: 'h1',
       large: 'h2',
       medium: 'h3',
+      mediumLarge: 'h3',
       normal: 'h4',
       small: 'h5',
       tiny: 'h6',

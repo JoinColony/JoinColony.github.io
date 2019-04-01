@@ -7,7 +7,7 @@ import { defineMessages } from 'react-intl';
 import type { Project } from '~types';
 
 import Heading from '~core/Heading';
-import Icon from '~core/Icon';
+import Image from '~core/Image';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
 
@@ -66,12 +66,11 @@ const DocsDropdownContent = ({
         <Link className={styles.heroLink} href={featureProject.entryPoint}>
           <div className={styles.hero}>
             <div className={styles.logoContainer}>
-              {/* @TODO use logomark from GitHub docs once added there */}
-              <Icon
+              <Image
+                alt={featureProject.name}
                 className={styles.logo}
-                name="logomark_colonyjs"
-                title={MSG.heroTitle}
-                viewBox="0 0 94 94"
+                project={featureProject.name}
+                src={featureProject.logoSmall}
               />
             </div>
             <div className={styles.cta}>

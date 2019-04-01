@@ -9,19 +9,44 @@ import slugify from 'slugify';
 
 import type { Doc, HtmlAst, Project } from '~types';
 
-import MainLayout from '~layouts/MainLayout';
-
 import Link from '~core/Link';
 import Image from '~core/Image';
-import Sidebar from '~parts/Sidebar';
+import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import SEO from '~parts/SEO';
+import { COLONY_DISCOURSE_SUPPORT } from '~routes';
+
+import CtaItem from './CtaItem';
+import Sidebar from './Sidebar';
 
 import styles from './DocPage.module.css';
 
 const MSG = defineMessages({
-  linkImproveDoc: {
-    id: 'templates.DocPage.linkImproveDoc',
-    defaultMessage: 'Improve this doc',
+  ctaSupportHeading: {
+    id: 'pages.DocPage.ctaSupportHeading',
+    defaultMessage: 'Support',
+  },
+  ctaSupportContent: {
+    id: 'pages.DocPage.ctaSupportContent',
+    defaultMessage:
+      'Questions? Problems? Existential dilemmas? We’re here to help!',
+  },
+  ctaSupportLinkText: {
+    id: 'pages.DocPage.ctaSupportLinkText',
+    defaultMessage: 'Contact DevRel',
+  },
+  ctaImproveDocHeading: {
+    id: 'pages.DocPage.ctaImproveDocHeading',
+    defaultMessage: 'Improve this doc.',
+  },
+  ctaImproveDocContent: {
+    id: 'pages.DocPage.ctaImproveDocContent',
+    defaultMessage:
+      // eslint-disable-next-line max-len
+      'All improvements to documentation are welcome and encouraged. Submit a PR for documentation on GitHub.',
+  },
+  ctaImproveDocLinkText: {
+    id: 'pages.DocPage.ctaSupportLinkText',
+    defaultMessage: 'To the repo!',
   },
 });
 
@@ -45,7 +70,7 @@ type Props = {|
 class DocPage extends Component<Props> {
   renderAst: (node: Object) => void;
 
-  static displayName = 'templates.DocPage';
+  static displayName = 'pages.DocPage';
 
   static isTagName(element: HtmlAst, tagName: string): boolean {
     return !!element.tagName && element.tagName === tagName;
@@ -170,7 +195,7 @@ class DocPage extends Component<Props> {
 
     const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
     return (
-      <MainLayout>
+      <DeveloperPortalLayout>
         <Helmet>
           <title>{metaTitle}</title>
         </Helmet>
@@ -181,19 +206,45 @@ class DocPage extends Component<Props> {
           project={project.name}
           isDocPage
         />
-        <nav className={styles.sidebar}>
-          <Sidebar project={project} />
-        </nav>
-        <main className={styles.content}>
-          <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
-          <div className={styles.editUrlContainer}>
-            <p>
-              <Link href={doc.editUrl} text={MSG.linkImproveDoc} />
-            </p>
+        <div className={styles.main}>
+          <div className={styles.mainInnerContainer}>
+            <div>
+              <Sidebar project={project} />
+            </div>
+            <main className={styles.content}>
+              <div className={styles.mainImage}>
+                <Image
+                  alt={project.name}
+                  project={project.name}
+                  src={project.logo}
+                />
+              </div>
+              <div className={styles.astContent}>
+                <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
+                {this.renderAst(doc.htmlAst)}
+              </div>
+              <div className={styles.ctaContainer}>
+                <div className={styles.ctaItem}>
+                  <CtaItem
+                    contentText={MSG.ctaSupportContent}
+                    headingText={MSG.ctaSupportHeading}
+                    linkText={MSG.ctaSupportLinkText}
+                    linkUrl={COLONY_DISCOURSE_SUPPORT}
+                  />
+                </div>
+                <div className={styles.ctaItem}>
+                  <CtaItem
+                    contentText={MSG.ctaImproveDocContent}
+                    headingText={MSG.ctaImproveDocHeading}
+                    linkText={MSG.ctaImproveDocLinkText}
+                    linkUrl={doc.editUrl}
+                  />
+                </div>
+              </div>
+            </main>
           </div>
-          {this.renderAst(doc.htmlAst)}
-        </main>
-      </MainLayout>
+        </div>
+      </DeveloperPortalLayout>
     );
   }
 }

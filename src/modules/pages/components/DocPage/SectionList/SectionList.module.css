@@ -1,0 +1,15 @@
+@value mediumUp from '~styles/breakpoints.css';
+
+@value textColor: #2E4153;
+
+.sectionsList {
+  margin: 5px 0 0 0;
+  list-style: none;
+  color: textColor;
+}
+
+@media (mediumUp) {
+  .sectionsList {
+    margin-top: 18px;
+  }
+}

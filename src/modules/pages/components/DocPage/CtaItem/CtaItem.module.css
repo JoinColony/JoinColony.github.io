@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.contentText {
+  font-family: 'Avenir Next Light';
+  font-size: 16px;
+}
+
+.link {
+  font-family: 'Avenir Next Light';
+  font-size: 14px;
+}
