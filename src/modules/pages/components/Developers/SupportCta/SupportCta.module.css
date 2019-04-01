@@ -2,6 +2,7 @@
   background-position: center bottom;
   background-size: cover;
   padding: 132px 0 214px;
+  position: relative;
 }
 
 .contentWrapper {

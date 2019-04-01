@@ -3,6 +3,7 @@
 .main {
   background-color: #021C2B;
   padding: 85px 0 70px;
+  position: relative;
 }
 
 .main a {
