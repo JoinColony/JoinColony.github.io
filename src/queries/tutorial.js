@@ -25,7 +25,7 @@ export const singleTutorialFragment = graphql`
       frontmatter {
         author
         order
-        publishDate
+        publishDate(formatString: "YYYY/MM/DD")
         title
       }
       htmlAst
