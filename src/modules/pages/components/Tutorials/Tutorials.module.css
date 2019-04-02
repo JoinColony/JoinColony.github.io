@@ -23,6 +23,11 @@
   border-bottom: 1px solid #C8D2DC;
   color: #2E4153;
   font-size: 16px;
+  padding: 44px 0;
+}
+
+.tutorialListItem p {
+  margin: 0;
 }
 
 
