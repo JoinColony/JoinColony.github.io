@@ -10,6 +10,11 @@
   text-align: left;
 }
 
+.heroLink {
+  display: block;
+  height: 82px;
+}
+
 .hero {
   align-items: stretch;
   border-radius: borderRadius;
