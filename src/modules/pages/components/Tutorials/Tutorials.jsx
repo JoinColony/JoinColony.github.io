@@ -8,6 +8,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import type { TutorialNode } from '~types';
 
+import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 import Search from '~core/Search';
@@ -15,6 +16,14 @@ import Search from '~core/Search';
 import styles from './Tutorials.module.css';
 
 const MSG = defineMessages({
+  btnClearSearch: {
+    id: 'pages.Tutorials.btnClearSearch',
+    defaultMessage: 'Clear Search',
+  },
+  btnWriteTutorial: {
+    id: 'pages.Tutorials.btnWriteTutorial',
+    defaultMessage: 'Write a Tutorial',
+  },
   pageTitle: {
     id: 'pages.Tutorials.pageTitle',
     defaultMessage: 'Explore Tutorials',
@@ -65,10 +74,28 @@ const Tutorials = () => {
         </div>
       </div>
       <div className={styles.tutorialsContainer}>
-        <Heading
-          appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
-          text={MSG.pageSubtitle}
-        />
+        <div className={styles.tutorialsContainerMeta}>
+          <Heading
+            appearance={{
+              margin: 'none',
+              size: 'large',
+              theme: 'dark',
+              weight: 'medium',
+            }}
+            text={MSG.pageSubtitle}
+          />
+          <div className={styles.tutorialsActions}>
+            <div className={styles.totorialsActionItem}>
+              <Button
+                appearance={{ theme: 'primaryHollow' }}
+                text={MSG.btnClearSearch}
+              />
+            </div>
+            <div className={styles.totorialsActionItem}>
+              <Button text={MSG.btnWriteTutorial} />
+            </div>
+          </div>
+        </div>
         <div className={styles.tutorialList}>
           {tutorialsQueryData.allTutorials.edges.map(
             ({

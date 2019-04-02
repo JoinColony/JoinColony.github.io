@@ -3,29 +3,40 @@
   align-items: center;
   border-radius: 4px;
   display: inline-flex;
-  height: 45px;
-  font-size: 15px;
+  font-size: 16px;
   justify-content: center;
-  font-family: 'Avenir Next Demi';
+  font-family: 'Avenir Next Light';
   text-align: center;
   transition: 0.2s;
 }
 
-.themePrimary {
+.primaryBase {
   composes: main;
-  background-color: rgb(105, 220, 210);
-  border: 2px solid rgb(105, 220, 210);
-  color: rgb(0, 40, 75);
+  border: 1px solid #289BDC;
   min-width: 130px;
-  padding: 11px 15px;
+  padding: 3px 31px;
+}
+
+.themePrimary {
+  composes: primaryBase;
+  background-color: #289BDC;
+  color: #ffffff;
 }
 
 .themePrimary:hover {
-  background-color: transparent !important;
-  border: 2px solid rgb(105, 220, 210) !important;
-  box-shadow: none !important;
-  cursor: pointer !important;
-  text-decoration: none !important;
+  background-color: transparent;
+  color: #00284B;
+}
+
+.themePrimaryHollow {
+  composes: primaryBase;
+  background-color: transparent;
+  color: #00284B;
+}
+
+.themePrimaryHollow:hover {
+  background-color: #289BDC;
+  color: #ffffff;
 }
 
 .themeReset {

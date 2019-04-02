@@ -1,3 +1,5 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .metaContainer {
   padding: 150px 0;
   text-align: center;
@@ -21,4 +23,21 @@
   border-bottom: 1px solid #C8D2DC;
   color: #2E4153;
   font-size: 16px;
+}
+
+
+@media (mediumUp) {
+  .tutorialsContainerMeta {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .totorialsActionItem {
+    display: inline-block;
+  }
+
+  .totorialsActionItem + .totorialsActionItem {
+    margin-left: 10px;
+  }
 }
