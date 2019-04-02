@@ -21,7 +21,8 @@ const nodeQuery = `
 `;
 
 const onCreateNode = async ({ actions: { createNode, createNodeField }, getNode, node }, nodeOptions) => {
-  if (node.internal.type === 'MarkdownRemark' && getNode(node.parent).sourceInstanceName === 'colonyTutorials') {
+  const { projects: configuredProjects } = nodeOptions;
+  if (node.internal.type === 'MarkdownRemark' && configuredProjects.includes(getNode(node.parent).sourceInstanceName)) {
     const { langConfig: { defaultLangKey, prefixDefaultLangKey } } = nodeOptions;
 
     let tutorialNode;

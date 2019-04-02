@@ -41,13 +41,12 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     createNodeField,
     createParentChildLink,
   } = actions
-
-  const { langConfig: { defaultLangKey, prefixDefaultLangKey } } = nodeOptions;
+  const { langConfig: { defaultLangKey, prefixDefaultLangKey }, projects: configuredProjects } = nodeOptions;
 
   let projectNode
   let sectionNode
 
-  if (node.base === 'doc.config.json') {
+  if (node.base === 'doc.config.json' && configuredProjects.includes(node.sourceInstanceName)) {
     const { projectName, projectId } = getProjectInfo(node)
     projectNode = getNode(projectId)
     if (!projectNode) {
@@ -75,7 +74,7 @@ exports.onCreateNode = ({ node, actions, getNode }, nodeOptions) => {
     projectNode.description = config.description
     projectNode.descriptionTranslations = getProjectDescriptionTranslations(config);
     projectNode.repoUrl = `https://github.com/JoinColony/${projectNode.name}`;
-  } else if (node.internal.type === 'MarkdownRemark') {
+  } else if (node.internal.type === 'MarkdownRemark' && configuredProjects.includes(getNode(node.parent).sourceInstanceName)) {
     const sectionName = node.frontmatter.section
 
     // If section does not exist in frontmatter we just return
