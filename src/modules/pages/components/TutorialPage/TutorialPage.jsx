@@ -93,7 +93,7 @@ const TutorialPage = ({
                     size: 'small',
                   }}
                 >
-                  <FormattedDate format="YYYY-MM-DD" value={publishDate} />
+                  <FormattedDate value={publishDate} />
                 </Heading>
               </div>
             </div>
