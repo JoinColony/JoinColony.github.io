@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import RehypeReact from 'rehype-react';
 import { withProps } from 'recompose';
 import { FormattedDate } from 'react-intl';
+import Helmet from 'react-helmet';
 
 import type { Tutorial } from '~types';
 import type { Appearance as HeadingAppearance } from '~core/Heading';
@@ -13,6 +14,7 @@ import Image from '~core/Image';
 import Link from '~core/Link';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import DevRelCta from '~parts/DevRelCta';
+import SEO from '~parts/SEO';
 
 import styles from './TutorialPage.module.css';
 
@@ -39,6 +41,7 @@ const TutorialPage = ({
   data: {
     tutorial: {
       editUrl,
+      excerpt,
       frontmatter: { author, publishDate, title },
       htmlAst,
       name,
@@ -65,6 +68,10 @@ const TutorialPage = ({
   const tutorialContent = renderAst(htmlAst);
   return (
     <DeveloperPortalLayout>
+      <SEO description={excerpt} title={title} />
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <div className={styles.main}>
         <div className={styles.mainInnerContainer}>
           <div className={styles.metaContainer}>
