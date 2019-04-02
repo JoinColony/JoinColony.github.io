@@ -21,6 +21,7 @@ export const singleTutorialFragment = graphql`
   fragment singleTutorialFragment on Query {
     tutorial: markdownRemark(id: { eq: $tutorialId }) {
       editUrl
+      excerpt
       frontmatter {
         author
         order

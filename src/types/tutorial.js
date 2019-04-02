@@ -12,10 +12,11 @@ export type TutorialFrontmatter = {|
 
 export type Tutorial = {|
   editUrl: string,
+  excerpt: string,
   frontmatter: TutorialFrontmatter,
+  htmlAst: HtmlAst,
   name: string,
   slug: string,
-  htmlAst: HtmlAst,
 |};
 
 export type TutorialNode = {|
