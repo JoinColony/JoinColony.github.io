@@ -14,6 +14,7 @@ import Heading from '~core/Heading';
 import Link from '~core/Link';
 import Search from '~core/Search';
 import SEO from '~parts/SEO';
+import SupportCta from '~parts/SupportCta';
 
 import styles from './Tutorials.module.css';
 
@@ -124,6 +125,7 @@ const Tutorials = ({ intl: { formatMessage } }: Props) => {
           )}
         </div>
       </div>
+      <SupportCta />
     </>
   );
 };

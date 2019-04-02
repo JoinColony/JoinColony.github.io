@@ -47,7 +47,7 @@ const Developers = ({ intl: { formatMessage } }: Props) => {
         <Hero />
         <CoreProducts />
         <OpenSource />
-        <SupportCta />
+        <SupportCta withBackground />
       </main>
     </>
   );
