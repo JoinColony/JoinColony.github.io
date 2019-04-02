@@ -2,7 +2,8 @@
 import type { IntlShape } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
+import Helmet from 'react-helmet';
 
 import { graphql, useStaticQuery } from 'gatsby';
 
@@ -12,6 +13,7 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 import Search from '~core/Search';
+import SEO from '~parts/SEO';
 
 import styles from './Tutorials.module.css';
 
@@ -23,6 +25,10 @@ const MSG = defineMessages({
   btnWriteTutorial: {
     id: 'pages.Tutorials.btnWriteTutorial',
     defaultMessage: 'Write a Tutorial',
+  },
+  pageDescription: {
+    id: 'pages.Tutorials.pageDescription',
+    defaultMessage: 'Tutorials using the Colony protocol.',
   },
   pageTitle: {
     id: 'pages.Tutorials.pageTitle',
@@ -53,7 +59,8 @@ type Props = {|
 
 const displayName = 'pages.Tutorials';
 
-const Tutorials = () => {
+const Tutorials = ({ intl: { formatMessage } }: Props) => {
+  const title = formatMessage(MSG.pageSubtitle);
   const tutorialsQueryData: QueryData = useStaticQuery(graphql`
     {
       ...allTutorialsFragment
@@ -61,6 +68,10 @@ const Tutorials = () => {
   `);
   return (
     <>
+      <SEO description={MSG.pageDescription} title={title} />
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <div className={styles.metaContainer}>
         <Heading
           appearance={{ size: 'large', theme: 'dark' }}
