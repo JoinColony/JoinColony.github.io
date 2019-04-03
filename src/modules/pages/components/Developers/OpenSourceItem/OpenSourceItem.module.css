@@ -26,8 +26,16 @@
   padding-left: 50px;
 }
 
+.contentContainer p {
+  margin: 0;
+}
+
 .description {
   margin-top: 12px;
+}
+
+.linkContainer {
+  margin-bottom: -7px;
 }
 
 .itemLink + .itemLink {
