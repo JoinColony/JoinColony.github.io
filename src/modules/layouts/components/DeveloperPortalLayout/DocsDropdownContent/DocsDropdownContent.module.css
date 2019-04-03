@@ -16,15 +16,15 @@
 }
 
 .hero {
-  align-items: stretch;
-  border-radius: borderRadius;
-  display: flex;
-}
-
-.logoContainer {
+  align-items: center;
   background-color: #ffffff;
   border-radius: borderRadius;
   box-shadow: boxShadow;
+  display: flex;
+  padding: 15px;
+}
+
+.logoContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,22 +32,18 @@
 
 .logo {
   height: auto;
-  margin: 5px;
-  padding: 10px;
-  width: 59px;
+  margin: 0;
+  padding: 0;
+  width: 40px;
 }
 
 .cta {
   align-self: stretch;
-  background-color: #ffffff;
-  border-radius: borderRadius;
-  box-shadow: boxShadow;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 0 0 10px;
   width: 100%;
-  padding: 15px 20px;
+  padding: 0 0 0 20px;
 }
 
 .heroLink:hover .hero {
