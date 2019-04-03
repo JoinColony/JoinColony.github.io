@@ -43,7 +43,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 15px;
 }
 
 .heroLink:hover .hero {
@@ -65,7 +65,7 @@
 .menuContent {
   display: flex;
   justify-content: space-between;
-  margin: 45px 0 0;
+  margin: 14px 0 0;
 }
 
 .menuContent a {
@@ -83,7 +83,7 @@
 @media (mediumUp) {
   .main {
     border-bottom: none;
-    padding: 40px;
+    padding: 40px 40px 32px;
   }
 
   .cta {
