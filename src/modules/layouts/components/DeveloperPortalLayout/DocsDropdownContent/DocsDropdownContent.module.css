@@ -11,7 +11,7 @@
 }
 
 .heroLink {
-  display: block;
+  display: none;
   height: 82px;
 }
 
@@ -20,7 +20,7 @@
   background-color: #ffffff;
   border-radius: borderRadius;
   box-shadow: boxShadow;
-  display: flex;
+  display: none;
   padding: 15px;
 }
 
@@ -84,6 +84,14 @@
   .main {
     border-bottom: none;
     padding: 40px 40px 32px;
+  }
+
+  .heroLink {
+    display: block;
+  }
+
+  .hero {
+    display: flex;
   }
 
   .cta {

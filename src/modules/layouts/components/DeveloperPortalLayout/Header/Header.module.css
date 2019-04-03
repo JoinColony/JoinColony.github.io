@@ -59,6 +59,10 @@
   cursor: default;
 }
 
+.docsDropdownParent {
+  display: none;
+}
+
 .docsDropdownParent .docsDropdownContainer {
   display: none;
   visibility: hidden;
