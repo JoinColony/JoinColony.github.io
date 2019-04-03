@@ -14,3 +14,8 @@
 .algolia-autocomplete .algolia-docsearch-suggestion--text .algolia-docsearch-suggestion--highlight {
   box-shadow: inset 0 -2px 0 0 rgb(105, 220, 210);
 }
+
+.algolia-autocomplete .algolia-docsearch-suggestion--title {
+  color: #2E4153;
+  font-weight: normal;
+}
