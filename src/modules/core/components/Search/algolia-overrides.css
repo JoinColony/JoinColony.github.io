@@ -19,3 +19,7 @@
   color: #2E4153;
   font-weight: normal;
 }
+
+.ds-suggestion:not(:first-of-type) .algolia-docsearch-suggestion--category-header {
+  margin-top: 18px;
+}
