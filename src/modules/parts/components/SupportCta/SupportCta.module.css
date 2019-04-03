@@ -1,7 +1,7 @@
+@value verticalPadding: 180px;
+
 .main {
-  background-position: center bottom;
-  background-size: cover;
-  padding: 132px 0 214px;
+  padding: calc(verticalPadding - 40px) 0 verticalPadding;
   position: relative;
 }
 
