@@ -22,7 +22,7 @@ import styles from './DocPage.module.css';
 
 const commonHeadingAppearanceProps: HeadingAppearance = {
   theme: 'dark',
-  weight: 'thin',
+  weight: 'medium',
 };
 
 const headingWithSize = (size: string) =>
@@ -75,12 +75,11 @@ class DocPage extends Component<Props> {
           transformUrl: this.transformInternalUrls,
           persistLocale: false,
         })(Link),
-        h1: headingWithSize('huge'),
-        h2: headingWithSize('large'),
-        h3: headingWithSize('medium'),
-        h4: headingWithSize('normal'),
-        h5: headingWithSize('small'),
-        h6: headingWithSize('tiny'),
+        h1: headingWithSize('large'),
+        h2: headingWithSize('medium'),
+        h3: headingWithSize('normal'),
+        h4: headingWithSize('small'),
+        h5: headingWithSize('tiny'),
         img: withProps({ project: props.data.project.name })(Image),
       },
     }).Compiler;
@@ -206,7 +205,13 @@ class DocPage extends Component<Props> {
                 />
               </div>
               <div className={styles.astContent}>
-                <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
+                <Heading
+                  appearance={{
+                    ...commonHeadingAppearanceProps,
+                    size: 'large',
+                  }}
+                  text={doc.frontmatter.title}
+                />
                 {this.renderAst(doc.htmlAst)}
               </div>
               <DevRelCta editUrl={doc.editUrl} />
