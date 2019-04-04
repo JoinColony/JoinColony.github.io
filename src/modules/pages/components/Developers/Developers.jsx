@@ -6,11 +6,11 @@ import { defineMessages } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
+import SupportCta from '~parts/SupportCta';
 
 import CoreProducts from './CoreProducts';
 import Hero from './Hero';
 import OpenSource from './OpenSource';
-import SupportCta from './SupportCta';
 
 import styles from './Developers.module.css';
 
@@ -47,7 +47,7 @@ const Developers = ({ intl: { formatMessage } }: Props) => {
         <Hero />
         <CoreProducts />
         <OpenSource />
-        <SupportCta />
+        <SupportCta withBackground />
       </main>
     </>
   );

@@ -11,7 +11,7 @@ import { getMainClasses } from '~utils/css';
 import styles from './Button.module.css';
 
 type Appearance = {
-  theme?: 'primary' | 'reset',
+  theme?: 'primary' | 'primaryHollow' | 'reset',
 };
 
 type Props = {

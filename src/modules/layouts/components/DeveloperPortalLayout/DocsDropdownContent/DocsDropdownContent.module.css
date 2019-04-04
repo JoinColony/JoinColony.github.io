@@ -10,6 +10,11 @@
   text-align: left;
 }
 
+.heroLink {
+  display: block;
+  height: 82px;
+}
+
 .hero {
   align-items: stretch;
   border-radius: borderRadius;
@@ -21,7 +26,8 @@
   border-radius: borderRadius;
   box-shadow: boxShadow;
   display: flex;
-  align-items: center
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {

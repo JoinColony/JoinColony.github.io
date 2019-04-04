@@ -1,18 +1,9 @@
 /* @flow */
+import type { HtmlAst } from '~types';
+
 export type DocFields = {|
   locale: string,
   slug: string,
-|};
-
-export type HtmlAst = {|
-  children?: Array<HtmlAst>,
-  data?: {
-    quirksMode: boolean,
-  },
-  properties?: Object,
-  tagName?: string,
-  type: string,
-  value?: string,
 |};
 
 export type Doc = {|

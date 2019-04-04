@@ -21,6 +21,10 @@
   fill: #289BDC;
 }
 
+.iconItemLink:hover svg {
+  fill: #17567C;
+}
+
 .iconItemLink + .iconItemLink {
   margin-left: 37px;
 }

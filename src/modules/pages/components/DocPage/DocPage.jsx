@@ -1,6 +1,5 @@
 /* @flow */
 import React, { Component, createElement } from 'react';
-import { defineMessages } from 'react-intl';
 import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
@@ -12,43 +11,12 @@ import type { Doc, HtmlAst, Project } from '~types';
 import Link from '~core/Link';
 import Image from '~core/Image';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
+import DevRelCta from '~parts/DevRelCta';
 import SEO from '~parts/SEO';
-import { COLONY_DISCOURSE_SUPPORT } from '~routes';
 
-import CtaItem from './CtaItem';
 import Sidebar from './Sidebar';
 
 import styles from './DocPage.module.css';
-
-const MSG = defineMessages({
-  ctaSupportHeading: {
-    id: 'pages.DocPage.ctaSupportHeading',
-    defaultMessage: 'Support',
-  },
-  ctaSupportContent: {
-    id: 'pages.DocPage.ctaSupportContent',
-    defaultMessage:
-      'Questions? Problems? Existential dilemmas? We’re here to help!',
-  },
-  ctaSupportLinkText: {
-    id: 'pages.DocPage.ctaSupportLinkText',
-    defaultMessage: 'Contact DevRel',
-  },
-  ctaImproveDocHeading: {
-    id: 'pages.DocPage.ctaImproveDocHeading',
-    defaultMessage: 'Improve this doc.',
-  },
-  ctaImproveDocContent: {
-    id: 'pages.DocPage.ctaImproveDocContent',
-    defaultMessage:
-      // eslint-disable-next-line max-len
-      'All improvements to documentation are welcome and encouraged. Submit a PR for documentation on GitHub.',
-  },
-  ctaImproveDocLinkText: {
-    id: 'pages.DocPage.ctaSupportLinkText',
-    defaultMessage: 'To the repo!',
-  },
-});
 
 type Props = {|
   data: {
@@ -223,24 +191,7 @@ class DocPage extends Component<Props> {
                 <h1 className={styles.docTitle}>{doc.frontmatter.title}</h1>
                 {this.renderAst(doc.htmlAst)}
               </div>
-              <div className={styles.ctaContainer}>
-                <div className={styles.ctaItem}>
-                  <CtaItem
-                    contentText={MSG.ctaSupportContent}
-                    headingText={MSG.ctaSupportHeading}
-                    linkText={MSG.ctaSupportLinkText}
-                    linkUrl={COLONY_DISCOURSE_SUPPORT}
-                  />
-                </div>
-                <div className={styles.ctaItem}>
-                  <CtaItem
-                    contentText={MSG.ctaImproveDocContent}
-                    headingText={MSG.ctaImproveDocHeading}
-                    linkText={MSG.ctaImproveDocLinkText}
-                    linkUrl={doc.editUrl}
-                  />
-                </div>
-              </div>
+              <DevRelCta editUrl={doc.editUrl} />
             </main>
           </div>
         </div>

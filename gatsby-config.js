@@ -72,6 +72,13 @@ const sourcePlugins = {
         path: path.resolve(__dirname, '..', 'tailor', 'docs'),
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'colonyTutorials',
+        path: path.resolve(__dirname, '..', 'colonyTutorials', 'tutorials'),
+      }
+    },
     // {
     //   resolve: 'gatsby-source-filesystem',
     //   options: {
@@ -166,6 +173,17 @@ module.exports = {
       resolve: 'gatsby-transform-md-docs',
       options: {
         slugPrefix: 'docs',
+        langConfig: {
+          langs: CONFIGURED_LOCALES,
+          defaultLangKey,
+          prefixDefaultLangKey,
+        }
+      }
+    },
+    {
+      resolve: 'gatsby-transform-md-tutorials',
+      options: {
+        slugPrefix: 'tutorials',
         langConfig: {
           langs: CONFIGURED_LOCALES,
           defaultLangKey,
