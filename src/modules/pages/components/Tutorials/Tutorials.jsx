@@ -15,6 +15,7 @@ import Link from '~core/Link';
 import Search from '~core/Search';
 import SEO from '~parts/SEO';
 import SupportCta from '~parts/SupportCta';
+import { COLONY_GITHUB_TUTORIALS } from '~routes';
 
 import styles from './Tutorials.module.css';
 
@@ -99,12 +100,9 @@ const Tutorials = ({ intl: { formatMessage } }: Props) => {
           <div className={styles.tutorialsActions}>
             <div className={styles.totorialsActionItem}>
               <Button
-                appearance={{ theme: 'primaryHollow' }}
-                text={MSG.btnClearSearch}
+                linkTo={COLONY_GITHUB_TUTORIALS}
+                text={MSG.btnWriteTutorial}
               />
-            </div>
-            <div className={styles.totorialsActionItem}>
-              <Button text={MSG.btnWriteTutorial} />
             </div>
           </div>
         </div>
