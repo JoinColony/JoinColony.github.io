@@ -1,7 +1,7 @@
 @value verticalPadding: 180px;
 
 .main {
-  padding: calc(verticalPadding - 40px) 0 verticalPadding;
+  padding: calc(verticalPadding - 40px) 4% verticalPadding;
   position: relative;
 }
 
