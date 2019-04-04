@@ -3,7 +3,7 @@
 .main {
   margin: 0 auto;
   max-width: 1035px;
-  padding: 40px 0;
+  padding: 0;
   position: relative;
 }
 
@@ -21,6 +21,7 @@
 }
 
 .introSection {
+  padding: 0 8%;
   text-align: center;
 }
 
@@ -32,10 +33,14 @@
 }
 
 .openSourceItem {
-  padding: 86px 5% 0;
+  padding: 62px 13% 0;
 }
 
 @media (mediumUp) {
+  .main {
+    padding: 40px 0;
+  }
+
   .openSourceProductGrid {
     flex-direction: row;
     justify-content: space-between;

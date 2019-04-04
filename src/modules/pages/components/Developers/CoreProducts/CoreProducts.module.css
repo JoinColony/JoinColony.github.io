@@ -1,7 +1,7 @@
 @value mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
-  padding: 0 4% 50px;
+  padding: 0 4% 0;
   position: relative;
 }
 
@@ -48,6 +48,10 @@
 }
 
 @media (mediumUp) {
+  .main {
+    padding: 0 4% 50px;
+  }
+
   .sectionIntroContent {
     padding: 100px 25% 80px;
   }
