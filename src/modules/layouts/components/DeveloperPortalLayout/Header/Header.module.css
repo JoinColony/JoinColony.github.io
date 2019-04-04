@@ -85,6 +85,10 @@
 }
 
 @media (mediumUp) {
+  .main {
+    padding: 20px 0;
+  }
+
   .menuWrapper {
     align-items: center;
     flex-direction: row;
