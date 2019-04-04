@@ -12,7 +12,7 @@ import styles from './Heading.module.css';
 
 export type Appearance = {|
   theme?: 'dark' | 'light' | 'invert' | 'primary' | 'grey',
-  margin?: 'none' | 'tiny' | 'small' | 'double',
+  margin?: 'none' | 'tiny' | 'small' | 'medium' | 'large' | 'double',
   size?:
     | 'tiny'
     | 'small'

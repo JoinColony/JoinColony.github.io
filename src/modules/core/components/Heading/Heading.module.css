@@ -16,6 +16,14 @@
   margin-bottom: 6px !important;
 }
 
+.marginMedium {
+  margin-bottom: 12px !important;
+}
+
+.marginLarge {
+  margin-bottom: 24px !important;
+}
+
 .marginDouble {
   margin-bottom: 40px;
 }
