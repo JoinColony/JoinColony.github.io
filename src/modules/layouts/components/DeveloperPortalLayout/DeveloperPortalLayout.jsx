@@ -7,9 +7,12 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import type { Project } from '~types';
 
+import { transformProjectData } from '~utils/docs';
+
 import Header from './Header';
 import Footer from './Footer';
-import { transformProjectData } from '~utils/docs';
+
+import styles from './DeveloperPortalLayout.module.css';
 
 type Props = {|
   children: Node,
@@ -39,7 +42,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}
       />
-      <div>{children}</div>
+      <div className={styles.body}>{children}</div>
       <Footer
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}
