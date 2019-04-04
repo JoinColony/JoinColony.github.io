@@ -7,9 +7,11 @@ import { graphql } from 'gatsby';
 import slugify from 'slugify';
 
 import type { Doc, HtmlAst, Project } from '~types';
+import type { Appearance as HeadingAppearance } from '~core/Heading';
 
-import Link from '~core/Link';
+import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Link from '~core/Link';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import DevRelCta from '~parts/DevRelCta';
 import SEO from '~parts/SEO';
@@ -17,6 +19,16 @@ import SEO from '~parts/SEO';
 import Sidebar from './Sidebar';
 
 import styles from './DocPage.module.css';
+
+const commonHeadingAppearanceProps: HeadingAppearance = {
+  theme: 'dark',
+  weight: 'thin',
+};
+
+const headingWithSize = (size: string) =>
+  withProps({
+    appearance: { ...commonHeadingAppearanceProps, size },
+  })(Heading);
 
 type Props = {|
   data: {
@@ -63,6 +75,12 @@ class DocPage extends Component<Props> {
           transformUrl: this.transformInternalUrls,
           persistLocale: false,
         })(Link),
+        h1: headingWithSize('huge'),
+        h2: headingWithSize('large'),
+        h3: headingWithSize('medium'),
+        h4: headingWithSize('normal'),
+        h5: headingWithSize('small'),
+        h6: headingWithSize('tiny'),
         img: withProps({ project: props.data.project.name })(Image),
       },
     }).Compiler;

@@ -48,30 +48,6 @@
   margin: 0;
 }
 
-.astContent h1 {
-  font-family: "Avenir Next Demi";
-  font-size: 24px;
-  margin-top: 0;
-}
-
-.astContent h2 {
-  font-family: "Avenir Next Demi";
-  font-size: 20px;
-  margin-top: 0;
-}
-
-.astContent h3 {
-  font-family: "Avenir Next Demi";
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.astContent h4 {
-  font-family: "Avenir Next Demi";
-  font-weight: 600;
-  font-size: 16px;
-}
-
 .astContent p {
   font-size: 15px;
 }
@@ -146,23 +122,6 @@
 
   .content {
     padding: 0 0 0 80px;
-  }
-
-  .astContent h1 {
-    font-size: 32px;
-    margin-top: 50px;
-  }
-
-  .astContent h2 {
-    margin-top: 48px;
-  }
-
-  .astContent h3 {
-    font-size: 20px;
-  }
-
-  .astContent h4 {
-    font-size: 20px;
   }
 
   .astContent p, .astContent ul {

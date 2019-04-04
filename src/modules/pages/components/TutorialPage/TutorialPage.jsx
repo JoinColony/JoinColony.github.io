@@ -25,7 +25,6 @@ type Props = {|
 |};
 
 const commonHeadingAppearanceProps: HeadingAppearance = {
-  margin: 'none',
   theme: 'dark',
   weight: 'thin',
 };
