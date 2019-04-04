@@ -4,6 +4,7 @@
   background-color: #021C2B;
   display: flex;
   justify-content: center;
+  padding: 20px 0;
 }
 
 .menuWrapper {
@@ -86,7 +87,7 @@
 
 @media (mediumUp) {
   .main {
-    padding: 20px 0;
+    padding: 0;
   }
 
   .menuWrapper {
