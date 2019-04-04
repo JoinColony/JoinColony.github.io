@@ -12,7 +12,7 @@
 }
 
 .algolia-autocomplete .algolia-docsearch-suggestion--text .algolia-docsearch-suggestion--highlight {
-  box-shadow: inset 0 -2px 0 0 #f0f5f7;
+  box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, .3);
 }
 
 .algolia-autocomplete .algolia-docsearch-suggestion--title {
