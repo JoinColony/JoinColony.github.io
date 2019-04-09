@@ -11,5 +11,6 @@ export type Doc = {|
   fields: DocFields,
   frontmatter: Object,
   htmlAst: HtmlAst,
+  tableOfContents: string,
   slug: string,
 |};
