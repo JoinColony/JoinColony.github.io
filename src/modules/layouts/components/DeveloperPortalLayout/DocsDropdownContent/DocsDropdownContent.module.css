@@ -12,7 +12,6 @@
 
 .heroLink {
   display: none;
-  height: 82px;
 }
 
 .hero {
@@ -65,7 +64,6 @@
 .menuContent {
   display: flex;
   justify-content: space-between;
-  margin: 14px 0 0;
 }
 
 .menuContent a {
@@ -96,6 +94,10 @@
 
   .cta {
     min-width: 315px;
+  }
+
+  .menuContent {
+    margin: 32px 0 0;
   }
 
   .menuContent a {
