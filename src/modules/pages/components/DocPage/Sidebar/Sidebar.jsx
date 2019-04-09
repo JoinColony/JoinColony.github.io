@@ -25,6 +25,7 @@ const MSG = defineMessages({
 
 type Props = {|
   project: Project,
+  tableOfContents: string,
 |};
 
 const displayName = 'parts.Sidebar';
