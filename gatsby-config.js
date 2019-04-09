@@ -172,23 +172,25 @@ module.exports = {
     {
       resolve: 'gatsby-transform-md-docs',
       options: {
-        slugPrefix: 'docs',
         langConfig: {
           langs: CONFIGURED_LOCALES,
           defaultLangKey,
           prefixDefaultLangKey,
-        }
+        },
+        projects: ['colonyJS', 'colonyNetwork', 'colonyStarter', 'purser', 'tailor'],
+        slugPrefix: 'docs',
       }
     },
     {
       resolve: 'gatsby-transform-md-tutorials',
       options: {
-        slugPrefix: 'tutorials',
         langConfig: {
           langs: CONFIGURED_LOCALES,
           defaultLangKey,
           prefixDefaultLangKey,
-        }
+        },
+        projects: ['colonyTutorials'],
+        slugPrefix: 'tutorials',
       }
     },
     {
