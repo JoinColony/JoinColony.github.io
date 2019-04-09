@@ -13,6 +13,7 @@ import Link from '~core/Link';
 import SectionList from '~pages/DocPage/SectionList';
 import { PAGE_DEVELOPER_PORTAL } from '~routes';
 import { getProjectEntryPoint } from '~utils/docs';
+import { fixTocCodeTag } from '~utils/toc';
 
 import styles from './Sidebar.module.css';
 
@@ -39,9 +40,10 @@ const Sidebar = ({
   intl: { locale },
   project: { name: projectName },
   project,
-  tableOfContents,
+  tableOfContents: unsanitizedToc,
 }: Props) => {
   const projectEntryPoint = getProjectEntryPoint(project, locale);
+  const tableOfContents = fixTocCodeTag(unsanitizedToc);
   return (
     <nav className={styles.main}>
       <Match path={projectEntryPoint}>
