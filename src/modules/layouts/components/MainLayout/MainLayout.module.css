@@ -6,14 +6,6 @@
   font-family: "Avenir Next", "Helvetica", "Arial", sans-serif;
 }
 
-:global [id]:before {
-  display: block;
-  content: "";
-  margin-top: -60px;
-  height: 60px;
-  visibility: hidden;
-}
-
 .gridContainer {
   display: grid;
   grid-template-rows: 80px auto auto;
