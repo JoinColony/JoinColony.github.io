@@ -56,7 +56,7 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.6.0",
     "eslint-plugin-standard": "^4.0.0",
-    "flow-bin": "^0.91.0",
+    "flow-bin": "^0.96.0",
     "gatsby-node-helpers": "^0.3.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-flow": "^1.0.2",
