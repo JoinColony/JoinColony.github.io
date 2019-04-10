@@ -1,8 +1,6 @@
 /* @flow */
-import type { IntlShape } from 'react-intl';
-
 import React from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { Match } from '@reach/router';
 
 import type { Project } from '~types';
@@ -12,8 +10,7 @@ import Heading from '~core/Heading';
 import Link from '~core/Link';
 import SectionList from '~pages/DocPage/SectionList';
 import { PAGE_DEVELOPER_PORTAL } from '~routes';
-import { getProjectEntryPoint } from '~utils/docs';
-import { fixTocCodeTag } from '~utils/toc';
+import { getMainClasses } from '~utils/css';
 
 import styles from './Sidebar.module.css';
 
@@ -29,69 +26,81 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  intl: IntlShape,
+  locationState: {
+    fromChild: boolean,
+    fromParent: boolean,
+    key: string,
+  },
   project: Project,
+  projectEntryPoint: string,
   tableOfContents: string,
 |};
 
 const displayName = 'parts.Sidebar';
 
 const Sidebar = ({
-  intl: { locale },
+  locationState: { fromChild, fromParent },
   project: { name: projectName },
   project,
-  tableOfContents: unsanitizedToc,
-}: Props) => {
-  const projectEntryPoint = getProjectEntryPoint(project, locale);
-  const tableOfContents = fixTocCodeTag(unsanitizedToc);
-  return (
-    <nav className={styles.main}>
-      <Match path={projectEntryPoint}>
-        {({ match }) =>
-          match ? (
-            <>
-              <Link
-                arrow="left"
-                className={styles.homeLink}
-                href={PAGE_DEVELOPER_PORTAL}
-                text={MSG.linkHome}
-              />
-              <div className={styles.projectTitle}>
-                <Heading
-                  appearance={{
-                    size: 'mediumLarge',
-                    theme: 'dark',
-                    weight: 'medium',
-                  }}
+  projectEntryPoint,
+  tableOfContents,
+}: Props) => (
+  <nav
+    className={getMainClasses({}, styles, {
+      fromChild,
+      fromParent,
+    })}
+  >
+    <div className={styles.menuContentsWrapper}>
+      <div className={styles.menuContents}>
+        <Match path={projectEntryPoint}>
+          {({ match }) =>
+            match ? (
+              <>
+                <Link
+                  arrow="left"
+                  className={styles.homeLink}
+                  href={PAGE_DEVELOPER_PORTAL}
+                  text={MSG.linkHome}
+                />
+                <div className={styles.projectTitle}>
+                  <Heading
+                    appearance={{
+                      size: 'mediumLarge',
+                      theme: 'dark',
+                      weight: 'medium',
+                    }}
+                    text={projectName}
+                  />
+                </div>
+                <SectionList project={project} />
+              </>
+            ) : (
+              <>
+                <Link
+                  arrow="left"
+                  className={styles.homeLink}
+                  href={projectEntryPoint}
+                  state={{ fromChild: true }}
                   text={projectName}
                 />
-              </div>
-              <SectionList project={project} />
-            </>
-          ) : (
-            <>
-              <Link
-                arrow="left"
-                className={styles.homeLink}
-                href={projectEntryPoint}
-                text={projectName}
-              />
-              {/* eslint-disable-next-line react/no-danger */}
-              <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
-            </>
-          )
-        }
-      </Match>
-      <div className={styles.backToTop}>
-        <Button
-          className={styles.itemLink}
-          onClick={handleBackToTop}
-          text={MSG.btnBackToTop}
-        />
+                {/* eslint-disable-next-line react/no-danger */}
+                <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
+              </>
+            )
+          }
+        </Match>
+        <div className={styles.backToTop}>
+          <Button
+            className={styles.itemLink}
+            onClick={handleBackToTop}
+            text={MSG.btnBackToTop}
+          />
+        </div>
       </div>
-    </nav>
-  );
-};
+    </div>
+  </nav>
+);
 
 Sidebar.displayName = displayName;
 
@@ -102,4 +111,4 @@ function handleBackToTop(e) {
   }
 }
 
-export default injectIntl(Sidebar);
+export default Sidebar;

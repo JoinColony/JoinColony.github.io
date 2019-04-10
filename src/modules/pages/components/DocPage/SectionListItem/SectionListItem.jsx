@@ -55,12 +55,13 @@ const SectionListItem = ({ locale, section: { docs, name } }: Props) => {
           .map(doc => (
             <li key={doc.slug} className={styles.docsItem}>
               <Link
-                href={doc.fields.slug}
-                title={doc.frontmatter.title}
-                className={styles.itemLink}
                 activeClassName={styles.active}
-                text={doc.frontmatter.title}
+                className={styles.itemLink}
+                href={doc.fields.slug}
                 persistLocale={false}
+                state={{ fromParent: true }}
+                text={doc.frontmatter.title}
+                title={doc.frontmatter.title}
               />
             </li>
           ))}

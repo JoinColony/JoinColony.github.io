@@ -193,7 +193,7 @@ class DocPage extends Component<Props> {
         />
         <div className={styles.main}>
           <div className={styles.mainInnerContainer}>
-            <div>
+            <div className={styles.sidebar}>
               <Sidebar
                 project={project}
                 tableOfContents={doc.tableOfContents}

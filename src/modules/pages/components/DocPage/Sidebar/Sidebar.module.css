@@ -7,6 +7,14 @@
   width: 100%;
 }
 
+.menuContentsWrapper {
+  overflow-x: hidden;
+}
+
+.menuContents {
+  animation-duration: 1s;
+}
+
 .homeLink {
   display: none;
   font-size: 14px;
@@ -111,5 +119,39 @@
 @media (largeUp) {
   .main {
     width: 270px;
+  }
+}
+
+/* State */
+
+.stateFromChild .menuContents {
+  animation-name: fromChildSlideIn;
+}
+
+.stateFromParent .menuContents {
+  animation-name: fromParentSlideIn;
+}
+
+/* Animations */
+
+@keyframes fromChildSlideIn {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fromParentSlideIn {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }
