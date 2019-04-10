@@ -4,6 +4,7 @@
   background-color: #021C2B;
   display: flex;
   justify-content: center;
+  padding: 20px 0;
 }
 
 .menuWrapper {
@@ -56,6 +57,7 @@
 }
 
 .dropdownParent {
+  display: none;
   cursor: default;
 }
 
@@ -77,10 +79,14 @@
 .navToggle {
   position: absolute;
   right: 0;
-  top: 16px;
+  top: 19px;
 }
 
 @media (mediumUp) {
+  .main {
+    padding: 0;
+  }
+
   .menuWrapper {
     align-items: center;
     flex-direction: row;
@@ -104,6 +110,10 @@
   
   .navLink + .navLink {
     margin-left: 30px;
+  }
+
+  .dropdownParent {
+    display: block;
   }
 
   .docsDropdownParent .docsDropdownContainer {

@@ -27,8 +27,9 @@ const CoreProductsItem = ({
   project: { description, entryPoint, logoSmall, name, repoUrl },
 }: Props) => (
   <>
-    <div>
+    <div className={styles.test}>
       <div className={styles.imageContainer}>
+        {/* @TODO get dark logo for hover state, link image to docs */}
         <Image
           alt={name}
           className={styles.image}
@@ -40,7 +41,7 @@ const CoreProductsItem = ({
         appearance={{ theme: 'invert', size: 'medium', weight: 'medium' }}
         text={name}
       />
-      <p>{description}</p>
+      <p className={styles.descriptionText}>{description}</p>
     </div>
     <p>
       <Link

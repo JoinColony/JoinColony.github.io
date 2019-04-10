@@ -1,3 +1,5 @@
+@value mediumDown from '~styles/breakpoints.css';
+
 .main {
   color: rgba(0, 0, 0, 0.8);
 }
@@ -14,6 +16,14 @@
 
 .marginSmall {
   margin-bottom: 6px !important;
+}
+
+.marginMedium {
+  margin-bottom: 12px !important;
+}
+
+.marginLarge {
+  margin-bottom: 24px !important;
 }
 
 .marginDouble {
@@ -47,7 +57,7 @@
 
 .sizeLarge {
   font-size: 32px;
-  line-height: 45px;
+  line-height: 50px;
 }
 
 .sizeHuge {
@@ -71,6 +81,10 @@
   color: #289BDC;
 }
 
+.themeGrey {
+  color: #2E4153;
+}
+
 /* Weights */
 .weightThin {
   font-family: 'Avenir Next Light';
@@ -82,4 +96,11 @@
 
 .weightBold {
   font-weight: 500;
+}
+
+@media (mediumDown) {
+  .sizeLarge {
+    letter-spacing: .2px;
+    line-height: 1.2em;
+  }
 }

@@ -1,7 +1,7 @@
+@value verticalPadding: 180px;
+
 .main {
-  background-position: center bottom;
-  background-size: cover;
-  padding: 132px 0 214px;
+  padding: calc(verticalPadding - 40px) 4% verticalPadding;
   position: relative;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .iconItemLink:hover svg {
-  fill: #17567C;
+  fill: #0D4E7B;
 }
 
 .iconItemLink + .iconItemLink {

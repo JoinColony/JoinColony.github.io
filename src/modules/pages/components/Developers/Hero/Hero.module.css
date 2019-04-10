@@ -14,7 +14,7 @@
 }
 
 .contentContainer {
-  padding: 130px 0;
+  padding: 115px 0 93px;
   position: relative;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .heroFeatureItem + .heroFeatureItem {
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 @media (mediumUp) {

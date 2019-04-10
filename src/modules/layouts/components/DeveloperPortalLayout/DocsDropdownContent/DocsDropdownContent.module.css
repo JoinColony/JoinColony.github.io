@@ -11,20 +11,19 @@
 }
 
 .heroLink {
-  display: block;
-  height: 82px;
+  display: none;
 }
 
 .hero {
-  align-items: stretch;
-  border-radius: borderRadius;
-  display: flex;
-}
-
-.logoContainer {
+  align-items: center;
   background-color: #ffffff;
   border-radius: borderRadius;
   box-shadow: boxShadow;
+  display: none;
+  padding: 15px;
+}
+
+.logoContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,22 +31,18 @@
 
 .logo {
   height: auto;
-  margin: 5px;
-  padding: 10px;
-  width: 59px;
+  margin: 0;
+  padding: 0;
+  width: 40px;
 }
 
 .cta {
   align-self: stretch;
-  background-color: #ffffff;
-  border-radius: borderRadius;
-  box-shadow: boxShadow;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 0 0 10px;
   width: 100%;
-  padding: 15px 20px;
+  padding: 0 0 0 15px;
 }
 
 .heroLink:hover .hero {
@@ -69,7 +64,6 @@
 .menuContent {
   display: flex;
   justify-content: space-between;
-  margin: 45px 0 0;
 }
 
 .menuContent a {
@@ -87,11 +81,23 @@
 @media (mediumUp) {
   .main {
     border-bottom: none;
-    padding: 40px;
+    padding: 40px 40px 32px;
+  }
+
+  .heroLink {
+    display: block;
+  }
+
+  .hero {
+    display: flex;
   }
 
   .cta {
     min-width: 315px;
+  }
+
+  .menuContent {
+    margin: 32px 0 0;
   }
 
   .menuContent a {

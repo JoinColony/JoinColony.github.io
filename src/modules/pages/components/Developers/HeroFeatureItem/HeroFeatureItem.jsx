@@ -26,13 +26,22 @@ const HeroFeatureItem = ({
 }: Props) => (
   <>
     <div>
-      <Heading
-        appearance={{ size: 'medium', theme: 'invert', weight: 'medium' }}
-        text={headingText}
-      />
-      <p className={styles.heroFeatureText}>
-        <FormattedMessage {...contentText} />
-      </p>
+      <div>
+        <Heading
+          appearance={{
+            margin: 'none',
+            size: 'medium',
+            theme: 'invert',
+            weight: 'medium',
+          }}
+          text={headingText}
+        />
+      </div>
+      <div className={styles.heroFeatureTextContainer}>
+        <p className={styles.heroFeatureText}>
+          <FormattedMessage {...contentText} />
+        </p>
+      </div>
     </div>
     <div>
       <Link

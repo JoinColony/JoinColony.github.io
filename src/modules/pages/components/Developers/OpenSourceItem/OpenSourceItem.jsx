@@ -50,7 +50,7 @@ const OpenSourceItem = ({
           <p>{description}</p>
         </div>
       </div>
-      <div>
+      <div className={styles.linkContainer}>
         <p>
           <Link
             className={styles.itemLink}

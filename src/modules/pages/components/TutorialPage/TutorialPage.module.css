@@ -6,6 +6,10 @@
   margin: 0 9.5%;
 }
 
+.main p {
+  color: #2E4153;
+}
+
 .mainInnerContainer {
   display: flex;
   flex-direction: column;

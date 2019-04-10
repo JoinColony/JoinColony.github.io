@@ -1,5 +1,8 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -8,9 +11,8 @@
   background-color: rgba(2, 28, 43, 0.6);
   display: flex;
   flex-shrink: 0;
-  height: 150px;
+  height: 180px;
   justify-content: center;
-  width: 150px;
 }
 
 .image {
@@ -23,13 +25,46 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 50px;
+  margin-top: 40px;
+}
+
+.contentContainer p {
+  margin: 0;
 }
 
 .description {
-  margin-top: 12px;
+  margin-top: 20px;
+}
+
+.linkContainer {
+  margin-top: 18px;
 }
 
 .itemLink + .itemLink {
   margin-left: 25px;
+}
+
+@media (mediumUp) {
+  .main {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    height: 150px;
+    width: 150px;
+  }
+
+  .contentContainer {
+    margin-top: 0;
+    padding-left: 50px;
+  }
+
+  .description {
+    margin-top: 12px;
+  }
+
+  .linkContainer {
+    margin-bottom: -7px;
+    margin-top: -4px;
+  }
 }

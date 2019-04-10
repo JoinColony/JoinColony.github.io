@@ -22,7 +22,12 @@ const CtaItem = ({ contentText, headingText, linkText, linkUrl }: Props) => (
   <div className={styles.main}>
     <div className={styles.contentContainer}>
       <Heading
-        appearance={{ size: 'medium', theme: 'primary', weight: 'medium' }}
+        appearance={{
+          margin: 'large',
+          size: 'medium',
+          theme: 'grey',
+          weight: 'medium',
+        }}
         text={headingText}
       />
       <p className={styles.contentText}>
@@ -33,7 +38,7 @@ const CtaItem = ({ contentText, headingText, linkText, linkUrl }: Props) => (
         )}
       </p>
     </div>
-    <div>
+    <div className={styles.linkContainer}>
       <Link className={styles.link} text={linkText} href={linkUrl} />
     </div>
   </div>
