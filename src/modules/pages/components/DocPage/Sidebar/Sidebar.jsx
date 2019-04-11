@@ -1,6 +1,7 @@
 /* @flow */
 import React, { createElement } from 'react';
 import { defineMessages } from 'react-intl';
+import { withProps } from 'recompose';
 import { Match } from '@reach/router';
 import RehypeReact from 'rehype-react';
 
@@ -14,6 +15,7 @@ import { PAGE_DEVELOPER_PORTAL } from '~routes';
 import { getMainClasses } from '~utils/css';
 
 import styles from './Sidebar.module.css';
+import listItemStyles from '../SectionListItem/SectionListItem.module.css';
 
 const MSG = defineMessages({
   linkHome: {
@@ -35,12 +37,25 @@ type Props = {|
   project: Project,
   projectEntryPoint: string,
   tableOfContents: HtmlAst,
+  title?: string,
 |};
 
 const renderAst = new RehypeReact({
   createElement,
   components: {
-    a: Link,
+    a: withProps({
+      className: listItemStyles.itemLink,
+    })(Link),
+    li: props =>
+      createElement('li', { ...props, className: listItemStyles.docsItem }),
+    p: withProps({
+      appearance: {
+        margin: 'none',
+        size: 'medium',
+        weight: 'medium',
+      },
+      style: { color: listItemStyles.textColor },
+    })(Heading),
   },
 }).Compiler;
 
@@ -52,6 +67,7 @@ const Sidebar = ({
   project,
   projectEntryPoint,
   tableOfContents,
+  title,
 }: Props) => (
   <nav
     className={getMainClasses({}, styles, {
@@ -92,19 +108,31 @@ const Sidebar = ({
                   state={{ fromChild: true }}
                   text={projectName}
                 />
+                {title && (
+                  <div className={styles.projectTitle}>
+                    <Heading
+                      appearance={{
+                        size: 'mediumLarge',
+                        theme: 'dark',
+                        weight: 'medium',
+                      }}
+                      text={title}
+                    />
+                  </div>
+                )}
                 {renderAst(tableOfContents)}
               </>
             )
           }
         </Match>
-        <div className={styles.backToTop}>
-          <Button
-            className={styles.itemLink}
-            onClick={handleBackToTop}
-            text={MSG.btnBackToTop}
-          />
-        </div>
       </div>
+    </div>
+    <div className={styles.backToTop}>
+      <Button
+        className={styles.itemLink}
+        onClick={handleBackToTop}
+        text={MSG.btnBackToTop}
+      />
     </div>
   </nav>
 );

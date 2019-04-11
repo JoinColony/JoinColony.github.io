@@ -5,9 +5,16 @@ body {
 }
 
 :global(.md-toc) {
-  margin: 0;
+  margin: 0 0 23px;
   list-style: none;
-  margin-bottom: 1.45rem;
+}
+
+:global(.md-toc) li ul {
+  margin: 0 0 23px 0;
+}
+
+:global(.md-toc) li p {
+  margin-bottom: 0;
 }
 
 :global(.md-toc) > li {

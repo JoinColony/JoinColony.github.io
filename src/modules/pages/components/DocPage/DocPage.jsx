@@ -222,7 +222,11 @@ class DocPage extends Component<Props> {
         <div className={styles.main}>
           <div className={styles.mainInnerContainer}>
             <div className={styles.sidebar}>
-              <Sidebar project={project} tableOfContents={toc} />
+              <Sidebar
+                project={project}
+                tableOfContents={toc}
+                title={doc.frontmatter.title}
+              />
             </div>
             <main className={styles.content}>
               <div className={styles.mainImage}>
