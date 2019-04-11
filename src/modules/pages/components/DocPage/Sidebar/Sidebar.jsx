@@ -1,9 +1,10 @@
 /* @flow */
-import React from 'react';
+import React, { createElement } from 'react';
 import { defineMessages } from 'react-intl';
 import { Match } from '@reach/router';
+import RehypeReact from 'rehype-react';
 
-import type { Project } from '~types';
+import type { Project, HtmlAst } from '~types';
 
 import Button from '~core/Button';
 import Heading from '~core/Heading';
@@ -33,8 +34,15 @@ type Props = {|
   },
   project: Project,
   projectEntryPoint: string,
-  tableOfContents: string,
+  tableOfContents: HtmlAst,
 |};
+
+const renderAst = new RehypeReact({
+  createElement,
+  components: {
+    a: Link,
+  },
+}).Compiler;
 
 const displayName = 'parts.Sidebar';
 
@@ -84,8 +92,7 @@ const Sidebar = ({
                   state={{ fromChild: true }}
                   text={projectName}
                 />
-                {/* eslint-disable-next-line react/no-danger */}
-                <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
+                {renderAst(tableOfContents)}
               </>
             )
           }
