@@ -23,22 +23,6 @@
   margin: 0 auto;
 }
 
-:global(.gatsby-toc) + ul {
-  margin: 0;
-  list-style: none;
-  margin-bottom: 1.45rem;
-}
-
-:global(.gatsby-toc) + ul > li {
-  /* Style first level indentation */
-  list-style: none;
-}
-
-:global(.gatsby-toc) + ul > li li {
-  /* Style second level indentation */
-  list-style: none;
-}
-
 .astContent {
   color: #00284B;
   font-family: 'Avenir Next Light';
@@ -127,10 +111,6 @@
 
   .astContent p, .astContent ul {
     font-size: 16px;
-  }
-
-  :global(.gatsby-toc) + ul li {
-    margin-left: 0;
   }
 
   .astContent table {
