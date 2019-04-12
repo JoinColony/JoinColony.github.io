@@ -9,6 +9,7 @@ import type { Project, HtmlAst } from '~types';
 
 import Button from '~core/Button';
 import Heading from '~core/Heading';
+import Icon from '~core/Icon';
 import Link from '~core/Link';
 import SectionList from '~pages/DocPage/SectionList';
 import { PAGE_DEVELOPER_PORTAL } from '~routes';
@@ -96,6 +97,23 @@ const Sidebar = ({
                     }}
                     text={projectName}
                   />
+                </div>
+                <div className={styles.mobileProjectTitle}>
+                  <Link href={PAGE_DEVELOPER_PORTAL}>
+                    <Icon
+                      className={styles.chevron}
+                      name="chevron"
+                      title={projectName}
+                    />
+                    <Heading
+                      appearance={{
+                        size: 'mediumLarge',
+                        theme: 'dark',
+                        weight: 'medium',
+                      }}
+                      text={projectName}
+                    />
+                  </Link>
                 </div>
                 <SectionList project={project} />
               </>

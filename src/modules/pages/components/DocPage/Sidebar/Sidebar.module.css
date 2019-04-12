@@ -18,9 +18,24 @@
 }
 
 .projectTitle {
+  display: none;
+}
+
+.mobileProjectTitle {
   display: block;
   margin-top: 23px;
+  position: relative;
   text-align: center;
+}
+
+.chevron svg {
+  fill: #C8D2DC;
+  stroke: #C8D2DC;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  left: 10%;
+  transform: rotate(180deg);
 }
 
 .sectionTitle {
@@ -77,8 +92,16 @@
   }
 
   .projectTitle {
+    display: block;
     margin-top: 78px;
-    text-align: left;
+  }
+
+  .mobileProjectTitle {
+    display: none;
+  }
+
+  .chevron {
+    display: none;
   }
 
   .sectionTitle {
