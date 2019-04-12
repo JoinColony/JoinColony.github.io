@@ -160,7 +160,9 @@ const Sidebar = ({
                     </div>
                   </>
                 )}
-                {renderAst(tableOfContents)}
+                <div className={styles.tocWrapper}>
+                  {renderAst(tableOfContents)}
+                </div>
               </>
             )
           }
