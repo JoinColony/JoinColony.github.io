@@ -79,6 +79,10 @@
     margin: 0 0 23px 0;
   }
 
+  .expandArrow {
+    display: none;
+  }
+
   .main h3 {
     /* Re-instate standard `Heading` style for desktop */
     font-family: 'Avenir Next Demi';
