@@ -46,6 +46,7 @@ const renderAst = new RehypeReact({
   components: {
     a: withProps({
       className: listItemStyles.itemLink,
+      state: { fromChild: true },
     })(Link),
     li: props =>
       createElement('li', { ...props, className: listItemStyles.docsItem }),
