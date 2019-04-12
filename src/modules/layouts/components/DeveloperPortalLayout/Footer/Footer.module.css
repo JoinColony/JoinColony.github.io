@@ -2,7 +2,7 @@
 
 .main {
   background-color: #021C2B;
-  padding: 85px 9.5% 70px;
+  padding: 50px 9.5% 40px;
   position: relative;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .navGroup {
-  margin-top: 60px;
+  margin-top: 43px;
   column-count: 2;
   font-size: .9rem;
 }
@@ -52,7 +52,7 @@
 
 .navGroupItem:nth-child(2) {
   /* Use padding here instead of margin to so this column doesn't wrap */
-  padding-top: 60px;
+  padding-top: 42px;
 }
 
 .navGroupItem:nth-child(3) {
@@ -60,7 +60,7 @@
 }
 
 .metaRow {
-  margin-top: 100px;
+  margin-top: 173px;
   text-align: center;
 }
 
