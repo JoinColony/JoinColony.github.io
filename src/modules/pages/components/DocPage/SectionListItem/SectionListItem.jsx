@@ -5,6 +5,7 @@ import type { Section } from '~types';
 
 import Button from '~core/Button';
 import Heading from '~core/Heading';
+import Icon from '~core/Icon';
 import Link from '~core/Link';
 import { getDocsForLocale, orderDocs } from '~utils/docs';
 
@@ -36,14 +37,7 @@ const SectionListItem = ({ locale, section: { docs, name } }: Props) => {
           onClick={() => setIsSectionOpen(!isSectionOpen)}
         >
           <Heading {...sectionHeadingProps} />
-          <svg
-            className={styles.expandArrow}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            {/* eslint-disable-next-line max-len */}
-            <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" />
-          </svg>
+          <Icon className={styles.expandArrow} name="chevron" title={name} />
         </Button>
       </span>
       <span className={styles.sectionTitle}>
