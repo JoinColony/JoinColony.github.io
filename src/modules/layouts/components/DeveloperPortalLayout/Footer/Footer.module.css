@@ -2,7 +2,7 @@
 
 .main {
   background-color: #021C2B;
-  padding: 85px 0 70px;
+  padding: 85px 9.5% 70px;
   position: relative;
 }
 
@@ -30,20 +30,33 @@
   stroke: #ffffff;
 }
 
+.logoContainer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .logoContainer a {
   color: #ffffff;
 }
 
-.navRow {
-  text-align: center;
-}
-
 .navGroup {
+  margin-top: 60px;
+  column-count: 2;
   font-size: .9rem;
 }
 
 .navGroupItem {
-  margin-top: 60px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.navGroupItem:nth-child(2) {
+  /* Use padding here instead of margin to so this column doesn't wrap */
+  padding-top: 60px;
+}
+
+.navGroupItem:nth-child(3) {
+  float: right;
 }
 
 .metaRow {
@@ -85,12 +98,18 @@ a:hover .socialIcon svg {
   .main {
     display: flex;
     justify-content: center;
+    padding: 85px 0 70px;
   }
 
   .footerContent {
     margin: 0 9.5%;
     max-width: 1200px;
     width: 100%;
+  }
+
+  .logoContainer {
+    text-align: left;
+    margin-bottom: 0;
   }
 
   .navRow {
@@ -100,12 +119,22 @@ a:hover .socialIcon svg {
   }
 
   .navGroup {
+    column-count: auto;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 0;
   }
 
   .navGroupItem {
     margin-top: 0;
+  }
+
+  .navGroupItem:nth-child(2) {
+    padding-top: 0;
+  }
+
+  .navGroupItem:nth-child(3) {
+    float: none;
   }
 
   .navGroupItem + .navGroupItem {
