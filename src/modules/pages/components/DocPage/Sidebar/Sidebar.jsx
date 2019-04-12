@@ -127,16 +127,38 @@ const Sidebar = ({
                   text={projectName}
                 />
                 {title && (
-                  <div className={styles.projectTitle}>
-                    <Heading
-                      appearance={{
-                        size: 'mediumLarge',
-                        theme: 'dark',
-                        weight: 'medium',
-                      }}
-                      text={title}
-                    />
-                  </div>
+                  <>
+                    <div className={styles.projectTitle}>
+                      <Heading
+                        appearance={{
+                          size: 'mediumLarge',
+                          theme: 'dark',
+                          weight: 'medium',
+                        }}
+                        text={title}
+                      />
+                    </div>
+                    <div className={styles.mobileProjectTitle}>
+                      <Link
+                        href={projectEntryPoint}
+                        state={{ fromChild: true }}
+                      >
+                        <Icon
+                          className={styles.chevron}
+                          name="chevron"
+                          title={title}
+                        />
+                        <Heading
+                          appearance={{
+                            size: 'mediumLarge',
+                            theme: 'dark',
+                            weight: 'medium',
+                          }}
+                          text={title}
+                        />
+                      </Link>
+                    </div>
+                  </>
                 )}
                 {renderAst(tableOfContents)}
               </>
