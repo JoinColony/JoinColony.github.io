@@ -18,7 +18,6 @@ export const allDocFieldsFragment = graphql`
       depth
     }
     timeToRead
-    tableOfContents
   }
 `;
 
@@ -30,7 +29,6 @@ export const singleDocFragment = graphql`
         title
       }
       htmlAst
-      tableOfContents
     }
   }
 `;
