@@ -94,6 +94,26 @@
   display: none;
 }
 
+.toggleContainer {
+  text-align: center;
+}
+
+.toggleIcon svg {
+  fill: #C8D2DC;
+  height: 40px;
+  stroke: #C8D2DC;
+  transform: rotate(-90deg);
+  width: 40px;
+}
+
+.tocMenuWrapper[aria-expanded="false"] .tocWrapper {
+  display: none;
+}
+
+.tocMenuWrapper[aria-expanded="false"] .toggleIcon svg {
+  transform: rotate(90deg);
+}
+
 @media (mediumUp) {
 
   .main {
@@ -117,8 +137,16 @@
     display: none;
   }
 
+  .tocMenuWrapper[aria-expanded="false"] .tocWrapper {
+    display: block;
+  }
+
   .tocWrapper {
     padding: 0;
+  }
+
+  .toggleContainer {
+    display: none;
   }
 
   .chevron {

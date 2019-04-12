@@ -1,5 +1,5 @@
 /* @flow */
-import React, { createElement } from 'react';
+import React, { createElement, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { withProps } from 'recompose';
 import { Match } from '@reach/router';
@@ -30,6 +30,10 @@ const MSG = defineMessages({
   iconTitleVisitLink: {
     id: 'pages.DocPage.Sidebar.iconTitleVisitLink',
     defaultMessage: 'Visit Link',
+  },
+  iconTitleToggleMenu: {
+    id: 'pages.DOcPage.Sidebar.iconTitleToggleMenu',
+    defaultMessage: 'Toggle Section Menu',
   },
 });
 
@@ -88,42 +92,28 @@ const Sidebar = ({
   projectEntryPoint,
   tableOfContents,
   title,
-}: Props) => (
-  <nav
-    className={getMainClasses({}, styles, {
-      fromChild,
-      fromParent,
-    })}
-  >
-    <div className={styles.menuContentsWrapper}>
-      <div className={styles.menuContents}>
-        <Match path={projectEntryPoint}>
-          {({ match }) =>
-            match ? (
-              <>
-                <Link
-                  arrow="left"
-                  className={styles.homeLink}
-                  href={PAGE_DEVELOPER_PORTAL}
-                  text={MSG.linkHome}
-                />
-                <div className={styles.projectTitle}>
-                  <Heading
-                    appearance={{
-                      size: 'mediumLarge',
-                      theme: 'dark',
-                      weight: 'medium',
-                    }}
-                    text={projectName}
+}: Props) => {
+  const [isTocExpanded, toggleToc] = useState(true);
+  return (
+    <nav
+      className={getMainClasses({}, styles, {
+        fromChild,
+        fromParent,
+      })}
+    >
+      <div className={styles.menuContentsWrapper}>
+        <div className={styles.menuContents}>
+          <Match path={projectEntryPoint}>
+            {({ match }) =>
+              match ? (
+                <>
+                  <Link
+                    arrow="left"
+                    className={styles.homeLink}
+                    href={PAGE_DEVELOPER_PORTAL}
+                    text={MSG.linkHome}
                   />
-                </div>
-                <div className={styles.mobileProjectTitle}>
-                  <Link href={PAGE_DEVELOPER_PORTAL}>
-                    <Icon
-                      className={styles.chevron}
-                      name="chevron"
-                      title={projectName}
-                    />
+                  <div className={styles.projectTitle}>
                     <Heading
                       appearance={{
                         size: 'mediumLarge',
@@ -132,41 +122,38 @@ const Sidebar = ({
                       }}
                       text={projectName}
                     />
-                  </Link>
-                </div>
-                <SectionList project={project} />
-              </>
-            ) : (
-              <>
-                <Link
-                  arrow="left"
-                  className={styles.homeLink}
-                  href={projectEntryPoint}
-                  state={{ fromChild: true }}
-                  text={projectName}
-                />
-                {title && (
-                  <>
-                    <div className={styles.projectTitle}>
+                  </div>
+                  <div className={styles.mobileProjectTitle}>
+                    <Link href={PAGE_DEVELOPER_PORTAL}>
+                      <Icon
+                        className={styles.chevron}
+                        name="chevron"
+                        title={projectName}
+                      />
                       <Heading
                         appearance={{
                           size: 'mediumLarge',
                           theme: 'dark',
                           weight: 'medium',
                         }}
-                        text={title}
+                        text={projectName}
                       />
-                    </div>
-                    <div className={styles.mobileProjectTitle}>
-                      <Link
-                        href={projectEntryPoint}
-                        state={{ fromChild: true }}
-                      >
-                        <Icon
-                          className={styles.chevron}
-                          name="chevron"
-                          title={title}
-                        />
+                    </Link>
+                  </div>
+                  <SectionList project={project} />
+                </>
+              ) : (
+                <>
+                  <Link
+                    arrow="left"
+                    className={styles.homeLink}
+                    href={projectEntryPoint}
+                    state={{ fromChild: true }}
+                    text={projectName}
+                  />
+                  {title && (
+                    <>
+                      <div className={styles.projectTitle}>
                         <Heading
                           appearance={{
                             size: 'mediumLarge',
@@ -175,28 +162,65 @@ const Sidebar = ({
                           }}
                           text={title}
                         />
-                      </Link>
+                      </div>
+                      <div className={styles.mobileProjectTitle}>
+                        <Link
+                          href={projectEntryPoint}
+                          state={{ fromChild: true }}
+                        >
+                          <Icon
+                            className={styles.chevron}
+                            name="chevron"
+                            title={title}
+                          />
+                          <Heading
+                            appearance={{
+                              size: 'mediumLarge',
+                              theme: 'dark',
+                              weight: 'medium',
+                            }}
+                            text={title}
+                          />
+                        </Link>
+                      </div>
+                    </>
+                  )}
+                  <div
+                    className={styles.tocMenuWrapper}
+                    aria-expanded={isTocExpanded}
+                  >
+                    <div className={styles.tocWrapper}>
+                      {renderAst(tableOfContents)}
                     </div>
-                  </>
-                )}
-                <div className={styles.tocWrapper}>
-                  {renderAst(tableOfContents)}
-                </div>
-              </>
-            )
-          }
-        </Match>
+                    <div className={styles.toggleContainer}>
+                      <Button
+                        appearance={{ theme: 'reset' }}
+                        onClick={() => toggleToc(!isTocExpanded)}
+                      >
+                        <Icon
+                          className={styles.toggleIcon}
+                          name="chevron"
+                          title={MSG.iconTitleToggleMenu}
+                        />
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )
+            }
+          </Match>
+        </div>
       </div>
-    </div>
-    <div className={styles.backToTop}>
-      <Button
-        className={styles.itemLink}
-        onClick={handleBackToTop}
-        text={MSG.btnBackToTop}
-      />
-    </div>
-  </nav>
-);
+      <div className={styles.backToTop}>
+        <Button
+          className={styles.itemLink}
+          onClick={handleBackToTop}
+          text={MSG.btnBackToTop}
+        />
+      </div>
+    </nav>
+  );
+};
 
 Sidebar.displayName = displayName;
 
