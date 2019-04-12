@@ -29,7 +29,7 @@
   display: inline-block;
 }
 
-.expandArrow {
+.expandArrow svg {
   fill: #C8D2DC;
   stroke: #C8D2DC;
   width: 22px;

@@ -20,12 +20,16 @@ import listItemStyles from '../SectionListItem/SectionListItem.module.css';
 
 const MSG = defineMessages({
   linkHome: {
-    id: 'parts.Sidebar.linkHome',
+    id: 'pages.DocPage.Sidebar.linkHome',
     defaultMessage: 'Home',
   },
   btnBackToTop: {
-    id: 'parts.Sidebar.btnBackToTop',
+    id: 'pages.DocPage.Sidebar.btnBackToTop',
     defaultMessage: 'Back to Top',
+  },
+  iconTitleVisitLink: {
+    id: 'pages.DocPage.Sidebar.iconTitleVisitLink',
+    defaultMessage: 'Visit Link',
   },
 });
 
@@ -41,13 +45,27 @@ type Props = {|
   title?: string,
 |};
 
+const ItemLink = ({ children, ...rest }: Object) => (
+  <Link
+    {...rest}
+    className={listItemStyles.itemLink}
+    state={{ fromChild: true }}
+  >
+    <div className={styles.subItemLink}>
+      {children}
+      <Icon
+        className={listItemStyles.expandArrow}
+        name="chevron"
+        title={MSG.iconTitleVisitLink}
+      />
+    </div>
+  </Link>
+);
+
 const renderAst = new RehypeReact({
   createElement,
   components: {
-    a: withProps({
-      className: listItemStyles.itemLink,
-      state: { fromChild: true },
-    })(Link),
+    a: ItemLink,
     li: props =>
       createElement('li', { ...props, className: listItemStyles.docsItem }),
     p: withProps({
@@ -61,7 +79,7 @@ const renderAst = new RehypeReact({
   },
 }).Compiler;
 
-const displayName = 'parts.Sidebar';
+const displayName = 'pages.DocPage.Sidebar';
 
 const Sidebar = ({
   locationState: { fromChild, fromParent },

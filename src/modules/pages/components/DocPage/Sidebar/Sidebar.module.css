@@ -8,6 +8,14 @@
   width: 100%;
 }
 
+.menuContents {
+  animation-duration: 0.5s;
+}
+
+.expandArrow {
+  margin-top: 8px;
+}
+
 .homeLink {
   display: none;
   font-size: 14px;
@@ -66,6 +74,11 @@
   text-decoration: none;
   text-overflow: ellipsis;
   transition: 0.2s;
+}
+
+.subItemLink {
+  display: flex;
+  justify-content: space-between;
 }
 
 .itemLink:hover {
@@ -144,6 +157,10 @@
 }
 
 @media (largeUp) {
+  .menuContents {
+    animation-duration: 0.75s;
+  }
+
   .main {
     width: 270px;
   }
@@ -152,12 +169,10 @@
 /* State */
 
 .stateFromChild .menuContents {
-  animation-duration: 0.75s;
   animation-name: fromChildSlideIn;
 }
 
 .stateFromParent .menuContents {
-  animation-duration: 0.5s;
   animation-name: fromParentSlideIn;
 }
 
