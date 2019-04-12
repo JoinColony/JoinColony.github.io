@@ -1,6 +1,7 @@
 @value mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
+  background-color: #F0F5F7;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -62,6 +63,7 @@
 @media (mediumUp) {
 
   .main {
+    background-color: transparent;
     border-right: 1px solid #C8D2DC;
     width: 210px;
   }
