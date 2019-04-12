@@ -18,7 +18,9 @@
 }
 
 .projectTitle {
-  display: none;
+  display: block;
+  margin-top: 23px;
+  text-align: center;
 }
 
 .sectionTitle {
@@ -75,8 +77,8 @@
   }
 
   .projectTitle {
-    display: block;
     margin-top: 78px;
+    text-align: left;
   }
 
   .sectionTitle {
