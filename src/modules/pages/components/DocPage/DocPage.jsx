@@ -16,6 +16,7 @@ import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import DevRelCta from '~parts/DevRelCta';
 import SEO from '~parts/SEO';
 
+import Content from './Content';
 import Sidebar from './Sidebar';
 
 import styles from './DocPage.module.css';
@@ -229,23 +230,13 @@ class DocPage extends Component<Props> {
               />
             </div>
             <main className={styles.content}>
-              <div className={styles.mainImage}>
-                <Image
-                  alt={project.name}
-                  project={project.name}
-                  src={project.logo}
-                />
-              </div>
-              <div className={styles.astContent}>
-                <Heading
-                  appearance={{
-                    ...commonHeadingAppearanceProps,
-                    size: 'large',
-                  }}
-                  text={doc.frontmatter.title}
-                />
+              <Content
+                commonHeadingAppearanceProps={commonHeadingAppearanceProps}
+                doc={doc}
+                project={project}
+              >
                 {this.renderAst(doc.htmlAst)}
-              </div>
+              </Content>
               <DevRelCta editUrl={doc.editUrl} />
             </main>
           </div>
