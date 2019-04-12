@@ -72,16 +72,6 @@
   overflow-x: auto;
 }
 
-.astContent [class*="methodHeading"] a[class*="anchor"] {
-  margin-top: 16px;
-}
-
-.astContent .methodHeading code {
-  display: block;
-  padding: 12px 25px 12px 12px;
-  border-left: inset 4px rgb(105, 220, 210);
-}
-
 @media (mediumUp) {
   .mainImage {
     margin: 68px auto 0;

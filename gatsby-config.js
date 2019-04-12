@@ -210,7 +210,12 @@ module.exports = {
               className: 'md-toc',
             },
           },
-          'gatsby-remark-autolink-headers',
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              className: 'md-heading-link',
+            },
+          },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
