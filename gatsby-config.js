@@ -116,6 +116,12 @@ const sourcePlugins = {
           expression: 'master:docs/',
           name: 'colonyStarter',
         },
+        {
+          owner: 'JoinColony',
+          repo: 'colonyTutorials',
+          expression: 'master:tutorials/',
+          name: 'colonyTutorials',
+        },
         // {
         //   owner: 'JoinColony',
         //   repo: 'pinion',
