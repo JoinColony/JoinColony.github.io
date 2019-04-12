@@ -120,7 +120,7 @@ class DocPage extends Component<Props> {
   };
 
   getToc = (node?: HtmlAst): HtmlAst => {
-    const defaultReturn = { type: 'div' };
+    const defaultReturn = { type: 'element', tagName: 'div' };
     if (node && node.children && node.children.length > 0) {
       return (
         node.children.find(
