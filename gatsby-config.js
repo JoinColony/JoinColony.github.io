@@ -107,7 +107,7 @@ const sourcePlugins = {
         {
           owner: 'JoinColony',
           repo: 'colonyJS',
-          expression: 'master:docs/',
+          expression: 'develop:docs/',
           name: 'colonyJS',
         },
         {
