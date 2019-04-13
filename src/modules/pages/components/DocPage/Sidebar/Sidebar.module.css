@@ -30,8 +30,10 @@
 }
 
 .mobileProjectTitle {
+  border-bottom: 1px solid #C8D2DC;
   display: block;
-  margin-top: 23px;
+  margin-bottom: 20px;
+  padding: 23px 0;
   position: relative;
   text-align: center;
 }

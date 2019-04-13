@@ -132,6 +132,7 @@ const Sidebar = ({
                       />
                       <Heading
                         appearance={{
+                          margin: 'none',
                           size: 'mediumLarge',
                           theme: 'dark',
                           weight: 'medium',
@@ -175,6 +176,7 @@ const Sidebar = ({
                           />
                           <Heading
                             appearance={{
+                              margin: 'none',
                               size: 'mediumLarge',
                               theme: 'dark',
                               weight: 'medium',
