@@ -74,6 +74,10 @@
   color: #289BDC;
 }
 
+:global(h3) .itemLink {
+  color: #00284B;
+}
+
 @media (mediumUp) {
   .main {
     margin: 0 0 23px 0;

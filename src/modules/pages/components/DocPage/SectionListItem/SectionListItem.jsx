@@ -24,9 +24,9 @@ const SectionListItem = ({ locale, section: { docs, name } }: Props) => {
     appearance: {
       margin: 'none',
       size: 'medium',
+      theme: 'dark',
       weight: 'medium',
     },
-    style: { color: styles.textColor },
     text: name,
   };
   return (

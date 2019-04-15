@@ -76,9 +76,9 @@ const renderAst = new RehypeReact({
       appearance: {
         margin: 'none',
         size: 'medium',
+        theme: 'dark',
         weight: 'medium',
       },
-      style: { color: listItemStyles.textColor },
     })(Heading),
   },
 }).Compiler;
