@@ -31,4 +31,8 @@ body {
   :global(.md-toc) li {
     margin-left: 0;
   }
+
+  :global(.md-toc) li h3 a {
+    padding: 0;
+  }
 }

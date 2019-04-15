@@ -132,7 +132,7 @@
 
   .projectTitle {
     display: block;
-    margin-top: 78px;
+    margin-top: 50px;
   }
 
   .mobileProjectTitle {
@@ -145,6 +145,7 @@
 
   .tocWrapper {
     padding: 0;
+    margin-top: 50px;
   }
 
   .toggleContainer {

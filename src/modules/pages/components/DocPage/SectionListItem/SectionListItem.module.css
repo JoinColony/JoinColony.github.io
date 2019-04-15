@@ -103,8 +103,8 @@
   .docsList,
   ul > .docsItem > ul {
     /* Use of `important` is to override `normalize.css` */
-    margin-bottom: 48px !important;
-    margin-top: 30px;
+    margin-bottom: 28px !important;
+    margin-top: 15px;
   }
 
   .docsItem > a {
