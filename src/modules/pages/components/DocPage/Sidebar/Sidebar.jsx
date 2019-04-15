@@ -161,6 +161,7 @@ const Sidebar = ({
                             theme: 'dark',
                             weight: 'medium',
                           }}
+                          style={{ lineHeight: styles.projectTitleLineHeight }}
                           text={title}
                         />
                       </div>

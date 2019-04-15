@@ -1,5 +1,7 @@
 @value mediumUp, largeUp from '~styles/breakpoints.css';
 
+@value projectTitleLineHeight: 1.3em;
+
 .main {
   background-color: #F0F5F7;
   display: flex;
@@ -121,6 +123,7 @@
   .main {
     background-color: transparent;
     border-right: 1px solid #C8D2DC;
+    padding: 0 10px 0 0;
     width: 210px;
   }
 
@@ -141,6 +144,15 @@
 
   .tocMenuWrapper[aria-expanded="false"] .tocWrapper {
     display: block;
+  }
+
+  .tocMenuWrapper ul li ul {
+    margin-top: 17px;
+  }
+
+  .tocMenuWrapper ul li ul .subItemLink {
+    line-height: 1.4em;
+    margin: 2px 0;
   }
 
   .tocWrapper {
