@@ -49,6 +49,9 @@ type Props = {|
   title?: string,
 |};
 
+const hasNodes = (htmlAst?: HtmlAst) =>
+  htmlAst && htmlAst.children && htmlAst.children.length > 0;
+
 const ItemLink = ({ children, ...rest }: Object) => (
   <Link
     {...rest}
@@ -92,6 +95,7 @@ const Sidebar = ({
       className={getMainClasses({}, styles, {
         fromChild,
         fromParent,
+        hasNoItems: !hasNodes(tableOfContents),
       })}
     >
       <div className={styles.menuContentsWrapper}>
@@ -188,18 +192,20 @@ const Sidebar = ({
                         <div className={styles.tocWrapper}>
                           {renderAst(tableOfContents)}
                         </div>
-                        <div className={styles.toggleContainer}>
-                          <Button
-                            appearance={{ theme: 'reset' }}
-                            onClick={() => toggleToc(!isTocExpanded)}
-                          >
-                            <Icon
-                              className={styles.toggleIcon}
-                              name="chevron"
-                              title={MSG.iconTitleToggleMenu}
-                            />
-                          </Button>
-                        </div>
+                        {hasNodes(tableOfContents) && (
+                          <div className={styles.toggleContainer}>
+                            <Button
+                              appearance={{ theme: 'reset' }}
+                              onClick={() => toggleToc(!isTocExpanded)}
+                            >
+                              <Icon
+                                className={styles.toggleIcon}
+                                name="chevron"
+                                title={MSG.iconTitleToggleMenu}
+                              />
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </>

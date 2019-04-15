@@ -227,6 +227,14 @@
   animation-name: fromParentSlideIn;
 }
 
+.stateHasNoItems .menuContents {
+  margin: 0;
+}
+
+.stateHasNoItems .mobileProjectTitle {
+  margin: 0;
+}
+
 /* Animations */
 
 @keyframes fromChildSlideIn {
