@@ -123,7 +123,7 @@
   .main {
     background-color: transparent;
     border-right: 1px solid #C8D2DC;
-    padding: 0 10px 0 0;
+    padding: 0 20px 0 0;
     width: 210px;
   }
 
@@ -151,8 +151,10 @@
   }
 
   .tocMenuWrapper ul li ul .subItemLink {
+    display: block;
     line-height: 1.4em;
     margin: 2px 0;
+    word-wrap: break-word;
   }
 
   .tocWrapper {
