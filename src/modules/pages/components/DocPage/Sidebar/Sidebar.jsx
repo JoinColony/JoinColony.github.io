@@ -102,17 +102,35 @@ const Sidebar = ({
       })}
     >
       <div className={styles.menuContentsWrapper}>
-        <div className={styles.menuContents}>
-          <Match path={projectEntryPoint}>
-            {({ match }) =>
-              match ? (
-                <>
-                  <Link
-                    arrow="left"
-                    className={styles.homeLink}
-                    href={PAGE_DEVELOPER_PORTAL}
-                    text={MSG.linkHome}
-                  />
+        <Match path={projectEntryPoint}>
+          {({ match }) =>
+            match ? (
+              <>
+                <Link
+                  arrow="left"
+                  className={styles.homeLink}
+                  href={PAGE_DEVELOPER_PORTAL}
+                  text={MSG.linkHome}
+                />
+                <div className={styles.mobileProjectTitle}>
+                  <Link href={PAGE_DEVELOPER_PORTAL}>
+                    <Icon
+                      className={styles.chevron}
+                      name="chevron"
+                      title={projectName}
+                    />
+                    <Heading
+                      appearance={{
+                        margin: 'none',
+                        size: 'mediumLarge',
+                        theme: 'dark',
+                        weight: 'medium',
+                      }}
+                      text={projectName}
+                    />
+                  </Link>
+                </div>
+                <div className={styles.menuContents}>
                   <div className={styles.projectTitle}>
                     <Heading
                       appearance={{
@@ -123,35 +141,19 @@ const Sidebar = ({
                       text={projectName}
                     />
                   </div>
-                  <div className={styles.mobileProjectTitle}>
-                    <Link href={PAGE_DEVELOPER_PORTAL}>
-                      <Icon
-                        className={styles.chevron}
-                        name="chevron"
-                        title={projectName}
-                      />
-                      <Heading
-                        appearance={{
-                          margin: 'none',
-                          size: 'mediumLarge',
-                          theme: 'dark',
-                          weight: 'medium',
-                        }}
-                        text={projectName}
-                      />
-                    </Link>
-                  </div>
                   <SectionList project={project} />
-                </>
-              ) : (
-                <>
-                  <Link
-                    arrow="left"
-                    className={styles.homeLink}
-                    href={projectEntryPoint}
-                    state={{ fromChild: true }}
-                    text={projectName}
-                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <Link
+                  arrow="left"
+                  className={styles.homeLink}
+                  href={projectEntryPoint}
+                  state={{ fromChild: true }}
+                  text={projectName}
+                />
+                <div className={styles.menuContents}>
                   {title && (
                     <>
                       <div className={styles.projectTitle}>
@@ -208,11 +210,11 @@ const Sidebar = ({
                       </Button>
                     </div>
                   </div>
-                </>
-              )
-            }
-          </Match>
-        </div>
+                </div>
+              </>
+            )
+          }
+        </Match>
       </div>
       <div className={styles.backToTop}>
         <Button
