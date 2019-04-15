@@ -36,6 +36,10 @@
   text-align: center;
 }
 
+.menuContents {
+  margin: 32px 0;
+}
+
 .tocWrapper {
   padding: 0 9.5%;
 }
@@ -136,6 +140,10 @@
 
   .mobileProjectTitle {
     display: none;
+  }
+
+  .menuContents {
+    margin: 0;
   }
 
   .tocMenuWrapper[aria-expanded="false"] .tocWrapper {

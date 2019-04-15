@@ -146,9 +146,30 @@ const Sidebar = ({
                   state={{ fromChild: true }}
                   text={projectName}
                 />
-                <div className={styles.menuContents}>
-                  {title && (
-                    <>
+                {title && (
+                  <>
+                    <div className={styles.mobileProjectTitle}>
+                      <Link
+                        href={projectEntryPoint}
+                        state={{ fromChild: true }}
+                      >
+                        <Icon
+                          className={styles.chevron}
+                          name="chevron"
+                          title={title}
+                        />
+                        <Heading
+                          appearance={{
+                            margin: 'none',
+                            size: 'mediumLarge',
+                            theme: 'dark',
+                            weight: 'medium',
+                          }}
+                          text={title}
+                        />
+                      </Link>
+                    </div>
+                    <div className={styles.menuContents}>
                       <div className={styles.projectTitle}>
                         <Heading
                           appearance={{
@@ -160,50 +181,29 @@ const Sidebar = ({
                           text={title}
                         />
                       </div>
-                      <div className={styles.mobileProjectTitle}>
-                        <Link
-                          href={projectEntryPoint}
-                          state={{ fromChild: true }}
-                        >
-                          <Icon
-                            className={styles.chevron}
-                            name="chevron"
-                            title={title}
-                          />
-                          <Heading
-                            appearance={{
-                              margin: 'none',
-                              size: 'mediumLarge',
-                              theme: 'dark',
-                              weight: 'medium',
-                            }}
-                            text={title}
-                          />
-                        </Link>
-                      </div>
-                    </>
-                  )}
-                  <div
-                    className={styles.tocMenuWrapper}
-                    aria-expanded={isTocExpanded}
-                  >
-                    <div className={styles.tocWrapper}>
-                      {renderAst(tableOfContents)}
-                    </div>
-                    <div className={styles.toggleContainer}>
-                      <Button
-                        appearance={{ theme: 'reset' }}
-                        onClick={() => toggleToc(!isTocExpanded)}
+                      <div
+                        className={styles.tocMenuWrapper}
+                        aria-expanded={isTocExpanded}
                       >
-                        <Icon
-                          className={styles.toggleIcon}
-                          name="chevron"
-                          title={MSG.iconTitleToggleMenu}
-                        />
-                      </Button>
+                        <div className={styles.tocWrapper}>
+                          {renderAst(tableOfContents)}
+                        </div>
+                        <div className={styles.toggleContainer}>
+                          <Button
+                            appearance={{ theme: 'reset' }}
+                            onClick={() => toggleToc(!isTocExpanded)}
+                          >
+                            <Icon
+                              className={styles.toggleIcon}
+                              name="chevron"
+                              title={MSG.iconTitleToggleMenu}
+                            />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </>
+                )}
               </>
             )
           }

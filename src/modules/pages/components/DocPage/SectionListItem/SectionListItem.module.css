@@ -1,7 +1,7 @@
 @value mediumUp from '~styles/breakpoints.css';
 
 .main {
-  margin: 10px 10% 23px;
+  margin: 10px 10% 16px;
 }
 
 .main h3 {
