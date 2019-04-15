@@ -55,14 +55,7 @@ const ItemLink = ({ children, ...rest }: Object) => (
     className={listItemStyles.itemLink}
     state={{ fromChild: true }}
   >
-    <div className={styles.subItemLink}>
-      {children}
-      <Icon
-        className={listItemStyles.expandArrow}
-        name="chevron"
-        title={MSG.iconTitleVisitLink}
-      />
-    </div>
+    <div className={styles.subItemLink}>{children}</div>
   </Link>
 );
 
