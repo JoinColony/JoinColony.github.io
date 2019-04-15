@@ -10,10 +10,6 @@
   width: 100%;
 }
 
-.menuContents {
-  animation-duration: 0.5s;
-}
-
 .expandArrow {
   margin-top: 8px;
 }
@@ -203,7 +199,7 @@
 
 @media (largeUp) {
   .menuContents {
-    animation-duration: 0.75s;
+    animation-duration: 0.6s;
   }
 
   .main {
@@ -214,10 +210,12 @@
 /* State */
 
 .stateFromChild .menuContents {
+  animation-duration: 0.4s;
   animation-name: fromChildSlideIn;
 }
 
 .stateFromParent .menuContents {
+  animation-duration: 0.5s;
   animation-name: fromParentSlideIn;
 }
 
