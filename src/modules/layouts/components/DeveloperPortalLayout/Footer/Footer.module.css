@@ -1,4 +1,4 @@
-@value mediumUp, largeUp from '~styles/breakpoints.css';
+@value smallDown, mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
   background-color: #021C2B;
@@ -94,6 +94,18 @@
 
 a:hover .socialIcon svg {
   fill: #788CA0;
+}
+
+@media (smallDown) {
+  .metaNavContainer nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .metaNavLink + .metaNavLink {
+    margin-left: 0;
+    margin-top: 15px;
+  }
 }
 
 @media (mediumUp) {
