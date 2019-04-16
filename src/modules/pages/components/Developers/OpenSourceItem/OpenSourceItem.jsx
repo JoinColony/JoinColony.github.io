@@ -27,14 +27,16 @@ const OpenSourceItem = ({
   project: { description, entryPoint, logoSmall, name, repoUrl },
 }: Props) => (
   <div className={styles.main}>
-    <div className={styles.imageContainer}>
-      <Image
-        alt={name}
-        className={styles.image}
-        project={name}
-        src={logoSmall}
-      />
-    </div>
+    <Link href={entryPoint}>
+      <div className={styles.imageContainer}>
+        <Image
+          alt={name}
+          className={styles.image}
+          project={name}
+          src={logoSmall}
+        />
+      </div>
+    </Link>
     <div className={styles.contentContainer}>
       <div>
         <Heading

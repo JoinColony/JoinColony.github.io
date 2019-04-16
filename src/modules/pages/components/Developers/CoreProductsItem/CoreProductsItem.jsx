@@ -28,15 +28,17 @@ const CoreProductsItem = ({
 }: Props) => (
   <>
     <div className={styles.test}>
-      <div className={styles.imageContainer}>
-        {/* @TODO get dark logo for hover state, link image to docs */}
-        <Image
-          alt={name}
-          className={styles.image}
-          project={name}
-          src={logoSmall}
-        />
-      </div>
+      <Link href={entryPoint}>
+        <div className={styles.imageContainer}>
+          {/* @TODO get dark logo for hover state, link image to docs */}
+          <Image
+            alt={name}
+            className={styles.image}
+            project={name}
+            src={logoSmall}
+          />
+        </div>
+      </Link>
       <Heading
         appearance={{ theme: 'invert', size: 'medium', weight: 'medium' }}
         text={name}
