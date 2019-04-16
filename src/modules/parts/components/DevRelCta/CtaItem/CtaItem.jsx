@@ -25,7 +25,7 @@ const CtaItem = ({ contentText, headingText, linkText, linkUrl }: Props) => (
         appearance={{
           margin: 'large',
           size: 'medium',
-          theme: 'grey',
+          theme: 'dark',
           weight: 'medium',
         }}
         text={headingText}
