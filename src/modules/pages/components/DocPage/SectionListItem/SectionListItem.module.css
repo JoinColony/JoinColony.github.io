@@ -56,6 +56,7 @@
 }
 
 .itemLink {
+  cursor: pointer;
   display: block;
   padding: 4px 0;
   overflow: hidden;
@@ -66,12 +67,11 @@
 }
 
 .itemLink:hover {
-  cursor: pointer;
+  color: #289BDC;
 }
 
-.itemLink:hover,
 .itemLink.active {
-  color: #289BDC;
+  color: #788ca0;
 }
 
 :global(h4) .itemLink {
