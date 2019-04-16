@@ -1,12 +1,22 @@
 @value mediumUp from '~styles/breakpoints.css';
 
-.mainImage {
-  max-width: 415px;
-  margin: 0 auto;
+.imageWrapper {
+  margin-top: 100px;
 }
 
-.mainImage + .astContent {
-  margin-top: 0;
+.mainImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainImage img {
+  height: 48px;
+  margin: 0 10px 0 0;
+}
+
+.imageWrapper + .astContent {
+  margin-top: 115px;
 }
 
 .astContent {
@@ -73,9 +83,6 @@
 }
 
 @media (mediumUp) {
-  .mainImage {
-    margin: 68px auto 0;
-  }
 
   .astContent p, .astContent ul {
     font-size: 16px;

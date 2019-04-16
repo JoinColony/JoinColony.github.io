@@ -37,12 +37,18 @@ const Content = ({
     <Match path={getProjectEntryPoint(project, locale)}>
       {({ match }) =>
         match ? (
-          <div className={styles.mainImage}>
-            <Image
-              alt={project.name}
-              project={project.name}
-              src={project.logo}
-            />
+          <div className={styles.imageWrapper}>
+            <div className={styles.mainImage}>
+              <Image
+                alt={project.name}
+                project={project.name}
+                src={project.logoSmall}
+              />
+              <Heading
+                appearance={{ margin: 'none', theme: 'dark' }}
+                text={project.name}
+              />
+            </div>
           </div>
         ) : null
       }

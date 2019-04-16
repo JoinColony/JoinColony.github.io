@@ -150,6 +150,7 @@ export const singleProjectFragment = graphql`
       slug
       name
       logo
+      logoSmall
       repoUrl
       sectionOrder
       sectionTranslations {
