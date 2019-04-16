@@ -49,18 +49,19 @@
 
 .astContent table th:first-child,
 .astContent table td:first-child {
-  padding-left: 8px;
+  padding-left: 20px;
 }
 
 .astContent table th:last-child,
 .astContent table td:last-child {
-  padding-right: 8px;
+  padding-right: 20px;
 }
 
 .astContent table th {
   border: none;
+  color: #5e6687;
   font-family: 'Avenir Next Demi';
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
 .astContent table td {
