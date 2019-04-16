@@ -194,13 +194,13 @@
 
   .backToTop .itemLink {
     border: none;
-    color: inherit;
+    color: #289BDC;
     font-size: .75rem;
     background: none;
   }
 
   .backToTop .itemLink:hover {
-    color: #289BDC;
+    text-decoration: underline;
   }
 
 }
