@@ -31,9 +31,15 @@
   border-bottom: 1px solid #C8D2DC;
   display: block;
   margin-bottom: 20px;
-  padding: 23px 0;
+  padding: 23px 65px;
   position: relative;
   text-align: center;
+}
+
+.mobileProjectTitle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menuContents {
@@ -42,6 +48,10 @@
 
 .tocWrapper {
   padding: 0 9.5%;
+}
+
+.chevron {
+  height: 22px;
 }
 
 .chevron svg {
