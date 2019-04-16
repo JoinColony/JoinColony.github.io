@@ -12,10 +12,15 @@
   width: 100%;
 }
 
+.methodHeading {
+  margin-left: -40px;
+  margin-top: 90px;
+}
+
 .methodHeading code {
   display: block;
   /* important to override code styling for general content */
-  padding: 12px 25px 12px 12px !important;
+  padding: 12px 25px 12px 30px !important;
   border-left: inset 4px rgb(105, 220, 210);
 }
 
@@ -27,6 +32,10 @@
   composes: prettylink from '~styles/mixins.module.css';
   overflow-x: hidden;
   padding: 0 5%;
+}
+
+.content strong {
+  color: #00284b;
 }
 
 @media screen and (mediumUp) {
