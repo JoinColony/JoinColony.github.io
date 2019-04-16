@@ -113,6 +113,7 @@ a:hover .socialIcon svg {
     display: flex;
     justify-content: center;
     padding: 85px 0 70px;
+    margin-top: -28px;
   }
 
   .footerContent {
