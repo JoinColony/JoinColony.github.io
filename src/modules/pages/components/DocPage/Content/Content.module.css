@@ -1,22 +1,15 @@
 @value mediumUp from '~styles/breakpoints.css';
 
-.imageWrapper {
-  margin-top: 100px;
+.titleWrapper {
+  margin-top: 74px;
 }
 
-.mainImage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.titleRuler {
+  margin-top: 17px;
 }
 
-.mainImage img {
-  height: 48px;
-  margin: 0 10px 0 0;
-}
-
-.imageWrapper + .astContent {
-  margin-top: 115px;
+.titleWrapper + .astContent {
+  margin-top: 50px;
 }
 
 .astContent {
@@ -84,6 +77,14 @@
 }
 
 @media (mediumUp) {
+
+  .titleWrapper {
+    margin-top: 104px;
+  }
+
+  .astContent {
+    margin-top: 102px;
+  }
 
   .astContent p, .astContent ul {
     font-size: 16px;

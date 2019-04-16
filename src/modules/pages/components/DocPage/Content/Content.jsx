@@ -10,7 +10,6 @@ import type { Doc, Project } from '~types';
 import type { Appearance as HeadingAppearance } from '~core/Heading';
 
 import Heading from '~core/Heading';
-import Image from '~core/Image';
 import { getProjectEntryPoint } from '~utils/docs';
 
 import styles from './Content.module.css';
@@ -37,18 +36,12 @@ const Content = ({
     <Match path={getProjectEntryPoint(project, locale)}>
       {({ match }) =>
         match ? (
-          <div className={styles.imageWrapper}>
-            <div className={styles.mainImage}>
-              <Image
-                alt={project.name}
-                project={project.name}
-                src={project.logoSmall}
-              />
-              <Heading
-                appearance={{ margin: 'none', theme: 'dark' }}
-                text={project.name}
-              />
-            </div>
+          <div className={styles.titleWrapper}>
+            <Heading
+              appearance={{ margin: 'none', size: 'large', theme: 'dark' }}
+              text={project.name}
+            />
+            <hr className={styles.titleRuler} />
           </div>
         ) : null
       }
