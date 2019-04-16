@@ -104,6 +104,10 @@
     display: block;
   }
 
+  .itemLink {
+    padding: 3px 0;
+  }
+
   .docsList,
   ul > .docsItem > ul {
     /* Use of `important` is to override `normalize.css` */
