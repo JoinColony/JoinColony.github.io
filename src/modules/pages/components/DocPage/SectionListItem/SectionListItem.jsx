@@ -23,7 +23,7 @@ const SectionListItem = ({ locale, section: { docs, name } }: Props) => {
   const sectionHeadingProps = {
     appearance: {
       margin: 'none',
-      size: 'medium',
+      size: 'normal',
       theme: 'dark',
       weight: 'medium',
     },

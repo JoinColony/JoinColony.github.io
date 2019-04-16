@@ -74,7 +74,7 @@
   color: #289BDC;
 }
 
-:global(h3) .itemLink {
+:global(h4) .itemLink {
   color: #00284B;
 }
 

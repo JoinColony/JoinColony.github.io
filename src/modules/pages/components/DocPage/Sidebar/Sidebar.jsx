@@ -71,7 +71,7 @@ const renderAst = new RehypeReact({
     p: withProps({
       appearance: {
         margin: 'none',
-        size: 'medium',
+        size: 'normal',
         theme: 'dark',
         weight: 'medium',
       },
