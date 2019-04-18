@@ -8,8 +8,8 @@ export const PAGE_DEVELOPER_PORTAL = '/developers';
 export const PAGE_GET_INVOLVED = '/get-involved';
 export const PAGE_LOGIN = '/login';
 export const PAGE_MEDIA_KIT = '/media-kit';
-export const PAGE_PRIVACY_POLICY = '/privacy-policy';
-export const PAGE_TERMS_SERVICE = '/terms-and-service';
+export const PAGE_PRIVACY_POLICY = 'https://colony.io/terms/#privacy-policy';
+export const PAGE_TERMS_SERVICE = 'https://colony.io/terms/';
 export const PAGE_BUG_BOUNTY =
   '/docs/colonynetwork/bug-bounty-program-overview';
 
