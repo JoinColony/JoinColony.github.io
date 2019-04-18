@@ -4,7 +4,7 @@
  */
 export const PAGE_INDEX = '/';
 export const PAGE_GET_STARTED_COLONYJS = '/docs/colonyjs/intro-get-started';
-export const PAGE_DEVELOPER_PORTAL = '/developers';
+export const PAGE_DEVELOPER_PORTAL = PAGE_INDEX;
 export const PAGE_GET_INVOLVED = '/get-involved';
 export const PAGE_LOGIN = '/login';
 export const PAGE_MEDIA_KIT = '/media-kit';
