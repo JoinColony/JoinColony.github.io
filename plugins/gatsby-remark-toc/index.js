@@ -1,10 +1,12 @@
-const generateTOC = require('mdast-util-toc')
+const generateTOC = require('mdast-util-toc');
+const visit = require('unist-util-visit');
 
 module.exports = (
-  { markdownNode, markdownAST },
+  { markdownAST },
   {
     placeholder = '==TOC==',
-  }
+    className = 'md-toc',
+  },
 ) => {
 
   const placeholderIndex = markdownAST.children.findIndex(
@@ -12,35 +14,45 @@ module.exports = (
       node.children &&
       node.children.length &&
       node.children[0].value === placeholder
-  )
+  );
 
-  if (placeholderIndex < 0) {
-    return
-  }
 
-  // This is to just use the headings below the TOC as headlines
-  const reducedAst = {
-    type: 'root',
-    children: markdownAST.children.slice(placeholderIndex + 1)
-  }
+  // This is to just use the headings below the TOC as headlines (if TOC exists, otherwise whole page).
+  const astForToc = placeholderIndex < 0
+    ? markdownAST
+    : {
+        type: 'root',
+        children: markdownAST.children.slice(placeholderIndex + 1)
+      };
 
-  const toc = generateTOC(reducedAst).map
+  const toc = generateTOC(astForToc).map;
 
   if (!toc) {
     return;
   }
 
-  // Any other hints on how to style the TOC are highly appreciated
-  // This way we can use $('.gatsby-toc + ul') to target it
-  const cssTarget = {
-    type: 'html',
-    value: '<div class="gatsby-toc" style="display:hidden"></div>'
+  visit(toc, 'list', (node, index, parent) => {
+    // Only apply className to top-level list, not children
+    if (!index && !parent) {
+      node.data = node.data || {};
+      node.data.hProperties = node.data.hProperties || {};
+      node.data.hProperties.className = node.data.hProperties.className || [];
+      node.data.hProperties.className.push(className);
+    }
+  });
+
+  if (placeholderIndex < 0) {
+    markdownAST.children = [
+      toc,
+      ...markdownAST.children,
+    ];
+  } else {
+    markdownAST.children = [
+      ...markdownAST.children.slice(0, placeholderIndex),
+      toc,
+      ...markdownAST.children.slice(placeholderIndex + 1),
+    ];
   }
 
-  markdownAST.children = [
-    ...markdownAST.children.slice(0, placeholderIndex),
-    cssTarget,
-    toc,
-    ...markdownAST.children.slice(placeholderIndex + 1),
-  ]
+  return markdownAST;
 }

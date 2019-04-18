@@ -1,3 +1,38 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 body {
   background-color: #fff;
+}
+
+:global(.md-toc) {
+  margin: 0 0 23px;
+  list-style: none;
+}
+
+:global(.md-toc) li ul {
+  margin: 0 0 23px 0;
+}
+
+:global(.md-toc) li p {
+  margin-bottom: 0;
+}
+
+:global(.md-toc) > li {
+  /* Style first level indentation */
+  list-style: none;
+}
+
+:global(.md-toc) > li li {
+  /* Style second level indentation */
+  list-style: none;
+}
+
+@media (mediumUp) {
+  :global(.md-toc) li {
+    margin-left: 0;
+  }
+
+  :global(.md-toc) li h3 a {
+    padding: 0;
+  }
 }

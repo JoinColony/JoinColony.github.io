@@ -107,7 +107,7 @@ const sourcePlugins = {
         {
           owner: 'JoinColony',
           repo: 'colonyJS',
-          expression: 'master:docs/',
+          expression: 'develop:docs/',
           name: 'colonyJS',
         },
         {
@@ -115,6 +115,12 @@ const sourcePlugins = {
           repo: 'colonyStarter',
           expression: 'master:docs/',
           name: 'colonyStarter',
+        },
+        {
+          owner: 'JoinColony',
+          repo: 'colonyTutorials',
+          expression: 'master:tutorials/',
+          name: 'colonyTutorials',
         },
         // {
         //   owner: 'JoinColony',
@@ -201,9 +207,15 @@ module.exports = {
             resolve: 'gatsby-remark-toc',
             options: {
               placeholder: '==TOC==',
+              className: 'md-toc',
             },
           },
-          'gatsby-remark-autolink-headers',
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              className: 'md-heading-link',
+            },
+          },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

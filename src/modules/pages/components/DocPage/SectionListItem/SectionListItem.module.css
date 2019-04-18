@@ -1,7 +1,12 @@
 @value mediumUp from '~styles/breakpoints.css';
 
 .main {
-  margin: 10px 10% 23px;
+  margin: 10px 10% 16px;
+}
+
+.main h3 {
+  /* Override `Heading` for mobile */
+  font-family: 'Avenir Next Light';
 }
 
 .main .docsList {
@@ -24,11 +29,12 @@
   display: inline-block;
 }
 
-.expandArrow {
+.expandArrow svg {
+  fill: #C8D2DC;
+  stroke: #C8D2DC;
   width: 22px;
   height: 22px;
   margin-left: 10px;
-  padding-top: 4px;
   transition: all 0.3s;
 }
 
@@ -50,28 +56,40 @@
 }
 
 .itemLink {
+  cursor: pointer;
   display: block;
   padding: 4px 0;
   overflow: hidden;
   color: #2E4153;
-  font-family: 'Avenir Next Light';
   text-decoration: none;
   text-overflow: ellipsis;
   transition: 0.2s;
 }
 
 .itemLink:hover {
-  cursor: pointer;
+  color: #289BDC;
 }
 
-.itemLink:hover,
 .itemLink.active {
-  color: #289BDC;
+  color: #788ca0;
+}
+
+:global(h4) .itemLink {
+  color: #00284B;
 }
 
 @media (mediumUp) {
   .main {
     margin: 0 0 23px 0;
+  }
+
+  .expandArrow {
+    display: none;
+  }
+
+  .main h3 {
+    /* Re-instate standard `Heading` style for desktop */
+    font-family: 'Avenir Next Demi';
   }
 
   .main .docsList {
@@ -86,13 +104,18 @@
     display: block;
   }
 
-  .docsList {
-    /* Use of `important` is to override `normalize.css` */
-    margin-bottom: 48px !important;
-    margin-top: 30px;
+  .itemLink {
+    padding: 3px 0;
   }
 
-  .docsItem {
+  .docsList,
+  ul > .docsItem > ul {
+    /* Use of `important` is to override `normalize.css` */
+    margin-bottom: 28px !important;
+    margin-top: 15px;
+  }
+
+  .docsItem > a {
     font-size: .85em;
     font-weight: normal;
   }

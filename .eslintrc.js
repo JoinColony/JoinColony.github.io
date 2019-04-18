@@ -10,8 +10,10 @@ module.exports = {
     'eslint-config-airbnb/rules/react',
     'eslint-config-airbnb/rules/react-a11y',
   ],
-  plugins: ['standard', 'react'],
+  plugins: ['standard', 'react', 'react-hooks'],
   rules: {
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'no-var': 'error',
     'no-unused-vars': 1,
     'arrow-spacing': ['error', { before: true, after: true }],

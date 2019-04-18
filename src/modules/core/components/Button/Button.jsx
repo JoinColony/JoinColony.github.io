@@ -12,6 +12,7 @@ import styles from './Button.module.css';
 
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'reset',
+  padding?: 'small',
 };
 
 type Props = {

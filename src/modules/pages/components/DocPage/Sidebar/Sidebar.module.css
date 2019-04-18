@@ -1,10 +1,17 @@
 @value mediumUp, largeUp from '~styles/breakpoints.css';
 
+@value projectTitleLineHeight: 1.3em;
+
 .main {
+  background-color: #F0F5F7;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+}
+
+.expandArrow {
+  margin-top: 8px;
 }
 
 .homeLink {
@@ -18,6 +25,43 @@
 
 .projectTitle {
   display: none;
+}
+
+.mobileProjectTitle {
+  border-bottom: 1px solid #C8D2DC;
+  display: block;
+  margin-bottom: 20px;
+  padding: 23px 65px;
+  position: relative;
+  text-align: center;
+}
+
+.mobileProjectTitle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuContents {
+  margin: 32px 0;
+}
+
+.tocWrapper {
+  padding: 0 9.5%;
+}
+
+.chevron {
+  height: 22px;
+}
+
+.chevron svg {
+  fill: #C8D2DC;
+  stroke: #C8D2DC;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  left: 10%;
+  transform: rotate(180deg);
 }
 
 .sectionTitle {
@@ -46,6 +90,11 @@
   transition: 0.2s;
 }
 
+.subItemLink {
+  display: flex;
+  justify-content: space-between;
+}
+
 .itemLink:hover {
   cursor: pointer;
 }
@@ -59,10 +108,31 @@
   display: none;
 }
 
+.toggleContainer {
+  text-align: center;
+}
+
+.toggleIcon svg {
+  fill: #C8D2DC;
+  height: 40px;
+  stroke: #C8D2DC;
+  transform: rotate(-90deg);
+  width: 40px;
+}
+
+.tocMenuWrapper[aria-expanded="false"] .tocWrapper {
+  display: none;
+}
+
+.tocMenuWrapper[aria-expanded="false"] .toggleIcon svg {
+  transform: rotate(90deg);
+}
+
 @media (mediumUp) {
 
   .main {
-    border-right: 1px solid #C8D2DC;
+    background-color: transparent;
+    padding: 0;
     width: 210px;
   }
 
@@ -74,7 +144,43 @@
 
   .projectTitle {
     display: block;
-    margin-top: 78px;
+    margin-top: 50px;
+  }
+
+  .mobileProjectTitle {
+    display: none;
+  }
+
+  .menuContents {
+    margin: 0;
+  }
+
+  .tocMenuWrapper[aria-expanded="false"] .tocWrapper {
+    display: block;
+  }
+
+  .tocMenuWrapper ul li ul {
+    margin-top: 12px;
+  }
+
+  .tocMenuWrapper ul li ul .subItemLink {
+    display: block;
+    line-height: 1.4em;
+    margin: 2px 0;
+    word-wrap: break-word;
+  }
+
+  .tocWrapper {
+    padding: 0;
+    margin-top: 50px;
+  }
+
+  .toggleContainer {
+    display: none;
+  }
+
+  .chevron {
+    display: none;
   }
 
   .sectionTitle {
@@ -97,19 +203,73 @@
 
   .backToTop .itemLink {
     border: none;
-    color: inherit;
+    color: #289BDC;
     font-size: .75rem;
     background: none;
   }
 
   .backToTop .itemLink:hover {
-    color: #289BDC;
+    text-decoration: underline;
   }
 
 }
 
 @media (largeUp) {
+  .menuContents {
+    animation-duration: 0.6s;
+  }
+
   .main {
     width: 270px;
+  }
+}
+
+/* State */
+
+.stateFromChild .menuContents {
+  animation-duration: 0.4s;
+  animation-name: fromChildSlideIn;
+}
+
+.stateFromParent .menuContents {
+  animation-duration: 0.5s;
+  animation-name: fromParentSlideIn;
+}
+
+.stateHasNoItems .menuContents {
+  margin: 0;
+}
+
+.stateHasNoItems .mobileProjectTitle {
+  margin: 0;
+}
+
+/* Animations */
+
+@keyframes fromChildSlideIn {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fromParentSlideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }

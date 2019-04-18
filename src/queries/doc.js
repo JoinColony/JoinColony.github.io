@@ -18,17 +18,16 @@ export const allDocFieldsFragment = graphql`
       depth
     }
     timeToRead
-    tableOfContents
   }
 `;
 
 export const singleDocFragment = graphql`
   fragment singleDocFragment on Query {
     doc: markdownRemark(id: { eq: $docId }) {
+      editUrl
       frontmatter {
         title
       }
-      editUrl
       htmlAst
     }
   }

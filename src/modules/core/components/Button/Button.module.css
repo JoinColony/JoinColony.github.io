@@ -13,9 +13,10 @@
 .primaryBase {
   composes: main;
   border: 1px solid #289BDC;
-  min-width: 130px;
   padding: 3px 31px;
 }
+
+/* Theme */
 
 .themePrimary {
   composes: primaryBase;
@@ -36,7 +37,8 @@
 
 .themePrimaryHollow:hover {
   background-color: #289BDC;
-  color: #ffffff;
+  /* `important` to override `a` in the case of a link-button */
+  color: #ffffff !important;
 }
 
 .themeReset {
@@ -51,4 +53,11 @@
 .themeReset:hover {
   text-decoration: none !important;
   cursor: pointer !important;
+}
+
+/* Padding */
+
+.paddingSmall {
+  padding-left: 15px;
+  padding-right: 15px;
 }

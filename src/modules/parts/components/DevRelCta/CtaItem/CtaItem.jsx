@@ -4,8 +4,8 @@ import type { MessageDescriptor } from 'react-intl';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import Button from '~core/Button';
 import Heading from '~core/Heading';
-import Link from '~core/Link';
 
 import styles from './CtaItem.module.css';
 
@@ -24,8 +24,8 @@ const CtaItem = ({ contentText, headingText, linkText, linkUrl }: Props) => (
       <Heading
         appearance={{
           margin: 'large',
-          size: 'medium',
-          theme: 'grey',
+          size: 'mediumLarge',
+          theme: 'dark',
           weight: 'medium',
         }}
         text={headingText}
@@ -39,7 +39,12 @@ const CtaItem = ({ contentText, headingText, linkText, linkUrl }: Props) => (
       </p>
     </div>
     <div className={styles.linkContainer}>
-      <Link className={styles.link} text={linkText} href={linkUrl} />
+      <Button
+        appearance={{ padding: 'small', theme: 'primaryHollow' }}
+        linkTo={linkUrl}
+        style={{ fontSize: styles.buttonTextSize }}
+        text={linkText}
+      />
     </div>
   </div>
 );

@@ -12,104 +12,30 @@
   width: 100%;
 }
 
+.methodHeading {
+  margin-left: -40px;
+  margin-top: 90px;
+}
+
+.methodHeading code {
+  display: block;
+  /* important to override code styling for general content */
+  padding: 12px 25px 12px 30px !important;
+  border-left: inset 4px rgb(105, 220, 210);
+}
+
+.methodHeading :global(.md-heading-link) {
+  margin-top: 16px;
+}
+
 .content {
   composes: prettylink from '~styles/mixins.module.css';
   overflow-x: hidden;
   padding: 0 5%;
 }
 
-.mainImage {
-  max-width: 415px;
-  margin: 0 auto;
-}
-
-:global(.gatsby-toc) + ul {
-  margin: 0;
-  list-style: none;
-  margin-bottom: 1.45rem;
-}
-
-:global(.gatsby-toc) + ul > li {
-  /* Style first level indentation */
-  list-style: none;
-}
-
-:global(.gatsby-toc) + ul > li li {
-  /* Style second level indentation */
-  list-style: none;
-}
-
-.astContent {
-  color: #00284B;
-  font-family: 'Avenir Next Light';
-
-  box-sizing: border-box;
-
-  margin: 0;
-}
-
-.astContent p {
-  color: #2E4153;
-  font-size: 15px;
-}
-
-.astContent table {
-  border-collapse: collapse;
-  max-width: 100%;
-}
-
-.astContent table thead {
-  background: #F0F5F7;
-}
-
-.astContent table th,
-.astContent table td {
-  padding: .5rem .7rem calc(.5rem - 1px) .7rem;
-}
-
-.astContent table th:first-child,
-.astContent table td:first-child {
-  padding-left: 8px;
-}
-
-.astContent table th:last-child,
-.astContent table td:last-child {
-  padding-right: 8px;
-}
-
-.astContent table th {
-  border: none;
-  font-family: 'Avenir Next Demi';
-  font-size: .9rem;
-}
-
-.astContent table td {
-  border: none;
-  font-family: 'Avenir Next Light';
-  font-size: .85rem;
-}
-
-.astContent table tbody tr:nth-child(even) {
-  background: rgba(240, 245, 247, 0.6);
-}
-
-.astContent pre {
-  margin: 0 0 1.45rem 0;
-  overflow-x: auto;
-}
-
-.astContent code {
-  overflow-x: auto;
-}
-
-.astContent [class*="methodHeading"] a[class*="anchor"] {
-  margin-top: 16px;
-}
-
-.astContent .methodHeading code {
-  display: block;
-  padding: 12px 25px 12px 12px;
-  border-left: inset 4px rgb(105, 220, 210);
+.content strong {
+  color: #00284b;
 }
 
 @media screen and (mediumUp) {
@@ -122,29 +48,15 @@
   }
 
   .content {
-    padding: 0 0 0 80px;
+    padding: 20px 20px 40px 80px;
+    margin-left: 60px;
+    border-radius: 8px;
+    box-shadow: -36px 20px 40px -38px rgba(200, 210, 220, 0.7);
   }
-
-  .astContent p, .astContent ul {
-    font-size: 16px;
-  }
-
-  :global(.gatsby-toc) + ul li {
-    margin-left: 0;
-  }
-
-  .astContent table {
-    max-width: 80%;
-  }
-
-  .mainImage {
-    margin: 68px auto 0;
-  }
-
 }
 
-@media (largeUp) {
+@media screen and (largeUp) {
   .content {
-    padding: 0 0 0 130px;
+    padding: 20px 80px 40px 80px;
   }
 }

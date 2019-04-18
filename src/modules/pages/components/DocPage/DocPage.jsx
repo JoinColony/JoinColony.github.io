@@ -16,6 +16,7 @@ import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import DevRelCta from '~parts/DevRelCta';
 import SEO from '~parts/SEO';
 
+import Content from './Content';
 import Sidebar from './Sidebar';
 
 import styles from './DocPage.module.css';
@@ -52,18 +53,26 @@ class DocPage extends Component<Props> {
 
   static displayName = 'pages.DocPage';
 
-  static isTagName(element: HtmlAst, tagName: string): boolean {
-    return !!element.tagName && element.tagName === tagName;
-  }
+  static hasClassname = (element: HtmlAst, className: string): boolean => {
+    return (
+      !!element.properties &&
+      element.properties.className &&
+      element.properties.className.includes(className)
+    );
+  };
 
-  static isMethodHeading(section: HtmlAst) {
+  static isTagName = (element: HtmlAst, tagName: string): boolean => {
+    return !!element.tagName && element.tagName === tagName;
+  };
+
+  static isMethodHeading = (section: HtmlAst) => {
     return (
       section.children &&
       section.children.length === 2 &&
       DocPage.isTagName(section.children[0], 'a') &&
       DocPage.isTagName(section.children[1], 'code')
     );
-  }
+  };
 
   constructor(props: Props) {
     super(props);
@@ -81,6 +90,9 @@ class DocPage extends Component<Props> {
         h4: headingWithSize('small'),
         h5: headingWithSize('tiny'),
         img: withProps({ project: props.data.project.name })(Image),
+        // remove toc from ast
+        ul: ({ ...ulProps }) =>
+          ulProps.className === 'md-toc' ? null : createElement('ul', ulProps),
       },
     }).Compiler;
   }
@@ -105,6 +117,20 @@ class DocPage extends Component<Props> {
       node.children.map(child => this.getAllImages(child, imagePaths));
     }
     return imagePaths;
+  };
+
+  getToc = (node?: HtmlAst): HtmlAst => {
+    const defaultReturn = { type: 'element', tagName: 'div' };
+    if (node && node.children && node.children.length > 0) {
+      return (
+        node.children.find(
+          element =>
+            DocPage.isTagName(element, 'ul') &&
+            DocPage.hasClassname(element, 'md-toc'),
+        ) || defaultReturn
+      );
+    }
+    return defaultReturn;
   };
 
   transformInternalUrls = (href: string): string => {
@@ -168,6 +194,9 @@ class DocPage extends Component<Props> {
         }
       });
     }
+
+    const toc = this.getToc(doc.htmlAst);
+
     const metaTitle = `${doc.frontmatter.title} - ${project.name}`;
 
     const seoDescription =
@@ -193,27 +222,21 @@ class DocPage extends Component<Props> {
         />
         <div className={styles.main}>
           <div className={styles.mainInnerContainer}>
-            <div>
-              <Sidebar project={project} />
+            <div className={styles.sidebar}>
+              <Sidebar
+                project={project}
+                tableOfContents={toc}
+                title={doc.frontmatter.title}
+              />
             </div>
             <main className={styles.content}>
-              <div className={styles.mainImage}>
-                <Image
-                  alt={project.name}
-                  project={project.name}
-                  src={project.logo}
-                />
-              </div>
-              <div className={styles.astContent}>
-                <Heading
-                  appearance={{
-                    ...commonHeadingAppearanceProps,
-                    size: 'large',
-                  }}
-                  text={doc.frontmatter.title}
-                />
+              <Content
+                commonHeadingAppearanceProps={commonHeadingAppearanceProps}
+                doc={doc}
+                project={project}
+              >
                 {this.renderAst(doc.htmlAst)}
-              </div>
+              </Content>
               <DevRelCta editUrl={doc.editUrl} />
             </main>
           </div>

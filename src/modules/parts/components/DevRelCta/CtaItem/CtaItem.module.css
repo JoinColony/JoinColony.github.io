@@ -1,3 +1,5 @@
+@value buttonTextSize: 14px;
+
 .main {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,7 @@
 }
 
 .contentText {
+  color: #2E4153;
   font-family: 'Avenir Next Light';
   font-size: 16px;
   margin-bottom: 0;
@@ -13,9 +16,4 @@
 
 .linkContainer {
   margin-top: 14px;
-}
-
-.link {
-  font-family: 'Avenir Next Light';
-  font-size: 14px;
 }
