@@ -14,7 +14,6 @@ import {
   COLONY_GITTER,
   COLONY_TWITTER,
   COLONY_WEBSITE,
-  PAGE_MEDIA_KIT,
   PAGE_PRIVACY_POLICY,
   PAGE_TERMS_SERVICE,
 } from '~routes';
@@ -134,11 +133,6 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
                 href={PAGE_PRIVACY_POLICY}
                 className={styles.metaNavLink}
                 text={MSG.metaLinkPrivacy}
-              />
-              <Link
-                href={PAGE_MEDIA_KIT}
-                className={styles.metaNavLink}
-                text={MSG.metaLinkMediaKit}
               />
             </nav>
           </div>
