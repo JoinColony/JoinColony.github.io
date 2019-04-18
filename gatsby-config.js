@@ -171,7 +171,6 @@ module.exports = {
           prefixDefaultLangKey,
         },
         projects: ['colonyJS', 'colonyNetwork', 'colonyStarter', 'purser', 'tailor'],
-        slugPrefix: 'docs',
       }
     },
     {
