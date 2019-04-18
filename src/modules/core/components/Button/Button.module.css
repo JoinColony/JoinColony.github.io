@@ -37,6 +37,7 @@
 
 .themePrimaryHollow:hover {
   background-color: #289BDC;
+  /* `important` to override `a` in the case of a link-button */
   color: #ffffff !important;
 }
 
