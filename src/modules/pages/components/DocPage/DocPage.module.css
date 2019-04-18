@@ -48,10 +48,15 @@
   }
 
   .content {
-    padding: 20px 80px 40px 80px;
+    padding: 20px 20px 40px 80px;
     margin-left: 60px;
     border-radius: 8px;
     box-shadow: -36px 20px 40px -38px rgba(200, 210, 220, 0.7);
   }
 }
 
+@media screen and (largeUp) {
+  .content {
+    padding: 20px 80px 40px 80px;
+  }
+}
