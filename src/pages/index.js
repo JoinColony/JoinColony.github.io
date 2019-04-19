@@ -1,8 +1,8 @@
 /* @flow */
 import { createElement } from 'react';
 
-import HomePage from '~pages/HomePage';
+import Developers from '~pages/Developers';
 
-const Home = () => createElement(HomePage);
+const Home = () => createElement(Developers);
 
 export default Home;

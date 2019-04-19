@@ -208,9 +208,12 @@ function createSectionNode(name, project, docNode, createNode) {
 }
 
 function createProjectNode(name, sectionNode, createNode, { slugPrefix }) {
+  const slug = slugPrefix
+    ? `${slugify(slugPrefix, { lower: true })}/${slugify(name, { lower: true })}`
+    : `${slugify(name, { lower: true })}`;
   const projectNode = ProjectNode({
     name,
-    slug: `${slugify(slugPrefix, { lower: true })}/${slugify(name, { lower: true })}`,
+    slug,
   })
   if (sectionNode) addChildNode(projectNode, sectionNode, 'sections')
   createNode(projectNode)
