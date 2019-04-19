@@ -13,7 +13,11 @@ import NavigationToggle from '~core/NavigationToggle';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
-import { COLONY_DISCOURSE_SUPPORT, PAGE_DEVELOPER_PORTAL } from '~routes';
+import {
+  COLONY_DISCOURSE_SUPPORT,
+  PAGE_DEVELOPER_PORTAL,
+  PAGE_TUTORIALS,
+} from '~routes';
 
 import styles from './Header.module.css';
 
@@ -29,6 +33,10 @@ const MSG = defineMessages({
   navLinkDocs: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkDocs',
     defaultMessage: 'Docs',
+  },
+  navLinkTutorials: {
+    id: 'layouts.DeveloperPortalLayout.Footer.navLinkTutorials',
+    defaultMessage: 'Tutorials',
   },
   navLinkSupport: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkSupport',
@@ -110,6 +118,9 @@ const Header = ({
                 />
               </div>
             </span>
+            <Link className={styles.navLink} href={PAGE_TUTORIALS}>
+              <FormattedMessage {...MSG.navLinkTutorials} />
+            </Link>
             <Link
               className={styles.navLink}
               href={COLONY_DISCOURSE_SUPPORT}

@@ -16,6 +16,7 @@ import {
   COLONY_WEBSITE,
   PAGE_PRIVACY_POLICY,
   PAGE_TERMS_SERVICE,
+  PAGE_TUTORIALS,
 } from '~routes';
 
 import styles from './Footer.module.css';
@@ -28,6 +29,10 @@ const MSG = defineMessages({
   navTitleGetStarted: {
     id: 'layouts.DeveloperPortalLayout.Footer.navTitleGetStarted',
     defaultMessage: 'Get Started',
+  },
+  navLinkTutorials: {
+    id: 'layouts.DeveloperPortalLayout.Footer.navLinkTutorials',
+    defaultMessage: 'Tutorials',
   },
   navLinkSupport: {
     id: 'layouts.DeveloperPortalLayout.Footer.navLinkSupport',
@@ -95,6 +100,7 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
                 headingAppearance={{ theme: 'invert' }}
                 headingText={MSG.navTitleGetStarted}
                 menuItems={[
+                  { href: PAGE_TUTORIALS, text: MSG.navLinkTutorials },
                   {
                     href: COLONY_DISCOURSE,
                     text: MSG.navLinkSupport,

@@ -72,6 +72,13 @@ const sourcePlugins = {
         path: path.resolve(__dirname, '..', 'tailor', 'docs'),
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'colonyTutorials',
+        path: path.resolve(__dirname, '..', 'colonyTutorials', 'tutorials'),
+      }
+    },
     // {
     //   resolve: 'gatsby-source-filesystem',
     //   options: {
@@ -108,6 +115,12 @@ const sourcePlugins = {
           repo: 'colonyStarter',
           expression: 'master:docs/',
           name: 'colonyStarter',
+        },
+        {
+          owner: 'JoinColony',
+          repo: 'colonyTutorials',
+          expression: 'master:tutorials/',
+          name: 'colonyTutorials',
         },
         // {
         //   owner: 'JoinColony',
@@ -171,6 +184,18 @@ module.exports = {
           prefixDefaultLangKey,
         },
         projects: ['colonyJS', 'colonyNetwork', 'colonyStarter', 'purser', 'tailor'],
+      }
+    },
+    {
+      resolve: 'gatsby-transform-md-tutorials',
+      options: {
+        langConfig: {
+          langs: CONFIGURED_LOCALES,
+          defaultLangKey,
+          prefixDefaultLangKey,
+        },
+        projects: ['colonyTutorials'],
+        slugPrefix: 'tutorials',
       }
     },
     {
