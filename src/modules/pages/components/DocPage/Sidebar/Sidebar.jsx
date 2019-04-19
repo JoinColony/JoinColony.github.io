@@ -1,5 +1,5 @@
 /* @flow */
-import React, { createElement, useState } from 'react';
+import React, { createElement } from 'react';
 import { defineMessages } from 'react-intl';
 import { withProps } from 'recompose';
 import { Match } from '@reach/router';
@@ -30,10 +30,6 @@ const MSG = defineMessages({
   iconTitleVisitLink: {
     id: 'pages.DocPage.Sidebar.iconTitleVisitLink',
     defaultMessage: 'Visit Link',
-  },
-  iconTitleToggleMenu: {
-    id: 'pages.DOcPage.Sidebar.iconTitleToggleMenu',
-    defaultMessage: 'Toggle Section Menu',
   },
 });
 
@@ -88,143 +84,120 @@ const Sidebar = ({
   projectEntryPoint,
   tableOfContents,
   title,
-}: Props) => {
-  const [isTocExpanded, toggleToc] = useState(true);
-  return (
-    <nav
-      className={getMainClasses({}, styles, {
-        fromChild,
-        fromParent,
-        hasNoItems: !hasNodes(tableOfContents),
-      })}
-    >
-      <div className={styles.menuContentsWrapper}>
-        <Match path={projectEntryPoint}>
-          {({ match }) =>
-            match ? (
-              <>
-                <Link
-                  arrow="left"
-                  className={styles.homeLink}
-                  href={PAGE_DEVELOPER_PORTAL}
-                  text={MSG.linkHome}
-                />
-                <div className={styles.mobileProjectTitle}>
-                  <Link href={PAGE_DEVELOPER_PORTAL}>
-                    <Icon
-                      className={styles.chevron}
-                      name="chevron"
-                      title={projectName}
-                    />
-                    <Heading
-                      appearance={{
-                        margin: 'none',
-                        size: 'mediumLarge',
-                        theme: 'dark',
-                        weight: 'medium',
-                      }}
-                      text={projectName}
-                    />
-                  </Link>
+}: Props) => (
+  <nav
+    className={getMainClasses({}, styles, {
+      fromChild,
+      fromParent,
+      hasNoItems: !hasNodes(tableOfContents),
+    })}
+  >
+    <div className={styles.menuContentsWrapper}>
+      <Match path={projectEntryPoint}>
+        {({ match }) =>
+          match ? (
+            <>
+              <Link
+                arrow="left"
+                className={styles.homeLink}
+                href={PAGE_DEVELOPER_PORTAL}
+                text={MSG.linkHome}
+              />
+              <div className={styles.mobileProjectTitle}>
+                <Link href={PAGE_DEVELOPER_PORTAL}>
+                  <Icon
+                    className={styles.chevron}
+                    name="chevron"
+                    title={projectName}
+                  />
+                  <Heading
+                    appearance={{
+                      margin: 'none',
+                      size: 'mediumLarge',
+                      theme: 'dark',
+                      weight: 'medium',
+                    }}
+                    text={projectName}
+                  />
+                </Link>
+              </div>
+              <div className={styles.menuContents}>
+                <div className={styles.projectTitle}>
+                  <Heading
+                    appearance={{
+                      size: 'mediumLarge',
+                      theme: 'dark',
+                      weight: 'medium',
+                    }}
+                    text={projectName}
+                  />
                 </div>
-                <div className={styles.menuContents}>
-                  <div className={styles.projectTitle}>
-                    <Heading
-                      appearance={{
-                        size: 'mediumLarge',
-                        theme: 'dark',
-                        weight: 'medium',
-                      }}
-                      text={projectName}
-                    />
+                <SectionList project={project} />
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                arrow="left"
+                className={styles.homeLink}
+                href={projectEntryPoint}
+                state={{ fromChild: true }}
+                text={projectName}
+              />
+              {title && (
+                <>
+                  <div className={styles.mobileProjectTitle}>
+                    <Link href={projectEntryPoint} state={{ fromChild: true }}>
+                      <Icon
+                        className={styles.chevron}
+                        name="chevron"
+                        title={title}
+                      />
+                      <Heading
+                        appearance={{
+                          margin: 'none',
+                          size: 'mediumLarge',
+                          theme: 'dark',
+                          weight: 'medium',
+                        }}
+                        text={title}
+                      />
+                    </Link>
                   </div>
-                  <SectionList project={project} />
-                </div>
-              </>
-            ) : (
-              <>
-                <Link
-                  arrow="left"
-                  className={styles.homeLink}
-                  href={projectEntryPoint}
-                  state={{ fromChild: true }}
-                  text={projectName}
-                />
-                {title && (
-                  <>
-                    <div className={styles.mobileProjectTitle}>
-                      <Link
-                        href={projectEntryPoint}
-                        state={{ fromChild: true }}
-                      >
-                        <Icon
-                          className={styles.chevron}
-                          name="chevron"
-                          title={title}
-                        />
-                        <Heading
-                          appearance={{
-                            margin: 'none',
-                            size: 'mediumLarge',
-                            theme: 'dark',
-                            weight: 'medium',
-                          }}
-                          text={title}
-                        />
-                      </Link>
+                  <div className={styles.menuContents}>
+                    <div className={styles.projectTitle}>
+                      <Heading
+                        appearance={{
+                          size: 'mediumLarge',
+                          theme: 'dark',
+                          weight: 'medium',
+                        }}
+                        style={{ lineHeight: styles.projectTitleLineHeight }}
+                        text={title}
+                      />
                     </div>
-                    <div className={styles.menuContents}>
-                      <div className={styles.projectTitle}>
-                        <Heading
-                          appearance={{
-                            size: 'mediumLarge',
-                            theme: 'dark',
-                            weight: 'medium',
-                          }}
-                          style={{ lineHeight: styles.projectTitleLineHeight }}
-                          text={title}
-                        />
-                      </div>
-                      <div
-                        className={styles.tocMenuWrapper}
-                        aria-expanded={isTocExpanded}
-                      >
-                        <div className={styles.tocWrapper}>
-                          {renderAst(tableOfContents)}
-                        </div>
-                        {hasNodes(tableOfContents) && (
-                          <div className={styles.toggleContainer}>
-                            <Button
-                              appearance={{ theme: 'reset' }}
-                              onClick={() => toggleToc(!isTocExpanded)}
-                            >
-                              <Icon
-                                className={styles.toggleIcon}
-                                name="chevron"
-                                title={MSG.iconTitleToggleMenu}
-                              />
-                            </Button>
-                          </div>
-                        )}
+                    <div className={styles.tocMenuWrapper}>
+                      <div className={styles.tocWrapper}>
+                        {renderAst(tableOfContents)}
                       </div>
                     </div>
-                  </>
-                )}
-              </>
-            )
-          }
-        </Match>
-      </div>
-      <div className={styles.backToTop}>
-        <Button
-          className={styles.itemLink}
-          onClick={handleBackToTop}
-          text={MSG.btnBackToTop}
-        />
-      </div>
-    </nav>
-  );
-};
+                  </div>
+                </>
+              )}
+            </>
+          )
+        }
+      </Match>
+    </div>
+    <div className={styles.backToTop}>
+      <Button
+        className={styles.itemLink}
+        onClick={handleBackToTop}
+        text={MSG.btnBackToTop}
+      />
+    </div>
+  </nav>
+);
 
 Sidebar.displayName = displayName;
 

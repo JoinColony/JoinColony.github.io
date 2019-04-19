@@ -108,24 +108,8 @@
   display: none;
 }
 
-.toggleContainer {
-  text-align: center;
-}
-
-.toggleIcon svg {
-  fill: #C8D2DC;
-  height: 40px;
-  stroke: #C8D2DC;
-  transform: rotate(-90deg);
-  width: 40px;
-}
-
 .tocMenuWrapper[aria-expanded="false"] .tocWrapper {
   display: none;
-}
-
-.tocMenuWrapper[aria-expanded="false"] .toggleIcon svg {
-  transform: rotate(90deg);
 }
 
 @media (mediumUp) {
@@ -173,10 +157,6 @@
   .tocWrapper {
     padding: 0;
     margin-top: 50px;
-  }
-
-  .toggleContainer {
-    display: none;
   }
 
   .chevron {
