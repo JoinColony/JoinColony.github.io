@@ -3,15 +3,14 @@
  * Pages
  */
 export const PAGE_INDEX = '/';
-export const PAGE_GET_STARTED_COLONYJS = '/docs/colonyjs/intro-get-started';
+export const PAGE_GET_STARTED_COLONYJS = '/colonyjs/intro-get-started';
 export const PAGE_DEVELOPER_PORTAL = PAGE_INDEX;
 export const PAGE_GET_INVOLVED = '/get-involved';
 export const PAGE_LOGIN = '/login';
 export const PAGE_MEDIA_KIT = '/media-kit';
 export const PAGE_PRIVACY_POLICY = 'https://colony.io/terms/#privacy-policy';
 export const PAGE_TERMS_SERVICE = 'https://colony.io/terms/';
-export const PAGE_BUG_BOUNTY =
-  '/docs/colonynetwork/bug-bounty-program-overview';
+export const PAGE_BUG_BOUNTY = '/colonynetwork/bug-bounty-program-overview';
 
 /*
  * Absolute
