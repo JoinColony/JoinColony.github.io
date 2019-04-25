@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://docs.colony.io/sitemap.xml
+Host: https://docs.colony.io

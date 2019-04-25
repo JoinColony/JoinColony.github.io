@@ -1,6 +1,0 @@
-flow-typed
-gatsby-*.js
-node_modules
-plugins
-public
-static
