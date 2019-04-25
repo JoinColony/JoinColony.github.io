@@ -1,23 +1,21 @@
 .main {
-    grid-column: 1 / span 4;
-
-    box-sizing: border-box;
-    padding: 50px 8px;
+  box-sizing: border-box;
+  padding: 100px 9.5% 120px;
 }
 
 .content {
-    composes: prettylink from '~styles/mixins.module.css';
+  composes: prettylink from '~styles/mixins.module.css';
 
-    display: block;
+  display: block;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 1450px) {
-    .content {
-        max-width: 1450px;
-        margin: 0 auto;
-    }
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
