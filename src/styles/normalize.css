@@ -201,7 +201,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: "Arial", sans-serif;
   font-weight: normal;
   word-wrap: break-word;
 }
@@ -618,4 +618,9 @@ pre tt:after {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: inherit;
+}
+
+/* Global Fonts */
+.fonts-loaded body {
+  font-family: "Avenir Next", "Helvetica", "Arial", sans-serif;
 }
