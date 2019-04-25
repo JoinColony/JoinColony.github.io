@@ -4,7 +4,7 @@ This project was built with [Gatsby](https://www.gatsbyjs.org/).
 
 ## Installation, Run Development Server, and Deploy
 
-#### Install Dependencies
+#### Install dependencies
 
 ```sh
 yarn
