@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
-import MainLayout from '~layouts/MainLayout';
+import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import { PAGE_INDEX } from '~routes';
 
 import styles from './404.module.css';
@@ -27,7 +27,7 @@ const MSG = defineMessages({
 const displayName = 'pages.NotFoundPage';
 
 const NotFoundPage = () => (
-  <MainLayout>
+  <DeveloperPortalLayout>
     <main className={styles.main}>
       <div className={styles.content}>
         <Heading text={MSG.title} />
@@ -37,7 +37,7 @@ const NotFoundPage = () => (
         <Link href={PAGE_INDEX} text={MSG.linkHome} />
       </div>
     </main>
-  </MainLayout>
+  </DeveloperPortalLayout>
 );
 
 NotFoundPage.displayName = displayName;
