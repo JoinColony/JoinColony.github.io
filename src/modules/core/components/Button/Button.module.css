@@ -42,6 +42,12 @@
   color: #ffffff !important;
 }
 
+.themePrimaryDarkBackground {
+  composes: themePrimary;
+  /* `important` to override `a` in the case of a link-button */
+  color: #ffffff !important;
+}
+
 .themeReset {
   margin: 0;
   padding: 0;
@@ -67,9 +73,19 @@
   padding: 5px 25px;
 }
 
+.paddingExtraLarge {
+  padding: 10px 25px;
+}
+
 /* Weight */
 
 .weightBold {
   border: 2px solid #289BDC;
   font-weight: bold;
+}
+
+/* Width */
+
+.widthStretch {
+  width: 100%;
 }

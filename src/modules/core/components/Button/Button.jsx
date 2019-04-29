@@ -11,9 +11,10 @@ import { getMainClasses } from '~utils/css';
 import styles from './Button.module.css';
 
 type Appearance = {
-  theme?: 'primary' | 'primaryHollow' | 'reset',
-  padding?: 'small' | 'large',
+  theme?: 'primary' | 'primaryHollow' | 'primaryDarkBackground' | 'reset',
+  padding?: 'small' | 'large' | 'extraLarge',
   weight?: 'bold',
+  width?: 'stretch',
 };
 
 type Props = {
