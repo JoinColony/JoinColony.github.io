@@ -8,6 +8,7 @@
     "Ryan Christoffersen <ryan@colony.io>"
   ],
   "dependencies": {
+    "@colony/purser-metamask": "^2.2.0",
     "@reach/router": "^1.2.1",
     "camelcase": "^5.2.0",
     "docsearch.js": "^2.6.2",

@@ -28,9 +28,16 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  wallet: Object,
+|};
+
 const displayName = 'pages.Developers.Login';
 
-const Login = () => (
+// TODO Connect GitHub
+const temporarySkipGitHubLink = '/dashboard/account';
+
+const Login = ({ wallet }: Props) => (
   <>
     <div className={styles.main}>
       <p className={styles.text}>
@@ -47,7 +54,7 @@ const Login = () => (
           id="address"
           label={MSG.createAccountInputLabel}
           type="text"
-          value="0xb77D57F4959eAfA0339424b83FcFaf9c15407461"
+          value={wallet.address}
         />
       </div>
       <div className={styles.field}>
@@ -58,7 +65,7 @@ const Login = () => (
             weight: 'bold',
             width: 'stretch',
           }}
-          linkTo="/dashboard/account"
+          linkTo={temporarySkipGitHubLink}
           text={MSG.createAccountGitHubButton}
         />
       </div>

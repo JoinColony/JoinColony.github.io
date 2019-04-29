@@ -1,9 +1,11 @@
 /* @flow */
 import type { IntlShape } from 'react-intl';
 
-import React from 'react';
-import { defineMessages } from 'react-intl';
+import React, { Component } from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
+
+import { open } from '@colony/purser-metamask';
 
 import SEO from '~parts/SEO';
 
@@ -25,31 +27,47 @@ const MSG = defineMessages({
   },
 });
 
-type Props = {|
-  /** Injected via `injectIntl` */
+export type Props = {|
   intl: IntlShape,
 |};
 
-const displayName = 'pages.Dashboard';
-
-const Dashboard = ({ intl: { formatMessage } }: Props) => {
-  const title = formatMessage(MSG.pageTitle);
-  return (
-    <>
-      <SEO description={MSG.pageDescription} title={title} />
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
-      <main className={styles.main}>
-        <MetaMask />
-      </main>
-      <main className={styles.main}>
-        <Login />
-      </main>
-    </>
-  );
+type State = {
+  wallet: Object,
 };
 
-Dashboard.displayName = displayName;
+class Dashboard extends Component<Props, State> {
+  static displayName = 'pages.Dashboard';
 
-export default Dashboard;
+  constructor(props) {
+    super(props);
+    this.state = {
+      wallet: null,
+    };
+  }
+
+  async componentDidMount() {
+    const wallet = await open();
+    this.setState({ wallet });
+  }
+
+  render() {
+    const {
+      intl: { formatMessage },
+    } = this.props;
+    const { wallet } = this.state;
+    const title = formatMessage(MSG.pageTitle);
+    return (
+      <>
+        <SEO description={MSG.pageDescription} title={title} />
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
+        <main className={styles.main}>
+          {wallet ? <Login wallet={wallet} /> : <MetaMask />}
+        </main>
+      </>
+    );
+  }
+}
+
+export default injectIntl(Dashboard);
