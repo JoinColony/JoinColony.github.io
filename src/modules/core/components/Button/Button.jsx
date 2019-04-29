@@ -12,7 +12,7 @@ import styles from './Button.module.css';
 
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'primaryDarkBackground' | 'reset',
-  padding?: 'small' | 'large' | 'extraLarge',
+  padding?: 'small' | 'large' | 'huge',
   weight?: 'bold',
   width?: 'stretch',
 };
