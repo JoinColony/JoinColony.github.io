@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
+import MetaMask from './MetaMask';
+
 import styles from './Dashboard.module.css';
 
 const MSG = defineMessages({
@@ -37,7 +39,9 @@ const Dashboard = ({ intl: { formatMessage } }: Props) => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <main className={styles.main}>Dashboard</main>
+      <main className={styles.main}>
+        <MetaMask />
+      </main>
     </>
   );
 };
