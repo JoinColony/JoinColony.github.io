@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
+import Login from './Login';
 import MetaMask from './MetaMask';
 
 import styles from './Dashboard.module.css';
@@ -41,6 +42,9 @@ const Dashboard = ({ intl: { formatMessage } }: Props) => {
       </Helmet>
       <main className={styles.main}>
         <MetaMask />
+      </main>
+      <main className={styles.main}>
+        <Login />
       </main>
     </>
   );
