@@ -1,0 +1,7 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: #00284B;
+  display: flex;
+  justify-content: center;
+}
