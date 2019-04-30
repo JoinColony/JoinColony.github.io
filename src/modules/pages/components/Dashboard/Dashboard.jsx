@@ -1,7 +1,9 @@
 /* @flow */
+
 import type { IntlShape } from 'react-intl';
 
-import React, { cloneElement, Component } from 'react';
+import React, { Component } from 'react';
+import { Redirect, Router } from '@reach/router';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
@@ -9,6 +11,10 @@ import { open } from '@colony/purser-metamask';
 
 import SEO from '~parts/SEO';
 import Sidebar from './Sidebar';
+
+import Account from './Account';
+import Colonies from './Colonies';
+import Contributions from './Contributions';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -29,7 +35,7 @@ const MSG = defineMessages({
 });
 
 export type Props = {|
-  content: Object,
+  active: string,
   intl: IntlShape,
 |};
 
@@ -61,10 +67,9 @@ class Dashboard extends Component<Props, State> {
 
   render() {
     const {
-      content,
+      active,
       intl: { formatMessage },
     } = this.props;
-    const { active } = content.props;
     const { wallet, github } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
@@ -73,6 +78,9 @@ class Dashboard extends Component<Props, State> {
     }
     if (wallet && !github) {
       return <Login wallet={wallet} authenticate={this.authenticate} />;
+    }
+    if (!active) {
+      return <Redirect to="/dashboard/account" noThrow />;
     }
 
     return (
@@ -87,7 +95,14 @@ class Dashboard extends Component<Props, State> {
               <Sidebar active={active} />
             </div>
             <main className={styles.content}>
-              {cloneElement(content, { wallet, github })}
+              <Router primary={false}>
+                <Account path="/dashboard/account" wallet={wallet} />
+                <Colonies path="/dashboard/colonies" wallet={wallet} />
+                <Contributions
+                  path="/dashboard/contributions"
+                  wallet={wallet}
+                />
+              </Router>
             </main>
           </div>
         </main>

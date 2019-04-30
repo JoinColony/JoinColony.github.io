@@ -7,7 +7,7 @@ import Blockies from 'react-blockies';
 import styles from './Account.module.css';
 
 type Props = {|
-  active: string,
+  path: string,
   wallet: Object,
 |};
 
