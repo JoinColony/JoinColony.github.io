@@ -58,7 +58,8 @@ const Login = ({ authenticate, wallet }: Props) => (
       <div className={styles.field}>
         <Button
           appearance={{
-            theme: 'primaryDarkBackground',
+            theme: 'primary',
+            color: 'white',
             padding: 'huge',
             weight: 'bold',
             width: 'stretch',

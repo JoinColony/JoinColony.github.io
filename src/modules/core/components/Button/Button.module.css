@@ -42,12 +42,6 @@
   color: #ffffff !important;
 }
 
-.themePrimaryDarkBackground {
-  composes: themePrimary;
-  /* `important` to override `a` in the case of a link-button */
-  color: #ffffff !important;
-}
-
 .themeReset {
   margin: 0;
   padding: 0;
@@ -60,6 +54,12 @@
 .themeReset:hover {
   text-decoration: none !important;
   cursor: pointer !important;
+}
+
+/* Color */
+
+.colorWhite {
+  color: #ffffff !important;
 }
 
 /* Padding */
