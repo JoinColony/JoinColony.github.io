@@ -1,7 +1,24 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 .main {
-  align-items: center;
-  background-color: #00284B;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+}
+
+.mainInnerContainer {
+  display: flex;
+  width: 100vw;
+}
+
+.content {
+  composes: prettylink from '~styles/mixins.module.css';
+  overflow-x: hidden;
+  margin-left: 60px;
+  border-radius: 8px;
+  box-shadow: -36px 20px 40px -38px rgba(200, 210, 220, 0.7);
+  padding: 20px 80px 40px 80px;
+}
+
+.content strong {
+  color: #00284b;
 }

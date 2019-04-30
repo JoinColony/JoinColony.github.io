@@ -29,17 +29,15 @@ const MSG = defineMessages({
 });
 
 type Props = {|
+  authenticate: any,
   wallet: Object,
 |};
 
-const displayName = 'pages.Developers.Login';
+const displayName = 'pages.Dashboard.Login';
 
-// TODO Connect GitHub
-const temporarySkipGitHubLink = '/dashboard/account';
-
-const Login = ({ wallet }: Props) => (
-  <>
-    <div className={styles.main}>
+const Login = ({ authenticate, wallet }: Props) => (
+  <div className={styles.main}>
+    <div className={styles.content}>
       <p className={styles.text}>
         <FormattedMessage {...MSG.createAccountMessage} />
       </p>
@@ -65,7 +63,7 @@ const Login = ({ wallet }: Props) => (
             weight: 'bold',
             width: 'stretch',
           }}
-          linkTo={temporarySkipGitHubLink}
+          onClick={authenticate}
           text={MSG.createAccountGitHubButton}
         />
       </div>
@@ -73,7 +71,7 @@ const Login = ({ wallet }: Props) => (
         <FormattedMessage {...MSG.createAccountGitHubMessage} />
       </p>
     </div>
-  </>
+  </div>
 );
 
 Login.displayName = displayName;

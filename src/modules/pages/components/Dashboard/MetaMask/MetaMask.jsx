@@ -22,13 +22,13 @@ const MSG = defineMessages({
   },
 });
 
-const displayName = 'pages.Developers.MetaMask';
+const displayName = 'pages.Dashboard.MetaMask';
 
 const metamaskLogo = '/img/metamask.svg';
 
 const MetaMask = () => (
-  <>
-    <div className={styles.main}>
+  <div className={styles.main}>
+    <div className={styles.content}>
       <Image
         alt={MSG.metamaskTitle}
         className={styles.image}
@@ -41,7 +41,7 @@ const MetaMask = () => (
         <FormattedMessage {...MSG.metamaskSubText} />
       </p>
     </div>
-  </>
+  </div>
 );
 
 MetaMask.displayName = displayName;

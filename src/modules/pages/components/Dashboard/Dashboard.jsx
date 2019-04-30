@@ -1,13 +1,14 @@
 /* @flow */
 import type { IntlShape } from 'react-intl';
 
-import React, { Component } from 'react';
+import React, { cloneElement, Component } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import { open } from '@colony/purser-metamask';
 
 import SEO from '~parts/SEO';
+import Sidebar from './Sidebar';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -28,10 +29,12 @@ const MSG = defineMessages({
 });
 
 export type Props = {|
+  content: Object,
   intl: IntlShape,
 |};
 
 type State = {
+  github: any,
   wallet: Object,
 };
 
@@ -41,6 +44,7 @@ class Dashboard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      github: null,
       wallet: null,
     };
   }
@@ -50,12 +54,27 @@ class Dashboard extends Component<Props, State> {
     this.setState({ wallet });
   }
 
+  authenticate = () => {
+    // TODO: GitHub authentication
+    this.setState({ github: true });
+  };
+
   render() {
     const {
+      content,
       intl: { formatMessage },
     } = this.props;
-    const { wallet } = this.state;
+    const { active } = content.props;
+    const { wallet, github } = this.state;
     const title = formatMessage(MSG.pageTitle);
+
+    if (!wallet) {
+      return <MetaMask />;
+    }
+    if (wallet && !github) {
+      return <Login wallet={wallet} authenticate={this.authenticate} />;
+    }
+
     return (
       <>
         <SEO description={MSG.pageDescription} title={title} />
@@ -63,7 +82,14 @@ class Dashboard extends Component<Props, State> {
           <title>{title}</title>
         </Helmet>
         <main className={styles.main}>
-          {wallet ? <Login wallet={wallet} /> : <MetaMask />}
+          <div className={styles.mainInnerContainer}>
+            <div className={styles.sidebar}>
+              <Sidebar active={active} />
+            </div>
+            <main className={styles.content}>
+              {cloneElement(content, { wallet, github })}
+            </main>
+          </div>
         </main>
       </>
     );

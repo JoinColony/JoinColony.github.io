@@ -1,8 +1,18 @@
 .main {
+  align-items: center;
+  background-color: #00284B;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
   font-family: 'Avenir Next Light';
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.content {
   margin-top: -20%;
   text-align: center;
+  width: 500px;
 }
 
 .text {
