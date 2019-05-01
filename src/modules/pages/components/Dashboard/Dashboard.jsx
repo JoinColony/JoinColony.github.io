@@ -63,13 +63,15 @@ class Dashboard extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const github = JSON.parse(window.localStorage.getItem('github'));
-    const wallet = await open();
-    this.setState({ loading: false, github, wallet });
-    socket.on('github', response => {
-      window.localStorage.setItem('github', JSON.stringify(response));
-      this.setState({ github: response });
-    });
+    if (typeof window !== 'undefined') {
+      const github = JSON.parse(window.localStorage.getItem('github'));
+      const wallet = await open();
+      this.setState({ loading: false, github, wallet });
+      socket.on('github', response => {
+        window.localStorage.setItem('github', JSON.stringify(response));
+        this.setState({ github: response });
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -78,10 +80,12 @@ class Dashboard extends Component<Props, State> {
 
   authenticate = () => {
     const url = `${API}/github?socketId=${socket.id}`;
-    return window.open(url);
+    if (typeof window !== 'undefined') {
+      window.open(url);
+    }
   };
 
-  render() {
+  render = () => {
     const {
       page,
       intl: { formatMessage },
@@ -89,7 +93,7 @@ class Dashboard extends Component<Props, State> {
     const { loading, wallet, github } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
-    if (page === 'close') {
+    if (typeof window !== 'undefined' && page === 'close') {
       window.close();
     }
     if (loading) {
@@ -138,7 +142,7 @@ class Dashboard extends Component<Props, State> {
         </main>
       </>
     );
-  }
+  };
 }
 
 export default injectIntl(Dashboard);
