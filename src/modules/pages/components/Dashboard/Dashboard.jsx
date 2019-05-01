@@ -13,6 +13,7 @@ import io from 'socket.io-client';
 import SEO from '~parts/SEO';
 
 import Login from './Login';
+import Loading from './Loading';
 import MetaMask from './MetaMask';
 import Sidebar from './Sidebar';
 
@@ -39,11 +40,12 @@ const API = 'http://localhost:8080';
 const socket = io(API);
 
 export type Props = {|
-  active: string,
+  page: string,
   intl: IntlShape,
 |};
 
 type State = {
+  loading: boolean,
   github: any,
   wallet: Object,
 };
@@ -54,6 +56,7 @@ class Dashboard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       github: null,
       wallet: null,
     };
@@ -62,7 +65,7 @@ class Dashboard extends Component<Props, State> {
   async componentDidMount() {
     const github = JSON.parse(window.localStorage.getItem('github'));
     const wallet = await open();
-    this.setState({ github, wallet });
+    this.setState({ loading: false, github, wallet });
     socket.on('github', response => {
       window.localStorage.setItem('github', JSON.stringify(response));
       this.setState({ github: response });
@@ -74,26 +77,31 @@ class Dashboard extends Component<Props, State> {
   }
 
   authenticate = () => {
-    const { active } = this.props;
-    const url = `${API}/github?socketId=${socket.id}&active=${active}`;
+    const url = `${API}/github?socketId=${socket.id}`;
     return window.open(url);
   };
 
   render() {
     const {
-      active,
+      page,
       intl: { formatMessage },
     } = this.props;
-    const { wallet, github } = this.state;
+    const { loading, wallet, github } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
+    if (page === 'close') {
+      window.close();
+    }
+    if (loading) {
+      return <Loading />;
+    }
     if (!wallet) {
       return <MetaMask />;
     }
     if (wallet && !github) {
       return <Login wallet={wallet} authenticate={this.authenticate} />;
     }
-    if (!active) {
+    if (!page) {
       return <Redirect to="/dashboard/account" noThrow />;
     }
     return (
@@ -105,7 +113,7 @@ class Dashboard extends Component<Props, State> {
         <main className={styles.main}>
           <div className={styles.mainInnerContainer}>
             <div className={styles.sidebar}>
-              <Sidebar active={active} />
+              <Sidebar active={page} />
             </div>
             <main className={styles.content}>
               <Router primary={false}>
