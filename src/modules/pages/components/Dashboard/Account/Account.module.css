@@ -10,23 +10,32 @@
   align-items: center;
 }
 
-.blockies {
+.photo {
   border-radius: 50%;
+  margin: 0;
   margin-right: 30px;
+  width: 120px;
 }
 
 .name {
-  font-size: 26px;
+  font-size: 34px;
   font-weight: 500;
-  margin: 8px auto;
+  margin-bottom: 16px;
 }
 
 .address {
-  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.blockies {
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .statistics {
-  margin: 5px auto;
+  margin-top: 5px;
 }
 
 .statistics span {

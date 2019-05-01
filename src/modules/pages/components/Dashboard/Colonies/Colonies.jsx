@@ -6,6 +6,7 @@ import React from 'react';
 import styles from './Colonies.module.css';
 
 type Props = {|
+  github: Object,
   path: string,
   wallet: Object,
 |};

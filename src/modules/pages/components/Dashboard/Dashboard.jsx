@@ -8,16 +8,17 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import { open } from '@colony/purser-metamask';
+import io from 'socket.io-client';
 
 import SEO from '~parts/SEO';
+
+import Login from './Login';
+import MetaMask from './MetaMask';
 import Sidebar from './Sidebar';
 
 import Account from './Account';
 import Colonies from './Colonies';
 import Contributions from './Contributions';
-
-import Login from './Login';
-import MetaMask from './MetaMask';
 
 import styles from './Dashboard.module.css';
 
@@ -33,6 +34,9 @@ const MSG = defineMessages({
     defaultMessage: 'Developer Dashboard',
   },
 });
+
+const API = 'http://localhost:8080';
+const socket = io(API);
 
 export type Props = {|
   active: string,
@@ -56,13 +60,23 @@ class Dashboard extends Component<Props, State> {
   }
 
   async componentDidMount() {
+    const github = JSON.parse(window.localStorage.getItem('github'));
     const wallet = await open();
-    this.setState({ wallet });
+    this.setState({ github, wallet });
+    socket.on('github', response => {
+      window.localStorage.setItem('github', JSON.stringify(response));
+      this.setState({ github: response });
+    });
+  }
+
+  componentWillUnmount() {
+    socket.off('github');
   }
 
   authenticate = () => {
-    // TODO: GitHub authentication
-    this.setState({ github: true });
+    const { active } = this.props;
+    const url = `${API}/github?socketId=${socket.id}&active=${active}`;
+    return window.open(url);
   };
 
   render() {
@@ -82,7 +96,6 @@ class Dashboard extends Component<Props, State> {
     if (!active) {
       return <Redirect to="/dashboard/account" noThrow />;
     }
-
     return (
       <>
         <SEO description={MSG.pageDescription} title={title} />
@@ -96,10 +109,19 @@ class Dashboard extends Component<Props, State> {
             </div>
             <main className={styles.content}>
               <Router primary={false}>
-                <Account path="/dashboard/account" wallet={wallet} />
-                <Colonies path="/dashboard/colonies" wallet={wallet} />
+                <Account
+                  path="/dashboard/account"
+                  github={github}
+                  wallet={wallet}
+                />
+                <Colonies
+                  path="/dashboard/colonies"
+                  github={github}
+                  wallet={wallet}
+                />
                 <Contributions
                   path="/dashboard/contributions"
+                  github={github}
                   wallet={wallet}
                 />
               </Router>
