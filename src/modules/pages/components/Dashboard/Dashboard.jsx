@@ -13,7 +13,6 @@ import io from 'socket.io-client';
 import SEO from '~parts/SEO';
 
 import Login from './Login';
-import Loading from './Loading';
 import MetaMask from './MetaMask';
 import Sidebar from './Sidebar';
 
@@ -42,7 +41,6 @@ export type Props = {|
 |};
 
 type State = {
-  loading: boolean,
   github: Object,
   socket: Object,
   wallet: Object,
@@ -54,7 +52,6 @@ class Dashboard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       github: null,
       socket: null,
       wallet: null,
@@ -65,7 +62,7 @@ class Dashboard extends Component<Props, State> {
     const wallet = await open();
     const github = this.getGitHubUser();
     if (!github) this.connectSocket();
-    this.setState({ loading: false, github, wallet });
+    this.setState({ github, wallet });
   }
 
   componentWillUnmount() {
@@ -115,12 +112,9 @@ class Dashboard extends Component<Props, State> {
       page,
       intl: { formatMessage },
     } = this.props;
-    const { loading, wallet, github } = this.state;
+    const { wallet, github } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
-    if (loading) {
-      return <Loading />;
-    }
     if (!wallet) {
       return <MetaMask />;
     }
