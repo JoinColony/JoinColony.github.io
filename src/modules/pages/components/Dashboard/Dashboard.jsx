@@ -36,9 +36,6 @@ const MSG = defineMessages({
   },
 });
 
-const API = 'http://localhost:8080';
-const socket = io(API);
-
 export type Props = {|
   page: string,
   intl: IntlShape,
@@ -46,7 +43,8 @@ export type Props = {|
 
 type State = {
   loading: boolean,
-  github: any,
+  github: Object,
+  socket: Object,
   wallet: Object,
 };
 
@@ -58,30 +56,57 @@ class Dashboard extends Component<Props, State> {
     this.state = {
       loading: true,
       github: null,
+      socket: null,
       wallet: null,
     };
   }
 
   async componentDidMount() {
-    if (typeof window !== 'undefined') {
-      const github = JSON.parse(window.localStorage.getItem('github'));
-      const wallet = await open();
-      this.setState({ loading: false, github, wallet });
-      socket.on('github', response => {
-        window.localStorage.setItem('github', JSON.stringify(response));
-        this.setState({ github: response });
-      });
-    }
+    const wallet = await open();
+    const github = this.getGitHubUser();
+    if (!github) this.connectSocket();
+    this.setState({ loading: false, github, wallet });
   }
 
   componentWillUnmount() {
-    socket.off('github');
+    const { socket } = this.state;
+    if (socket) {
+      socket.off('github');
+      socket.disconnect();
+    }
   }
 
   authenticate = () => {
-    const url = `${API}/github?socketId=${socket.id}`;
+    const { socket } = this.state;
+    const api = process.env.API_URL || 'http://localhost:8080';
+    const url = `${api}/auth/github?socketId=${socket.id}`;
+    if (typeof window !== 'undefined') window.open(url);
+  };
+
+  connectSocket = () => {
+    const { setGitHubUser } = this;
+    const socket = io.connect(process.env.SOCKET || 'http://localhost:8080');
+    socket.on('github', response => setGitHubUser(response));
+    this.setState({ socket });
+  };
+
+  disconnectGitHub = () => {
+    window.localStorage.removeItem('github');
+    this.setState({ github: null });
+  };
+
+  getGitHubUser = () => {
     if (typeof window !== 'undefined') {
-      window.open(url);
+      const github = window.localStorage.getItem('github');
+      return JSON.parse(github);
+    }
+    return null;
+  };
+
+  setGitHubUser = github => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('github', JSON.stringify(github));
+      this.setState({ github });
     }
   };
 
@@ -93,9 +118,6 @@ class Dashboard extends Component<Props, State> {
     const { loading, wallet, github } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
-    if (typeof window !== 'undefined' && page === 'close') {
-      window.close();
-    }
     if (loading) {
       return <Loading />;
     }
@@ -107,6 +129,9 @@ class Dashboard extends Component<Props, State> {
     }
     if (!page) {
       return <Redirect to="/dashboard/account" noThrow />;
+    }
+    if (typeof window !== 'undefined' && page === 'close') {
+      window.close();
     }
     return (
       <>
@@ -123,6 +148,7 @@ class Dashboard extends Component<Props, State> {
               <Router primary={false}>
                 <Account
                   path="/dashboard/account"
+                  disconnectGitHub={this.disconnectGitHub}
                   github={github}
                   wallet={wallet}
                 />

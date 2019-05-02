@@ -9,6 +9,7 @@ import Image from '~core/Image';
 import styles from './Account.module.css';
 
 type Props = {|
+  disconnectGitHub: any,
   github: Object,
   path: string,
   wallet: Object,
@@ -16,7 +17,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account';
 
-const Account = ({ github, wallet }: Props) => (
+const Account = ({ disconnectGitHub, github, wallet }: Props) => (
   <>
     <div className={styles.main}>
       <div className={styles.header}>
@@ -35,6 +36,9 @@ const Account = ({ github, wallet }: Props) => (
             <span>0 CLNY</span>
             <span>0 Reputation</span>
           </div>
+          <button onClick={disconnectGitHub} type="submit">
+            Disconnect Github
+          </button>
         </div>
       </div>
     </div>
