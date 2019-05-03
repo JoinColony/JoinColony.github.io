@@ -88,8 +88,11 @@ class Dashboard extends Component<Props, State> {
   };
 
   disconnectGitHub = () => {
-    window.localStorage.removeItem('github');
-    this.setState({ github: null });
+    if (typeof window !== 'undefined') {
+      this.connectSocket();
+      window.localStorage.removeItem('github');
+      this.setState({ github: null });
+    }
   };
 
   getGitHubUser = () => {

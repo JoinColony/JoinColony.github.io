@@ -18,7 +18,7 @@ const MSG = defineMessages({
   },
   metamaskSubText: {
     id: 'pages.Dashboard.metamaskSubText',
-    defaultMessage: "Don't have MetaMask? Click here to get the extension.",
+    defaultMessage: `Don't have MetaMask? Click here to get the extension.`,
   },
 });
 

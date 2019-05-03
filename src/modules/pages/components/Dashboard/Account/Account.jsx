@@ -4,6 +4,7 @@
 import React from 'react';
 import Blockies from 'react-blockies';
 
+import Button from '~core/Button';
 import Image from '~core/Image';
 
 import styles from './Account.module.css';
@@ -36,10 +37,17 @@ const Account = ({ disconnectGitHub, github, wallet }: Props) => (
             <span>0 CLNY</span>
             <span>0 Reputation</span>
           </div>
-          <button onClick={disconnectGitHub} type="submit">
-            Disconnect Github
-          </button>
         </div>
+      </div>
+      <div calssName={styles.content}>
+        <h2 className={styles.contentTitle}>Connected Accounts</h2>
+        <Button
+          appearance={{ theme: 'primaryHollow' }}
+          onClick={disconnectGitHub}
+          type="submit"
+        >
+          Disconnect Github
+        </Button>
       </div>
     </div>
   </>
