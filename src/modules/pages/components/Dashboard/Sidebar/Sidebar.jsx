@@ -2,9 +2,26 @@
 
 import React from 'react';
 
+import { defineMessages } from 'react-intl';
+
 import Link from '~core/Link';
 
 import styles from './Sidebar.module.css';
+
+const MSG = defineMessages({
+  accountLink: {
+    id: 'pages.Dashboard.Sidebar.accountLink',
+    defaultMessage: 'Account',
+  },
+  coloniesLink: {
+    id: 'pages.Dashboard.Sidebar.coloniesLink',
+    defaultMessage: 'Colonies',
+  },
+  contributionsLink: {
+    id: 'pages.Dashboard.Sidebar.contributionsLink',
+    defaultMessage: 'Contributions',
+  },
+});
 
 type Props = {|
   active: string,
@@ -18,21 +35,18 @@ const Sidebar = ({ active }: Props) => (
       <Link
         className={active === 'account' ? styles.linkActive : styles.link}
         href="/dashboard/account"
-      >
-        Account
-      </Link>
+        text={MSG.accountLink}
+      />
       <Link
         className={active === 'colonies' ? styles.linkActive : styles.link}
         href="/dashboard/colonies"
-      >
-        Colonies
-      </Link>
+        text={MSG.coloniesLink}
+      />
       <Link
         className={active === 'contributions' ? styles.linkActive : styles.link}
         href="/dashboard/contributions"
-      >
-        Contributions
-      </Link>
+        text={MSG.contributionsLink}
+      />
     </div>
   </div>
 );

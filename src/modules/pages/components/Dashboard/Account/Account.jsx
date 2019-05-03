@@ -4,10 +4,19 @@
 import React from 'react';
 import Blockies from 'react-blockies';
 
+import { defineMessages } from 'react-intl';
+
 import Button from '~core/Button';
 import Image from '~core/Image';
 
 import styles from './Account.module.css';
+
+const MSG = defineMessages({
+  disconnectGitHub: {
+    id: 'pages.Dashboard.Account.disconnectGitHub',
+    defaultMessage: 'Disconnect GitHub',
+  },
+});
 
 type Props = {|
   disconnectGitHub: any,
@@ -44,10 +53,9 @@ const Account = ({ disconnectGitHub, github, wallet }: Props) => (
         <Button
           appearance={{ theme: 'primaryHollow' }}
           onClick={disconnectGitHub}
+          text={MSG.disconnectGitHub}
           type="submit"
-        >
-          Disconnect Github
-        </Button>
+        />
       </div>
     </div>
   </>
