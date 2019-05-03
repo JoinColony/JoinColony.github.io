@@ -3,11 +3,11 @@
 import type { IntlShape } from 'react-intl';
 
 import React, { Component } from 'react';
-import { Redirect, Router } from '@reach/router';
+import { Router } from '@reach/router';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
-import { open } from '@colony/purser-metamask';
+import { accountChangeHook, open } from '@colony/purser-metamask';
 import io from 'socket.io-client';
 
 import SEO from '~parts/SEO';
@@ -59,10 +59,11 @@ class Dashboard extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const wallet = await open();
+    this.getUserWallet();
+    this.connectMetaMask();
+    this.openUserWallet();
     const github = this.getGitHubUser();
     if (!github) this.connectSocket();
-    this.setState({ github, wallet });
   }
 
   componentWillUnmount() {
@@ -78,6 +79,15 @@ class Dashboard extends Component<Props, State> {
     const api = process.env.API_URL || 'http://localhost:8080';
     const url = `${api}/auth/github?socketId=${socket.id}`;
     if (typeof window !== 'undefined') window.open(url);
+  };
+
+  connectMetaMask = async () => {
+    const handleAccountChange = metamask => {
+      if (!metamask.selectedAddress) {
+        this.setUserWallet(null);
+      }
+    };
+    await accountChangeHook(handleAccountChange);
   };
 
   connectSocket = () => {
@@ -98,15 +108,37 @@ class Dashboard extends Component<Props, State> {
   getGitHubUser = () => {
     if (typeof window !== 'undefined') {
       const github = window.localStorage.getItem('github');
-      return JSON.parse(github);
+      this.setState({ github: JSON.parse(github) });
     }
-    return null;
+  };
+
+  getUserWallet = () => {
+    if (typeof window !== 'undefined') {
+      const wallet = window.localStorage.getItem('wallet');
+      this.setState({ wallet: JSON.parse(wallet) });
+    }
+  };
+
+  openUserWallet = async () => {
+    const wallet = await open();
+    if (wallet.address) {
+      this.setUserWallet(wallet);
+    } else {
+      this.setUserWallet(null);
+    }
   };
 
   setGitHubUser = github => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem('github', JSON.stringify(github));
       this.setState({ github });
+    }
+  };
+
+  setUserWallet = wallet => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('wallet', JSON.stringify(wallet));
+      this.setState({ wallet });
     }
   };
 
@@ -123,9 +155,6 @@ class Dashboard extends Component<Props, State> {
     }
     if (wallet && !github) {
       return <Login wallet={wallet} authenticate={this.authenticate} />;
-    }
-    if (!page) {
-      return <Redirect to="/dashboard/account" noThrow />;
     }
     if (typeof window !== 'undefined' && page === 'close') {
       window.close();
@@ -144,7 +173,7 @@ class Dashboard extends Component<Props, State> {
             <main className={styles.content}>
               <Router primary={false}>
                 <Account
-                  path="/dashboard/account"
+                  path={page ? '/dashboard/account' : '/dashboard'}
                   disconnectGitHub={this.disconnectGitHub}
                   github={github}
                   wallet={wallet}

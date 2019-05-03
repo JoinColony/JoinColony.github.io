@@ -39,7 +39,7 @@ const Account = ({ disconnectGitHub, github, wallet }: Props) => (
           </div>
         </div>
       </div>
-      <div calssName={styles.content}>
+      <div className={styles.content}>
         <h2 className={styles.contentTitle}>Connected Accounts</h2>
         <Button
           appearance={{ theme: 'primaryHollow' }}
