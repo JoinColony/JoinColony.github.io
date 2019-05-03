@@ -1,6 +1,8 @@
 /* @flow */
 /* eslint-disable react/no-unused-prop-types */
 
+import type { WalletObjectType } from '@colony/purser-core';
+
 import React from 'react';
 import Blockies from 'react-blockies';
 
@@ -8,6 +10,8 @@ import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
 import Image from '~core/Image';
+
+import type { GitHub } from '../types';
 
 import styles from './Account.module.css';
 
@@ -19,10 +23,10 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  disconnectGitHub: any,
-  github: Object,
+  disconnectGitHub: () => void,
+  github: GitHub,
   path: string,
-  wallet: Object,
+  wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Account';

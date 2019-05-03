@@ -1,6 +1,8 @@
 /* @flow */
 
 import type { IntlShape } from 'react-intl';
+import type { WalletObjectType } from '@colony/purser-core';
+import type { Socket } from 'socket.io-client';
 
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
@@ -11,6 +13,8 @@ import { accountChangeHook, open } from '@colony/purser-metamask';
 import io from 'socket.io-client';
 
 import SEO from '~parts/SEO';
+
+import type { GitHub } from './types';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -41,9 +45,9 @@ export type Props = {|
 |};
 
 type State = {
-  github: Object,
-  socket: Object,
-  wallet: Object,
+  github?: GitHub,
+  socket?: Socket,
+  wallet?: WalletObjectType,
 };
 
 class Dashboard extends Component<Props, State> {
@@ -52,9 +56,9 @@ class Dashboard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      github: null,
-      socket: null,
-      wallet: null,
+      github: undefined,
+      socket: undefined,
+      wallet: undefined,
     };
   }
 
@@ -67,24 +71,29 @@ class Dashboard extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    const { socket } = this.state;
+    const {
+      setGitHubUser,
+      state: { socket },
+    } = this;
     if (socket) {
-      socket.off('github');
+      socket.off('github', setGitHubUser);
       socket.disconnect();
     }
   }
 
   authenticate = () => {
     const { socket } = this.state;
-    const api = process.env.API_URL || 'http://localhost:8080';
-    const url = `${api}/auth/github?socketId=${socket.id}`;
-    if (typeof window !== 'undefined') window.open(url);
+    if (socket) {
+      const api = process.env.API_URL || 'http://localhost:8080';
+      const url = `${api}/auth/github?socketId=${socket.id}`;
+      if (typeof window !== 'undefined') window.open(url);
+    }
   };
 
   connectMetaMask = async () => {
     const handleAccountChange = metamask => {
       if (!metamask.selectedAddress) {
-        this.setUserWallet(null);
+        this.setUserWallet(undefined);
       }
     };
     await accountChangeHook(handleAccountChange);
@@ -93,7 +102,7 @@ class Dashboard extends Component<Props, State> {
   connectSocket = () => {
     const { setGitHubUser } = this;
     const socket = io.connect(process.env.SOCKET || 'http://localhost:8080');
-    socket.on('github', response => setGitHubUser(response));
+    socket.on('github', setGitHubUser);
     this.setState({ socket });
   };
 
@@ -101,7 +110,7 @@ class Dashboard extends Component<Props, State> {
     if (typeof window !== 'undefined') {
       this.connectSocket();
       window.localStorage.removeItem('github');
-      this.setState({ github: null });
+      this.setState({ github: undefined });
     }
   };
 
@@ -124,7 +133,7 @@ class Dashboard extends Component<Props, State> {
     if (wallet.address) {
       this.setUserWallet(wallet);
     } else {
-      this.setUserWallet(null);
+      this.setUserWallet(undefined);
     }
   };
 
@@ -170,26 +179,28 @@ class Dashboard extends Component<Props, State> {
             <div className={styles.sidebar}>
               <Sidebar active={page} />
             </div>
-            <main className={styles.content}>
-              <Router primary={false}>
-                <Account
-                  path={page ? '/dashboard/account' : '/dashboard'}
-                  disconnectGitHub={this.disconnectGitHub}
-                  github={github}
-                  wallet={wallet}
-                />
-                <Colonies
-                  path="/dashboard/colonies"
-                  github={github}
-                  wallet={wallet}
-                />
-                <Contributions
-                  path="/dashboard/contributions"
-                  github={github}
-                  wallet={wallet}
-                />
-              </Router>
-            </main>
+            {github && wallet && (
+              <main className={styles.content}>
+                <Router primary={false}>
+                  <Account
+                    path={page ? '/dashboard/account' : '/dashboard'}
+                    disconnectGitHub={this.disconnectGitHub}
+                    github={github}
+                    wallet={wallet}
+                  />
+                  <Colonies
+                    path="/dashboard/colonies"
+                    github={github}
+                    wallet={wallet}
+                  />
+                  <Contributions
+                    path="/dashboard/contributions"
+                    github={github}
+                    wallet={wallet}
+                  />
+                </Router>
+              </main>
+            )}
           </div>
         </main>
       </>

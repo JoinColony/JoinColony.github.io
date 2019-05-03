@@ -1,9 +1,12 @@
 /* @flow */
 /* eslint-disable react/no-unused-prop-types */
 
-import React from 'react';
+import type { WalletObjectType } from '@colony/purser-core';
 
+import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+
+import type { GitHub } from '../types';
 
 import styles from './Contributions.module.css';
 
@@ -15,9 +18,9 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  github: Object,
+  github: GitHub,
   path: string,
-  wallet: Object,
+  wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Contributions';
