@@ -1,5 +1,7 @@
 /* @flow */
 
+import type { WalletObjectType } from '@colony/purser-core';
+
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -29,8 +31,8 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  authenticate: any,
-  wallet: Object,
+  authenticate: () => void,
+  wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Login';
