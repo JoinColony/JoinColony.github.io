@@ -13,7 +13,11 @@ import NavigationToggle from '~core/NavigationToggle';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
-import { COLONY_DISCOURSE_SUPPORT, PAGE_DEVELOPER_PORTAL } from '~routes';
+import {
+  COLONY_DISCOURSE_SUPPORT,
+  PAGE_DEVELOPER_PORTAL,
+  PAGE_DEVELOPER_DASHBOARD,
+} from '~routes';
 
 import styles from './Header.module.css';
 
@@ -33,6 +37,10 @@ const MSG = defineMessages({
   navLinkSupport: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkSupport',
     defaultMessage: 'Support',
+  },
+  navButtonDashboard: {
+    id: 'layouts.DeveloperPortalLayout.Header.navButtonDashboard',
+    defaultMessage: 'Dashboard',
   },
 });
 
@@ -122,6 +130,15 @@ const Header = ({
               inputId="devPortalLayoutHeaderSearch"
             />
           </div>
+          <Button
+            appearance={{
+              theme: 'primaryHollow',
+              padding: 'large',
+              weight: 'bold',
+            }}
+            linkTo={PAGE_DEVELOPER_DASHBOARD}
+            text={MSG.navButtonDashboard}
+          />
         </div>
         <div className={styles.navToggle}>
           <NavigationToggle

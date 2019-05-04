@@ -1,0 +1,37 @@
+.main {
+  align-items: center;
+  background-color: #00284B;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  font-family: 'Avenir Next Light';
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.content {
+  padding-bottom: 10%;
+  text-align: center;
+  width: 500px;
+}
+
+.text {
+  font-family: 'Avenir Next Demi';
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px auto;
+  padding: 0;
+}
+
+.subtext {
+  font-size: 16px;
+  margin: 10px auto;
+  padding: 0;
+}
+
+.image {
+  height: auto;
+  margin: 25px auto;
+  padding: 0;
+  width: 100px;
+}

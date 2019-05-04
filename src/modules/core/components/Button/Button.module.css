@@ -32,7 +32,8 @@
 .themePrimaryHollow {
   composes: primaryBase;
   background-color: transparent;
-  color: #00284B;
+  /* `important` to override `a` in the case of a link-button */
+  color: #289BDC !important;
 }
 
 .themePrimaryHollow:hover {
@@ -55,9 +56,36 @@
   cursor: pointer !important;
 }
 
+/* Color */
+
+.colorWhite {
+  color: #ffffff !important;
+}
+
 /* Padding */
 
 .paddingSmall {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.paddingLarge {
+  padding: 5px 25px;
+}
+
+.paddingHuge {
+  padding: 10px 25px;
+}
+
+/* Weight */
+
+.weightBold {
+  border: 2px solid #289BDC;
+  font-weight: bold;
+}
+
+/* Width */
+
+.widthStretch {
+  width: 100%;
 }

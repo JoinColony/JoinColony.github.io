@@ -12,7 +12,10 @@ import styles from './Button.module.css';
 
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'reset',
-  padding?: 'small',
+  color?: 'white',
+  padding?: 'small' | 'large' | 'huge',
+  weight?: 'bold',
+  width?: 'stretch',
 };
 
 type Props = {
