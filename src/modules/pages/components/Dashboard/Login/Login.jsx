@@ -31,7 +31,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  authenticate: () => void,
+  authenticate: string => void,
   wallet: WalletObjectType,
 |};
 
@@ -66,7 +66,7 @@ const Login = ({ authenticate, wallet }: Props) => (
             weight: 'bold',
             width: 'stretch',
           }}
-          onClick={authenticate}
+          onClick={() => authenticate('github')}
           text={MSG.createAccountGitHubButton}
         />
       </div>

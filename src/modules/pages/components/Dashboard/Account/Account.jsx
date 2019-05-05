@@ -10,12 +10,21 @@ import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
 import Image from '~core/Image';
+import Input from '~core/Input';
 
-import type { GitHub } from '../types';
+import type { Discourse, GitHub } from '../types';
 
 import styles from './Account.module.css';
 
 const MSG = defineMessages({
+  authenticateDiscourse: {
+    id: 'pages.Dashboard.Account.authenticateDiscourse',
+    defaultMessage: 'Authenticate Discourse',
+  },
+  disconnectDiscourse: {
+    id: 'pages.Dashboard.Account.disconnectDiscourse',
+    defaultMessage: 'Disconnect Discourse',
+  },
   disconnectGitHub: {
     id: 'pages.Dashboard.Account.disconnectGitHub',
     defaultMessage: 'Disconnect GitHub',
@@ -23,7 +32,9 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  disconnectGitHub: () => void,
+  authenticate: string => void,
+  disconnect: string => void,
+  discourse?: Discourse,
   github: GitHub,
   path: string,
   wallet: WalletObjectType,
@@ -31,7 +42,13 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account';
 
-const Account = ({ disconnectGitHub, github, wallet }: Props) => (
+const Account = ({
+  authenticate,
+  disconnect,
+  discourse,
+  github,
+  wallet,
+}: Props) => (
   <>
     <div className={styles.main}>
       <div className={styles.header}>
@@ -54,12 +71,47 @@ const Account = ({ disconnectGitHub, github, wallet }: Props) => (
       </div>
       <div className={styles.content}>
         <h2 className={styles.contentTitle}>Connected Accounts</h2>
-        <Button
-          appearance={{ theme: 'primaryHollow' }}
-          onClick={disconnectGitHub}
-          text={MSG.disconnectGitHub}
-          type="submit"
-        />
+        <div>
+          <Input
+            disabled
+            appearance={{ padding: 'huge' }}
+            id="github"
+            type="text"
+            value={github.username}
+          />
+          <Button
+            appearance={{ theme: 'primaryHollow', padding: 'huge' }}
+            onClick={() => disconnect('github')}
+            text={MSG.disconnectGitHub}
+            type="submit"
+          />
+        </div>
+        <div>
+          {discourse ? (
+            <div>
+              <Input
+                disabled
+                appearance={{ padding: 'huge' }}
+                id="discourse"
+                type="text"
+                value={discourse.username}
+              />
+              <Button
+                appearance={{ theme: 'primaryHollow', padding: 'huge' }}
+                onClick={() => disconnect('discourse')}
+                text={MSG.disconnectDiscourse}
+                type="submit"
+              />
+            </div>
+          ) : (
+            <Button
+              appearance={{ theme: 'primary', padding: 'huge' }}
+              onClick={() => authenticate('discourse')}
+              text={MSG.authenticateDiscourse}
+              type="submit"
+            />
+          )}
+        </div>
       </div>
     </div>
   </>

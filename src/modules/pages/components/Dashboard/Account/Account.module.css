@@ -43,6 +43,11 @@
   margin-right: 10px;
 }
 
+.content input {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
 .contentTitle {
   padding-top: 40px;
 }
