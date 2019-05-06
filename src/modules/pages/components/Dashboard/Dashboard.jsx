@@ -209,13 +209,13 @@ class Dashboard extends Component<Props, State> {
       page,
       intl: { formatMessage },
     } = this.props;
-    const { discourse, github, wallet } = this.state;
+    const { discourse, fetchingWallet, github, wallet } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
     if (typeof window !== 'undefined' && page === 'close') {
       window.close();
     }
-    if (!wallet) {
+    if (!fetchingWallet && !wallet) {
       return <MetaMask />;
     }
     if (wallet && !github) {
@@ -232,7 +232,7 @@ class Dashboard extends Component<Props, State> {
             <div className={styles.sidebar}>
               <Sidebar active={page} />
             </div>
-            {github && wallet && (
+            {github && wallet ? (
               <main className={styles.content}>
                 <Router primary={false}>
                   <Account
@@ -257,6 +257,8 @@ class Dashboard extends Component<Props, State> {
                   />
                 </Router>
               </main>
+            ) : (
+              <div style={{ height: '100vh' }} />
             )}
           </div>
         </main>
