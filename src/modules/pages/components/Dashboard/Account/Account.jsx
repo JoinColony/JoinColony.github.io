@@ -52,9 +52,13 @@ const Account = ({
   <>
     <div className={styles.main}>
       <div className={styles.header}>
-        <Image className={styles.photo} alt={github.name} src={github.photo} />
+        <Image
+          className={styles.photo}
+          alt={github.name || github.username}
+          src={github.photo}
+        />
         <div>
-          <div className={styles.name}>{github.name}</div>
+          <div className={styles.name}>{github.name || github.username}</div>
           <div className={styles.address}>
             <Blockies
               className={styles.blockies}
