@@ -68,24 +68,24 @@ class Dashboard extends Component<Props, State> {
 
   async componentDidMount() {
     this._isMounted = true;
-    this.getUserWallet();
+    this.getUserItem('wallet');
+    this.getUserItem('github');
+    this.getUserItem('discourse');
     this.connectMetaMask();
     this.openUserWallet();
-    const github = this.getGitHubUser();
-    if (!github) this.connectSocket();
-    this.getDiscourseUser();
+    this.connectSocket();
   }
 
   componentWillUnmount() {
     this._isMounted = false;
     const {
-      setDiscourseUser,
-      setGitHubUser,
+      setUserDiscourse,
+      setUserGitHub,
       state: { socket },
     } = this;
     if (socket) {
-      socket.off('discourse', setDiscourseUser);
-      socket.off('github', setGitHubUser);
+      socket.off('discourse', setUserDiscourse);
+      socket.off('github', setUserGitHub);
       socket.disconnect();
     }
   }
@@ -122,10 +122,10 @@ class Dashboard extends Component<Props, State> {
   };
 
   connectSocket = () => {
-    const { setDiscourseUser, setGitHubUser } = this;
+    const { setUserDiscourse, setUserGitHub } = this;
     const socket = io.connect(process.env.SOCKET || 'http://localhost:8080');
-    socket.on('discourse', setDiscourseUser);
-    socket.on('github', setGitHubUser);
+    socket.on('discourse', setUserDiscourse);
+    socket.on('github', setUserGitHub);
     this.setState({ socket });
   };
 
@@ -139,26 +139,10 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  getDiscourseUser = () => {
+  getUserItem = name => {
     if (typeof window !== 'undefined') {
-      const discourse = window.localStorage.getItem('discourse');
-      this.setState({
-        discourse: discourse ? JSON.parse(discourse) : undefined,
-      });
-    }
-  };
-
-  getGitHubUser = () => {
-    if (typeof window !== 'undefined') {
-      const github = window.localStorage.getItem('github');
-      this.setState({ github: github ? JSON.parse(github) : undefined });
-    }
-  };
-
-  getUserWallet = () => {
-    if (typeof window !== 'undefined') {
-      const wallet = window.localStorage.getItem('wallet');
-      this.setState({ wallet: wallet ? JSON.parse(wallet) : undefined });
+      const item = window.localStorage.getItem(name);
+      this.setState({ [name]: item ? JSON.parse(item) : undefined });
     }
   };
 
@@ -171,7 +155,7 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  setDiscourseUser = discourse => {
+  setUserDiscourse = discourse => {
     if (typeof window !== 'undefined') {
       if (discourse) {
         window.localStorage.setItem('discourse', JSON.stringify(discourse));
@@ -182,7 +166,7 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  setGitHubUser = github => {
+  setUserGitHub = github => {
     if (typeof window !== 'undefined') {
       if (github) {
         window.localStorage.setItem('github', JSON.stringify(github));
