@@ -1,5 +1,9 @@
 /* @flow */
 
+export type Provider = 'github' | 'discourse';
+
+export type UserItem = 'github' | 'discourse' | 'wallet';
+
 export type Discourse = {|
   email?: string,
   name?: string,

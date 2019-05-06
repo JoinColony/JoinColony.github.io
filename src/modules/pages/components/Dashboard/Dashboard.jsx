@@ -14,7 +14,7 @@ import io from 'socket.io-client';
 
 import SEO from '~parts/SEO';
 
-import type { Discourse, GitHub } from './types';
+import type { Provider, Discourse, GitHub, UserItem } from './types';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -66,7 +66,7 @@ class Dashboard extends Component<Props, State> {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this._isMounted = true;
     this.getUserItem('wallet');
     this.getUserItem('github');
@@ -92,7 +92,7 @@ class Dashboard extends Component<Props, State> {
 
   _isMounted = false;
 
-  authenticate = provider => {
+  authenticate = (provider: Provider) => {
     const { socket } = this.state;
     if (socket) {
       const api = process.env.API_URL || 'http://localhost:8080';
@@ -129,7 +129,7 @@ class Dashboard extends Component<Props, State> {
     this.setState({ socket });
   };
 
-  disconnect = provider => {
+  disconnect = (provider: Provider) => {
     if (typeof window !== 'undefined') {
       this.connectSocket();
       window.localStorage.removeItem(provider);
@@ -139,7 +139,7 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  getUserItem = name => {
+  getUserItem = (name: UserItem) => {
     if (typeof window !== 'undefined') {
       const item = window.localStorage.getItem(name);
       this.setState({ [name]: item ? JSON.parse(item) : undefined });
@@ -155,7 +155,7 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  setUserDiscourse = discourse => {
+  setUserDiscourse = (discourse: Discourse) => {
     if (typeof window !== 'undefined') {
       if (discourse) {
         window.localStorage.setItem('discourse', JSON.stringify(discourse));
@@ -166,7 +166,7 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  setUserGitHub = github => {
+  setUserGitHub = (github: GitHub) => {
     if (typeof window !== 'undefined') {
       if (github) {
         window.localStorage.setItem('github', JSON.stringify(github));
@@ -177,7 +177,7 @@ class Dashboard extends Component<Props, State> {
     }
   };
 
-  setUserWallet = wallet => {
+  setUserWallet = (wallet: WalletObjectType) => {
     if (typeof window !== 'undefined') {
       if (wallet) {
         window.localStorage.setItem('wallet', JSON.stringify(wallet));

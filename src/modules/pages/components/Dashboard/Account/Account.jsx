@@ -12,7 +12,7 @@ import Button from '~core/Button';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
-import type { Discourse, GitHub } from '../types';
+import type { Provider, Discourse, GitHub } from '../types';
 
 import styles from './Account.module.css';
 
@@ -32,8 +32,8 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  authenticate: string => void,
-  disconnect: string => void,
+  authenticate: (provider: Provider) => void,
+  disconnect: (provider: Provider) => void,
   discourse?: Discourse,
   github: GitHub,
   path: string,
