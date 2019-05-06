@@ -8,6 +8,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Button from '~core/Button';
 import Input from '~core/Input';
 
+import type { Provider } from '../types';
+
 import styles from './Login.module.css';
 
 const MSG = defineMessages({
@@ -31,7 +33,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  authenticate: () => void,
+  authenticate: (provider: Provider) => void,
   wallet: WalletObjectType,
 |};
 
@@ -66,7 +68,7 @@ const Login = ({ authenticate, wallet }: Props) => (
             weight: 'bold',
             width: 'stretch',
           }}
-          onClick={authenticate}
+          onClick={() => authenticate('github')}
           text={MSG.createAccountGitHubButton}
         />
       </div>

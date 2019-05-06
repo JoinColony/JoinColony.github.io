@@ -29,6 +29,10 @@
   padding: 0;
 }
 
+.link {
+  color: #289BDC !important;
+}
+
 .image {
   height: auto;
   margin: 25px auto;
