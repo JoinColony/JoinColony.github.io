@@ -214,7 +214,7 @@ class Dashboard extends Component<Props, State> {
         <main className={styles.main}>
           <div className={styles.mainInnerContainer}>
             <div className={styles.sidebar}>
-              <Sidebar active={page} />
+              <Sidebar active={page || 'account'} />
             </div>
             {github && wallet ? (
               <main className={styles.content}>
