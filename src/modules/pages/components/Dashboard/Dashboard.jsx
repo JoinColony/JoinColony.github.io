@@ -195,14 +195,15 @@ class Dashboard extends Component<Props, State> {
     } = this.props;
     const { discourse, github, wallet } = this.state;
     const title = formatMessage(MSG.pageTitle);
+    const closing = page === 'close';
 
-    if (typeof window !== 'undefined' && page === 'close') {
+    if (typeof window !== 'undefined' && closing) {
       window.close();
     }
-    if (!wallet) {
+    if (!wallet && !closing) {
       return <MetaMask />;
     }
-    if (wallet && !github) {
+    if (wallet && !github && !closing) {
       return <Login wallet={wallet} authenticate={this.authenticate} />;
     }
     return (
