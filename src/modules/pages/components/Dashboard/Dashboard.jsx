@@ -58,7 +58,7 @@ class Dashboard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      fetchingWallet: false,
+      fetchingWallet: true,
       discourse: undefined,
       github: undefined,
       socket: undefined,
@@ -105,7 +105,7 @@ class Dashboard extends Component<Props, State> {
     const handleAccountChange = metamask => {
       if (this._isMounted) {
         const { fetchingWallet, wallet } = this.state;
-        if (wallet && !metamask.selectedAddress) {
+        if (!fetchingWallet && wallet && !metamask.selectedAddress) {
           this.setUserWallet(undefined);
         } else if (
           wallet &&
@@ -164,7 +164,6 @@ class Dashboard extends Component<Props, State> {
 
   openUserWallet = async () => {
     const wallet = await open();
-    this.setState({ fetchingWallet: false });
     if (wallet) {
       this.setUserWallet(wallet);
     } else {
@@ -201,7 +200,7 @@ class Dashboard extends Component<Props, State> {
       } else {
         window.localStorage.removeItem('wallet');
       }
-      this.setState({ wallet });
+      this.setState({ fetchingWallet: false, wallet });
     }
   };
 
@@ -213,14 +212,14 @@ class Dashboard extends Component<Props, State> {
     const { discourse, github, wallet } = this.state;
     const title = formatMessage(MSG.pageTitle);
 
+    if (typeof window !== 'undefined' && page === 'close') {
+      window.close();
+    }
     if (!wallet) {
       return <MetaMask />;
     }
     if (wallet && !github) {
       return <Login wallet={wallet} authenticate={this.authenticate} />;
-    }
-    if (typeof window !== 'undefined' && page === 'close') {
-      window.close();
     }
     return (
       <>
