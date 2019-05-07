@@ -4,7 +4,7 @@ import type { IntlShape } from 'react-intl';
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
-import type { Project } from '~types';
+import type { Network, Project } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -48,6 +48,7 @@ type Props = {|
   coreProjects: Array<Project>,
   /* Injected via `injectIntl` */
   intl: IntlShape,
+  network?: Network,
   openSourceProjects: Array<Project>,
 |};
 
@@ -57,6 +58,7 @@ const Header = ({
   coreProjects,
   intl: { formatMessage },
   intl,
+  network,
   openSourceProjects,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -64,14 +66,22 @@ const Header = ({
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
-        <Link href={PAGE_DEVELOPER_PORTAL}>
-          <Icon
-            className={styles.logo}
-            name="developerPortal_white"
-            title={MSG.imageAltDevPortal}
-            viewBox="0 0 134 33"
-          />
-        </Link>
+        <div className={styles.leftWrapper}>
+          <Link href={PAGE_DEVELOPER_PORTAL}>
+            <Icon
+              className={styles.logo}
+              name="developerPortal_white"
+              title={MSG.imageAltDevPortal}
+              viewBox="0 0 134 33"
+            />
+          </Link>
+          {network && (
+            <div className={styles.network}>
+              <div className={styles.dot} />
+              {network}
+            </div>
+          )}
+        </div>
         <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
             className={styles.navigation}
