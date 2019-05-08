@@ -1,8 +1,14 @@
 /* @flow */
-import type { Node } from 'react';
+import type { Element } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import React, { useEffect, useState } from 'react';
+import React, {
+  Component,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useState,
+} from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Web3 from 'web3';
 
@@ -16,7 +22,7 @@ import Footer from './Footer';
 import styles from './DeveloperPortalLayout.module.css';
 
 type Props = {|
-  children: Node,
+  children: Element<typeof Component>,
   intl: IntlShape,
 |};
 
@@ -26,6 +32,7 @@ const displayName = 'layouts.DeveloperPortalLayout';
 
 const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   const [network, setNetwork] = useState(undefined);
+  const [wallet, setWallet] = useState(false);
   useEffect(() => {
     const getNetwork = async () => {
       web3.setProvider(web3.givenProvider);
@@ -54,8 +61,13 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         coreProjects={coreProjects}
         network={network}
         openSourceProjects={openSourceProjects}
+        wallet={wallet}
       />
-      <div className={styles.body}>{children}</div>
+      <div className={styles.body}>
+        {isValidElement(children)
+          ? cloneElement(children, { setWallet })
+          : children}
+      </div>
       <Footer
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}

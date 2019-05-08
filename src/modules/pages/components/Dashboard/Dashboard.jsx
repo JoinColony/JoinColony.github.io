@@ -42,6 +42,7 @@ const MSG = defineMessages({
 export type Props = {|
   page: string,
   intl: IntlShape,
+  setWallet: boolean => void,
 |};
 
 type State = {
@@ -178,10 +179,13 @@ class Dashboard extends Component<Props, State> {
   };
 
   setUserWallet = (wallet: WalletObjectType) => {
+    const { setWallet } = this.props;
     if (typeof window !== 'undefined') {
       if (wallet) {
+        setWallet(true);
         window.localStorage.setItem('wallet', JSON.stringify(wallet));
       } else {
+        setWallet(false);
         window.localStorage.removeItem('wallet');
       }
       this.setState({ fetchingWallet: false, wallet });

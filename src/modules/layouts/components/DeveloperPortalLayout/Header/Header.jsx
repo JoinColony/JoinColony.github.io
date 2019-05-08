@@ -50,6 +50,7 @@ type Props = {|
   intl: IntlShape,
   network?: Network,
   openSourceProjects: Array<Project>,
+  wallet: boolean,
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout.Header';
@@ -60,6 +61,7 @@ const Header = ({
   intl,
   network,
   openSourceProjects,
+  wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
@@ -75,7 +77,7 @@ const Header = ({
               viewBox="0 0 134 33"
             />
           </Link>
-          {network && (
+          {wallet && network && (
             <div className={styles.network}>
               <div className={styles.dot} />
               {network}
