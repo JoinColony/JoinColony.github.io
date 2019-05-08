@@ -42,6 +42,7 @@ const MSG = defineMessages({
 export type Props = {|
   page: string,
   intl: IntlShape,
+  setGitHub: boolean => void,
   setWallet: boolean => void,
 |};
 
@@ -179,13 +180,10 @@ class Dashboard extends Component<Props, State> {
   };
 
   setUserWallet = (wallet: WalletObjectType) => {
-    const { setWallet } = this.props;
     if (typeof window !== 'undefined') {
       if (wallet) {
-        setWallet(true);
         window.localStorage.setItem('wallet', JSON.stringify(wallet));
       } else {
-        setWallet(false);
         window.localStorage.removeItem('wallet');
       }
       this.setState({ fetchingWallet: false, wallet });
@@ -196,10 +194,23 @@ class Dashboard extends Component<Props, State> {
     const {
       page,
       intl: { formatMessage },
+      setGitHub,
+      setWallet,
     } = this.props;
     const { discourse, github, wallet } = this.state;
     const title = formatMessage(MSG.pageTitle);
     const closing = page === 'close';
+
+    if (wallet) {
+      setWallet(true);
+    } else {
+      setWallet(false);
+    }
+    if (github) {
+      setGitHub(true);
+    } else {
+      setGitHub(false);
+    }
 
     if (typeof window !== 'undefined' && closing) {
       window.close();

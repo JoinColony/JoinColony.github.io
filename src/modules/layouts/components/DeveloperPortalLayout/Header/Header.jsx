@@ -38,6 +38,10 @@ const MSG = defineMessages({
     id: 'layouts.DeveloperPortalLayout.Header.navLinkSupport',
     defaultMessage: 'Support',
   },
+  navButtonLogin: {
+    id: 'layouts.DeveloperPortalLayout.Header.navButtonLogin',
+    defaultMessage: 'Login',
+  },
   navButtonDashboard: {
     id: 'layouts.DeveloperPortalLayout.Header.navButtonDashboard',
     defaultMessage: 'Dashboard',
@@ -46,6 +50,8 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
+  dashboard: boolean,
+  github: boolean,
   /* Injected via `injectIntl` */
   intl: IntlShape,
   network?: Network,
@@ -57,6 +63,8 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
   coreProjects,
+  dashboard,
+  github,
   intl: { formatMessage },
   intl,
   network,
@@ -144,12 +152,13 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: 'primaryHollow',
+              theme: dashboard ? 'primary' : 'primaryHollow',
+              color: dashboard ? 'white' : undefined,
               padding: 'large',
               weight: 'bold',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
-            text={MSG.navButtonDashboard}
+            text={github ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>
         <div className={styles.navToggle}>

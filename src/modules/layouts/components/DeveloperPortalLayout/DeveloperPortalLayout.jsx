@@ -31,8 +31,10 @@ const web3 = new Web3();
 const displayName = 'layouts.DeveloperPortalLayout';
 
 const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
+  const [github, setGitHub] = useState(false);
   const [network, setNetwork] = useState(undefined);
   const [wallet, setWallet] = useState(false);
+
   useEffect(() => {
     const getNetwork = async () => {
       web3.setProvider(web3.givenProvider);
@@ -41,6 +43,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     };
     getNetwork();
   }, []);
+
   const projectQueryData = useStaticQuery(graphql`
     {
       ...coreProjectsFragment
@@ -55,17 +58,25 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     projectQueryData.openSourceProjects.edges.map(edge =>
       transformProjectData(edge, locale),
     ) || [];
+
+  let dashboard = false;
+  if (typeof window !== 'undefined') {
+    dashboard = window.location.pathname.split('/')[1] === 'dashboard';
+  }
+
   return (
     <>
       <Header
         coreProjects={coreProjects}
+        dashboard={dashboard}
+        github={github}
         network={network}
         openSourceProjects={openSourceProjects}
         wallet={wallet}
       />
       <div className={styles.body}>
         {isValidElement(children)
-          ? cloneElement(children, { setWallet })
+          ? cloneElement(children, { setGitHub, setWallet })
           : children}
       </div>
       <Footer
