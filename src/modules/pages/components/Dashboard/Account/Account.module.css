@@ -1,43 +1,66 @@
 .main {
+  color: #2E4153;
+  font-size: 17px;
   padding: 5%;
 }
 
 .header {
-  display: flex;
   align-items: center;
+  display: flex;
+  padding-bottom: 5%;
 }
 
 .photo {
   border-radius: 50%;
   margin: 0;
-  margin-right: 30px;
-  width: 120px;
+  margin-right: 70px;
+  width: 160px;
 }
 
 .name {
-  font-size: 34px;
-  font-weight: 500;
-  margin-bottom: 16px;
+  color: #00284B;
+  font-family: 'Avenir Next Demi';
+  font-size: 32px;
+  margin-bottom: 30px;
 }
 
 .address {
+  align-items: center;
   display: flex;
   justify-content: center;
-  margin: 10px 0;
+  margin: 24px auto;
 }
 
 .blockies {
   border-radius: 50%;
   margin-right: 10px;
+  margin-bottom: 2px;
 }
 
-.statistics {
-  margin-top: 5px;
+.statistic {
+  display: inline-block;
+  margin-right: 20px;
 }
 
-.statistics span {
-  margin: 5px auto;
+.statisticValue {
   margin-right: 10px;
+}
+
+.statisticLabel {
+  font-family: 'Avenir Next Demi';
+}
+
+.content {
+  border-top: 1px #C8D2DC solid;
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  padding-top: 5%;
+}
+
+.contentColumn:first-child {
+  max-width: 300px;
+  padding-right: 2%;
 }
 
 .content input {
@@ -46,5 +69,7 @@
 }
 
 .contentTitle {
-  padding-top: 40px;
+  color: #00284B;
+  font-family: 'Avenir Next Demi';
+  font-size: 24px;
 }

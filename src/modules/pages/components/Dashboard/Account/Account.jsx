@@ -4,9 +4,9 @@
 import type { WalletObjectType } from '@colony/purser-core';
 
 import React from 'react';
-import Blockies from 'react-blockies';
+// import Blockies from 'react-blockies';
 
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
 import Image from '~core/Image';
@@ -17,17 +17,34 @@ import type { Provider, Discourse, GitHub } from '~types';
 import styles from './Account.module.css';
 
 const MSG = defineMessages({
-  authenticateDiscourse: {
-    id: 'pages.Dashboard.Account.authenticateDiscourse',
-    defaultMessage: 'Authenticate Discourse',
+  connectedAccountsTitle: {
+    id: 'pages.Dashboard.Account.connectedAccountsTitle',
+    defaultMessage: 'Connected Accounts',
   },
-  disconnectDiscourse: {
-    id: 'pages.Dashboard.Account.disconnectDiscourse',
-    defaultMessage: 'Disconnect Discourse',
+  connectedAccountsDescription: {
+    id: 'pages.Dashboard.Account.connectedAccountsDescription',
+    defaultMessage: `Connect your accounts so we can verify your identity and
+    reward you for your contributions.`,
   },
-  disconnectGitHub: {
-    id: 'pages.Dashboard.Account.disconnectGitHub',
-    defaultMessage: 'Disconnect GitHub',
+  connectedAccountsGitHubLabel: {
+    id: 'pages.Dashboard.Account.connectedAccountsGitHubLabel',
+    defaultMessage: 'GitHub',
+  },
+  connectedAccountsDiscourseLabel: {
+    id: 'pages.Dashboard.Account.connectedAccountsDiscourseLabel',
+    defaultMessage: 'Discourse',
+  },
+  connectedAccountsEmailLabel: {
+    id: 'pages.Dashboard.Account.connectedAccountsEmailLabel',
+    defaultMessage: 'Email',
+  },
+  connectedAccountsConnect: {
+    id: 'pages.Dashboard.Account.connectedAccountsConnect',
+    defaultMessage: 'Connect',
+  },
+  connectedAccountsRemove: {
+    id: 'pages.Dashboard.Account.connectedAccountsRemove',
+    defaultMessage: 'Remove',
   },
 });
 
@@ -60,61 +77,111 @@ const Account = ({
         <div>
           <div className={styles.name}>{github.name || github.username}</div>
           <div className={styles.address}>
+            {/*
             <Blockies
               className={styles.blockies}
               seed={wallet.address}
-              scale={3}
+              scale={2.5}
             />
+            */}
             {wallet.address}
           </div>
           <div className={styles.statistics}>
-            <span>0 CLNY</span>
-            <span>0 Reputation</span>
+            <div className={styles.statistic}>
+              <span className={styles.statisticValue}>0</span>
+              <span className={styles.statisticLabel}>CLNY</span>
+            </div>
+            <div className={styles.statistic}>
+              <span className={styles.statisticValue}>0</span>
+              <span className={styles.statisticLabel}>Reputation</span>
+            </div>
           </div>
         </div>
       </div>
       <div className={styles.content}>
-        <h2 className={styles.contentTitle}>Connected Accounts</h2>
-        <div>
-          <Input
-            disabled
-            appearance={{ padding: 'huge' }}
-            id="github"
-            type="text"
-            value={github.username}
-          />
-          <Button
-            appearance={{ theme: 'primaryHollow', padding: 'huge' }}
-            onClick={() => disconnect('github')}
-            text={MSG.disconnectGitHub}
-            type="submit"
-          />
+        <div className={styles.contentColumn}>
+          <h2 className={styles.contentTitle}>
+            <FormattedMessage {...MSG.connectedAccountsTitle} />
+          </h2>
+          <p>
+            <FormattedMessage {...MSG.connectedAccountsDescription} />
+          </p>
         </div>
-        <div>
-          {discourse ? (
-            <div>
-              <Input
-                disabled
-                appearance={{ padding: 'huge' }}
-                id="discourse"
-                type="text"
-                value={discourse.username}
-              />
+        <div className={styles.contentColumn}>
+          <div className={styles.field}>
+            <Input
+              disabled
+              appearance={{
+                padding: 'huge',
+                width: 'large',
+              }}
+              id="github"
+              label={MSG.connectedAccountsGitHubLabel}
+              type="text"
+              value={`@${github.username}`}
+            />
+            {github ? (
               <Button
-                appearance={{ theme: 'primaryHollow', padding: 'huge' }}
-                onClick={() => disconnect('discourse')}
-                text={MSG.disconnectDiscourse}
+                appearance={{ theme: 'reset', color: 'blue', weight: 'bold' }}
+                onClick={() => disconnect('github')}
+                text={MSG.connectedAccountsRemove}
                 type="submit"
               />
+            ) : (
+              <Button
+                appearance={{ theme: 'primary', padding: 'large' }}
+                onClick={() => authenticate('github')}
+                style={{ margin: '12px auto' }}
+                text={MSG.connectedAccountsConnect}
+                type="submit"
+              />
+            )}
+          </div>
+          {(github.email || (discourse && discourse.email)) && (
+            <div className={styles.field}>
+              <Input
+                disabled
+                appearance={{
+                  padding: 'huge',
+                  width: 'large',
+                }}
+                id="email"
+                label={MSG.connectedAccountsEmailLabel}
+                type="text"
+                value={github.email || (discourse && discourse.email)}
+              />
             </div>
-          ) : (
-            <Button
-              appearance={{ theme: 'primary', padding: 'huge' }}
-              onClick={() => authenticate('discourse')}
-              text={MSG.authenticateDiscourse}
-              type="submit"
-            />
           )}
+          <div className={styles.field}>
+            <Input
+              disabled
+              appearance={{
+                display: discourse ? undefined : 'none',
+                padding: 'huge',
+                width: 'large',
+              }}
+              id="discourse"
+              label={MSG.connectedAccountsDiscourseLabel}
+              type="text"
+              value={discourse ? `@${discourse.username}` : ''}
+            />
+            {discourse ? (
+              <Button
+                appearance={{ theme: 'reset', color: 'blue', weight: 'bold' }}
+                onClick={() => disconnect('discourse')}
+                text={MSG.connectedAccountsRemove}
+                type="submit"
+              />
+            ) : (
+              <Button
+                appearance={{ theme: 'primary', padding: 'large' }}
+                onClick={() => authenticate('discourse')}
+                style={{ margin: '12px auto' }}
+                text={MSG.connectedAccountsConnect}
+                type="submit"
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

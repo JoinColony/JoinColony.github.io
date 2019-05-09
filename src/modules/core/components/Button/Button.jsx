@@ -12,10 +12,10 @@ import styles from './Button.module.css';
 
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'reset',
-  color?: 'white',
+  color?: 'blue' | 'white',
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
-  weight?: 'bold',
+  weight?: 'bold' | 'medium',
   width?: 'fixed' | 'stretch',
 };
 
