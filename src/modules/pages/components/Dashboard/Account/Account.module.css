@@ -63,6 +63,10 @@
   padding-right: 2%;
 }
 
+.field {
+  width: 480px; /* Fixed width for button expansion */
+}
+
 .content input {
   margin-right: 20px;
   margin-bottom: 20px;
