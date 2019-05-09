@@ -34,7 +34,7 @@ const MSG = defineMessages({
 type Props = {|
   authenticate: (provider: Provider) => void,
   disconnect: (provider: Provider) => void,
-  discourse?: Discourse,
+  discourse: ?Discourse,
   github: GitHub,
   path: string,
   wallet: WalletObjectType,

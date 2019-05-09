@@ -37,14 +37,14 @@ const MSG = defineMessages({
 });
 
 export type Props = {|
-  discourse?: Discourse,
-  github?: GitHub,
+  discourse: ?Discourse,
+  github: ?GitHub,
   intl: IntlShape,
   page: string,
-  setDiscourse?: (discourse?: Discourse) => void,
-  setGitHub?: (github?: GitHub) => void,
-  socket?: Socket,
-  wallet?: WalletObjectType,
+  setDiscourse: (discourse: ?Discourse) => void,
+  setGitHub: (github: ?GitHub) => void,
+  socket: ?Socket,
+  wallet: ?WalletObjectType,
 |};
 
 class Dashboard extends Component<Props> {
@@ -62,10 +62,10 @@ class Dashboard extends Component<Props> {
   disconnect = (provider: Provider) => {
     const { setGitHub, setDiscourse } = this.props;
     if (setDiscourse && provider === 'discourse') {
-      setDiscourse(undefined);
+      setDiscourse(null);
     }
     if (setGitHub && provider === 'github') {
-      setGitHub(undefined);
+      setGitHub(null);
     }
   };
 

@@ -18,8 +18,15 @@ export type GitHub = {|
   username: string,
 |};
 
-export type Network = 'main' | 'ropsten' | 'kovan' | 'rinkeby' | 'private';
+export type Network =
+  | 'main'
+  | 'ropsten'
+  | 'kovan'
+  | 'rinkeby'
+  | 'goerli'
+  | 'private'
+  | null;
 
-export type CachedItem = 'discourse' | 'github' | 'network' | 'wallet';
+export type StoredItem = 'discourse' | 'github' | 'network' | 'wallet';
 
-export type CachedItemObject = Discourse | GitHub | Network | WalletObjectType;
+export type StoredItemObject = Discourse | GitHub | Network | WalletObjectType;

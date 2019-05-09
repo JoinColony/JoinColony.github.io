@@ -1,13 +1,13 @@
 /* @flow */
 
-import type { CachedItem, CachedItemObject } from '~types';
+import type { StoredItem, StoredItemObject } from '~types';
 
-export const getCachedItem = (name: CachedItem) => {
+export const getStore = (name: StoredItem) => {
   const item = window.localStorage.getItem(name);
   return item ? JSON.parse(item) : null;
 };
 
-export const setCachedItem = (name: CachedItem, item?: CachedItemObject) => {
+export const setStore = (name: StoredItem, item: ?StoredItemObject) => {
   if (item) {
     window.localStorage.setItem(name, JSON.stringify(item));
   } else {

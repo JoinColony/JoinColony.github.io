@@ -19,7 +19,7 @@ const MSG = defineMessages({
 
 type Props = {|
   github: GitHub,
-  discourse?: Discourse,
+  discourse: ?Discourse,
   path: string,
   wallet: WalletObjectType,
 |};

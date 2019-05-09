@@ -1,29 +1,33 @@
 /* @flow */
 
+import type { WalletObjectType } from '@colony/purser-core';
+
 import { open } from '@colony/purser-metamask';
 import { useCallback, useEffect, useState } from 'react';
 import Web3 from 'web3';
 
-import { getCachedItem, setCachedItem } from './localStorage';
+import type { Network } from '~types';
+
+import { getStore, setStore } from './localStorage';
 
 const web3 = new Web3();
 
 const useMetaMask = () => {
-  const [loading, setLoading] = useState(false);
-  const [network, setNetwork] = useState(null);
-  const [wallet, setWallet] = useState(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [network, setNetwork] = useState<?Network>(null);
+  const [wallet, setWallet] = useState<?WalletObjectType>(null);
 
-  useEffect(() => setWallet(getCachedItem('network')), []);
-  useEffect(() => setWallet(getCachedItem('wallet')), []);
+  useEffect(() => setWallet(getStore('network')), []);
+  useEffect(() => setWallet(getStore('wallet')), []);
 
-  useEffect(() => setCachedItem('network', network), [network]);
-  useEffect(() => setCachedItem('wallet', wallet), [wallet]);
+  useEffect(() => setStore('network', network), [network]);
+  useEffect(() => setStore('wallet', wallet), [wallet]);
 
   const openWallet = useCallback(async () => {
     setLoading(true);
     const result = await open();
     setWallet(result);
-    setCachedItem('wallet', result);
+    setStore('wallet', result);
     setLoading(false);
   }, []);
 
@@ -35,7 +39,7 @@ const useMetaMask = () => {
     metamask => {
       if (wallet && !loading && !metamask.selectedAddress) {
         setWallet(null);
-        setCachedItem('wallet', null);
+        setStore('wallet', null);
       } else if (
         wallet &&
         !loading &&

@@ -7,18 +7,18 @@ import io from 'socket.io-client';
 
 import type { Discourse, GitHub } from '~types';
 
-import { getCachedItem, setCachedItem } from './localStorage';
+import { getStore, setStore } from './localStorage';
 
 const useAuthServer = () => {
   const [discourse, setDiscourse] = useState<?Discourse>(null);
   const [github, setGitHub] = useState<?GitHub>(null);
   const [socket, setSocket] = useState<?Socket>(null);
 
-  useEffect(() => setDiscourse(getCachedItem('discourse')), []);
-  useEffect(() => setGitHub(getCachedItem('github')), []);
+  useEffect(() => setDiscourse(getStore('discourse')), []);
+  useEffect(() => setGitHub(getStore('github')), []);
 
-  useEffect(() => setCachedItem('discourse', discourse), [discourse]);
-  useEffect(() => setCachedItem('github', github), [github]);
+  useEffect(() => setStore('discourse', discourse), [discourse]);
+  useEffect(() => setStore('github', github), [github]);
 
   useEffect(() => {
     if (!socket) {
