@@ -8,7 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Button from '~core/Button';
 import Input from '~core/Input';
 
-import type { Provider } from '../types';
+import type { Provider } from '~types';
 
 import styles from './Login.module.css';
 

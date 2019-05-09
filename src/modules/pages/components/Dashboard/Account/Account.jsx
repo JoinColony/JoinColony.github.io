@@ -12,7 +12,7 @@ import Button from '~core/Button';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
-import type { Provider, Discourse, GitHub } from '../types';
+import type { Provider, Discourse, GitHub } from '~types';
 
 import styles from './Account.module.css';
 
