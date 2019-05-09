@@ -12,7 +12,7 @@ import Button from '~core/Button';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
-import type { Provider, Discourse, GitHub } from '~types';
+import type { Email, Discourse, GitHub, Provider } from '~types';
 
 import styles from './Account.module.css';
 
@@ -64,8 +64,10 @@ type Props = {|
   authenticate: (provider: Provider) => void,
   disconnect: (provider: Provider) => void,
   discourse: ?Discourse,
+  email: ?Email,
   github: GitHub,
   path: string,
+  setEmail: (email: Email) => void,
   wallet: WalletObjectType,
 |};
 
@@ -75,18 +77,29 @@ const Account = ({
   authenticate,
   disconnect,
   discourse,
+  email,
   github,
+  setEmail,
   wallet,
 }: Props) => {
+  const initialEmail =
+    (email ? email.email : null) ||
+    github.email ||
+    (discourse ? discourse.email : null);
   const [editEmail, setEditEmail] = useState(false);
-  const [email, setEmail] = useState(
-    github.email || (discourse && discourse.email),
-  );
+  const [emailInput, setEmailInput] = useState(initialEmail);
+  const handleCancelEmail = () => {
+    setEmailInput(initialEmail);
+    setEditEmail(false);
+  };
   const handleChangeEmail = event => {
-    setEmail(event.target.value);
+    setEmailInput(event.target.value);
   };
   const handleSaveEmail = () => {
-    setEditEmail(false);
+    if (emailInput) {
+      setEmail({ email: emailInput });
+      setEditEmail(false);
+    }
   };
   return (
     <>
@@ -160,7 +173,7 @@ const Account = ({
                 />
               )}
             </div>
-            {(github.email || (discourse && discourse.email)) && (
+            {initialEmail && (
               <div className={styles.field}>
                 <Input
                   disabled={!editEmail}
@@ -172,7 +185,7 @@ const Account = ({
                   label={MSG.connectedAccountsEmailLabel}
                   onChange={handleChangeEmail}
                   type="text"
-                  value={email}
+                  value={emailInput}
                 />
                 {editEmail && (
                   <Button
@@ -189,7 +202,9 @@ const Account = ({
                 )}
                 <Button
                   appearance={{ theme: 'reset', color: 'blue', weight: 'bold' }}
-                  onClick={() => setEditEmail(!editEmail)}
+                  onClick={
+                    editEmail ? handleCancelEmail : () => setEditEmail(true)
+                  }
                   text={
                     editEmail
                       ? MSG.connectedAccountsCancel

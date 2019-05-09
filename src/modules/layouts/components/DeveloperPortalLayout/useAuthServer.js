@@ -5,19 +5,22 @@ import type { Socket } from 'socket.io-client';
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-import type { Discourse, GitHub } from '~types';
+import type { Discourse, Email, GitHub } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
 const useAuthServer = () => {
   const [discourse, setDiscourse] = useState<?Discourse>(null);
+  const [email, setEmail] = useState<?Email>(null);
   const [github, setGitHub] = useState<?GitHub>(null);
   const [socket, setSocket] = useState<?Socket>(null);
 
   useEffect(() => setDiscourse(getStore('discourse')), []);
+  useEffect(() => setEmail(getStore('email')), []);
   useEffect(() => setGitHub(getStore('github')), []);
 
   useEffect(() => setStore('discourse', discourse), [discourse]);
+  useEffect(() => setStore('email', email), [email]);
   useEffect(() => setStore('github', github), [github]);
 
   useEffect(() => {
@@ -40,7 +43,9 @@ const useAuthServer = () => {
 
   return {
     discourse,
+    email,
     github,
+    setEmail,
     setDiscourse,
     setGitHub,
     socket,
