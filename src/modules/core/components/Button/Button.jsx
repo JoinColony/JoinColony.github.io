@@ -13,9 +13,10 @@ import styles from './Button.module.css';
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'reset',
   color?: 'white',
+  hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
   weight?: 'bold',
-  width?: 'stretch',
+  width?: 'fixed' | 'stretch',
 };
 
 type Props = {

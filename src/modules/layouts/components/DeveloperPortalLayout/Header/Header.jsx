@@ -73,10 +73,12 @@ const Header = ({
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
+
   let dashboard = false;
   if (typeof window !== 'undefined') {
     dashboard = window.location.pathname.split('/')[1] === 'dashboard';
   }
+
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -158,8 +160,10 @@ const Header = ({
             appearance={{
               theme: dashboard ? 'primary' : 'primaryHollow',
               color: dashboard ? 'white' : undefined,
+              hover: 'disablePrimary',
               padding: 'large',
               weight: 'bold',
+              width: 'fixed',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
             text={github ? MSG.navButtonDashboard : MSG.navButtonLogin}

@@ -102,14 +102,18 @@
 
   .network {
     align-items: center;
-    border: 1px #FFF solid;
+    border: 1px #EEE solid;
     border-radius: 20px;
-    color: #FFF;
+    color: #EEE;
     display: flex;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 14px;
     padding: 5px 15px;
-    margin-left: 40px;
+    margin-left: 50px;
+  }
+
+  .network:hover {
+    cursor: default;
   }
 
   .dot {
