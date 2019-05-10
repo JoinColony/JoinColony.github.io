@@ -53,8 +53,12 @@ const MSG = defineMessages({
 type Props = {|
   coreProjects: Array<Project>,
   github: ?GitHub,
-  /* Injected via `injectIntl` */
   intl: IntlShape,
+  match: ?{
+    ['*']: string,
+    uri: string,
+    path: string,
+  },
   network: ?Network,
   openSourceProjects: Array<Project>,
   wallet: ?WalletObjectType,
@@ -67,18 +71,13 @@ const Header = ({
   github,
   intl: { formatMessage },
   intl,
+  match,
   network,
   openSourceProjects,
   wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
-
-  let dashboard = false;
-  if (typeof window !== 'undefined') {
-    dashboard = window.location.pathname.split('/')[1] === 'dashboard';
-  }
-
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -158,8 +157,8 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: dashboard ? 'primary' : 'primaryHollow',
-              color: dashboard ? 'white' : undefined,
+              theme: match ? 'primary' : 'primaryHollow',
+              color: match ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
               weight: 'bold',

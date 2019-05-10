@@ -1,8 +1,10 @@
 /* @flow */
+
 import type { Element } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import React, { Component, cloneElement, isValidElement } from 'react';
+import { Match } from '@reach/router';
+import React, { Component, cloneElement } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import type { Project } from '~types';
@@ -20,6 +22,11 @@ import styles from './DeveloperPortalLayout.module.css';
 type Props = {|
   children: Element<typeof Component>,
   intl: IntlShape,
+  match: ?{
+    ['*']: string,
+    uri: string,
+    path: string,
+  },
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout';
@@ -48,33 +55,37 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     socket,
   } = useAuthServer();
   const { network, wallet } = useMetaMask();
-
   return (
-    <>
-      <Header
-        coreProjects={coreProjects}
-        github={github}
-        network={network}
-        openSourceProjects={openSourceProjects}
-        wallet={wallet}
-      />
-      <div className={styles.body}>
-        {isValidElement(children)
-          ? cloneElement(children, {
-              discourse,
-              github,
-              setDiscourse,
-              setGitHub,
-              socket,
-              wallet,
-            })
-          : children}
-      </div>
-      <Footer
-        coreProjects={coreProjects}
-        openSourceProjects={openSourceProjects}
-      />
-    </>
+    <Match path="/dashboard/*">
+      {props => (
+        <div>
+          <Header
+            coreProjects={coreProjects}
+            github={github}
+            match={props.match}
+            network={network}
+            openSourceProjects={openSourceProjects}
+            wallet={wallet}
+          />
+          <div className={styles.body}>
+            {props.match
+              ? cloneElement(children, {
+                  discourse,
+                  github,
+                  setDiscourse,
+                  setGitHub,
+                  socket,
+                  wallet,
+                })
+              : children}
+          </div>
+          <Footer
+            coreProjects={coreProjects}
+            openSourceProjects={openSourceProjects}
+          />
+        </div>
+      )}
+    </Match>
   );
 };
 
