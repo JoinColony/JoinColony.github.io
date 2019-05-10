@@ -40,6 +40,12 @@
   cursor: pointer;
 }
 
+.copied span {
+  color: #788CA0;
+  font-size: 12px;
+  position: absolute;
+}
+
 .blockies {
   border-radius: 50%;
   margin-right: 10px;

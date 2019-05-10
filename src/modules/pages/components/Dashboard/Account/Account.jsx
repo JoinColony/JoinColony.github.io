@@ -5,8 +5,8 @@ import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useState } from 'react';
 // import Blockies from 'react-blockies';
-
 import { defineMessages, FormattedMessage } from 'react-intl';
+import copy from 'copy-to-clipboard';
 
 import Button from '~core/Button';
 import Image from '~core/Image';
@@ -60,7 +60,11 @@ const MSG = defineMessages({
   },
   copyAddress: {
     id: 'pages.Dashboard.Account.copyAddress',
-    defaultMessage: 'copy address',
+    defaultMessage: 'Copy Address',
+  },
+  copyAddressSuccess: {
+    id: 'pages.Dashboard.Account.copyAddressSuccess',
+    defaultMessage: 'Copied',
   },
 });
 
@@ -90,6 +94,7 @@ const Account = ({
     (email ? email.email : null) ||
     github.email ||
     (discourse ? discourse.email : null);
+  const [copied, setCopied] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
   const [emailInput, setEmailInput] = useState(initialEmail);
   const handleCancelEmail = () => {
@@ -106,9 +111,11 @@ const Account = ({
     }
   };
   const handleCopyAddress = () => {
-    if (navigator && navigator.clipboard) {
-      navigator.clipboard.writeText(wallet.address);
-    }
+    copy(wallet.address);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
   return (
     <>
@@ -130,12 +137,24 @@ const Account = ({
               />
               */}
               {wallet.address}
-              <Image
-                className={styles.copyAddress}
-                alt={MSG.copyAddress}
-                onClick={handleCopyAddress}
-                src="/img/copy.svg"
-              />
+              {copied ? (
+                <div className={styles.copied}>
+                  <Image
+                    className={styles.copyAddress}
+                    alt={MSG.copyAddress}
+                    onClick={handleCopyAddress}
+                    src="/img/copied.svg"
+                  />
+                  <FormattedMessage {...MSG.copyAddressSuccess} />
+                </div>
+              ) : (
+                <Image
+                  className={styles.copyAddress}
+                  alt={MSG.copyAddress}
+                  onClick={handleCopyAddress}
+                  src="/img/copy.svg"
+                />
+              )}
             </div>
             <div className={styles.statistics}>
               <div className={styles.statistic}>
