@@ -31,6 +31,15 @@
   margin: 24px auto;
 }
 
+.copyAddress {
+  margin: 0 10px;
+  width: 12px;
+}
+
+.copyAddress:hover {
+  cursor: pointer;
+}
+
 .blockies {
   border-radius: 50%;
   margin-right: 10px;

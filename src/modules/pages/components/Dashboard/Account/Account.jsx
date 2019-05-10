@@ -58,6 +58,10 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.connectedAccountsSave',
     defaultMessage: 'Save',
   },
+  copyAddress: {
+    id: 'pages.Dashboard.Account.copyAddress',
+    defaultMessage: 'copy address',
+  },
 });
 
 type Props = {|
@@ -101,6 +105,11 @@ const Account = ({
       setEditEmail(false);
     }
   };
+  const handleCopyAddress = () => {
+    if (navigator && navigator.clipboard) {
+      navigator.clipboard.writeText(wallet.address);
+    }
+  };
   return (
     <>
       <div className={styles.main}>
@@ -121,6 +130,12 @@ const Account = ({
               />
               */}
               {wallet.address}
+              <Image
+                className={styles.copyAddress}
+                alt={MSG.copyAddress}
+                onClick={handleCopyAddress}
+                src="/img/copy.svg"
+              />
             </div>
             <div className={styles.statistics}>
               <div className={styles.statistic}>
