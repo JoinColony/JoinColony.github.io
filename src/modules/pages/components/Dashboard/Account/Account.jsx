@@ -192,7 +192,12 @@ const Account = ({
               />
               {github ? (
                 <Button
-                  appearance={{ theme: 'reset', color: 'blue', weight: 'bold' }}
+                  appearance={{
+                    theme: 'reset',
+                    font: 'small',
+                    color: 'blue',
+                    weight: 'medium',
+                  }}
                   onClick={() => disconnect('github')}
                   text={MSG.connectedAccountsRemove}
                   type="submit"
@@ -221,31 +226,37 @@ const Account = ({
                   type="text"
                   value={emailInput}
                 />
-                {editEmail && (
-                  <Button
-                    appearance={{
-                      theme: 'reset',
-                      color: 'blue',
-                      weight: 'bold',
-                    }}
-                    onClick={handleSaveEmail}
-                    style={{ marginRight: '15px' }}
-                    text={MSG.connectedAccountsSave}
-                    type="submit"
-                  />
-                )}
                 <Button
-                  appearance={{ theme: 'reset', color: 'blue', weight: 'bold' }}
+                  appearance={{
+                    theme: 'reset',
+                    font: 'small',
+                    color: 'blue',
+                    weight: 'medium',
+                  }}
                   onClick={
-                    editEmail ? handleCancelEmail : () => setEditEmail(true)
+                    editEmail ? handleSaveEmail : () => setEditEmail(true)
                   }
+                  style={editEmail ? { marginRight: '15px' } : {}}
                   text={
                     editEmail
-                      ? MSG.connectedAccountsCancel
+                      ? MSG.connectedAccountsSave
                       : MSG.connectedAccountsEdit
                   }
                   type="submit"
                 />
+                {editEmail && (
+                  <Button
+                    appearance={{
+                      theme: 'reset',
+                      font: 'small',
+                      color: 'grey',
+                      weight: 'medium',
+                    }}
+                    onClick={handleCancelEmail}
+                    text={MSG.connectedAccountsCancel}
+                    type="submit"
+                  />
+                )}
               </div>
             )}
             <div className={styles.field}>
@@ -263,7 +274,12 @@ const Account = ({
               />
               {discourse ? (
                 <Button
-                  appearance={{ theme: 'reset', color: 'blue', weight: 'bold' }}
+                  appearance={{
+                    theme: 'reset',
+                    font: 'small',
+                    color: 'blue',
+                    weight: 'medium',
+                  }}
                   onClick={() => disconnect('discourse')}
                   text={MSG.connectedAccountsRemove}
                   type="submit"

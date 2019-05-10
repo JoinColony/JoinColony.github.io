@@ -12,7 +12,8 @@ import styles from './Button.module.css';
 
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'reset',
-  color?: 'blue' | 'white',
+  color?: 'blue' | 'grey' | 'white',
+  font?: 'small',
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
   weight?: 'bold' | 'medium',

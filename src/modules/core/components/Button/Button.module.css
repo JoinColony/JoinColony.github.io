@@ -65,8 +65,18 @@
   color: #289BDC !important;
 }
 
+.colorGrey {
+  color: #788CA0 !important;
+}
+
 .colorWhite {
   color: #ffffff !important;
+}
+
+/* Font */
+
+.fontSmall {
+  font-size: 16px;
 }
 
 /* Hover */
@@ -98,7 +108,7 @@
 }
 
 .weightMedium {
-  font-weight: bold;
+  font-family: 'Avenir Next Medium';
 }
 
 /* Width */
