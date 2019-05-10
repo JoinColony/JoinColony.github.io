@@ -6,7 +6,7 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { Discourse, GitHub } from '../types';
+import type { Discourse, GitHub } from '~types';
 
 import styles from './Contributions.module.css';
 
@@ -19,7 +19,7 @@ const MSG = defineMessages({
 
 type Props = {|
   github: GitHub,
-  discourse?: Discourse,
+  discourse: ?Discourse,
   path: string,
   wallet: WalletObjectType,
 |};

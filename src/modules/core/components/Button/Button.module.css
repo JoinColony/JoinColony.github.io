@@ -62,6 +62,13 @@
   color: #ffffff !important;
 }
 
+/* Hover */
+
+.hoverDisablePrimary:hover {
+  background-color: #289BDC;
+  color: #ffffff;
+}
+
 /* Padding */
 
 .paddingSmall {
@@ -85,6 +92,10 @@
 }
 
 /* Width */
+
+.widthFixed {
+  width: 130px;
+}
 
 .widthStretch {
   width: 100%;

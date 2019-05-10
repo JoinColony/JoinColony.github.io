@@ -1,10 +1,12 @@
 /* @flow */
+
+import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
-import type { Project } from '~types';
+import type { GitHub, Network, Project } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -38,6 +40,10 @@ const MSG = defineMessages({
     id: 'layouts.DeveloperPortalLayout.Header.navLinkSupport',
     defaultMessage: 'Support',
   },
+  navButtonLogin: {
+    id: 'layouts.DeveloperPortalLayout.Header.navButtonLogin',
+    defaultMessage: 'Login',
+  },
   navButtonDashboard: {
     id: 'layouts.DeveloperPortalLayout.Header.navButtonDashboard',
     defaultMessage: 'Dashboard',
@@ -46,32 +52,51 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
-  /* Injected via `injectIntl` */
+  github: ?GitHub,
   intl: IntlShape,
+  match: ?{
+    ['*']: string,
+    uri: string,
+    path: string,
+  },
+  network: ?Network,
   openSourceProjects: Array<Project>,
+  wallet: ?WalletObjectType,
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
   coreProjects,
+  github,
   intl: { formatMessage },
   intl,
+  match,
+  network,
   openSourceProjects,
+  wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
-        <Link href={PAGE_DEVELOPER_PORTAL}>
-          <Icon
-            className={styles.logo}
-            name="developerPortal_white"
-            title={MSG.imageAltDevPortal}
-            viewBox="0 0 134 33"
-          />
-        </Link>
+        <div className={styles.leftWrapper}>
+          <Link href={PAGE_DEVELOPER_PORTAL}>
+            <Icon
+              className={styles.logo}
+              name="developerPortal_white"
+              title={MSG.imageAltDevPortal}
+              viewBox="0 0 134 33"
+            />
+          </Link>
+          {wallet && network && (
+            <div className={styles.network}>
+              <div className={styles.dot} />
+              {network}
+            </div>
+          )}
+        </div>
         <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
             className={styles.navigation}
@@ -132,12 +157,15 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: 'primaryHollow',
+              theme: match ? 'primary' : 'primaryHollow',
+              color: match ? 'white' : undefined,
+              hover: 'disablePrimary',
               padding: 'large',
               weight: 'bold',
+              width: 'fixed',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
-            text={MSG.navButtonDashboard}
+            text={github ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>
         <div className={styles.navToggle}>

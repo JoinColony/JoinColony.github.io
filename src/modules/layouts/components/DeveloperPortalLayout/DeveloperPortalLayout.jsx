@@ -1,13 +1,18 @@
 /* @flow */
-import type { Node } from 'react';
+
+import type { Element } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import React from 'react';
+import { Match } from '@reach/router';
+import React, { Component, cloneElement, useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import type { Project } from '~types';
 
 import { transformProjectData } from '~utils/docs';
+
+import useAuthServer from './useAuthServer';
+import useMetaMask from './useMetaMask';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -15,8 +20,13 @@ import Footer from './Footer';
 import styles from './DeveloperPortalLayout.module.css';
 
 type Props = {|
-  children: Node,
+  children: Element<typeof Component>,
   intl: IntlShape,
+  match: ?{
+    ['*']: string,
+    uri: string,
+    path: string,
+  },
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout';
@@ -28,26 +38,59 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ...openSourceProjectsFragment
     }
   `);
-  const coreProjects: Array<Project> =
-    projectQueryData.coreProjects.edges.map(edge =>
-      transformProjectData(edge, locale),
-    ) || [];
-  const openSourceProjects: Array<Project> =
-    projectQueryData.openSourceProjects.edges.map(edge =>
-      transformProjectData(edge, locale),
-    ) || [];
+  const coreProjects: Array<Project> = useMemo(
+    () =>
+      projectQueryData.coreProjects.edges.map(edge =>
+        transformProjectData(edge, locale),
+      ) || [],
+    [locale, projectQueryData.coreProjects.edges],
+  );
+  const openSourceProjects: Array<Project> = useMemo(
+    () =>
+      projectQueryData.openSourceProjects.edges.map(edge =>
+        transformProjectData(edge, locale),
+      ) || [],
+    [locale, projectQueryData.openSourceProjects.edges],
+  );
+  const {
+    discourse,
+    github,
+    setDiscourse,
+    setGitHub,
+    socket,
+  } = useAuthServer();
+  const { network, wallet } = useMetaMask();
   return (
-    <>
-      <Header
-        coreProjects={coreProjects}
-        openSourceProjects={openSourceProjects}
-      />
-      <div className={styles.body}>{children}</div>
-      <Footer
-        coreProjects={coreProjects}
-        openSourceProjects={openSourceProjects}
-      />
-    </>
+    <Match path="/dashboard/*">
+      {props => (
+        <div>
+          <Header
+            coreProjects={coreProjects}
+            github={github}
+            match={props.match}
+            network={network}
+            openSourceProjects={openSourceProjects}
+            wallet={wallet}
+          />
+          <div className={styles.body}>
+            {props.match
+              ? cloneElement(children, {
+                  discourse,
+                  github,
+                  setDiscourse,
+                  setGitHub,
+                  socket,
+                  wallet,
+                })
+              : children}
+          </div>
+          <Footer
+            coreProjects={coreProjects}
+            openSourceProjects={openSourceProjects}
+          />
+        </div>
+      )}
+    </Match>
   );
 };
 
