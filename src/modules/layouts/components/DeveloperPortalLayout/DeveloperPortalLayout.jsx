@@ -4,7 +4,7 @@ import type { Element } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import { Match } from '@reach/router';
-import React, { Component, cloneElement } from 'react';
+import React, { Component, cloneElement, useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import type { Project } from '~types';
@@ -38,15 +38,20 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ...openSourceProjectsFragment
     }
   `);
-  const coreProjects: Array<Project> =
-    projectQueryData.coreProjects.edges.map(edge =>
-      transformProjectData(edge, locale),
-    ) || [];
-  const openSourceProjects: Array<Project> =
-    projectQueryData.openSourceProjects.edges.map(edge =>
-      transformProjectData(edge, locale),
-    ) || [];
-
+  const coreProjects: Array<Project> = useMemo(
+    () =>
+      projectQueryData.coreProjects.edges.map(edge =>
+        transformProjectData(edge, locale),
+      ) || [],
+    [locale, projectQueryData.coreProjects.edges],
+  );
+  const openSourceProjects: Array<Project> = useMemo(
+    () =>
+      projectQueryData.openSourceProjects.edges.map(edge =>
+        transformProjectData(edge, locale),
+      ) || [],
+    [locale, projectQueryData.openSourceProjects.edges],
+  );
   const {
     discourse,
     github,
