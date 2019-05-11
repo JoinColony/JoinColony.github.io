@@ -17,13 +17,6 @@
   width: 160px;
 }
 
-.name {
-  color: #00284B;
-  font-family: 'Avenir Next Demi';
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
 .statistic {
   display: inline-block;
   margin-right: 20px;

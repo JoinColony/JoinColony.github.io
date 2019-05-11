@@ -1,5 +1,5 @@
 .main {
-  margin: 24px auto;
+  margin: 20px auto;
 }
 
 .blockies {
@@ -11,7 +11,6 @@
 .address {
   align-items: center;
   display: flex;
-  justify-content: center;
 }
 
 .copyAddress {

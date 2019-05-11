@@ -14,6 +14,8 @@ import type { Provider, User } from '~types';
 
 import Address from './Address';
 import EmailInput from './EmailInput';
+import Name from './Name';
+
 import styles from './Account.module.css';
 
 const MSG = defineMessages({
@@ -70,7 +72,7 @@ const Account = ({
         src={user.github.photo}
       />
       <div>
-        <div className={styles.name}>{user.name}</div>
+        <Name setUser={setUser} user={user} />
         <Address setUser={setUser} user={user} wallet={wallet} />
         <div className={styles.statistics}>
           <div className={styles.statistic}>
