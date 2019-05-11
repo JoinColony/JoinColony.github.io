@@ -90,6 +90,7 @@ const Account = ({
   const [copySuccess, setCopySuccess] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
   const [emailInput, setEmailInput] = useState(initialEmail);
+  const [emailError, setEmailError] = useState(null);
   const handleCancelEmail = () => {
     setEmailInput(initialEmail);
     setEditEmail(false);
@@ -99,8 +100,26 @@ const Account = ({
   };
   const handleSaveEmail = () => {
     if (emailInput) {
-      setUser({ ...user, email: emailInput });
-      setEditEmail(false);
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: emailInput,
+          sessionID: user.session.id,
+        }),
+      };
+      // eslint-disable-next-line no-undef
+      fetch('http://localhost:8080/api/email', options)
+        .then(response => response.json())
+        .then(data => {
+          setUser({ ...user, email: data.email });
+          setEditEmail(false);
+        })
+        .catch(message => {
+          setEmailError(message);
+        });
     }
   };
   const handleCopyAddress = useCallback(() => {
@@ -250,6 +269,7 @@ const Account = ({
                     type="submit"
                   />
                 )}
+                {emailError && <p className={styles.error}>{emailError}</p>}
               </div>
             )}
             <div className={styles.field}>

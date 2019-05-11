@@ -23,9 +23,13 @@ export type Session = {|
 |};
 
 export type User = {|
+  addresses: Array<string>,
+  admin: boolean,
   discourse: ?Discourse,
   email: ?string,
   github: GitHub,
+  name: string,
+  session: Session,
 |};
 
 export type Network =
