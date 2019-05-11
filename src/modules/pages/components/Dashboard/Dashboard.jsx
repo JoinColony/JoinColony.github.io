@@ -49,11 +49,12 @@ class Dashboard extends Component<Props> {
   static displayName = 'pages.Dashboard';
 
   authenticate = (provider: Provider) => {
-    const { socket } = this.props;
-    if (socket) {
+    const { socket, wallet } = this.props;
+    if (socket && wallet) {
       const api = process.env.API_URL || 'http://localhost:8080';
-      const url = `${api}/auth/${provider}/?socketId=${socket.id}`;
-      if (typeof window !== 'undefined') window.open(url);
+      const url = `${api}/auth/${provider}/`;
+      const params = `?socketId=${socket.id}&address=${wallet.address}`;
+      if (typeof window !== 'undefined') window.open(url + params);
     }
   };
 
