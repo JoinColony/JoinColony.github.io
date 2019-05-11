@@ -71,7 +71,7 @@ const Account = ({
       />
       <div>
         <div className={styles.name}>{user.name}</div>
-        <Address wallet={wallet} />
+        <Address setUser={setUser} user={user} wallet={wallet} />
         <div className={styles.statistics}>
           <div className={styles.statistic}>
             <span className={styles.statisticValue}>0</span>
