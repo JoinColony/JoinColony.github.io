@@ -69,6 +69,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
           <div className={styles.body}>
             {props.match
               ? cloneElement(children, {
+                  network,
                   setUser,
                   socket,
                   user,

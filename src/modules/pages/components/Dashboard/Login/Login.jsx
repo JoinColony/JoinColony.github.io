@@ -65,7 +65,6 @@ const Login = ({ authenticate, wallet }: Props) => (
             theme: 'primary',
             color: 'white',
             padding: 'huge',
-            weight: 'medium',
             width: 'stretch',
           }}
           onClick={() => authenticate('github')}

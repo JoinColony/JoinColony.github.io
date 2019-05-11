@@ -32,14 +32,11 @@ export type User = {|
   session: Session,
 |};
 
-export type Network =
-  | 'main'
-  | 'ropsten'
-  | 'kovan'
-  | 'rinkeby'
-  | 'goerli'
-  | 'private'
-  | null;
+export type Network = {|
+  id: number,
+  name: string,
+  color: string,
+|};
 
 export type Store = 'network' | 'user' | 'wallet';
 

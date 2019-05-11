@@ -92,8 +92,11 @@ const Header = ({
           </Link>
           {wallet && network && (
             <div className={styles.network}>
-              <div className={styles.dot} />
-              {network}
+              <div
+                className={styles.networkDot}
+                style={{ borderColor: network.color }}
+              />
+              {network.name}
             </div>
           )}
         </div>
@@ -161,10 +164,10 @@ const Header = ({
               color: match ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
-              weight: 'medium',
               width: 'fixed',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
+            style={{ marginLeft: '10px' }}
             text={user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>

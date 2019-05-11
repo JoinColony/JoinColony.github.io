@@ -102,8 +102,6 @@
 
   .network {
     align-items: center;
-    border: 1px #EEE solid;
-    border-radius: 20px;
     color: #EEE;
     display: flex;
     font-family: 'IBM Plex Mono', monospace;
@@ -116,8 +114,8 @@
     cursor: default;
   }
 
-  .dot {
-    border: 5px #FAD250 solid;
+  .networkDot {
+    border: 5px solid;
     border-radius: 5px;
     height: 0;
     margin-right: 10px;
