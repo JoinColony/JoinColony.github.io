@@ -1,20 +1,37 @@
 .main {
-  border: none;
+  border: 1px solid #91D2FA;
   border-radius: 4px;
+  color: #323232;
   font-size: 16px;
-  font-weight: bold;
   font-family: 'Avenir Next Light';
-  text-align: center;
   transition: 0.2s;
 }
 
-.label {
-  font-size: 14px;
+.label span {
+  display: block;
+  font-size: 16px;
+}
+
+.label input {
+  margin-top: 8px;
 }
 
 :disabled {
-  background-color: #eeeeee;
-  color: #999999;
+  background-color: #F0F5F7;
+  border: 1px solid #F0F5F7;
+  color: #788CA0;
+}
+
+/* Align */
+
+.alignCenter {
+  text-align: center;
+}
+
+/* Display */
+
+.displayNone {
+  display: none;
 }
 
 /* Padding */
@@ -33,6 +50,10 @@
 }
 
 /* Width */
+
+.widthLarge {
+  width: 340px;
+}
 
 .widthStretch {
   width: 100%;

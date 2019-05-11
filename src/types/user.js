@@ -4,6 +4,10 @@ import type { WalletObjectType } from '@colony/purser-core';
 
 export type Provider = 'github' | 'discourse';
 
+export type Email = {|
+  email: string,
+|};
+
 export type Discourse = {|
   email?: string,
   name?: string,
@@ -27,6 +31,11 @@ export type Network =
   | 'private'
   | null;
 
-export type StoredItem = 'discourse' | 'github' | 'network' | 'wallet';
+export type Store = 'email' | 'discourse' | 'github' | 'network' | 'wallet';
 
-export type StoredItemObject = Discourse | GitHub | Network | WalletObjectType;
+export type StoreObject =
+  | Email
+  | Discourse
+  | GitHub
+  | Network
+  | WalletObjectType;

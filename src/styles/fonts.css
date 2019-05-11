@@ -13,6 +13,11 @@
 }
 
 @font-face {
+  font-family: Avenir Next Medium;
+  src: url('../fonts/avenir-next-medium.woff') format('woff');
+}
+
+@font-face {
   font-family: Avenir Next Demi;
   src: url('../fonts/avenir-next-demi.woff2') format('woff2'),
        url('../fonts/avenir-next-demi.woff') format('woff');

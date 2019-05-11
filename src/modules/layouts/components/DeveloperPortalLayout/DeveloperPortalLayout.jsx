@@ -54,8 +54,10 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   );
   const {
     discourse,
+    email,
     github,
     setDiscourse,
+    setEmail,
     setGitHub,
     socket,
   } = useAuthServer();
@@ -76,8 +78,10 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
             {props.match
               ? cloneElement(children, {
                   discourse,
+                  email,
                   github,
                   setDiscourse,
+                  setEmail,
                   setGitHub,
                   socket,
                   wallet,

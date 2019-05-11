@@ -49,8 +49,8 @@ const Login = ({ authenticate, wallet }: Props) => (
         <Input
           disabled
           appearance={{
+            align: 'center',
             padding: 'huge',
-            weight: 'bold',
             width: 'stretch',
           }}
           id="address"
@@ -65,7 +65,7 @@ const Login = ({ authenticate, wallet }: Props) => (
             theme: 'primary',
             color: 'white',
             padding: 'huge',
-            weight: 'bold',
+            weight: 'medium',
             width: 'stretch',
           }}
           onClick={() => authenticate('github')}

@@ -9,8 +9,10 @@ import { getMainClasses } from '~utils/css';
 import styles from './Input.module.css';
 
 type Appearance = {
+  align?: 'center',
+  display?: 'none',
   padding?: 'small' | 'large' | 'huge',
-  width?: 'stretch',
+  width?: 'large' | 'stretch',
 };
 
 type Props = {
@@ -50,7 +52,7 @@ const Input = ({
 
   return (
     <label htmlFor={id} className={styles.label}>
-      {labelText}
+      <span>{labelText}</span>
       <input id={id} className={classNames} type={type} {...rest} />
     </label>
   );

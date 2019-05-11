@@ -12,8 +12,8 @@
 .link {
   display: block;
   color: #2E4153;
+  font-family: 'Avenir Next Demi';
   font-size: 18px;
-  font-weight: 500;
   margin: 20px;
   transition: 0.2s;
 }

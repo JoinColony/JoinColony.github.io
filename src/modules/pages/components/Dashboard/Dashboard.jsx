@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
-import type { Provider, Discourse, GitHub } from '~types';
+import type { Discourse, Email, GitHub, Provider } from '~types';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -38,10 +38,12 @@ const MSG = defineMessages({
 
 export type Props = {|
   discourse: ?Discourse,
+  email: ?Email,
   github: ?GitHub,
   intl: IntlShape,
   page: string,
   setDiscourse: (discourse: ?Discourse) => void,
+  setEmail: (email: ?Email) => void,
   setGitHub: (github: ?GitHub) => void,
   socket: ?Socket,
   wallet: ?WalletObjectType,
@@ -72,9 +74,11 @@ class Dashboard extends Component<Props> {
   render = () => {
     const {
       discourse,
+      email,
       github,
       intl: { formatMessage },
       page,
+      setEmail,
       wallet,
     } = this.props;
     const title = formatMessage(MSG.pageTitle);
@@ -108,7 +112,9 @@ class Dashboard extends Component<Props> {
                     authenticate={this.authenticate}
                     disconnect={this.disconnect}
                     discourse={discourse}
+                    email={email}
                     github={github}
+                    setEmail={setEmail}
                     wallet={wallet}
                   />
                   <Colonies
