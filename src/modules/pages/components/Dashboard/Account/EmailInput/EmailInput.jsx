@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable react/no-unused-prop-types */
 
 import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
@@ -12,20 +11,20 @@ import type { User } from '~types';
 import styles from './EmailInput.module.css';
 
 const MSG = defineMessages({
-  connectedAccountsEmailLabel: {
-    id: 'pages.Dashboard.Account.connectedAccountsEmailLabel',
+  emailInputLabel: {
+    id: 'pages.Dashboard.Account.EmailInput.emailInputLabel',
     defaultMessage: 'Email',
   },
-  connectedAccountsCancel: {
-    id: 'pages.Dashboard.Account.connectedAccountsCancel',
+  emailInputCancel: {
+    id: 'pages.Dashboard.Account.EmailInput.emailInputCancel',
     defaultMessage: 'Cancel',
   },
-  connectedAccountsEdit: {
-    id: 'pages.Dashboard.Account.connectedAccountsEdit',
+  emailInputEdit: {
+    id: 'pages.Dashboard.Account.EmailInput.emailInputEdit',
     defaultMessage: 'Edit',
   },
-  connectedAccountsSave: {
-    id: 'pages.Dashboard.Account.connectedAccountsSave',
+  emailInputSave: {
+    id: 'pages.Dashboard.Account.EmailInput.emailInputSave',
     defaultMessage: 'Save',
   },
 });
@@ -35,7 +34,7 @@ type Props = {|
   user: User,
 |};
 
-const displayName = 'pages.Dashboard.Account';
+const displayName = 'pages.Dashboard.Account.EmailInput';
 
 const EmailInput = ({ setUser, user }: Props) => {
   const initialEmail = user.email || '';
@@ -82,7 +81,7 @@ const EmailInput = ({ setUser, user }: Props) => {
           width: 'large',
         }}
         id="email"
-        label={MSG.connectedAccountsEmailLabel}
+        label={MSG.emailInputLabel}
         onChange={handleChangeEmail}
         type="text"
         value={emailInput}
@@ -96,7 +95,7 @@ const EmailInput = ({ setUser, user }: Props) => {
         }}
         onClick={editEmail ? handleSaveEmail : () => setEditEmail(true)}
         style={editEmail ? { marginRight: '15px' } : {}}
-        text={editEmail ? MSG.connectedAccountsSave : MSG.connectedAccountsEdit}
+        text={editEmail ? MSG.emailInputSave : MSG.emailInputEdit}
         type="submit"
       />
       {editEmail && (
@@ -108,7 +107,7 @@ const EmailInput = ({ setUser, user }: Props) => {
             weight: 'medium',
           }}
           onClick={handleCancelEmail}
-          text={MSG.connectedAccountsCancel}
+          text={MSG.emailInputCancel}
           type="submit"
         />
       )}
