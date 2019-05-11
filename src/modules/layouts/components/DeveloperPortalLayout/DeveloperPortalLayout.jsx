@@ -52,15 +52,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ) || [],
     [locale, projectQueryData.openSourceProjects.edges],
   );
-  const {
-    discourse,
-    email,
-    github,
-    setDiscourse,
-    setEmail,
-    setGitHub,
-    socket,
-  } = useAuthServer();
+  const { setUser, socket, user } = useAuthServer();
   const { network, wallet } = useMetaMask();
   return (
     <Match path="/dashboard/*">
@@ -68,22 +60,18 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         <div>
           <Header
             coreProjects={coreProjects}
-            github={github}
             match={props.match}
             network={network}
             openSourceProjects={openSourceProjects}
+            user={user}
             wallet={wallet}
           />
           <div className={styles.body}>
             {props.match
               ? cloneElement(children, {
-                  discourse,
-                  email,
-                  github,
-                  setDiscourse,
-                  setEmail,
-                  setGitHub,
+                  setUser,
                   socket,
+                  user,
                   wallet,
                 })
               : children}

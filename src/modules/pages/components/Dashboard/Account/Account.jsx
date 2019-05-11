@@ -12,7 +12,7 @@ import Button from '~core/Button';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
-import type { Email, Discourse, GitHub, Provider } from '~types';
+import type { Provider, User } from '~types';
 
 import styles from './Account.module.css';
 
@@ -71,11 +71,9 @@ const MSG = defineMessages({
 type Props = {|
   authenticate: (provider: Provider) => void,
   disconnect: (provider: Provider) => void,
-  discourse: ?Discourse,
-  email: ?Email,
-  github: GitHub,
   path: string,
-  setEmail: (email: Email) => void,
+  setUser: (user: User) => void,
+  user: User,
   wallet: WalletObjectType,
 |};
 
@@ -84,16 +82,11 @@ const displayName = 'pages.Dashboard.Account';
 const Account = ({
   authenticate,
   disconnect,
-  discourse,
-  email,
-  github,
-  setEmail,
+  setUser,
+  user,
   wallet,
 }: Props) => {
-  const initialEmail =
-    (email ? email.email : null) ||
-    github.email ||
-    (discourse ? discourse.email : null);
+  const initialEmail = user.email || '';
   const [copySuccess, setCopySuccess] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
   const [emailInput, setEmailInput] = useState(initialEmail);
@@ -106,7 +99,7 @@ const Account = ({
   };
   const handleSaveEmail = () => {
     if (emailInput) {
-      setEmail({ email: emailInput });
+      setUser({ ...user, email: emailInput });
       setEditEmail(false);
     }
   };
@@ -123,11 +116,13 @@ const Account = ({
         <div className={styles.header}>
           <Image
             className={styles.photo}
-            alt={github.name || github.username}
-            src={github.photo}
+            alt={user.github.name || user.github.username}
+            src={user.github.photo}
           />
           <div>
-            <div className={styles.name}>{github.name || github.username}</div>
+            <div className={styles.name}>
+              {user.github.name || user.github.username}
+            </div>
             <div className={styles.address}>
               {/*
               <Blockies
@@ -196,29 +191,19 @@ const Account = ({
                 id="github"
                 label={MSG.connectedAccountsGitHubLabel}
                 type="text"
-                value={`@${github.username}`}
+                value={`@${user.github.username}`}
               />
-              {github ? (
-                <Button
-                  appearance={{
-                    theme: 'reset',
-                    font: 'small',
-                    color: 'blue',
-                    weight: 'medium',
-                  }}
-                  onClick={() => disconnect('github')}
-                  text={MSG.connectedAccountsRemove}
-                  type="submit"
-                />
-              ) : (
-                <Button
-                  appearance={{ theme: 'primary', padding: 'large' }}
-                  onClick={() => authenticate('github')}
-                  style={{ margin: '12px auto' }}
-                  text={MSG.connectedAccountsConnect}
-                  type="submit"
-                />
-              )}
+              <Button
+                appearance={{
+                  theme: 'reset',
+                  font: 'small',
+                  color: 'blue',
+                  weight: 'medium',
+                }}
+                onClick={() => disconnect('github')}
+                text={MSG.connectedAccountsRemove}
+                type="submit"
+              />
             </div>
             {initialEmail && (
               <div className={styles.field}>
@@ -271,16 +256,16 @@ const Account = ({
               <Input
                 disabled
                 appearance={{
-                  display: discourse ? undefined : 'none',
+                  display: user.discourse ? undefined : 'none',
                   padding: 'huge',
                   width: 'large',
                 }}
                 id="discourse"
                 label={MSG.connectedAccountsDiscourseLabel}
                 type="text"
-                value={discourse ? `@${discourse.username}` : ''}
+                value={user.discourse ? `@${user.discourse.username}` : ''}
               />
-              {discourse ? (
+              {user.discourse ? (
                 <Button
                   appearance={{
                     theme: 'reset',

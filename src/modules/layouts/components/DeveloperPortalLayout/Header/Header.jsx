@@ -6,7 +6,7 @@ import type { IntlShape } from 'react-intl';
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
-import type { GitHub, Network, Project } from '~types';
+import type { Network, Project, User } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -52,7 +52,6 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
-  github: ?GitHub,
   intl: IntlShape,
   match: ?{
     ['*']: string,
@@ -61,6 +60,7 @@ type Props = {|
   },
   network: ?Network,
   openSourceProjects: Array<Project>,
+  user: ?User,
   wallet: ?WalletObjectType,
 |};
 
@@ -68,12 +68,12 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
   coreProjects,
-  github,
   intl: { formatMessage },
   intl,
   match,
   network,
   openSourceProjects,
+  user,
   wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -165,7 +165,7 @@ const Header = ({
               width: 'fixed',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
-            text={github ? MSG.navButtonDashboard : MSG.navButtonLogin}
+            text={user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>
         <div className={styles.navToggle}>
