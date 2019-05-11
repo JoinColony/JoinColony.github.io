@@ -3,9 +3,9 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useState } from 'react';
-// import Blockies from 'react-blockies';
+import React, { useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+// import Blockies from 'react-blockies';
 import copy from 'copy-to-clipboard';
 
 import Button from '~core/Button';
@@ -94,7 +94,7 @@ const Account = ({
     (email ? email.email : null) ||
     github.email ||
     (discourse ? discourse.email : null);
-  const [copied, setCopied] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
   const [emailInput, setEmailInput] = useState(initialEmail);
   const handleCancelEmail = () => {
@@ -110,13 +110,13 @@ const Account = ({
       setEditEmail(false);
     }
   };
-  const handleCopyAddress = () => {
+  const handleCopyAddress = useCallback(() => {
     copy(wallet.address);
-    setCopied(true);
+    setCopySuccess(true);
     setTimeout(() => {
-      setCopied(false);
+      setCopySuccess(false);
     }, 2000);
-  };
+  }, [wallet.address]);
   return (
     <>
       <div className={styles.main}>
@@ -137,23 +137,31 @@ const Account = ({
               />
               */}
               {wallet.address}
-              {copied ? (
-                <div className={styles.copied}>
+              {copySuccess ? (
+                <div className={styles.copyAddressSuccess}>
+                  <Button
+                    appearance={{ theme: 'reset' }}
+                    onClick={handleCopyAddress}
+                  >
+                    <Image
+                      className={styles.copyAddress}
+                      alt={MSG.copyAddress}
+                      src="/img/copySuccess.svg"
+                    />
+                    <FormattedMessage {...MSG.copyAddressSuccess} />
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  appearance={{ theme: 'reset' }}
+                  onClick={handleCopyAddress}
+                >
                   <Image
                     className={styles.copyAddress}
                     alt={MSG.copyAddress}
-                    onClick={handleCopyAddress}
-                    src="/img/copied.svg"
+                    src="/img/copy.svg"
                   />
-                  <FormattedMessage {...MSG.copyAddressSuccess} />
-                </div>
-              ) : (
-                <Image
-                  className={styles.copyAddress}
-                  alt={MSG.copyAddress}
-                  onClick={handleCopyAddress}
-                  src="/img/copy.svg"
-                />
+                </Button>
               )}
             </div>
             <div className={styles.statistics}>

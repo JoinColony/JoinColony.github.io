@@ -40,7 +40,7 @@
   cursor: pointer;
 }
 
-.copied span {
+.copyAddressSuccess span {
   color: #788CA0;
   font-size: 12px;
   position: absolute;

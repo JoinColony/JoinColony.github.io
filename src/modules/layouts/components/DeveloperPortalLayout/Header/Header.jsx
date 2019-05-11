@@ -161,6 +161,7 @@ const Header = ({
               color: match ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
+              weight: 'medium',
               width: 'fixed',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
