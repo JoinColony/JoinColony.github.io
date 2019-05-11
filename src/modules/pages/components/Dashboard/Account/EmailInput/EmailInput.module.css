@@ -1,0 +1,8 @@
+.field {
+  width: 480px; /* Fixed width for button expansion */
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}

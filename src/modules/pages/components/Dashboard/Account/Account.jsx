@@ -14,6 +14,7 @@ import Input from '~core/Input';
 
 import type { Provider, User } from '~types';
 
+import EmailInput from './EmailInput';
 import styles from './Account.module.css';
 
 const MSG = defineMessages({
@@ -33,10 +34,6 @@ const MSG = defineMessages({
   connectedAccountsDiscourseLabel: {
     id: 'pages.Dashboard.Account.connectedAccountsDiscourseLabel',
     defaultMessage: 'Discourse',
-  },
-  connectedAccountsEmailLabel: {
-    id: 'pages.Dashboard.Account.connectedAccountsEmailLabel',
-    defaultMessage: 'Email',
   },
   connectedAccountsCancel: {
     id: 'pages.Dashboard.Account.connectedAccountsCancel',
@@ -86,42 +83,7 @@ const Account = ({
   user,
   wallet,
 }: Props) => {
-  const initialEmail = user.email || '';
   const [copySuccess, setCopySuccess] = useState(false);
-  const [editEmail, setEditEmail] = useState(false);
-  const [emailInput, setEmailInput] = useState(initialEmail);
-  const [emailError, setEmailError] = useState(null);
-  const handleCancelEmail = () => {
-    setEmailInput(initialEmail);
-    setEditEmail(false);
-  };
-  const handleChangeEmail = event => {
-    setEmailInput(event.target.value);
-  };
-  const handleSaveEmail = () => {
-    if (emailInput) {
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: emailInput,
-          sessionID: user.session.id,
-        }),
-      };
-      // eslint-disable-next-line no-undef
-      fetch('http://localhost:8080/api/email', options)
-        .then(response => response.json())
-        .then(data => {
-          setUser({ ...user, email: data.email });
-          setEditEmail(false);
-        })
-        .catch(message => {
-          setEmailError(message);
-        });
-    }
-  };
   const handleCopyAddress = useCallback(() => {
     copy(wallet.address);
     setCopySuccess(true);
@@ -224,54 +186,7 @@ const Account = ({
                 type="submit"
               />
             </div>
-            {initialEmail && (
-              <div className={styles.field}>
-                <Input
-                  disabled={!editEmail}
-                  appearance={{
-                    padding: 'huge',
-                    width: 'large',
-                  }}
-                  id="email"
-                  label={MSG.connectedAccountsEmailLabel}
-                  onChange={handleChangeEmail}
-                  type="text"
-                  value={emailInput}
-                />
-                <Button
-                  appearance={{
-                    theme: 'reset',
-                    font: 'small',
-                    color: 'blue',
-                    weight: 'medium',
-                  }}
-                  onClick={
-                    editEmail ? handleSaveEmail : () => setEditEmail(true)
-                  }
-                  style={editEmail ? { marginRight: '15px' } : {}}
-                  text={
-                    editEmail
-                      ? MSG.connectedAccountsSave
-                      : MSG.connectedAccountsEdit
-                  }
-                  type="submit"
-                />
-                {editEmail && (
-                  <Button
-                    appearance={{
-                      theme: 'reset',
-                      font: 'small',
-                      color: 'grey',
-                      weight: 'medium',
-                    }}
-                    onClick={handleCancelEmail}
-                    text={MSG.connectedAccountsCancel}
-                    type="submit"
-                  />
-                )}
-                {emailError && <p className={styles.error}>{emailError}</p>}
-              </div>
-            )}
+            <EmailInput setUser={setUser} user={user} />
             <div className={styles.field}>
               <Input
                 disabled
