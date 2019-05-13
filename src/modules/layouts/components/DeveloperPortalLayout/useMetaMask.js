@@ -12,7 +12,7 @@ import { getStore, setStore } from './localStorage';
 
 const web3 = new Web3();
 
-const getNetworkInfo = id => {
+const getNetworkInfo = (id: number) => {
   switch (id) {
     case 1:
       return {
@@ -53,7 +53,7 @@ const getNetworkInfo = id => {
   }
 };
 
-const useMetaMask = () => {
+const useMetaMask = (dashboard: boolean) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [network, setNetwork] = useState<?Network>(null);
   const [wallet, setWallet] = useState<?WalletObjectType>(null);
@@ -73,8 +73,10 @@ const useMetaMask = () => {
   }, []);
 
   useEffect(() => {
-    openWallet();
-  }, [openWallet]);
+    if (dashboard) {
+      openWallet();
+    }
+  }, [dashboard, openWallet]);
 
   const accountChangedCallback = useCallback(
     metamask => {

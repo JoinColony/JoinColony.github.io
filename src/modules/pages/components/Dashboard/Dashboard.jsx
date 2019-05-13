@@ -99,7 +99,7 @@ class Dashboard extends Component<Props> {
             <div className={styles.sidebar}>
               <Sidebar active={page || 'account'} />
             </div>
-            {user && wallet ? (
+            {wallet && user ? (
               <main className={styles.content}>
                 <Router primary={false}>
                   <Account

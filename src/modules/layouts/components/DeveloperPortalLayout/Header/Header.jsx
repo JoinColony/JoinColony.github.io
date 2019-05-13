@@ -52,12 +52,8 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
+  dashboard: boolean,
   intl: IntlShape,
-  match: ?{
-    ['*']: string,
-    uri: string,
-    path: string,
-  },
   network: ?Network,
   openSourceProjects: Array<Project>,
   user: ?User,
@@ -68,9 +64,9 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
   coreProjects,
+  dashboard,
   intl: { formatMessage },
   intl,
-  match,
   network,
   openSourceProjects,
   user,
@@ -160,8 +156,8 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: match ? 'primary' : 'primaryHollow',
-              color: match ? 'white' : undefined,
+              theme: dashboard ? 'primary' : 'primaryHollow',
+              color: dashboard ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
               width: 'fixed',

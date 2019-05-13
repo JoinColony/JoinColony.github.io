@@ -9,7 +9,7 @@ import type { User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
-const useAuthServer = () => {
+const useServer = () => {
   const [user, setUser] = useState<?User>(null);
   const [socket, setSocket] = useState<?Socket>(null);
 
@@ -37,4 +37,4 @@ const useAuthServer = () => {
   return { setUser, socket, user };
 };
 
-export default useAuthServer;
+export default useServer;
