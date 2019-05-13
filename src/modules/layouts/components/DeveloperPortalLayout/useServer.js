@@ -14,9 +14,7 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const getUser = (setUser, setError, user) => {
   const options = {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
   };
   // eslint-disable-next-line no-undef
   fetch(`${server}/api/user?sessionID=${user.session.id}`, options)

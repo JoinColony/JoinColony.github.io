@@ -55,13 +55,8 @@ const Email = ({ setUser, user }: Props) => {
     if (email) {
       const options = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          sessionID: user.session.id,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       };
       // eslint-disable-next-line no-undef
       fetch(`${server}/api/email?sessionID=${user.session.id}`, options)

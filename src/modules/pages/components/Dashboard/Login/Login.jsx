@@ -23,7 +23,7 @@ const MSG = defineMessages({
   },
   connectGitHubButton: {
     id: 'pages.Dashboard.connectGitHubButton',
-    defaultMessage: `Connect to GitHub`,
+    defaultMessage: `Connect GitHub`,
   },
   connectGitHubGitHubMessage: {
     id: 'pages.Dashboard.connectGitHubGitHubMessage',

@@ -51,13 +51,8 @@ const Name = ({ setUser, user }: Props) => {
     if (name) {
       const options = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          sessionID: user.session.id,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name }),
       };
       // eslint-disable-next-line no-undef
       fetch(`${server}/api/name?sessionID=${user.session.id}`, options)

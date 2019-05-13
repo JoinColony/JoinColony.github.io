@@ -44,25 +44,20 @@ const displayName = 'pages.Dashboard.Account.Address';
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Address = ({ setUser, user, wallet }: Props) => {
-  const [copySuccess, setCopySuccess] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
   const handleCopyAddress = useCallback(() => {
     copy(wallet.address);
-    setCopySuccess(true);
+    setCopied(true);
     setTimeout(() => {
-      setCopySuccess(false);
+      setCopied(false);
     }, 2000);
   }, [wallet.address]);
   const handleUpdateAddress = () => {
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: wallet.address,
-        sessionID: user.session.id,
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: wallet.address }),
     };
     // eslint-disable-next-line no-undef
     fetch(`${server}/api/address?sessionID=${user.session.id}`, options)
@@ -92,13 +87,13 @@ const Address = ({ setUser, user, wallet }: Props) => {
         />
         */}
         {wallet.address}
-        {copySuccess ? (
+        {copied ? (
           <div className={styles.copyAddressSuccess}>
             <Button appearance={{ theme: 'reset' }} onClick={handleCopyAddress}>
               <Image
                 className={styles.copyAddress}
                 alt={MSG.copyAddress}
-                src="/img/copySuccess.svg"
+                src="/img/copied.svg"
               />
               <FormattedMessage {...MSG.copyAddressSuccess} />
             </Button>
