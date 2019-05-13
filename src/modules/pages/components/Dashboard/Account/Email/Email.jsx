@@ -38,12 +38,13 @@ const displayName = 'pages.Dashboard.Account.Email';
 
 const Email = ({ setUser, user }: Props) => {
   const initialEmail = user.email || '';
-  const [editEmail, setEditEmail] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [email, setEmail] = useState(initialEmail);
-  const [emailError, setEmailError] = useState(null);
+  const [error, setError] = useState(null);
   const handleCancelEmail = () => {
     setEmail(initialEmail);
-    setEditEmail(false);
+    setEdit(false);
+    setError(null);
   };
   const handleChangeEmail = event => {
     setEmail(event.target.value);
@@ -64,18 +65,25 @@ const Email = ({ setUser, user }: Props) => {
       fetch('http://localhost:8080/api/email', options)
         .then(response => response.json())
         .then(data => {
-          setUser({ ...user, email: data.email });
-          setEditEmail(false);
+          if (data.error) {
+            setError(data.error);
+            setTimeout(() => {
+              setError(null);
+            }, 2000);
+          } else {
+            setUser({ ...user, email: data.email });
+            setEdit(false);
+          }
         })
         .catch(message => {
-          setEmailError(message);
+          setError(message);
         });
     }
   };
   return (
     <div className={styles.field}>
       <Input
-        disabled={!editEmail}
+        disabled={!edit}
         appearance={{
           padding: 'huge',
           width: 'large',
@@ -93,12 +101,12 @@ const Email = ({ setUser, user }: Props) => {
           color: 'blue',
           weight: 'medium',
         }}
-        onClick={editEmail ? handleSaveEmail : () => setEditEmail(true)}
-        style={editEmail ? { marginRight: '15px' } : {}}
-        text={editEmail ? MSG.emailSave : MSG.emailEdit}
+        onClick={edit ? handleSaveEmail : () => setEdit(true)}
+        style={edit ? { marginRight: '15px' } : {}}
+        text={edit ? MSG.emailSave : MSG.emailEdit}
         type="submit"
       />
-      {editEmail && (
+      {edit && (
         <Button
           appearance={{
             theme: 'reset',
@@ -111,7 +119,7 @@ const Email = ({ setUser, user }: Props) => {
           type="submit"
         />
       )}
-      {emailError && <p className={styles.error}>{emailError}</p>}
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 };

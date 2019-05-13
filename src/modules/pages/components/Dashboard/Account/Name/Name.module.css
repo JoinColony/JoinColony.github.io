@@ -15,3 +15,10 @@
 .name:hover {
   cursor: pointer;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+  margin: 20px auto;
+}

@@ -66,7 +66,14 @@ const Address = ({ setUser, user, wallet }: Props) => {
     fetch('http://localhost:8080/api/address', options)
       .then(res => res.json())
       .then(data => {
-        setUser({ ...user, addresses: data.addresses });
+        if (data.error) {
+          setError(data.error);
+          setTimeout(() => {
+            setError(null);
+          }, 2000);
+        } else {
+          setUser({ ...user, addresses: data.addresses });
+        }
       })
       .catch(message => {
         setError(message);

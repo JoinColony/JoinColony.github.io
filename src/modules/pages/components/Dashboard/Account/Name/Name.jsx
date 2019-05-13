@@ -34,25 +34,26 @@ const displayName = 'pages.Dashboard.Account.Name';
 
 const Name = ({ setUser, user }: Props) => {
   const initialName = user.name || '';
-  const [editName, setEditName] = useState(false);
-  const [nameInput, setName] = useState(initialName);
-  const [nameError, setNameError] = useState(null);
+  const [edit, setEdit] = useState(false);
+  const [error, setError] = useState(null);
+  const [name, setName] = useState(initialName);
   const handleCancelName = () => {
     setName(initialName);
-    setEditName(false);
+    setEdit(false);
+    setError(null);
   };
   const handleChangeName = event => {
     setName(event.target.value);
   };
   const handleSaveName = () => {
-    if (nameInput) {
+    if (name) {
       const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: nameInput,
+          name,
           sessionID: user.session.id,
         }),
       };
@@ -60,62 +61,71 @@ const Name = ({ setUser, user }: Props) => {
       fetch('http://localhost:8080/api/name', options)
         .then(response => response.json())
         .then(data => {
-          setUser({ ...user, name: data.name });
-          setEditName(false);
+          if (data.error) {
+            setError(data.error);
+            setTimeout(() => {
+              setError(null);
+            }, 2000);
+          } else {
+            setUser({ ...user, name: data.name });
+            setEdit(false);
+          }
         })
         .catch(message => {
-          setNameError(message);
+          setError(message);
         });
     }
   };
   return (
-    <div className={styles.main}>
-      {editName ? (
-        <Input
-          appearance={{ padding: 'huge', width: 'large' }}
-          id="name"
-          onChange={handleChangeName}
-          style={{ marginRight: '20px', marginTop: '0' }}
-          type="text"
-          value={nameInput}
-        />
-      ) : (
-        <Button
-          appearance={{ theme: 'reset' }}
-          className={styles.name}
-          onClick={() => setEditName(true)}
-        >
-          {user.name}
-        </Button>
-      )}
-      {editName && (
-        <div>
-          <Button
-            appearance={{
-              theme: 'reset',
-              font: 'small',
-              color: 'blue',
-              weight: 'medium',
-            }}
-            onClick={handleSaveName}
-            style={{ marginRight: '15px' }}
-            text={MSG.nameSave}
-            type="submit"
+    <div>
+      <div className={styles.main}>
+        {edit ? (
+          <Input
+            appearance={{ padding: 'huge', width: 'large' }}
+            id="name"
+            onChange={handleChangeName}
+            style={{ marginRight: '20px', marginTop: '0' }}
+            type="text"
+            value={name}
           />
+        ) : (
           <Button
-            appearance={{
-              theme: 'reset',
-              font: 'small',
-              color: 'grey',
-              weight: 'medium',
-            }}
-            onClick={handleCancelName}
-            text={MSG.nameCancel}
-            type="submit"
-          />
-        </div>
-      )}
-      {nameError && <p className={styles.error}>{nameError}</p>}
+            appearance={{ theme: 'reset' }}
+            className={styles.name}
+            onClick={() => setEdit(true)}
+          >
+            {user.name}
+          </Button>
+        )}
+        {edit && (
+          <div>
+            <Button
+              appearance={{
+                theme: 'reset',
+                font: 'small',
+                color: 'blue',
+                weight: 'medium',
+              }}
+              onClick={handleSaveName}
+              style={{ marginRight: '15px' }}
+              text={MSG.nameSave}
+              type="submit"
+            />
+            <Button
+              appearance={{
+                theme: 'reset',
+                font: 'small',
+                color: 'grey',
+                weight: 'medium',
+              }}
+              onClick={handleCancelName}
+              text={MSG.nameCancel}
+              type="submit"
+            />
+          </div>
+        )}
+      </div>
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 };
