@@ -36,6 +36,8 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.Email';
 
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
 const Email = ({ setUser, user }: Props) => {
   const initialEmail = user.email || '';
   const [edit, setEdit] = useState(false);
@@ -62,7 +64,7 @@ const Email = ({ setUser, user }: Props) => {
         }),
       };
       // eslint-disable-next-line no-undef
-      fetch('http://localhost:8080/api/email', options)
+      fetch(`${server}/api/email?sessionID=${user.session.id}`, options)
         .then(response => response.json())
         .then(data => {
           if (data.error) {

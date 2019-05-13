@@ -41,6 +41,8 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.Address';
 
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
 const Address = ({ setUser, user, wallet }: Props) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [error, setError] = useState(null);
@@ -63,7 +65,7 @@ const Address = ({ setUser, user, wallet }: Props) => {
       }),
     };
     // eslint-disable-next-line no-undef
-    fetch('http://localhost:8080/api/address', options)
+    fetch(`${server}/api/address?sessionID=${user.session.id}`, options)
       .then(res => res.json())
       .then(data => {
         if (data.error) {

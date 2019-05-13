@@ -9,6 +9,8 @@ import type { User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
 const getUser = (setUser, setError, user) => {
   const options = {
     method: 'GET',
@@ -17,7 +19,7 @@ const getUser = (setUser, setError, user) => {
     },
   };
   // eslint-disable-next-line no-undef
-  fetch(`http://localhost:8080/api/user?sessionID=${user.session.id}`, options)
+  fetch(`${server}/api/user?sessionID=${user.session.id}`, options)
     .then(response => response.json())
     .then(data => {
       if (data.error) {
@@ -51,7 +53,7 @@ const useServer = () => {
   useEffect(() => {
     if (!socket) {
       const newSocket = io.connect(
-        process.env.SOCKET || 'http://localhost:8080',
+        process.env.SOCKET_URL || 'http://localhost:8080',
       );
       newSocket.on('discourse', setUser);
       newSocket.on('github', setUser);

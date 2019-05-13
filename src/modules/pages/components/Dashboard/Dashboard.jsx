@@ -36,7 +36,9 @@ const MSG = defineMessages({
   },
 });
 
-export type Props = {|
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
+type Props = {|
   error: ?string,
   intl: IntlShape,
   page: string,
@@ -52,8 +54,7 @@ class Dashboard extends Component<Props> {
   authenticate = (provider: Provider) => {
     const { socket, wallet } = this.props;
     if (socket && wallet) {
-      const api = process.env.API_URL || 'http://localhost:8080';
-      const url = `${api}/auth/${provider}/`;
+      const url = `${server}/auth/${provider}/`;
       const params = `?socketId=${socket.id}&address=${wallet.address}`;
       if (typeof window !== 'undefined') window.open(url + params);
     }
