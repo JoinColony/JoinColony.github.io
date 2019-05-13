@@ -13,7 +13,7 @@ import Input from '~core/Input';
 import type { Provider, User } from '~types';
 
 import Address from './Address';
-import EmailInput from './EmailInput';
+import Email from './Email';
 import Name from './Name';
 
 import styles from './Account.module.css';
@@ -120,7 +120,7 @@ const Account = ({
             type="submit"
           />
         </div>
-        <EmailInput setUser={setUser} user={user} />
+        <Email setUser={setUser} user={user} />
         <div className={styles.field}>
           <Input
             disabled

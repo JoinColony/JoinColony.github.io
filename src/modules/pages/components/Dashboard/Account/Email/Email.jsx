@@ -8,23 +8,23 @@ import Input from '~core/Input';
 
 import type { User } from '~types';
 
-import styles from './EmailInput.module.css';
+import styles from './Email.module.css';
 
 const MSG = defineMessages({
-  emailInputLabel: {
-    id: 'pages.Dashboard.Account.EmailInput.emailInputLabel',
+  emailLabel: {
+    id: 'pages.Dashboard.Account.Email.emailLabel',
     defaultMessage: 'Email',
   },
-  emailInputCancel: {
-    id: 'pages.Dashboard.Account.EmailInput.emailInputCancel',
+  emailCancel: {
+    id: 'pages.Dashboard.Account.Email.emailCancel',
     defaultMessage: 'Cancel',
   },
-  emailInputEdit: {
-    id: 'pages.Dashboard.Account.EmailInput.emailInputEdit',
+  emailEdit: {
+    id: 'pages.Dashboard.Account.Email.emailEdit',
     defaultMessage: 'Edit',
   },
-  emailInputSave: {
-    id: 'pages.Dashboard.Account.EmailInput.emailInputSave',
+  emailSave: {
+    id: 'pages.Dashboard.Account.Email.emailSave',
     defaultMessage: 'Save',
   },
 });
@@ -34,29 +34,29 @@ type Props = {|
   user: User,
 |};
 
-const displayName = 'pages.Dashboard.Account.EmailInput';
+const displayName = 'pages.Dashboard.Account.Email';
 
-const EmailInput = ({ setUser, user }: Props) => {
+const Email = ({ setUser, user }: Props) => {
   const initialEmail = user.email || '';
   const [editEmail, setEditEmail] = useState(false);
-  const [emailInput, setEmailInput] = useState(initialEmail);
+  const [email, setEmail] = useState(initialEmail);
   const [emailError, setEmailError] = useState(null);
   const handleCancelEmail = () => {
-    setEmailInput(initialEmail);
+    setEmail(initialEmail);
     setEditEmail(false);
   };
   const handleChangeEmail = event => {
-    setEmailInput(event.target.value);
+    setEmail(event.target.value);
   };
   const handleSaveEmail = () => {
-    if (emailInput) {
+    if (email) {
       const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: emailInput,
+          email,
           sessionID: user.session.id,
         }),
       };
@@ -81,10 +81,10 @@ const EmailInput = ({ setUser, user }: Props) => {
           width: 'large',
         }}
         id="email"
-        label={MSG.emailInputLabel}
+        label={MSG.emailLabel}
         onChange={handleChangeEmail}
         type="text"
-        value={emailInput}
+        value={email}
       />
       <Button
         appearance={{
@@ -95,7 +95,7 @@ const EmailInput = ({ setUser, user }: Props) => {
         }}
         onClick={editEmail ? handleSaveEmail : () => setEditEmail(true)}
         style={editEmail ? { marginRight: '15px' } : {}}
-        text={editEmail ? MSG.emailInputSave : MSG.emailInputEdit}
+        text={editEmail ? MSG.emailSave : MSG.emailEdit}
         type="submit"
       />
       {editEmail && (
@@ -107,7 +107,7 @@ const EmailInput = ({ setUser, user }: Props) => {
             weight: 'medium',
           }}
           onClick={handleCancelEmail}
-          text={MSG.emailInputCancel}
+          text={MSG.emailCancel}
           type="submit"
         />
       )}
@@ -116,6 +116,6 @@ const EmailInput = ({ setUser, user }: Props) => {
   );
 };
 
-EmailInput.displayName = displayName;
+Email.displayName = displayName;
 
-export default EmailInput;
+export default Email;

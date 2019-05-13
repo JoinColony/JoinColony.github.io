@@ -23,8 +23,8 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.Address.copyAddressSuccess',
     defaultMessage: 'Copied',
   },
-  primaryAddressWarning: {
-    id: 'pages.Dashboard.Account.Address.primaryAddressWarning',
+  primaryAddress: {
+    id: 'pages.Dashboard.Account.Address.primaryAddress',
     defaultMessage: `This is not your primary address. {updateAddress}.`,
   },
   updateAddress: {
@@ -117,7 +117,7 @@ const Address = ({ setUser, user, wallet }: Props) => {
                 />
               ),
             }}
-            {...MSG.primaryAddressWarning}
+            {...MSG.primaryAddress}
           />
         </div>
       )}

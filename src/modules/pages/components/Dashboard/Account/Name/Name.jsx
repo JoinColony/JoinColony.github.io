@@ -11,16 +11,16 @@ import type { User } from '~types';
 import styles from './Name.module.css';
 
 const MSG = defineMessages({
-  nameInputCancel: {
-    id: 'pages.Dashboard.Account.Name.nameInputCancel',
+  nameCancel: {
+    id: 'pages.Dashboard.Account.Name.nameCancel',
     defaultMessage: 'Cancel',
   },
-  nameInputEdit: {
-    id: 'pages.Dashboard.Account.Name.nameInputEdit',
+  nameEdit: {
+    id: 'pages.Dashboard.Account.Name.nameEdit',
     defaultMessage: 'Edit',
   },
-  nameInputSave: {
-    id: 'pages.Dashboard.Account.Name.nameInputSave',
+  nameSave: {
+    id: 'pages.Dashboard.Account.Name.nameSave',
     defaultMessage: 'Save',
   },
 });
@@ -99,7 +99,7 @@ const Name = ({ setUser, user }: Props) => {
             }}
             onClick={handleSaveName}
             style={{ marginRight: '15px' }}
-            text={MSG.nameInputSave}
+            text={MSG.nameSave}
             type="submit"
           />
           <Button
@@ -110,7 +110,7 @@ const Name = ({ setUser, user }: Props) => {
               weight: 'medium',
             }}
             onClick={handleCancelName}
-            text={MSG.nameInputCancel}
+            text={MSG.nameCancel}
             type="submit"
           />
         </div>
