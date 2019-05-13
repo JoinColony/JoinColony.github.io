@@ -37,6 +37,7 @@ const MSG = defineMessages({
 });
 
 export type Props = {|
+  error: ?string,
   intl: IntlShape,
   page: string,
   setUser: (user: ?User) => void,
@@ -70,6 +71,7 @@ class Dashboard extends Component<Props> {
 
   render = () => {
     const {
+      error,
       intl: { formatMessage },
       page,
       setUser,
@@ -86,7 +88,9 @@ class Dashboard extends Component<Props> {
       return <MetaMask />;
     }
     if (wallet && !user && !closing) {
-      return <Login wallet={wallet} authenticate={this.authenticate} />;
+      return (
+        <Login authenticate={this.authenticate} error={error} wallet={wallet} />
+      );
     }
     return (
       <>

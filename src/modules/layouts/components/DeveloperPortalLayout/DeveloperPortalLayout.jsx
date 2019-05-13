@@ -53,7 +53,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     return false;
   }, []);
   const { network, wallet } = useMetaMask(dashboard);
-  const { setUser, socket, user } = useServer();
+  const { error, setUser, socket, user } = useServer();
   return (
     <div>
       <Header
@@ -67,6 +67,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       <div className={styles.body}>
         {dashboard
           ? cloneElement(children, {
+              error,
               network,
               setUser,
               socket,

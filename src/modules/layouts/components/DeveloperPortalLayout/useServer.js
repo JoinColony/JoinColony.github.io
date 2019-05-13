@@ -9,7 +9,7 @@ import type { User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
-const getUser = (setUser, setUserError, user) => {
+const getUser = (setUser, setError, user) => {
   const options = {
     method: 'GET',
     headers: {
@@ -20,28 +20,33 @@ const getUser = (setUser, setUserError, user) => {
   fetch(`http://localhost:8080/api/user?sessionID=${user.session.id}`, options)
     .then(response => response.json())
     .then(data => {
-      setUser(data.user);
+      if (data.error) {
+        setError(data.error);
+        setUser(null);
+      } else {
+        setUser(data.user);
+      }
     })
-    .catch(message => {
-      setUserError(message);
+    .catch(error => {
+      setError(error);
     });
 };
 
 const useServer = () => {
-  const [userError, setUserError] = useState<?string>(null);
+  const [error, setError] = useState<?string>(null);
+  const [fetched, setFetched] = useState<?boolean>(false);
   const [socket, setSocket] = useState<?Socket>(null);
   const [user, setUser] = useState<?User>(null);
-  const [userFetched, setUserFetched] = useState<?boolean>(false);
 
   useEffect(() => setUser(getStore('user')), []);
   useEffect(() => setStore('user', user), [user]);
 
   useEffect(() => {
-    if (!userFetched && user) {
-      getUser(setUser, setUserError, user);
-      setUserFetched(true);
+    if (!fetched && user) {
+      getUser(setUser, setError, user);
+      setFetched(true);
     }
-  }, [userFetched, user]);
+  }, [fetched, user]);
 
   useEffect(() => {
     if (!socket) {
@@ -61,7 +66,7 @@ const useServer = () => {
     };
   }, [socket]);
 
-  return { setUser, socket, user, userError };
+  return { error, setUser, socket, user };
 };
 
 export default useServer;
