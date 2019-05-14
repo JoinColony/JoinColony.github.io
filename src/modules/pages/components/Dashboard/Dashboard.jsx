@@ -96,9 +96,11 @@ class Dashboard extends Component<Props> {
     return (
       <>
         <SEO description={MSG.pageDescription} title={title} />
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
+        {/*
+          Helmet title must be a prop to work with react hooks.
+          See https://github.com/nfl/react-helmet/issues/437
+        */}
+        <Helmet title={title} />
         <main className={styles.main}>
           <div className={styles.mainInnerContainer}>
             <div className={styles.sidebar}>
