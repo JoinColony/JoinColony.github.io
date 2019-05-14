@@ -4,38 +4,40 @@ import type { WalletObjectType } from '@colony/purser-core';
 
 export type Provider = 'github' | 'discourse';
 
-export type Email = {|
-  email: string,
-|};
-
 export type Discourse = {|
-  email?: string,
-  name?: string,
-  photo?: string,
+  email: ?string,
+  name: ?string,
+  photo: ?string,
   username: string,
 |};
 
 export type GitHub = {|
-  email?: string,
-  name?: string,
+  email: ?string,
+  name: ?string,
   photo: string,
   username: string,
 |};
 
-export type Network =
-  | 'main'
-  | 'ropsten'
-  | 'kovan'
-  | 'rinkeby'
-  | 'goerli'
-  | 'private'
-  | null;
+export type Session = {|
+  id: string,
+|};
 
-export type Store = 'email' | 'discourse' | 'github' | 'network' | 'wallet';
+export type User = {|
+  addresses: Array<string>,
+  admin: boolean,
+  discourse: ?Discourse,
+  email: ?string,
+  github: GitHub,
+  name: string,
+  session: Session,
+|};
 
-export type StoreObject =
-  | Email
-  | Discourse
-  | GitHub
-  | Network
-  | WalletObjectType;
+export type Network = {|
+  id: number,
+  name: string,
+  color: string,
+|};
+
+export type Store = 'network' | 'user' | 'wallet';
+
+export type StoreObject = Network | User | WalletObjectType;

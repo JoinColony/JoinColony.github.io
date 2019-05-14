@@ -1,0 +1,24 @@
+.main {
+  align-items: center;
+  display: flex;
+  height: 40px;
+}
+
+.name {
+  border: none;
+  color: #00284B;
+  font-family: 'Avenir Next Demi';
+  font-size: 32px;
+  padding: 0;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+  margin: 20px auto;
+}

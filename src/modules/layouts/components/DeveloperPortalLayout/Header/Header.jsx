@@ -6,7 +6,7 @@ import type { IntlShape } from 'react-intl';
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
-import type { GitHub, Network, Project } from '~types';
+import type { Network, Project, User } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -52,15 +52,11 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
-  github: ?GitHub,
+  dashboard: boolean,
   intl: IntlShape,
-  match: ?{
-    ['*']: string,
-    uri: string,
-    path: string,
-  },
   network: ?Network,
   openSourceProjects: Array<Project>,
+  user: ?User,
   wallet: ?WalletObjectType,
 |};
 
@@ -68,12 +64,12 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
   coreProjects,
-  github,
+  dashboard,
   intl: { formatMessage },
   intl,
-  match,
   network,
   openSourceProjects,
+  user,
   wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -90,10 +86,13 @@ const Header = ({
               viewBox="0 0 134 33"
             />
           </Link>
-          {wallet && network && (
+          {wallet && network && user && (
             <div className={styles.network}>
-              <div className={styles.dot} />
-              {network}
+              <div
+                className={styles.networkDot}
+                style={{ borderColor: network.color }}
+              />
+              {network.name}
             </div>
           )}
         </div>
@@ -157,15 +156,15 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: match ? 'primary' : 'primaryHollow',
-              color: match ? 'white' : undefined,
+              theme: dashboard ? 'primary' : 'primaryHollow',
+              color: dashboard ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
-              weight: 'medium',
               width: 'fixed',
             }}
             linkTo={PAGE_DEVELOPER_DASHBOARD}
-            text={github ? MSG.navButtonDashboard : MSG.navButtonLogin}
+            style={{ marginLeft: '10px' }}
+            text={user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>
         <div className={styles.navToggle}>

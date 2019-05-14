@@ -17,41 +17,6 @@
   width: 160px;
 }
 
-.name {
-  color: #00284B;
-  font-family: 'Avenir Next Demi';
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.address {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin: 24px auto;
-}
-
-.copyAddress {
-  margin: 0 10px;
-  width: 12px;
-}
-
-.copyAddress:hover {
-  cursor: pointer;
-}
-
-.copyAddressSuccess span {
-  color: #788CA0;
-  font-size: 12px;
-  position: absolute;
-}
-
-.blockies {
-  border-radius: 50%;
-  margin-right: 10px;
-  margin-bottom: 2px;
-}
-
 .statistic {
   display: inline-block;
   margin-right: 20px;

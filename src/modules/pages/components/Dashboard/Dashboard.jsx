@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
-import type { Discourse, Email, GitHub, Provider } from '~types';
+import type { Provider, User } from '~types';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -36,16 +36,15 @@ const MSG = defineMessages({
   },
 });
 
-export type Props = {|
-  discourse: ?Discourse,
-  email: ?Email,
-  github: ?GitHub,
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
+type Props = {|
+  error: ?string,
   intl: IntlShape,
   page: string,
-  setDiscourse: (discourse: ?Discourse) => void,
-  setEmail: (email: ?Email) => void,
-  setGitHub: (github: ?GitHub) => void,
+  setUser: (user: ?User) => void,
   socket: ?Socket,
+  user: ?User,
   wallet: ?WalletObjectType,
 |};
 
@@ -53,32 +52,31 @@ class Dashboard extends Component<Props> {
   static displayName = 'pages.Dashboard';
 
   authenticate = (provider: Provider) => {
-    const { socket } = this.props;
-    if (socket) {
-      const api = process.env.API_URL || 'http://localhost:8080';
-      const url = `${api}/auth/${provider}/?socketId=${socket.id}`;
-      if (typeof window !== 'undefined') window.open(url);
+    const { socket, wallet } = this.props;
+    if (socket && wallet) {
+      const url = `${server}/auth/${provider}/`;
+      const params = `?socketId=${socket.id}&address=${wallet.address}`;
+      if (typeof window !== 'undefined') window.open(url + params);
     }
   };
 
   disconnect = (provider: Provider) => {
-    const { setGitHub, setDiscourse } = this.props;
-    if (setDiscourse && provider === 'discourse') {
-      setDiscourse(null);
+    const { setUser, user } = this.props;
+    if (setUser && provider === 'discourse') {
+      setUser({ ...user, discourse: null });
     }
-    if (setGitHub && provider === 'github') {
-      setGitHub(null);
+    if (setUser && provider === 'github') {
+      setUser(null);
     }
   };
 
   render = () => {
     const {
-      discourse,
-      email,
-      github,
+      error,
       intl: { formatMessage },
       page,
-      setEmail,
+      setUser,
+      user,
       wallet,
     } = this.props;
     const title = formatMessage(MSG.pageTitle);
@@ -90,43 +88,43 @@ class Dashboard extends Component<Props> {
     if (!wallet && !closing) {
       return <MetaMask />;
     }
-    if (wallet && !github && !closing) {
-      return <Login wallet={wallet} authenticate={this.authenticate} />;
+    if (wallet && !user && !closing) {
+      return (
+        <Login authenticate={this.authenticate} error={error} wallet={wallet} />
+      );
     }
     return (
       <>
         <SEO description={MSG.pageDescription} title={title} />
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
+        {/*
+          Helmet title must be a prop to work with react hooks.
+          See https://github.com/nfl/react-helmet/issues/437
+        */}
+        <Helmet title={title} />
         <main className={styles.main}>
           <div className={styles.mainInnerContainer}>
             <div className={styles.sidebar}>
               <Sidebar active={page || 'account'} />
             </div>
-            {github && wallet ? (
+            {wallet && user ? (
               <main className={styles.content}>
                 <Router primary={false}>
                   <Account
                     path={page ? '/dashboard/account' : '/dashboard'}
                     authenticate={this.authenticate}
                     disconnect={this.disconnect}
-                    discourse={discourse}
-                    email={email}
-                    github={github}
-                    setEmail={setEmail}
+                    setUser={setUser}
+                    user={user}
                     wallet={wallet}
                   />
                   <Colonies
                     path="/dashboard/colonies"
-                    discourse={discourse}
-                    github={github}
+                    user={user}
                     wallet={wallet}
                   />
                   <Contributions
                     path="/dashboard/contributions"
-                    discourse={discourse}
-                    github={github}
+                    user={user}
                     wallet={wallet}
                   />
                 </Router>

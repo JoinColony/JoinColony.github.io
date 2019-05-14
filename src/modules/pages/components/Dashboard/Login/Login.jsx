@@ -13,37 +13,38 @@ import type { Provider } from '~types';
 import styles from './Login.module.css';
 
 const MSG = defineMessages({
-  createAccountMessage: {
-    id: 'pages.Dashboard.createAccountMessage',
-    defaultMessage: "MetaMask connected. Let's set up your developer account.",
+  connectGitHubMessage: {
+    id: 'pages.Dashboard.connectGitHubMessage',
+    defaultMessage: "MetaMask connected. Let's connect your GitHub account.",
   },
-  createAccountInputLabel: {
-    id: 'pages.Dashboard.createAccountInputLabel',
+  connectGitHubInputLabel: {
+    id: 'pages.Dashboard.connectGitHubInputLabel',
     defaultMessage: `Wallet Address`,
   },
-  createAccountGitHubButton: {
-    id: 'pages.Dashboard.createAccountGitHubButton',
-    defaultMessage: `Connect to GitHub`,
+  connectGitHubButton: {
+    id: 'pages.Dashboard.connectGitHubButton',
+    defaultMessage: `Connect GitHub`,
   },
-  createAccountGitHubMessage: {
-    id: 'pages.Dashboard.createAccountGitHubMessage',
-    defaultMessage: `Connect to GitHub to finish setting up your account. We'll
-    use your GitHub account to reward you for contributions.`,
+  connectGitHubGitHubMessage: {
+    id: 'pages.Dashboard.connectGitHubGitHubMessage',
+    defaultMessage: `We'll use your GitHub account to reward you for
+    contributions.`,
   },
 });
 
 type Props = {|
   authenticate: (provider: Provider) => void,
+  error: ?string,
   wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Login';
 
-const Login = ({ authenticate, wallet }: Props) => (
+const Login = ({ authenticate, error, wallet }: Props) => (
   <div className={styles.main}>
     <div className={styles.content}>
       <p className={styles.text}>
-        <FormattedMessage {...MSG.createAccountMessage} />
+        <FormattedMessage {...MSG.connectGitHubMessage} />
       </p>
       <div className={styles.field}>
         <Input
@@ -54,7 +55,7 @@ const Login = ({ authenticate, wallet }: Props) => (
             width: 'stretch',
           }}
           id="address"
-          label={MSG.createAccountInputLabel}
+          label={MSG.connectGitHubInputLabel}
           type="text"
           value={wallet.address}
         />
@@ -65,16 +66,16 @@ const Login = ({ authenticate, wallet }: Props) => (
             theme: 'primary',
             color: 'white',
             padding: 'huge',
-            weight: 'medium',
             width: 'stretch',
           }}
           onClick={() => authenticate('github')}
-          text={MSG.createAccountGitHubButton}
+          text={MSG.connectGitHubButton}
         />
       </div>
       <p className={styles.subtext}>
-        <FormattedMessage {...MSG.createAccountGitHubMessage} />
+        <FormattedMessage {...MSG.connectGitHubGitHubMessage} />
       </p>
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   </div>
 );

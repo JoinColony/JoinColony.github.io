@@ -1,0 +1,43 @@
+.main {
+  margin: 20px auto;
+}
+
+.blockies {
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.address {
+  align-items: center;
+  display: flex;
+}
+
+.copyAddress {
+  margin: 0 10px;
+  width: 12px;
+}
+
+.copyAddress:hover {
+  cursor: pointer;
+}
+
+.copyAddressSuccess span {
+  color: #788CA0;
+  font-size: 12px;
+  position: absolute;
+}
+
+.primaryAddress {
+  color: #788CA0;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+  margin: 5px auto;
+}

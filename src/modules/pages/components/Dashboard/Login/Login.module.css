@@ -14,6 +14,14 @@
   width: 500px;
 }
 
+.error {
+  background: red;
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+}
+
 .text {
   font-family: 'Avenir Next Demi';
   font-size: 18px;
@@ -27,7 +35,7 @@
 }
 
 .subtext {
-  font-size: 12px;
-  margin: 10px auto;
+  font-size: 14px;
+  margin: 20px auto;
   padding: 0;
 }
