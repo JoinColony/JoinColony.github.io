@@ -89,7 +89,7 @@ const Address = ({ setUser, user, wallet }: Props) => {
         {wallet.address}
         {copied ? (
           <div className={styles.copyAddressSuccess}>
-            <Button appearance={{ theme: 'reset' }} onClick={handleCopyAddress}>
+            <Button appearance={{ theme: 'reset' }} disabled>
               <Image
                 className={styles.copyAddress}
                 alt={MSG.copyAddress}
