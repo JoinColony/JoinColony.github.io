@@ -6,7 +6,7 @@ import { open } from '@colony/purser-metamask';
 import { useCallback, useEffect, useState } from 'react';
 import Web3 from 'web3';
 
-import type { Network } from '~types';
+import type { Network, User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
@@ -53,78 +53,85 @@ const getNetworkInfo = (id: number) => {
   }
 };
 
-const useMetaMask = (dashboard: boolean) => {
-  const [loading, setLoading] = useState<boolean>(false);
+const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
+  const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
+  const [loadedNetwork, setLoadedNetwork] = useState<boolean>(false);
+  const [loadedWallet, setLoadedWallet] = useState<boolean>(false);
+  const [loadingWallet, setLoadingWallet] = useState<boolean>(false);
   const [network, setNetwork] = useState<?Network>(null);
   const [wallet, setWallet] = useState<?WalletObjectType>(null);
 
-  useEffect(() => setWallet(getStore('network')), []);
-  useEffect(() => setWallet(getStore('wallet')), []);
+  const openWallet = useCallback(async () => {
+    setLoadingWallet(true);
+    const result = await open();
+    setStore('wallet', result);
+    setWallet(result);
+    setLoadingWallet(false);
+  }, []);
+
+  const getNetwork = useCallback(async () => {
+    web3.setProvider(web3.givenProvider);
+    const id = await web3.eth.net.getId();
+    const result = getNetworkInfo(id);
+    setNetwork(result);
+  }, []);
+
+  const handleChangeAccount = useCallback(
+    metamask => {
+      if (!metamask.selectedAddress) {
+        setStore('wallet', null);
+        setWallet(null);
+        setUser(null);
+      } else if (wallet && metamask.selectedAddress !== wallet.address) {
+        openWallet();
+      }
+    },
+    [openWallet, setUser, wallet],
+  );
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localNetwork = getStore('network');
+      const localWallet = getStore('wallet');
+      setNetwork(localNetwork);
+      setWallet(localWallet);
+      setLoadedLocal(true);
+    }
+  }, [loadedLocal]);
 
   useEffect(() => setStore('network', network), [network]);
   useEffect(() => setStore('wallet', wallet), [wallet]);
 
-  const openWallet = useCallback(async () => {
-    setLoading(true);
-    const result = await open();
-    setWallet(result);
-    setStore('wallet', result);
-    setLoading(false);
-  }, []);
-
   useEffect(() => {
-    if (dashboard) {
+    if (dashboard && !loadedWallet) {
       openWallet();
+      setLoadedWallet(true);
     }
-  }, [dashboard, openWallet]);
-
-  const accountChangedCallback = useCallback(
-    metamask => {
-      if (wallet && !loading && !metamask.selectedAddress) {
-        setWallet(null);
-        setStore('wallet', null);
-      } else if (
-        wallet &&
-        !loading &&
-        metamask.selectedAddress &&
-        metamask.selectedAddress !== wallet.address
-      ) {
-        openWallet();
-      }
-    },
-    [loading, openWallet, wallet],
-  );
+  }, [dashboard, loadedWallet, openWallet]);
 
   useEffect(() => {
-    (async () => {
-      if (web3.currentProvider) {
-        // eslint-disable-next-line no-underscore-dangle
-        web3.currentProvider.publicConfigStore._events.update.push(
-          accountChangedCallback,
-        );
-      }
-    })();
+    if (dashboard && !loadedNetwork && loadedWallet) {
+      getNetwork();
+      setLoadedNetwork(true);
+    }
+  }, [dashboard, getNetwork, loadedNetwork, loadedWallet]);
+
+  useEffect(() => {
+    if (!loadingWallet && wallet && web3.currentProvider) {
+      // eslint-disable-next-line no-underscore-dangle
+      web3.currentProvider.publicConfigStore._events.update.push(
+        handleChangeAccount,
+      );
+    }
     return () => {
       if (web3.currentProvider) {
         // eslint-disable-next-line no-underscore-dangle
         web3.currentProvider.publicConfigStore._events.update.pop(
-          accountChangedCallback,
+          handleChangeAccount,
         );
       }
     };
-  }, [accountChangedCallback]);
-
-  useEffect(() => {
-    if (web3.givenProvider) {
-      const getNetwork = async () => {
-        web3.setProvider(web3.givenProvider);
-        const result = await web3.eth.net.getId();
-        const networkInfo = getNetworkInfo(result);
-        setNetwork(networkInfo);
-      };
-      getNetwork();
-    }
-  }, []);
+  }, [handleChangeAccount, loadingWallet, wallet]);
 
   return { network, wallet };
 };

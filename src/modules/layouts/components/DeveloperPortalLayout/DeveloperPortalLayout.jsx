@@ -52,8 +52,8 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     }
     return false;
   }, []);
-  const { network, wallet } = useMetaMask(dashboard);
   const { error, setUser, socket, user } = useServer();
+  const { network, wallet } = useMetaMask(dashboard, setUser);
   return (
     <div>
       <Header
