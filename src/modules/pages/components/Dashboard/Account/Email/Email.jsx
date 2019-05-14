@@ -49,7 +49,7 @@ const Email = ({ setUser, user }: Props) => {
     setError(null);
   };
   const handleChangeEmail = event => {
-    setEmail(event.target.value);
+    setEmail(event.currentTarget.value);
   };
   const handleSaveEmail = () => {
     if (email) {

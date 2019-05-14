@@ -45,7 +45,7 @@ const Name = ({ setUser, user }: Props) => {
     setError(null);
   };
   const handleChangeName = event => {
-    setName(event.target.value);
+    setName(event.currentTarget.value);
   };
   const handleSaveName = () => {
     if (name) {
