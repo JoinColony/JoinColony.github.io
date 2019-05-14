@@ -11,42 +11,46 @@ import { getStore, setStore } from './localStorage';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const getUser = (setUser, setError, user) => {
-  const options = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  };
-  // eslint-disable-next-line no-undef
-  fetch(`${server}/api/user?sessionID=${user.session.id}`, options)
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        setError(data.error);
-        setUser(null);
-      } else {
-        setUser(data.user);
-      }
-    })
-    .catch(error => {
-      setError(error);
-    });
-};
-
 const useServer = () => {
   const [error, setError] = useState<?string>(null);
-  const [fetched, setFetched] = useState<?boolean>(false);
+  const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
+  const [loadedUser, setLoadedUser] = useState<?boolean>(false);
   const [socket, setSocket] = useState<?Socket>(null);
   const [user, setUser] = useState<?User>(null);
 
-  useEffect(() => setUser(getStore('user')), []);
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localUser = getStore('user');
+      setUser(localUser);
+      setLoadedLocal(true);
+    }
+  }, [loadedLocal]);
+
   useEffect(() => setStore('user', user), [user]);
 
   useEffect(() => {
-    if (!fetched && user) {
-      getUser(setUser, setError, user);
-      setFetched(true);
+    if (!loadedUser && user) {
+      const options = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      };
+      // eslint-disable-next-line no-undef
+      fetch(`${server}/api/user?sessionID=${user.session.id}`, options)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            setError(data.error);
+            setUser(null);
+          } else {
+            setUser(data.user);
+          }
+        })
+        .catch(err => {
+          setError(err);
+        });
+      setLoadedUser(true);
     }
-  }, [fetched, user]);
+  }, [loadedUser, user]);
 
   useEffect(() => {
     if (!socket) {
