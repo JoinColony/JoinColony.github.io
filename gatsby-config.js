@@ -100,7 +100,7 @@ const sourcePlugins = {
         {
           owner: 'JoinColony',
           repo: 'colonyJS',
-          expression: 'develop:docs/',
+          expression: 'master:docs/',
           name: 'colonyJS',
         },
         {
@@ -152,7 +152,7 @@ module.exports = {
   plugins: [
     {
       resolve: 'gatsby-plugin-i18n',
-      options: {        
+      options: {
         langKeyDefault: defaultLangKey,
         useLangKeyLayout: false,
         prefixDefault: prefixDefaultLangKey,
