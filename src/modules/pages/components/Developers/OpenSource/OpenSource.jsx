@@ -31,11 +31,11 @@ type Props = {|
 |};
 
 const projectSortOrder: Array<string> = [
-  'budgetBox',
+  'purser',
   'tailor',
   'pinion',
   'trufflepig',
-  'purser',
+  'budgetBox',
   'solcover',
 ];
 
