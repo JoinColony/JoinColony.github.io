@@ -1,2 +1,2 @@
 /* @flow */
-export { default } from './OpenSource.jsx';
+export { openSourceProjectSortOrder, default } from './OpenSource.jsx';
