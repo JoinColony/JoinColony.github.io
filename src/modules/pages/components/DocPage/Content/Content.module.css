@@ -67,6 +67,10 @@
   background: rgba(240, 245, 247, 0.6);
 }
 
+.astContent li {
+  font-size: .85rem;
+}
+
 .astContent pre {
   margin: 0 0 1.45rem 0;
   overflow-x: auto;
