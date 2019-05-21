@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://docs.colony.io/colonynetwork/docs-extensions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-get-started</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-overview</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/docs-modular-permissions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-releases</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-the-delegate-proxy-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/intro-welcome</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -13,7 +15,7 @@
 <url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-pots-and-funding</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-reputation</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-reputation-mining</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-tasks</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-tasks-and-payments</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/bug-bounty-program-overview</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/bug-bounty-program-terms-and-conditions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/api-colonyclient</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -28,13 +30,13 @@
 <url> <loc>https://docs.colony.io/colonyjs/intro-get-started</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/intro-local-setup</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/intro-welcome</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonyjs/topics-colony-roles</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-domains-and-skills</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://docs.colony.io/colonyjs/topics-managing-permissions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://docs.colony.io/colonyjs/topics-task-lifecycle</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonyjs/topics-reputation-and-rewards</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonyjs/topics-tasks-and-payments</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-tokens-and-funding</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-using-ipfs</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-using-multisignature</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://docs.colony.io/colonyjs/topics-viewing-reputation</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonystarter/cli-colony-cli</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonystarter/docs-linux-setup</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonystarter/docs-overview</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
