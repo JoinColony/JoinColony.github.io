@@ -30,12 +30,12 @@ type Props = {|
   intl: IntlShape,
 |};
 
-const projectSortOrder: Array<string> = [
-  'budgetBox',
+export const openSourceProjectSortOrder: Array<string> = [
+  'purser',
   'tailor',
   'pinion',
   'trufflepig',
-  'purser',
+  'budgetBox',
   'solcover',
 ];
 
@@ -53,7 +53,8 @@ const OpenSource = ({ intl: { locale } }: Props) => {
     // Sort projects by order defined in above array
     .sort(
       ({ name: nameA }, { name: nameB }) =>
-        projectSortOrder.indexOf(nameA) - projectSortOrder.indexOf(nameB),
+        openSourceProjectSortOrder.indexOf(nameA) -
+        openSourceProjectSortOrder.indexOf(nameB),
     );
 
   return (

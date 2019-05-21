@@ -11,6 +11,9 @@ import Image from '~core/Image';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
 
+import { coreProjectSortOrder } from '~pages/Developers/CoreProducts';
+import { openSourceProjectSortOrder } from '~pages/Developers/OpenSource';
+
 import styles from './DocsDropdownContent.module.css';
 
 const MSG = defineMessages({
@@ -56,8 +59,20 @@ const DocsDropdownContent = ({
   intl: { formatMessage },
   openSourceProjects,
 }: Props) => {
-  const coreProjectsLinks = coreProjects.map(getProjectLinks);
-  const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
+  const coreProjectsLinks = coreProjects
+    .map(getProjectLinks)
+    .sort(
+      ({ text: textA }, { text: textB }) =>
+        coreProjectSortOrder.indexOf(textA) -
+        coreProjectSortOrder.indexOf(textB),
+    );
+  const openSourceProjectsLinks = openSourceProjects
+    .map(getProjectLinks)
+    .sort(
+      ({ text: textA }, { text: textB }) =>
+        openSourceProjectSortOrder.indexOf(textA) -
+        openSourceProjectSortOrder.indexOf(textB),
+    );
   const featureProject = coreProjects.find(({ name }) => name === 'colonyJS');
   const ariaLabel = formatMessage(MSG.ariaLabel);
   return (

@@ -1,2 +1,2 @@
 /* @flow */
-export { default } from './CoreProducts.jsx';
+export { coreProjectSortOrder, default } from './CoreProducts.jsx';

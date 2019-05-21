@@ -32,6 +32,12 @@ type Props = {|
   intl: IntlShape,
 |};
 
+export const coreProjectSortOrder: Array<string> = [
+  'colonyNetwork',
+  'colonyJS',
+  'colonyStarter',
+];
+
 const displayName = 'pages.Developers.CoreProducts';
 
 const CoreProducts = ({ intl: { locale } }: Props) => {
@@ -43,15 +49,12 @@ const CoreProducts = ({ intl: { locale } }: Props) => {
 
   const projects: Array<Project> = projectQueryData.coreProjects.edges
     .map(projectEdge => transformProjectData(projectEdge, locale))
-    // Order the projects alphabetically
-    .sort(({ name: nameARaw }, { name: nameBRaw }) => {
-      const nameA = nameARaw.toLowerCase();
-      const nameB = nameBRaw.toLowerCase();
-      if (nameA === nameB) {
-        return 0;
-      }
-      return nameA < nameB ? -1 : 1;
-    });
+    // Sort projects by order defined in above array
+    .sort(
+      ({ name: nameA }, { name: nameB }) =>
+        coreProjectSortOrder.indexOf(nameA) -
+        coreProjectSortOrder.indexOf(nameB),
+    );
 
   return (
     <div className={styles.main}>

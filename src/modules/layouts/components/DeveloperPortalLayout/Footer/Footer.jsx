@@ -18,6 +18,9 @@ import {
   PAGE_TERMS_SERVICE,
 } from '~routes';
 
+import { coreProjectSortOrder } from '~pages/Developers/CoreProducts';
+import { openSourceProjectSortOrder } from '~pages/Developers/OpenSource';
+
 import styles from './Footer.module.css';
 
 const MSG = defineMessages({
@@ -68,8 +71,20 @@ type Props = {|
 const displayName = 'layouts.DeveloperPortalLayout.Footer';
 
 const Footer = ({ coreProjects, openSourceProjects }: Props) => {
-  const coreProjectsLinks = coreProjects.map(getProjectLinks);
-  const openSourceProjectsLinks = openSourceProjects.map(getProjectLinks);
+  const coreProjectsLinks = coreProjects
+    .map(getProjectLinks)
+    .sort(
+      ({ text: textA }, { text: textB }) =>
+        coreProjectSortOrder.indexOf(textA) -
+        coreProjectSortOrder.indexOf(textB),
+    );
+  const openSourceProjectsLinks = openSourceProjects
+    .map(getProjectLinks)
+    .sort(
+      ({ text: textA }, { text: textB }) =>
+        openSourceProjectSortOrder.indexOf(textA) -
+        openSourceProjectSortOrder.indexOf(textB),
+    );
   return (
     <div className={styles.main}>
       <div className={styles.footerContent}>
