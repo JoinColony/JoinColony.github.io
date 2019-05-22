@@ -85,8 +85,11 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
       } else if (wallet && metamask.selectedAddress !== wallet.address) {
         openWallet();
       }
+      if (network && metamask.networkVersion !== network.id.toString()) {
+        getNetwork();
+      }
     },
-    [openWallet, setUser, wallet],
+    [getNetwork, network, openWallet, setUser, wallet],
   );
 
   useEffect(() => {
