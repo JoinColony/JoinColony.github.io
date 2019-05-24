@@ -18,36 +18,42 @@ const getNetworkInfo = (id: number) => {
       return {
         id,
         name: 'Main Ethereum Network',
+        slug: 'mainnet',
         color: '#29b6af',
       };
     case 3:
       return {
         id,
         name: 'Ropsten Test Network',
+        slug: 'ropsten',
         color: '#ff4a8d',
       };
     case 4:
       return {
         id,
         name: 'Rinkeby Test Network',
+        slug: 'rinkeby',
         color: '#f6c343',
       };
     case 5:
       return {
         id,
         name: 'Goerli Test Network',
+        slug: 'goerli',
         color: '#3099f2',
       };
     case 42:
       return {
         id,
         name: 'Kovan Test Network',
+        slug: 'kovan',
         color: '#7057ff',
       };
     default:
       return {
         id,
         name: 'Private Test Network',
+        slug: 'private',
         color: '#ffffff',
       };
   }

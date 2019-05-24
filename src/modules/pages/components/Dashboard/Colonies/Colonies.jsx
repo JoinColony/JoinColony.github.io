@@ -75,21 +75,28 @@ const Colonies = ({ network, setUser, user }: Props) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
-      {network && (network.id === 1 || network.id === 5) ? (
+      {network && (network.slug === 'mainnet' || network.slug === 'goerli') ? (
         <>
-          {user.colonies && user.colonies.length ? (
+          {user.colonies &&
+          user.colonies[network.slug] &&
+          user.colonies[network.slug].length ? (
             <div className={styles.main}>
               <h1 className={styles.title}>
                 <FormattedMessage {...MSG.mainTitle} />
               </h1>
               <div className={styles.content}>
                 <div className={styles.coloniesWrapper}>
-                  {user.colonies.map(colony => (
-                    <div className={styles.colony}>{colony}</div>
-                  ))}
+                  {user.colonies &&
+                    user.colonies[network.slug] &&
+                    user.colonies[network.slug].map(colony => (
+                      <div className={styles.colony} key={colony}>
+                        {colony}
+                      </div>
+                    ))}
                 </div>
                 {visible ? (
                   <AddColony
+                    network={network}
                     setUser={setUser}
                     setVisible={setVisible}
                     user={user}
@@ -143,6 +150,7 @@ const Colonies = ({ network, setUser, user }: Props) => {
                   </p>
                 </div>
                 <AddColony
+                  network={network}
                   setUser={setUser}
                   setVisible={setVisible}
                   user={user}

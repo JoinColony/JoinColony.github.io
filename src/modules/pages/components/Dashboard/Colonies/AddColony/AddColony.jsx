@@ -6,7 +6,7 @@ import { defineMessages } from 'react-intl';
 import Button from '~core/Button';
 import Input from '~core/Input';
 
-import type { User } from '~types';
+import type { Network, User } from '~types';
 
 import styles from './AddColony.module.css';
 
@@ -26,6 +26,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
+  network: Network,
   setUser: (user: User) => void,
   setVisible: (visible: boolean) => void,
   user: User,
@@ -33,45 +34,38 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Colonies.AddColony';
 
-// const server = process.env.SERVER_URL || 'http://localhost:8080';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddColony = ({ setUser, setVisible, user }: Props) => {
+const AddColony = ({ network, setUser, setVisible, user }: Props) => {
   const [address, setAddress] = useState('');
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const handleChangeAddress = event => {
     setAddress(event.currentTarget.value);
   };
   const handleAddColony = () => {
-    if (address) {
-      setUser({
-        ...user,
-        colonies:
-          user.colonies && user.colonies.length
-            ? [...user.colonies, address]
-            : [address],
-      });
-      setVisible(false);
-      // const options = {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ address }),
-      // };
-      // // eslint-disable-next-line no-undef
-      // fetch(`${server}/api/colonies?sessionID=${user.session.id}`, options)
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     if (data.error) {
-      //       setError(data.error);
-      //       setTimeout(() => {
-      //         setError(null);
-      //       }, 2000);
-      //     } else {
-      //       setUser({ ...user, colonies: data.colonies });
-      //     }
-      //   })
-      //   .catch(message => {
-      //     setError(message);
-      //   });
+    if (address && network) {
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ address, network: network.slug }),
+      };
+      // eslint-disable-next-line no-undef
+      fetch(`${server}/api/colonies?sessionID=${user.session.id}`, options)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            setError(data.error);
+            setTimeout(() => {
+              setError(null);
+            }, 2000);
+          } else {
+            setUser({ ...user, colonies: data.colonies });
+            setVisible(false);
+          }
+        })
+        .catch(message => {
+          setError(message);
+        });
     }
   };
   return (
@@ -97,9 +91,7 @@ const AddColony = ({ setUser, setVisible, user }: Props) => {
         text={MSG.buttonSubmit}
         type="submit"
       />
-      {/*
       {error && <div className={styles.error}>{error}</div>}
-      */}
     </div>
   );
 };

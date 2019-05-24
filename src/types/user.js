@@ -25,7 +25,10 @@ export type Session = {|
 export type User = {|
   addresses: Array<string>,
   admin: boolean,
-  colonies: ?Array<string>,
+  colonies: ?{
+    goerli: ?Array<string>,
+    mainnet: ?Array<string>,
+  },
   discourse: ?Discourse,
   email: ?string,
   github: GitHub,
@@ -36,6 +39,7 @@ export type User = {|
 export type Network = {|
   id: number,
   name: string,
+  slug: string,
   color: string,
 |};
 
