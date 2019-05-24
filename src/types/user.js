@@ -25,6 +25,7 @@ export type Session = {|
 export type User = {|
   addresses: Array<string>,
   admin: boolean,
+  colonies: ?Array<string>,
   discourse: ?Discourse,
   email: ?string,
   github: GitHub,

@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
-import type { Provider, User } from '~types';
+import type { Network, Provider, User } from '~types';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -41,6 +41,7 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 type Props = {|
   error: ?string,
   intl: IntlShape,
+  network: Network,
   page: string,
   setUser: (user: ?User) => void,
   socket: ?Socket,
@@ -74,6 +75,7 @@ class Dashboard extends Component<Props> {
     const {
       error,
       intl: { formatMessage },
+      network,
       page,
       setUser,
       user,
@@ -119,6 +121,8 @@ class Dashboard extends Component<Props> {
                   />
                   <Colonies
                     path="/dashboard/colonies"
+                    network={network}
+                    setUser={setUser}
                     user={user}
                     wallet={wallet}
                   />
