@@ -7,6 +7,13 @@
 <url> <loc>https://docs.colony.io/colonynetwork/docs-releases</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-reputation-mining-client</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-the-delegate-proxy-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-icolony</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-icolonynetwork</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-ietherrouter</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-imetacolony</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-irecovery</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-ireputationminingcycle</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/interface-itokenlocking</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/intro-welcome</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-colony</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/whitepaper-tldr-objections-and-disputes</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
