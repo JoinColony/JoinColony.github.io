@@ -1,6 +1,7 @@
 /* @flow */
 /* eslint-disable react/no-unused-prop-types */
 
+import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useState } from 'react';
@@ -12,6 +13,7 @@ import Button from '~core/Button';
 import Link from '~core/Link';
 
 import AddColony from './AddColony';
+import ColonyItem from './ColonyItem';
 
 import styles from './Colonies.module.css';
 
@@ -63,6 +65,7 @@ const MSG = defineMessages({
 
 type Props = {|
   network: Network,
+  networkClient: ?ColonyNetworkClient,
   path: string,
   setUser: (user: User) => void,
   user: User,
@@ -71,11 +74,13 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Colonies';
 
-const Colonies = ({ network, setUser, user }: Props) => {
+const Colonies = ({ network, networkClient, setUser, user }: Props) => {
   const [visible, setVisible] = useState(false);
+  const supportedNetwork =
+    network && (network.slug === 'mainnet' || network.slug === 'goerli');
   return (
     <>
-      {network && (network.slug === 'mainnet' || network.slug === 'goerli') ? (
+      {supportedNetwork ? (
         <>
           {user.colonies &&
           user.colonies[network.slug] &&
@@ -88,10 +93,13 @@ const Colonies = ({ network, setUser, user }: Props) => {
                 <div className={styles.coloniesWrapper}>
                   {user.colonies &&
                     user.colonies[network.slug] &&
-                    user.colonies[network.slug].map(colony => (
-                      <div className={styles.colony} key={colony}>
-                        {colony}
-                      </div>
+                    user.colonies[network.slug].map(colonyAddress => (
+                      <ColonyItem
+                        key={colonyAddress}
+                        colonyAddress={colonyAddress}
+                        network={network}
+                        networkClient={networkClient}
+                      />
                     ))}
                 </div>
                 {visible ? (

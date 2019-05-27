@@ -1,7 +1,8 @@
 /* @flow */
 
-import type { IntlShape } from 'react-intl';
+import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
+import type { IntlShape } from 'react-intl';
 import type { Socket } from 'socket.io-client';
 
 import React, { Component } from 'react';
@@ -42,6 +43,7 @@ type Props = {|
   error: ?string,
   intl: IntlShape,
   network: Network,
+  networkClient: ?ColonyNetworkClient,
   page: string,
   setUser: (user: ?User) => void,
   socket: ?Socket,
@@ -76,6 +78,7 @@ class Dashboard extends Component<Props> {
       error,
       intl: { formatMessage },
       network,
+      networkClient,
       page,
       setUser,
       user,
@@ -122,6 +125,7 @@ class Dashboard extends Component<Props> {
                   <Colonies
                     path="/dashboard/colonies"
                     network={network}
+                    networkClient={networkClient}
                     setUser={setUser}
                     user={user}
                     wallet={wallet}
