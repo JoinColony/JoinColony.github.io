@@ -21,6 +21,7 @@ const sourcePlugins = {
     //   options: {
     //     name: 'budgetBox',
     //     path: path.resolve(__dirname, '..', 'budgetBox', 'docs'),
+    //     ignore: [ '**/templates/*' ],
     //   },
     // },
     {
@@ -28,6 +29,7 @@ const sourcePlugins = {
       options: {
         name: 'colonyJS',
         path: path.resolve(__dirname, '..', 'colonyJS', 'docs'),
+        ignore: [ '**/templates/*' ],
       },
     },
     {
@@ -35,6 +37,7 @@ const sourcePlugins = {
       options: {
         name: 'colonyNetwork',
         path: path.resolve(__dirname, '..', 'colonyNetwork', 'docs'),
+        ignore: [ '**/templates/*' ],
       },
     },
     {
@@ -42,6 +45,7 @@ const sourcePlugins = {
       options: {
         name: 'colonyStarter',
         path: path.resolve(__dirname, '..', 'colonyStarter', 'docs'),
+        ignore: [ '**/templates/*' ],
       },
     },
     // {
@@ -49,6 +53,7 @@ const sourcePlugins = {
     //   options: {
     //     name: 'pinion',
     //     path: path.resolve(__dirname, '..', 'pinion', 'docs'),
+    //     ignore: [ '**/templates/*' ],
     //   },
     // },
     {
@@ -56,6 +61,7 @@ const sourcePlugins = {
       options: {
         name: 'purser',
         path: path.resolve(__dirname, '..', 'purser', 'docs'),
+        ignore: [ '**/templates/*' ],
       },
     },
     // {
@@ -63,6 +69,7 @@ const sourcePlugins = {
     //   options: {
     //     name: 'solcover',
     //     path: path.resolve(__dirname, '..', 'solcover', 'docs'),
+    //     ignore: [ '**/templates/*' ],
     //   },
     // },
     {
@@ -70,6 +77,7 @@ const sourcePlugins = {
       options: {
         name: 'tailor',
         path: path.resolve(__dirname, '..', 'tailor', 'docs'),
+        ignore: [ '**/templates/*' ],
       },
     },
     // {
@@ -77,6 +85,7 @@ const sourcePlugins = {
     //   options: {
     //     name: 'trufflepig',
     //     path: path.resolve(__dirname, '..', 'trufflepig', 'docs'),
+    //     ignore: [ '**/templates/*' ],
     //   },
     // },
   ],
