@@ -125,16 +125,16 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, [dashboard, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
-    if (!loadingWallet && wallet && Web3.currentProvider) {
+    if (!loadingWallet && wallet && web3.currentProvider) {
       // eslint-disable-next-line no-underscore-dangle
-      Web3.currentProvider.publicConfigStore._events.update.push(
+      web3.currentProvider.connection.publicConfigStore._events.update.push(
         handleChangeAccount,
       );
     }
     return () => {
-      if (Web3.currentProvider) {
+      if (web3.currentProvider.connection) {
         // eslint-disable-next-line no-underscore-dangle
-        Web3.currentProvider.publicConfigStore._events.update.pop(
+        web3.currentProvider.connection.publicConfigStore._events.update.pop(
           handleChangeAccount,
         );
       }
