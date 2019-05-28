@@ -68,8 +68,11 @@ const Name = ({ setUser, user }: Props) => {
             setEdit(false);
           }
         })
-        .catch(message => {
-          setError(message);
+        .catch(fetchError => {
+          setError(fetchError.message);
+          setTimeout(() => {
+            setError(null);
+          }, 2000);
         });
     }
   };

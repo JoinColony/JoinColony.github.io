@@ -55,8 +55,11 @@ const Address = ({ setUser, user, wallet }: Props) => {
           setUser({ ...user, addresses: data.addresses });
         }
       })
-      .catch(message => {
-        setError(message);
+      .catch(fetchError => {
+        setError(fetchError.message);
+        setTimeout(() => {
+          setError(null);
+        }, 2000);
       });
   };
   return (

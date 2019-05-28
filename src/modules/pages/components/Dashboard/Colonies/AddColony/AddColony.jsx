@@ -66,13 +66,19 @@ const AddColony = ({
         .then(data => {
           if (data.error) {
             setError(data.error);
+            setTimeout(() => {
+              setError(null);
+            }, 2000);
           } else {
             setUser({ ...user, colonies: data.colonies });
             setAddColony(false);
           }
         })
-        .catch(message => {
-          setError(message);
+        .catch(fetchError => {
+          setError(fetchError.message);
+          setTimeout(() => {
+            setError(null);
+          }, 2000);
         });
     } else {
       setError('The address you provided is not a valid colony address');
