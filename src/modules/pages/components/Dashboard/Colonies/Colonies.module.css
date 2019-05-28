@@ -1,7 +1,11 @@
-.main {
+.wrapper {
   color: #2E4153;
-  font-size: 16px;
+  display: flex;
   padding: 5%;
+}
+
+.main {
+  font-size: 16px;
 }
 
 .title {
@@ -23,7 +27,7 @@
 }
 
 .content {
-  max-width: 660px;
+  width: 660px;
 }
 
 .emptyItem {
@@ -35,4 +39,19 @@
   font-size: 18px;
   font-weight: normal;
   margin: 15px 0;
+}
+
+.learnMore {
+  margin-left: 10%;
+}
+
+.learnMore h4 {
+  font-family: 'Avenir Next Demi';
+  margin: 15px 0;
+}
+
+.learnMore a {
+  display: block;
+  font-size: 15px;
+  margin: 5px 0;
 }
