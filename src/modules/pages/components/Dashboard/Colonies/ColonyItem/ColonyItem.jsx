@@ -13,6 +13,8 @@ import {
   setStore,
 } from '../../../../../layouts/components/DeveloperPortalLayout/localStorage';
 
+import Copy from '~core/Copy';
+
 import styles from './ColonyItem.module.css';
 
 const MSG = defineMessages({
@@ -27,6 +29,10 @@ const MSG = defineMessages({
   colonyTokenAddress: {
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyTokenAddress',
     defaultMessage: 'Colony Token Address',
+  },
+  loading: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.loading',
+    defaultMessage: 'loading...',
   },
   network: {
     id: 'pages.Dashboard.Colonies.ColonyItem.network',
@@ -94,13 +100,19 @@ const ColonyItem = ({
               <div className={styles.label}>
                 <FormattedMessage {...MSG.colonyAddress} />
               </div>
-              <div className={styles.value}>{colony.colonyAddress}</div>
+              <div className={styles.value}>
+                {colony.colonyAddress}
+                <Copy copyTarget={colony.colonyAddress} />
+              </div>
             </div>
             <div className={styles.field}>
               <div className={styles.label}>
                 <FormattedMessage {...MSG.colonyTokenAddress} />
               </div>
-              <div className={styles.value}>{colony.tokenAddress}</div>
+              <div className={styles.value}>
+                {colony.tokenAddress}
+                <Copy copyTarget={colony.tokenAddress} />
+              </div>
             </div>
           </div>
           <div>
@@ -119,7 +131,9 @@ const ColonyItem = ({
           </div>
         </div>
       ) : (
-        <p>loading...</p>
+        <p>
+          <FormattedMessage {...MSG.loading} />
+        </p>
       )}
     </div>
   );

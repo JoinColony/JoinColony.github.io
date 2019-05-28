@@ -4,8 +4,6 @@ import React, { useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import copy from 'copy-to-clipboard';
 
-import { getMainClasses } from '~utils/css';
-
 import Button from '~core/Button';
 import Image from '~core/Image';
 
@@ -22,62 +20,42 @@ const MSG = defineMessages({
   },
 });
 
-type Appearance = {
-  theme?: 'primary',
-};
-
 type Props = {
-  /** Appearance object */
-  appearance?: Appearance,
-  /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
-  className?: string,
   /** The text that will be copied */
   copyTarget: string,
 };
 
 const displayName = 'Copy';
 
-const Copy = ({
-  appearance = { theme: 'primary' },
-  className,
-  copyTarget,
-  ...rest
-}: Props) => {
+const Copy = ({ copyTarget }: Props) => {
   const [copied, setCopied] = useState(false);
-  const handleCopyAddress = useCallback(() => {
+  const handleCopy = useCallback(() => {
     copy(copyTarget);
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
   }, [copyTarget]);
-  const classNames = className || getMainClasses(appearance, styles);
   if (copied) {
     return (
-      <div className={styles.copied} {...rest}>
-        <Button
-          appearance={{ theme: 'reset' }}
-          className={classNames}
-          disabled
-          type="submit"
-          {...rest}
-        >
+      <div className={styles.main}>
+        <Button appearance={{ theme: 'reset' }} disabled type="submit">
           <Image className={styles.copy} alt={MSG.copy} src="/img/copied.svg" />
-          <FormattedMessage {...MSG.copied} />
         </Button>
+        <FormattedMessage {...MSG.copied} />
       </div>
     );
   }
   return (
-    <Button
-      appearance={{ theme: 'reset' }}
-      className={classNames}
-      onClick={handleCopyAddress}
-      type="submit"
-      {...rest}
-    >
-      <Image className={styles.copy} alt={MSG.copy} src="/img/copy.svg" />
-    </Button>
+    <div className={styles.main}>
+      <Button
+        appearance={{ theme: 'reset' }}
+        onClick={handleCopy}
+        type="submit"
+      >
+        <Image className={styles.copy} alt={MSG.copy} src="/img/copy.svg" />
+      </Button>
+    </div>
   );
 };
 
