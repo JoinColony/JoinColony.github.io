@@ -2,27 +2,18 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 // import Blockies from 'react-blockies';
-import copy from 'copy-to-clipboard';
 
 import type { User } from '~types';
 
 import Button from '~core/Button';
-import Image from '~core/Image';
+import Copy from '~core/Copy';
 
 import styles from './Address.module.css';
 
 const MSG = defineMessages({
-  copyAddress: {
-    id: 'pages.Dashboard.Account.Address.copyAddress',
-    defaultMessage: 'Copy Address',
-  },
-  copyAddressSuccess: {
-    id: 'pages.Dashboard.Account.Address.copyAddressSuccess',
-    defaultMessage: 'Copied',
-  },
   primaryAddress: {
     id: 'pages.Dashboard.Account.Address.primaryAddress',
     defaultMessage: `This is not your primary address. {updateAddress}.`,
@@ -44,15 +35,7 @@ const displayName = 'pages.Dashboard.Account.Address';
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Address = ({ setUser, user, wallet }: Props) => {
-  const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
-  const handleCopyAddress = useCallback(() => {
-    copy(wallet.address);
-    setCopied(true);
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  }, [wallet.address]);
   const handleUpdateAddress = () => {
     const options = {
       method: 'POST',
@@ -87,26 +70,7 @@ const Address = ({ setUser, user, wallet }: Props) => {
         />
         */}
         {wallet.address}
-        {copied ? (
-          <div className={styles.copyAddressSuccess}>
-            <Button appearance={{ theme: 'reset' }} disabled>
-              <Image
-                className={styles.copyAddress}
-                alt={MSG.copyAddress}
-                src="/img/copied.svg"
-              />
-              <FormattedMessage {...MSG.copyAddressSuccess} />
-            </Button>
-          </div>
-        ) : (
-          <Button appearance={{ theme: 'reset' }} onClick={handleCopyAddress}>
-            <Image
-              className={styles.copyAddress}
-              alt={MSG.copyAddress}
-              src="/img/copy.svg"
-            />
-          </Button>
-        )}
+        <Copy copyTarget={wallet.address} />
       </div>
       {!error && user.addresses[0] !== wallet.address && (
         <div className={styles.primaryAddress}>

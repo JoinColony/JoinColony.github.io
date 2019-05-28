@@ -1,0 +1,14 @@
+.copy {
+  margin: 0 10px;
+  width: 12px;
+}
+
+.copy:hover {
+  cursor: pointer;
+}
+
+.copied span {
+  color: #788CA0;
+  font-size: 12px;
+  position: absolute;
+}
