@@ -43,6 +43,7 @@
 
 .learnMore {
   margin-left: 10%;
+  min-width: 200px;
 }
 
 .learnMore h4 {
