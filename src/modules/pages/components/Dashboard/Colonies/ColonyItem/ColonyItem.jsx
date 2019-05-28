@@ -6,7 +6,12 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { Network } from '~types';
+import type { Colony, Network } from '~types';
+
+import {
+  getStore,
+  setStore,
+} from '../../../../../layouts/components/DeveloperPortalLayout/localStorage';
 
 import styles from './ColonyItem.module.css';
 
@@ -44,7 +49,18 @@ const ColonyItem = ({
   networkClient,
   wallet,
 }: Props) => {
-  const [colony, setColony] = useState(null);
+  const [colony, setColony] = useState<?Colony>(null);
+  const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localColony = getStore(colonyAddress);
+      setColony(localColony);
+      setLoadedLocal(true);
+    }
+  }, [colonyAddress, loadedLocal]);
+
+  useEffect(() => setStore(colonyAddress, colony), [colony, colonyAddress]);
 
   useEffect(() => {
     if (networkClient) {

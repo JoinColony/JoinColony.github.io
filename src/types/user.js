@@ -43,6 +43,10 @@ export type Network = {|
   color: string,
 |};
 
-export type Store = 'network' | 'user' | 'wallet';
+export type Colony = {|
+  colonyAddress: string,
+  tokenAddress: string,
+  rootRole: boolean,
+|};
 
-export type StoreObject = Network | User | WalletObjectType;
+export type StoreObject = Colony | Network | User | WalletObjectType;
