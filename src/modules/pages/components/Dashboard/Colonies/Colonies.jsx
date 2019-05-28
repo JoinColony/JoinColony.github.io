@@ -105,6 +105,7 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                 {visible ? (
                   <AddColony
                     network={network}
+                    networkClient={networkClient}
                     setUser={setUser}
                     setVisible={setVisible}
                     user={user}
@@ -159,6 +160,7 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                 </div>
                 <AddColony
                   network={network}
+                  networkClient={networkClient}
                   setUser={setUser}
                   setVisible={setVisible}
                   user={user}

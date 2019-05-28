@@ -1,7 +1,10 @@
 /* @flow */
 
+import type { ColonyNetworkClient } from '@colony/colony-js-client';
+
 import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
+import { isAddress } from 'web3-utils';
 
 import Button from '~core/Button';
 import Input from '~core/Input';
@@ -27,6 +30,7 @@ const MSG = defineMessages({
 
 type Props = {|
   network: Network,
+  networkClient: ?ColonyNetworkClient,
   setUser: (user: User) => void,
   setVisible: (visible: boolean) => void,
   user: User,
@@ -36,14 +40,25 @@ const displayName = 'pages.Dashboard.Colonies.AddColony';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddColony = ({ network, setUser, setVisible, user }: Props) => {
+const AddColony = ({
+  network,
+  networkClient,
+  setUser,
+  setVisible,
+  user,
+}: Props) => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
   const handleChangeAddress = event => {
+    if (error) setError(null);
     setAddress(event.currentTarget.value);
   };
-  const handleAddColony = () => {
-    if (address && network) {
+  const handleAddColony = async () => {
+    if (
+      networkClient &&
+      isAddress(address) &&
+      (await networkClient.isColony.call({ colony: address }))
+    ) {
       const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -55,9 +70,6 @@ const AddColony = ({ network, setUser, setVisible, user }: Props) => {
         .then(data => {
           if (data.error) {
             setError(data.error);
-            setTimeout(() => {
-              setError(null);
-            }, 2000);
           } else {
             setUser({ ...user, colonies: data.colonies });
             setVisible(false);
@@ -66,6 +78,8 @@ const AddColony = ({ network, setUser, setVisible, user }: Props) => {
         .catch(message => {
           setError(message);
         });
+    } else {
+      setError('The address you provided is not a valid colony address');
     }
   };
   return (

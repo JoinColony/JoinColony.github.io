@@ -10,7 +10,7 @@ import type { Network, User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
-const web3 = new Web3();
+const web3 = new Web3(Web3.givenProvider);
 
 const getNetworkInfo = (id: number) => {
   switch (id) {
@@ -76,7 +76,6 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, []);
 
   const getNetwork = useCallback(async () => {
-    web3.setProvider(web3.givenProvider);
     const id = await web3.eth.net.getId();
     const result = getNetworkInfo(id);
     setNetwork(result);
@@ -126,16 +125,16 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, [dashboard, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
-    if (!loadingWallet && wallet && web3.currentProvider) {
+    if (!loadingWallet && wallet && Web3.currentProvider) {
       // eslint-disable-next-line no-underscore-dangle
-      web3.currentProvider.publicConfigStore._events.update.push(
+      Web3.currentProvider.publicConfigStore._events.update.push(
         handleChangeAccount,
       );
     }
     return () => {
-      if (web3.currentProvider) {
+      if (Web3.currentProvider) {
         // eslint-disable-next-line no-underscore-dangle
-        web3.currentProvider.publicConfigStore._events.update.pop(
+        Web3.currentProvider.publicConfigStore._events.update.pop(
           handleChangeAccount,
         );
       }
