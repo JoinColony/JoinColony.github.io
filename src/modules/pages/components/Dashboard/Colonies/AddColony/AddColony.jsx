@@ -18,12 +18,8 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Colonies.AddColony.labelAddress',
     defaultMessage: 'Address',
   },
-  labelName: {
-    id: 'pages.Dashboard.Colonies.AddColony.labelName',
-    defaultMessage: 'Name',
-  },
-  buttonSubmit: {
-    id: 'pages.Dashboard.Colonies.AddColony.buttonSubmit',
+  submitAddress: {
+    id: 'pages.Dashboard.Colonies.AddColony.submitAddress',
     defaultMessage: 'Add Colony',
   },
 });
@@ -31,8 +27,8 @@ const MSG = defineMessages({
 type Props = {|
   network: Network,
   networkClient: ?ColonyNetworkClient,
+  setAddColony: (visible: boolean) => void,
   setUser: (user: User) => void,
-  setVisible: (visible: boolean) => void,
   user: User,
 |};
 
@@ -43,8 +39,8 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const AddColony = ({
   network,
   networkClient,
+  setAddColony,
   setUser,
-  setVisible,
   user,
 }: Props) => {
   const [address, setAddress] = useState('');
@@ -72,7 +68,7 @@ const AddColony = ({
             setError(data.error);
           } else {
             setUser({ ...user, colonies: data.colonies });
-            setVisible(false);
+            setAddColony(false);
           }
         })
         .catch(message => {
@@ -87,7 +83,7 @@ const AddColony = ({
       <Input
         appearance={{
           padding: 'huge',
-          width: 'large',
+          width: 'stretch',
         }}
         id="address"
         label={MSG.labelAddress}
@@ -100,9 +96,8 @@ const AddColony = ({
           padding: 'large',
           theme: 'primary',
         }}
-        style={{ marginLeft: '20px' }}
         onClick={handleAddColony}
-        text={MSG.buttonSubmit}
+        text={MSG.submitAddress}
         type="submit"
       />
       {error && <div className={styles.error}>{error}</div>}

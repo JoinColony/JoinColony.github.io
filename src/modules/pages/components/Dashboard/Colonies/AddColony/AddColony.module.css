@@ -2,6 +2,14 @@
   width: 100%;
 }
 
+.field input {
+  width: 70%;
+}
+
+.field button {
+  margin-left: 20px;
+}
+
 .error {
   color: red;
   font-size: 14px;

@@ -7,29 +7,34 @@
 .title {
   font-family: 'Avenir Next Demi';
   font-size: 32px;
+  margin-bottom: 10px;
 }
 
 .subTitle {
+  margin: 0;
+  margin-top: 20px;
   max-width: 800px;
+}
+
+.addColonyButton {
+  font-family: 'Avenir Next Medium';
+  text-align: right;
 }
 
 .content {
-  border-top: 1px #C8D2DC solid;
-  max-width: 800px;
-  margin-top: 5%;
-  padding-top: 5%;
+  max-width: 660px;
 }
 
-.contentItem {
+.onboardingStep {
   padding-bottom: 10px;
+}
+
+.onboardingStep:first-child {
+  margin-top: 40px;
 }
 
 .onboardingStepTitle {
   font-family: 'Avenir Next Demi';
   font-size: 18px;
   font-weight: normal;
-}
-
-.coloniesWrapper {
-  margin-bottom: 60px;
 }

@@ -20,7 +20,11 @@ import styles from './Colonies.module.css';
 const MSG = defineMessages({
   mainTitle: {
     id: 'pages.Dashboard.Colonies.mainTitle',
-    defaultMessage: 'My Colonies',
+    defaultMessage: 'Colonies List',
+  },
+  mainDescription: {
+    id: 'pages.Dashboard.Colonies.mainDescription',
+    defaultMessage: `A list of colonies that you are following.`,
   },
   onboardingTitle: {
     id: 'pages.Dashboard.Colonies.onboardingTitle',
@@ -75,7 +79,7 @@ type Props = {|
 const displayName = 'pages.Dashboard.Colonies';
 
 const Colonies = ({ network, networkClient, setUser, user }: Props) => {
-  const [visible, setVisible] = useState(false);
+  const [addColony, setAddColony] = useState(false);
   const supportedNetwork =
     network && (network.slug === 'mainnet' || network.slug === 'goerli');
   return (
@@ -89,38 +93,52 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
               <h1 className={styles.title}>
                 <FormattedMessage {...MSG.mainTitle} />
               </h1>
+              <p className={styles.subTitle}>
+                <FormattedMessage {...MSG.mainDescription} />
+              </p>
               <div className={styles.content}>
-                <div className={styles.coloniesWrapper}>
-                  {user.colonies &&
-                    user.colonies[network.slug] &&
-                    user.colonies[network.slug].map(colonyAddress => (
-                      <ColonyItem
-                        key={colonyAddress}
-                        colonyAddress={colonyAddress}
-                        network={network}
-                        networkClient={networkClient}
-                      />
-                    ))}
+                <div className={styles.addColonyButton}>
+                  {addColony ? (
+                    <Button
+                      appearance={{
+                        theme: 'reset',
+                        color: 'grey',
+                      }}
+                      onClick={() => setAddColony(false)}
+                      text="Cancel"
+                      type="submit"
+                    />
+                  ) : (
+                    <Button
+                      appearance={{
+                        theme: 'reset',
+                        color: 'blue',
+                      }}
+                      onClick={() => setAddColony(true)}
+                      text="+ Add Colony"
+                      type="submit"
+                    />
+                  )}
                 </div>
-                {visible ? (
+                {addColony && (
                   <AddColony
                     network={network}
                     networkClient={networkClient}
                     setUser={setUser}
-                    setVisible={setVisible}
+                    setAddColony={setAddColony}
                     user={user}
                   />
-                ) : (
-                  <Button
-                    appearance={{
-                      theme: 'reset',
-                      color: 'blue',
-                    }}
-                    onClick={() => setVisible(!visible)}
-                    text="+ Add Colony"
-                    type="submit"
-                  />
                 )}
+                {user.colonies &&
+                  user.colonies[network.slug] &&
+                  user.colonies[network.slug].map(colonyAddress => (
+                    <ColonyItem
+                      key={colonyAddress}
+                      colonyAddress={colonyAddress}
+                      network={network}
+                      networkClient={networkClient}
+                    />
+                  ))}
               </div>
             </div>
           ) : (
@@ -132,7 +150,7 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                 <FormattedMessage {...MSG.onboardingDescription} />
               </p>
               <div className={styles.content}>
-                <div className={styles.contentItem}>
+                <div className={styles.onboardingStep}>
                   <h4 className={styles.onboardingStepTitle}>
                     <FormattedMessage {...MSG.onboardingStep1} />
                   </h4>
@@ -150,7 +168,7 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                     />
                   </p>
                 </div>
-                <div className={styles.contentItem}>
+                <div className={styles.onboardingStep}>
                   <h4 className={styles.onboardingStepTitle}>
                     <FormattedMessage {...MSG.onboardingStep2} />
                   </h4>
@@ -162,7 +180,7 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                   network={network}
                   networkClient={networkClient}
                   setUser={setUser}
-                  setVisible={setVisible}
+                  setAddColony={setAddColony}
                   user={user}
                 />
               </div>

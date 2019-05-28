@@ -15,7 +15,7 @@ const useColonyNetwork = (network: ?Network, wallet: WalletObjectType) => {
 
   useEffect(() => {
     (async () => {
-      if (network && wallet) {
+      if (network && network.slug === 'goerli' && wallet) {
         const result = await getNetworkClient(network.slug, wallet);
         setNetworkClient(result);
       }
