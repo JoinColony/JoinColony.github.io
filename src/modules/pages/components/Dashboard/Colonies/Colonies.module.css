@@ -18,6 +18,7 @@
 
 .addColonyButton {
   font-family: 'Avenir Next Medium';
+  margin-right: 10px;
   text-align: right;
 }
 
@@ -25,16 +26,13 @@
   max-width: 660px;
 }
 
-.onboardingStep {
-  padding-bottom: 10px;
+.emptyItem {
+  margin: 40px auto;
 }
 
-.onboardingStep:first-child {
-  margin-top: 40px;
-}
-
-.onboardingStepTitle {
+.emptyItemTitle {
   font-family: 'Avenir Next Demi';
   font-size: 18px;
   font-weight: normal;
+  margin: 15px 0;
 }

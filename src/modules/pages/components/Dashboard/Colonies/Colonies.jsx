@@ -24,36 +24,39 @@ const MSG = defineMessages({
   },
   mainDescription: {
     id: 'pages.Dashboard.Colonies.mainDescription',
-    defaultMessage: `A list of colonies that you are following.`,
+    defaultMessage: `A list of colonies that you follow on {network}.`,
   },
-  onboardingTitle: {
-    id: 'pages.Dashboard.Colonies.onboardingTitle',
-    defaultMessage: `You don't have any colonies yet!`,
+  emptyTitle: {
+    id: 'pages.Dashboard.Colonies.emptyTitle',
+    defaultMessage: `You haven't added any colonies yet!`,
   },
-  onboardingDescription: {
-    id: 'pages.Dashboard.Colonies.onboardingDescription',
-    defaultMessage: `Keep track of your colonies. Follow the steps below to add
-    your first colony.`,
+  emptyDescription: {
+    id: 'pages.Dashboard.Colonies.emptyDescription',
+    defaultMessage: `Keep track of colonies on {network} or switch to another
+    network.`,
   },
-  onboardingStep1: {
-    id: 'pages.Dashboard.Colonies.onboardingStep1',
-    defaultMessage: 'Step 1: Get Started',
+  emptyCreateColony: {
+    id: 'pages.Dashboard.Colonies.emptyCreateColony',
+    defaultMessage: 'Create Colony',
   },
-  onboardingStep1Description: {
-    id: 'pages.Dashboard.Colonies.onboardingStep1Description',
-    defaultMessage: 'Create your first colony in {onboardingStep1Link}.',
+  emptyCreateColonyDescription: {
+    id: 'pages.Dashboard.Colonies.emptyCreateColonyDescription',
+    defaultMessage: `If you would like to create a colony, check out
+    {emptyCreateColonyLink}.`,
   },
-  onboardingStep1Link: {
-    id: 'pages.Dashboard.Colonies.onboardingStep1Link',
+  emptyCreateColonyLink: {
+    id: 'pages.Dashboard.Colonies.emptyCreateColonyLink',
     defaultMessage: 'Get Started',
   },
-  onboardingStep2: {
-    id: 'pages.Dashboard.Colonies.onboardingStep2',
-    defaultMessage: 'Step 2: Add Colony',
+  emptyAddColony: {
+    id: 'pages.Dashboard.Colonies.emptyAddColony',
+    defaultMessage: 'Add Colony',
   },
-  onboardingStep2Description: {
-    id: 'pages.Dashboard.Colonies.onboardingStep2Description',
-    defaultMessage: `Add your first colony to your list of colonies.`,
+  emptyAddColonyDescription: {
+    id: 'pages.Dashboard.Colonies.emptyAddColonyDescription',
+    defaultMessage: `If you created a colony or you have the address of a colony
+    that you would like to follow, add the colony address to your personalized
+    list of colonies.`,
   },
   unsupportedNetworkTitle: {
     id: 'pages.Dashboard.Colonies.unsupportedNetworkTitle',
@@ -94,7 +97,10 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                 <FormattedMessage {...MSG.mainTitle} />
               </h1>
               <p className={styles.subTitle}>
-                <FormattedMessage {...MSG.mainDescription} />
+                <FormattedMessage
+                  values={{ network: network.name }}
+                  {...MSG.mainDescription}
+                />
               </p>
               <div className={styles.content}>
                 <div className={styles.addColonyButton}>
@@ -144,36 +150,42 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
           ) : (
             <div className={styles.main}>
               <h1 className={styles.title}>
-                <FormattedMessage {...MSG.onboardingTitle} />
+                <FormattedMessage {...MSG.emptyTitle} />
               </h1>
               <p className={styles.subTitle}>
-                <FormattedMessage {...MSG.onboardingDescription} />
+                <FormattedMessage
+                  values={{ network: network.name }}
+                  {...MSG.emptyDescription}
+                />
               </p>
               <div className={styles.content}>
-                <div className={styles.onboardingStep}>
-                  <h4 className={styles.onboardingStepTitle}>
-                    <FormattedMessage {...MSG.onboardingStep1} />
+                <div className={styles.emptyItem}>
+                  <h4 className={styles.emptyItemTitle}>
+                    <FormattedMessage {...MSG.emptyCreateColony} />
                   </h4>
                   <p>
                     <FormattedMessage
                       values={{
-                        onboardingStep1Link: (
+                        emptyCreateColonyLink: (
                           <Link
                             href="/colonyjs/intro-get-started"
-                            text={MSG.onboardingStep1Link}
+                            text={MSG.emptyCreateColonyLink}
                           />
                         ),
                       }}
-                      {...MSG.onboardingStep1Description}
+                      {...MSG.emptyCreateColonyDescription}
                     />
                   </p>
                 </div>
-                <div className={styles.onboardingStep}>
-                  <h4 className={styles.onboardingStepTitle}>
-                    <FormattedMessage {...MSG.onboardingStep2} />
+                <div className={styles.emptyItem}>
+                  <h4 className={styles.emptyItemTitle}>
+                    <FormattedMessage {...MSG.emptyAddColony} />
                   </h4>
                   <p>
-                    <FormattedMessage {...MSG.onboardingStep2Description} />
+                    <FormattedMessage
+                      values={{ network: network.name }}
+                      {...MSG.emptyAddColonyDescription}
+                    />
                   </p>
                 </div>
                 <AddColony

@@ -16,7 +16,7 @@ import styles from './AddColony.module.css';
 const MSG = defineMessages({
   labelAddress: {
     id: 'pages.Dashboard.Colonies.AddColony.labelAddress',
-    defaultMessage: 'Address',
+    defaultMessage: 'Colony Address',
   },
   submitAddress: {
     id: 'pages.Dashboard.Colonies.AddColony.submitAddress',
