@@ -101,7 +101,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Colonies';
 
-const Colonies = ({ network, networkClient, setUser, user }: Props) => {
+const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
   const [addColony, setAddColony] = useState(false);
   const supportedNetwork =
     network && (network.slug === 'mainnet' || network.slug === 'goerli');
@@ -232,6 +232,7 @@ const Colonies = ({ network, networkClient, setUser, user }: Props) => {
                 colonyAddress={colonyAddress}
                 network={network}
                 networkClient={networkClient}
+                wallet={wallet}
               />
             ))}
         </div>

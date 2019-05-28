@@ -1,6 +1,7 @@
 /* @flow */
 
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
@@ -13,6 +14,10 @@ const MSG = defineMessages({
   colonyAddress: {
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyAddress',
     defaultMessage: 'Colony Address',
+  },
+  colonyRootRole: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.colonyRootRole',
+    defaultMessage: 'Root Role',
   },
   colonyTokenAddress: {
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyTokenAddress',
@@ -28,11 +33,17 @@ type Props = {|
   colonyAddress: string,
   network: Network,
   networkClient: ?ColonyNetworkClient,
+  wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Colonies.ColonyItem';
 
-const ColonyItem = ({ colonyAddress, network, networkClient }: Props) => {
+const ColonyItem = ({
+  colonyAddress,
+  network,
+  networkClient,
+  wallet,
+}: Props) => {
   const [colony, setColony] = useState(null);
 
   useEffect(() => {
@@ -44,13 +55,19 @@ const ColonyItem = ({ colonyAddress, network, networkClient }: Props) => {
         const {
           address: tokenAddress,
         } = await colonyClient.getTokenAddress.call();
+        const { hasRole: rootRole } = await colonyClient.hasColonyRole.call({
+          address: wallet.address,
+          domainId: 1,
+          role: 'ROOT',
+        });
         setColony({
           colonyAddress,
           tokenAddress,
+          rootRole,
         });
       })();
     }
-  }, [colonyAddress, networkClient]);
+  }, [colonyAddress, networkClient, wallet.address]);
 
   return (
     <div className={styles.colony}>
@@ -76,6 +93,12 @@ const ColonyItem = ({ colonyAddress, network, networkClient }: Props) => {
                 <FormattedMessage {...MSG.network} />
               </div>
               <div className={styles.value}>{network.slug}</div>
+            </div>
+            <div className={styles.field}>
+              <div className={styles.label}>
+                <FormattedMessage {...MSG.colonyRootRole} />
+              </div>
+              <div className={styles.value}>{colony.rootRole.toString()}</div>
             </div>
           </div>
         </div>
