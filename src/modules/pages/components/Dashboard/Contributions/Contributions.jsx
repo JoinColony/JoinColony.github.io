@@ -3,17 +3,23 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { User } from '~types';
+
+import Link from '~core/Link';
 
 import styles from './Contributions.module.css';
 
 const MSG = defineMessages({
   title: {
     id: 'pages.Dashboard.Contributions.title',
-    defaultMessage: 'Contributions',
+    defaultMessage: 'Your Contributions',
+  },
+  description: {
+    id: 'pages.Dashboard.Contributions.description',
+    defaultMessage: 'A list of your contributions to JoinColony.',
   },
 });
 
@@ -25,16 +31,112 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Contributions';
 
-const Contributions = ({ wallet }: Props) => (
-  <>
-    <div className={styles.main}>
-      <h1>
-        <FormattedMessage {...MSG.title} />
-      </h1>
-      {wallet.address}
-    </div>
-  </>
-);
+const Contributions = ({ user }: Props) => {
+  const [contributions, setContributions] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const errorTimeout = useRef(null);
+
+  const getContributions = useCallback(() => {
+    setLoading(true);
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.DOCS_GITHUB_TOKEN || ''}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query {
+          search(
+            query: "org:JoinColony author:${user.github.username} is:pr",
+            type: ISSUE,
+            last: 10
+          ) {
+            edges {
+              node {
+                ... on PullRequest {
+                  url
+                  title
+                  createdAt
+                }
+              }
+            }
+          }
+        }`,
+      }),
+    };
+    // eslint-disable-next-line no-undef
+    fetch('https://api.github.com/graphql', options)
+      .then(res => res.json())
+      .then(({ data }) => {
+        setContributions(data.search.edges);
+        setLoading(false);
+      })
+      .catch(fetchError => {
+        setError(fetchError.message);
+        errorTimeout.current = setTimeout(() => {
+          setError(null);
+        }, 2000);
+      });
+  }, [user.github.username]);
+
+  useEffect(() => {
+    if (!contributions && !loading) {
+      getContributions();
+    }
+    return () => {
+      if (error) clearTimeout(errorTimeout.current);
+    };
+  }, [contributions, error, getContributions, loading]);
+
+  const formatContributionLink = url => {
+    const repository = url.split('/')[4];
+    const pullRequestNumber = url.split('/')[6];
+    return `${repository}#${pullRequestNumber}`;
+  };
+
+  return (
+    <>
+      <div className={styles.main}>
+        <h1 className={styles.title}>
+          <FormattedMessage {...MSG.title} />
+        </h1>
+        <p className={styles.subTitle}>
+          <FormattedMessage {...MSG.description} />
+        </p>
+        <table className={styles.contributions}>
+          <thead>
+            <tr>
+              <td>Date</td>
+              <td>Title</td>
+              <td>Link</td>
+              <td>Reward</td>
+            </tr>
+          </thead>
+          <tbody>
+            {contributions &&
+              contributions.map(contribution => (
+                <tr>
+                  <td>{contribution.node.createdAt.split('T')[0]}</td>
+                  <td>{`${contribution.node.title.substring(0, 40)}...`}</td>
+                  <td>
+                    <Link
+                      href={contribution.node.url}
+                      text={formatContributionLink(contribution.node.url)}
+                    />
+                  </td>
+                  <td>
+                    <i>none</i>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+        {error && <div className={styles.error}>{error}</div>}
+      </div>
+    </>
+  );
+};
 
 Contributions.displayName = displayName;
 
