@@ -2,7 +2,7 @@
 
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { isAddress } from 'web3-utils';
 
@@ -45,10 +45,13 @@ const AddColony = ({
 }: Props) => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
+  const errorTimeout = useRef(null);
+
   const handleChangeAddress = event => {
     if (error) setError(null);
     setAddress(event.currentTarget.value);
   };
+
   const handleAddColony = async () => {
     if (
       networkClient &&
@@ -66,7 +69,7 @@ const AddColony = ({
         .then(data => {
           if (data.error) {
             setError(data.error);
-            setTimeout(() => {
+            errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
           } else {
@@ -76,7 +79,7 @@ const AddColony = ({
         })
         .catch(fetchError => {
           setError(fetchError.message);
-          setTimeout(() => {
+          errorTimeout.current = setTimeout(() => {
             setError(null);
           }, 2000);
         });
@@ -84,6 +87,13 @@ const AddColony = ({
       setError('The address you provided is not a valid colony address');
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (error) clearTimeout(errorTimeout.current);
+    };
+  }, [error]);
+
   return (
     <div className={styles.field}>
       <Input

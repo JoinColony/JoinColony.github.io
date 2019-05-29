@@ -18,6 +18,14 @@ import ColonyItem from './ColonyItem';
 import styles from './Colonies.module.css';
 
 const MSG = defineMessages({
+  buttonAddColony: {
+    id: 'pages.Dashboard.Colonies.AddColony.buttonAddColony',
+    defaultMessage: '+ Add Colony',
+  },
+  buttonCancel: {
+    id: 'pages.Dashboard.Colonies.AddColony.buttonCancel',
+    defaultMessage: 'Cancel',
+  },
   mainTitle: {
     id: 'pages.Dashboard.Colonies.mainTitle',
     defaultMessage: 'Colonies List',
@@ -200,7 +208,7 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
                   color: 'grey',
                 }}
                 onClick={() => setAddColony(false)}
-                text="Cancel"
+                text={MSG.buttonCancel}
                 type="submit"
               />
             ) : (
@@ -210,7 +218,7 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
                   color: 'blue',
                 }}
                 onClick={() => setAddColony(true)}
-                text="+ Add Colony"
+                text={MSG.buttonAddColony}
                 type="submit"
               />
             )}

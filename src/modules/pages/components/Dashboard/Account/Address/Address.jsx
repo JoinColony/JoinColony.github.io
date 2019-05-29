@@ -2,7 +2,7 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 // import Blockies from 'react-blockies';
 
@@ -36,6 +36,8 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Address = ({ setUser, user, wallet }: Props) => {
   const [error, setError] = useState(null);
+  const errorTimeout = useRef(null);
+
   const handleUpdateAddress = () => {
     const options = {
       method: 'POST',
@@ -48,7 +50,7 @@ const Address = ({ setUser, user, wallet }: Props) => {
       .then(data => {
         if (data.error) {
           setError(data.error);
-          setTimeout(() => {
+          errorTimeout.current = setTimeout(() => {
             setError(null);
           }, 2000);
         } else {
@@ -57,11 +59,18 @@ const Address = ({ setUser, user, wallet }: Props) => {
       })
       .catch(fetchError => {
         setError(fetchError.message);
-        setTimeout(() => {
+        errorTimeout.current = setTimeout(() => {
           setError(null);
         }, 2000);
       });
   };
+
+  useEffect(() => {
+    return () => {
+      if (error) clearTimeout(errorTimeout.current);
+    };
+  }, [error]);
+
   return (
     <div className={styles.main}>
       <div className={styles.address}>

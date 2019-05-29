@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import copy from 'copy-to-clipboard';
 
@@ -20,22 +20,31 @@ const MSG = defineMessages({
   },
 });
 
-type Props = {
+type Props = {|
   /** The text that will be copied */
   copyTarget: string,
-};
+|};
 
 const displayName = 'Copy';
 
 const Copy = ({ copyTarget }: Props) => {
   const [copied, setCopied] = useState(false);
+  const copiedTimeout = useRef(null);
+
   const handleCopy = useCallback(() => {
     copy(copyTarget);
     setCopied(true);
-    setTimeout(() => {
+    copiedTimeout.current = setTimeout(() => {
       setCopied(false);
     }, 2000);
   }, [copyTarget]);
+
+  useEffect(() => {
+    return () => {
+      if (copied) clearTimeout(copiedTimeout.current);
+    };
+  }, [copied]);
+
   if (copied) {
     return (
       <div className={styles.main}>
@@ -46,6 +55,7 @@ const Copy = ({ copyTarget }: Props) => {
       </div>
     );
   }
+
   return (
     <div className={styles.main}>
       <Button
