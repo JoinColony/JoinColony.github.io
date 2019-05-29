@@ -1,3 +1,58 @@
-.main {
+.wrapper {
+  color: #2E4153;
+  display: flex;
   padding: 5%;
+}
+
+.main {
+  font-size: 16px;
+}
+
+.title {
+  font-family: 'Avenir Next Demi';
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  margin: 0;
+  margin-top: 20px;
+  max-width: 800px;
+}
+
+.addColonyButton {
+  font-family: 'Avenir Next Medium';
+  margin-right: 10px;
+  text-align: right;
+}
+
+.content {
+  width: 660px;
+}
+
+.emptyItem {
+  margin: 40px auto;
+}
+
+.emptyItemTitle {
+  font-family: 'Avenir Next Demi';
+  font-size: 18px;
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.learnMore {
+  margin-left: 10%;
+  min-width: 200px;
+}
+
+.learnMore h4 {
+  font-family: 'Avenir Next Demi';
+  margin: 15px 0;
+}
+
+.learnMore a {
+  display: block;
+  font-size: 15px;
+  margin: 5px 0;
 }

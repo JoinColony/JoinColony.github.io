@@ -25,6 +25,10 @@ export type Session = {|
 export type User = {|
   addresses: Array<string>,
   admin: boolean,
+  colonies: ?{
+    goerli: ?Array<string>,
+    mainnet: ?Array<string>,
+  },
   discourse: ?Discourse,
   email: ?string,
   github: GitHub,
@@ -35,9 +39,14 @@ export type User = {|
 export type Network = {|
   id: number,
   name: string,
+  slug: string,
   color: string,
 |};
 
-export type Store = 'network' | 'user' | 'wallet';
+export type Colony = {|
+  colonyAddress: string,
+  tokenAddress: string,
+  rootRole: boolean,
+|};
 
-export type StoreObject = Network | User | WalletObjectType;
+export type StoreObject = Colony | Network | User | WalletObjectType;

@@ -13,21 +13,6 @@
   display: flex;
 }
 
-.copyAddress {
-  margin: 0 10px;
-  width: 12px;
-}
-
-.copyAddress:hover {
-  cursor: pointer;
-}
-
-.copyAddressSuccess span {
-  color: #788CA0;
-  font-size: 12px;
-  position: absolute;
-}
-
 .primaryAddress {
   color: #788CA0;
   font-size: 13px;

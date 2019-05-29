@@ -6,11 +6,11 @@ import { open } from '@colony/purser-metamask';
 import { useCallback, useEffect, useState } from 'react';
 import Web3 from 'web3';
 
-import type { Network, User } from '~types';
+import type { Network } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
-const web3 = new Web3();
+const web3 = new Web3(Web3.givenProvider);
 
 const getNetworkInfo = (id: number) => {
   switch (id) {
@@ -18,42 +18,48 @@ const getNetworkInfo = (id: number) => {
       return {
         id,
         name: 'Main Ethereum Network',
+        slug: 'mainnet',
         color: '#29b6af',
       };
     case 3:
       return {
         id,
         name: 'Ropsten Test Network',
+        slug: 'ropsten',
         color: '#ff4a8d',
       };
     case 4:
       return {
         id,
         name: 'Rinkeby Test Network',
+        slug: 'rinkeby',
         color: '#f6c343',
       };
     case 5:
       return {
         id,
         name: 'Goerli Test Network',
+        slug: 'goerli',
         color: '#3099f2',
       };
     case 42:
       return {
         id,
         name: 'Kovan Test Network',
+        slug: 'kovan',
         color: '#7057ff',
       };
     default:
       return {
         id,
         name: 'Private Test Network',
+        slug: 'private',
         color: '#ffffff',
       };
   }
 };
 
-const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
+const useMetaMask = (dashboard: boolean) => {
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedNetwork, setLoadedNetwork] = useState<boolean>(false);
   const [loadedWallet, setLoadedWallet] = useState<boolean>(false);
@@ -70,23 +76,24 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, []);
 
   const getNetwork = useCallback(async () => {
-    web3.setProvider(web3.givenProvider);
     const id = await web3.eth.net.getId();
     const result = getNetworkInfo(id);
     setNetwork(result);
   }, []);
 
   const handleChangeAccount = useCallback(
-    metamask => {
-      if (!metamask.selectedAddress) {
+    ({ networkVersion, selectedAddress }) => {
+      if (!selectedAddress) {
         setStore('wallet', null);
         setWallet(null);
-        setUser(null);
-      } else if (wallet && metamask.selectedAddress !== wallet.address) {
+      } else if (!wallet || (wallet && selectedAddress !== wallet.address)) {
         openWallet();
       }
+      if (network && networkVersion !== network.id.toString()) {
+        getNetwork();
+      }
     },
-    [openWallet, setUser, wallet],
+    [getNetwork, network, openWallet, wallet],
   );
 
   useEffect(() => {
@@ -117,21 +124,25 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, [dashboard, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
-    if (!loadingWallet && wallet && web3.currentProvider) {
+    if (!web3.currentProvider.connection.selectedAddress) {
+      setStore('wallet', null);
+      setWallet(null);
+    }
+    if (!loadingWallet && web3.currentProvider) {
       // eslint-disable-next-line no-underscore-dangle
-      web3.currentProvider.publicConfigStore._events.update.push(
+      web3.currentProvider.connection.publicConfigStore._events.update.push(
         handleChangeAccount,
       );
     }
     return () => {
-      if (web3.currentProvider) {
+      if (web3.currentProvider.connection) {
         // eslint-disable-next-line no-underscore-dangle
-        web3.currentProvider.publicConfigStore._events.update.pop(
+        web3.currentProvider.connection.publicConfigStore._events.update.pop(
           handleChangeAccount,
         );
       }
     };
-  }, [handleChangeAccount, loadingWallet, wallet]);
+  }, [handleChangeAccount, loadingWallet]);
 
   return { network, wallet };
 };

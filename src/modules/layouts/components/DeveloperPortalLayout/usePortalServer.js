@@ -11,7 +11,7 @@ import { getStore, setStore } from './localStorage';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const useServer = () => {
+const usePortalServer = () => {
   const [error, setError] = useState<?string>(null);
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedUser, setLoadedUser] = useState<?boolean>(false);
@@ -73,4 +73,4 @@ const useServer = () => {
   return { error, setUser, socket, user };
 };
 
-export default useServer;
+export default usePortalServer;

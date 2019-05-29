@@ -1,7 +1,8 @@
 /* @flow */
 
-import type { IntlShape } from 'react-intl';
+import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
+import type { IntlShape } from 'react-intl';
 import type { Socket } from 'socket.io-client';
 
 import React, { Component } from 'react';
@@ -11,7 +12,7 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
-import type { Provider, User } from '~types';
+import type { Network, Provider, User } from '~types';
 
 import Login from './Login';
 import MetaMask from './MetaMask';
@@ -41,6 +42,8 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 type Props = {|
   error: ?string,
   intl: IntlShape,
+  network: Network,
+  networkClient: ?ColonyNetworkClient,
   page: string,
   setUser: (user: ?User) => void,
   socket: ?Socket,
@@ -74,6 +77,8 @@ class Dashboard extends Component<Props> {
     const {
       error,
       intl: { formatMessage },
+      network,
+      networkClient,
       page,
       setUser,
       user,
@@ -119,6 +124,9 @@ class Dashboard extends Component<Props> {
                   />
                   <Colonies
                     path="/dashboard/colonies"
+                    network={network}
+                    networkClient={networkClient}
+                    setUser={setUser}
                     user={user}
                     wallet={wallet}
                   />

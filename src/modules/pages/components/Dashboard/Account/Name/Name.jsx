@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
@@ -39,14 +39,18 @@ const Name = ({ setUser, user }: Props) => {
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState(null);
   const [name, setName] = useState(initialName);
+  const errorTimeout = useRef(null);
+
   const handleCancelName = () => {
     setName(initialName);
     setEdit(false);
     setError(null);
   };
+
   const handleChangeName = event => {
     setName(event.currentTarget.value);
   };
+
   const handleSaveName = () => {
     if (name) {
       const options = {
@@ -60,7 +64,7 @@ const Name = ({ setUser, user }: Props) => {
         .then(data => {
           if (data.error) {
             setError(data.error);
-            setTimeout(() => {
+            errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
           } else {
@@ -68,11 +72,21 @@ const Name = ({ setUser, user }: Props) => {
             setEdit(false);
           }
         })
-        .catch(message => {
-          setError(message);
+        .catch(fetchError => {
+          setError(fetchError.message);
+          errorTimeout.current = setTimeout(() => {
+            setError(null);
+          }, 2000);
         });
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (error) clearTimeout(errorTimeout.current);
+    };
+  }, [error]);
+
   return (
     <div>
       <div className={styles.main}>

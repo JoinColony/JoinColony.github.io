@@ -10,8 +10,9 @@ import type { Project } from '~types';
 
 import { transformProjectData } from '~utils/docs';
 
+import useColonyNetwork from './useColonyNetwork';
 import useMetaMask from './useMetaMask';
-import useServer from './useServer';
+import usePortalServer from './usePortalServer';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -52,8 +53,9 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     }
     return false;
   }, []);
-  const { error, setUser, socket, user } = useServer();
-  const { network, wallet } = useMetaMask(dashboard, setUser);
+  const { network, wallet } = useMetaMask(dashboard);
+  const { error, setUser, socket, user } = usePortalServer();
+  const { networkClient } = useColonyNetwork(network, wallet);
   return (
     <div>
       <Header
@@ -69,6 +71,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
           ? cloneElement(children, {
               error,
               network,
+              networkClient,
               setUser,
               socket,
               user,

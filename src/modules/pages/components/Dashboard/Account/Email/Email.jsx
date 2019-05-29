@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
@@ -43,14 +43,18 @@ const Email = ({ setUser, user }: Props) => {
   const [edit, setEdit] = useState(false);
   const [email, setEmail] = useState(initialEmail);
   const [error, setError] = useState(null);
+  const errorTimeout = useRef(null);
+
   const handleCancelEmail = () => {
     setEmail(initialEmail);
     setEdit(false);
     setError(null);
   };
+
   const handleChangeEmail = event => {
     setEmail(event.currentTarget.value);
   };
+
   const handleSaveEmail = () => {
     if (email) {
       const options = {
@@ -64,7 +68,7 @@ const Email = ({ setUser, user }: Props) => {
         .then(data => {
           if (data.error) {
             setError(data.error);
-            setTimeout(() => {
+            errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
           } else {
@@ -72,11 +76,21 @@ const Email = ({ setUser, user }: Props) => {
             setEdit(false);
           }
         })
-        .catch(message => {
-          setError(message);
+        .catch(fetchError => {
+          setError(fetchError.message);
+          errorTimeout.current = setTimeout(() => {
+            setError(null);
+          }, 2000);
         });
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (error) clearTimeout(errorTimeout.current);
+    };
+  }, [error]);
+
   return (
     <div className={styles.field}>
       <Input

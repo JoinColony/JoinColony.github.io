@@ -1,0 +1,24 @@
+.colony {
+  background: #F0F5F7;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.colonyContent {
+  display: flex;
+}
+
+.field {
+  padding: 10px;
+}
+
+.label {
+  font-size: 13px;
+}
+
+.value {
+  display: flex;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: bold;
+  font-size: 14px;
+}
