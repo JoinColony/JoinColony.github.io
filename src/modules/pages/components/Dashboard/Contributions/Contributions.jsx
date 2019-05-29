@@ -10,6 +10,11 @@ import type { User } from '~types';
 
 import Link from '~core/Link';
 
+import {
+  getStore,
+  setStore,
+} from '../../../../layouts/components/DeveloperPortalLayout/localStorage';
+
 import styles from './Contributions.module.css';
 
 const MSG = defineMessages({
@@ -34,8 +39,19 @@ const displayName = 'pages.Dashboard.Contributions';
 const Contributions = ({ user }: Props) => {
   const [contributions, setContributions] = useState(null);
   const [error, setError] = useState(null);
+  const [loadedLocal, setLoadedLocal] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localContributions = getStore('contributions');
+      setContributions(localContributions);
+      setLoadedLocal(true);
+    }
+  }, [contributions, loadedLocal]);
+
+  useEffect(() => setStore('contributions', contributions), [contributions]);
 
   const getContributions = useCallback(() => {
     setLoading(true);
