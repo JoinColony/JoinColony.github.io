@@ -8,7 +8,10 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { User } from '~types';
 
+import Button from '~core/Button';
 import Link from '~core/Link';
+
+import RequestReward from './RequestReward';
 
 import {
   getStore,
@@ -18,13 +21,21 @@ import {
 import styles from './Contributions.module.css';
 
 const MSG = defineMessages({
-  title: {
-    id: 'pages.Dashboard.Contributions.title',
-    defaultMessage: 'Your Contributions',
+  buttonRequestReward: {
+    id: 'pages.Dashboard.Contributions.buttonRequestReward',
+    defaultMessage: '+ Request Reward',
+  },
+  buttonCancel: {
+    id: 'pages.Dashboard.Contributions.buttonCancel',
+    defaultMessage: 'Cancel',
   },
   description: {
     id: 'pages.Dashboard.Contributions.description',
     defaultMessage: 'A list of your contributions to JoinColony.',
+  },
+  title: {
+    id: 'pages.Dashboard.Contributions.title',
+    defaultMessage: 'Contributions List',
   },
 });
 
@@ -41,6 +52,7 @@ const Contributions = ({ user }: Props) => {
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [requestReward, setRequestReward] = useState(false);
   const errorTimeout = useRef(null);
 
   useEffect(() => {
@@ -120,34 +132,62 @@ const Contributions = ({ user }: Props) => {
         <p className={styles.subTitle}>
           <FormattedMessage {...MSG.description} />
         </p>
-        <table className={styles.contributions}>
-          <thead>
-            <tr>
-              <td>Date</td>
-              <td>Title</td>
-              <td>Link</td>
-              <td>Reward</td>
-            </tr>
-          </thead>
-          <tbody>
-            {contributions &&
-              contributions.map(contribution => (
-                <tr>
-                  <td>{contribution.node.createdAt.split('T')[0]}</td>
-                  <td>{`${contribution.node.title.substring(0, 40)}...`}</td>
-                  <td>
-                    <Link
-                      href={contribution.node.url}
-                      text={formatContributionLink(contribution.node.url)}
-                    />
-                  </td>
-                  <td>
-                    <i>none</i>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <div className={styles.content}>
+          <div className={styles.requestRewardButton}>
+            {requestReward ? (
+              <Button
+                appearance={{
+                  theme: 'reset',
+                  color: 'grey',
+                }}
+                onClick={() => setRequestReward(false)}
+                text={MSG.buttonCancel}
+                type="submit"
+              />
+            ) : (
+              <Button
+                appearance={{
+                  theme: 'reset',
+                  color: 'blue',
+                }}
+                onClick={() => setRequestReward(true)}
+                text={MSG.buttonRequestReward}
+                type="submit"
+              />
+            )}
+          </div>
+          {requestReward && (
+            <RequestReward setRequestReward={setRequestReward} />
+          )}
+          <table className={styles.contributions}>
+            <thead>
+              <tr>
+                <td>Date</td>
+                <td>Title</td>
+                <td>Link</td>
+                <td>Reward</td>
+              </tr>
+            </thead>
+            <tbody>
+              {contributions &&
+                contributions.map(contribution => (
+                  <tr>
+                    <td>{contribution.node.createdAt.split('T')[0]}</td>
+                    <td>{`${contribution.node.title.substring(0, 40)}...`}</td>
+                    <td>
+                      <Link
+                        href={contribution.node.url}
+                        text={formatContributionLink(contribution.node.url)}
+                      />
+                    </td>
+                    <td>
+                      <i>none</i>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
         {error && <div className={styles.error}>{error}</div>}
       </div>
     </>
