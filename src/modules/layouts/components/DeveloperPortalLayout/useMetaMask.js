@@ -6,7 +6,7 @@ import { open } from '@colony/purser-metamask';
 import { useCallback, useEffect, useState } from 'react';
 import Web3 from 'web3';
 
-import type { Network, User } from '~types';
+import type { Network } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
@@ -59,7 +59,7 @@ const getNetworkInfo = (id: number) => {
   }
 };
 
-const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
+const useMetaMask = (dashboard: boolean) => {
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedNetwork, setLoadedNetwork] = useState<boolean>(false);
   const [loadedWallet, setLoadedWallet] = useState<boolean>(false);
@@ -82,19 +82,18 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, []);
 
   const handleChangeAccount = useCallback(
-    metamask => {
-      if (!metamask.selectedAddress) {
+    ({ networkVersion, selectedAddress }) => {
+      if (!selectedAddress) {
         setStore('wallet', null);
         setWallet(null);
-        setUser(null);
-      } else if (wallet && metamask.selectedAddress !== wallet.address) {
+      } else if (!wallet || (wallet && selectedAddress !== wallet.address)) {
         openWallet();
       }
-      if (network && metamask.networkVersion !== network.id.toString()) {
+      if (network && networkVersion !== network.id.toString()) {
         getNetwork();
       }
     },
-    [getNetwork, network, openWallet, setUser, wallet],
+    [getNetwork, network, openWallet, wallet],
   );
 
   useEffect(() => {
@@ -125,7 +124,11 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
   }, [dashboard, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
-    if (!loadingWallet && wallet && web3.currentProvider) {
+    if (!web3.currentProvider.connection.selectedAddress) {
+      setStore('wallet', null);
+      setWallet(null);
+    }
+    if (!loadingWallet && web3.currentProvider) {
       // eslint-disable-next-line no-underscore-dangle
       web3.currentProvider.connection.publicConfigStore._events.update.push(
         handleChangeAccount,
@@ -139,7 +142,7 @@ const useMetaMask = (dashboard: boolean, setUser: (user: ?User) => void) => {
         );
       }
     };
-  }, [handleChangeAccount, loadingWallet, wallet]);
+  }, [handleChangeAccount, loadingWallet]);
 
   return { network, wallet };
 };
