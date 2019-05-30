@@ -16,7 +16,7 @@ import RequestReward from './RequestReward';
 import {
   getStore,
   setStore,
-} from '../../../../layouts/components/DeveloperPortalLayout/localStorage';
+} from '~layouts/DeveloperPortalLayout/localStorage';
 
 import styles from './Contributions.module.css';
 

@@ -3,7 +3,7 @@
 import type { IntlShape } from 'react-intl';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
@@ -12,7 +12,7 @@ import Link from '~core/Link';
 import {
   getStore,
   setStore,
-} from '../../../layouts/components/DeveloperPortalLayout/localStorage';
+} from '~layouts/DeveloperPortalLayout/localStorage';
 
 import styles from './Contribute.module.css';
 
@@ -139,7 +139,7 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
             <tbody>
               {issues &&
                 issues.map(issue => (
-                  <tr>
+                  <tr key={issue.node.url}>
                     <td>{issue.node.createdAt.split('T')[0]}</td>
                     <td>{`${issue.node.title.substring(0, 40)}...`}</td>
                     <td>
@@ -149,7 +149,7 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
                       />
                     </td>
                     <td>
-                      <Link href="/contribute/task/0" text="task#0" />
+                      <Link href="/contribute/task" text="task#0" />
                     </td>
                   </tr>
                 ))}
@@ -163,4 +163,4 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
 
 Contribute.displayName = displayName;
 
-export default injectIntl(Contribute);
+export default Contribute;

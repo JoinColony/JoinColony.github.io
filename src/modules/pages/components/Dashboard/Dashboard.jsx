@@ -7,7 +7,7 @@ import type { Socket } from 'socket.io-client';
 
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
@@ -147,4 +147,4 @@ class Dashboard extends Component<Props> {
   };
 }
 
-export default injectIntl(Dashboard);
+export default Dashboard;

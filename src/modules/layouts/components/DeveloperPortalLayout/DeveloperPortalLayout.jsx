@@ -47,6 +47,12 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ) || [],
     [locale, projectQueryData.openSourceProjects.edges],
   );
+  const contribute: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname.split('/')[1] === 'contribute';
+    }
+    return false;
+  }, []);
   const dashboard: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window.location.pathname.split('/')[1] === 'dashboard';
@@ -67,7 +73,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         wallet={wallet}
       />
       <div className={styles.body}>
-        {dashboard
+        {contribute || dashboard
           ? cloneElement(children, {
               error,
               network,

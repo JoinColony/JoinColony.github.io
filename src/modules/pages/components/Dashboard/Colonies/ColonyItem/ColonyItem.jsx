@@ -11,7 +11,7 @@ import type { Colony, Network } from '~types';
 import {
   getStore,
   setStore,
-} from '../../../../../layouts/components/DeveloperPortalLayout/localStorage';
+} from '~layouts/DeveloperPortalLayout/localStorage';
 
 import Copy from '~core/Copy';
 
