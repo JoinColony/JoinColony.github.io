@@ -18,7 +18,8 @@ import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownCont
 import {
   COLONY_DISCOURSE_SUPPORT,
   PAGE_DEVELOPER_PORTAL,
-  PAGE_DEVELOPER_DASHBOARD,
+  PAGE_DEVELOPER_PORTAL_CONTRIBUTE,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD,
 } from '~routes';
 
 import styles from './Header.module.css';
@@ -31,6 +32,10 @@ const MSG = defineMessages({
   navAriaLabel: {
     id: 'layouts.DeveloperPortalLayout.Header.navAriaLabel',
     defaultMessage: 'Main Navigation',
+  },
+  navLinkContribute: {
+    id: 'layouts.DeveloperPortalLayout.Header.navLinkContribute',
+    defaultMessage: 'Contribute',
   },
   navLinkDocs: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkDocs',
@@ -144,6 +149,11 @@ const Header = ({
             </span>
             <Link
               className={styles.navLink}
+              href={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
+              text={MSG.navLinkContribute}
+            />
+            <Link
+              className={styles.navLink}
               href={COLONY_DISCOURSE_SUPPORT}
               text={MSG.navLinkSupport}
             />
@@ -162,7 +172,7 @@ const Header = ({
               padding: 'large',
               width: 'fixed',
             }}
-            linkTo={PAGE_DEVELOPER_DASHBOARD}
+            linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
             style={{ marginLeft: '10px' }}
             text={user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />

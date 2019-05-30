@@ -1,0 +1,36 @@
+.main {
+  align-items: center;
+  color: #00284B;
+  display: flex;
+  justify-content: center;
+  font-family: 'Avenir Next Light';
+  padding-bottom: 20%;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.issues {
+  border: 0;
+  font-size: 14px;
+  margin: 20px 0;
+  width: 800px;
+}
+
+.issues tr {
+  border: 2px solid white;
+}
+
+.issues thead td {
+  color: #788CA0;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.issues tbody td {
+  background: #F0F5F7;
+  padding: 10px;
+}
