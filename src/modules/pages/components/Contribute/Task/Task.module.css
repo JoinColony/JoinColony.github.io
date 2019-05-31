@@ -8,3 +8,7 @@
   font-size: 32px;
   margin-bottom: 10px;
 }
+
+.buttons button {
+  margin: 20px;
+}

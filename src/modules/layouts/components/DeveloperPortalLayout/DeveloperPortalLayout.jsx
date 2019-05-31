@@ -59,7 +59,8 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     }
     return false;
   }, []);
-  const { network, wallet } = useMetaMask(dashboard);
+  const loadWallet = contribute || dashboard;
+  const { network, wallet } = useMetaMask(loadWallet);
   const { error, setUser, socket, user } = usePortalServer();
   const { networkClient } = useColonyNetwork(network, wallet);
   return (

@@ -20,6 +20,10 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Task.task',
     defaultMessage: 'Task',
   },
+  buttonApproveWorker: {
+    id: 'pages.Contribute.Task.buttonApproveWorker',
+    defaultMessage: 'Approve Worker',
+  },
   buttonStartWork: {
     id: 'pages.Contribute.Task.buttonStartWork',
     defaultMessage: 'Start Work',
@@ -29,27 +33,35 @@ const MSG = defineMessages({
 const displayName = 'pages.Contribute.Task';
 
 type Props = {|
-  networkClient: ?ColonyNetworkClient,
-  wallet: ?WalletObjectType,
+  networkClient: ColonyNetworkClient,
+  wallet: WalletObjectType,
 |};
 
-const Task = ({ networkClient }: Props) => {
+const Task = ({ networkClient, wallet }: Props) => {
   const [loadedLocal, setLoadedLocal] = useState(false);
+  const [loadedTask, setLoadedTask] = useState(false);
   const [task, setTask] = useState(null);
+  const [pendingOperation, setPendingOperation] = useState(null);
 
   useEffect(() => {
     if (!loadedLocal) {
-      const localTask = getStore('task#1');
+      const localTask = getStore('task_1');
+      const localOperation = getStore('task_1_operation');
       setTask(localTask);
+      setPendingOperation(localOperation);
       setLoadedLocal(true);
     }
   }, [task, loadedLocal]);
 
-  useEffect(() => setStore('task#1', task), [task]);
+  useEffect(() => setStore('task_1', task), [task]);
+  useEffect(() => setStore('task_1_operation', pendingOperation), [
+    pendingOperation,
+  ]);
 
   useEffect(() => {
-    if (!task && networkClient) {
+    if (!loadedTask && networkClient) {
       (async () => {
+        setLoadedTask(true);
         const colonyClient = await networkClient.getColonyClientByAddress(
           '0x0a97cb5A59085C0d5903622b3635D107Ab8F20AE',
         );
@@ -57,7 +69,7 @@ const Task = ({ networkClient }: Props) => {
           taskId: 1,
         });
         const worker = await colonyClient.getTaskRole.call({
-          taskId: 1,
+          taskId: result.id,
           role: 'WORKER',
         });
         const pot = await colonyClient.getFundingPot.call({
@@ -67,10 +79,48 @@ const Task = ({ networkClient }: Props) => {
           potId: result.potId,
           token: colonyClient.tokenClient.contract.address,
         });
-        setTask({ ...result, worker, pot: { payout, ...pot } });
+        setTask({
+          ...result,
+          worker,
+          pot: { payout: payout.toString(), ...pot },
+        });
       })();
     }
   });
+
+  const handleStartWork = async () => {
+    const colonyClient = await networkClient.getColonyClientByAddress(
+      '0x0a97cb5A59085C0d5903622b3635D107Ab8F20AE',
+    );
+    const operation = await colonyClient.setTaskWorkerRole.startOperation({
+      taskId: 1,
+      user: wallet.address,
+    });
+    await operation.sign();
+
+    // TODO Save the operation to the database
+    setStore('task_1_operation', operation.toJSON());
+  };
+
+  const handleApproveWorker = async () => {
+    // TODO Get the operation from the database
+    const operationJSON = getStore('task_1_operation');
+
+    const colonyClient = await networkClient.getColonyClientByAddress(
+      '0x0a97cb5A59085C0d5903622b3635D107Ab8F20AE',
+    );
+    const operation = await colonyClient.setTaskWorkerRole.restoreOperation(
+      operationJSON,
+    );
+    setPendingOperation(operation);
+    await operation.sign();
+    // TODO The gas limit needs to be fixed in colonyJS
+    await operation.send({ gasLimit: 1000000 });
+    setPendingOperation(null);
+
+    // TODO Remove the opetation from the database
+    setStore('task_1_operation', null);
+  };
 
   return (
     <>
@@ -95,7 +145,7 @@ const Task = ({ networkClient }: Props) => {
             </ul>
             <p>Pot</p>
             <ul>
-              <li>payout (TKN): {task.pot.payout.toString()}</li>
+              <li>payout (TKN): {task.pot.payout}</li>
               <li>payoutsWeCannotMake: {task.pot.payoutsWeCannotMake}</li>
               <li>type: {task.pot.type}</li>
               <li>typeId: {task.pot.typeId}</li>
@@ -104,11 +154,22 @@ const Task = ({ networkClient }: Props) => {
         ) : (
           <p>loading...</p>
         )}
-        <Button
-          appearance={{ theme: 'primary' }}
-          text={MSG.buttonStartWork}
-          type="submit"
-        />
+        <div className={styles.buttons}>
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!task || (task && task.worker)}
+            onClick={handleStartWork}
+            text={MSG.buttonStartWork}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!pendingOperation}
+            onClick={handleApproveWorker}
+            text={MSG.buttonApproveWorker}
+            type="submit"
+          />
+        </div>
       </div>
     </>
   );
