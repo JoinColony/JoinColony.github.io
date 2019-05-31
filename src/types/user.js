@@ -49,4 +49,12 @@ export type Colony = {|
   rootRole: boolean,
 |};
 
+export type Issue = {|
+  node: {
+    createdAt: string,
+    title: string,
+    url: string,
+  },
+|};
+
 export type StoreObject = Colony | Network | User | WalletObjectType;

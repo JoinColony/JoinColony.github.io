@@ -7,7 +7,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
-import Link from '~core/Link';
+
+import Issue from './Issue';
 
 import {
   getStore,
@@ -108,12 +109,6 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
     };
   }, [issues, error, getContributions, loading]);
 
-  const formatIssueLink = url => {
-    const repository = url.split('/')[4];
-    const issueNumber = url.split('/')[6];
-    return `${repository}#${issueNumber}`;
-  };
-
   return (
     <>
       <SEO description={MSG.pageDescription} title={title} />
@@ -130,28 +125,16 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
           <table className={styles.issues}>
             <thead>
               <tr>
-                <td>Date</td>
-                <td>Title</td>
+                <td>Created At</td>
+                <td>Issue Title</td>
                 <td>Issue Link</td>
-                <td>Task Link</td>
+                <td>Task</td>
               </tr>
             </thead>
             <tbody>
               {issues &&
                 issues.map(issue => (
-                  <tr key={issue.node.url}>
-                    <td>{issue.node.createdAt.split('T')[0]}</td>
-                    <td>{`${issue.node.title.substring(0, 40)}...`}</td>
-                    <td>
-                      <Link
-                        href={issue.node.url}
-                        text={formatIssueLink(issue.node.url)}
-                      />
-                    </td>
-                    <td>
-                      <Link href="/contribute/task" text="task#0" />
-                    </td>
-                  </tr>
+                  <Issue key={issue.node.url} issue={issue} />
                 ))}
             </tbody>
           </table>

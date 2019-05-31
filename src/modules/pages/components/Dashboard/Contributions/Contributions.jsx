@@ -171,7 +171,7 @@ const Contributions = ({ user }: Props) => {
             <tbody>
               {contributions &&
                 contributions.map(contribution => (
-                  <tr>
+                  <tr key={contribution.node.url}>
                     <td>{contribution.node.createdAt.split('T')[0]}</td>
                     <td>{`${contribution.node.title.substring(0, 40)}...`}</td>
                     <td>
