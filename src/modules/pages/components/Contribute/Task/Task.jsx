@@ -8,6 +8,11 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
 
+import {
+  getStore,
+  setStore,
+} from '~layouts/DeveloperPortalLayout/localStorage';
+
 import styles from './Task.module.css';
 
 const MSG = defineMessages({
@@ -29,7 +34,18 @@ type Props = {|
 |};
 
 const Task = ({ networkClient }: Props) => {
+  const [loadedLocal, setLoadedLocal] = useState(false);
   const [task, setTask] = useState(null);
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localTask = getStore('task#1');
+      setTask(localTask);
+      setLoadedLocal(true);
+    }
+  }, [task, loadedLocal]);
+
+  useEffect(() => setStore('task#1', task), [task]);
 
   useEffect(() => {
     if (!task && networkClient) {
@@ -51,7 +67,7 @@ const Task = ({ networkClient }: Props) => {
           potId: result.potId,
           token: colonyClient.tokenClient.contract.address,
         });
-        setTask({ ...result, worker, pot: { ...pot, payout } });
+        setTask({ ...result, worker, pot: { payout, ...pot } });
       })();
     }
   });
