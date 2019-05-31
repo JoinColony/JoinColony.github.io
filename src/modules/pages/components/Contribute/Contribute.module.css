@@ -1,23 +1,31 @@
 .main {
-  align-items: center;
   color: #00284B;
-  display: flex;
-  justify-content: center;
   font-family: 'Avenir Next Light';
   padding-bottom: 20%;
   min-height: 100vh;
   min-width: 100vw;
+  width: 100vw;
+}
+
+.section {
+  margin: 100px auto;
+  width: 700px;
 }
 
 .title {
-  font-size: 30px;
+  display: block;
+  font-size: 26px;
+}
+
+.description {
+  font-size: 16px;
 }
 
 .issues {
   border: 0;
   font-size: 14px;
-  margin: 20px 0;
-  width: 800px;
+  margin: 20px auto;
+  width: 700px;
 }
 
 .issues tr {

@@ -27,9 +27,24 @@ const MSG = defineMessages({
     id: 'pages.Contribute.pageTitle',
     defaultMessage: 'Contribute',
   },
-  mainTitle: {
-    id: 'pages.Contribute.mainTitle',
-    defaultMessage: 'Issues labeled "help-wanted"...',
+  issuesDescription: {
+    id: 'pages.Contribute.issuesDescription',
+    defaultMessage: `You can contribute to Colony by helping out with some open
+    issues. If there is no task assigned to an issue, we'll tip you with a
+    payment.`,
+  },
+  issuesTitle: {
+    id: 'pages.Contribute.issuesTitle',
+    defaultMessage: 'Open issues labeled "good-first-issue" and "help-wanted"',
+  },
+  ongoingDescription: {
+    id: 'pages.Contribute.ongoingDescription',
+    defaultMessage: `Here are a few ideas for contributing to Colony. We would
+    be happy to tip you for helping out with any of the following items.`,
+  },
+  ongoingTitle: {
+    id: 'pages.Contribute.ongoingTitle',
+    defaultMessage: 'Ongoing ideas for contributions',
   },
 });
 
@@ -118,10 +133,45 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
       */}
       <Helmet title={title} />
       <main className={styles.main}>
-        <div>
+        <div className={styles.section}>
           <h1 className={styles.title}>
-            <FormattedMessage {...MSG.mainTitle} />
+            <FormattedMessage {...MSG.ongoingTitle} />
           </h1>
+          <p className={styles.description}>
+            <FormattedMessage {...MSG.ongoingDescription} />
+          </p>
+          <table className={styles.issues}>
+            <thead>
+              <tr>
+                <td>Title</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Report Bugs</td>
+                <td>
+                  Are you encountering any bugs while developing with our tools?
+                  Help us out by opening an issue describing the bug.
+                </td>
+              </tr>
+              <tr>
+                <td>Improve Documentation</td>
+                <td>
+                  We could always use some help improving our documentation and
+                  fixing anything that might be outdated.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className={styles.section}>
+          <h1 className={styles.title}>
+            <FormattedMessage {...MSG.issuesTitle} />
+          </h1>
+          <p className={styles.description}>
+            <FormattedMessage {...MSG.issuesDescription} />
+          </p>
           <table className={styles.issues}>
             <thead>
               <tr>
