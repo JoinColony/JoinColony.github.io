@@ -27,9 +27,9 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Task.labelCompletionDate',
     defaultMessage: 'Completion Date',
   },
-  labelDeliverable: {
-    id: 'pages.Contribute.Task.labelDeliverable',
-    defaultMessage: 'Deliverable',
+  labelPullRequest: {
+    id: 'pages.Contribute.Task.labelPullRequest',
+    defaultMessage: 'Pull Request',
   },
   labelDueDate: {
     id: 'pages.Contribute.Task.labelDueDate',
@@ -39,9 +39,9 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Task.labelPayout',
     defaultMessage: 'Payout',
   },
-  labelSpecification: {
-    id: 'pages.Contribute.Task.labelSpecification',
-    defaultMessage: 'Specification',
+  labelIssue: {
+    id: 'pages.Contribute.Task.labelIssue',
+    defaultMessage: 'Issue',
   },
   labelStatus: {
     id: 'pages.Contribute.Task.labelStatus',
@@ -57,9 +57,9 @@ const MSG = defineMessages({
   },
 });
 
-const displayName = 'pages.Contribute.Task';
+const displayName = 'pages.Contribute.TaskPage';
 
-type TaskType = {|
+type Task = {|
   id: number,
   completionDate: string,
   dueDate: string,
@@ -88,12 +88,14 @@ type Props = {|
   wallet: WalletObjectType,
 |};
 
-const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
+const TaskPage = ({ authenticate, colonyClient, user, wallet }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [pendingOperation, setPendingOperation] = useState(null);
-  const [task, setTask] = useState<?TaskType>(null);
+  const [task, setTask] = useState<?Task>(null);
 
   const taskId: ?number = useMemo(() => {
     if (typeof window !== 'undefined') {
@@ -122,8 +124,6 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
     if (taskId) setStore(`task_${taskId}_operation`, pendingOperation);
   }, [pendingOperation, taskId]);
 
-  const server = process.env.SERVER_URL || 'http://localhost:8080';
-
   useEffect(() => {
     if (taskId) {
       (async () => {
@@ -132,10 +132,7 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
           headers: { 'Content-Type': 'application/json' },
         };
         // eslint-disable-next-line no-undef
-        fetch(
-          `${server}/api/contribution/type?type=task&typeId=${taskId}`,
-          options,
-        )
+        fetch(`${server}/api/contribution?type=task&typeId=${taskId}`, options)
           .then(res => res.json())
           .then(data => {
             setContribution(data.contribution);
@@ -145,7 +142,7 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
           });
       })();
     }
-  }, [server, taskId]);
+  }, [taskId]);
 
   useEffect(() => {
     if (colonyClient && taskId) {
@@ -228,7 +225,7 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
                 <FormattedMessage {...MSG.labelWorker} />
               </div>
               <div className={styles.value}>
-                {`@${contribution.worker} (${task.worker.address})`}
+                {`@${contribution.username} (${task.worker.address})`}
               </div>
             </div>
             <div className={styles.field}>
@@ -239,13 +236,10 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
             </div>
             <div className={styles.field}>
               <div className={styles.label}>
-                <FormattedMessage {...MSG.labelSpecification} />
+                <FormattedMessage {...MSG.labelIssue} />
               </div>
               <div className={styles.value}>
-                <Link
-                  href={contribution.link}
-                  text={contribution.specification}
-                />
+                <Link href={contribution.issue} text={contribution.issue} />
               </div>
             </div>
             <div className={styles.field}>
@@ -256,12 +250,12 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
             </div>
             <div className={styles.field}>
               <div className={styles.label}>
-                <FormattedMessage {...MSG.labelDeliverable} />
+                <FormattedMessage {...MSG.labelPullRequest} />
               </div>
               <div className={styles.value}>
                 <Link
-                  href={contribution.link}
-                  text={contribution.deliverable}
+                  href={contribution.pullRequest}
+                  text={contribution.pullRequest}
                 />
               </div>
             </div>
@@ -272,6 +266,6 @@ const Task = ({ authenticate, colonyClient, user, wallet }: Props) => {
   );
 };
 
-Task.displayName = displayName;
+TaskPage.displayName = displayName;
 
-export default Task;
+export default TaskPage;

@@ -191,11 +191,7 @@ const Contribute = ({ intl: { formatMessage } }: Props) => {
             <tbody>
               {issues &&
                 issues.map(issue => (
-                  <Issue
-                    key={issue.node.url}
-                    contributions={[]}
-                    issue={issue}
-                  />
+                  <Issue key={issue.node.url} issue={issue} />
                 ))}
             </tbody>
           </table>
