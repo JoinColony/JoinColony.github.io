@@ -2,17 +2,12 @@
 
 import type { ColonyClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
-import type { Socket } from 'socket.io-client';
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { Provider, User } from '~types';
-
 import Link from '~core/Link';
 
-import Login from '../../Dashboard/Login';
-import MetaMask from '../../Dashboard/MetaMask';
 import TaskActions from './TaskActions';
 
 import {
@@ -81,16 +76,14 @@ type Task = {|
 |};
 
 type Props = {|
-  authenticate: (provider: Provider) => void,
   colonyClient: ColonyClient,
-  socket: ?Socket,
-  user: User,
+  path: string,
   wallet: WalletObjectType,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const TaskPage = ({ authenticate, colonyClient, user, wallet }: Props) => {
+const TaskPage = ({ colonyClient, wallet }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
@@ -180,14 +173,6 @@ const TaskPage = ({ authenticate, colonyClient, user, wallet }: Props) => {
       })();
     }
   }, [colonyClient, taskId]);
-
-  if (!wallet) {
-    return <MetaMask />;
-  }
-
-  if (wallet && !user) {
-    return <Login authenticate={authenticate} error={error} wallet={wallet} />;
-  }
 
   return (
     <div className={styles.main}>

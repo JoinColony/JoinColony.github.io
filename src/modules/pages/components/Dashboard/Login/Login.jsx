@@ -34,7 +34,7 @@ const MSG = defineMessages({
 
 type Props = {|
   authenticate: (provider: Provider) => void,
-  error: ?string,
+  error?: string,
   wallet: WalletObjectType,
 |};
 

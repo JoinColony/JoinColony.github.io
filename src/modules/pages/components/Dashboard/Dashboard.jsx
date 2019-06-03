@@ -39,7 +39,7 @@ const MSG = defineMessages({
 type Props = {|
   authenticate: (provider: Provider) => void,
   disconnect: (provider: Provider) => void,
-  error: ?string,
+  error?: string,
   intl: IntlShape,
   network: Network,
   networkClient: ?ColonyNetworkClient,

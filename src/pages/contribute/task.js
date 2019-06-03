@@ -2,8 +2,8 @@
 
 import { createElement } from 'react';
 
-import Task from '~pages/Contribute/Task';
+import Contribute from '~pages/Contribute';
 
-const TaskPage = () => createElement(Task);
+const Task = () => createElement(Contribute, { page: 'task' });
 
-export default TaskPage;
+export default Task;

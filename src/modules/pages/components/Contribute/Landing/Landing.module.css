@@ -1,0 +1,43 @@
+.main {
+  color: #00284B;
+  font-family: 'Avenir Next Light';
+  min-height: 110vh;
+  width: 100vw;
+}
+
+.section {
+  margin: 80px auto;
+  width: 700px;
+}
+
+.title {
+  display: block;
+  font-family: 'Avenir Next Demi';
+  font-size: 30px;
+}
+
+.description {
+  font-size: 16px;
+}
+
+.issues {
+  border: 0;
+  font-size: 14px;
+  margin: 20px auto;
+  width: 700px;
+}
+
+.issues tr {
+  border: 2px solid white;
+}
+
+.issues thead td {
+  color: #788CA0;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.issues tbody td {
+  background: #F0F5F7;
+  padding: 10px;
+}

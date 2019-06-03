@@ -2,8 +2,8 @@
 
 import { createElement } from 'react';
 
-import Payment from '~pages/Contribute/Payment';
+import Contribute from '~pages/Contribute';
 
-const PaymentPage = () => createElement(Payment);
+const Payment = () => createElement(Contribute, { page: 'payment' });
 
-export default PaymentPage;
+export default Payment;
