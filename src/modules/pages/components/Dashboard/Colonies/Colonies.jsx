@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable react/no-unused-prop-types */
 
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';

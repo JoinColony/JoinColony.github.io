@@ -1,22 +1,40 @@
 /* @flow */
 
 import type { Socket } from 'socket.io-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-import type { User } from '~types';
+import type { Provider, User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const usePortalServer = () => {
+const usePortalServer = (wallet: WalletObjectType) => {
   const [error, setError] = useState<?string>(null);
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedUser, setLoadedUser] = useState<?boolean>(false);
   const [socket, setSocket] = useState<?Socket>(null);
   const [user, setUser] = useState<?User>(null);
+
+  const authenticate = (provider: Provider) => {
+    if (socket && wallet) {
+      const url = `${server}/auth/${provider}/`;
+      const params = `?socketId=${socket.id}&address=${wallet.address}`;
+      if (typeof window !== 'undefined') window.open(url + params);
+    }
+  };
+
+  const disconnect = (provider: Provider) => {
+    if (setUser && provider === 'discourse') {
+      setUser({ ...user, discourse: null });
+    }
+    if (setUser && provider === 'github') {
+      setUser(null);
+    }
+  };
 
   useEffect(() => {
     if (!loadedLocal) {
@@ -70,7 +88,7 @@ const usePortalServer = () => {
     };
   }, [socket]);
 
-  return { error, setUser, socket, user };
+  return { authenticate, disconnect, error, setUser, socket, user };
 };
 
 export default usePortalServer;

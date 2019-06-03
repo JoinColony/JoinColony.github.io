@@ -3,9 +3,8 @@
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
-import type { Socket } from 'socket.io-client';
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Router } from '@reach/router';
 import { defineMessages } from 'react-intl';
 import { Helmet } from 'react-helmet';
@@ -37,114 +36,92 @@ const MSG = defineMessages({
   },
 });
 
-const server = process.env.SERVER_URL || 'http://localhost:8080';
-
 type Props = {|
+  authenticate: (provider: Provider) => void,
+  disconnect: (provider: Provider) => void,
   error: ?string,
   intl: IntlShape,
   network: Network,
   networkClient: ?ColonyNetworkClient,
   page: string,
   setUser: (user: ?User) => void,
-  socket: ?Socket,
   user: ?User,
   wallet: ?WalletObjectType,
 |};
 
-class Dashboard extends Component<Props> {
-  static displayName = 'pages.Dashboard';
+const displayName = 'pages.Dashboard';
 
-  authenticate = (provider: Provider) => {
-    const { socket, wallet } = this.props;
-    if (socket && wallet) {
-      const url = `${server}/auth/${provider}/`;
-      const params = `?socketId=${socket.id}&address=${wallet.address}`;
-      if (typeof window !== 'undefined') window.open(url + params);
-    }
-  };
-
-  disconnect = (provider: Provider) => {
-    const { setUser, user } = this.props;
-    if (setUser && provider === 'discourse') {
-      setUser({ ...user, discourse: null });
-    }
-    if (setUser && provider === 'github') {
-      setUser(null);
-    }
-  };
-
-  render = () => {
-    const {
-      error,
-      intl: { formatMessage },
-      network,
-      networkClient,
-      page,
-      setUser,
-      user,
-      wallet,
-    } = this.props;
-    const title = formatMessage(MSG.pageTitle);
-    const closing = page === 'close';
-
-    if (typeof window !== 'undefined' && closing) {
-      window.close();
-    }
-    if (!wallet && !closing) {
-      return <MetaMask />;
-    }
-    if (wallet && !user && !closing) {
-      return (
-        <Login authenticate={this.authenticate} error={error} wallet={wallet} />
-      );
-    }
-    return (
-      <>
-        <SEO description={MSG.pageDescription} title={title} />
-        {/*
-          Helmet title must be a prop to work with react hooks.
-          See https://github.com/nfl/react-helmet/issues/437
-        */}
-        <Helmet title={title} />
-        <main className={styles.main}>
-          <div className={styles.mainInnerContainer}>
-            <div className={styles.sidebar}>
-              <Sidebar active={page || 'account'} />
-            </div>
-            {wallet && user ? (
-              <main className={styles.content}>
-                <Router primary={false}>
-                  <Account
-                    path={page ? '/dashboard/account' : '/dashboard'}
-                    authenticate={this.authenticate}
-                    disconnect={this.disconnect}
-                    setUser={setUser}
-                    user={user}
-                    wallet={wallet}
-                  />
-                  <Colonies
-                    path="/dashboard/colonies"
-                    network={network}
-                    networkClient={networkClient}
-                    setUser={setUser}
-                    user={user}
-                    wallet={wallet}
-                  />
-                  <Contributions
-                    path="/dashboard/contributions"
-                    user={user}
-                    wallet={wallet}
-                  />
-                </Router>
-              </main>
-            ) : (
-              <div style={{ height: '100vh' }} />
-            )}
+const Dashboard = ({
+  authenticate,
+  disconnect,
+  error,
+  intl: { formatMessage },
+  network,
+  networkClient,
+  page,
+  setUser,
+  user,
+  wallet,
+}: Props) => {
+  const title = formatMessage(MSG.pageTitle);
+  const close = page === 'close';
+  if (typeof window !== 'undefined' && close) {
+    window.close();
+  }
+  if (!wallet && !close) {
+    return <MetaMask />;
+  }
+  if (wallet && !user && !close) {
+    return <Login authenticate={authenticate} error={error} wallet={wallet} />;
+  }
+  return (
+    <>
+      <SEO description={MSG.pageDescription} title={title} />
+      {/*
+        Helmet title must be a prop to work with react hooks.
+        See https://github.com/nfl/react-helmet/issues/437
+      */}
+      <Helmet title={title} />
+      <main className={styles.main}>
+        <div className={styles.mainInnerContainer}>
+          <div className={styles.sidebar}>
+            <Sidebar active={page || 'account'} />
           </div>
-        </main>
-      </>
-    );
-  };
-}
+          {wallet && user ? (
+            <main className={styles.content}>
+              <Router primary={false}>
+                <Account
+                  path={page ? '/dashboard/account' : '/dashboard'}
+                  authenticate={authenticate}
+                  disconnect={disconnect}
+                  setUser={setUser}
+                  user={user}
+                  wallet={wallet}
+                />
+                <Colonies
+                  path="/dashboard/colonies"
+                  network={network}
+                  networkClient={networkClient}
+                  setUser={setUser}
+                  user={user}
+                  wallet={wallet}
+                />
+                <Contributions
+                  path="/dashboard/contributions"
+                  user={user}
+                  wallet={wallet}
+                />
+              </Router>
+            </main>
+          ) : (
+            <div style={{ height: '100vh' }} />
+          )}
+        </div>
+      </main>
+    </>
+  );
+};
+
+Dashboard.displayName = displayName;
 
 export default Dashboard;

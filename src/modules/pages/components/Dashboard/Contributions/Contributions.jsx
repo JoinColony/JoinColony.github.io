@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable react/no-unused-prop-types */
 
 import type { WalletObjectType } from '@colony/purser-core';
 
@@ -76,12 +75,17 @@ const Contributions = ({ user }: Props) => {
       body: JSON.stringify({
         query: `query {
           search(
-            query: "org:JoinColony author:${user.github.username} is:pr",
+            query: "org:JoinColony author:${user.github.username}",
             type: ISSUE,
             last: 10
           ) {
             edges {
               node {
+                ... on Issue {
+                  url
+                  title
+                  createdAt
+                }
                 ... on PullRequest {
                   url
                   title

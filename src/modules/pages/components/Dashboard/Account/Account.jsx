@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable react/no-unused-prop-types */
 
 import type { WalletObjectType } from '@colony/purser-core';
 
@@ -63,78 +62,52 @@ const Account = ({
   setUser,
   user,
   wallet,
-}: Props) => (
-  <div className={styles.main}>
-    <div className={styles.header}>
-      <Image
-        className={styles.photo}
-        alt={user.github.username}
-        src={user.github.photo}
-      />
-      <div>
-        <Name setUser={setUser} user={user} />
-        <Address setUser={setUser} user={user} wallet={wallet} />
-        <div className={styles.statistics}>
-          <div className={styles.statistic}>
-            <span className={styles.statisticValue}>0</span>
-            <span className={styles.statisticLabel}>CLNY</span>
-          </div>
-          <div className={styles.statistic}>
-            <span className={styles.statisticValue}>0</span>
-            <span className={styles.statisticLabel}>Reputation</span>
+}: Props) => {
+  return (
+    <div className={styles.main}>
+      <div className={styles.header}>
+        <Image
+          className={styles.photo}
+          alt={user.github.username}
+          src={user.github.photo}
+        />
+        <div>
+          <Name setUser={setUser} user={user} />
+          <Address setUser={setUser} user={user} wallet={wallet} />
+          <div className={styles.statistics}>
+            <div className={styles.statistic}>
+              <span className={styles.statisticValue}>0</span>
+              <span className={styles.statisticLabel}>CLNY</span>
+            </div>
+            <div className={styles.statistic}>
+              <span className={styles.statisticValue}>0</span>
+              <span className={styles.statisticLabel}>Reputation</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div className={styles.content}>
-      <div className={styles.contentColumn}>
-        <h2 className={styles.contentTitle}>
-          <FormattedMessage {...MSG.connectedAccountsTitle} />
-        </h2>
-        <p>
-          <FormattedMessage {...MSG.connectedAccountsDescription} />
-        </p>
-      </div>
-      <div className={styles.contentColumn}>
-        <div className={styles.field}>
-          <Input
-            disabled
-            appearance={{
-              padding: 'huge',
-              width: 'large',
-            }}
-            id="github"
-            label={MSG.connectedAccountsGitHubLabel}
-            type="text"
-            value={`@${user.github.username}`}
-          />
-          <Button
-            appearance={{
-              theme: 'reset',
-              font: 'small',
-              color: 'blue',
-              weight: 'medium',
-            }}
-            onClick={() => disconnect('github')}
-            text={MSG.connectedAccountsRemove}
-            type="submit"
-          />
+      <div className={styles.content}>
+        <div className={styles.contentColumn}>
+          <h2 className={styles.contentTitle}>
+            <FormattedMessage {...MSG.connectedAccountsTitle} />
+          </h2>
+          <p>
+            <FormattedMessage {...MSG.connectedAccountsDescription} />
+          </p>
         </div>
-        <Email setUser={setUser} user={user} />
-        <div className={styles.field}>
-          <Input
-            disabled
-            appearance={{
-              display: user.discourse ? undefined : 'none',
-              padding: 'huge',
-              width: 'large',
-            }}
-            id="discourse"
-            label={MSG.connectedAccountsDiscourseLabel}
-            type="text"
-            value={user.discourse ? `@${user.discourse.username}` : ''}
-          />
-          {user.discourse ? (
+        <div className={styles.contentColumn}>
+          <div className={styles.field}>
+            <Input
+              disabled
+              appearance={{
+                padding: 'huge',
+                width: 'large',
+              }}
+              id="github"
+              label={MSG.connectedAccountsGitHubLabel}
+              type="text"
+              value={`@${user.github.username}`}
+            />
             <Button
               appearance={{
                 theme: 'reset',
@@ -142,24 +115,52 @@ const Account = ({
                 color: 'blue',
                 weight: 'medium',
               }}
-              onClick={() => disconnect('discourse')}
+              onClick={() => disconnect('github')}
               text={MSG.connectedAccountsRemove}
               type="submit"
             />
-          ) : (
-            <Button
-              appearance={{ theme: 'primary', padding: 'large' }}
-              onClick={() => authenticate('discourse')}
-              style={{ margin: '12px auto' }}
-              text={MSG.connectedAccountsConnect}
-              type="submit"
+          </div>
+          <Email setUser={setUser} user={user} />
+          <div className={styles.field}>
+            <Input
+              disabled
+              appearance={{
+                display: user.discourse ? undefined : 'none',
+                padding: 'huge',
+                width: 'large',
+              }}
+              id="discourse"
+              label={MSG.connectedAccountsDiscourseLabel}
+              type="text"
+              value={user.discourse ? `@${user.discourse.username}` : ''}
             />
-          )}
+            {user.discourse ? (
+              <Button
+                appearance={{
+                  theme: 'reset',
+                  font: 'small',
+                  color: 'blue',
+                  weight: 'medium',
+                }}
+                onClick={() => disconnect('discourse')}
+                text={MSG.connectedAccountsRemove}
+                type="submit"
+              />
+            ) : (
+              <Button
+                appearance={{ theme: 'primary', padding: 'large' }}
+                onClick={() => authenticate('discourse')}
+                style={{ margin: '12px auto' }}
+                text={MSG.connectedAccountsConnect}
+                type="submit"
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 Account.displayName = displayName;
 

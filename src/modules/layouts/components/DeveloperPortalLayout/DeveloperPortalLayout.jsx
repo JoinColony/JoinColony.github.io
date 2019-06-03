@@ -61,8 +61,10 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   }, []);
   const loadWallet = contribute || dashboard;
   const { network, wallet } = useMetaMask(loadWallet);
-  const { error, setUser, socket, user } = usePortalServer();
-  const { networkClient } = useColonyNetwork(network, wallet);
+  const { authenticate, disconnect, error, setUser, user } = usePortalServer(
+    wallet,
+  );
+  const { colonyClient, networkClient } = useColonyNetwork(network, wallet);
   return (
     <div>
       <Header
@@ -76,11 +78,13 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       <div className={styles.body}>
         {contribute || dashboard
           ? cloneElement(children, {
+              authenticate,
+              colonyClient,
+              disconnect,
               error,
               network,
               networkClient,
               setUser,
-              socket,
               user,
               wallet,
             })
