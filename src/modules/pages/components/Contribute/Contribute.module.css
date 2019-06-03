@@ -1,20 +1,19 @@
 .main {
   color: #00284B;
   font-family: 'Avenir Next Light';
-  padding-bottom: 20%;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 110vh;
   width: 100vw;
 }
 
 .section {
-  margin: 100px auto;
+  margin: 80px auto;
   width: 700px;
 }
 
 .title {
   display: block;
-  font-size: 26px;
+  font-family: 'Avenir Next Demi';
+  font-size: 30px;
 }
 
 .description {

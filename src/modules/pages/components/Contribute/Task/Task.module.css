@@ -1,14 +1,27 @@
 .main {
   font-size: 16px;
+  min-height: 100vh;
   padding: 5%;
+  width: 100vw;
 }
 
-.title {
-  font-family: 'Avenir Next Demi';
-  font-size: 32px;
-  margin-bottom: 10px;
+.task {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 700px;
 }
 
-.buttons button {
-  margin: 20px;
+.field {
+  padding: 10px 0;
+}
+
+.label {
+  font-size: 15px;
+}
+
+.value {
+  display: flex;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: bold;
+  font-size: 15px;
 }
