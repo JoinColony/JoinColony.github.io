@@ -68,6 +68,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   return (
     <div>
       <Header
+        contribute={contribute}
         coreProjects={coreProjects}
         dashboard={dashboard}
         network={network}

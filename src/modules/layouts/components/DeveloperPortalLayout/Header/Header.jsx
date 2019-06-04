@@ -3,7 +3,7 @@
 import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import type { Network, Project, User } from '~types';
@@ -56,6 +56,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
+  contribute: boolean,
   coreProjects: Array<Project>,
   dashboard: boolean,
   intl: IntlShape,
@@ -68,6 +69,7 @@ type Props = {|
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
+  contribute,
   coreProjects,
   dashboard,
   intl: { formatMessage },
@@ -79,6 +81,15 @@ const Header = ({
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
+  const activeButton: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return (
+        dashboard ||
+        (contribute && !user && window.location.pathname.split('/')[2])
+      );
+    }
+    return false;
+  }, [contribute, dashboard, user]);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -166,8 +177,8 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: dashboard ? 'primary' : 'primaryHollow',
-              color: dashboard ? 'white' : undefined,
+              theme: activeButton ? 'primary' : 'primaryHollow',
+              color: activeButton ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
               width: 'fixed',
