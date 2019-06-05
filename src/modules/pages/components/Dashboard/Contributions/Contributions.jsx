@@ -7,10 +7,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { User } from '~types';
 
-import Button from '~core/Button';
 import Link from '~core/Link';
-
-import RequestReward from './RequestReward';
 
 import {
   getStore,
@@ -51,7 +48,6 @@ const Contributions = ({ user }: Props) => {
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [requestReward, setRequestReward] = useState(false);
   const errorTimeout = useRef(null);
 
   useEffect(() => {
@@ -137,32 +133,6 @@ const Contributions = ({ user }: Props) => {
           <FormattedMessage {...MSG.description} />
         </p>
         <div className={styles.content}>
-          <div className={styles.requestRewardButton}>
-            {requestReward ? (
-              <Button
-                appearance={{
-                  theme: 'reset',
-                  color: 'grey',
-                }}
-                onClick={() => setRequestReward(false)}
-                text={MSG.buttonCancel}
-                type="submit"
-              />
-            ) : (
-              <Button
-                appearance={{
-                  theme: 'reset',
-                  color: 'blue',
-                }}
-                onClick={() => setRequestReward(true)}
-                text={MSG.buttonRequestReward}
-                type="submit"
-              />
-            )}
-          </div>
-          {requestReward && (
-            <RequestReward setRequestReward={setRequestReward} />
-          )}
           <table className={styles.contributions}>
             <thead>
               <tr>
