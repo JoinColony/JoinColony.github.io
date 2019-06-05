@@ -8,6 +8,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Link from '~core/Link';
 
+import PaymentActions from './PaymentActions';
+
 import {
   getStore,
   setStore,
@@ -19,6 +21,10 @@ const MSG = defineMessages({
   labelFinalized: {
     id: 'pages.Contribute.Payment.labelFinalized',
     defaultMessage: 'Finalized',
+  },
+  labelIssue: {
+    id: 'pages.Contribute.Payment.labelIssue',
+    defaultMessage: 'Issue',
   },
   labelPayment: {
     id: 'pages.Contribute.Payment.labelPayment',
@@ -44,6 +50,7 @@ type Payment = {|
   finalized: boolean,
   id: number,
   payout: number,
+  potId: number,
   recipient: string,
 |};
 
@@ -55,7 +62,7 @@ type Props = {|
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const PaymentPage = ({ colonyClient }: Props) => {
+const PaymentPage = ({ colonyClient, wallet }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
@@ -119,7 +126,8 @@ const PaymentPage = ({ colonyClient }: Props) => {
           });
           setPayment({
             ...result,
-            id: paymentId,
+            id: Number(paymentId),
+            potId: result.potId,
             payout: payout.toString(),
           });
         } catch (err) {
@@ -143,6 +151,12 @@ const PaymentPage = ({ colonyClient }: Props) => {
       {!error && !payment && !contribution && <p>loading...</p>}
       {payment && contribution && (
         <div>
+          <PaymentActions
+            colonyClient={colonyClient}
+            setPayment={setPayment}
+            payment={payment}
+            wallet={wallet}
+          />
           <div className={styles.payment}>
             <div className={styles.field}>
               <div className={styles.label}>
@@ -172,17 +186,29 @@ const PaymentPage = ({ colonyClient }: Props) => {
                 {`@${contribution.username} (${payment.recipient})`}
               </div>
             </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.labelPullRequest} />
+            {contribution.issue && (
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.labelIssue} />
+                </div>
+                <div className={styles.value}>
+                  <Link href={contribution.issue} text={contribution.issue} />
+                </div>
               </div>
-              <div className={styles.value}>
-                <Link
-                  href={contribution.pullRequest}
-                  text={contribution.pullRequest}
-                />
+            )}
+            {contribution.pullRequest && (
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.labelPullRequest} />
+                </div>
+                <div className={styles.value}>
+                  <Link
+                    href={contribution.pullRequest}
+                    text={contribution.pullRequest}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}

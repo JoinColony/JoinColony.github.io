@@ -203,14 +203,16 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
                 {`${contribution.payout} CDEV`}
               </div>
             </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.labelWorker} />
+            {task.worker.address && (
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.labelWorker} />
+                </div>
+                <div className={styles.value}>
+                  {`@${contribution.username} (${task.worker.address})`}
+                </div>
               </div>
-              <div className={styles.value}>
-                {`@${contribution.username} (${task.worker.address})`}
-              </div>
-            </div>
+            )}
             <div className={styles.field}>
               <div className={styles.label}>
                 <FormattedMessage {...MSG.labelDueDate} />
@@ -225,23 +227,27 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
                 <Link href={contribution.issue} text={contribution.issue} />
               </div>
             </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.labelCompletionDate} />
+            {task.completionDate && (
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.labelCompletionDate} />
+                </div>
+                <div className={styles.value}>{`${task.completionDate}`}</div>
               </div>
-              <div className={styles.value}>{`${task.completionDate}`}</div>
-            </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.labelPullRequest} />
+            )}
+            {contribution.pullRequest && (
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.labelPullRequest} />
+                </div>
+                <div className={styles.value}>
+                  <Link
+                    href={contribution.pullRequest}
+                    text={contribution.pullRequest}
+                  />
+                </div>
               </div>
-              <div className={styles.value}>
-                <Link
-                  href={contribution.pullRequest}
-                  text={contribution.pullRequest}
-                />
-              </div>
-            </div>
+            )}
           </div>
         </div>
       )}

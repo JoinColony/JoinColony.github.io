@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
+import ecp from '~layouts/DeveloperPortalLayout/ecp';
+
 import Button from '~core/Button';
 import Input from '~core/Input';
 import Link from '~core/Link';
@@ -31,7 +33,7 @@ const MSG = defineMessages({
   },
   labelIssue: {
     id: 'pages.Dashboard.Admin.AddTask.labelIssue',
-    defaultMessage: 'Issue URL',
+    defaultMessage: 'GitHub Issue URL',
   },
   labelSkillId: {
     id: 'pages.Dashboard.Admin.AddTask.labelSkillId',
@@ -57,22 +59,27 @@ const AddTask = ({ colonyClient }: Props) => {
 
   const handleAddTask = async () => {
     if (colonyClient && amount && dueDate && issue && skillId) {
+      await ecp.init();
+      const specificationHash = await ecp.saveHash(issue);
+      await ecp.stop();
       const addTaskResponse = await colonyClient.addTask.send(
         {
-          specificationHash: issue,
+          specificationHash,
           domainId: 1,
-          skillId,
-          dueDate,
+          skillId: Number(skillId),
+          dueDate: new Date(dueDate),
         },
         {},
       );
       // $FlowFixMe
       const { taskId } = addTaskResponse.eventData;
-      await colonyClient.setTaskWorkerPayout.send(
+      await colonyClient.setAllTaskPayouts.send(
         {
           taskId,
           token: colonyClient.tokenClient.contract.address,
-          amount: new BN(amount),
+          managerAmount: new BN(0),
+          evaluatorAmount: new BN(0),
+          workerAmount: new BN(amount),
         },
         {},
       );
@@ -132,11 +139,24 @@ const AddTask = ({ colonyClient }: Props) => {
             padding: 'huge',
             width: 'stretch',
           }}
-          id="issue"
-          label={MSG.labelIssue}
-          onChange={handleChangeIssue}
-          type="text"
-          value={issue}
+          id="skillId"
+          label={MSG.labelSkillId}
+          onChange={handleChangeSkillId}
+          type="number"
+          value={skillId}
+        />
+      </div>
+      <div className={styles.field}>
+        <Input
+          appearance={{
+            padding: 'huge',
+            width: 'stretch',
+          }}
+          id="amount"
+          label={MSG.labelAmount}
+          onChange={handleChangeAmount}
+          type="number"
+          value={amount}
         />
       </div>
       <div className={styles.field}>
@@ -158,24 +178,11 @@ const AddTask = ({ colonyClient }: Props) => {
             padding: 'huge',
             width: 'stretch',
           }}
-          id="skillId"
-          label={MSG.labelSkillId}
-          onChange={handleChangeSkillId}
-          type="number"
-          value={skillId}
-        />
-      </div>
-      <div className={styles.field}>
-        <Input
-          appearance={{
-            padding: 'huge',
-            width: 'stretch',
-          }}
-          id="amount"
-          label={MSG.labelAmount}
-          onChange={handleChangeAmount}
-          type="number"
-          value={amount}
+          id="issue"
+          label={MSG.labelIssue}
+          onChange={handleChangeIssue}
+          type="text"
+          value={issue}
         />
       </div>
       <div className={styles.field}>

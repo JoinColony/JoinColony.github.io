@@ -27,15 +27,15 @@ const MSG = defineMessages({
   },
   labelIssue: {
     id: 'pages.Dashboard.Admin.AddPayment.labelIssue',
-    defaultMessage: 'Issue URL (either issue or pull request required)',
+    defaultMessage: 'GitHub Issue URL (issue or pull request required)',
   },
   labelPullRequest: {
     id: 'pages.Dashboard.Admin.AddPayment.labelPullRequest',
-    defaultMessage: 'Pull Request URL (either issue or pull request required)',
+    defaultMessage: 'GitHub Pull Request URL (issue or pull request required)',
   },
   labelRecipient: {
     id: 'pages.Dashboard.Admin.AddPayment.labelRecipient',
-    defaultMessage: 'Recipient Address',
+    defaultMessage: 'Recipient Ethereum Address',
   },
   labelSkillId: {
     id: 'pages.Dashboard.Admin.AddPayment.labelSkillId',
@@ -80,7 +80,7 @@ const AddPayment = ({ colonyClient }: Props) => {
           token: colonyClient.tokenClient.contract.address,
           amount: new BN(amount),
           domainId: 1,
-          skillId,
+          skillId: Number(skillId),
         },
         {},
       );
@@ -206,11 +206,11 @@ const AddPayment = ({ colonyClient }: Props) => {
             padding: 'huge',
             width: 'stretch',
           }}
-          id="recipient"
-          label={MSG.labelRecipient}
-          onChange={handleChangeRecipient}
+          id="username"
+          label={MSG.labelUsername}
+          onChange={handleChangeUsername}
           type="text"
-          value={recipient}
+          value={username}
         />
       </div>
       <div className={styles.field}>
@@ -219,11 +219,11 @@ const AddPayment = ({ colonyClient }: Props) => {
             padding: 'huge',
             width: 'stretch',
           }}
-          id="username"
-          label={MSG.labelUsername}
-          onChange={handleChangeUsername}
+          id="recipient"
+          label={MSG.labelRecipient}
+          onChange={handleChangeRecipient}
           type="text"
-          value={username}
+          value={recipient}
         />
       </div>
       <div className={styles.field}>

@@ -17,7 +17,7 @@ const MSG = defineMessages({
   },
   labelAddress: {
     id: 'pages.Dashboard.Admin.AddAdmin.labelAddress',
-    defaultMessage: 'Wallet Address',
+    defaultMessage: 'Ethereum Address',
   },
   labelUsername: {
     id: 'pages.Dashboard.Admin.AddAdmin.labelUsername',

@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { sha3 } from 'web3-utils';
 
+import ecp from '~layouts/DeveloperPortalLayout/ecp';
+
 import Button from '~core/Button';
 
 import {
@@ -79,6 +81,7 @@ type Props = {|
 
 const TaskActions = ({ colonyClient, task, setTask, wallet }: Props) => {
   const [pendingOperation, setPendingOperation] = useState(null);
+  const [pullRequest, setPullRequest] = useState('');
 
   const handleApproveWorker = async () => {
     // TODO Get the operation from the database
@@ -118,10 +121,13 @@ const TaskActions = ({ colonyClient, task, setTask, wallet }: Props) => {
   };
 
   const handleSubmitWork = async () => {
+    await ecp.init();
+    const deliverableHash = await ecp.saveHash(pullRequest);
+    await ecp.stop();
     await colonyClient.submitTaskDeliverable.send(
       {
         taskId: task.id,
-        deliverableHash: task.specificationHash,
+        deliverableHash,
       },
       {},
     );
