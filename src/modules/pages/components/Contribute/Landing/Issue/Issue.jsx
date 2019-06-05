@@ -10,7 +10,7 @@ import Link from '~core/Link';
 const MSG = defineMessages({
   noReward: {
     id: 'pages.Contribute.Issue.noReward',
-    defaultMessage: 'none',
+    defaultMessage: 'not set',
   },
 });
 
@@ -61,7 +61,7 @@ const IssueItem = ({ issue }: Props) => {
         {contribution && (
           <Link
             href={`/contribute/${contribution.type}?id=${contribution.typeId}`}
-            text={`${contribution.type}#${contribution.typeId}`}
+            text={`${contribution.payout} CDEV`}
           />
         )}
         {!contribution && error && <span>{error}</span>}

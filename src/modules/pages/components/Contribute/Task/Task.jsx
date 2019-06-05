@@ -152,11 +152,6 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
             taskId,
             role: 'WORKER',
           });
-          const { amount: payout } = await colonyClient.getTaskPayout.call({
-            taskId,
-            role: 'WORKER',
-            token: colonyClient.tokenClient.contract.address,
-          });
           const ratings = await colonyClient.getTaskWorkRatingSecretsInfo.call({
             taskId,
           });
@@ -165,7 +160,6 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
             ratings,
             manager,
             worker,
-            payout: payout.toString(),
           });
         } catch (err) {
           setError(err);
@@ -180,12 +174,14 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
       {!error && !task && !contribution && <p>loading...</p>}
       {task && contribution && (
         <div>
-          <TaskActions
-            colonyClient={colonyClient}
-            setTask={setTask}
-            task={task}
-            wallet={wallet}
-          />
+          {task && (
+            <TaskActions
+              colonyClient={colonyClient}
+              setTask={setTask}
+              task={task}
+              wallet={wallet}
+            />
+          )}
           <div className={styles.task}>
             <div className={styles.field}>
               <div className={styles.label}>
@@ -203,7 +199,9 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
               <div className={styles.label}>
                 <FormattedMessage {...MSG.labelPayout} />
               </div>
-              <div className={styles.value}>{`${task.payout} CDEV`}</div>
+              <div className={styles.value}>
+                {`${contribution.payout} CDEV`}
+              </div>
             </div>
             <div className={styles.field}>
               <div className={styles.label}>

@@ -5,6 +5,9 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Issue from './Issue';
 
+import Button from '~core/Button';
+import Image from '~core/Image';
+
 import {
   getStore,
   setStore,
@@ -13,24 +16,36 @@ import {
 import styles from './Landing.module.css';
 
 const MSG = defineMessages({
+  heroButton: {
+    id: 'pages.Contribute.Landing.heroButton',
+    defaultMessage: 'Create Account',
+  },
+  heroDescription: {
+    id: 'pages.Contribute.Landing.heroDescription',
+    defaultMessage: `Create a developer account so we can reward you CDEV tokens
+    and reputation for contributing to our open source projects.`,
+  },
+  heroTitle: {
+    id: 'pages.Contribute.Landing.heroTitle',
+    defaultMessage: 'Contribute and Earn',
+  },
   issuesDescription: {
     id: 'pages.Contribute.Landing.issuesDescription',
-    defaultMessage: `You can contribute to Colony by helping out with some open
-    issues. If there is no task assigned to an issue, we'll tip you with a
-    payment.`,
+    defaultMessage: `Find issues labeled “Help wanted” and "Good First Issue"
+    below or check out the repository to open a new issue or pull request.`,
   },
   issuesTitle: {
     id: 'pages.Contribute.Landing.issuesTitle',
-    defaultMessage: 'Open issues labeled "help-wanted"',
+    defaultMessage: 'Start Contributing',
   },
   ongoingDescription: {
     id: 'pages.Contribute.Landing.ongoingDescription',
-    defaultMessage: `Here are a few ideas for contributing to Colony. We would
-    be happy to tip you for helping out with any of the following items.`,
+    defaultMessage: `Looking for some other ideas? Here are some ongoing ways to
+    contribute.`,
   },
   ongoingTitle: {
     id: 'pages.Contribute.Landing.ongoingTitle',
-    defaultMessage: 'Ongoing ways to contribute',
+    defaultMessage: 'More ways to contribute',
   },
 });
 
@@ -106,7 +121,54 @@ const Landing = () => {
   }, [issues, error, getContributions, loading]);
 
   return (
-    <>
+    <div className={styles.main}>
+      <div className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            <FormattedMessage {...MSG.heroTitle} />
+          </h1>
+          <p className={styles.heroDescription}>
+            <FormattedMessage {...MSG.heroDescription} />
+          </p>
+          <Button
+            appearance={{
+              theme: 'contribute',
+              padding: 'huge',
+              weight: 'medium',
+            }}
+            linkTo="/dashboard"
+            text={MSG.heroButton}
+            type="submit"
+          />
+        </div>
+        <Image
+          className={styles.heroImage}
+          alt={MSG.heroTitle}
+          src="/img/devPortal_banner_contribute.svg"
+        />
+      </div>
+      <div className={styles.section}>
+        <h1 className={styles.title}>
+          <FormattedMessage {...MSG.issuesTitle} />
+        </h1>
+        <p className={styles.description}>
+          <FormattedMessage {...MSG.issuesDescription} />
+        </p>
+        <table className={styles.issues}>
+          <thead>
+            <tr>
+              <td>Date</td>
+              <td>Title</td>
+              <td>Link</td>
+              <td>Reward</td>
+            </tr>
+          </thead>
+          <tbody>
+            {issues &&
+              issues.map(issue => <Issue key={issue.node.url} issue={issue} />)}
+          </tbody>
+        </table>
+      </div>
       <div className={styles.section}>
         <h1 className={styles.title}>
           <FormattedMessage {...MSG.ongoingTitle} />
@@ -146,29 +208,7 @@ const Landing = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.section}>
-        <h1 className={styles.title}>
-          <FormattedMessage {...MSG.issuesTitle} />
-        </h1>
-        <p className={styles.description}>
-          <FormattedMessage {...MSG.issuesDescription} />
-        </p>
-        <table className={styles.issues}>
-          <thead>
-            <tr>
-              <td>Date</td>
-              <td>Title</td>
-              <td>Link</td>
-              <td>Reward</td>
-            </tr>
-          </thead>
-          <tbody>
-            {issues &&
-              issues.map(issue => <Issue key={issue.node.url} issue={issue} />)}
-          </tbody>
-        </table>
-      </div>
-    </>
+    </div>
   );
 };
 

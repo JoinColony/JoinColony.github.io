@@ -1,8 +1,9 @@
 /* @flow */
 
 import type { ColonyClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Link from '~core/Link';
@@ -18,10 +19,6 @@ const MSG = defineMessages({
   labelFinalized: {
     id: 'pages.Contribute.Payment.labelFinalized',
     defaultMessage: 'Finalized',
-  },
-  labelIssue: {
-    id: 'pages.Contribute.Payment.labelIssue',
-    defaultMessage: 'Issue',
   },
   labelPayment: {
     id: 'pages.Contribute.Payment.labelPayment',
@@ -53,6 +50,7 @@ type Payment = {|
 type Props = {|
   colonyClient: ColonyClient,
   path: string,
+  wallet: WalletObjectType,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
@@ -62,14 +60,15 @@ const PaymentPage = ({ colonyClient }: Props) => {
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [payment, setPayment] = useState<?Payment>(null);
+  const [paymentId, setPaymentId] = useState<?number>(null);
 
-  const paymentId: ?number = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      const paymentIdString = window.location.search.split('id=')[1];
-      if (paymentIdString) return Number(paymentIdString);
-      return null;
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search) {
+      const searchId = window.location.search.split('id=')[1];
+      if (searchId) {
+        setPaymentId(searchId);
+      }
     }
-    return null;
   }, []);
 
   useEffect(() => {
@@ -112,7 +111,7 @@ const PaymentPage = ({ colonyClient }: Props) => {
       (async () => {
         try {
           const result = await colonyClient.getPayment.call({
-            paymentId,
+            paymentId: Number(paymentId),
           });
           const { payout } = await colonyClient.getFundingPotPayout.call({
             potId: result.potId,
@@ -129,6 +128,14 @@ const PaymentPage = ({ colonyClient }: Props) => {
       })();
     }
   }, [colonyClient, paymentId]);
+
+  if (!paymentId) {
+    return (
+      <div className={styles.main}>
+        <p>No payment specified</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.main}>
@@ -163,14 +170,6 @@ const PaymentPage = ({ colonyClient }: Props) => {
               </div>
               <div className={styles.value}>
                 {`@${contribution.username} (${payment.recipient})`}
-              </div>
-            </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.labelIssue} />
-              </div>
-              <div className={styles.value}>
-                <Link href={contribution.issue} text={contribution.issue} />
               </div>
             </div>
             <div className={styles.field}>

@@ -60,7 +60,11 @@ const Contribute = ({
       <main className={styles.main}>
         <Router primary={false}>
           <Landing path="/contribute" />
-          <Payment path="/contribute/payment" colonyClient={colonyClient} />
+          <Payment
+            path="/contribute/payment"
+            colonyClient={colonyClient}
+            wallet={wallet}
+          />
           <Task
             path="/contribute/task"
             colonyClient={colonyClient}
