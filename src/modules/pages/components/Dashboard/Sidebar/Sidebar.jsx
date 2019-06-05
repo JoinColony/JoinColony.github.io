@@ -4,11 +4,17 @@ import React from 'react';
 
 import { defineMessages } from 'react-intl';
 
+import type { User } from '~types';
+
 import Link from '~core/Link';
 
 import styles from './Sidebar.module.css';
 
 const MSG = defineMessages({
+  adminLink: {
+    id: 'pages.Dashboard.Sidebar.adminLink',
+    defaultMessage: 'Admin',
+  },
   accountLink: {
     id: 'pages.Dashboard.Sidebar.accountLink',
     defaultMessage: 'Account',
@@ -25,13 +31,14 @@ const MSG = defineMessages({
 
 type Props = {|
   active: string,
+  user: ?User,
 |};
 
 const displayName = 'pages.Dashboard.Sidebar';
 
-const Sidebar = ({ active }: Props) => (
+const Sidebar = ({ active, user }: Props) => (
   <div className={styles.main}>
-    <div className={styles.content}>
+    <div>
       <Link
         className={active === 'account' ? styles.linkActive : styles.link}
         href="/dashboard/account"
@@ -47,6 +54,13 @@ const Sidebar = ({ active }: Props) => (
         href="/dashboard/contributions"
         text={MSG.contributionsLink}
       />
+      {user && user.admin && (
+        <Link
+          className={active === 'admin' ? styles.linkActive : styles.link}
+          href="/dashboard/admin"
+          text={MSG.adminLink}
+        />
+      )}
     </div>
   </div>
 );

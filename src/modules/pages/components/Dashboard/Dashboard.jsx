@@ -1,6 +1,9 @@
 /* @flow */
 
-import type { ColonyNetworkClient } from '@colony/colony-js-client';
+import type {
+  ColonyClient,
+  ColonyNetworkClient,
+} from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
@@ -17,6 +20,7 @@ import Login from './Login';
 import MetaMask from './MetaMask';
 import Sidebar from './Sidebar';
 
+import Admin from './Admin';
 import Account from './Account';
 import Colonies from './Colonies';
 import Contributions from './Contributions';
@@ -38,6 +42,7 @@ const MSG = defineMessages({
 
 type Props = {|
   authenticate: (provider: Provider) => void,
+  colonyClient: ?ColonyClient,
   disconnect: (provider: Provider) => void,
   error?: string,
   intl: IntlShape,
@@ -53,6 +58,7 @@ const displayName = 'pages.Dashboard';
 
 const Dashboard = ({
   authenticate,
+  colonyClient,
   disconnect,
   error,
   intl: { formatMessage },
@@ -85,11 +91,12 @@ const Dashboard = ({
       <main className={styles.main}>
         <div className={styles.mainInnerContainer}>
           <div className={styles.sidebar}>
-            <Sidebar active={page || 'account'} />
+            <Sidebar active={page || 'account'} user={user} />
           </div>
           {wallet && user ? (
             <main className={styles.content}>
               <Router primary={false}>
+                <Admin path="/dashboard/admin" colonyClient={colonyClient} />
                 <Account
                   path={page ? '/dashboard/account' : '/dashboard'}
                   authenticate={authenticate}
