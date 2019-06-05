@@ -59,7 +59,7 @@ const getNetworkInfo = (id: number) => {
   }
 };
 
-const useMetaMask = (loadWallet: boolean) => {
+const useMetaMask = (walletRequired: boolean) => {
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedNetwork, setLoadedNetwork] = useState<boolean>(false);
   const [loadedWallet, setLoadedWallet] = useState<boolean>(false);
@@ -110,18 +110,18 @@ const useMetaMask = (loadWallet: boolean) => {
   useEffect(() => setStore('wallet', wallet), [wallet]);
 
   useEffect(() => {
-    if (loadWallet && !loadedWallet) {
+    if (walletRequired && !loadedWallet) {
       openWallet();
       setLoadedWallet(true);
     }
-  }, [loadWallet, loadedWallet, openWallet]);
+  }, [walletRequired, loadedWallet, openWallet]);
 
   useEffect(() => {
-    if (loadWallet && !loadedNetwork && loadedWallet) {
+    if (walletRequired && !loadedNetwork && loadedWallet) {
       getNetwork();
       setLoadedNetwork(true);
     }
-  }, [loadWallet, getNetwork, loadedNetwork, loadedWallet]);
+  }, [walletRequired, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
     if (!web3.currentProvider.connection.selectedAddress) {

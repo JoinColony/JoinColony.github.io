@@ -19,17 +19,20 @@ const useColonyNetwork = (network: ?Network, wallet: WalletObjectType) => {
 
   useEffect(() => {
     (async () => {
-      if (network && network.slug === 'goerli' && wallet) {
+      if (network && network.slug === 'goerli' && wallet && wallet.sign) {
         if (!networkClient) {
           const client = await getNetworkClient(network.slug, wallet);
           setNetworkClient(client);
         }
         if (networkClient && !colonyClient) {
-          const client = await networkClient.getColonyClientByAddress(
-            process.env.COLONY_ADDRESS ||
-              '0x0a97cb5A59085C0d5903622b3635D107Ab8F20AE',
-          );
-          setColonyClient(client);
+          if (process.env.COLONY_ADDRESS) {
+            const client = await networkClient.getColonyClientByAddress(
+              process.env.COLONY_ADDRESS,
+            );
+            setColonyClient(client);
+          } else {
+            throw new Error('COLONY_ADDRESS environment variable not set');
+          }
         }
       }
     })();

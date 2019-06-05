@@ -47,9 +47,12 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ) || [],
     [locale, projectQueryData.openSourceProjects.edges],
   );
-  const contribute: boolean = useMemo(() => {
+  const contribution: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
-      return window.location.pathname.split('/')[1] === 'contribute';
+      return (
+        window.location.pathname.split('/')[1] === 'contribute' &&
+        window.location.pathname.split('/')[2]
+      );
     }
     return false;
   }, []);
@@ -59,8 +62,8 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     }
     return false;
   }, []);
-  const loadWallet = contribute || dashboard;
-  const { network, wallet } = useMetaMask(loadWallet);
+  const walletRequired = contribution || dashboard;
+  const { network, wallet } = useMetaMask(walletRequired);
   const { authenticate, disconnect, error, setUser, user } = usePortalServer(
     wallet,
   );
@@ -68,7 +71,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   return (
     <div>
       <Header
-        contribute={contribute}
+        contribution={contribution}
         coreProjects={coreProjects}
         dashboard={dashboard}
         network={network}
@@ -77,7 +80,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         wallet={wallet}
       />
       <div className={styles.body}>
-        {contribute || dashboard
+        {contribution || dashboard
           ? cloneElement(children, {
               authenticate,
               colonyClient,

@@ -56,7 +56,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  contribute: boolean,
+  contribution: boolean,
   coreProjects: Array<Project>,
   dashboard: boolean,
   intl: IntlShape,
@@ -69,7 +69,7 @@ type Props = {|
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
-  contribute,
+  contribution,
   coreProjects,
   dashboard,
   intl: { formatMessage },
@@ -83,13 +83,10 @@ const Header = ({
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
   const activeButton: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
-      return (
-        dashboard ||
-        (contribute && !user && window.location.pathname.split('/')[2])
-      );
+      return dashboard || (contribution && !user);
     }
     return false;
-  }, [contribute, dashboard, user]);
+  }, [contribution, dashboard, user]);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
