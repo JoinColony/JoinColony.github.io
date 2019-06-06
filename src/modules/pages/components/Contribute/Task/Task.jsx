@@ -3,8 +3,10 @@
 import type { ColonyClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+
+import type { Contribution } from '~types';
 
 import Link from '~core/Link';
 
@@ -50,6 +52,10 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Task.labelWorker',
     defaultMessage: 'Worker',
   },
+  loadingTask: {
+    id: 'pages.Contribute.Task.loadingTask',
+    defaultMessage: 'Loading task...',
+  },
 });
 
 const displayName = 'pages.Contribute.TaskPage';
@@ -62,8 +68,8 @@ type Task = {|
     address: string,
     rating: number,
   },
-  payout: number,
   potId: number,
+  potPayout: number,
   ratings: {
     count: number,
   },
@@ -84,41 +90,42 @@ type Props = {|
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const TaskPage = ({ colonyClient, wallet }: Props) => {
-  const [contribution, setContribution] = useState(null);
+  const [contribution, setContribution] = useState<?Contribution>(null);
   const [error, setError] = useState(null);
+  const [loadedContribution, setLoadedContribution] = useState(false);
   const [loadedLocal, setLoadedLocal] = useState(false);
-  const [pendingOperation, setPendingOperation] = useState(null);
+  const [loadedTask, setLoadedTask] = useState(false);
   const [task, setTask] = useState<?Task>(null);
+  const [taskId, setTaskId] = useState<?number>(null);
 
-  const taskId: ?number = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      const taskIdString = window.location.search.split('id=')[1];
-      if (taskIdString) return Number(taskIdString);
-      return null;
+  useEffect(() => {
+    if (!taskId) {
+      if (typeof window !== 'undefined' && window.location.search) {
+        const searchId = window.location.search.split('?id=')[1];
+        const parsedId = Number(searchId);
+        if (parsedId) {
+          setTaskId(parsedId);
+        } else {
+          setError('Nothing to see here...');
+        }
+      }
     }
-    return null;
-  }, []);
+  }, [taskId]);
 
   useEffect(() => {
     if (!loadedLocal && taskId) {
       const localTask = getStore(`task_${taskId}`);
-      const localOperation = getStore(`task_${taskId}_operation`);
       setTask(localTask);
-      setPendingOperation(localOperation);
       setLoadedLocal(true);
     }
   }, [task, loadedLocal, taskId]);
 
   useEffect(() => {
-    if (taskId) setStore(`task_${taskId}`, task);
+    if (taskId && task) setStore(`task_${taskId}`, task);
   }, [task, taskId]);
 
   useEffect(() => {
-    if (taskId) setStore(`task_${taskId}_operation`, pendingOperation);
-  }, [pendingOperation, taskId]);
-
-  useEffect(() => {
-    if (taskId) {
+    if (!loadedContribution && taskId) {
       (async () => {
         const options = {
           method: 'GET',
@@ -131,14 +138,15 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
             setContribution(data.contribution);
           })
           .catch(fetchError => {
-            setError(fetchError);
+            setError(fetchError.message);
           });
+        setLoadedContribution(true);
       })();
     }
-  }, [taskId]);
+  }, [loadedContribution, taskId]);
 
   useEffect(() => {
-    if (colonyClient && taskId) {
+    if (!loadedTask && taskId && colonyClient) {
       (async () => {
         try {
           const result = await colonyClient.getTask.call({
@@ -155,34 +163,44 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
           const ratings = await colonyClient.getTaskWorkRatingSecretsInfo.call({
             taskId,
           });
+          const { payout } = await colonyClient.getFundingPotPayout.call({
+            potId: result.potId,
+            token: colonyClient.tokenClient.contract.address,
+          });
           setTask({
             ...result,
             ratings,
             manager,
+            potPayout: payout,
             worker,
           });
-        } catch (err) {
-          setError(err);
+        } catch (colonyError) {
+          setError(colonyError.message);
         }
+        setLoadedTask(true);
       })();
     }
-  }, [colonyClient, taskId]);
+  }, [colonyClient, loadedTask, task, taskId]);
 
   return (
     <div className={styles.main}>
-      {error && <p>{error.message}</p>}
-      {!error && !task && !contribution && <p>loading...</p>}
+      {!error && !contribution && !task && (
+        <FormattedMessage {...MSG.loadingTask} />
+      )}
       {task && contribution && (
         <div>
           {task && (
             <TaskActions
               colonyClient={colonyClient}
+              contribution={contribution}
+              setContribution={setContribution}
+              setError={setError}
               setTask={setTask}
               task={task}
               wallet={wallet}
             />
           )}
-          <div className={styles.task}>
+          <div className={styles.content}>
             <div className={styles.field}>
               <div className={styles.label}>
                 <FormattedMessage {...MSG.labelTask} />
@@ -219,14 +237,16 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
               </div>
               <div className={styles.value}>{`${task.dueDate}`}</div>
             </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.labelIssue} />
+            {contribution.issue && (
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.labelIssue} />
+                </div>
+                <div className={styles.value}>
+                  <Link href={contribution.issue} text={contribution.issue} />
+                </div>
               </div>
-              <div className={styles.value}>
-                <Link href={contribution.issue} text={contribution.issue} />
-              </div>
-            </div>
+            )}
             {task.completionDate && (
               <div className={styles.field}>
                 <div className={styles.label}>
@@ -251,6 +271,7 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
           </div>
         </div>
       )}
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 };

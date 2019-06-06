@@ -34,13 +34,13 @@ const MSG = defineMessages({
 
 type Props = {|
   authenticate: (provider: Provider) => void,
-  error?: string,
+  serverError?: string,
   wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Login';
 
-const Login = ({ authenticate, error, wallet }: Props) => (
+const Login = ({ authenticate, serverError, wallet }: Props) => (
   <div className={styles.main}>
     <div className={styles.content}>
       <p className={styles.text}>
@@ -75,7 +75,7 @@ const Login = ({ authenticate, error, wallet }: Props) => (
       <p className={styles.subtext}>
         <FormattedMessage {...MSG.connectGitHubGitHubMessage} />
       </p>
-      {error && <div className={styles.error}>{error}</div>}
+      {serverError && <div className={styles.error}>{serverError}</div>}
     </div>
   </div>
 );

@@ -3,11 +3,6 @@
   justify-content: center;
 }
 
-.mainInnerContainer {
-  display: flex;
-  width: 100vw;
-}
-
 .content {
   composes: prettylink from '~styles/mixins.module.css';
   overflow-x: hidden;

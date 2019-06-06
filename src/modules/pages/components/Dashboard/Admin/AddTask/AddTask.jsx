@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
-import ecp from '~layouts/DeveloperPortalLayout/ecp';
+import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
 
 import Button from '~core/Button';
 import Input from '~core/Input';
@@ -59,9 +59,9 @@ const AddTask = ({ colonyClient }: Props) => {
 
   const handleAddTask = async () => {
     if (colonyClient && amount && dueDate && issue && skillId) {
-      await ecp.init();
-      const specificationHash = await ecp.saveHash(issue);
-      await ecp.stop();
+      await ipfs.init();
+      const specificationHash = await ipfs.saveHash(issue);
+      await ipfs.stop();
       const addTaskResponse = await colonyClient.addTask.send(
         {
           specificationHash,

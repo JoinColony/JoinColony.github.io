@@ -3,7 +3,7 @@
 import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import type { Network, Project, User } from '~types';
@@ -56,12 +56,11 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  contribution: boolean,
   coreProjects: Array<Project>,
-  dashboard: boolean,
   intl: IntlShape,
   network: ?Network,
   openSourceProjects: Array<Project>,
+  pathDashboard: boolean,
   user: ?User,
   wallet: ?WalletObjectType,
 |};
@@ -69,24 +68,17 @@ type Props = {|
 const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
-  contribution,
   coreProjects,
-  dashboard,
   intl: { formatMessage },
   intl,
   network,
   openSourceProjects,
+  pathDashboard,
   user,
   wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
-  const activeButton: boolean = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return dashboard || (contribution && !user);
-    }
-    return false;
-  }, [contribution, dashboard, user]);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -99,7 +91,7 @@ const Header = ({
               viewBox="0 0 134 33"
             />
           </Link>
-          {wallet && network && user && (
+          {wallet && network && (
             <div className={styles.network}>
               <div
                 className={styles.networkDot}
@@ -174,8 +166,8 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: activeButton ? 'primary' : 'primaryHollow',
-              color: activeButton ? 'white' : undefined,
+              theme: pathDashboard ? 'primary' : 'primaryHollow',
+              color: pathDashboard ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
               width: 'fixed',

@@ -16,8 +16,9 @@ import usePortalServer from './usePortalServer';
 
 import Header from './Header';
 import Footer from './Footer';
+import MetaMask from './MetaMask';
 
-import styles from './DeveloperPortalLayout.module.css';
+import './DeveloperPortalLayout.module.css';
 
 type Props = {|
   children: Element<typeof Component>,
@@ -47,7 +48,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ) || [],
     [locale, projectQueryData.openSourceProjects.edges],
   );
-  const contribution: boolean = useMemo(() => {
+  const pathContribution: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
       return (
         window.location.pathname.split('/')[1] === 'contribute' &&
@@ -56,44 +57,60 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     }
     return false;
   }, []);
-  const dashboard: boolean = useMemo(() => {
+  const pathDashboard: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window.location.pathname.split('/')[1] === 'dashboard';
     }
     return false;
   }, []);
-  const walletRequired = contribution || dashboard;
+  const walletRequired: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return pathContribution || pathDashboard;
+    }
+    return false;
+  }, [pathContribution, pathDashboard]);
   const { network, wallet } = useMetaMask(walletRequired);
-  const { authenticate, disconnect, error, setUser, user } = usePortalServer(
+  const {
+    authenticate,
+    disconnect,
+    serverError,
+    setUser,
+    user,
+  } = usePortalServer(wallet);
+  const { colonyClient, colonyError, networkClient } = useColonyNetwork(
+    network,
     wallet,
   );
-  const { colonyClient, networkClient } = useColonyNetwork(network, wallet);
   return (
     <div>
       <Header
-        contribution={contribution}
         coreProjects={coreProjects}
-        dashboard={dashboard}
         network={network}
         openSourceProjects={openSourceProjects}
+        pathDashboard={pathDashboard}
         user={user}
         wallet={wallet}
       />
-      <div className={styles.body}>
-        {contribution || dashboard
-          ? cloneElement(children, {
-              authenticate,
-              colonyClient,
-              disconnect,
-              error,
-              network,
-              networkClient,
-              setUser,
-              user,
-              wallet,
-            })
-          : children}
-      </div>
+      {!wallet && walletRequired ? (
+        <MetaMask />
+      ) : (
+        <div>
+          {pathContribution || pathDashboard
+            ? cloneElement(children, {
+                authenticate,
+                colonyClient,
+                colonyError,
+                disconnect,
+                network,
+                networkClient,
+                serverError,
+                setUser,
+                user,
+                wallet,
+              })
+            : children}
+        </div>
+      )}
       <Footer
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}

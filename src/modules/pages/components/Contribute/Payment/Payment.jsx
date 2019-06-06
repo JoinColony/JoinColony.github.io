@@ -42,6 +42,10 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Payment.labelRecipient',
     defaultMessage: 'Recipient',
   },
+  loadingPayment: {
+    id: 'pages.Contribute.Payment.loadingPayment',
+    defaultMessage: 'Loading payment...',
+  },
 });
 
 const displayName = 'pages.Contribute.PaymentPage';
@@ -49,8 +53,8 @@ const displayName = 'pages.Contribute.PaymentPage';
 type Payment = {|
   finalized: boolean,
   id: number,
-  payout: number,
   potId: number,
+  potPayout: number,
   recipient: string,
 |};
 
@@ -65,18 +69,25 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const PaymentPage = ({ colonyClient, wallet }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
+  const [loadedContribution, setLoadedContribution] = useState(false);
   const [loadedLocal, setLoadedLocal] = useState(false);
+  const [loadedPayment, setLoadedPayment] = useState(false);
   const [payment, setPayment] = useState<?Payment>(null);
   const [paymentId, setPaymentId] = useState<?number>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.search) {
-      const searchId = window.location.search.split('id=')[1];
-      if (searchId) {
-        setPaymentId(searchId);
+    if (!paymentId) {
+      if (typeof window !== 'undefined' && window.location.search) {
+        const searchId = window.location.search.split('?id=')[1];
+        const parsedId = Number(searchId);
+        if (parsedId) {
+          setPaymentId(parsedId);
+        } else {
+          setError('Nothing to see here...');
+        }
       }
     }
-  }, []);
+  }, [paymentId]);
 
   useEffect(() => {
     if (!loadedLocal && paymentId) {
@@ -84,14 +95,14 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
       setPayment(localPayment);
       setLoadedLocal(true);
     }
-  }, [payment, loadedLocal, paymentId]);
+  }, [loadedLocal, payment, paymentId]);
 
   useEffect(() => {
-    if (paymentId) setStore(`payment_${paymentId}`, payment);
+    if (payment && paymentId) setStore(`payment_${paymentId}`, payment);
   }, [payment, paymentId]);
 
   useEffect(() => {
-    if (paymentId) {
+    if (!loadedContribution && paymentId) {
       (async () => {
         const options = {
           method: 'GET',
@@ -107,18 +118,19 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
             setContribution(data.contribution);
           })
           .catch(fetchError => {
-            setError(fetchError);
+            setError(fetchError.message);
           });
+        setLoadedContribution(true);
       })();
     }
-  }, [paymentId]);
+  }, [loadedContribution, paymentId]);
 
   useEffect(() => {
-    if (colonyClient && paymentId) {
+    if (!loadedPayment && colonyClient && paymentId) {
       (async () => {
         try {
           const result = await colonyClient.getPayment.call({
-            paymentId: Number(paymentId),
+            paymentId,
           });
           const { payout } = await colonyClient.getFundingPotPayout.call({
             potId: result.potId,
@@ -126,38 +138,32 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
           });
           setPayment({
             ...result,
-            id: Number(paymentId),
+            id: paymentId,
             potId: result.potId,
-            payout: payout.toString(),
+            potPayout: payout,
           });
-        } catch (err) {
-          setError(err);
+        } catch (colonyError) {
+          setError(colonyError.message);
         }
+        setLoadedPayment(true);
       })();
     }
-  }, [colonyClient, paymentId]);
-
-  if (!paymentId) {
-    return (
-      <div className={styles.main}>
-        <p>No payment specified</p>
-      </div>
-    );
-  }
+  }, [colonyClient, loadedPayment, paymentId]);
 
   return (
     <div className={styles.main}>
-      {error && <p>{error.message}</p>}
-      {!error && !payment && !contribution && <p>loading...</p>}
-      {payment && contribution && (
-        <div>
+      {!error && !contribution && !payment && (
+        <FormattedMessage {...MSG.loadingPayment} />
+      )}
+      {contribution && payment && (
+        <>
           <PaymentActions
             colonyClient={colonyClient}
             setPayment={setPayment}
             payment={payment}
             wallet={wallet}
           />
-          <div className={styles.payment}>
+          <div className={styles.content}>
             <div className={styles.field}>
               <div className={styles.label}>
                 <FormattedMessage {...MSG.labelPayment} />
@@ -210,8 +216,9 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
               </div>
             )}
           </div>
-        </div>
+        </>
       )}
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 };

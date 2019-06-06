@@ -2,12 +2,16 @@
   text-align: center;
 }
 
-.buttons {
+.section {
   margin: 0 auto;
   padding: 20px;
   width: 1000px;
 }
 
-.buttons button {
+.section button {
   margin: 10px;
+}
+
+.section input {
+  margin: 20px;
 }

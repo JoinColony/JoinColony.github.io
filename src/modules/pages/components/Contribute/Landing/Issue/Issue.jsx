@@ -7,9 +7,15 @@ import type { Issue } from '~types';
 
 import Link from '~core/Link';
 
+import styles from './Issue.module.css';
+
 const MSG = defineMessages({
-  noReward: {
-    id: 'pages.Contribute.Issue.noReward',
+  error: {
+    id: 'pages.Contribute.Issue.error',
+    defaultMessage: 'error',
+  },
+  notSet: {
+    id: 'pages.Contribute.Issue.notSet',
     defaultMessage: 'not set',
   },
 });
@@ -64,8 +70,12 @@ const IssueItem = ({ issue }: Props) => {
             text={`${contribution.payout} CDEV`}
           />
         )}
-        {!contribution && error && <span>{error}</span>}
-        {!contribution && !error && <FormattedMessage {...MSG.noReward} />}
+        {!contribution && error && (
+          <span className={styles.error}>
+            <FormattedMessage {...MSG.error} />
+          </span>
+        )}
+        {!contribution && !error && <FormattedMessage {...MSG.notSet} />}
       </td>
     </tr>
   );

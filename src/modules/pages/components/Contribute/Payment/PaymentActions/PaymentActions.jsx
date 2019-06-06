@@ -11,30 +11,6 @@ import Button from '~core/Button';
 import styles from './PaymentActions.module.css';
 
 const MSG = defineMessages({
-  buttonApproveWorker: {
-    id: 'pages.Contribute.Payment.buttonApproveWorker',
-    defaultMessage: 'Approve Worker',
-  },
-  buttonStartWork: {
-    id: 'pages.Contribute.Payment.buttonStartWork',
-    defaultMessage: 'Start Work',
-  },
-  buttonSubmitWork: {
-    id: 'pages.Contribute.Payment.buttonSubmitWork',
-    defaultMessage: 'Submit Work',
-  },
-  buttonSubmitRating: {
-    id: 'pages.Contribute.Payment.buttonSubmitRating',
-    defaultMessage: 'Submit Rating',
-  },
-  buttonRevealRating: {
-    id: 'pages.Contribute.Payment.buttonRevealRating',
-    defaultMessage: 'Reveal Rating',
-  },
-  buttonFinalizePayment: {
-    id: 'pages.Contribute.Payment.buttonFinalizePayment',
-    defaultMessage: 'Finalize Payment',
-  },
   buttonClaimPayout: {
     id: 'pages.Contribute.Payment.buttonClaimPayout',
     defaultMessage: 'Claim Payout',
@@ -46,8 +22,8 @@ const displayName = 'pages.Contribute.Payment.PaymentActions';
 type Payment = {|
   finalized: boolean,
   id: number,
-  payout: number,
   potId: number,
+  potPayout: number,
   recipient: string,
 |};
 
@@ -78,7 +54,7 @@ const PaymentActions = ({
     });
     setPayment({
       ...payment,
-      payout: payout.toString(),
+      potPayout: payout,
     });
   };
 
@@ -91,7 +67,9 @@ const PaymentActions = ({
         <div className={styles.buttons}>
           <Button
             appearance={{ theme: 'primary' }}
-            disabled={!payment.finalized || payment.payout === '0'}
+            disabled={
+              !payment.finalized || payment.potPayout.toString() === '0'
+            }
             onClick={handleClaimPayout}
             text={MSG.buttonClaimPayout}
             type="submit"

@@ -1,8 +1,3 @@
-.main {
-  color: #00284B;
-  width: 100vw;
-}
-
 .hero {
   align-items: center;
   background: #00284B;
@@ -51,13 +46,15 @@
   max-width: 700px;
 }
 
-.issues {
+.issues,
+.moreWays {
   border: 0;
   font-size: 14px;
   max-width: 700px;
 }
 
-.issues tr {
+.issues tr,
+.moreWays tr {
   border: 2px solid white;
 }
 
@@ -67,7 +64,13 @@
   padding: 5px 10px;
 }
 
-.issues tbody td {
+.issues tbody td,
+.moreWays tbody td {
   background: #F0F5F7;
   padding: 10px;
+}
+
+.moreWays td:first-child {
+  padding-left: 20px;
+  width: 120px;
 }

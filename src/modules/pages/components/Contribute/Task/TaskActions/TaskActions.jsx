@@ -7,14 +7,12 @@ import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { sha3 } from 'web3-utils';
 
-import ecp from '~layouts/DeveloperPortalLayout/ecp';
+import type { Contribution } from '~types';
+
+import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
 
 import Button from '~core/Button';
-
-import {
-  getStore,
-  setStore,
-} from '~layouts/DeveloperPortalLayout/localStorage';
+import Input from '~core/Input';
 
 import styles from './TaskActions.module.css';
 
@@ -47,6 +45,18 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Task.buttonClaimPayout',
     defaultMessage: 'Claim Payout',
   },
+  labelPullRequest: {
+    id: 'pages.Contribute.Task.labelPullRequest',
+    defaultMessage: 'Pull Request',
+  },
+  labelRating: {
+    id: 'pages.Contribute.Task.labelRating',
+    defaultMessage: 'Rating',
+  },
+  labelRatingSecret: {
+    id: 'pages.Contribute.Task.labelRatingSecret',
+    defaultMessage: 'Rating Secret',
+  },
 });
 
 const displayName = 'pages.Contribute.Task.TaskActions';
@@ -59,8 +69,8 @@ type Task = {|
     address: string,
     rating: number,
   },
-  payout: number,
   potId: number,
+  potPayout: number,
   ratings: {
     count: number,
   },
@@ -74,113 +84,102 @@ type Task = {|
 
 type Props = {|
   colonyClient: ColonyClient,
+  contribution: Contribution,
   task: Task,
+  setContribution: (contribution: Contribution) => void,
+  setError: (error: string) => void,
   setTask: (task: Task) => void,
   wallet: WalletObjectType,
 |};
 
-const TaskActions = ({ colonyClient, task, setTask, wallet }: Props) => {
-  const [pendingOperation, setPendingOperation] = useState(null);
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
+const TaskActions = ({
+  colonyClient,
+  contribution,
+  task,
+  setContribution,
+  setError,
+  setTask,
+  wallet,
+}: Props) => {
   const [pullRequest, setPullRequest] = useState('');
+  const [rating, setRating] = useState(2);
+  const [ratingSecret, setRatingSecret] = useState('');
+
+  const manager =
+    task.manager &&
+    task.manager.address &&
+    task.manager.address.toLowerCase() === wallet.address;
+
+  const worker =
+    task.worker &&
+    task.worker.address &&
+    task.worker.address.toLowerCase() === wallet.address;
+
+  const canApproveWorker = contribution.operations[0];
+
+  const canClaimPayout =
+    task.status === 'FINALIZED' && task.potPayout.toString() !== '0';
+
+  const canFinalizeTask =
+    task.completionDate &&
+    task.manager.rating !== 0 &&
+    task.worker.rating !== 0 &&
+    task.status === 'ACTIVE';
+
+  const canRevealRating =
+    (worker && task.completionDate && task.manager.rating === 0) ||
+    (manager && task.completionDate && task.worker.rating === 0);
+
+  const canSubmitRating =
+    (worker && task.completionDate && task.ratings.count === 0) ||
+    (manager && task.completionDate && task.ratings.count === 1);
+
+  const canSubmitWork = worker && !task.completionDate;
 
   const handleApproveWorker = async () => {
-    // TODO Get the operation from the database
-    const operationJSON = getStore(`task_${task.id}_operation`);
+    const operationJSON = contribution.operations[0];
     if (operationJSON) {
       const operation = await colonyClient.setTaskWorkerRole.restoreOperation(
         operationJSON,
       );
-      setPendingOperation(operation);
       await operation.sign();
       // TODO The gas limit needs to be fixed in colonyJS
       await operation.send({ gasLimit: 1000000 });
-      const worker = await colonyClient.getTaskRole.call({
+      const taskRole = await colonyClient.getTaskRole.call({
         taskId: task.id,
         role: 'WORKER',
       });
-      setTask({ ...task, worker });
-      setPendingOperation(null);
-      // TODO Remove the opetation from the database
-      setStore(`task_${task.id}_operation`, null);
+      setTask({ ...task, worker: taskRole });
+      const operations = contribution.operations.shift();
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ operations }),
+      };
+      // eslint-disable-next-line no-undef
+      fetch(`${server}/api/contribution?type=task&typeId=${task.id}`, options)
+        .then(res => res.json())
+        .then(data => {
+          setContribution(data.contribution);
+        })
+        .catch(fetchError => {
+          setError(fetchError.message);
+        });
     }
   };
 
-  const handleStartWork = async () => {
-    if (wallet.address) {
-      const operation = await colonyClient.setTaskWorkerRole.startOperation({
-        taskId: task.id,
-        // $FlowFixMe See https://github.com/JoinColony/colonyJS/pull/416
-        address: wallet.address,
-      });
-      await operation.sign();
-      setPendingOperation(operation);
-
-      // TODO Save the operation to the database
-      setStore(`task_${task.id}_operation`, operation.toJSON());
-    }
+  const handelChangePullRequest = event => {
+    setPullRequest(event.currentTarget.value);
   };
 
-  const handleSubmitWork = async () => {
-    await ecp.init();
-    const deliverableHash = await ecp.saveHash(pullRequest);
-    await ecp.stop();
-    await colonyClient.submitTaskDeliverable.send(
-      {
-        taskId: task.id,
-        deliverableHash,
-      },
-      {},
-    );
-    const result = await colonyClient.getTask.call({
-      taskId: task.id,
-    });
-    setTask({ ...task, ...result });
+  const handelChangeRating = event => {
+    setRating(event.currentTarget.value);
   };
 
-  const handleSubmitRating = async worker => {
-    const { secret } = await colonyClient.generateSecret.call({
-      salt: sha3('secret'),
-      value: 2,
-    });
-    await colonyClient.submitTaskWorkRating.send(
-      {
-        taskId: task.id,
-        role: worker ? 'MANAGER' : 'WORKER',
-        secret,
-      },
-      {},
-    );
-    const ratings = await colonyClient.getTaskWorkRatingSecretsInfo.call({
-      taskId: task.id,
-    });
-    setTask({ ...task, ratings });
-  };
-
-  const handleRevealRating = async worker => {
-    const salt = sha3('secret');
-    await colonyClient.revealTaskWorkRating.send(
-      {
-        taskId: task.id,
-        role: worker ? 'MANAGER' : 'WORKER',
-        rating: 2,
-        salt,
-      },
-      {},
-    );
-    const result = await colonyClient.getTaskRole.call({
-      taskId: task.id,
-      role: worker ? 'MANAGER' : 'WORKER',
-    });
-    if (worker) setTask({ ...task, manager: result });
-    else setTask({ ...task, worker: result });
-  };
-
-  const handleFinalizeTask = async () => {
-    await colonyClient.finalizeTask.send({ taskId: task.id }, {});
-    const result = await colonyClient.getTask.call({
-      taskId: task.id,
-    });
-    setTask({ ...task, ...result });
+  const handelChangeRatingSecret = event => {
+    setRatingSecret(event.currentTarget.value);
   };
 
   const handleClaimPayout = async () => {
@@ -198,96 +197,216 @@ const TaskActions = ({ colonyClient, task, setTask, wallet }: Props) => {
     });
     setTask({
       ...task,
-      payout: payout.toString(),
+      potPayout: payout,
     });
+  };
+
+  const handleFinalizeTask = async () => {
+    await colonyClient.finalizeTask.send({ taskId: task.id }, {});
+    const result = await colonyClient.getTask.call({
+      taskId: task.id,
+    });
+    setTask({ ...task, ...result });
+  };
+
+  const handleRevealRating = async () => {
+    const salt = sha3(ratingSecret);
+    await colonyClient.revealTaskWorkRating.send(
+      {
+        taskId: task.id,
+        role: worker ? 'MANAGER' : 'WORKER',
+        rating,
+        salt,
+      },
+      {},
+    );
+    const result = await colonyClient.getTaskRole.call({
+      taskId: task.id,
+      role: worker ? 'MANAGER' : 'WORKER',
+    });
+    if (worker) setTask({ ...task, manager: result });
+    else setTask({ ...task, worker: result });
+  };
+
+  const handleStartWork = async () => {
+    if (wallet.address) {
+      const operation = await colonyClient.setTaskWorkerRole.startOperation({
+        taskId: task.id,
+        // $FlowFixMe See https://github.com/JoinColony/colonyJS/pull/416
+        address: wallet.address,
+      });
+      await operation.sign();
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ operation: operation.toJSON() }),
+      };
+      // eslint-disable-next-line no-undef
+      fetch(`${server}/api/contribution?type=task&typeId=${task.id}`, options)
+        .then(res => res.json())
+        .then(data => {
+          setContribution(data.contribution);
+        })
+        .catch(fetchError => {
+          setError(fetchError.message);
+        });
+    }
+  };
+
+  const handleSubmitRating = async () => {
+    const { secret } = await colonyClient.generateSecret.call({
+      salt: sha3(ratingSecret),
+      value: rating,
+    });
+    await colonyClient.submitTaskWorkRating.send(
+      {
+        taskId: task.id,
+        role: worker ? 'MANAGER' : 'WORKER',
+        secret,
+      },
+      {},
+    );
+    const ratings = await colonyClient.getTaskWorkRatingSecretsInfo.call({
+      taskId: task.id,
+    });
+    setTask({ ...task, ratings });
+  };
+
+  const handleSubmitWork = async () => {
+    await ipfs.init();
+    const deliverableHash = await ipfs.saveHash(pullRequest);
+    await ipfs.stop();
+    await colonyClient.submitTaskDeliverable.send(
+      {
+        taskId: task.id,
+        deliverableHash,
+      },
+      {},
+    );
+    const result = await colonyClient.getTask.call({
+      taskId: task.id,
+    });
+    setTask({ ...task, ...result });
   };
 
   return (
     <div className={styles.main}>
-      {!task.worker.address && (
-        <div className={styles.buttons}>
+      {task.worker && !task.worker.address && (
+        <div className={styles.section}>
           <Button
             appearance={{ theme: 'primary' }}
-            disabled={pendingOperation}
+            disabled={canApproveWorker}
             onClick={handleStartWork}
             text={MSG.buttonStartWork}
             type="submit"
           />
-          {pendingOperation && <i>A request has been received</i>}
         </div>
       )}
-      {task.worker &&
-        task.worker.address &&
-        task.worker.address.toLowerCase() === wallet.address && (
-          <div className={styles.buttons}>
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={task.completionDate}
-              onClick={handleSubmitWork}
-              text={MSG.buttonSubmitWork}
-              type="submit"
+      {worker && (
+        <div className={styles.section}>
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canSubmitWork}
+            onClick={handleSubmitWork}
+            text={MSG.buttonSubmitWork}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canSubmitRating}
+            onClick={handleSubmitRating}
+            text={MSG.buttonSubmitRating}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={canRevealRating}
+            onClick={handleRevealRating}
+            text={MSG.buttonRevealRating}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canClaimPayout}
+            onClick={handleClaimPayout}
+            text={MSG.buttonClaimPayout}
+            type="submit"
+          />
+        </div>
+      )}
+      {manager && (
+        <div className={styles.section}>
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canApproveWorker}
+            onClick={handleApproveWorker}
+            text={MSG.buttonApproveWorker}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canSubmitRating}
+            onClick={handleSubmitRating}
+            text={MSG.buttonSubmitRating}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canRevealRating}
+            onClick={handleRevealRating}
+            text={MSG.buttonRevealRating}
+            type="submit"
+          />
+          <Button
+            appearance={{ theme: 'primary' }}
+            disabled={!canFinalizeTask}
+            onClick={handleFinalizeTask}
+            text={MSG.buttonFinalizeTask}
+            type="submit"
+          />
+        </div>
+      )}
+      <div className={styles.section}>
+        {(canSubmitRating || canRevealRating) && (
+          <>
+            <Input
+              appearance={{
+                padding: 'huge',
+                width: 'large',
+              }}
+              id="rating"
+              onChange={handelChangeRating}
+              label={MSG.labelRating}
+              type="number"
+              value={rating}
             />
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={!task.completionDate || task.ratings.count !== 0}
-              onClick={() => handleSubmitRating(true)}
-              text={MSG.buttonSubmitRating}
-              type="submit"
+            <Input
+              appearance={{
+                padding: 'huge',
+                width: 'large',
+              }}
+              id="ratingSecret"
+              onChange={handelChangeRatingSecret}
+              label={MSG.labelRatingSecret}
+              type="text"
+              value={ratingSecret}
             />
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={!task.completionDate || task.manager.rating !== 0}
-              onClick={() => handleRevealRating(true)}
-              text={MSG.buttonRevealRating}
-              type="submit"
-            />
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={task.status !== 'FINALIZED' || task.payout === '0'}
-              onClick={handleClaimPayout}
-              text={MSG.buttonClaimPayout}
-              type="submit"
-            />
-          </div>
+          </>
         )}
-      {task.manager &&
-        task.manager.address &&
-        task.manager.address.toLowerCase() === wallet.address && (
-          <div className={styles.buttons}>
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={!pendingOperation}
-              onClick={handleApproveWorker}
-              text={MSG.buttonApproveWorker}
-              type="submit"
-            />
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={!task.completionDate || task.ratings.count !== 1}
-              onClick={() => handleSubmitRating(false)}
-              text={MSG.buttonSubmitRating}
-              type="submit"
-            />
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={!task.completionDate || task.worker.rating !== 0}
-              onClick={() => handleRevealRating(false)}
-              text={MSG.buttonRevealRating}
-              type="submit"
-            />
-            <Button
-              appearance={{ theme: 'primary' }}
-              disabled={
-                !task.completionDate ||
-                (task.manager.rating === 0 && task.worker.rating === 0) ||
-                task.status === 'FINALIZED'
-              }
-              onClick={handleFinalizeTask}
-              text={MSG.buttonFinalizeTask}
-              type="submit"
-            />
-          </div>
+        {canSubmitWork && (
+          <Input
+            appearance={{
+              padding: 'huge',
+              width: 'large',
+            }}
+            id="pullRequest"
+            onChange={handelChangePullRequest}
+            label={MSG.labelPullRequest}
+            type="text"
+            value={pullRequest}
+          />
         )}
+      </div>
     </div>
   );
 };

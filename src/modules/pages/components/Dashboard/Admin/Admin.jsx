@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable react/no-unused-prop-types */
 
 import type { ColonyClient } from '@colony/colony-js-client';
 
@@ -33,6 +32,7 @@ const displayName = 'pages.Dashboard.Admin';
 
 type Props = {|
   colonyClient: ?ColonyClient,
+  /* eslint-disable-next-line react/no-unused-prop-types */
   path: string,
 |};
 

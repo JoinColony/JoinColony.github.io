@@ -29,23 +29,66 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Landing.heroTitle',
     defaultMessage: 'Contribute and Earn',
   },
-  issuesDescription: {
-    id: 'pages.Contribute.Landing.issuesDescription',
+  moreWaysDescription: {
+    id: 'pages.Contribute.Landing.moreWaysDescription',
+    defaultMessage: `Looking for some other ideas? Here are some more ways to
+    contribute.`,
+  },
+  moreWaysItemBugsDescription: {
+    id: 'pages.Contribute.Landing.moreWaysItemBugsDescription',
+    defaultMessage: `Are you encountering any bugs while developing with our
+    tools? Help us out by opening an issue that describes the bug.`,
+  },
+  moreWaysItemBugsTitle: {
+    id: 'pages.Contribute.Landing.moreWaysItemBugsTitle',
+    defaultMessage: 'Report Bugs',
+  },
+  moreWaysItemDocsDescription: {
+    id: 'pages.Contribute.Landing.moreWaysItemDocsDescription',
+    defaultMessage: `We could always use some help improving our documentation
+    and making sure everything is up-to-date and easy to understand.`,
+  },
+  moreWaysItemDocsTitle: {
+    id: 'pages.Contribute.Landing.moreWaysItemDocsTitle',
+    defaultMessage: 'Improve Docs',
+  },
+  moreWaysItemFeatureDescription: {
+    id: 'pages.Contribute.Landing.moreWaysItemFeatureDescription',
+    defaultMessage: `Do you have an idea for a new feature? Open an issue with
+    your feature request or open a pull request with your feature.`,
+  },
+  moreWaysItemFeatureTitle: {
+    id: 'pages.Contribute.Landing.moreWaysItemFeatureTitle',
+    defaultMessage: 'New Feature',
+  },
+  moreWaysTitle: {
+    id: 'pages.Contribute.Landing.moreWaysTitle',
+    defaultMessage: 'More ways to contribute',
+  },
+  openIssuesDescription: {
+    id: 'pages.Contribute.Landing.openIssuesDescription',
     defaultMessage: `Find issues labeled “Help wanted” and "Good First Issue"
     below or check out the repository to open a new issue or pull request.`,
   },
-  issuesTitle: {
-    id: 'pages.Contribute.Landing.issuesTitle',
+  openIssuesHeaderDate: {
+    id: 'pages.Contribute.Landing.openIssuesHeaderDate',
+    defaultMessage: 'Date',
+  },
+  openIssuesHeaderLink: {
+    id: 'pages.Contribute.Landing.openIssuesHeaderLink',
+    defaultMessage: 'Link',
+  },
+  openIssuesHeaderReward: {
+    id: 'pages.Contribute.Landing.openIssuesHeaderReward',
+    defaultMessage: 'Reward',
+  },
+  openIssuesHeaderTitle: {
+    id: 'pages.Contribute.Landing.openIssuesHeaderTitle',
+    defaultMessage: 'Title',
+  },
+  openIssuesTitle: {
+    id: 'pages.Contribute.Landing.openIssuesTitle',
     defaultMessage: 'Start Contributing',
-  },
-  ongoingDescription: {
-    id: 'pages.Contribute.Landing.ongoingDescription',
-    defaultMessage: `Looking for some other ideas? Here are some ongoing ways to
-    contribute.`,
-  },
-  ongoingTitle: {
-    id: 'pages.Contribute.Landing.ongoingTitle',
-    defaultMessage: 'More ways to contribute',
   },
 });
 
@@ -68,11 +111,12 @@ const Landing = () => {
 
   useEffect(() => setStore('issues', issues), [issues]);
 
-  const getContributions = useCallback(() => {
+  const getIssues = useCallback(() => {
     setLoading(true);
     const options = {
       method: 'POST',
       headers: {
+        // TODO Use current user authentication token from github
         Authorization: `Bearer ${process.env.DOCS_GITHUB_TOKEN || ''}`,
         'Content-Type': 'application/json',
       },
@@ -100,11 +144,13 @@ const Landing = () => {
     fetch('https://api.github.com/graphql', options)
       .then(res => res.json())
       .then(({ data }) => {
-        setIssues(data.search.edges.filter(({ node }) => node.createdAt));
+        // Remove empty nodes
+        const nodes = data.search.edges.filter(({ node }) => node !== {});
+        setIssues(nodes);
         setLoading(false);
       })
-      .catch(fetchError => {
-        setError(fetchError.message);
+      .catch(({ message }) => {
+        setError({ message });
         errorTimeout.current = setTimeout(() => {
           setError(null);
         }, 2000);
@@ -113,15 +159,15 @@ const Landing = () => {
 
   useEffect(() => {
     if (!issues && !loading) {
-      getContributions();
+      getIssues();
     }
     return () => {
       if (error) clearTimeout(errorTimeout.current);
     };
-  }, [issues, error, getContributions, loading]);
+  }, [issues, error, getIssues, loading]);
 
   return (
-    <div className={styles.main}>
+    <>
       <div className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
@@ -149,18 +195,26 @@ const Landing = () => {
       </div>
       <div className={styles.section}>
         <h1 className={styles.title}>
-          <FormattedMessage {...MSG.issuesTitle} />
+          <FormattedMessage {...MSG.openIssuesTitle} />
         </h1>
         <p className={styles.description}>
-          <FormattedMessage {...MSG.issuesDescription} />
+          <FormattedMessage {...MSG.openIssuesDescription} />
         </p>
         <table className={styles.issues}>
           <thead>
             <tr>
-              <td>Date</td>
-              <td>Title</td>
-              <td>Link</td>
-              <td>Reward</td>
+              <td>
+                <FormattedMessage {...MSG.openIssuesHeaderDate} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.openIssuesHeaderTitle} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.openIssuesHeaderLink} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.openIssuesHeaderReward} />
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -171,44 +225,41 @@ const Landing = () => {
       </div>
       <div className={styles.section}>
         <h1 className={styles.title}>
-          <FormattedMessage {...MSG.ongoingTitle} />
+          <FormattedMessage {...MSG.moreWaysTitle} />
         </h1>
         <p className={styles.description}>
-          <FormattedMessage {...MSG.ongoingDescription} />
+          <FormattedMessage {...MSG.moreWaysDescription} />
         </p>
-        <table className={styles.issues}>
+        <table className={styles.moreWays}>
           <tbody>
             <tr>
-              <td style={{ paddingLeft: '50px', width: '250px' }}>
-                Report Bugs
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemBugsTitle} />
               </td>
               <td>
-                Are you encountering any bugs while developing with our tools?
-                Help us out by opening an issue describing the bug.
+                <FormattedMessage {...MSG.moreWaysItemBugsDescription} />
               </td>
             </tr>
             <tr>
-              <td style={{ paddingLeft: '50px', width: '250px' }}>
-                Improve Documentation
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemDocsTitle} />
               </td>
               <td>
-                We could always use some help improving our documentation and
-                fixing anything that might be outdated.
+                <FormattedMessage {...MSG.moreWaysItemDocsDescription} />
               </td>
             </tr>
             <tr>
-              <td style={{ paddingLeft: '50px', width: '250px' }}>
-                Another Way
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemFeatureTitle} />
               </td>
               <td>
-                We are pretty open to ideas. Let us know what you got cookin on
-                the backburner.
+                <FormattedMessage {...MSG.moreWaysItemFeatureDescription} />
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };
 

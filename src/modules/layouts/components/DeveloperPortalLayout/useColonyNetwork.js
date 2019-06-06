@@ -13,32 +13,62 @@ import type { Network } from '~types';
 
 const useColonyNetwork = (network: ?Network, wallet: WalletObjectType) => {
   const [colonyClient, setColonyClient] = useState<?ColonyClient>(null);
+  const [colonyError, setClientError] = useState<?string>(null);
   const [networkClient, setNetworkClient] = useState<?ColonyNetworkClient>(
     null,
   );
 
   useEffect(() => {
     (async () => {
-      if (network && network.slug === 'goerli' && wallet && wallet.sign) {
+      if (network && network.slug && wallet && wallet.sign) {
         if (!networkClient) {
-          const client = await getNetworkClient(network.slug, wallet);
-          setNetworkClient(client);
+          if (network.slug === 'goerli' || network.slug === 'mainnet') {
+            await getNetworkClient(network.slug, wallet)
+              .then(client => {
+                setNetworkClient(client);
+              })
+              .catch(({ message }) => {
+                setClientError(message);
+              });
+          }
         }
         if (networkClient && !colonyClient) {
-          if (process.env.COLONY_ADDRESS) {
-            const client = await networkClient.getColonyClientByAddress(
-              process.env.COLONY_ADDRESS,
-            );
-            setColonyClient(client);
-          } else {
-            throw new Error('COLONY_ADDRESS environment variable not set');
+          switch (network.slug) {
+            case 'goerli':
+              if (process.env.COLONY_ADDRESS_GOERLI) {
+                networkClient
+                  .getColonyClientByAddress(process.env.COLONY_ADDRESS_GOERLI)
+                  .then(client => {
+                    setColonyClient(client);
+                  })
+                  .catch(({ message }) => {
+                    setClientError(message);
+                  });
+              }
+              setClientError('COLONY_ADDRESS_GOERLI not found');
+              break;
+            case 'mainnet':
+              if (process.env.COLONY_ADDRESS_MAINNET) {
+                networkClient
+                  .getColonyClientByAddress(process.env.COLONY_ADDRESS_MAINNET)
+                  .then(client => {
+                    setColonyClient(client);
+                  })
+                  .catch(({ message }) => {
+                    setClientError(message);
+                  });
+              }
+              setClientError('COLONY_ADDRESS_MAINNET not found');
+              break;
+            default:
+              break;
           }
         }
       }
     })();
   }, [colonyClient, network, networkClient, wallet]);
 
-  return { colonyClient, networkClient };
+  return { colonyClient, colonyError, networkClient };
 };
 
 export default useColonyNetwork;

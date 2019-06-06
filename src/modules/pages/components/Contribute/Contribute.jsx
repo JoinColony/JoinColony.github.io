@@ -12,7 +12,6 @@ import { Helmet } from 'react-helmet';
 import SEO from '~parts/SEO';
 
 import Landing from './Landing';
-import MetaMask from '../Dashboard/MetaMask';
 import Payment from './Payment';
 import Task from './Task';
 
@@ -33,6 +32,7 @@ const MSG = defineMessages({
 type Props = {|
   colonyClient: ColonyClient,
   intl: IntlShape,
+  /* eslint-disable-next-line react/no-unused-prop-types */
   page: string,
   wallet: WalletObjectType,
 |};
@@ -42,13 +42,9 @@ const displayName = 'pages.Contribute';
 const Contribute = ({
   colonyClient,
   intl: { formatMessage },
-  page,
   wallet,
 }: Props) => {
   const title = formatMessage(MSG.pageTitle);
-  if (!wallet && page) {
-    return <MetaMask />;
-  }
   return (
     <>
       <SEO description={MSG.pageDescription} title={title} />

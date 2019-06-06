@@ -13,9 +13,9 @@ import { getStore, setStore } from './localStorage';
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const usePortalServer = (wallet: WalletObjectType) => {
-  const [error, setError] = useState<?string>(null);
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedUser, setLoadedUser] = useState<?boolean>(false);
+  const [serverError, setServerError] = useState<?string>(null);
   const [socket, setSocket] = useState<?Socket>(null);
   const [user, setUser] = useState<?User>(null);
 
@@ -57,14 +57,14 @@ const usePortalServer = (wallet: WalletObjectType) => {
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            setError(data.error);
+            setServerError(data.error);
             setUser(null);
           } else {
             setUser(data.user);
           }
         })
         .catch(err => {
-          setError(err);
+          setServerError(err);
         });
       setLoadedUser(true);
     }
@@ -88,7 +88,7 @@ const usePortalServer = (wallet: WalletObjectType) => {
     };
   }, [socket]);
 
-  return { authenticate, disconnect, error, setUser, socket, user };
+  return { authenticate, disconnect, serverError, setUser, socket, user };
 };
 
 export default usePortalServer;
