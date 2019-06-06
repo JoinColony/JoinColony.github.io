@@ -19,23 +19,23 @@
   width: 800px;
 }
 
-.contributions {
+.issues {
   border: 0;
   font-size: 14px;
-  margin: 20px 0;
+  max-width: 700px;
 }
 
-.contributions tr {
+.issues tr {
   border: 2px solid white;
 }
 
-.contributions thead td {
+.issues thead td {
   color: #788CA0;
   font-size: 12px;
   padding: 5px 10px;
 }
 
-.contributions tbody td {
+.issues tbody td {
   background: #F0F5F7;
   padding: 10px;
 }

@@ -7,7 +7,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { User } from '~types';
 
-import Link from '~core/Link';
+import Issue from '~parts/Issue';
 
 import {
   getStore,
@@ -29,6 +29,22 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Contributions.description',
     defaultMessage: 'A list of your contributions to JoinColony.',
   },
+  contributionsHeaderDate: {
+    id: 'pages.Contribute.Landing.contributionsHeaderDate',
+    defaultMessage: 'Date',
+  },
+  contributionsHeaderLink: {
+    id: 'pages.Contribute.Landing.contributionsHeaderLink',
+    defaultMessage: 'Link',
+  },
+  contributionsHeaderReward: {
+    id: 'pages.Contribute.Landing.contributionsHeaderReward',
+    defaultMessage: 'Reward',
+  },
+  contributionsHeaderTitle: {
+    id: 'pages.Contribute.Landing.contributionsHeaderTitle',
+    defaultMessage: 'Title',
+  },
   title: {
     id: 'pages.Dashboard.Contributions.title',
     defaultMessage: 'Contributions List',
@@ -44,23 +60,23 @@ type Props = {|
 const displayName = 'pages.Dashboard.Contributions';
 
 const Contributions = ({ user }: Props) => {
-  const [contributions, setContributions] = useState(null);
   const [error, setError] = useState(null);
+  const [issues, setIssues] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
 
   useEffect(() => {
     if (!loadedLocal) {
-      const localContributions = getStore('contributions');
-      setContributions(localContributions);
+      const localUserIssues = getStore('userIssues');
+      setIssues(localUserIssues);
       setLoadedLocal(true);
     }
-  }, [contributions, loadedLocal]);
+  }, [issues, loadedLocal]);
 
-  useEffect(() => setStore('contributions', contributions), [contributions]);
+  useEffect(() => setStore('userIssues', issues), [issues]);
 
-  const getContributions = useCallback(() => {
+  const getIssues = useCallback(() => {
     setLoading(true);
     const options = {
       method: 'POST',
@@ -97,7 +113,7 @@ const Contributions = ({ user }: Props) => {
     fetch('https://api.github.com/graphql', options)
       .then(res => res.json())
       .then(({ data }) => {
-        setContributions(data.search.edges);
+        setIssues(data.search.edges);
         setLoading(false);
       })
       .catch(fetchError => {
@@ -109,19 +125,13 @@ const Contributions = ({ user }: Props) => {
   }, [user.github.username]);
 
   useEffect(() => {
-    if (!contributions && !loading) {
-      getContributions();
+    if (!issues && !loading) {
+      getIssues();
     }
     return () => {
       if (error) clearTimeout(errorTimeout.current);
     };
-  }, [contributions, error, getContributions, loading]);
-
-  const formatContributionLink = url => {
-    const repository = url.split('/')[4];
-    const pullRequestNumber = url.split('/')[6];
-    return `${repository}#${pullRequestNumber}`;
-  };
+  }, [issues, error, getIssues, loading]);
 
   return (
     <>
@@ -133,31 +143,27 @@ const Contributions = ({ user }: Props) => {
           <FormattedMessage {...MSG.description} />
         </p>
         <div className={styles.content}>
-          <table className={styles.contributions}>
+          <table className={styles.issues}>
             <thead>
               <tr>
-                <td>Date</td>
-                <td>Title</td>
-                <td>Link</td>
-                <td>Reward</td>
+                <td>
+                  <FormattedMessage {...MSG.contributionsHeaderDate} />
+                </td>
+                <td>
+                  <FormattedMessage {...MSG.contributionsHeaderTitle} />
+                </td>
+                <td>
+                  <FormattedMessage {...MSG.contributionsHeaderLink} />
+                </td>
+                <td>
+                  <FormattedMessage {...MSG.contributionsHeaderReward} />
+                </td>
               </tr>
             </thead>
             <tbody>
-              {contributions &&
-                contributions.map(contribution => (
-                  <tr key={contribution.node.url}>
-                    <td>{contribution.node.createdAt.split('T')[0]}</td>
-                    <td>{`${contribution.node.title.substring(0, 40)}...`}</td>
-                    <td>
-                      <Link
-                        href={contribution.node.url}
-                        text={formatContributionLink(contribution.node.url)}
-                      />
-                    </td>
-                    <td>
-                      <i>none</i>
-                    </td>
-                  </tr>
+              {issues &&
+                issues.map(issue => (
+                  <Issue key={issue.node.url} issue={issue} />
                 ))}
             </tbody>
           </table>

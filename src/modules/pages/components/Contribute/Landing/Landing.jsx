@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import Issue from './Issue';
+import Issue from '~parts/Issue';
 
 import Button from '~core/Button';
 import Image from '~core/Image';
