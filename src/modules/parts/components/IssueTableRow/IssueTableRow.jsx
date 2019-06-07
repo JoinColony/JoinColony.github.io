@@ -1,14 +1,14 @@
 /* @flow */
 
 import React, { useEffect, useState } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { Issue } from '~types';
 
 import Link from '~core/Link';
 import FormattedToken from '~parts/FormattedToken';
 
-import styles from './Issue.module.css';
+import styles from './IssueTableRow.module.css';
 
 const MSG = defineMessages({
   error: {
@@ -29,7 +29,7 @@ const displayName = 'pages.Contribute.Issue';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const IssueItem = ({ issue }: Props) => {
+const IssueTableRow = ({ issue }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
 
@@ -59,8 +59,14 @@ const IssueItem = ({ issue }: Props) => {
 
   return (
     <tr>
-      <td>{issue.node.createdAt.split('T')[0]}</td>
-      <td>{`${issue.node.title.substring(0, 40)}...`}</td>
+      <td>
+        <FormattedDate value={issue.node.createdAt} />
+      </td>
+      <td>
+        {issue.node.title.length > 50
+          ? issue.node.title.substring(0, 50).concat('...')
+          : issue.node.title}
+      </td>
       <td>
         <Link href={issue.node.url} text={formatIssueLink(issue.node.url)} />
       </td>
@@ -83,6 +89,6 @@ const IssueItem = ({ issue }: Props) => {
   );
 };
 
-IssueItem.displayName = displayName;
+IssueTableRow.displayName = displayName;
 
-export default IssueItem;
+export default IssueTableRow;

@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import Issue from '~parts/Issue';
+import IssueTableRow from '~parts/IssueTableRow';
 
 import Button from '~core/Button';
 import Image from '~core/Image';
@@ -219,7 +219,9 @@ const Landing = () => {
           </thead>
           <tbody>
             {issues &&
-              issues.map(issue => <Issue key={issue.node.url} issue={issue} />)}
+              issues.map(issue => (
+                <IssueTableRow key={issue.node.url} issue={issue} />
+              ))}
           </tbody>
         </table>
       </div>

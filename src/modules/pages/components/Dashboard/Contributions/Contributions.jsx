@@ -7,7 +7,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { User } from '~types';
 
-import Issue from '~parts/Issue';
+import IssueTableRow from '~parts/IssueTableRow';
 
 import {
   getStore,
@@ -163,7 +163,7 @@ const Contributions = ({ user }: Props) => {
             <tbody>
               {issues &&
                 issues.map(issue => (
-                  <Issue key={issue.node.url} issue={issue} />
+                  <IssueTableRow key={issue.node.url} issue={issue} />
                 ))}
             </tbody>
           </table>
