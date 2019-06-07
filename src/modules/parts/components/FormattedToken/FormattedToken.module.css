@@ -1,0 +1,7 @@
+.spacingLarge {
+  word-spacing: 0.4rem;
+}
+
+.symbolWeightBold span:nth-child(2) {
+  font-family: 'Avenir Next Demi';
+}

@@ -8,6 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Button from '~core/Button';
 import Image from '~core/Image';
 import Input from '~core/Input';
+import FormattedToken from '~parts/FormattedToken';
 
 import type { Provider, User } from '~types';
 
@@ -76,12 +77,19 @@ const Account = ({
           <Address setUser={setUser} user={user} wallet={wallet} />
           <div className={styles.statistics}>
             <div className={styles.statistic}>
-              <span className={styles.statisticValue}>0</span>
-              <span className={styles.statisticLabel}>CLNY</span>
+              <FormattedToken
+                amount={0}
+                appearance={{ spacing: 'large', symbolWeight: 'bold' }}
+                symbol="CDEV"
+              />
             </div>
             <div className={styles.statistic}>
-              <span className={styles.statisticValue}>0</span>
-              <span className={styles.statisticLabel}>Reputation</span>
+              <FormattedToken
+                amount={0}
+                appearance={{ spacing: 'large', symbolWeight: 'bold' }}
+                decimals={0}
+                symbol="Reputation"
+              />
             </div>
           </div>
         </div>
