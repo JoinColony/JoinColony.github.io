@@ -66,7 +66,6 @@ const PaymentActions = ({
       {payment && recipient && (
         <div className={styles.buttons}>
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={
               !payment.finalized || payment.potPayout.toString() === '0'
             }

@@ -97,14 +97,14 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const TaskActions = ({
   colonyClient,
   contribution,
-  task,
   setContribution,
   setError,
   setTask,
+  task,
   wallet,
 }: Props) => {
   const [pullRequest, setPullRequest] = useState('');
-  const [rating, setRating] = useState(2);
+  const [rating, setRating] = useState(0);
   const [ratingSecret, setRatingSecret] = useState('');
 
   const manager =
@@ -294,7 +294,6 @@ const TaskActions = ({
       {task.worker && !task.worker.address && (
         <div className={styles.section}>
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={canApproveWorker}
             onClick={handleStartWork}
             text={MSG.buttonStartWork}
@@ -305,28 +304,24 @@ const TaskActions = ({
       {worker && (
         <div className={styles.section}>
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canSubmitWork}
             onClick={handleSubmitWork}
             text={MSG.buttonSubmitWork}
             type="submit"
           />
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canSubmitRating}
             onClick={handleSubmitRating}
             text={MSG.buttonSubmitRating}
             type="submit"
           />
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={canRevealRating}
             onClick={handleRevealRating}
             text={MSG.buttonRevealRating}
             type="submit"
           />
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canClaimPayout}
             onClick={handleClaimPayout}
             text={MSG.buttonClaimPayout}
@@ -337,28 +332,24 @@ const TaskActions = ({
       {manager && (
         <div className={styles.section}>
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canApproveWorker}
             onClick={handleApproveWorker}
             text={MSG.buttonApproveWorker}
             type="submit"
           />
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canSubmitRating}
             onClick={handleSubmitRating}
             text={MSG.buttonSubmitRating}
             type="submit"
           />
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canRevealRating}
             onClick={handleRevealRating}
             text={MSG.buttonRevealRating}
             type="submit"
           />
           <Button
-            appearance={{ theme: 'primary' }}
             disabled={!canFinalizeTask}
             onClick={handleFinalizeTask}
             text={MSG.buttonFinalizeTask}
