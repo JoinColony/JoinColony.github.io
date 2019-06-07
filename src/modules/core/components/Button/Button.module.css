@@ -44,14 +44,14 @@
   color: #ffffff !important;
 }
 
-.themeContribute {
+.themeCallToAction {
   composes: primaryBase;
   background-color: #FAD250;
   border: 1px solid #FAD250;
   color: #00284B;
 }
 
-.themeContribute:hover {
+.themeCallToAction:hover {
   background-color: transparent;
   color: #FAD250;
 }

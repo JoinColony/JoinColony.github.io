@@ -178,7 +178,7 @@ const Landing = () => {
           </p>
           <Button
             appearance={{
-              theme: 'contribute',
+              theme: 'callToAction',
               padding: 'huge',
               weight: 'medium',
             }}
