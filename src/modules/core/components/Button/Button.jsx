@@ -12,7 +12,7 @@ import styles from './Button.module.css';
 
 type Appearance = {
   theme?: 'primary' | 'primaryHollow' | 'callToAction' | 'reset',
-  color?: 'blue' | 'grey' | 'white',
+  color?: 'blue' | 'grey' | 'red' | 'white',
   font?: 'small',
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',

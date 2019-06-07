@@ -54,12 +54,12 @@ const Name = ({ setUser, user }: Props) => {
   const handleSaveName = () => {
     if (name) {
       const options = {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name }),
       };
       // eslint-disable-next-line no-undef
-      fetch(`${server}/api/name?sessionID=${user.session.id}`, options)
+      fetch(`${server}/api/user/name?sessionID=${user.session.id}`, options)
         .then(response => response.json())
         .then(data => {
           if (data.error) {

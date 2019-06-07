@@ -59,12 +59,12 @@ const AddColony = ({
       (await networkClient.isColony.call({ colony: address }))
     ) {
       const options = {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address, network: network.slug }),
       };
       // eslint-disable-next-line no-undef
-      fetch(`${server}/api/colonies?sessionID=${user.session.id}`, options)
+      fetch(`${server}/api/user/colonies?sessionID=${user.session.id}`, options)
         .then(response => response.json())
         .then(data => {
           if (data.error) {

@@ -44,6 +44,14 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.connectedAccountsRemove',
     defaultMessage: 'Remove',
   },
+  deleteAccount: {
+    id: 'pages.Dashboard.Account.deleteAccount',
+    defaultMessage: 'Delete Account',
+  },
+  logout: {
+    id: 'pages.Dashboard.Account.logout',
+    defaultMessage: 'Logout',
+  },
 });
 
 type Props = {|
@@ -116,17 +124,6 @@ const Account = ({
               type="text"
               value={`@${user.github.username}`}
             />
-            <Button
-              appearance={{
-                theme: 'reset',
-                font: 'small',
-                color: 'blue',
-                weight: 'medium',
-              }}
-              onClick={() => disconnect('github')}
-              text={MSG.connectedAccountsRemove}
-              type="submit"
-            />
           </div>
           <Email setUser={setUser} user={user} />
           <div className={styles.field}>
@@ -164,6 +161,32 @@ const Account = ({
               />
             )}
           </div>
+        </div>
+      </div>
+      <div className={styles.content}>
+        <div className={styles.accountButtons}>
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: 'blue',
+              weight: 'medium',
+            }}
+            onClick={() => disconnect('github')}
+            text={MSG.logout}
+            type="submit"
+          />
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: 'red',
+              weight: 'medium',
+            }}
+            onClick={() => disconnect('github')}
+            text={MSG.deleteAccount}
+            type="submit"
+          />
         </div>
       </div>
     </div>

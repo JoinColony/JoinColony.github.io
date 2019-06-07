@@ -40,12 +40,12 @@ const Address = ({ setUser, user, wallet }: Props) => {
 
   const handleUpdateAddress = () => {
     const options = {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ address: wallet.address }),
     };
     // eslint-disable-next-line no-undef
-    fetch(`${server}/api/address?sessionID=${user.session.id}`, options)
+    fetch(`${server}/api/user/address?sessionID=${user.session.id}`, options)
       .then(res => res.json())
       .then(data => {
         if (data.error) {

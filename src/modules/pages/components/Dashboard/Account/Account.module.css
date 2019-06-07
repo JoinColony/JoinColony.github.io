@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-between;
   max-width: 900px;
-  padding-top: 5%;
+  padding: 5% 0;
 }
 
 .contentColumn:first-child {
@@ -56,4 +56,8 @@
   color: #00284B;
   font-family: 'Avenir Next Demi';
   font-size: 24px;
+}
+
+.accountButtons button {
+  margin-right: 40px;
 }

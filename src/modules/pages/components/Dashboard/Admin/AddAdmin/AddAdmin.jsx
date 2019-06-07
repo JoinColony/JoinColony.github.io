@@ -54,12 +54,12 @@ const AddAdmin = ({ colonyClient }: Props) => {
         {},
       );
       const options = {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username }),
       };
       // eslint-disable-next-line no-undef
-      fetch(`${server}/api/admin`, options)
+      fetch(`${server}/api/user/admin`, options)
         .then(() => {
           setSuccess(true);
         })
