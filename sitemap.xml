@@ -4,9 +4,8 @@
 <url> <loc>https://docs.colony.io/colonynetwork/docs-get-started</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-overview</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-modular-permissions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://docs.colony.io/colonynetwork/docs-releases</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/docs-reputation-mining-client</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://docs.colony.io/colonynetwork/docs-the-delegate-proxy-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonynetwork/docs-upgrade-design</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/interface-icolony</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/interface-icolonynetwork</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonynetwork/interface-ietherrouter</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
