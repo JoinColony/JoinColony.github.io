@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import type { Issue } from '~types';
 
 import Link from '~core/Link';
+import FormattedToken from '~parts/FormattedToken';
 
 import styles from './Issue.module.css';
 
@@ -67,8 +68,9 @@ const IssueItem = ({ issue }: Props) => {
         {contribution && (
           <Link
             href={`/contribute/${contribution.type}?id=${contribution.typeId}`}
-            text={`${contribution.payout} CDEV`}
-          />
+          >
+            <FormattedToken amount={contribution.payout} symbol="CDEV" />
+          </Link>
         )}
         {!contribution && error && (
           <span className={styles.error}>

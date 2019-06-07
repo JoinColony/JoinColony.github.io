@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Link from '~core/Link';
+import FormattedToken from '~parts/FormattedToken';
 
 import PaymentActions from './PaymentActions';
 
@@ -181,7 +182,7 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
                 <FormattedMessage {...MSG.labelPayout} />
               </div>
               <div className={styles.value}>
-                {`${contribution.payout} CDEV`}
+                <FormattedToken amount={contribution.payout} symbol="CDEV" />
               </div>
             </div>
             <div className={styles.field}>

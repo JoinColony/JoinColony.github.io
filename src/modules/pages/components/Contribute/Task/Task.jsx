@@ -4,10 +4,11 @@ import type { ColonyClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useEffect, useState } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { Contribution } from '~types';
 
+import FormattedToken from '~parts/FormattedToken';
 import Link from '~core/Link';
 
 import TaskActions from './TaskActions';
@@ -218,7 +219,7 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
                 <FormattedMessage {...MSG.labelPayout} />
               </div>
               <div className={styles.value}>
-                {`${contribution.payout} CDEV`}
+                <FormattedToken amount={contribution.payout} symbol="CDEV" />
               </div>
             </div>
             {task.worker.address && (
@@ -235,7 +236,14 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
               <div className={styles.label}>
                 <FormattedMessage {...MSG.labelDueDate} />
               </div>
-              <div className={styles.value}>{`${task.dueDate}`}</div>
+              <div className={styles.value}>
+                <FormattedDate
+                  day="2-digit"
+                  month="2-digit"
+                  year="numeric"
+                  value={task.dueDate}
+                />
+              </div>
             </div>
             {contribution.issue && (
               <div className={styles.field}>
@@ -252,7 +260,14 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
                 <div className={styles.label}>
                   <FormattedMessage {...MSG.labelCompletionDate} />
                 </div>
-                <div className={styles.value}>{`${task.completionDate}`}</div>
+                <div className={styles.value}>
+                  <FormattedDate
+                    day="2-digit"
+                    month="2-digit"
+                    year="numeric"
+                    value={task.completionDate}
+                  />
+                </div>
               </div>
             )}
             {contribution.pullRequest && (
