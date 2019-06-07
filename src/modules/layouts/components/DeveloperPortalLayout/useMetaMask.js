@@ -124,7 +124,7 @@ const useMetaMask = (walletRequired: boolean) => {
   }, [walletRequired, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
-    if (!web3.currentProvider.connection.selectedAddress) {
+    if (!web3.currentProvider) {
       setStore('wallet', null);
       setWallet(null);
     }
@@ -135,7 +135,7 @@ const useMetaMask = (walletRequired: boolean) => {
       );
     }
     return () => {
-      if (web3.currentProvider.connection) {
+      if (web3.currentProvider) {
         // eslint-disable-next-line no-underscore-dangle
         web3.currentProvider.connection.publicConfigStore._events.update.pop(
           handleChangeAccount,
