@@ -6,6 +6,7 @@ import React from 'react';
 import { injectIntl } from 'react-intl';
 
 import Link from '~core/Link';
+import SpinnerLoader from '~core/SpinnerLoader';
 import { getMainClasses } from '~utils/css';
 
 import styles from './Button.module.css';
@@ -29,6 +30,8 @@ type Props = {
   className?: string,
   /** Injected by `injectIntl` */
   intl: IntlShape,
+  /** Disable button and use loading spinner if loading */
+  loading?: boolean,
   /** Use a link instead of a button. Like `@reach/router`'s `to` property */
   linkTo?: string,
   /** A string or a `messageDescriptor` that make up the button's text label */
@@ -50,6 +53,7 @@ const Button = ({
   children,
   className,
   intl: { formatMessage },
+  loading,
   linkTo,
   text,
   textValues,
@@ -82,7 +86,14 @@ const Button = ({
 
   return (
     // eslint-disable-next-line react/button-has-type
-    <button className={classNames} title={titleText} type={type} {...rest}>
+    <button
+      className={classNames}
+      disabled={loading}
+      title={titleText}
+      type={type}
+      {...rest}
+    >
+      {loading && <SpinnerLoader />}
       {buttonContent}
     </button>
   );

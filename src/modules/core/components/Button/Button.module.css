@@ -18,6 +18,10 @@
   padding: 3px 31px;
 }
 
+.primaryBase div {
+  margin-right: 5px;
+}
+
 /* Theme */
 
 .themePrimary {
@@ -29,6 +33,11 @@
 .themePrimary:hover {
   background-color: transparent;
   color: #00284B;
+}
+
+.themePrimary:disabled {
+  background-color: #788CA0;
+  color: #ffffff;
 }
 
 .themePrimaryHollow {
