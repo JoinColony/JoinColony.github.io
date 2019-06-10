@@ -14,6 +14,7 @@ import type { Provider, User } from '~types';
 
 import Address from './Address';
 import DeleteAccount from './DeleteAccount';
+import Discourse from './Discourse';
 import Email from './Email';
 import Name from './Name';
 
@@ -32,18 +33,6 @@ const MSG = defineMessages({
   connectedAccountsGitHubLabel: {
     id: 'pages.Dashboard.Account.connectedAccountsGitHubLabel',
     defaultMessage: 'GitHub',
-  },
-  connectedAccountsDiscourseLabel: {
-    id: 'pages.Dashboard.Account.connectedAccountsDiscourseLabel',
-    defaultMessage: 'Discourse',
-  },
-  connectedAccountsConnect: {
-    id: 'pages.Dashboard.Account.connectedAccountsConnect',
-    defaultMessage: 'Connect',
-  },
-  connectedAccountsRemove: {
-    id: 'pages.Dashboard.Account.connectedAccountsRemove',
-    defaultMessage: 'Remove',
   },
   logout: {
     id: 'pages.Dashboard.Account.logout',
@@ -123,41 +112,11 @@ const Account = ({
             />
           </div>
           <Email setUser={setUser} user={user} />
-          <div className={styles.field}>
-            <Input
-              disabled
-              appearance={{
-                display: user.discourse ? undefined : 'none',
-                padding: 'huge',
-                width: 'large',
-              }}
-              id="discourse"
-              label={MSG.connectedAccountsDiscourseLabel}
-              type="text"
-              value={user.discourse ? `@${user.discourse.username}` : ''}
-            />
-            {user.discourse ? (
-              <Button
-                appearance={{
-                  theme: 'reset',
-                  font: 'small',
-                  color: 'blue',
-                  weight: 'medium',
-                }}
-                onClick={() => disconnect('discourse')}
-                text={MSG.connectedAccountsRemove}
-                type="submit"
-              />
-            ) : (
-              <Button
-                appearance={{ theme: 'primary', padding: 'large' }}
-                onClick={() => authenticate('discourse')}
-                style={{ margin: '12px auto' }}
-                text={MSG.connectedAccountsConnect}
-                type="submit"
-              />
-            )}
-          </div>
+          <Discourse
+            authenticate={authenticate}
+            disconnect={disconnect}
+            user={user}
+          />
         </div>
       </div>
       <div className={styles.content}>

@@ -1,0 +1,16 @@
+.field {
+  width: 480px; /* Fixed width for button expansion */
+}
+
+.loader {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
