@@ -5,7 +5,7 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { User } from '~types';
+import type { Network, User } from '~types';
 
 import IssueTableRow from '~parts/IssueTableRow';
 
@@ -52,6 +52,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
+  network: Network,
   path: string,
   user: User,
   wallet: WalletObjectType,
@@ -59,7 +60,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Contributions';
 
-const Contributions = ({ user }: Props) => {
+const Contributions = ({ network, user }: Props) => {
   const [error, setError] = useState(null);
   const [issues, setIssues] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
@@ -169,6 +170,7 @@ const Contributions = ({ user }: Props) => {
                     key={issue.node.url}
                     issue={issue}
                     loadedRemote={loadedRemote}
+                    network={network}
                   />
                 ))}
             </tbody>

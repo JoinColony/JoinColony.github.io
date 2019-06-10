@@ -9,6 +9,8 @@ import { Router } from '@reach/router';
 import { defineMessages } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
+import type { Network } from '~types';
+
 import SEO from '~parts/SEO';
 
 import Landing from './Landing';
@@ -32,6 +34,7 @@ const MSG = defineMessages({
 type Props = {|
   colonyClient: ColonyClient,
   intl: IntlShape,
+  network: Network,
   /* eslint-disable-next-line react/no-unused-prop-types */
   page: string,
   wallet: WalletObjectType,
@@ -42,6 +45,7 @@ const displayName = 'pages.Contribute';
 const Contribute = ({
   colonyClient,
   intl: { formatMessage },
+  network,
   wallet,
 }: Props) => {
   const title = formatMessage(MSG.pageTitle);
@@ -55,15 +59,17 @@ const Contribute = ({
       <Helmet title={title} />
       <main className={styles.main}>
         <Router primary={false}>
-          <Landing path="/contribute" />
+          <Landing path="/contribute" network={network} />
           <Payment
             path="/contribute/payment"
             colonyClient={colonyClient}
+            network={network}
             wallet={wallet}
           />
           <Task
             path="/contribute/task"
             colonyClient={colonyClient}
+            network={network}
             wallet={wallet}
           />
         </Router>

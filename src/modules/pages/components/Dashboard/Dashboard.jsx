@@ -117,6 +117,7 @@ const Dashboard = ({
               />
               <Contributions
                 path="/dashboard/contributions"
+                network={network}
                 user={user}
                 wallet={wallet}
               />

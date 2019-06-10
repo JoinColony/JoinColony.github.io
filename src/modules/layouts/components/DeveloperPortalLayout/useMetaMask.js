@@ -117,15 +117,17 @@ const useMetaMask = (walletRequired: boolean) => {
   }, [walletRequired, loadedWallet, openWallet]);
 
   useEffect(() => {
-    if (walletRequired && !loadedNetwork && loadedWallet) {
+    if (!loadedNetwork && web3.currentProvider) {
       getNetwork();
       setLoadedNetwork(true);
     }
-  }, [walletRequired, getNetwork, loadedNetwork, loadedWallet]);
+  }, [getNetwork, loadedNetwork]);
 
   useEffect(() => {
     if (!web3.currentProvider) {
+      setStore('network', null);
       setStore('wallet', null);
+      setNetwork(null);
       setWallet(null);
     }
     if (!loadingWallet && web3.currentProvider) {

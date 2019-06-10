@@ -3,6 +3,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import type { Network } from '~types';
+
 import IssueTableRow from '~parts/IssueTableRow';
 
 import Button from '~core/Button';
@@ -92,9 +94,14 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  network: Network,
+  path: string,
+|};
+
 const displayName = 'pages.Contribute.Landing';
 
-const Landing = () => {
+const Landing = ({ network }: Props) => {
   const [issues, setIssues] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
@@ -226,6 +233,7 @@ const Landing = () => {
                   key={issue.node.url}
                   issue={issue}
                   loadedRemote={loadedRemote}
+                  network={network}
                 />
               ))}
           </tbody>

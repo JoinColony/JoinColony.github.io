@@ -48,6 +48,12 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ) || [],
     [locale, projectQueryData.openSourceProjects.edges],
   );
+  const pathContribute: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname.split('/')[1] === 'contribute';
+    }
+    return false;
+  }, []);
   const pathContribution: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
       return (
@@ -95,7 +101,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         <MetaMask />
       ) : (
         <div>
-          {pathContribution || pathDashboard
+          {pathContribute || pathDashboard
             ? cloneElement(children, {
                 authenticate,
                 colonyClient,

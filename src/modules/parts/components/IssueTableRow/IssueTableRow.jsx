@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
-import type { Issue } from '~types';
+import type { Issue, Network } from '~types';
 
 import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
@@ -25,13 +25,14 @@ const MSG = defineMessages({
 type Props = {|
   issue: Issue,
   loadedRemote?: boolean,
+  network: Network,
 |};
 
 const displayName = 'pages.Contribute.Issue';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const IssueTableRow = ({ issue, loadedRemote }: Props) => {
+const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,12 @@ const IssueTableRow = ({ issue, loadedRemote }: Props) => {
           headers: { 'Content-Type': 'application/json' },
         };
         // eslint-disable-next-line no-undef
-        fetch(`${server}/api/contribution?issue=${issue.node.url}`, options)
+        fetch(
+          `${server}/api/contribution?networkId=${
+            network ? network.id : 1
+          }&issue=${issue.node.url}`,
+          options,
+        )
           .then(res => res.json())
           .then(data => {
             setContribution(data.contribution);
@@ -57,7 +63,7 @@ const IssueTableRow = ({ issue, loadedRemote }: Props) => {
           });
       }
     })();
-  }, [issue, loadedRemote]);
+  }, [issue, loadedRemote, network]);
 
   const formatIssueLink = url => {
     const repository = url.split('/')[4];

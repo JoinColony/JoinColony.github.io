@@ -6,7 +6,7 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
-import type { Contribution } from '~types';
+import type { Contribution, Network } from '~types';
 
 import Link from '~core/Link';
 import FormattedToken from '~core/FormattedToken';
@@ -84,13 +84,14 @@ type Task = {|
 
 type Props = {|
   colonyClient: ColonyClient,
+  network: Network,
   path: string,
   wallet: WalletObjectType,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const TaskPage = ({ colonyClient, wallet }: Props) => {
+const TaskPage = ({ colonyClient, network, wallet }: Props) => {
   const [contribution, setContribution] = useState<?Contribution>(null);
   const [error, setError] = useState(null);
   const [loadedContribution, setLoadedContribution] = useState(false);
@@ -133,7 +134,12 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
           headers: { 'Content-Type': 'application/json' },
         };
         // eslint-disable-next-line no-undef
-        fetch(`${server}/api/contribution?type=task&typeId=${taskId}`, options)
+        fetch(
+          `${server}/api/contribution?type=task&typeId=${taskId}&networkId=${
+            network ? network.id : 1
+          }`,
+          options,
+        )
           .then(res => res.json())
           .then(data => {
             setContribution(data.contribution);
@@ -144,7 +150,7 @@ const TaskPage = ({ colonyClient, wallet }: Props) => {
         setLoadedContribution(true);
       })();
     }
-  }, [loadedContribution, taskId]);
+  }, [loadedContribution, network, taskId]);
 
   useEffect(() => {
     if (!loadedTask && taskId && colonyClient) {
