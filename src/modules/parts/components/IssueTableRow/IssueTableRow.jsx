@@ -7,6 +7,7 @@ import type { Issue } from '~types';
 
 import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import styles from './IssueTableRow.module.css';
 
@@ -32,9 +33,11 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const IssueTableRow = ({ issue }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const options = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -44,9 +47,11 @@ const IssueTableRow = ({ issue }: Props) => {
         .then(res => res.json())
         .then(data => {
           setContribution(data.contribution);
+          setLoading(false);
         })
         .catch(fetchError => {
           setError(fetchError);
+          setLoading(false);
         });
     })();
   }, [issue]);
@@ -78,12 +83,17 @@ const IssueTableRow = ({ issue }: Props) => {
             <FormattedToken amount={contribution.payout} symbol="CDEV" />
           </Link>
         )}
+        {!contribution && loading && (
+          <SpinnerLoader appearance={{ theme: 'primary' }} />
+        )}
+        {!contribution && !loading && !error && (
+          <FormattedMessage {...MSG.notSet} />
+        )}
         {!contribution && error && (
           <span className={styles.error}>
             <FormattedMessage {...MSG.error} />
           </span>
         )}
-        {!contribution && !error && <FormattedMessage {...MSG.notSet} />}
       </td>
     </tr>
   );

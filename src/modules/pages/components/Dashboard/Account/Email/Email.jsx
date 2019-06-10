@@ -5,6 +5,7 @@ import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
 import Input from '~core/Input';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import type { User } from '~types';
 
@@ -43,6 +44,7 @@ const Email = ({ setUser, user }: Props) => {
   const [edit, setEdit] = useState(false);
   const [email, setEmail] = useState(initialEmail);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
   const errorTimeout = useRef(null);
 
   const handleCancelEmail = () => {
@@ -57,6 +59,7 @@ const Email = ({ setUser, user }: Props) => {
 
   const handleSaveEmail = () => {
     if (email) {
+      setLoading(true);
       const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -68,16 +71,19 @@ const Email = ({ setUser, user }: Props) => {
         .then(data => {
           if (data.error) {
             setError(data.error);
+            setLoading(false);
             errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
           } else {
             setUser({ ...user, email: data.email });
             setEdit(false);
+            setLoading(false);
           }
         })
         .catch(fetchError => {
           setError(fetchError.message);
+          setLoading(false);
           errorTimeout.current = setTimeout(() => {
             setError(null);
           }, 2000);
@@ -105,30 +111,38 @@ const Email = ({ setUser, user }: Props) => {
         type="text"
         value={email}
       />
-      <Button
-        appearance={{
-          theme: 'reset',
-          font: 'small',
-          color: 'blue',
-          weight: 'medium',
-        }}
-        onClick={edit ? handleSaveEmail : () => setEdit(true)}
-        style={edit ? { marginRight: '15px' } : {}}
-        text={edit ? MSG.emailSave : MSG.emailEdit}
-        type="submit"
-      />
-      {edit && (
-        <Button
-          appearance={{
-            theme: 'reset',
-            font: 'small',
-            color: 'grey',
-            weight: 'medium',
-          }}
-          onClick={handleCancelEmail}
-          text={MSG.emailCancel}
-          type="submit"
-        />
+      {loading ? (
+        <div className={styles.loader}>
+          <SpinnerLoader appearance={{ theme: 'primary' }} />
+        </div>
+      ) : (
+        <>
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: 'blue',
+              weight: 'medium',
+            }}
+            onClick={edit ? handleSaveEmail : () => setEdit(true)}
+            style={edit ? { marginRight: '15px' } : {}}
+            text={edit ? MSG.emailSave : MSG.emailEdit}
+            type="submit"
+          />
+          {edit && (
+            <Button
+              appearance={{
+                theme: 'reset',
+                font: 'small',
+                color: 'grey',
+                weight: 'medium',
+              }}
+              onClick={handleCancelEmail}
+              text={MSG.emailCancel}
+              type="submit"
+            />
+          )}
+        </>
       )}
       {error && <div className={styles.error}>{error}</div>}
     </div>

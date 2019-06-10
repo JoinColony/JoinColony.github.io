@@ -13,6 +13,13 @@
   display: flex;
 }
 
+.loader {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-right: 10px;
+}
+
 .primaryAddress {
   color: #788CA0;
   font-size: 13px;

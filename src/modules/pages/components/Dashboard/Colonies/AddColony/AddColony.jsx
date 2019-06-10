@@ -45,6 +45,7 @@ const AddColony = ({
 }: Props) => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
 
   const handleChangeAddress = event => {
@@ -58,6 +59,7 @@ const AddColony = ({
       isAddress(address) &&
       (await networkClient.isColony.call({ colony: address }))
     ) {
+      setLoading(true);
       const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -69,16 +71,19 @@ const AddColony = ({
         .then(data => {
           if (data.error) {
             setError(data.error);
+            setLoading(false);
             errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
           } else {
             setUser({ ...user, colonies: data.colonies });
             setAddColony(false);
+            setLoading(false);
           }
         })
         .catch(fetchError => {
           setError(fetchError.message);
+          setLoading(false);
           errorTimeout.current = setTimeout(() => {
             setError(null);
           }, 2000);
@@ -112,6 +117,7 @@ const AddColony = ({
           padding: 'large',
           theme: 'primary',
         }}
+        loading={loading}
         onClick={handleAddColony}
         text={MSG.submitAddress}
         type="submit"

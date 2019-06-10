@@ -10,7 +10,7 @@ import type { IntlShape, MessageDescriptor, MessageValues } from 'react-intl';
 import styles from './SpinnerLoader.module.css';
 
 type Appearance = {
-  size: 'small' | 'medium' | 'large' | 'huge' | 'massive',
+  size?: 'small' | 'medium' | 'large' | 'huge' | 'massive',
   theme?: 'primary',
 };
 

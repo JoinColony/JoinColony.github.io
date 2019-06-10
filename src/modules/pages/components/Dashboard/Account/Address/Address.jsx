@@ -10,6 +10,7 @@ import type { User } from '~types';
 
 import Button from '~core/Button';
 import Copy from '~core/Copy';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import styles from './Address.module.css';
 
@@ -36,9 +37,11 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Address = ({ setUser, user, wallet }: Props) => {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
 
   const handleUpdateAddress = () => {
+    setLoading(true);
     const options = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -50,15 +53,18 @@ const Address = ({ setUser, user, wallet }: Props) => {
       .then(data => {
         if (data.error) {
           setError(data.error);
+          setLoading(false);
           errorTimeout.current = setTimeout(() => {
             setError(null);
           }, 2000);
         } else {
           setUser({ ...user, addresses: data.addresses });
+          setLoading(false);
         }
       })
       .catch(fetchError => {
         setError(fetchError.message);
+        setLoading(false);
         errorTimeout.current = setTimeout(() => {
           setError(null);
         }, 2000);
@@ -86,6 +92,11 @@ const Address = ({ setUser, user, wallet }: Props) => {
       </div>
       {!error && user.addresses[0] !== wallet.address && (
         <div className={styles.primaryAddress}>
+          {loading && (
+            <div className={styles.loader}>
+              <SpinnerLoader appearance={{ theme: 'primary' }} />
+            </div>
+          )}
           <FormattedMessage
             values={{
               updateAddress: (

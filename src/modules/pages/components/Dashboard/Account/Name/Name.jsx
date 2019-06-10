@@ -5,6 +5,7 @@ import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
 import Input from '~core/Input';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import type { User } from '~types';
 
@@ -38,6 +39,7 @@ const Name = ({ setUser, user }: Props) => {
   const initialName = user.name || '';
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState(initialName);
   const errorTimeout = useRef(null);
 
@@ -53,6 +55,7 @@ const Name = ({ setUser, user }: Props) => {
 
   const handleSaveName = () => {
     if (name) {
+      setLoading(true);
       const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -64,16 +67,19 @@ const Name = ({ setUser, user }: Props) => {
         .then(data => {
           if (data.error) {
             setError(data.error);
+            setLoading(false);
             errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
           } else {
             setUser({ ...user, name: data.name });
             setEdit(false);
+            setLoading(false);
           }
         })
         .catch(fetchError => {
           setError(fetchError.message);
+          setLoading(false);
           errorTimeout.current = setTimeout(() => {
             setError(null);
           }, 2000);
@@ -91,14 +97,45 @@ const Name = ({ setUser, user }: Props) => {
     <div>
       <div className={styles.main}>
         {edit ? (
-          <Input
-            appearance={{ padding: 'huge', width: 'large' }}
-            id="name"
-            onChange={handleChangeName}
-            style={{ marginRight: '20px', marginTop: '0' }}
-            type="text"
-            value={name}
-          />
+          <>
+            <Input
+              appearance={{ padding: 'huge', width: 'large' }}
+              id="name"
+              onChange={handleChangeName}
+              style={{ marginRight: '20px', marginTop: '0' }}
+              type="text"
+              value={name}
+            />
+            {loading ? (
+              <SpinnerLoader appearance={{ theme: 'primary' }} />
+            ) : (
+              <>
+                <Button
+                  appearance={{
+                    theme: 'reset',
+                    font: 'small',
+                    color: 'blue',
+                    weight: 'medium',
+                  }}
+                  onClick={handleSaveName}
+                  style={{ marginRight: '15px' }}
+                  text={MSG.nameSave}
+                  type="submit"
+                />
+                <Button
+                  appearance={{
+                    theme: 'reset',
+                    font: 'small',
+                    color: 'grey',
+                    weight: 'medium',
+                  }}
+                  onClick={handleCancelName}
+                  text={MSG.nameCancel}
+                  type="submit"
+                />
+              </>
+            )}
+          </>
         ) : (
           <Button
             appearance={{ theme: 'reset' }}
@@ -107,33 +144,6 @@ const Name = ({ setUser, user }: Props) => {
           >
             {user.name}
           </Button>
-        )}
-        {edit && (
-          <div>
-            <Button
-              appearance={{
-                theme: 'reset',
-                font: 'small',
-                color: 'blue',
-                weight: 'medium',
-              }}
-              onClick={handleSaveName}
-              style={{ marginRight: '15px' }}
-              text={MSG.nameSave}
-              type="submit"
-            />
-            <Button
-              appearance={{
-                theme: 'reset',
-                font: 'small',
-                color: 'grey',
-                weight: 'medium',
-              }}
-              onClick={handleCancelName}
-              text={MSG.nameCancel}
-              type="submit"
-            />
-          </div>
         )}
       </div>
       {error && <div className={styles.error}>{error}</div>}
