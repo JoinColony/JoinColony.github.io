@@ -54,12 +54,16 @@ const AddColony = ({
   };
 
   const handleAddColony = async () => {
-    if (
-      networkClient &&
-      isAddress(address) &&
-      (await networkClient.isColony.call({ colony: address }))
-    ) {
+    if (networkClient && isAddress(address)) {
       setLoading(true);
+      const isColonyAddress = await networkClient.isColony.call({
+        colony: address,
+      });
+      if (!isColonyAddress) {
+        setError('The address you provided is not a valid colony address');
+        setLoading(false);
+        return;
+      }
       const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
