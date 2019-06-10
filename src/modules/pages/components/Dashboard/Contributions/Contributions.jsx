@@ -63,6 +63,7 @@ const Contributions = ({ user }: Props) => {
   const [error, setError] = useState(null);
   const [issues, setIssues] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
+  const [loadedRemote, setLoadedRemote] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
 
@@ -114,6 +115,7 @@ const Contributions = ({ user }: Props) => {
       .then(res => res.json())
       .then(({ data }) => {
         setIssues(data.search.edges);
+        setLoadedRemote(true);
         setLoading(false);
       })
       .catch(fetchError => {
@@ -163,7 +165,11 @@ const Contributions = ({ user }: Props) => {
             <tbody>
               {issues &&
                 issues.map(issue => (
-                  <IssueTableRow key={issue.node.url} issue={issue} />
+                  <IssueTableRow
+                    key={issue.node.url}
+                    issue={issue}
+                    loadedRemote={loadedRemote}
+                  />
                 ))}
             </tbody>
           </table>

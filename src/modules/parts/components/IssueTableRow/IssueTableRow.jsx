@@ -24,37 +24,40 @@ const MSG = defineMessages({
 
 type Props = {|
   issue: Issue,
+  loadedRemote?: boolean,
 |};
 
 const displayName = 'pages.Contribute.Issue';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const IssueTableRow = ({ issue }: Props) => {
+const IssueTableRow = ({ issue, loadedRemote }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
-      const options = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      };
-      // eslint-disable-next-line no-undef
-      fetch(`${server}/api/contribution?issue=${issue.node.url}`, options)
-        .then(res => res.json())
-        .then(data => {
-          setContribution(data.contribution);
-          setLoading(false);
-        })
-        .catch(fetchError => {
-          setError(fetchError);
-          setLoading(false);
-        });
+      if (loadedRemote) {
+        setLoading(true);
+        const options = {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        };
+        // eslint-disable-next-line no-undef
+        fetch(`${server}/api/contribution?issue=${issue.node.url}`, options)
+          .then(res => res.json())
+          .then(data => {
+            setContribution(data.contribution);
+            setLoading(false);
+          })
+          .catch(fetchError => {
+            setError(fetchError);
+            setLoading(false);
+          });
+      }
     })();
-  }, [issue]);
+  }, [issue, loadedRemote]);
 
   const formatIssueLink = url => {
     const repository = url.split('/')[4];

@@ -98,6 +98,7 @@ const Landing = () => {
   const [issues, setIssues] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
+  const [loadedRemote, setLoadedRemote] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
 
@@ -147,6 +148,7 @@ const Landing = () => {
         // Remove empty nodes
         const nodes = data.search.edges.filter(({ node }) => node !== {});
         setIssues(nodes);
+        setLoadedRemote(true);
         setLoading(false);
       })
       .catch(({ message }) => {
@@ -220,7 +222,11 @@ const Landing = () => {
           <tbody>
             {issues &&
               issues.map(issue => (
-                <IssueTableRow key={issue.node.url} issue={issue} />
+                <IssueTableRow
+                  key={issue.node.url}
+                  issue={issue}
+                  loadedRemote={loadedRemote}
+                />
               ))}
           </tbody>
         </table>

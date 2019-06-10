@@ -38,6 +38,7 @@
 .themePrimary:disabled {
   background-color: #788CA0;
   color: #ffffff;
+  cursor: not-allowed;
 }
 
 .themePrimaryHollow {
