@@ -2,13 +2,13 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
+import FormattedToken from '~core/FormattedToken';
 import Image from '~core/Image';
 import Input from '~core/Input';
-import FormattedToken from '~parts/FormattedToken';
 
 import type { Provider, User } from '~types';
 
@@ -19,6 +19,10 @@ import Name from './Name';
 import styles from './Account.module.css';
 
 const MSG = defineMessages({
+  confirmDelete: {
+    id: 'pages.Dashboard.Account.confirmDelete',
+    defaultMessage: 'Are you sure?',
+  },
   connectedAccountsTitle: {
     id: 'pages.Dashboard.Account.connectedAccountsTitle',
     defaultMessage: 'Connected Accounts',
@@ -48,6 +52,14 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.deleteAccount',
     defaultMessage: 'Delete Account',
   },
+  deleteAccountNo: {
+    id: 'pages.Dashboard.Account.deleteAccountNo',
+    defaultMessage: 'No',
+  },
+  deleteAccountYes: {
+    id: 'pages.Dashboard.Account.deleteAccountYes',
+    defaultMessage: 'Yes',
+  },
   logout: {
     id: 'pages.Dashboard.Account.logout',
     defaultMessage: 'Logout',
@@ -63,6 +75,8 @@ type Props = {|
   wallet: WalletObjectType,
 |};
 
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
 const displayName = 'pages.Dashboard.Account';
 
 const Account = ({
@@ -72,6 +86,35 @@ const Account = ({
   user,
   wallet,
 }: Props) => {
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [error, setError] = useState(false);
+  const errorTimeout = useRef(null);
+
+  const handleDeleteAccount = () => {
+    const options = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    // eslint-disable-next-line no-undef
+    fetch(`${server}/api/user?sessionID=${user.session.id}`, options)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          setError(data.error);
+          errorTimeout.current = setTimeout(() => {
+            setError(null);
+          }, 2000);
+        } else {
+          disconnect('github');
+        }
+      })
+      .catch(fetchError => {
+        setError(fetchError.message);
+        errorTimeout.current = setTimeout(() => {
+          setError(null);
+        }, 2000);
+      });
+  };
   return (
     <div className={styles.main}>
       <div className={styles.header}>
@@ -176,18 +219,49 @@ const Account = ({
             text={MSG.logout}
             type="submit"
           />
-          <Button
-            appearance={{
-              theme: 'reset',
-              font: 'small',
-              color: 'red',
-              weight: 'medium',
-            }}
-            onClick={() => disconnect('github')}
-            text={MSG.deleteAccount}
-            type="submit"
-          />
+          {confirmDelete ? (
+            <>
+              <span className={styles.confirmDelete}>
+                <FormattedMessage {...MSG.confirmDelete} />
+              </span>
+              <Button
+                appearance={{
+                  theme: 'reset',
+                  font: 'small',
+                  color: 'red',
+                  weight: 'medium',
+                }}
+                onClick={handleDeleteAccount}
+                text={MSG.deleteAccountYes}
+                type="submit"
+              />
+              <Button
+                appearance={{
+                  theme: 'reset',
+                  font: 'small',
+                  color: 'grey',
+                  weight: 'medium',
+                }}
+                onClick={() => setConfirmDelete(false)}
+                text={MSG.deleteAccountNo}
+                type="submit"
+              />
+            </>
+          ) : (
+            <Button
+              appearance={{
+                theme: 'reset',
+                font: 'small',
+                color: 'red',
+                weight: 'medium',
+              }}
+              onClick={() => setConfirmDelete(true)}
+              text={MSG.deleteAccount}
+              type="submit"
+            />
+          )}
         </div>
+        {error && <div className={styles.error}>{error}</div>}
       </div>
     </div>
   );
