@@ -17,6 +17,11 @@
   width: 160px;
 }
 
+.statisticsSwitchNetwork {
+  font-size: 15px;
+  font-style: italic;
+}
+
 .statistic {
   display: inline-block;
   margin-right: 20px;

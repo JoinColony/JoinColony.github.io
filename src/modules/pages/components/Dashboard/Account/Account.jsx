@@ -10,7 +10,7 @@ import FormattedToken from '~core/FormattedToken';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
-import type { Provider, User } from '~types';
+import type { Network, Provider, User } from '~types';
 
 import Address from './Address';
 import DeleteAccount from './DeleteAccount';
@@ -34,6 +34,10 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.connectedAccountsGitHubLabel',
     defaultMessage: 'GitHub',
   },
+  statisticsSwitchNetwork: {
+    id: 'pages.Dashboard.Account.statisticsSwitchNetwork',
+    defaultMessage: 'Switch networks to see your token balance and reputation.',
+  },
   logout: {
     id: 'pages.Dashboard.Account.logout',
     defaultMessage: 'Logout',
@@ -43,6 +47,7 @@ const MSG = defineMessages({
 type Props = {|
   authenticate: (provider: Provider) => void,
   disconnect: (provider: Provider) => void,
+  network: Network,
   path: string,
   setUser: (user: User) => void,
   user: User,
@@ -54,6 +59,7 @@ const displayName = 'pages.Dashboard.Account';
 const Account = ({
   authenticate,
   disconnect,
+  network,
   setUser,
   user,
   wallet,
@@ -69,23 +75,29 @@ const Account = ({
         <div>
           <Name setUser={setUser} user={user} />
           <Address setUser={setUser} user={user} wallet={wallet} />
-          <div className={styles.statistics}>
-            <div className={styles.statistic}>
-              <FormattedToken
-                amount={0}
-                appearance={{ spacing: 'large', symbolWeight: 'bold' }}
-                symbol="CDEV"
-              />
+          {network.id === 1 || network.id === 5 ? (
+            <div className={styles.statistics}>
+              <div className={styles.statistic}>
+                <FormattedToken
+                  amount={0}
+                  appearance={{ spacing: 'large', symbolWeight: 'bold' }}
+                  symbol="CDEV"
+                />
+              </div>
+              <div className={styles.statistic}>
+                <FormattedToken
+                  amount={0}
+                  appearance={{ spacing: 'large', symbolWeight: 'bold' }}
+                  decimals={0}
+                  symbol="Reputation"
+                />
+              </div>
             </div>
-            <div className={styles.statistic}>
-              <FormattedToken
-                amount={0}
-                appearance={{ spacing: 'large', symbolWeight: 'bold' }}
-                decimals={0}
-                symbol="Reputation"
-              />
+          ) : (
+            <div className={styles.statisticsSwitchNetwork}>
+              <FormattedMessage {...MSG.statisticsSwitchNetwork} />
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className={styles.content}>

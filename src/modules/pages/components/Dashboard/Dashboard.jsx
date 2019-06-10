@@ -102,6 +102,7 @@ const Dashboard = ({
                 path={page ? '/dashboard/account' : '/dashboard'}
                 authenticate={authenticate}
                 disconnect={disconnect}
+                network={network}
                 setUser={setUser}
                 user={user}
                 wallet={wallet}
