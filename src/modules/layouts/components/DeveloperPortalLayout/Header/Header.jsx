@@ -17,8 +17,9 @@ import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
 import {
   COLONY_DISCOURSE_SUPPORT,
-  PAGE_DEVELOPER_PORTAL,
-  PAGE_DEVELOPER_DASHBOARD,
+  PAGE_DEVELOPER_PORTAL_INDEX,
+  PAGE_DEVELOPER_PORTAL_CONTRIBUTE,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD,
 } from '~routes';
 
 import styles from './Header.module.css';
@@ -31,6 +32,10 @@ const MSG = defineMessages({
   navAriaLabel: {
     id: 'layouts.DeveloperPortalLayout.Header.navAriaLabel',
     defaultMessage: 'Main Navigation',
+  },
+  navLinkContribute: {
+    id: 'layouts.DeveloperPortalLayout.Header.navLinkContribute',
+    defaultMessage: 'Contribute',
   },
   navLinkDocs: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkDocs',
@@ -52,10 +57,10 @@ const MSG = defineMessages({
 
 type Props = {|
   coreProjects: Array<Project>,
-  dashboard: boolean,
   intl: IntlShape,
   network: ?Network,
   openSourceProjects: Array<Project>,
+  pathDashboard: boolean,
   user: ?User,
   wallet: ?WalletObjectType,
 |};
@@ -64,11 +69,11 @@ const displayName = 'layouts.DeveloperPortalLayout.Header';
 
 const Header = ({
   coreProjects,
-  dashboard,
   intl: { formatMessage },
   intl,
   network,
   openSourceProjects,
+  pathDashboard,
   user,
   wallet,
 }: Props) => {
@@ -78,7 +83,7 @@ const Header = ({
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
         <div className={styles.leftWrapper}>
-          <Link href={PAGE_DEVELOPER_PORTAL}>
+          <Link href={PAGE_DEVELOPER_PORTAL_INDEX}>
             <Icon
               className={styles.logo}
               name="developerPortal_white"
@@ -86,7 +91,7 @@ const Header = ({
               viewBox="0 0 134 33"
             />
           </Link>
-          {wallet && network && user && (
+          {wallet && network && (
             <div className={styles.network}>
               <div
                 className={styles.networkDot}
@@ -144,6 +149,11 @@ const Header = ({
             </span>
             <Link
               className={styles.navLink}
+              href={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
+              text={MSG.navLinkContribute}
+            />
+            <Link
+              className={styles.navLink}
               href={COLONY_DISCOURSE_SUPPORT}
               text={MSG.navLinkSupport}
             />
@@ -156,13 +166,13 @@ const Header = ({
           </div>
           <Button
             appearance={{
-              theme: dashboard ? 'primary' : 'primaryHollow',
-              color: dashboard ? 'white' : undefined,
+              theme: pathDashboard ? 'primary' : 'primaryHollow',
+              color: pathDashboard ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
               width: 'fixed',
             }}
-            linkTo={PAGE_DEVELOPER_DASHBOARD}
+            linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
             style={{ marginLeft: '10px' }}
             text={user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />

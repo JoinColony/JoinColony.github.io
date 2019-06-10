@@ -29,7 +29,7 @@ type Props = {
   /** Values for loading label (react-intl interpolation) */
   labelValues?: Object,
   /** Input html type attribute */
-  type?: 'text' | 'number',
+  type?: 'date' | 'number' | 'text',
 };
 
 const displayName = 'Input';

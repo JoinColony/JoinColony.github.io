@@ -2,11 +2,7 @@
   display: flex;
   flex-direction: column;
   min-width: 200px;
-}
-
-.content {
-  margin: 40px 0;
-  padding: 0 40px;
+  padding: 30px;
 }
 
 .link {

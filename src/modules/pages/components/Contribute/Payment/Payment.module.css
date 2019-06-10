@@ -1,0 +1,28 @@
+.main {
+  padding: 5%;
+}
+
+.content {
+  margin: 0 auto;
+  width: 700px;
+}
+
+.field {
+  padding: 10px;
+}
+
+.label {
+  color: #788CA0;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+}
+
+.error {
+  color: red;
+  font-style: italic;
+}

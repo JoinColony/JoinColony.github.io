@@ -59,7 +59,7 @@ const getNetworkInfo = (id: number) => {
   }
 };
 
-const useMetaMask = (dashboard: boolean) => {
+const useMetaMask = (walletRequired: boolean) => {
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
   const [loadedNetwork, setLoadedNetwork] = useState<boolean>(false);
   const [loadedWallet, setLoadedWallet] = useState<boolean>(false);
@@ -110,21 +110,21 @@ const useMetaMask = (dashboard: boolean) => {
   useEffect(() => setStore('wallet', wallet), [wallet]);
 
   useEffect(() => {
-    if (dashboard && !loadedWallet) {
+    if (walletRequired && !loadedWallet) {
       openWallet();
       setLoadedWallet(true);
     }
-  }, [dashboard, loadedWallet, openWallet]);
+  }, [walletRequired, loadedWallet, openWallet]);
 
   useEffect(() => {
-    if (dashboard && !loadedNetwork && loadedWallet) {
+    if (walletRequired && !loadedNetwork && loadedWallet) {
       getNetwork();
       setLoadedNetwork(true);
     }
-  }, [dashboard, getNetwork, loadedNetwork, loadedWallet]);
+  }, [walletRequired, getNetwork, loadedNetwork, loadedWallet]);
 
   useEffect(() => {
-    if (!web3.currentProvider.connection.selectedAddress) {
+    if (!web3.currentProvider) {
       setStore('wallet', null);
       setWallet(null);
     }
@@ -135,7 +135,7 @@ const useMetaMask = (dashboard: boolean) => {
       );
     }
     return () => {
-      if (web3.currentProvider.connection) {
+      if (web3.currentProvider) {
         // eslint-disable-next-line no-underscore-dangle
         web3.currentProvider.connection.publicConfigStore._events.update.pop(
           handleChangeAccount,

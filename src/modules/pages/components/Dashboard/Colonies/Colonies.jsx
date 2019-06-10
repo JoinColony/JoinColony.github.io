@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable react/no-unused-prop-types */
 
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
@@ -19,11 +18,11 @@ import styles from './Colonies.module.css';
 
 const MSG = defineMessages({
   buttonAddColony: {
-    id: 'pages.Dashboard.Colonies.AddColony.buttonAddColony',
+    id: 'pages.Dashboard.Colonies.buttonAddColony',
     defaultMessage: '+ Add Colony',
   },
   buttonCancel: {
-    id: 'pages.Dashboard.Colonies.AddColony.buttonCancel',
+    id: 'pages.Dashboard.Colonies.buttonCancel',
     defaultMessage: 'Cancel',
   },
   mainTitle: {

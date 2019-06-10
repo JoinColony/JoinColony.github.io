@@ -4,7 +4,15 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       module: {
         rules: [
           {
+            test: /borc/,
+            use: loaders.null(),
+          },
+          {
             test: /got/,
+            use: loaders.null(),
+          },
+          {
+            test: /ipld-dag-cbor/,
             use: loaders.null(),
           },
           {

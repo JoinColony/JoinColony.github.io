@@ -1,6 +1,7 @@
 [ignore]
 .*/public/.*
 .*/node_modules/oboe/test/*
+.*/node_modules/module-deps/test/*
 
 [include]
 .*/scripts/.*

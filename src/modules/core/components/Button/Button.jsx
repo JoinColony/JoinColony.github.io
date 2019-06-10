@@ -11,7 +11,7 @@ import { getMainClasses } from '~utils/css';
 import styles from './Button.module.css';
 
 type Appearance = {
-  theme?: 'primary' | 'primaryHollow' | 'reset',
+  theme?: 'primary' | 'primaryHollow' | 'callToAction' | 'reset',
   color?: 'blue' | 'grey' | 'white',
   font?: 'small',
   hover?: 'disablePrimary',

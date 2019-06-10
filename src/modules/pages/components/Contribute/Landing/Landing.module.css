@@ -1,0 +1,76 @@
+.hero {
+  align-items: center;
+  background: #00284B;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  padding: 5% 10%;
+}
+
+.heroContent {
+  max-width: 600px;
+  padding-bottom: 40px;
+}
+
+.heroTitle {
+  font-family: 'Avenir Next Demi';
+  font-size: 40px;
+}
+
+.heroDescription {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.heroImage {
+  padding: 40px;
+  width: 400px;
+}
+
+.section {
+  margin: 80px auto;
+  max-width: 1000px;
+}
+
+.section:last-child {
+  padding-bottom: 40px;
+}
+
+.title {
+  font-family: 'Avenir Next Demi';
+  font-size: 36px;
+}
+
+.description {
+  font-size: 16px;
+  max-width: 700px;
+}
+
+.issues,
+.moreWays {
+  border: 0;
+  font-size: 14px;
+  max-width: 700px;
+}
+
+.issues tr,
+.moreWays tr {
+  border: 2px solid white;
+}
+
+.issues thead td {
+  color: #788CA0;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.issues tbody td,
+.moreWays tbody td {
+  background: #F0F5F7;
+  padding: 10px;
+}
+
+.moreWays td:first-child {
+  padding-left: 20px;
+  width: 120px;
+}

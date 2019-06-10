@@ -1,0 +1,13 @@
+.main {
+  text-align: center;
+}
+
+.buttons {
+  margin: 0 auto;
+  padding: 20px;
+  width: 1000px;
+}
+
+.buttons button {
+  margin: 10px;
+}
