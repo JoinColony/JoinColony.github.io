@@ -72,10 +72,12 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
           text={MSG.connectGitHubButton}
         />
       </div>
-      <p className={styles.subtext}>
-        <FormattedMessage {...MSG.connectGitHubGitHubMessage} />
-      </p>
-      {serverError && <div className={styles.error}>{serverError}</div>}
+      {serverError && (
+        <div className={styles.error}>
+          <span className={styles.errorDot} />
+          {serverError}
+        </div>
+      )}
     </div>
   </div>
 );
