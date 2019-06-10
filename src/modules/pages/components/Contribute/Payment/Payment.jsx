@@ -6,8 +6,8 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
-import FormattedToken from '~parts/FormattedToken';
 
 import PaymentActions from './PaymentActions';
 

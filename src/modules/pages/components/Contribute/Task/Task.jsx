@@ -8,8 +8,8 @@ import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { Contribution } from '~types';
 
-import FormattedToken from '~parts/FormattedToken';
 import Link from '~core/Link';
+import FormattedToken from '~core/FormattedToken';
 
 import TaskActions from './TaskActions';
 

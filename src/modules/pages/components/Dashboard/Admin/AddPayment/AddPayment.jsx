@@ -2,7 +2,7 @@
 
 import type { ColonyClient } from '@colony/colony-js-client';
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
@@ -19,7 +19,7 @@ const MSG = defineMessages({
   },
   contributionLink: {
     id: 'pages.Dashboard.Admin.AddPayment.contributionLink',
-    defaultMessage: 'Sucess! Click here to view the payment.',
+    defaultMessage: 'Success! Click here to view the payment.',
   },
   labelAmount: {
     id: 'pages.Dashboard.Admin.AddPayment.labelAmount',
@@ -110,41 +110,59 @@ const AddPayment = ({ colonyClient }: Props) => {
     }
   };
 
-  const handleChangeAmount = event => {
-    if (contribution) setContribution(null);
-    if (error) setError(null);
-    setAmount(event.currentTarget.value);
-  };
+  const handleChangeAmount = useCallback(
+    event => {
+      if (contribution) setContribution(null);
+      if (error) setError(null);
+      setAmount(event.currentTarget.value);
+    },
+    [contribution, error],
+  );
 
-  const handleChangeIssue = event => {
-    if (contribution) setContribution(null);
-    if (error) setError(null);
-    setIssue(event.currentTarget.value);
-  };
+  const handleChangeIssue = useCallback(
+    event => {
+      if (contribution) setContribution(null);
+      if (error) setError(null);
+      setIssue(event.currentTarget.value);
+    },
+    [contribution, error],
+  );
 
-  const handleChangePullRequest = event => {
-    if (contribution) setContribution(null);
-    if (error) setError(null);
-    setPullRequest(event.currentTarget.value);
-  };
+  const handleChangePullRequest = useCallback(
+    event => {
+      if (contribution) setContribution(null);
+      if (error) setError(null);
+      setPullRequest(event.currentTarget.value);
+    },
+    [contribution, error],
+  );
 
-  const handleChangeRecipient = event => {
-    if (contribution) setContribution(null);
-    if (error) setError(null);
-    setRecipient(event.currentTarget.value);
-  };
+  const handleChangeRecipient = useCallback(
+    event => {
+      if (contribution) setContribution(null);
+      if (error) setError(null);
+      setRecipient(event.currentTarget.value);
+    },
+    [contribution, error],
+  );
 
-  const handleChangeSkillId = event => {
-    if (contribution) setContribution(null);
-    if (error) setError(null);
-    setSkillId(event.currentTarget.value);
-  };
+  const handleChangeSkillId = useCallback(
+    event => {
+      if (contribution) setContribution(null);
+      if (error) setError(null);
+      setSkillId(event.currentTarget.value);
+    },
+    [contribution, error],
+  );
 
-  const handleChangeUsername = event => {
-    if (contribution) setContribution(null);
-    if (error) setError(null);
-    setUsername(event.currentTarget.value);
-  };
+  const handleChangeUsername = useCallback(
+    event => {
+      if (contribution) setContribution(null);
+      if (error) setError(null);
+      setUsername(event.currentTarget.value);
+    },
+    [contribution, error],
+  );
 
   return (
     <div className={styles.main}>

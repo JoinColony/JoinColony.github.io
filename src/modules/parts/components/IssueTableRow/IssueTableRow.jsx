@@ -5,8 +5,8 @@ import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { Issue } from '~types';
 
+import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
-import FormattedToken from '~parts/FormattedToken';
 
 import styles from './IssueTableRow.module.css';
 
