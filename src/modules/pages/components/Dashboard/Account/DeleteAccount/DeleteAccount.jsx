@@ -17,15 +17,15 @@ const MSG = defineMessages({
   },
   deleteAccountConfirm: {
     id: 'pages.Dashboard.Account.deleteAccountConfirm',
-    defaultMessage: 'Are you sure?',
+    defaultMessage: 'Are you sure you want to delete your account?',
   },
-  deleteAccountNo: {
-    id: 'pages.Dashboard.Account.deleteAccountNo',
-    defaultMessage: 'No',
+  deleteAccountCancel: {
+    id: 'pages.Dashboard.Account.deleteAccountCancel',
+    defaultMessage: 'Cancel',
   },
-  deleteAccountYes: {
-    id: 'pages.Dashboard.Account.deleteAccountYes',
-    defaultMessage: 'Yes',
+  deleteAccountDelete: {
+    id: 'pages.Dashboard.Account.deleteAccountDelete',
+    defaultMessage: 'Delete',
   },
 });
 
@@ -74,7 +74,7 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
       });
   };
   return (
-    <>
+    <div className={styles.main}>
       {confirmDelete ? (
         <>
           <span className={styles.confirmDelete}>
@@ -94,7 +94,7 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
                   weight: 'medium',
                 }}
                 onClick={handleDeleteAccount}
-                text={MSG.deleteAccountYes}
+                text={MSG.deleteAccountDelete}
                 type="submit"
               />
               <Button
@@ -105,7 +105,7 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
                   weight: 'medium',
                 }}
                 onClick={() => setConfirmDelete(false)}
-                text={MSG.deleteAccountNo}
+                text={MSG.deleteAccountCancel}
                 type="submit"
               />
             </>
@@ -125,7 +125,7 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
         />
       )}
       {error && <div className={styles.error}>{error}</div>}
-    </>
+    </div>
   );
 };
 
