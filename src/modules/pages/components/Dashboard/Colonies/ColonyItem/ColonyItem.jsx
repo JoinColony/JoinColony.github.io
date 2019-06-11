@@ -37,10 +37,6 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Colonies.ColonyItem.linkColonyLabel',
     defaultMessage: 'Register',
   },
-  loading: {
-    id: 'pages.Dashboard.Colonies.ColonyItem.loading',
-    defaultMessage: 'loading...',
-  },
   network: {
     id: 'pages.Dashboard.Colonies.ColonyItem.network',
     defaultMessage: 'Network',
@@ -213,17 +209,13 @@ const ColonyItem = ({
                       <FormattedMessage {...MSG.removeColonyConfirm} />
                     </span>
                     <Button
-                      appearance={{
-                        theme: 'reset',
-                      }}
+                      appearance={{ theme: 'reset' }}
                       onClick={handleRemoveColony}
                       text={MSG.removeColony}
                       type="submit"
                     />
                     <Button
-                      appearance={{
-                        theme: 'reset',
-                      }}
+                      appearance={{ theme: 'reset' }}
                       onClick={() => setRemoveColony(false)}
                       text={MSG.removeColonyCancel}
                       type="submit"
@@ -233,9 +225,7 @@ const ColonyItem = ({
               </>
             ) : (
               <Button
-                appearance={{
-                  theme: 'reset',
-                }}
+                appearance={{ theme: 'reset' }}
                 onClick={() => setRemoveColony(true)}
                 text={MSG.removeColony}
                 type="submit"
@@ -245,9 +235,7 @@ const ColonyItem = ({
           </div>
         </>
       ) : (
-        <p>
-          <FormattedMessage {...MSG.loading} />
-        </p>
+        <SpinnerLoader />
       )}
     </div>
   );
