@@ -55,8 +55,8 @@ export type Network = {|
 
 export type Colony = {|
   colonyAddress: string,
+  colonyLabel: string,
   tokenAddress: string,
-  rootRole: boolean,
 |};
 
 export type Issue = {|

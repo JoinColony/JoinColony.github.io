@@ -14,6 +14,7 @@ import {
 } from '~layouts/DeveloperPortalLayout/localStorage';
 
 import Copy from '~core/Copy';
+import Link from '~core/Link';
 
 import styles from './ColonyItem.module.css';
 
@@ -22,13 +23,17 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyAddress',
     defaultMessage: 'Colony Address',
   },
-  colonyRootRole: {
-    id: 'pages.Dashboard.Colonies.ColonyItem.colonyRootRole',
-    defaultMessage: 'Root Role',
+  colonyLabel: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.colonyLabel',
+    defaultMessage: 'ENS Label',
   },
   colonyTokenAddress: {
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyTokenAddress',
     defaultMessage: 'Colony Token Address',
+  },
+  linkColonyLabel: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.linkColonyLabel',
+    defaultMessage: 'Register',
   },
   loading: {
     id: 'pages.Dashboard.Colonies.ColonyItem.loading',
@@ -71,21 +76,21 @@ const ColonyItem = ({
   useEffect(() => {
     if (networkClient) {
       (async () => {
+        const {
+          domain: colonyLabel,
+        } = await networkClient.lookupRegisteredENSDomain.call({
+          ensAddress: colonyAddress,
+        });
         const colonyClient = await networkClient.getColonyClientByAddress(
           colonyAddress,
         );
         const {
           address: tokenAddress,
         } = await colonyClient.getTokenAddress.call();
-        const { hasRole: rootRole } = await colonyClient.hasColonyRole.call({
-          address: wallet.address,
-          domainId: 1,
-          role: 'ROOT',
-        });
         setColony({
           colonyAddress,
+          colonyLabel,
           tokenAddress,
-          rootRole,
         });
       })();
     }
@@ -118,15 +123,25 @@ const ColonyItem = ({
           <div>
             <div className={styles.field}>
               <div className={styles.label}>
-                <FormattedMessage {...MSG.network} />
+                <FormattedMessage {...MSG.colonyLabel} />
               </div>
-              <div className={styles.value}>{network.slug}</div>
+              <div className={styles.value}>
+                {colony.colonyLabel ? (
+                  colony.colonyLabel.split('.')[0]
+                ) : (
+                  <Link
+                    arrow="right"
+                    href="/colonyjs/colony-ens-labels"
+                    text={MSG.linkColonyLabel}
+                  />
+                )}
+              </div>
             </div>
             <div className={styles.field}>
               <div className={styles.label}>
-                <FormattedMessage {...MSG.colonyRootRole} />
+                <FormattedMessage {...MSG.network} />
               </div>
-              <div className={styles.value}>{colony.rootRole.toString()}</div>
+              <div className={styles.value}>{network.slug}</div>
             </div>
           </div>
         </div>
