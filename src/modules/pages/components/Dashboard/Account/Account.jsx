@@ -1,12 +1,12 @@
 /* @flow */
 
+import type { ColonyClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
-import FormattedToken from '~core/FormattedToken';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
@@ -17,6 +17,7 @@ import DeleteAccount from './DeleteAccount';
 import Discourse from './Discourse';
 import Email from './Email';
 import Name from './Name';
+import Statistics from './Statistics';
 
 import styles from './Account.module.css';
 
@@ -46,6 +47,7 @@ const MSG = defineMessages({
 
 type Props = {|
   authenticate: (provider: Provider) => void,
+  colonyClient: ?ColonyClient,
   disconnect: (provider: Provider) => void,
   network: Network,
   path: string,
@@ -58,6 +60,7 @@ const displayName = 'pages.Dashboard.Account';
 
 const Account = ({
   authenticate,
+  colonyClient,
   disconnect,
   network,
   setUser,
@@ -76,23 +79,7 @@ const Account = ({
           <Name setUser={setUser} user={user} />
           <Address setUser={setUser} user={user} wallet={wallet} />
           {network.id === 1 || network.id === 5 ? (
-            <div className={styles.statistics}>
-              <div className={styles.statistic}>
-                <FormattedToken
-                  amount={0}
-                  appearance={{ spacing: 'large', symbolWeight: 'bold' }}
-                  symbol="CDEV"
-                />
-              </div>
-              <div className={styles.statistic}>
-                <FormattedToken
-                  amount={0}
-                  appearance={{ spacing: 'large', symbolWeight: 'bold' }}
-                  decimals={0}
-                  symbol="Reputation"
-                />
-              </div>
-            </div>
+            <Statistics colonyClient={colonyClient} wallet={wallet} />
           ) : (
             <div className={styles.statisticsSwitchNetwork}>
               <FormattedMessage {...MSG.statisticsSwitchNetwork} />

@@ -22,19 +22,6 @@
   font-style: italic;
 }
 
-.statistic {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-.statisticValue {
-  margin-right: 10px;
-}
-
-.statisticLabel {
-  font-family: 'Avenir Next Demi';
-}
-
 .content {
   border-top: 1px #C8D2DC solid;
   display: flex;

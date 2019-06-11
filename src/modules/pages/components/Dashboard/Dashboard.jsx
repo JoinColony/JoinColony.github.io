@@ -101,6 +101,7 @@ const Dashboard = ({
               <Account
                 path={page ? '/dashboard/account' : '/dashboard'}
                 authenticate={authenticate}
+                colonyClient={colonyClient}
                 disconnect={disconnect}
                 network={network}
                 setUser={setUser}
