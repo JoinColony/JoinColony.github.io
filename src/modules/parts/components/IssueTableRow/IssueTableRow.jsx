@@ -9,6 +9,11 @@ import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
 import SpinnerLoader from '~core/SpinnerLoader';
 
+import {
+  getStore,
+  setStore,
+} from '~layouts/DeveloperPortalLayout/localStorage';
+
 import styles from './IssueTableRow.module.css';
 
 const MSG = defineMessages({
@@ -35,12 +40,30 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loadedLocal, setLoadedLocal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const formatIssueLink = url => {
+    const repository = url.split('/')[4];
+    const issueNumber = url.split('/')[6];
+    return `${repository}#${issueNumber}`;
+  };
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localContribution = getStore(issue.node.url);
+      setContribution(localContribution);
+      setLoadedLocal(true);
+    }
+  }, [issue, loadedLocal]);
+
+  useEffect(() => {
+    setStore(issue.node.url, contribution);
+  }, [contribution, issue]);
 
   useEffect(() => {
     (async () => {
       if (loadedRemote) {
-        setLoading(true);
         const options = {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
@@ -64,12 +87,6 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
       }
     })();
   }, [issue, loadedRemote, network]);
-
-  const formatIssueLink = url => {
-    const repository = url.split('/')[4];
-    const issueNumber = url.split('/')[6];
-    return `${repository}#${issueNumber}`;
-  };
 
   return (
     <tr>
