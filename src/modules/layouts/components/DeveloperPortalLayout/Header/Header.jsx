@@ -174,7 +174,7 @@ const Header = ({
             }}
             linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
             style={{ marginLeft: '10px' }}
-            text={user ? MSG.navButtonDashboard : MSG.navButtonLogin}
+            text={wallet && user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>
         <div className={styles.navToggle}>
