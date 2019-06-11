@@ -249,6 +249,8 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
                 colonyAddress={colonyAddress}
                 network={network}
                 networkClient={networkClient}
+                setUser={setUser}
+                user={user}
                 wallet={wallet}
               />
             ))}

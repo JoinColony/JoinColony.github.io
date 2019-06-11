@@ -22,3 +22,29 @@
   font-weight: bold;
   font-size: 14px;
 }
+
+.removeColony {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.removeColony button:first-child,
+.removeColony button:nth-child(2) {
+  color: #F5416E;
+}
+
+.removeColony button:nth-child(3) {
+  color: #788CA0;
+}
+
+.removeColony button:nth-child(2),
+.removeColony button:nth-child(3) {
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+  margin: 20px 0;
+}
