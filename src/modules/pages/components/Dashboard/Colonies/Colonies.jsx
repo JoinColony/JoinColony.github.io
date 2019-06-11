@@ -9,6 +9,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import type { Network, User } from '~types';
 
 import Button from '~core/Button';
+import Image from '~core/Image';
 import Link from '~core/Link';
 
 import AddColony from './AddColony';
@@ -27,20 +28,24 @@ const MSG = defineMessages({
   },
   mainTitle: {
     id: 'pages.Dashboard.Colonies.mainTitle',
-    defaultMessage: 'Colonies List',
+    defaultMessage: 'Colonies',
   },
   mainDescription: {
     id: 'pages.Dashboard.Colonies.mainDescription',
-    defaultMessage: `A list of colonies that you are tracking on {network}.`,
+    defaultMessage: `Your personalized list of colonies on {network}. Add
+    colonies that you are developing, collaborating with, or colonies that you
+    simply would like to follow.`,
   },
   emptyTitle: {
     id: 'pages.Dashboard.Colonies.emptyTitle',
-    defaultMessage: `You haven't added any colonies yet!`,
+    defaultMessage: `Add Colony`,
   },
   emptyDescription: {
     id: 'pages.Dashboard.Colonies.emptyDescription',
-    defaultMessage: `Keep track of colonies on {network} or switch to another
-    network.`,
+    defaultMessage: `It looks like you haven't added any colonies yet! This is
+    your personalized list of colonies on {network}. Add colonies that you are
+    developing, collaborating with, or colonies that you simply would like to
+    follow.`,
   },
   emptyCreateColony: {
     id: 'pages.Dashboard.Colonies.emptyCreateColony',
@@ -48,18 +53,15 @@ const MSG = defineMessages({
   },
   emptyCreateColonyDescription: {
     id: 'pages.Dashboard.Colonies.emptyCreateColonyDescription',
-    defaultMessage: `If you would like to create a colony, check out
-    {linkGetStarted}.`,
+    defaultMessage: `Create your first colony in {linkGetStarted}.`,
   },
   emptyAddColony: {
     id: 'pages.Dashboard.Colonies.emptyAddColony',
-    defaultMessage: 'Add Colony',
+    defaultMessage: 'Add Colony Address',
   },
   emptyAddColonyDescription: {
     id: 'pages.Dashboard.Colonies.emptyAddColonyDescription',
-    defaultMessage: `If you created a colony or you have the address of another
-    colony that you would like to track, add the address to your personalized
-    list of colonies.`,
+    defaultMessage: `Add a colony address to your list of colonies.`,
   },
   learnMoreTitle: {
     id: 'pages.Dashboard.Colonies.learnMoreTitle',
@@ -87,13 +89,13 @@ const MSG = defineMessages({
   },
   unsupportedNetworkTitle: {
     id: 'pages.Dashboard.Colonies.unsupportedNetworkTitle',
-    defaultMessage: 'Nothing to see here!',
+    defaultMessage: 'Switch Networks',
   },
   unsupportedNetworkMessage: {
     id: 'pages.Dashboard.Colonies.unsupportedNetworkMessage',
     defaultMessage: `Either the colonyNetwork smart contracts are not deployed
     to this network or you are using a local network that is not supported. Use
-    MetaMask to switch to "Goerli Test Network" or "Main Ethereum Network".`,
+    MetaMask to switch to "Main Ethereum Network" or "Goerli Test Network".`,
   },
 });
 
@@ -118,15 +120,23 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
     user.colonies[network.slug].length;
   if (!supportedNetwork) {
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.networkWrapper}>
         <div className={styles.main}>
-          <h1 className={styles.title}>
-            <FormattedMessage {...MSG.unsupportedNetworkTitle} />
-          </h1>
-          <p className={styles.subTitle}>
-            <FormattedMessage {...MSG.unsupportedNetworkMessage} />
-          </p>
-          <div className={styles.content} />
+          <div className={styles.networkContentWrapper}>
+            <div className={styles.networkContent}>
+              <Image
+                alt={MSG.unsupportedNetworkMessage}
+                className={styles.networkImage}
+                src="/img/switch_networks.svg"
+              />
+              <h1 className={styles.title}>
+                <FormattedMessage {...MSG.unsupportedNetworkTitle} />
+              </h1>
+              <p className={styles.subTitle}>
+                <FormattedMessage {...MSG.unsupportedNetworkMessage} />
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );
