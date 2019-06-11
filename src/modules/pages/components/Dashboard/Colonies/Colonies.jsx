@@ -125,7 +125,7 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
           <div className={styles.networkContentWrapper}>
             <div className={styles.networkContent}>
               <Image
-                alt={MSG.unsupportedNetworkMessage}
+                alt={MSG.unsupportedNetworkTitle}
                 className={styles.networkImage}
                 src="/img/switch_networks.svg"
               />

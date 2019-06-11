@@ -7,6 +7,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network, User } from '~types';
 
+import Image from '~core/Image';
+import Link from '~core/Link';
 import IssueTableRow from '~parts/IssueTableRow';
 
 import {
@@ -27,7 +29,7 @@ const MSG = defineMessages({
   },
   description: {
     id: 'pages.Dashboard.Contributions.description',
-    defaultMessage: 'A list of your contributions to JoinColony.',
+    defaultMessage: 'A list of your contributions to {joinColonyLink}.',
   },
   contributionsHeaderDate: {
     id: 'pages.Contribute.Landing.contributionsHeaderDate',
@@ -45,9 +47,22 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Landing.contributionsHeaderTitle',
     defaultMessage: 'Title',
   },
+  noContributionsLink: {
+    id: 'pages.Dashboard.Contributions.noContributionsLink',
+    defaultMessage: 'start earning tokens and reputation',
+  },
+  noContributionsMessage: {
+    id: 'pages.Dashboard.Contributions.noContributionsMessage',
+    defaultMessage: `It looks like you don't have any past contributions. Make
+    your first contribution and {noContributionsLink}.`,
+  },
+  noContributionsTitle: {
+    id: 'pages.Dashboard.Contributions.noContributionsTitle',
+    defaultMessage: 'Contribute and Earn',
+  },
   title: {
     id: 'pages.Dashboard.Contributions.title',
-    defaultMessage: 'Contributions List',
+    defaultMessage: 'Contributions',
   },
 });
 
@@ -136,6 +151,35 @@ const Contributions = ({ network, user }: Props) => {
     };
   }, [issues, error, getIssues, loading]);
 
+  if (!issues && !loading) {
+    return (
+      <div className={styles.noContributions}>
+        <div className={styles.noContributionsWrapper}>
+          <div>
+            <Image
+              alt={MSG.noContributionsTitle}
+              className={styles.noContributionsImage}
+              src="/img/no_contributions.svg"
+            />
+            <h1 className={styles.title}>
+              <FormattedMessage {...MSG.noContributionsTitle} />
+            </h1>
+            <p className={styles.subTitle}>
+              <FormattedMessage
+                values={{
+                  noContributionsLink: (
+                    <Link href="/contribute" text={MSG.noContributionsLink} />
+                  ),
+                }}
+                {...MSG.noContributionsMessage}
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className={styles.main}>
@@ -143,7 +187,14 @@ const Contributions = ({ network, user }: Props) => {
           <FormattedMessage {...MSG.title} />
         </h1>
         <p className={styles.subTitle}>
-          <FormattedMessage {...MSG.description} />
+          <FormattedMessage
+            values={{
+              joinColonyLink: (
+                <Link href="https://github.com/joincolony" text="JoinColony" />
+              ),
+            }}
+            {...MSG.description}
+          />
         </p>
         <div className={styles.content}>
           <table className={styles.issues}>
