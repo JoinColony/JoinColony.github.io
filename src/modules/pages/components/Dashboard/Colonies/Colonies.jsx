@@ -92,9 +92,8 @@ const MSG = defineMessages({
   },
   unsupportedNetworkMessage: {
     id: 'pages.Dashboard.Colonies.unsupportedNetworkMessage',
-    defaultMessage: `Either the colonyNetwork smart contracts are not deployed
-    to this network or you are using a local network that is not supported. Use
-    MetaMask to switch to "Main Ethereum Network" or "Goerli Test Network".`,
+    defaultMessage: `You are on an unsupported network. Use MetaMask to switch
+    to "Main Ethereum Network" or "Goerli Test Network".`,
   },
 });
 
