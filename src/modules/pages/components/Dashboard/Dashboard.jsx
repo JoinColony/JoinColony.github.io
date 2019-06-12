@@ -69,11 +69,13 @@ const Dashboard = ({
   wallet,
 }: Props) => {
   const title = formatMessage(MSG.pageTitle);
-  const close = page === 'close';
-  if (typeof window !== 'undefined' && close) {
+  if (typeof window !== 'undefined' && page === 'close') {
     window.close();
   }
-  if (wallet && !user && !close) {
+  if (!wallet && !user) {
+    return <div style={{ height: '100vh' }} />;
+  }
+  if (wallet && !user) {
     return (
       <Login
         authenticate={authenticate}
@@ -91,7 +93,7 @@ const Dashboard = ({
       */}
       <Helmet title={title} />
       <main className={styles.main}>
-        {wallet && user ? (
+        {wallet && user && (
           <>
             <div className={styles.sidebar}>
               <Sidebar
@@ -100,7 +102,7 @@ const Dashboard = ({
                 user={user}
               />
             </div>
-            <main className={styles.content}>
+            <div className={styles.content}>
               <Router primary={false}>
                 <Admin
                   path="/dashboard/admin"
@@ -134,10 +136,8 @@ const Dashboard = ({
                   wallet={wallet}
                 />
               </Router>
-            </main>
+            </div>
           </>
-        ) : (
-          <div style={{ height: '100vh' }} />
         )}
       </main>
     </>
