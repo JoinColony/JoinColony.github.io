@@ -91,39 +91,41 @@ const Dashboard = ({
       */}
       <Helmet title={title} />
       <main className={styles.main}>
-        <div className={styles.sidebar}>
-          <Sidebar active={page || 'account'} user={user} />
-        </div>
         {wallet && user ? (
-          <main className={styles.content}>
-            <Router primary={false}>
-              <Admin path="/dashboard/admin" colonyClient={colonyClient} />
-              <Account
-                path={page ? '/dashboard/account' : '/dashboard'}
-                authenticate={authenticate}
-                colonyClient={colonyClient}
-                disconnect={disconnect}
-                network={network}
-                setUser={setUser}
-                user={user}
-                wallet={wallet}
-              />
-              <Colonies
-                path="/dashboard/colonies"
-                network={network}
-                networkClient={networkClient}
-                setUser={setUser}
-                user={user}
-                wallet={wallet}
-              />
-              <Contributions
-                path="/dashboard/contributions"
-                network={network}
-                user={user}
-                wallet={wallet}
-              />
-            </Router>
-          </main>
+          <>
+            <div className={styles.sidebar}>
+              <Sidebar active={page || 'account'} user={user} />
+            </div>
+            <main className={styles.content}>
+              <Router primary={false}>
+                <Admin path="/dashboard/admin" colonyClient={colonyClient} />
+                <Account
+                  path={page ? '/dashboard/account' : '/dashboard'}
+                  authenticate={authenticate}
+                  colonyClient={colonyClient}
+                  disconnect={disconnect}
+                  network={network}
+                  setUser={setUser}
+                  user={user}
+                  wallet={wallet}
+                />
+                <Colonies
+                  path="/dashboard/colonies"
+                  network={network}
+                  networkClient={networkClient}
+                  setUser={setUser}
+                  user={user}
+                  wallet={wallet}
+                />
+                <Contributions
+                  path="/dashboard/contributions"
+                  network={network}
+                  user={user}
+                  wallet={wallet}
+                />
+              </Router>
+            </main>
+          </>
         ) : (
           <div style={{ height: '100vh' }} />
         )}
