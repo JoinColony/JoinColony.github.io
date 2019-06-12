@@ -107,10 +107,10 @@ const Discourse = ({ authenticate, disconnect, user }: Props) => {
         </>
       ) : (
         <Button
-          appearance={{ theme: 'primary', padding: 'large' }}
+          appearance={{ theme: 'primary', padding: 'large', width: 'fixed' }}
           loading={loading}
           onClick={() => authenticate('discourse')}
-          style={{ margin: '12px auto' }}
+          style={{ margin: '12px 0' }}
           text={MSG.connectedAccountsConnect}
           type="submit"
         />

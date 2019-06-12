@@ -110,12 +110,12 @@ const Account = ({
               value={`@${user.github.username}`}
             />
           </div>
-          <Email setUser={setUser} user={user} />
           <Discourse
             authenticate={authenticate}
             disconnect={disconnect}
             user={user}
           />
+          <Email setUser={setUser} user={user} />
         </div>
       </div>
       <div className={styles.content}>
