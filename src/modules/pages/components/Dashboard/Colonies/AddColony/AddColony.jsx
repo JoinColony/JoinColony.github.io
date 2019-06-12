@@ -55,46 +55,53 @@ const AddColony = ({
   };
 
   const handleAddColony = async () => {
-    if (networkClient && isAddress(address)) {
-      setLoading(true);
-      const { isColony } = await networkClient.isColony.call({
-        colony: address,
-      });
-      if (!isColony) {
-        setError('The address you provided is not a valid colony address');
-        setLoading(false);
-        return;
-      }
-      const options = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address, network: network.slug }),
-      };
-      // eslint-disable-next-line no-undef
-      fetch(`${server}/api/user/colonies?sessionID=${user.session.id}`, options)
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            setError(data.error);
+    if (networkClient) {
+      if (isAddress(address)) {
+        setLoading(true);
+        const { isColony } = await networkClient.isColony.call({
+          colony: address,
+        });
+        if (!isColony) {
+          setError(`No colony on ${network.name} with the given address`);
+          setLoading(false);
+          return;
+        }
+        const options = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ address, network: network.slug }),
+        };
+        // eslint-disable-next-line no-undef
+        fetch(
+          `${server}/api/user/colonies?sessionID=${user.session.id}`,
+          options,
+        )
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              setError(data.error);
+              setLoading(false);
+              errorTimeout.current = setTimeout(() => {
+                setError(null);
+              }, 2000);
+            } else {
+              setUser({ ...user, colonies: data.colonies });
+              setAddColony(false);
+              setLoading(false);
+            }
+          })
+          .catch(fetchError => {
+            setError(fetchError.message);
             setLoading(false);
             errorTimeout.current = setTimeout(() => {
               setError(null);
             }, 2000);
-          } else {
-            setUser({ ...user, colonies: data.colonies });
-            setAddColony(false);
-            setLoading(false);
-          }
-        })
-        .catch(fetchError => {
-          setError(fetchError.message);
-          setLoading(false);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
-        });
+          });
+      } else {
+        setError('The address you provided is not a valid address');
+      }
     } else {
-      setError('The address you provided is not a valid colony address');
+      setError('Unable to initialize ColonyNetworkClient');
     }
   };
 
