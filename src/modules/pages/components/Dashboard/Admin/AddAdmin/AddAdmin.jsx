@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 
 import styles from './AddAdmin.module.css';
@@ -127,7 +128,7 @@ const AddAdmin = ({ colonyClient }: Props) => {
           <FormattedMessage {...MSG.success} />
         </div>
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

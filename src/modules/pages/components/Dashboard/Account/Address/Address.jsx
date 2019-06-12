@@ -10,6 +10,7 @@ import type { User } from '~types';
 
 import Button from '~core/Button';
 import Copy from '~core/Copy';
+import ErrorMessage from '~core/ErrorMessage';
 import SpinnerLoader from '~core/SpinnerLoader';
 
 import styles from './Address.module.css';
@@ -112,7 +113,7 @@ const Address = ({ setUser, user, wallet }: Props) => {
           />
         </div>
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

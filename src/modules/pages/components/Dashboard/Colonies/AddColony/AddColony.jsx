@@ -7,6 +7,7 @@ import { defineMessages } from 'react-intl';
 import { isAddress } from 'web3-utils';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 
 import type { Network, User } from '~types';
@@ -126,7 +127,7 @@ const AddColony = ({
         text={MSG.submitAddress}
         type="submit"
       />
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

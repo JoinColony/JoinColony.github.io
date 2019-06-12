@@ -76,7 +76,6 @@ const Statistics = ({ colonyClient, wallet }: Props) => {
         <FormattedToken
           amount={statistics.reputation || 0}
           appearance={{ spacing: 'large', symbolWeight: 'bold' }}
-          decimals={0}
           symbol="Reputation"
         />
       </div>

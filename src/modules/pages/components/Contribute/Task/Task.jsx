@@ -8,8 +8,9 @@ import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { Contribution, Network } from '~types';
 
-import Link from '~core/Link';
+import ErrorMessage from '~core/ErrorMessage';
 import FormattedToken from '~core/FormattedToken';
+import Link from '~core/Link';
 
 import TaskActions from './TaskActions';
 
@@ -292,7 +293,7 @@ const TaskPage = ({ colonyClient, network, wallet }: Props) => {
           </div>
         </div>
       )}
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

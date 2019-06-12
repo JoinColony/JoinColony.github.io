@@ -15,6 +15,7 @@ import {
 
 import Button from '~core/Button';
 import Copy from '~core/Copy';
+import ErrorMessage from '~core/ErrorMessage';
 import Link from '~core/Link';
 import SpinnerLoader from '~core/SpinnerLoader';
 
@@ -231,7 +232,7 @@ const ColonyItem = ({
                 type="submit"
               />
             )}
-            {error && <div className={styles.error}>{error}</div>}
+            {error && <ErrorMessage error={error} />}
           </div>
         </>
       ) : (

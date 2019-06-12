@@ -1,6 +1,13 @@
 .main {
   display: inline-block;
-  margin: 0 30px;
+}
+
+.main button {
+  margin-right: 20px !important;
+}
+
+.confirmDelete {
+  margin-right: 20px;
 }
 
 .loader {
@@ -8,20 +15,4 @@
   display: inline-flex;
   justify-content: center;
   margin-right: 10px;
-}
-
-.confirmDelete {
-  margin-right: 15px;
-}
-
-.main button:nth-child(2),
-.main button:nth-child(3) {
-  margin-left: 15px;
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-  font-style: italic;
-  margin: 5px auto;
 }

@@ -20,6 +20,8 @@ type Props = {
   appearance?: Appearance,
   /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
   className?: string,
+  /** Outline in red if error */
+  error?: ?string,
   /** Injected by `injectIntl` */
   intl: IntlShape,
   /** ID required to connect label and input */
@@ -35,8 +37,9 @@ type Props = {
 const displayName = 'Input';
 
 const Input = ({
-  appearance = { theme: 'primary' },
+  appearance,
   className,
+  error,
   id,
   intl: { formatMessage },
   label,
@@ -49,11 +52,16 @@ const Input = ({
     typeof label === 'string'
       ? label
       : label && formatMessage(label, labelValues);
-
   return (
     <label htmlFor={id} className={styles.label}>
       <span>{labelText}</span>
-      <input id={id} className={classNames} type={type} {...rest} />
+      <input
+        id={id}
+        className={classNames}
+        style={error ? { borderColor: '#F5416E' } : null}
+        type={type}
+        {...rest}
+      />
     </label>
   );
 };

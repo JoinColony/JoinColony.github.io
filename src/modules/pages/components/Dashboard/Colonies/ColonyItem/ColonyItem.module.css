@@ -41,10 +41,3 @@
 .removeColony button:nth-child(3) {
   margin-left: 10px;
 }
-
-.error {
-  color: red;
-  font-size: 14px;
-  font-style: italic;
-  margin: 20px 0;
-}

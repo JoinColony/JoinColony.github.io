@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 import SpinnerLoader from '~core/SpinnerLoader';
 
@@ -47,6 +48,11 @@ const Email = ({ setUser, user }: Props) => {
   const [loading, setLoading] = useState(null);
   const errorTimeout = useRef(null);
 
+  const isValidEmail = input => {
+    const valid = /\S+@\S+\.\S+/;
+    return valid.test(input);
+  };
+
   const handleCancelEmail = () => {
     setEmail(initialEmail);
     setEdit(false);
@@ -54,11 +60,12 @@ const Email = ({ setUser, user }: Props) => {
   };
 
   const handleChangeEmail = event => {
+    setError(null);
     setEmail(event.currentTarget.value);
   };
 
   const handleSaveEmail = () => {
-    if (email) {
+    if (isValidEmail(email)) {
       setLoading(true);
       const options = {
         method: 'PUT',
@@ -88,6 +95,8 @@ const Email = ({ setUser, user }: Props) => {
             setError(null);
           }, 2000);
         });
+    } else {
+      setError('Please provide a valid email address');
     }
   };
 
@@ -106,6 +115,7 @@ const Email = ({ setUser, user }: Props) => {
           width: 'large',
         }}
         id="email"
+        error={error}
         label={MSG.emailLabel}
         onChange={handleChangeEmail}
         type="text"
@@ -124,8 +134,7 @@ const Email = ({ setUser, user }: Props) => {
               color: 'blue',
               weight: 'medium',
             }}
-            onClick={edit ? handleSaveEmail : () => setEdit(true)}
-            style={edit ? { marginRight: '15px' } : {}}
+            onClick={edit ? () => handleSaveEmail() : () => setEdit(true)}
             text={edit ? MSG.emailSave : MSG.emailEdit}
             type="submit"
           />
@@ -144,7 +153,7 @@ const Email = ({ setUser, user }: Props) => {
           )}
         </>
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

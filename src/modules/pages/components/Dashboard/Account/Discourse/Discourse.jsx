@@ -6,6 +6,7 @@ import { defineMessages } from 'react-intl';
 import type { Provider, User } from '~types';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 import SpinnerLoader from '~core/SpinnerLoader';
 
@@ -114,7 +115,7 @@ const Discourse = ({ authenticate, disconnect, user }: Props) => {
           type="submit"
         />
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

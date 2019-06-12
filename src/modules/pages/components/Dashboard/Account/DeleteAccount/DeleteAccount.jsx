@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import type { Provider, User } from '~types';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import SpinnerLoader from '~core/SpinnerLoader';
 
 import styles from './DeleteAccount.module.css';
@@ -124,7 +125,7 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
           type="submit"
         />
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

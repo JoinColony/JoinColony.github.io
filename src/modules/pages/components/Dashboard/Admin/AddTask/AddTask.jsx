@@ -9,6 +9,7 @@ import { BN } from 'web3-utils';
 import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 import Link from '~core/Link';
 
@@ -218,7 +219,7 @@ const AddTask = ({ colonyClient }: Props) => {
           />
         </div>
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

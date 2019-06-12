@@ -1,4 +1,5 @@
 .field {
+  margin: 20px 0;
   width: 480px; /* Fixed width for button expansion */
 }
 
@@ -6,11 +7,4 @@
   align-items: center;
   display: inline-flex;
   justify-content: center;
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-  font-style: italic;
-  margin-bottom: 20px;
 }

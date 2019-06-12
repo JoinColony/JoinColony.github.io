@@ -7,8 +7,10 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network, User } from '~types';
 
+import ErrorMessage from '~core/ErrorMessage';
 import Image from '~core/Image';
 import Link from '~core/Link';
+
 import IssueTableRow from '~parts/IssueTableRow';
 
 import {
@@ -227,7 +229,7 @@ const Contributions = ({ network, user }: Props) => {
             </tbody>
           </table>
         </div>
-        {error && <div className={styles.error}>{error}</div>}
+        {error && <ErrorMessage error={error} />}
       </div>
     </>
   );

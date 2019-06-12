@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 import SpinnerLoader from '~core/SpinnerLoader';
 
@@ -50,6 +51,7 @@ const Name = ({ setUser, user }: Props) => {
   };
 
   const handleChangeName = event => {
+    setError(null);
     setName(event.currentTarget.value);
   };
 
@@ -146,7 +148,7 @@ const Name = ({ setUser, user }: Props) => {
           </Button>
         )}
       </div>
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

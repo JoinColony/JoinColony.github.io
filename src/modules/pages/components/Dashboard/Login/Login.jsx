@@ -6,6 +6,7 @@ import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 
 import type { Provider } from '~types';
@@ -73,10 +74,7 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
         />
       </div>
       {serverError && (
-        <div className={styles.error}>
-          <span className={styles.errorDot} />
-          {serverError}
-        </div>
+        <ErrorMessage appearance={{ color: 'pink' }} error={serverError} />
       )}
     </div>
   </div>

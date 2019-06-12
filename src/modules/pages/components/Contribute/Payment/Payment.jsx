@@ -8,6 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Contribution, Network } from '~types';
 
+import ErrorMessage from '~core/ErrorMessage';
 import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
 
@@ -225,7 +226,7 @@ const PaymentPage = ({ colonyClient, network, wallet }: Props) => {
           </div>
         </>
       )}
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };
