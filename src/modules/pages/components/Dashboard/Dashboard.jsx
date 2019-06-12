@@ -114,6 +114,7 @@ const Dashboard = ({
                   colonyClient={colonyClient}
                   disconnect={disconnect}
                   network={network}
+                  serverError={serverError}
                   setUser={setUser}
                   user={user}
                   wallet={wallet}

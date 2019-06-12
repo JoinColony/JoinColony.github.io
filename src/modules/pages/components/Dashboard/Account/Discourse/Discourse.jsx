@@ -30,6 +30,7 @@ const MSG = defineMessages({
 type Props = {|
   authenticate: (provider: Provider) => void,
   disconnect: (provider: Provider) => void,
+  serverError: ?string,
   user: User,
 |};
 
@@ -37,7 +38,7 @@ const displayName = 'pages.Dashboard.Account.Discourse';
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const Discourse = ({ authenticate, disconnect, user }: Props) => {
+const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorTimeout = useRef(null);
@@ -116,6 +117,7 @@ const Discourse = ({ authenticate, disconnect, user }: Props) => {
         />
       )}
       {error && <ErrorMessage error={error} />}
+      {serverError && <ErrorMessage error={serverError} />}
     </div>
   );
 };

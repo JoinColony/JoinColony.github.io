@@ -20,6 +20,7 @@ const usePortalServer = (wallet: WalletObjectType) => {
   const [user, setUser] = useState<?User>(null);
 
   const authenticate = (provider: Provider) => {
+    setServerError(null);
     if (socket && wallet) {
       const url = `${server}/auth/${provider}/`;
       const params = `?socketId=${socket.id}&address=${wallet.address}`;
@@ -28,6 +29,7 @@ const usePortalServer = (wallet: WalletObjectType) => {
   };
 
   const disconnect = (provider: Provider) => {
+    setServerError(null);
     if (setUser && provider === 'discourse') {
       setUser({ ...user, discourse: null });
     }
@@ -77,12 +79,14 @@ const usePortalServer = (wallet: WalletObjectType) => {
       );
       newSocket.on('discourse', setUser);
       newSocket.on('github', setUser);
+      newSocket.on('error', setServerError);
       setSocket(newSocket);
     }
     return () => {
       if (socket) {
         socket.off('discourse', setUser);
         socket.off('github', setUser);
+        socket.off('error', setServerError);
         socket.disconnect();
       }
     };

@@ -51,6 +51,7 @@ type Props = {|
   disconnect: (provider: Provider) => void,
   network: Network,
   path: string,
+  serverError: ?string,
   setUser: (user: User) => void,
   user: User,
   wallet: WalletObjectType,
@@ -63,6 +64,7 @@ const Account = ({
   colonyClient,
   disconnect,
   network,
+  serverError,
   setUser,
   user,
   wallet,
@@ -113,6 +115,7 @@ const Account = ({
           <Discourse
             authenticate={authenticate}
             disconnect={disconnect}
+            serverError={serverError}
             user={user}
           />
           <Email setUser={setUser} user={user} />
