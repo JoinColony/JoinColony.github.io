@@ -18,7 +18,7 @@ type Appearance = {
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
   weight?: 'bold' | 'medium',
-  width?: 'fixed' | 'stretch',
+  width?: 'medium' | 'large' | 'stretch',
 };
 
 type Props = {
@@ -93,8 +93,7 @@ const Button = ({
       type={type}
       {...rest}
     >
-      {loading && <SpinnerLoader />}
-      {buttonContent}
+      {loading ? <SpinnerLoader /> : buttonContent}
     </button>
   );
 };

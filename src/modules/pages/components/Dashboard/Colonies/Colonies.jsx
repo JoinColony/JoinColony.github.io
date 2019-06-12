@@ -34,7 +34,7 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Colonies.mainDescription',
     defaultMessage: `Your personalized list of colonies on {network}. Add
     colonies that you are developing, collaborating with, or colonies that you
-    simply would like to follow.`,
+    would like to follow.`,
   },
   emptyTitle: {
     id: 'pages.Dashboard.Colonies.emptyTitle',
@@ -44,8 +44,7 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Colonies.emptyDescription',
     defaultMessage: `It looks like you haven't added any colonies yet! This is
     your personalized list of colonies on {network}. Add colonies that you are
-    developing, collaborating with, or colonies that you simply would like to
-    follow.`,
+    developing, collaborating with, or colonies that you would like to follow.`,
   },
   emptyCreateColony: {
     id: 'pages.Dashboard.Colonies.emptyCreateColony',

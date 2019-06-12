@@ -121,6 +121,7 @@ const AddColony = ({
         appearance={{
           padding: 'large',
           theme: 'primary',
+          width: 'large',
         }}
         loading={loading}
         onClick={handleAddColony}

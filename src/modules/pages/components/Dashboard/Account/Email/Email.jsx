@@ -172,7 +172,7 @@ const Email = ({ setUser, user }: Props) => {
         </>
       ) : (
         <Button
-          appearance={{ theme: 'primary', padding: 'large', width: 'fixed' }}
+          appearance={{ theme: 'primary', padding: 'large', width: 'medium' }}
           loading={loading}
           onClick={handleAddEmail}
           style={{ margin: '8px 0' }}

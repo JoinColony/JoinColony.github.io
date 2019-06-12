@@ -39,6 +39,7 @@
   background-color: #788CA0;
   color: #ffffff;
   cursor: not-allowed;
+  padding: 12px;
 }
 
 .themePrimaryHollow {
@@ -140,8 +141,12 @@
 
 /* Width */
 
-.widthFixed {
+.widthMedium {
   width: 130px;
+}
+
+.widthLarge {
+  width: 160px;
 }
 
 .widthStretch {

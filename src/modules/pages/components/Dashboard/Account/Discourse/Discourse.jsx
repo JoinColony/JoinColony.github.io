@@ -108,7 +108,7 @@ const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
         </>
       ) : (
         <Button
-          appearance={{ theme: 'primary', padding: 'large', width: 'fixed' }}
+          appearance={{ theme: 'primary', padding: 'large', width: 'medium' }}
           loading={loading}
           onClick={() => authenticate('discourse')}
           style={{ margin: '12px 0' }}
