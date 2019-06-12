@@ -51,7 +51,6 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
         <Input
           disabled
           appearance={{
-            align: 'center',
             padding: 'huge',
             width: 'stretch',
           }}

@@ -9,7 +9,6 @@ import { getMainClasses } from '~utils/css';
 import styles from './Input.module.css';
 
 type Appearance = {
-  align?: 'center',
   display?: 'none',
   padding?: 'small' | 'large' | 'huge',
   width?: 'large' | 'stretch',
