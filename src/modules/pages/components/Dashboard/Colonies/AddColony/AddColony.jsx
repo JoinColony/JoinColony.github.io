@@ -56,10 +56,10 @@ const AddColony = ({
   const handleAddColony = async () => {
     if (networkClient && isAddress(address)) {
       setLoading(true);
-      const isColonyAddress = await networkClient.isColony.call({
+      const { isColony } = await networkClient.isColony.call({
         colony: address,
       });
-      if (!isColonyAddress) {
+      if (!isColony) {
         setError('The address you provided is not a valid colony address');
         setLoading(false);
         return;
