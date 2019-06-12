@@ -77,6 +77,7 @@ const ColonyItem = ({
   user,
   wallet,
 }: Props) => {
+  const [actions, setActions] = useState<boolean>(false);
   const [colony, setColony] = useState<?Colony>(null);
   const [error, setError] = useState<?string>(null);
   const [loadedLocal, setLoadedLocal] = useState<boolean>(false);
@@ -150,7 +151,11 @@ const ColonyItem = ({
   };
 
   return (
-    <div className={styles.colony}>
+    <div
+      className={styles.colony}
+      onMouseEnter={() => setActions(true)}
+      onMouseLeave={() => setActions(false)}
+    >
       {colony ? (
         <>
           <div className={styles.colonyContent}>
@@ -199,41 +204,43 @@ const ColonyItem = ({
               </div>
             </div>
           </div>
-          <div className={styles.removeColony}>
-            {removeColony ? (
-              <>
-                {loading ? (
-                  <SpinnerLoader />
-                ) : (
-                  <>
-                    <span>
-                      <FormattedMessage {...MSG.removeColonyConfirm} />
-                    </span>
-                    <Button
-                      appearance={{ theme: 'reset' }}
-                      onClick={handleRemoveColony}
-                      text={MSG.removeColony}
-                      type="submit"
-                    />
-                    <Button
-                      appearance={{ theme: 'reset' }}
-                      onClick={() => setRemoveColony(false)}
-                      text={MSG.removeColonyCancel}
-                      type="submit"
-                    />
-                  </>
-                )}
-              </>
-            ) : (
-              <Button
-                appearance={{ theme: 'reset' }}
-                onClick={() => setRemoveColony(true)}
-                text={MSG.removeColony}
-                type="submit"
-              />
-            )}
-            {error && <ErrorMessage error={error} />}
-          </div>
+          {actions && (
+            <div className={styles.removeColony}>
+              {removeColony ? (
+                <>
+                  {loading ? (
+                    <SpinnerLoader />
+                  ) : (
+                    <>
+                      <span>
+                        <FormattedMessage {...MSG.removeColonyConfirm} />
+                      </span>
+                      <Button
+                        appearance={{ theme: 'reset' }}
+                        onClick={handleRemoveColony}
+                        text={MSG.removeColony}
+                        type="submit"
+                      />
+                      <Button
+                        appearance={{ theme: 'reset' }}
+                        onClick={() => setRemoveColony(false)}
+                        text={MSG.removeColonyCancel}
+                        type="submit"
+                      />
+                    </>
+                  )}
+                </>
+              ) : (
+                <Button
+                  appearance={{ theme: 'reset' }}
+                  onClick={() => setRemoveColony(true)}
+                  text={MSG.removeColony}
+                  type="submit"
+                />
+              )}
+              {error && <ErrorMessage error={error} />}
+            </div>
+          )}
         </>
       ) : (
         <SpinnerLoader />

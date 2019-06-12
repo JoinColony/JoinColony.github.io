@@ -1,7 +1,9 @@
 .colony {
   background: #F0F5F7;
+  height: 220px;
   margin: 20px 0;
   padding: 20px;
+  transition: 0.5s;
 }
 
 .colonyContent {
