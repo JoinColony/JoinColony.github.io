@@ -209,7 +209,7 @@ const ColonyItem = ({
               {removeColony ? (
                 <>
                   {loading ? (
-                    <SpinnerLoader />
+                    <SpinnerLoader appearance={{ theme: 'primary' }} />
                   ) : (
                     <>
                       <span>
@@ -243,7 +243,9 @@ const ColonyItem = ({
           )}
         </>
       ) : (
-        <SpinnerLoader />
+        <div className={styles.loader}>
+          <SpinnerLoader appearance={{ theme: 'primary' }} />
+        </div>
       )}
     </div>
   );

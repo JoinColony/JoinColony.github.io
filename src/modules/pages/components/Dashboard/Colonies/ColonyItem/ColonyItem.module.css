@@ -43,3 +43,10 @@
 .removeColony button:nth-child(3) {
   margin-left: 10px;
 }
+
+.loader {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
