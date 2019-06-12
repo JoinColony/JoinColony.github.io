@@ -6,6 +6,8 @@ import React, { useCallback, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
+import type { Network } from '~types';
+
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
@@ -52,11 +54,12 @@ const displayName = 'pages.Contribute.AddPayment';
 
 type Props = {|
   colonyClient: ?ColonyClient,
+  network: Network,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddPayment = ({ colonyClient }: Props) => {
+const AddPayment = ({ colonyClient, network }: Props) => {
   const [amount, setAmount] = useState(0);
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
@@ -92,6 +95,8 @@ const AddPayment = ({ colonyClient }: Props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           issue,
+          network: network.slug,
+          networkId: network.id,
           payout: amount,
           pullRequest,
           type: 'payment',

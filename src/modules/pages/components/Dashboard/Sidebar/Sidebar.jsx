@@ -4,7 +4,7 @@ import React from 'react';
 
 import { defineMessages } from 'react-intl';
 
-import type { User } from '~types';
+import type { Network, User } from '~types';
 
 import Link from '~core/Link';
 
@@ -31,12 +31,13 @@ const MSG = defineMessages({
 
 type Props = {|
   active: string,
+  network: Network,
   user: ?User,
 |};
 
 const displayName = 'pages.Dashboard.Sidebar';
 
-const Sidebar = ({ active, user }: Props) => (
+const Sidebar = ({ active, network, user }: Props) => (
   <div className={styles.main}>
     <div>
       <Link
@@ -54,7 +55,7 @@ const Sidebar = ({ active, user }: Props) => (
         href="/dashboard/contributions"
         text={MSG.contributionsLink}
       />
-      {user && user.admin && (
+      {user && user.admin && user.admin[network.slug] && (
         <Link
           className={active === 'admin' ? styles.linkActive : styles.link}
           href="/dashboard/admin"

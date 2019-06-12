@@ -1,8 +1,8 @@
 /* @flow */
-import type { IntlShape } from 'react-intl';
+import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { getMainClasses } from '~utils/css';
 
@@ -18,7 +18,7 @@ type Props = {
   /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
   className?: string,
   /** Error message */
-  error: string,
+  error: MessageDescriptor | string,
   /** Injected by `injectIntl` */
   intl: IntlShape,
 };
@@ -30,7 +30,9 @@ const ErrorMessage = ({ appearance, className, error, ...rest }: Props) => {
   return (
     <div className={classNames} {...rest}>
       <div className={styles.errorDot} />
-      <div>{error}</div>
+      <div>
+        {typeof error === 'string' ? error : <FormattedMessage {...error} />}
+      </div>
     </div>
   );
 };

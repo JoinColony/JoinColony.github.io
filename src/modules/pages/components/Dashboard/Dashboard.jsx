@@ -94,11 +94,20 @@ const Dashboard = ({
         {wallet && user ? (
           <>
             <div className={styles.sidebar}>
-              <Sidebar active={page || 'account'} user={user} />
+              <Sidebar
+                active={page || 'account'}
+                network={network}
+                user={user}
+              />
             </div>
             <main className={styles.content}>
               <Router primary={false}>
-                <Admin path="/dashboard/admin" colonyClient={colonyClient} />
+                <Admin
+                  path="/dashboard/admin"
+                  colonyClient={colonyClient}
+                  network={network}
+                  user={user}
+                />
                 <Account
                   path={page ? '/dashboard/account' : '/dashboard'}
                   authenticate={authenticate}

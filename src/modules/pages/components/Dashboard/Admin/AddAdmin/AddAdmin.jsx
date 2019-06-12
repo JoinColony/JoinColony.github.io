@@ -5,6 +5,8 @@ import type { ColonyClient } from '@colony/colony-js-client';
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import type { Network } from '~types';
+
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
@@ -34,11 +36,12 @@ const displayName = 'pages.Contribute.AddAdmin';
 
 type Props = {|
   colonyClient: ?ColonyClient,
+  network: Network,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddAdmin = ({ colonyClient }: Props) => {
+const AddAdmin = ({ colonyClient, network }: Props) => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -57,7 +60,7 @@ const AddAdmin = ({ colonyClient }: Props) => {
       const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify({ network: network.slug, username }),
       };
       // eslint-disable-next-line no-undef
       fetch(`${server}/api/user/admin`, options)

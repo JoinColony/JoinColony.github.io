@@ -34,7 +34,10 @@ export type Session = {|
 
 export type User = {|
   addresses: Array<string>,
-  admin: boolean,
+  admin: ?{
+    goerli: boolean,
+    mainnet: boolean,
+  },
   colonies: ?{
     goerli: ?Array<string>,
     mainnet: ?Array<string>,

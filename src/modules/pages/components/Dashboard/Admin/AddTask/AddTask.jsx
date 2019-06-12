@@ -6,6 +6,8 @@ import React, { useCallback, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
+import type { Network } from '~types';
+
 import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
 
 import Button from '~core/Button';
@@ -46,11 +48,12 @@ const displayName = 'pages.Contribute.AddTask';
 
 type Props = {|
   colonyClient: ?ColonyClient,
+  network: Network,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddTask = ({ colonyClient }: Props) => {
+const AddTask = ({ colonyClient, network }: Props) => {
   const [amount, setAmount] = useState(0);
   const [contribution, setContribution] = useState(null);
   const [dueDate, setDueDate] = useState('');
@@ -89,6 +92,7 @@ const AddTask = ({ colonyClient }: Props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           issue,
+          networkId: network.id,
           payout: amount,
           type: 'task',
           typeId: taskId,
