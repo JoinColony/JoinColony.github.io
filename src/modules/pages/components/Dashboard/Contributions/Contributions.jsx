@@ -2,7 +2,7 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network, User } from '~types';
@@ -83,7 +83,6 @@ const Contributions = ({ network, user }: Props) => {
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [loadedRemote, setLoadedRemote] = useState(false);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
 
   useEffect(() => {
     if (!loadedLocal) {
@@ -96,6 +95,7 @@ const Contributions = ({ network, user }: Props) => {
   useEffect(() => setStore('userIssues', issues), [issues]);
 
   const getIssues = useCallback(() => {
+    setError(null);
     setLoading(true);
     const options = {
       method: 'POST',
@@ -138,9 +138,6 @@ const Contributions = ({ network, user }: Props) => {
       })
       .catch(fetchError => {
         setError(fetchError.message);
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
       });
   }, [user.github.username]);
 
@@ -148,10 +145,7 @@ const Contributions = ({ network, user }: Props) => {
     if (!issues && !loading) {
       getIssues();
     }
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [issues, error, getIssues, loading]);
+  }, [issues, getIssues, loading]);
 
   if (!issues && !loading) {
     return (

@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
@@ -51,7 +51,6 @@ const Email = ({ setUser, user }: Props) => {
   const [error, setError] = useState(null);
   const [input, setInput] = useState(!!user.email);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
 
   const isValidEmail = value => {
     const valid = /\S+@\S+\.\S+/;
@@ -92,9 +91,6 @@ const Email = ({ setUser, user }: Props) => {
           if (data.error) {
             setError(data.error);
             setLoading(false);
-            errorTimeout.current = setTimeout(() => {
-              setError(null);
-            }, 2000);
           } else {
             setUser({ ...user, email: data.email });
             setEdit(false);
@@ -104,20 +100,11 @@ const Email = ({ setUser, user }: Props) => {
         .catch(fetchError => {
           setError(fetchError.message);
           setLoading(false);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
         });
     } else {
       setError('Please provide a valid email address');
     }
   };
-
-  useEffect(() => {
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [error]);
 
   return (
     <div className={styles.field}>

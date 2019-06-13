@@ -1,10 +1,11 @@
 /* @flow */
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network } from '~types';
 
+import ErrorMessage from '~core/ErrorMessage';
 import IssueTableRow from '~parts/IssueTableRow';
 
 import Button from '~core/Button';
@@ -107,19 +108,9 @@ const Landing = ({ network }: Props) => {
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [loadedRemote, setLoadedRemote] = useState(false);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
-
-  useEffect(() => {
-    if (!loadedLocal) {
-      const localContributions = getStore('issues');
-      setIssues(localContributions);
-      setLoadedLocal(true);
-    }
-  }, [issues, loadedLocal]);
-
-  useEffect(() => setStore('issues', issues), [issues]);
 
   const getIssues = useCallback(() => {
+    setError(null);
     setLoading(true);
     const options = {
       method: 'POST',
@@ -158,22 +149,26 @@ const Landing = ({ network }: Props) => {
         setLoadedRemote(true);
         setLoading(false);
       })
-      .catch(({ message }) => {
-        setError({ message });
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
+      .catch(fetchError => {
+        setError(fetchError.message);
       });
   }, []);
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localContributions = getStore('issues');
+      setIssues(localContributions);
+      setLoadedLocal(true);
+    }
+  }, [issues, loadedLocal]);
+
+  useEffect(() => setStore('issues', issues), [issues]);
 
   useEffect(() => {
     if (!issues && !loading) {
       getIssues();
     }
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [issues, error, getIssues, loading]);
+  }, [getIssues, issues, loading]);
 
   return (
     <>
@@ -238,6 +233,7 @@ const Landing = ({ network }: Props) => {
               ))}
           </tbody>
         </table>
+        {error && <ErrorMessage error={error} />}
       </div>
       <div className={styles.section}>
         <h1 className={styles.title}>

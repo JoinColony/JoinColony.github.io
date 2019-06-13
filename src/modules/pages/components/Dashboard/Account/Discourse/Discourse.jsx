@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import type { Provider, User } from '~types';
@@ -41,9 +41,9 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
 
   const handleRemoveDiscourse = () => {
+    setError(null);
     setLoading(true);
     const options = {
       method: 'DELETE',
@@ -56,9 +56,6 @@ const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
         if (data.error) {
           setError(data.error);
           setLoading(false);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
         } else {
           disconnect('discourse');
           setLoading(false);
@@ -67,9 +64,6 @@ const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
       .catch(fetchError => {
         setError(fetchError.message);
         setLoading(false);
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
       });
   };
   return (

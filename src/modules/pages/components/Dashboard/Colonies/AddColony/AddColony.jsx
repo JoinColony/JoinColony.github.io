@@ -2,7 +2,7 @@
 
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { isAddress } from 'web3-utils';
 
@@ -47,16 +47,16 @@ const AddColony = ({
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
 
   const handleChangeAddress = event => {
-    if (error) setError(null);
+    setError(null);
     setAddress(event.currentTarget.value);
   };
 
   const handleAddColony = async () => {
     if (networkClient) {
       if (isAddress(address)) {
+        setError(null);
         setLoading(true);
         const { isColony } = await networkClient.isColony.call({
           colony: address,
@@ -81,9 +81,6 @@ const AddColony = ({
             if (data.error) {
               setError(data.error);
               setLoading(false);
-              errorTimeout.current = setTimeout(() => {
-                setError(null);
-              }, 2000);
             } else {
               setUser({ ...user, colonies: data.colonies });
               setAddColony(false);
@@ -93,9 +90,6 @@ const AddColony = ({
           .catch(fetchError => {
             setError(fetchError.message);
             setLoading(false);
-            errorTimeout.current = setTimeout(() => {
-              setError(null);
-            }, 2000);
           });
       } else {
         setError('The address you provided is not a valid address');
@@ -105,12 +99,6 @@ const AddColony = ({
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [error]);
-
   return (
     <div className={styles.field}>
       <Input
@@ -118,6 +106,7 @@ const AddColony = ({
           padding: 'huge',
           size: 'stretch',
         }}
+        error={error}
         id="address"
         label={MSG.labelAddress}
         onChange={handleChangeAddress}

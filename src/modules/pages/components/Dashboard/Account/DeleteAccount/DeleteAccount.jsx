@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Provider, User } from '~types';
@@ -43,9 +43,9 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
 
   const handleDeleteAccount = () => {
+    setError(null);
     setLoading(true);
     const options = {
       method: 'DELETE',
@@ -58,9 +58,6 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
         if (data.error) {
           setError(data.error);
           setLoading(false);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
         } else {
           disconnect('github');
           setLoading(false);
@@ -69,9 +66,6 @@ const DeleteAccount = ({ disconnect, user }: Props) => {
       .catch(fetchError => {
         setError(fetchError.message);
         setLoading(false);
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
       });
   };
   return (

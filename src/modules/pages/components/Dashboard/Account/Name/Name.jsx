@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Button from '~core/Button';
@@ -42,12 +42,11 @@ const Name = ({ setUser, user }: Props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState(initialName);
-  const errorTimeout = useRef(null);
 
   const handleCancelName = () => {
+    setError(null);
     setName(initialName);
     setEdit(false);
-    setError(null);
   };
 
   const handleChangeName = event => {
@@ -57,6 +56,7 @@ const Name = ({ setUser, user }: Props) => {
 
   const handleSaveName = () => {
     if (name) {
+      setError(null);
       setLoading(true);
       const options = {
         method: 'PUT',
@@ -70,9 +70,6 @@ const Name = ({ setUser, user }: Props) => {
           if (data.error) {
             setError(data.error);
             setLoading(false);
-            errorTimeout.current = setTimeout(() => {
-              setError(null);
-            }, 2000);
           } else {
             setUser({ ...user, name: data.name });
             setEdit(false);
@@ -82,18 +79,11 @@ const Name = ({ setUser, user }: Props) => {
         .catch(fetchError => {
           setError(fetchError.message);
           setLoading(false);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
         });
+    } else {
+      setError('Name cannot be blank');
     }
   };
-
-  useEffect(() => {
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [error]);
 
   return (
     <div>

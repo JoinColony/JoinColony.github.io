@@ -68,14 +68,14 @@ const Statistics = ({ colonyClient, wallet }: Props) => {
       <div className={styles.statistic}>
         <FormattedToken
           amount={statistics.balance || 0}
-          appearance={{ spacing: 'large', symbolWeight: 'bold' }}
+          appearance={{ spacing: 'medium', symbolWeight: 'bold' }}
           symbol="CDEV"
         />
       </div>
       <div className={styles.statistic}>
         <FormattedToken
           amount={statistics.reputation || 0}
-          appearance={{ spacing: 'large', symbolWeight: 'bold' }}
+          appearance={{ spacing: 'medium', symbolWeight: 'bold' }}
           symbol="Reputation"
         />
       </div>

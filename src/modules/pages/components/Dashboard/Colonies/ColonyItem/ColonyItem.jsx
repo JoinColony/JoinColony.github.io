@@ -3,7 +3,7 @@
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Colony, Network, User } from '~types';
@@ -83,7 +83,6 @@ const ColonyItem = ({
   const [loadedLocal, setLoadedLocal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [removeColony, setRemoveColony] = useState<boolean>(false);
-  const errorTimeout = useRef(null);
 
   useEffect(() => {
     if (!loadedLocal) {
@@ -119,6 +118,7 @@ const ColonyItem = ({
   }, [colonyAddress, networkClient, wallet.address]);
 
   const handleRemoveColony = async () => {
+    setError(null);
     setLoading(true);
     const options = {
       method: 'DELETE',
@@ -132,9 +132,6 @@ const ColonyItem = ({
         if (data.error) {
           setError(data.error);
           setLoading(false);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
         } else {
           setRemoveColony(false);
           setLoading(false);
@@ -144,9 +141,6 @@ const ColonyItem = ({
       .catch(fetchError => {
         setError(fetchError.message);
         setLoading(false);
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
       });
   };
 
