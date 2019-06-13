@@ -154,7 +154,7 @@ const AddTask = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="skillId"
           label={MSG.labelSkillId}
@@ -167,7 +167,7 @@ const AddTask = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="amount"
           label={MSG.labelAmount}
@@ -180,7 +180,7 @@ const AddTask = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="dueDate"
           label={MSG.labelDueDate}
@@ -193,7 +193,7 @@ const AddTask = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="issue"
           label={MSG.labelIssue}
@@ -207,7 +207,7 @@ const AddTask = ({ colonyClient, network }: Props) => {
           appearance={{
             theme: 'primary',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           disabled={!amount || !dueDate || !issue || !skillId}
           onClick={handleAddTask}

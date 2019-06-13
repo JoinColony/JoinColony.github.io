@@ -116,7 +116,7 @@ const AddColony = ({
       <Input
         appearance={{
           padding: 'huge',
-          width: 'stretch',
+          size: 'stretch',
         }}
         id="address"
         label={MSG.labelAddress}
@@ -128,8 +128,9 @@ const AddColony = ({
         appearance={{
           padding: 'large',
           theme: 'primary',
-          width: 'large',
+          size: 'large',
         }}
+        disabled={!address}
         loading={loading}
         onClick={handleAddColony}
         text={MSG.submitAddress}

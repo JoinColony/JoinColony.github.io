@@ -363,7 +363,7 @@ const TaskActions = ({
             <Input
               appearance={{
                 padding: 'huge',
-                width: 'large',
+                size: 'large',
               }}
               id="rating"
               onChange={handelChangeRating}
@@ -374,7 +374,7 @@ const TaskActions = ({
             <Input
               appearance={{
                 padding: 'huge',
-                width: 'large',
+                size: 'large',
               }}
               id="ratingSecret"
               onChange={handelChangeRatingSecret}
@@ -388,7 +388,7 @@ const TaskActions = ({
           <Input
             appearance={{
               padding: 'huge',
-              width: 'large',
+              size: 'large',
             }}
             id="pullRequest"
             onChange={handelChangePullRequest}

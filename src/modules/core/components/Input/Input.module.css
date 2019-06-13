@@ -44,12 +44,12 @@
   padding: 10px 25px;
 }
 
-/* Width */
+/* Size */
 
-.widthLarge {
+.sizeLarge {
   width: 340px;
 }
 
-.widthStretch {
+.sizeStretch {
   width: 100%;
 }

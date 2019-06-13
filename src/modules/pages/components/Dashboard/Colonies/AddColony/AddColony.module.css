@@ -8,4 +8,7 @@
 
 .field button {
   margin-left: 10px;
+  /* Ensure button does not move */
+  margin-top: 10px;
+  vertical-align: top;
 }

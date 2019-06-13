@@ -52,7 +52,7 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
           disabled
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="address"
           label={MSG.connectGitHubInputLabel}
@@ -66,7 +66,7 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
             theme: 'primary',
             color: 'white',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           onClick={() => authenticate('github')}
           text={MSG.connectGitHubButton}

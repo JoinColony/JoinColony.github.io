@@ -170,7 +170,7 @@ const Header = ({
               color: pathDashboard ? 'white' : undefined,
               hover: 'disablePrimary',
               padding: 'large',
-              width: 'medium',
+              size: 'medium',
             }}
             linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
             style={{ marginLeft: '10px' }}

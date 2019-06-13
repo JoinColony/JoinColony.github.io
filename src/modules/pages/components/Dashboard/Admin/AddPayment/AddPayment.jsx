@@ -176,7 +176,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="skillId"
           label={MSG.labelSkillId}
@@ -189,7 +189,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="amount"
           label={MSG.labelAmount}
@@ -202,7 +202,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="issue"
           label={MSG.labelIssue}
@@ -215,7 +215,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="pullRequest"
           label={MSG.labelPullRequest}
@@ -228,7 +228,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="username"
           label={MSG.labelUsername}
@@ -241,7 +241,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="recipient"
           label={MSG.labelRecipient}
@@ -255,7 +255,7 @@ const AddPayment = ({ colonyClient, network }: Props) => {
           appearance={{
             theme: 'primary',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           disabled={
             !amount ||

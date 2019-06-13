@@ -17,8 +17,8 @@ type Appearance = {
   font?: 'small',
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
+  size?: 'medium' | 'large' | 'stretch',
   weight?: 'bold' | 'medium',
-  width?: 'medium' | 'large' | 'stretch',
 };
 
 type Props = {
@@ -28,6 +28,8 @@ type Props = {
   children?: Node,
   /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
   className?: string,
+  /** We need to declare "disabled" in order to combine with loading. */
+  disabled?: any,
   /** Injected by `injectIntl` */
   intl: IntlShape,
   /** Disable button and use loading spinner if loading */
@@ -52,6 +54,7 @@ const Button = ({
   appearance = { theme: 'primary' },
   children,
   className,
+  disabled,
   intl: { formatMessage },
   loading,
   linkTo,
@@ -88,7 +91,7 @@ const Button = ({
     // eslint-disable-next-line react/button-has-type
     <button
       className={classNames}
-      disabled={loading}
+      disabled={disabled || loading}
       title={titleText}
       type={type}
       {...rest}

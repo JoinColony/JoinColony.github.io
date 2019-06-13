@@ -104,7 +104,7 @@ const Account = ({
               disabled
               appearance={{
                 padding: 'huge',
-                width: 'large',
+                size: 'large',
               }}
               id="github"
               label={MSG.connectedAccountsGitHubLabel}

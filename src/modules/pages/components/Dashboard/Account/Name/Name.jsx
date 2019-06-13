@@ -101,7 +101,7 @@ const Name = ({ setUser, user }: Props) => {
         {edit ? (
           <>
             <Input
-              appearance={{ padding: 'huge', width: 'large' }}
+              appearance={{ padding: 'huge', size: 'large' }}
               id="name"
               onChange={handleChangeName}
               style={{ marginRight: '20px', marginTop: '0' }}

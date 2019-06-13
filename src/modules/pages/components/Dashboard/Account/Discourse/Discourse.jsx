@@ -79,7 +79,7 @@ const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
         appearance={{
           display: user.discourse ? undefined : 'none',
           padding: 'huge',
-          width: 'large',
+          size: 'large',
         }}
         id="discourse"
         label={MSG.connectedAccountsDiscourseLabel}
@@ -108,7 +108,7 @@ const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
         </>
       ) : (
         <Button
-          appearance={{ theme: 'primary', padding: 'large', width: 'medium' }}
+          appearance={{ theme: 'primary', padding: 'large', size: 'medium' }}
           loading={loading}
           onClick={() => authenticate('discourse')}
           style={{ margin: '12px 0' }}

@@ -11,7 +11,7 @@ import styles from './Input.module.css';
 type Appearance = {
   display?: 'none',
   padding?: 'small' | 'large' | 'huge',
-  width?: 'large' | 'stretch',
+  size?: 'large' | 'stretch',
 };
 
 type Props = {

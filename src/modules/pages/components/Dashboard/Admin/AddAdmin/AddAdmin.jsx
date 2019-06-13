@@ -91,7 +91,7 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="address"
           label={MSG.labelAddress}
@@ -104,7 +104,7 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="username"
           label={MSG.labelUsername}
@@ -118,7 +118,7 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
           appearance={{
             theme: 'primary',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           disabled={!address || !username}
           onClick={handleAddAdmin}

@@ -126,7 +126,7 @@ const Email = ({ setUser, user }: Props) => {
         appearance={{
           display: input ? undefined : 'none',
           padding: 'huge',
-          width: 'large',
+          size: 'large',
         }}
         id="email"
         error={error}
@@ -172,7 +172,7 @@ const Email = ({ setUser, user }: Props) => {
         </>
       ) : (
         <Button
-          appearance={{ theme: 'primary', padding: 'large', width: 'medium' }}
+          appearance={{ theme: 'primary', padding: 'large', size: 'medium' }}
           loading={loading}
           onClick={handleAddEmail}
           style={{ margin: '8px 0' }}
