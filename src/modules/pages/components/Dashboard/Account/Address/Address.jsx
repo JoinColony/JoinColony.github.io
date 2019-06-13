@@ -93,11 +93,6 @@ const Address = ({ setUser, user, wallet }: Props) => {
       </div>
       {!error && user.addresses[0] !== wallet.address && (
         <div className={styles.primaryAddress}>
-          {loading && (
-            <div className={styles.loader}>
-              <SpinnerLoader appearance={{ theme: 'primary' }} />
-            </div>
-          )}
           <FormattedMessage
             values={{
               updateAddress: (
@@ -111,6 +106,11 @@ const Address = ({ setUser, user, wallet }: Props) => {
             }}
             {...MSG.primaryAddress}
           />
+          {loading && (
+            <div className={styles.loader}>
+              <SpinnerLoader appearance={{ theme: 'primary' }} />
+            </div>
+          )}
         </div>
       )}
       {error && <ErrorMessage error={error} />}

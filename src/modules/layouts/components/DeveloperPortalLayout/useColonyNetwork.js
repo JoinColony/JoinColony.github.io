@@ -19,6 +19,16 @@ const useColonyNetwork = (network: ?Network, wallet: WalletObjectType) => {
   );
 
   useEffect(() => {
+    if (
+      network &&
+      networkClient &&
+      network.id !== networkClient.adapter.provider.chainId
+    ) {
+      setNetworkClient(null);
+    }
+  }, [network, networkClient]);
+
+  useEffect(() => {
     (async () => {
       if (network && network.slug && wallet && wallet.sign) {
         if (!networkClient) {
