@@ -103,7 +103,7 @@ const sourcePlugins = {
         {
           owner: 'JoinColony',
           repo: 'colonyNetwork',
-          expression: 'develop:docs/',
+          expression: 'master:docs/',
           name: 'colonyNetwork',
         },
         {
