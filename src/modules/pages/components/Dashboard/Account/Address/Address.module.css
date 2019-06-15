@@ -20,6 +20,11 @@
   margin-top: 5px;
 }
 
+.primaryAddress div {
+  margin-bottom: -5px;
+  margin-top: -5px;
+}
+
 .loader {
   align-items: center;
   display: inline-flex;

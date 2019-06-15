@@ -18,7 +18,12 @@ import styles from './Address.module.css';
 const MSG = defineMessages({
   primaryAddress: {
     id: 'pages.Dashboard.Account.Address.primaryAddress',
-    defaultMessage: `This is not your primary address. {updateAddress}.`,
+    defaultMessage: `Primary Address: {primaryAddress}`,
+  },
+  primaryAddressWarning: {
+    id: 'pages.Dashboard.Account.Address.primaryAddressWarning',
+    defaultMessage: `The above address is not your primary address.
+    {updateAddress}.`,
   },
   updateAddress: {
     id: 'pages.Dashboard.Account.Address.updateAddress',
@@ -81,24 +86,32 @@ const Address = ({ setUser, user, wallet }: Props) => {
       </div>
       {user.addresses[0] !== wallet.address && (
         <div className={styles.primaryAddress}>
-          <FormattedMessage
-            values={{
-              updateAddress: (
-                <Button
-                  appearance={{ theme: 'reset' }}
-                  onClick={handleUpdateAddress}
-                  style={{ color: '#289BDC' }}
-                  text={MSG.updateAddress}
-                />
-              ),
-            }}
-            {...MSG.primaryAddress}
-          />
-          {loading && (
-            <div className={styles.loader}>
-              <SpinnerLoader appearance={{ theme: 'primary' }} />
-            </div>
-          )}
+          <div>
+            <FormattedMessage
+              values={{
+                updateAddress: (
+                  <Button
+                    appearance={{ theme: 'reset' }}
+                    onClick={handleUpdateAddress}
+                    style={{ color: '#289BDC' }}
+                    text={MSG.updateAddress}
+                  />
+                ),
+              }}
+              {...MSG.primaryAddressWarning}
+            />
+            {loading && (
+              <div className={styles.loader}>
+                <SpinnerLoader appearance={{ theme: 'primary' }} />
+              </div>
+            )}
+          </div>
+          <div>
+            <FormattedMessage
+              values={{ primaryAddress: user.addresses[0] }}
+              {...MSG.primaryAddress}
+            />
+          </div>
         </div>
       )}
       {error && <ErrorMessage error={error} />}
