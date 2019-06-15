@@ -35,10 +35,6 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.connectedAccountsGitHubLabel',
     defaultMessage: 'GitHub',
   },
-  statisticsSwitchNetwork: {
-    id: 'pages.Dashboard.Account.statisticsSwitchNetwork',
-    defaultMessage: 'Switch networks to see your token balance and reputation.',
-  },
   logout: {
     id: 'pages.Dashboard.Account.logout',
     defaultMessage: 'Logout',
@@ -80,13 +76,11 @@ const Account = ({
         <div>
           <Name setUser={setUser} user={user} />
           <Address setUser={setUser} user={user} wallet={wallet} />
-          {network.id === 1 || network.id === 5 ? (
-            <Statistics colonyClient={colonyClient} wallet={wallet} />
-          ) : (
-            <div className={styles.statisticsSwitchNetwork}>
-              <FormattedMessage {...MSG.statisticsSwitchNetwork} />
-            </div>
-          )}
+          <Statistics
+            colonyClient={colonyClient}
+            network={network}
+            wallet={wallet}
+          />
         </div>
       </div>
       <div className={styles.content}>

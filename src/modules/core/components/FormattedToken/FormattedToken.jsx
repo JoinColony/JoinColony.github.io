@@ -11,6 +11,8 @@ import {
 
 import { getMainClasses } from '~utils/css';
 
+import SpinnerLoader from '~core/SpinnerLoader';
+
 import styles from './FormattedToken.module.css';
 
 const MSG = defineMessages({
@@ -25,8 +27,7 @@ const MSG = defineMessages({
 });
 
 type Appearance = {
-  spacing?: 'large',
-  symbolWeight?: 'bold',
+  theme?: 'statistics',
 };
 
 type Props = {
@@ -40,6 +41,8 @@ type Props = {
   decimals?: number,
   /** Injected by `injectIntl` */
   intl: IntlShape,
+  /** Replace amount with loading indicator when loading */
+  loading?: boolean,
   /** Maximum number of fraction digits */
   maximumFractionDigits?: number,
   /** Minimum number of fraction digits */
@@ -55,6 +58,7 @@ const FormattedToken = ({
   appearance,
   className,
   decimals,
+  loading,
   maximumFractionDigits,
   minimumFractionDigits,
   symbol,
@@ -68,12 +72,18 @@ const FormattedToken = ({
   };
   return (
     <div className={classNames}>
-      <FormattedMessage
-        {...MSG.amount}
-        values={{
-          amount: <FormattedNumber {...tokenFormat} value={formattedAmount} />,
-        }}
-      />
+      {loading ? (
+        <SpinnerLoader appearance={{ theme: 'primary' }} />
+      ) : (
+        <FormattedMessage
+          {...MSG.amount}
+          values={{
+            amount: (
+              <FormattedNumber {...tokenFormat} value={formattedAmount} />
+            ),
+          }}
+        />
+      )}
       <FormattedMessage {...MSG.symbol} values={{ symbol }} />
     </div>
   );

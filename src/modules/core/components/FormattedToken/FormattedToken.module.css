@@ -1,7 +1,9 @@
-.spacingLarge {
-  word-spacing: 0.4rem;
+.themeStatistics {
+  align-items: center;
+  display: flex;
 }
 
-.symbolWeightBold span:nth-child(2) {
+.themeStatistics span:nth-child(2) {
   font-family: 'Avenir Next Demi';
+  margin-left: 0.4rem;
 }

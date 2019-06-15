@@ -17,11 +17,6 @@
   width: 160px;
 }
 
-.statisticsSwitchNetwork {
-  font-size: 15px;
-  font-style: italic;
-}
-
 .content {
   border-top: 1px #C8D2DC solid;
   display: flex;
