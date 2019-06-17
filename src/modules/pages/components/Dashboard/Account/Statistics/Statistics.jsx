@@ -8,6 +8,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network } from '~types';
 
+import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
+
 import ErrorMessage from '~core/ErrorMessage';
 import FormattedToken from '~core/FormattedToken';
 
@@ -64,7 +66,7 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
     return <ErrorMessage error={error} />;
   }
 
-  if (network && network.id !== 1 && network.id !== 5) {
+  if (!supportedNetwork(network)) {
     return (
       <div className={styles.statisticsSwitchNetwork}>
         <FormattedMessage {...MSG.statisticsSwitchNetwork} />

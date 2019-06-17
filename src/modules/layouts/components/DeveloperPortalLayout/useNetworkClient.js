@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import type { Network } from '~types';
 
+import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
+
 const useNetworkClient = (
   loadedNetwork: boolean,
   network: ?Network,
@@ -22,7 +24,7 @@ const useNetworkClient = (
     if (loadedNetwork && network && wallet) {
       setError(null);
       setLoading(true);
-      if (network.id === 1 || network.id === 5) {
+      if (supportedNetwork(network)) {
         await getNetworkClient(network.slug, wallet)
           .then(result => {
             setClient(result);

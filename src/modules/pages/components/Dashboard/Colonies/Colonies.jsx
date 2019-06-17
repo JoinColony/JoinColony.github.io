@@ -8,6 +8,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network, User } from '~types';
 
+import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
+
 import Button from '~core/Button';
 import Image from '~core/Image';
 import Link from '~core/Link';
@@ -110,13 +112,11 @@ const displayName = 'pages.Dashboard.Colonies';
 
 const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
   const [addColony, setAddColony] = useState(false);
-  const supportedNetwork =
-    network && (network.slug === 'mainnet' || network.slug === 'goerli');
   const coloniesExist =
     user.colonies &&
     user.colonies[network.slug] &&
     user.colonies[network.slug].length;
-  if (!supportedNetwork) {
+  if (!supportedNetwork(network)) {
     return (
       <div className={styles.networkWrapper}>
         <div className={styles.main}>
