@@ -11,7 +11,7 @@ import { getMainClasses } from '~utils/css';
 
 import styles from './Button.module.css';
 
-type Appearance = {
+type Appearance = {|
   theme?: 'primary' | 'primaryHollow' | 'callToAction' | 'reset',
   color?: 'blue' | 'grey' | 'red' | 'white',
   font?: 'small',
@@ -19,7 +19,7 @@ type Appearance = {
   padding?: 'small' | 'large' | 'huge',
   size?: 'medium' | 'large' | 'stretch',
   weight?: 'bold' | 'medium',
-};
+|};
 
 type Props = {
   /** Appearance object */

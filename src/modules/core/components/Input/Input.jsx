@@ -8,11 +8,11 @@ import { getMainClasses } from '~utils/css';
 
 import styles from './Input.module.css';
 
-type Appearance = {
+type Appearance = {|
   display?: 'none',
   padding?: 'small' | 'large' | 'huge',
   size?: 'large' | 'stretch',
-};
+|};
 
 type Props = {
   /** Appearance object */

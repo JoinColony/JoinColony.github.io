@@ -8,11 +8,11 @@ import { getMainClasses } from '~utils/css';
 
 import styles from './ErrorMessage.module.css';
 
-type Appearance = {
+type Appearance = {|
   color?: 'pink',
-};
+|};
 
-type Props = {
+type Props = {|
   /** Appearance object */
   appearance?: Appearance,
   /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
@@ -21,7 +21,7 @@ type Props = {
   error: MessageDescriptor | string,
   /** Injected by `injectIntl` */
   intl: IntlShape,
-};
+|};
 
 const displayName = 'ErrorMessage';
 

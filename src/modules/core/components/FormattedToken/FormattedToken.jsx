@@ -26,11 +26,11 @@ const MSG = defineMessages({
   },
 });
 
-type Appearance = {
+type Appearance = {|
   theme?: 'statistics',
-};
+|};
 
-type Props = {
+type Props = {|
   /** Appearance object */
   appearance?: Appearance,
   /** Token amount */
@@ -49,7 +49,7 @@ type Props = {
   minimumFractionDigits?: number,
   /** Token symbol */
   symbol: string,
-};
+|};
 
 const displayName = 'FormattedToken';
 

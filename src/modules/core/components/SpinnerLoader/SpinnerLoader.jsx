@@ -9,10 +9,10 @@ import type { IntlShape, MessageDescriptor, MessageValues } from 'react-intl';
 
 import styles from './SpinnerLoader.module.css';
 
-type Appearance = {
+type Appearance = {|
   size?: 'small' | 'medium' | 'large' | 'huge' | 'massive',
   theme?: 'primary',
-};
+|};
 
 type Props = {|
   /** Appearance object */
