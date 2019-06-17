@@ -1,9 +1,24 @@
 .colony {
   background: #F0F5F7;
-  height: 220px;
+  height: 200px;
   margin: 20px 0;
+  margin-bottom: 70px;
   padding: 20px;
-  transition: 0.5s;
+  transition: 0.2s;
+}
+
+.colony:hover {
+  margin-bottom: 50px;
+  height: 220px;
+}
+
+.colonyError {
+  composes: colony;
+}
+
+.colonyError:hover {
+  margin-bottom: 20px;
+  height: 250px;
 }
 
 .colonyContent {

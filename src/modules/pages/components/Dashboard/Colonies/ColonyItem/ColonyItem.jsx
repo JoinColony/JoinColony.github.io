@@ -117,6 +117,11 @@ const ColonyItem = ({
     }
   }, [colonyAddress, networkClient, wallet.address]);
 
+  const handleCancelRemove = async () => {
+    setError(null);
+    setRemoveColony(false);
+  };
+
   const handleRemoveColony = async () => {
     setError(null);
     setLoading(true);
@@ -146,7 +151,7 @@ const ColonyItem = ({
 
   return (
     <div
-      className={styles.colony}
+      className={error ? styles.colonyError : styles.colony}
       onMouseEnter={() => setActions(true)}
       onMouseLeave={() => setActions(false)}
     >
@@ -217,7 +222,7 @@ const ColonyItem = ({
                       />
                       <Button
                         appearance={{ theme: 'reset' }}
-                        onClick={() => setRemoveColony(false)}
+                        onClick={handleCancelRemove}
                         text={MSG.removeColonyCancel}
                         type="submit"
                       />
