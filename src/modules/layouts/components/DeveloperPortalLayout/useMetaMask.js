@@ -4,7 +4,6 @@ import type { WalletObjectType } from '@colony/purser-core';
 
 import { open } from '@colony/purser-metamask';
 import { useCallback, useEffect, useState } from 'react';
-import Web3 from 'web3';
 
 import type { Network } from '~types';
 
@@ -66,14 +65,19 @@ const useMetaMask = (walletRequired: boolean) => {
   const [network, setNetwork] = useState<?Network>(null);
   const [wallet, setWallet] = useState<?WalletObjectType>(null);
 
+  if (typeof window !== 'undefined') {
+    window.ethereum.autoRefreshOnNetworkChange = false;
+  }
+
   const getNetwork = useCallback(async () => {
-    setLoadingNetwork(true);
-    const web3 = new Web3(Web3.givenProvider);
-    const id = await web3.eth.net.getId();
-    const result = getNetworkInfo(id);
-    setNetwork(result);
-    setLoadedNetwork(true);
-    setLoadingNetwork(false);
+    if (window && window.ethereum) {
+      setLoadingNetwork(true);
+      const networkId = Number(window.ethereum.networkVersion);
+      const result = getNetworkInfo(networkId);
+      setNetwork(result);
+      setLoadedNetwork(true);
+      setLoadingNetwork(false);
+    }
   }, []);
 
   const getWallet = useCallback(async () => {
@@ -84,18 +88,25 @@ const useMetaMask = (walletRequired: boolean) => {
     setLoadingWallet(false);
   }, []);
 
-  const handleChangeAccount = useCallback(
-    ({ networkVersion, selectedAddress }) => {
-      if (!selectedAddress) {
+  const handleAccountsChanged = useCallback(
+    accounts => {
+      if (!accounts.length) {
         setWallet(null);
-      } else if (!wallet || (wallet && selectedAddress !== wallet.address)) {
+      } else if (wallet && accounts[0] !== wallet.address) {
         getWallet();
       }
-      if (network && networkVersion !== network.id.toString()) {
+    },
+    [getWallet, wallet],
+  );
+
+  const handleNetworkChanged = useCallback(
+    id => {
+      if (network && id !== network.id.toString()) {
+        setLoadedNetwork(false);
         getNetwork();
       }
     },
-    [getNetwork, getWallet, network, wallet],
+    [getNetwork, network],
   );
 
   useEffect(() => {
@@ -118,47 +129,29 @@ const useMetaMask = (walletRequired: boolean) => {
   }, [getWallet, loadedWallet, loadingWallet, walletRequired]);
 
   useEffect(() => {
-    const web3 = new Web3(Web3.givenProvider);
-    if (!loadedNetwork && !loadingNetwork && web3 && web3.currentProvider) {
+    if (!loadedNetwork && !loadingNetwork) {
       getNetwork();
     }
   }, [getNetwork, loadedNetwork, loadingNetwork]);
 
   useEffect(() => {
-    const web3 = new Web3(Web3.givenProvider);
-    if (
-      network &&
-      web3 &&
-      web3.currentProvider &&
-      web3.currentProvider.connection.networkVersion !== network.id.toString()
-    ) {
-      getNetwork();
+    if (window && window.ethereum) {
+      window.ethereum.on('networkChanged', handleNetworkChanged);
     }
-  }, [getNetwork, network]);
-
-  useEffect(() => {
-    const web3 = new Web3(Web3.givenProvider);
-    if (!web3.currentProvider) {
-      setNetwork(null);
-      setWallet(null);
-    }
-    if (!loadingWallet && web3 && web3.currentProvider) {
-      // eslint-disable-next-line no-underscore-dangle
-      web3.currentProvider.connection.publicConfigStore._events.update.push(
-        handleChangeAccount,
-      );
+    if (window && window.ethereum) {
+      window.ethereum.on('accountsChanged', handleAccountsChanged);
     }
     return () => {
-      if (!loadingWallet && web3 && web3.currentProvider) {
-        // eslint-disable-next-line no-underscore-dangle
-        web3.currentProvider.connection.publicConfigStore._events.update.pop(
-          handleChangeAccount,
-        );
+      if (window && window.ethereum) {
+        window.ethereum.off('networkChanged', handleNetworkChanged);
+      }
+      if (window && window.ethereum) {
+        window.ethereum.off('accountsChanged', handleAccountsChanged);
       }
     };
-  }, [handleChangeAccount, loadingWallet]);
+  }, [handleAccountsChanged, handleNetworkChanged]);
 
-  return { network, loadedNetwork, wallet };
+  return { network, wallet };
 };
 
 export default useMetaMask;
