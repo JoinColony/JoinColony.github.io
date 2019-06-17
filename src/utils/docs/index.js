@@ -1,4 +1,5 @@
 /* @flow */
+
 import { DEFAULT_LOCALE } from '~i18nConfig';
 import type { Doc, Project, Section } from '~types';
 

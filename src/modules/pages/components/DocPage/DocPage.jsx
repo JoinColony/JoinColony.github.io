@@ -1,4 +1,5 @@
 /* @flow */
+
 import React, { Component, createElement } from 'react';
 import RehypeReact from 'rehype-react';
 import Helmet from 'react-helmet';

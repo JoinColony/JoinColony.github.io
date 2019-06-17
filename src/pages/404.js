@@ -1,4 +1,5 @@
 /* @flow */
+
 import { createElement } from 'react';
 
 import NotFoundPage from '~pages/404';

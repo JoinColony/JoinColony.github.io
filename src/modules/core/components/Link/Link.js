@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { HOC } from 'recompose';
 
 import { compose, defaultProps, withProps } from 'recompose';

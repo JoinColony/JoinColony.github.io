@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { Node } from 'react';
 import type { RouteProps } from '@reach/router';
 import type { $npm$ReactIntl$LocaleData } from 'react-intl';

@@ -1,4 +1,5 @@
 /* @flow */
+
 import React, { createElement } from 'react';
 import { defineMessages } from 'react-intl';
 import { withProps } from 'recompose';

@@ -1,4 +1,5 @@
 /* @flow */
+
 import { injectIntl } from 'react-intl';
 import { compose, withProps } from 'recompose';
 

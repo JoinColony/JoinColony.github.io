@@ -1,4 +1,5 @@
 /* @flow */
+
 import { compose, nest } from 'recompose';
 import { injectIntl } from 'react-intl';
 

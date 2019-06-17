@@ -1,4 +1,5 @@
 /* @flow */
+
 import React, { useState } from 'react';
 
 import type { Section } from '~types';
