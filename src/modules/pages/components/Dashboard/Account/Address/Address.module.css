@@ -2,15 +2,15 @@
   margin: 20px auto;
 }
 
+.address {
+  align-items: center;
+  display: flex;
+}
+
 .blockies {
   border-radius: 50%;
   margin-right: 10px;
   margin-bottom: 2px;
-}
-
-.address {
-  align-items: center;
-  display: flex;
 }
 
 .primaryAddress {
@@ -20,9 +20,14 @@
   margin-top: 5px;
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  font-style: italic;
-  margin: 5px auto;
+.primaryAddress div {
+  margin-bottom: -5px;
+  margin-top: -5px;
+}
+
+.loader {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-left: 10px;
 }

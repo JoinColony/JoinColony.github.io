@@ -1,4 +1,5 @@
 /* @flow */
+
 import { graphql } from 'gatsby';
 
 export const allProjectNamesFragment = graphql`

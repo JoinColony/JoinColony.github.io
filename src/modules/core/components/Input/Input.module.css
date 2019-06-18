@@ -4,6 +4,7 @@
   color: #323232;
   font-size: 16px;
   font-family: 'Avenir Next Light';
+  margin-right: 20px;
   transition: 0.2s;
 }
 
@@ -20,12 +21,6 @@
   background-color: #F0F5F7;
   border: 1px solid #F0F5F7;
   color: #788CA0;
-}
-
-/* Align */
-
-.alignCenter {
-  text-align: center;
 }
 
 /* Display */
@@ -49,12 +44,12 @@
   padding: 10px 25px;
 }
 
-/* Width */
+/* Size */
 
-.widthLarge {
+.sizeLarge {
   width: 340px;
 }
 
-.widthStretch {
+.sizeStretch {
   width: 100%;
 }

@@ -1,8 +1,11 @@
 /* @flow */
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import type { Network } from '~types';
+
+import ErrorMessage from '~core/ErrorMessage';
 import IssueTableRow from '~parts/IssueTableRow';
 
 import Button from '~core/Button';
@@ -92,26 +95,22 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  network: Network,
+  path: string,
+|};
+
 const displayName = 'pages.Contribute.Landing';
 
-const Landing = () => {
+const Landing = ({ network }: Props) => {
   const [issues, setIssues] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
+  const [loadedRemote, setLoadedRemote] = useState(false);
   const [loading, setLoading] = useState(false);
-  const errorTimeout = useRef(null);
-
-  useEffect(() => {
-    if (!loadedLocal) {
-      const localContributions = getStore('issues');
-      setIssues(localContributions);
-      setLoadedLocal(true);
-    }
-  }, [issues, loadedLocal]);
-
-  useEffect(() => setStore('issues', issues), [issues]);
 
   const getIssues = useCallback(() => {
+    setError(null);
     setLoading(true);
     const options = {
       method: 'POST',
@@ -147,24 +146,29 @@ const Landing = () => {
         // Remove empty nodes
         const nodes = data.search.edges.filter(({ node }) => node !== {});
         setIssues(nodes);
+        setLoadedRemote(true);
         setLoading(false);
       })
-      .catch(({ message }) => {
-        setError({ message });
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
+      .catch(fetchError => {
+        setError(fetchError.message);
       });
   }, []);
+
+  useEffect(() => {
+    if (!loadedLocal) {
+      const localContributions = getStore('issues');
+      setIssues(localContributions);
+      setLoadedLocal(true);
+    }
+  }, [issues, loadedLocal]);
+
+  useEffect(() => setStore('issues', issues), [issues]);
 
   useEffect(() => {
     if (!issues && !loading) {
       getIssues();
     }
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [issues, error, getIssues, loading]);
+  }, [getIssues, issues, loading]);
 
   return (
     <>
@@ -220,10 +224,16 @@ const Landing = () => {
           <tbody>
             {issues &&
               issues.map(issue => (
-                <IssueTableRow key={issue.node.url} issue={issue} />
+                <IssueTableRow
+                  key={issue.node.url}
+                  issue={issue}
+                  loadedRemote={loadedRemote}
+                  network={network}
+                />
               ))}
           </tbody>
         </table>
+        {error && <ErrorMessage error={error} />}
       </div>
       <div className={styles.section}>
         <h1 className={styles.title}>

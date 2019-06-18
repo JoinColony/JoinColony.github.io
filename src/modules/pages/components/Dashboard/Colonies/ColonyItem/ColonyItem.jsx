@@ -6,14 +6,18 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { Colony, Network } from '~types';
+import type { Colony, Network, User } from '~types';
 
 import {
   getStore,
   setStore,
 } from '~layouts/DeveloperPortalLayout/localStorage';
 
+import Button from '~core/Button';
 import Copy from '~core/Copy';
+import ErrorMessage from '~core/ErrorMessage';
+import Link from '~core/Link';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import styles from './ColonyItem.module.css';
 
@@ -22,21 +26,33 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyAddress',
     defaultMessage: 'Colony Address',
   },
-  colonyRootRole: {
-    id: 'pages.Dashboard.Colonies.ColonyItem.colonyRootRole',
-    defaultMessage: 'Root Role',
+  colonyLabel: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.colonyLabel',
+    defaultMessage: 'ENS Label',
   },
   colonyTokenAddress: {
     id: 'pages.Dashboard.Colonies.ColonyItem.colonyTokenAddress',
     defaultMessage: 'Colony Token Address',
   },
-  loading: {
-    id: 'pages.Dashboard.Colonies.ColonyItem.loading',
-    defaultMessage: 'loading...',
+  linkColonyLabel: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.linkColonyLabel',
+    defaultMessage: 'Register',
   },
   network: {
     id: 'pages.Dashboard.Colonies.ColonyItem.network',
     defaultMessage: 'Network',
+  },
+  removeColony: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.removeColony',
+    defaultMessage: 'Remove',
+  },
+  removeColonyCancel: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.removeColonyCancel',
+    defaultMessage: 'Cancel',
+  },
+  removeColonyConfirm: {
+    id: 'pages.Dashboard.Colonies.ColonyItem.removeColonyConfirm',
+    defaultMessage: 'Are you sure you want to remove this colony?',
   },
 });
 
@@ -44,19 +60,29 @@ type Props = {|
   colonyAddress: string,
   network: Network,
   networkClient: ?ColonyNetworkClient,
+  setUser: (user: User) => void,
+  user: User,
   wallet: WalletObjectType,
 |};
 
 const displayName = 'pages.Dashboard.Colonies.ColonyItem';
 
+const server = process.env.SERVER_URL || 'http://localhost:8080';
+
 const ColonyItem = ({
   colonyAddress,
   network,
   networkClient,
+  setUser,
+  user,
   wallet,
 }: Props) => {
+  const [actions, setActions] = useState<boolean>(false);
   const [colony, setColony] = useState<?Colony>(null);
-  const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
+  const [error, setError] = useState<?string>(null);
+  const [loadedLocal, setLoadedLocal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [removeColony, setRemoveColony] = useState<boolean>(false);
 
   useEffect(() => {
     if (!loadedLocal) {
@@ -71,69 +97,154 @@ const ColonyItem = ({
   useEffect(() => {
     if (networkClient) {
       (async () => {
+        const {
+          domain: colonyLabel,
+        } = await networkClient.lookupRegisteredENSDomain.call({
+          ensAddress: colonyAddress,
+        });
         const colonyClient = await networkClient.getColonyClientByAddress(
           colonyAddress,
         );
         const {
           address: tokenAddress,
         } = await colonyClient.getTokenAddress.call();
-        const { hasRole: rootRole } = await colonyClient.hasColonyRole.call({
-          address: wallet.address,
-          domainId: 1,
-          role: 'ROOT',
-        });
         setColony({
           colonyAddress,
+          colonyLabel,
           tokenAddress,
-          rootRole,
         });
       })();
     }
   }, [colonyAddress, networkClient, wallet.address]);
 
+  const handleCancelRemove = async () => {
+    setError(null);
+    setRemoveColony(false);
+  };
+
+  const handleRemoveColony = async () => {
+    setError(null);
+    setLoading(true);
+    const options = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: colonyAddress, network: network.slug }),
+    };
+    // eslint-disable-next-line no-undef
+    fetch(`${server}/api/user/colonies?sessionID=${user.session.id}`, options)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          setError(data.error);
+          setLoading(false);
+        } else {
+          setRemoveColony(false);
+          setLoading(false);
+          setUser({ ...user, colonies: data.colonies });
+        }
+      })
+      .catch(fetchError => {
+        setError(fetchError.message);
+        setLoading(false);
+      });
+  };
+
   return (
-    <div className={styles.colony}>
+    <div
+      className={error ? styles.colonyError : styles.colony}
+      onMouseEnter={() => setActions(true)}
+      onMouseLeave={() => setActions(false)}
+    >
       {colony ? (
-        <div className={styles.colonyContent}>
-          <div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.colonyAddress} />
+        <>
+          <div className={styles.colonyContent}>
+            <div>
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.colonyAddress} />
+                </div>
+                <div className={styles.value}>
+                  {colony.colonyAddress}
+                  <Copy copyTarget={colony.colonyAddress} />
+                </div>
               </div>
-              <div className={styles.value}>
-                {colony.colonyAddress}
-                <Copy copyTarget={colony.colonyAddress} />
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.colonyTokenAddress} />
+                </div>
+                <div className={styles.value}>
+                  {colony.tokenAddress}
+                  <Copy copyTarget={colony.tokenAddress} />
+                </div>
               </div>
             </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.colonyTokenAddress} />
+            <div>
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.colonyLabel} />
+                </div>
+                <div className={styles.value}>
+                  {colony.colonyLabel ? (
+                    colony.colonyLabel.split('.')[0]
+                  ) : (
+                    <Link
+                      arrow="right"
+                      href="/colonyjs/colony-ens-labels"
+                      text={MSG.linkColonyLabel}
+                    />
+                  )}
+                </div>
               </div>
-              <div className={styles.value}>
-                {colony.tokenAddress}
-                <Copy copyTarget={colony.tokenAddress} />
+              <div className={styles.field}>
+                <div className={styles.label}>
+                  <FormattedMessage {...MSG.network} />
+                </div>
+                <div className={styles.value}>{network.slug}</div>
               </div>
             </div>
           </div>
-          <div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.network} />
-              </div>
-              <div className={styles.value}>{network.slug}</div>
+          {actions && (
+            <div className={styles.removeColony}>
+              {removeColony ? (
+                <>
+                  {loading ? (
+                    <SpinnerLoader appearance={{ theme: 'primary' }} />
+                  ) : (
+                    <>
+                      <span>
+                        <FormattedMessage {...MSG.removeColonyConfirm} />
+                      </span>
+                      <Button
+                        appearance={{ theme: 'reset' }}
+                        onClick={handleRemoveColony}
+                        text={MSG.removeColony}
+                        type="submit"
+                      />
+                      <Button
+                        appearance={{ theme: 'reset' }}
+                        onClick={handleCancelRemove}
+                        text={MSG.removeColonyCancel}
+                        type="submit"
+                      />
+                    </>
+                  )}
+                </>
+              ) : (
+                <Button
+                  appearance={{ theme: 'reset' }}
+                  onClick={() => setRemoveColony(true)}
+                  text={MSG.removeColony}
+                  type="submit"
+                />
+              )}
+              {error && <ErrorMessage error={error} />}
             </div>
-            <div className={styles.field}>
-              <div className={styles.label}>
-                <FormattedMessage {...MSG.colonyRootRole} />
-              </div>
-              <div className={styles.value}>{colony.rootRole.toString()}</div>
-            </div>
-          </div>
-        </div>
+          )}
+        </>
       ) : (
-        <p>
-          <FormattedMessage {...MSG.loading} />
-        </p>
+        <div className={styles.loader}>
+          <SpinnerLoader appearance={{ theme: 'primary' }} />
+        </div>
       )}
     </div>
   );

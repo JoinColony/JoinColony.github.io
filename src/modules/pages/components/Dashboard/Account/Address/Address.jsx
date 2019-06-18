@@ -2,7 +2,7 @@
 
 import type { WalletObjectType } from '@colony/purser-core';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 // import Blockies from 'react-blockies';
 
@@ -10,13 +10,20 @@ import type { User } from '~types';
 
 import Button from '~core/Button';
 import Copy from '~core/Copy';
+import ErrorMessage from '~core/ErrorMessage';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import styles from './Address.module.css';
 
 const MSG = defineMessages({
   primaryAddress: {
     id: 'pages.Dashboard.Account.Address.primaryAddress',
-    defaultMessage: `This is not your primary address. {updateAddress}.`,
+    defaultMessage: `Primary Address: {primaryAddress}`,
+  },
+  primaryAddressWarning: {
+    id: 'pages.Dashboard.Account.Address.primaryAddressWarning',
+    defaultMessage: `The above address is not your primary address.
+    {updateAddress}.`,
   },
   updateAddress: {
     id: 'pages.Dashboard.Account.Address.updateAddress',
@@ -36,40 +43,33 @@ const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Address = ({ setUser, user, wallet }: Props) => {
   const [error, setError] = useState(null);
-  const errorTimeout = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const handleUpdateAddress = () => {
+    setError(null);
+    setLoading(true);
     const options = {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ address: wallet.address }),
     };
     // eslint-disable-next-line no-undef
-    fetch(`${server}/api/address?sessionID=${user.session.id}`, options)
+    fetch(`${server}/api/user/address?sessionID=${user.session.id}`, options)
       .then(res => res.json())
       .then(data => {
         if (data.error) {
           setError(data.error);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
+          setLoading(false);
         } else {
           setUser({ ...user, addresses: data.addresses });
+          setLoading(false);
         }
       })
       .catch(fetchError => {
         setError(fetchError.message);
-        errorTimeout.current = setTimeout(() => {
-          setError(null);
-        }, 2000);
+        setLoading(false);
       });
   };
-
-  useEffect(() => {
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [error]);
 
   return (
     <div className={styles.main}>
@@ -84,24 +84,37 @@ const Address = ({ setUser, user, wallet }: Props) => {
         {wallet.address}
         <Copy copyTarget={wallet.address} />
       </div>
-      {!error && user.addresses[0] !== wallet.address && (
+      {user.addresses[0] !== wallet.address && (
         <div className={styles.primaryAddress}>
-          <FormattedMessage
-            values={{
-              updateAddress: (
-                <Button
-                  appearance={{ theme: 'reset' }}
-                  onClick={handleUpdateAddress}
-                  style={{ color: '#289BDC' }}
-                  text={MSG.updateAddress}
-                />
-              ),
-            }}
-            {...MSG.primaryAddress}
-          />
+          <div>
+            <FormattedMessage
+              values={{
+                updateAddress: (
+                  <Button
+                    appearance={{ theme: 'reset' }}
+                    onClick={handleUpdateAddress}
+                    style={{ color: '#289BDC' }}
+                    text={MSG.updateAddress}
+                  />
+                ),
+              }}
+              {...MSG.primaryAddressWarning}
+            />
+            {loading && (
+              <div className={styles.loader}>
+                <SpinnerLoader appearance={{ theme: 'primary' }} />
+              </div>
+            )}
+          </div>
+          <div>
+            <FormattedMessage
+              values={{ primaryAddress: user.addresses[0] }}
+              {...MSG.primaryAddress}
+            />
+          </div>
         </div>
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

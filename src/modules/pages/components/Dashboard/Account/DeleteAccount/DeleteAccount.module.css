@@ -1,0 +1,18 @@
+.main {
+  display: inline-block;
+}
+
+.main button {
+  margin-right: 20px !important;
+}
+
+.confirmDelete {
+  margin-right: 20px;
+}
+
+.loader {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-right: 10px;
+}

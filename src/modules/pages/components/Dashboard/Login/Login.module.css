@@ -15,11 +15,19 @@
 }
 
 .error {
-  background: red;
-  color: white;
-  font-size: 14px;
+  align-items: center;
+  color: #FFBBDC;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
   padding: 10px;
   text-align: center;
+}
+
+.errorDot {
+  border-radius: 50%;
+  border: 5px solid #F5416E;
+  margin-right: 10px;
 }
 
 .text {
@@ -32,10 +40,4 @@
 
 .field {
   margin: 20px 0;
-}
-
-.subtext {
-  font-size: 14px;
-  margin: 20px auto;
-  padding: 0;
 }

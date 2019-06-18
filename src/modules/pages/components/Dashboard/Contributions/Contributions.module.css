@@ -10,9 +10,9 @@
 }
 
 .subTitle {
-  margin: 0;
+  margin-bottom: 20px;
   margin-top: 20px;
-  max-width: 800px;
+  max-width: 640px;
 }
 
 .content {
@@ -38,4 +38,27 @@
 .issues tbody td {
   background: #F0F5F7;
   padding: 10px;
+}
+
+.noContributions {
+  color: #2E4153;
+  display: block;
+  padding: 5%;
+}
+
+.noContributionsWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.noContributionsWrapper div {
+  font-size: 16px;
+  max-width: 400px;
+}
+
+.noContributionsImage {
+  margin: 40px auto;
+  width: 260px;
 }

@@ -1,4 +1,5 @@
 /* @flow */
+
 import camelcase from 'camelcase';
 
 import { capitalize } from '~utils/strings';

@@ -15,15 +15,15 @@ const MSG = defineMessages({
   },
   metamaskText: {
     id: 'pages.Dashboard.metamaskText',
-    defaultMessage: 'Please unlock MetaMask to login.',
+    defaultMessage: 'Please unlock MetaMask to log in.',
   },
   metamaskSubText: {
     id: 'pages.Dashboard.metamaskSubText',
-    defaultMessage: `Don't have MetaMask? Click {here} to get the extension.`,
+    defaultMessage: `Don't have MetaMask? {getMetaMask}.`,
   },
-  metamaskHere: {
-    id: 'pages.Dashboard.metamaskHere',
-    defaultMessage: 'here',
+  getMetaMask: {
+    id: 'pages.Dashboard.getMetaMask',
+    defaultMessage: 'Get the extension now',
   },
 });
 
@@ -43,11 +43,11 @@ const MetaMask = () => (
       <p className={styles.subtext}>
         <FormattedMessage
           values={{
-            here: (
+            getMetaMask: (
               <Link
                 className={styles.link}
                 href="https://metamask.io/"
-                text={MSG.metamaskHere}
+                text={MSG.getMetaMask}
               />
             ),
           }}

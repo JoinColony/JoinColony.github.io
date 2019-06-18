@@ -2,11 +2,12 @@
 
 import type { ColonyNetworkClient } from '@colony/colony-js-client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { isAddress } from 'web3-utils';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 
 import type { Network, User } from '~types';
@@ -45,62 +46,67 @@ const AddColony = ({
 }: Props) => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
-  const errorTimeout = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChangeAddress = event => {
-    if (error) setError(null);
+    setError(null);
     setAddress(event.currentTarget.value);
   };
 
   const handleAddColony = async () => {
-    if (
-      networkClient &&
-      isAddress(address) &&
-      (await networkClient.isColony.call({ colony: address }))
-    ) {
-      const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address, network: network.slug }),
-      };
-      // eslint-disable-next-line no-undef
-      fetch(`${server}/api/colonies?sessionID=${user.session.id}`, options)
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            setError(data.error);
-            errorTimeout.current = setTimeout(() => {
-              setError(null);
-            }, 2000);
-          } else {
-            setUser({ ...user, colonies: data.colonies });
-            setAddColony(false);
-          }
-        })
-        .catch(fetchError => {
-          setError(fetchError.message);
-          errorTimeout.current = setTimeout(() => {
-            setError(null);
-          }, 2000);
+    if (networkClient) {
+      if (isAddress(address)) {
+        setError(null);
+        setLoading(true);
+        const { isColony } = await networkClient.isColony.call({
+          colony: address,
         });
+        if (!isColony) {
+          setError(`No colony on ${network.name} with the given address`);
+          setLoading(false);
+          return;
+        }
+        const options = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ address, network: network.slug }),
+        };
+        // eslint-disable-next-line no-undef
+        fetch(
+          `${server}/api/user/colonies?sessionID=${user.session.id}`,
+          options,
+        )
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              setError(data.error);
+              setLoading(false);
+            } else {
+              setUser({ ...user, colonies: data.colonies });
+              setAddColony(false);
+              setLoading(false);
+            }
+          })
+          .catch(fetchError => {
+            setError(fetchError.message);
+            setLoading(false);
+          });
+      } else {
+        setError('The address you provided is not a valid address');
+      }
     } else {
-      setError('The address you provided is not a valid colony address');
+      setError('Unable to initialize ColonyNetworkClient');
     }
   };
-
-  useEffect(() => {
-    return () => {
-      if (error) clearTimeout(errorTimeout.current);
-    };
-  }, [error]);
 
   return (
     <div className={styles.field}>
       <Input
         appearance={{
           padding: 'huge',
-          width: 'stretch',
+          size: 'stretch',
         }}
+        error={error}
         id="address"
         label={MSG.labelAddress}
         onChange={handleChangeAddress}
@@ -111,12 +117,15 @@ const AddColony = ({
         appearance={{
           padding: 'large',
           theme: 'primary',
+          size: 'large',
         }}
+        disabled={!address}
+        loading={loading}
         onClick={handleAddColony}
         text={MSG.submitAddress}
         type="submit"
       />
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { Node } from 'react';
 import type { IntlShape, MessageDescriptor } from 'react-intl';
 
@@ -6,19 +7,20 @@ import React from 'react';
 import { injectIntl } from 'react-intl';
 
 import Link from '~core/Link';
+import SpinnerLoader from '~core/SpinnerLoader';
 import { getMainClasses } from '~utils/css';
 
 import styles from './Button.module.css';
 
-type Appearance = {
+type Appearance = {|
   theme?: 'primary' | 'primaryHollow' | 'callToAction' | 'reset',
-  color?: 'blue' | 'grey' | 'white',
+  color?: 'blue' | 'grey' | 'red' | 'white',
   font?: 'small',
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
+  size?: 'medium' | 'large' | 'stretch',
   weight?: 'bold' | 'medium',
-  width?: 'fixed' | 'stretch',
-};
+|};
 
 type Props = {
   /** Appearance object */
@@ -27,8 +29,12 @@ type Props = {
   children?: Node,
   /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
   className?: string,
+  /** We need to declare "disabled" in order to combine with loading. */
+  disabled?: any,
   /** Injected by `injectIntl` */
   intl: IntlShape,
+  /** Disable button and use loading spinner if loading */
+  loading?: boolean,
   /** Use a link instead of a button. Like `@reach/router`'s `to` property */
   linkTo?: string,
   /** A string or a `messageDescriptor` that make up the button's text label */
@@ -49,7 +55,9 @@ const Button = ({
   appearance = { theme: 'primary' },
   children,
   className,
+  disabled,
   intl: { formatMessage },
+  loading,
   linkTo,
   text,
   textValues,
@@ -82,8 +90,14 @@ const Button = ({
 
   return (
     // eslint-disable-next-line react/button-has-type
-    <button className={classNames} title={titleText} type={type} {...rest}>
-      {buttonContent}
+    <button
+      className={classNames}
+      disabled={disabled || loading}
+      title={titleText}
+      type={type}
+      {...rest}
+    >
+      {loading ? <SpinnerLoader /> : buttonContent}
     </button>
   );
 };

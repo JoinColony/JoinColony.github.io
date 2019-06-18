@@ -31,6 +31,12 @@
   color: #00284B;
 }
 
+.themePrimary:disabled {
+  background-color: #788CA0;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
 .themePrimaryHollow {
   composes: primaryBase;
   background-color: transparent;
@@ -75,14 +81,22 @@
 /* Color */
 
 .colorBlue {
+  /* `important` to override `a` in the case of a link-button */
   color: #289BDC !important;
 }
 
 .colorGrey {
+  /* `important` to override `a` in the case of a link-button */
   color: #788CA0 !important;
 }
 
+.colorRed {
+  /* `important` to override `a` in the case of a link-button */
+  color: #F5416E !important;
+}
+
 .colorWhite {
+  /* `important` to override `a` in the case of a link-button */
   color: #ffffff !important;
 }
 
@@ -114,6 +128,22 @@
   padding: 10px 25px;
 }
 
+/* Size */
+
+.sizeMedium {
+  height: 40px;
+  width: 130px;
+}
+
+.sizeLarge {
+  height: 40px;
+  width: 160px;
+}
+
+.sizeStretch {
+  width: 100%;
+}
+
 /* Weight */
 
 .weightBold {
@@ -122,14 +152,4 @@
 
 .weightMedium {
   font-family: 'Avenir Next Medium';
-}
-
-/* Width */
-
-.widthFixed {
-  width: 130px;
-}
-
-.widthStretch {
-  width: 100%;
 }

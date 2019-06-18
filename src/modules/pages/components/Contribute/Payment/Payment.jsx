@@ -6,6 +6,9 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import type { Contribution, Network } from '~types';
+
+import ErrorMessage from '~core/ErrorMessage';
 import FormattedToken from '~core/FormattedToken';
 import Link from '~core/Link';
 
@@ -61,14 +64,15 @@ type Payment = {|
 
 type Props = {|
   colonyClient: ColonyClient,
+  network: Network,
   path: string,
   wallet: WalletObjectType,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const PaymentPage = ({ colonyClient, wallet }: Props) => {
-  const [contribution, setContribution] = useState(null);
+const PaymentPage = ({ colonyClient, network, wallet }: Props) => {
+  const [contribution, setContribution] = useState<?Contribution>(null);
   const [error, setError] = useState(null);
   const [loadedContribution, setLoadedContribution] = useState(false);
   const [loadedLocal, setLoadedLocal] = useState(false);
@@ -111,7 +115,10 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
         };
         // eslint-disable-next-line no-undef
         fetch(
-          `${server}/api/contribution?type=payment&typeId=${paymentId}`,
+          // eslint-disable-next-line max-len
+          `${server}/api/contribution?type=payment&typeId=${paymentId}&networkId=${
+            network ? network.id : 1
+          }`,
           options,
         )
           .then(res => res.json())
@@ -124,7 +131,7 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
         setLoadedContribution(true);
       })();
     }
-  }, [loadedContribution, paymentId]);
+  }, [loadedContribution, network, paymentId]);
 
   useEffect(() => {
     if (!loadedPayment && colonyClient && paymentId) {
@@ -219,7 +226,7 @@ const PaymentPage = ({ colonyClient, wallet }: Props) => {
           </div>
         </>
       )}
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

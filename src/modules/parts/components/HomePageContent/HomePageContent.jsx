@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { IntlShape } from 'react-intl';
 
 import React, { Fragment } from 'react';

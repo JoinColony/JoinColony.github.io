@@ -34,7 +34,10 @@ export type Session = {|
 
 export type User = {|
   addresses: Array<string>,
-  admin: boolean,
+  admin: ?{
+    goerli: boolean,
+    mainnet: boolean,
+  },
   colonies: ?{
     goerli: ?Array<string>,
     mainnet: ?Array<string>,
@@ -55,8 +58,8 @@ export type Network = {|
 
 export type Colony = {|
   colonyAddress: string,
+  colonyLabel: string,
   tokenAddress: string,
-  rootRole: boolean,
 |};
 
 export type Issue = {|

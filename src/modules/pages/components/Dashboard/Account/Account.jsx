@@ -1,5 +1,6 @@
 /* @flow */
 
+import type { ColonyClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
 import React from 'react';
@@ -9,11 +10,14 @@ import Button from '~core/Button';
 import Image from '~core/Image';
 import Input from '~core/Input';
 
-import type { Provider, User } from '~types';
+import type { Network, Provider, User } from '~types';
 
 import Address from './Address';
+import DeleteAccount from './DeleteAccount';
+import Discourse from './Discourse';
 import Email from './Email';
 import Name from './Name';
+import Statistics from './Statistics';
 
 import styles from './Account.module.css';
 
@@ -31,24 +35,19 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Account.connectedAccountsGitHubLabel',
     defaultMessage: 'GitHub',
   },
-  connectedAccountsDiscourseLabel: {
-    id: 'pages.Dashboard.Account.connectedAccountsDiscourseLabel',
-    defaultMessage: 'Discourse',
-  },
-  connectedAccountsConnect: {
-    id: 'pages.Dashboard.Account.connectedAccountsConnect',
-    defaultMessage: 'Connect',
-  },
-  connectedAccountsRemove: {
-    id: 'pages.Dashboard.Account.connectedAccountsRemove',
-    defaultMessage: 'Remove',
+  logout: {
+    id: 'pages.Dashboard.Account.logout',
+    defaultMessage: 'Logout',
   },
 });
 
 type Props = {|
   authenticate: (provider: Provider) => void,
+  colonyClient: ?ColonyClient,
   disconnect: (provider: Provider) => void,
+  network: Network,
   path: string,
+  serverError: ?string,
   setUser: (user: User) => void,
   user: User,
   wallet: WalletObjectType,
@@ -58,7 +57,10 @@ const displayName = 'pages.Dashboard.Account';
 
 const Account = ({
   authenticate,
+  colonyClient,
   disconnect,
+  network,
+  serverError,
   setUser,
   user,
   wallet,
@@ -74,16 +76,11 @@ const Account = ({
         <div>
           <Name setUser={setUser} user={user} />
           <Address setUser={setUser} user={user} wallet={wallet} />
-          <div className={styles.statistics}>
-            <div className={styles.statistic}>
-              <span className={styles.statisticValue}>0</span>
-              <span className={styles.statisticLabel}>CLNY</span>
-            </div>
-            <div className={styles.statistic}>
-              <span className={styles.statisticValue}>0</span>
-              <span className={styles.statisticLabel}>Reputation</span>
-            </div>
-          </div>
+          <Statistics
+            colonyClient={colonyClient}
+            network={network}
+            wallet={wallet}
+          />
         </div>
       </div>
       <div className={styles.content}>
@@ -101,61 +98,37 @@ const Account = ({
               disabled
               appearance={{
                 padding: 'huge',
-                width: 'large',
+                size: 'large',
               }}
               id="github"
               label={MSG.connectedAccountsGitHubLabel}
               type="text"
               value={`@${user.github.username}`}
             />
-            <Button
-              appearance={{
-                theme: 'reset',
-                font: 'small',
-                color: 'blue',
-                weight: 'medium',
-              }}
-              onClick={() => disconnect('github')}
-              text={MSG.connectedAccountsRemove}
-              type="submit"
-            />
           </div>
+          <Discourse
+            authenticate={authenticate}
+            disconnect={disconnect}
+            serverError={serverError}
+            user={user}
+          />
           <Email setUser={setUser} user={user} />
-          <div className={styles.field}>
-            <Input
-              disabled
-              appearance={{
-                display: user.discourse ? undefined : 'none',
-                padding: 'huge',
-                width: 'large',
-              }}
-              id="discourse"
-              label={MSG.connectedAccountsDiscourseLabel}
-              type="text"
-              value={user.discourse ? `@${user.discourse.username}` : ''}
-            />
-            {user.discourse ? (
-              <Button
-                appearance={{
-                  theme: 'reset',
-                  font: 'small',
-                  color: 'blue',
-                  weight: 'medium',
-                }}
-                onClick={() => disconnect('discourse')}
-                text={MSG.connectedAccountsRemove}
-                type="submit"
-              />
-            ) : (
-              <Button
-                appearance={{ theme: 'primary', padding: 'large' }}
-                onClick={() => authenticate('discourse')}
-                style={{ margin: '12px auto' }}
-                text={MSG.connectedAccountsConnect}
-                type="submit"
-              />
-            )}
-          </div>
+        </div>
+      </div>
+      <div className={styles.content}>
+        <div className={styles.accountButtons}>
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: 'blue',
+              weight: 'medium',
+            }}
+            onClick={() => disconnect('github')}
+            text={MSG.logout}
+            type="submit"
+          />
+          <DeleteAccount disconnect={disconnect} user={user} />
         </div>
       </div>
     </div>

@@ -6,7 +6,10 @@ import React, { useCallback, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
+import type { Network } from '~types';
+
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 import Link from '~core/Link';
 
@@ -51,11 +54,12 @@ const displayName = 'pages.Contribute.AddPayment';
 
 type Props = {|
   colonyClient: ?ColonyClient,
+  network: Network,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddPayment = ({ colonyClient }: Props) => {
+const AddPayment = ({ colonyClient, network }: Props) => {
   const [amount, setAmount] = useState(0);
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
@@ -91,6 +95,8 @@ const AddPayment = ({ colonyClient }: Props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           issue,
+          network: network.slug,
+          networkId: network.id,
           payout: amount,
           pullRequest,
           type: 'payment',
@@ -170,7 +176,7 @@ const AddPayment = ({ colonyClient }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="skillId"
           label={MSG.labelSkillId}
@@ -183,7 +189,7 @@ const AddPayment = ({ colonyClient }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="amount"
           label={MSG.labelAmount}
@@ -196,7 +202,7 @@ const AddPayment = ({ colonyClient }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="issue"
           label={MSG.labelIssue}
@@ -209,7 +215,7 @@ const AddPayment = ({ colonyClient }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="pullRequest"
           label={MSG.labelPullRequest}
@@ -222,7 +228,7 @@ const AddPayment = ({ colonyClient }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="username"
           label={MSG.labelUsername}
@@ -235,7 +241,7 @@ const AddPayment = ({ colonyClient }: Props) => {
         <Input
           appearance={{
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="recipient"
           label={MSG.labelRecipient}
@@ -249,7 +255,7 @@ const AddPayment = ({ colonyClient }: Props) => {
           appearance={{
             theme: 'primary',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           disabled={
             !amount ||
@@ -271,7 +277,7 @@ const AddPayment = ({ colonyClient }: Props) => {
           />
         </div>
       )}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

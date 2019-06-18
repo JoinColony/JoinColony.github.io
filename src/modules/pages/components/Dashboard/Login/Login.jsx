@@ -6,6 +6,7 @@ import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
 
 import type { Provider } from '~types';
@@ -50,9 +51,8 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
         <Input
           disabled
           appearance={{
-            align: 'center',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           id="address"
           label={MSG.connectGitHubInputLabel}
@@ -66,16 +66,15 @@ const Login = ({ authenticate, serverError, wallet }: Props) => (
             theme: 'primary',
             color: 'white',
             padding: 'huge',
-            width: 'stretch',
+            size: 'stretch',
           }}
           onClick={() => authenticate('github')}
           text={MSG.connectGitHubButton}
         />
       </div>
-      <p className={styles.subtext}>
-        <FormattedMessage {...MSG.connectGitHubGitHubMessage} />
-      </p>
-      {serverError && <div className={styles.error}>{serverError}</div>}
+      {serverError && (
+        <ErrorMessage appearance={{ color: 'pink' }} error={serverError} />
+      )}
     </div>
   </div>
 );

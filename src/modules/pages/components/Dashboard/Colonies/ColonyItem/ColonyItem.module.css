@@ -1,7 +1,24 @@
 .colony {
   background: #F0F5F7;
+  height: 200px;
   margin: 20px 0;
+  margin-bottom: 70px;
   padding: 20px;
+  transition: 0.2s;
+}
+
+.colony:hover {
+  margin-bottom: 50px;
+  height: 220px;
+}
+
+.colonyError {
+  composes: colony;
+}
+
+.colonyError:hover {
+  margin-bottom: 20px;
+  height: 250px;
 }
 
 .colonyContent {
@@ -21,4 +38,30 @@
   font-family: 'IBM Plex Mono', monospace;
   font-weight: bold;
   font-size: 14px;
+}
+
+.removeColony {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.removeColony button:first-child,
+.removeColony button:nth-child(2) {
+  color: #F5416E;
+}
+
+.removeColony button:nth-child(3) {
+  color: #788CA0;
+}
+
+.removeColony button:nth-child(2),
+.removeColony button:nth-child(3) {
+  margin-left: 10px;
+}
+
+.loader {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }

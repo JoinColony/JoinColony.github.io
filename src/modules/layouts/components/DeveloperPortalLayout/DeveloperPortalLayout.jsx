@@ -10,8 +10,9 @@ import type { Project } from '~types';
 
 import { transformProjectData } from '~utils/docs';
 
-import useColonyNetwork from './useColonyNetwork';
+import useColonyClient from './useColonyClient';
 import useMetaMask from './useMetaMask';
+import useNetworkClient from './useNetworkClient';
 import usePortalServer from './usePortalServer';
 
 import Header from './Header';
@@ -48,6 +49,12 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ) || [],
     [locale, projectQueryData.openSourceProjects.edges],
   );
+  const pathContribute: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname.split('/')[1] === 'contribute';
+    }
+    return false;
+  }, []);
   const pathContribution: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
       return (
@@ -70,6 +77,8 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     return false;
   }, [pathContribution, pathDashboard]);
   const { network, wallet } = useMetaMask(walletRequired);
+  const { networkClient } = useNetworkClient(network, wallet);
+  const { colonyClient } = useColonyClient(network, networkClient);
   const {
     authenticate,
     disconnect,
@@ -77,10 +86,6 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     setUser,
     user,
   } = usePortalServer(wallet);
-  const { colonyClient, colonyError, networkClient } = useColonyNetwork(
-    network,
-    wallet,
-  );
   return (
     <div>
       <Header
@@ -95,11 +100,10 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         <MetaMask />
       ) : (
         <div>
-          {pathContribution || pathDashboard
+          {pathContribute || pathDashboard
             ? cloneElement(children, {
                 authenticate,
                 colonyClient,
-                colonyError,
                 disconnect,
                 network,
                 networkClient,
