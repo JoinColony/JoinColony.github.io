@@ -13,6 +13,8 @@ import type { Network } from '~types';
 
 import SEO from '~parts/SEO';
 
+import { PAGE_DEVELOPER_PORTAL_CONTRIBUTE } from '~routes';
+
 import Landing from './Landing';
 import Payment from './Payment';
 import Task from './Task';
@@ -59,13 +61,17 @@ const Contribute = ({
       <Helmet title={title} />
       <main className={styles.main}>
         <Router primary={false}>
-          <Landing path="/contribute" network={network} />
+          <Landing path={PAGE_DEVELOPER_PORTAL_CONTRIBUTE} network={network} />
+          {/* TODO Update to modal. No need to use route constant here becuase
+            payment will soon be a modal */}
           <Payment
             path="/contribute/payment"
             colonyClient={colonyClient}
             network={network}
             wallet={wallet}
           />
+          {/* TODO Update to modal. No need to use route constant here becuase
+            payment will soon be a modal */}
           <Task
             path="/contribute/task"
             colonyClient={colonyClient}

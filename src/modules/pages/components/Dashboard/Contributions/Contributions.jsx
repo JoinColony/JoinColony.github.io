@@ -18,6 +18,8 @@ import {
   setStore,
 } from '~layouts/DeveloperPortalLayout/localStorage';
 
+import { PAGE_DEVELOPER_PORTAL_CONTRIBUTE } from '~routes';
+
 import styles from './Contributions.module.css';
 
 const MSG = defineMessages({
@@ -164,7 +166,10 @@ const Contributions = ({ network, user }: Props) => {
               <FormattedMessage
                 values={{
                   noContributionsLink: (
-                    <Link href="/contribute" text={MSG.noContributionsLink} />
+                    <Link
+                      href={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
+                      text={MSG.noContributionsLink}
+                    />
                   ),
                 }}
                 {...MSG.noContributionsMessage}

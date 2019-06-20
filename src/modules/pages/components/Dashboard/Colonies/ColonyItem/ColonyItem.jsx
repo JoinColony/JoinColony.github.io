@@ -19,6 +19,8 @@ import ErrorMessage from '~core/ErrorMessage';
 import Link from '~core/Link';
 import SpinnerLoader from '~core/SpinnerLoader';
 
+import { DOCS_COLONY_JS_REGISTERING_ENS_LABELS } from '~routes';
+
 import styles from './ColonyItem.module.css';
 
 const MSG = defineMessages({
@@ -189,7 +191,7 @@ const ColonyItem = ({
                   ) : (
                     <Link
                       arrow="right"
-                      href="/colonyjs/colony-ens-labels"
+                      href={DOCS_COLONY_JS_REGISTERING_ENS_LABELS}
                       text={MSG.linkColonyLabel}
                     />
                   )}
