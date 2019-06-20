@@ -45,17 +45,16 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
       } = await colonyClient.tokenClient.getBalanceOf.call({
         sourceAddress: wallet.address,
       });
-      // const { localSkillId } = await colonyClient.getDomain.call({
-      //   domainId: 1,
-      // });
-      // const reputation = await colonyClient.getReputation({
-      //   skillId: localSkillId,
-      //   user: wallet.address,
-      // });
+      const { skillId } = await colonyClient.getDomain.call({
+        domainId: 1,
+      });
+      const { reputationAmount } = await colonyClient.getReputation({
+        skillId,
+        address: wallet.address,
+      });
       setStatistics({
         balance: balance.toString(),
-        // reputation,
-        reputation: 0,
+        reputation: reputationAmount || 0,
       });
       setLoaded(true);
       setLoading(false);
