@@ -73,6 +73,10 @@
   outline: none;
 }
 
+.themeReset:disabled {
+  color: #788CA0 !important;
+}
+
 .themeReset:hover {
   text-decoration: none !important;
   cursor: pointer !important;
@@ -102,7 +106,8 @@
 
 /* Font */
 
-.fontSmall {
+.fontSmall,
+.fontSmall:disabled {
   font-size: 16px;
 }
 
@@ -115,41 +120,49 @@
 
 /* Padding */
 
-.paddingSmall {
+.paddingSmall,
+.paddingSmall:disabled {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.paddingLarge {
+.paddingLarge,
+.paddingLarge:disabled {
   padding: 6px 32px;
 }
 
-.paddingHuge {
+.paddingHuge,
+.paddingHuge:disabled {
   padding: 10px 25px;
 }
 
 /* Size */
 
-.sizeMedium {
+.sizeMedium,
+.sizeMedium:disabled {
   height: 40px;
   width: 130px;
 }
 
-.sizeLarge {
+.sizeLarge,
+.sizeLarge:disabled {
   height: 40px;
   width: 160px;
 }
 
-.sizeStretch {
+.sizeStretch,
+.sizeStretch:disabled {
   width: 100%;
 }
 
 /* Weight */
 
-.weightBold {
+.weightBold,
+.weightBold:disabled {
   font-family: 'Avenir Next Demi';
 }
 
-.weightMedium {
+.weightMedium,
+.weightMedium:disabled {
   font-family: 'Avenir Next Medium';
 }

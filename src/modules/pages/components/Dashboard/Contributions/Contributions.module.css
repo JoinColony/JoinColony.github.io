@@ -62,3 +62,8 @@
   margin: 40px auto;
   width: 260px;
 }
+
+.showMore div {
+  display: inline-block;
+  margin: 0 5px;
+}
