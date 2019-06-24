@@ -14,6 +14,12 @@ import Button from '~core/Button';
 import Image from '~core/Image';
 import Link from '~core/Link';
 
+import {
+  DOCS_COLONY_JS_GET_STARTED,
+  DOCS_COLONY_JS_TASKS_AND_PAYMENTS,
+  DOCS_COLONY_JS_TOKENS_AND_FUNDING,
+} from '~routes';
+
 import AddColony from './AddColony';
 import ColonyItem from './ColonyItem';
 
@@ -162,7 +168,7 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
                   values={{
                     linkGetStarted: (
                       <Link
-                        href="/colonyjs/intro-get-started"
+                        href={DOCS_COLONY_JS_GET_STARTED}
                         text={MSG.linkGetStarted}
                       />
                     ),
@@ -260,27 +266,17 @@ const Colonies = ({ network, networkClient, setUser, user, wallet }: Props) => {
         </h4>
         <Link
           arrow="right"
-          href="/colonyjs/intro-get-started"
+          href={DOCS_COLONY_JS_GET_STARTED}
           text={MSG.linkGetStarted}
         />
         <Link
           arrow="right"
-          href="/colonyjs/topics-colony-roles"
-          text={MSG.linkColonyRoles}
-        />
-        <Link
-          arrow="right"
-          href="/colonyjs/topics-tokens-and-funding"
+          href={DOCS_COLONY_JS_TOKENS_AND_FUNDING}
           text={MSG.linkTokensAndFunding}
         />
         <Link
           arrow="right"
-          href="/colonyjs/topics-domains-and-skills"
-          text={MSG.linkDomainsAndSkills}
-        />
-        <Link
-          arrow="right"
-          href="/colonyjs/topics-tasks-and-payments"
+          href={DOCS_COLONY_JS_TASKS_AND_PAYMENTS}
           text={MSG.linkTasksAndPayments}
         />
       </div>

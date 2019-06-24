@@ -7,9 +7,10 @@ import type { Network } from '~types';
 
 import ErrorMessage from '~core/ErrorMessage';
 import IssueTableRow from '~parts/IssueTableRow';
-
 import Button from '~core/Button';
 import Image from '~core/Image';
+
+import { PAGE_DEVELOPER_PORTAL_DASHBOARD } from '~routes';
 
 import {
   getStore,
@@ -186,7 +187,7 @@ const Landing = ({ network }: Props) => {
               padding: 'huge',
               weight: 'medium',
             }}
-            linkTo="/dashboard"
+            linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
             text={MSG.heroButton}
             type="submit"
           />

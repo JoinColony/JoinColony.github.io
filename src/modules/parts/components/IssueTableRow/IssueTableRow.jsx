@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { Issue, Network } from '~types';
@@ -49,6 +49,29 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
     return `${repository}#${issueNumber}`;
   };
 
+  const getContribution = useCallback(async () => {
+    const options = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    // eslint-disable-next-line no-undef
+    fetch(
+      `${server}/api/contribution?networkId=${network ? network.id : 1}&issue=${
+        issue.node.url
+      }`,
+      options,
+    )
+      .then(res => res.json())
+      .then(data => {
+        setContribution(data.contribution || { notSet: true });
+        setLoading(false);
+      })
+      .catch(fetchError => {
+        setError(fetchError);
+        setLoading(false);
+      });
+  }, [issue, network]);
+
   useEffect(() => {
     if (!loadedLocal) {
       const localContribution = getStore(issue.node.url);
@@ -62,31 +85,10 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
   }, [contribution, issue]);
 
   useEffect(() => {
-    (async () => {
-      if (loadedRemote) {
-        const options = {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        };
-        // eslint-disable-next-line no-undef
-        fetch(
-          `${server}/api/contribution?networkId=${
-            network ? network.id : 1
-          }&issue=${issue.node.url}`,
-          options,
-        )
-          .then(res => res.json())
-          .then(data => {
-            setContribution(data.contribution);
-            setLoading(false);
-          })
-          .catch(fetchError => {
-            setError(fetchError);
-            setLoading(false);
-          });
-      }
-    })();
-  }, [issue, loadedRemote, network]);
+    if (loadedRemote) {
+      getContribution();
+    }
+  }, [getContribution, loadedRemote]);
 
   return (
     <tr>
@@ -102,7 +104,10 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
         <Link href={issue.node.url} text={formatIssueLink(issue.node.url)} />
       </td>
       <td>
-        {contribution && (
+        {contribution && contribution.notSet && (
+          <FormattedMessage {...MSG.notSet} />
+        )}
+        {contribution && !contribution.notSet && (
           <Link
             href={`/contribute/${contribution.type}?id=${contribution.typeId}`}
           >
@@ -111,9 +116,6 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
         )}
         {!contribution && loading && (
           <SpinnerLoader appearance={{ theme: 'primary' }} />
-        )}
-        {!contribution && !loading && !error && (
-          <FormattedMessage {...MSG.notSet} />
         )}
         {!contribution && error && (
           <span className={styles.error}>

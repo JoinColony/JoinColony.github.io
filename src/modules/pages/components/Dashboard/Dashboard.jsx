@@ -14,6 +14,14 @@ import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 
+import {
+  PAGE_DEVELOPER_PORTAL_DASHBOARD,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS,
+} from '~routes';
+
 import type { Network, Provider, User } from '~types';
 
 import Login from './Login';
@@ -105,13 +113,17 @@ const Dashboard = ({
             <div className={styles.content}>
               <Router primary={false}>
                 <Admin
-                  path="/dashboard/admin"
+                  path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
                   colonyClient={colonyClient}
                   network={network}
                   user={user}
                 />
                 <Account
-                  path={page ? '/dashboard/account' : '/dashboard'}
+                  path={
+                    page
+                      ? PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT
+                      : PAGE_DEVELOPER_PORTAL_DASHBOARD
+                  }
                   authenticate={authenticate}
                   colonyClient={colonyClient}
                   disconnect={disconnect}
@@ -122,7 +134,7 @@ const Dashboard = ({
                   wallet={wallet}
                 />
                 <Colonies
-                  path="/dashboard/colonies"
+                  path={PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES}
                   network={network}
                   networkClient={networkClient}
                   setUser={setUser}
@@ -130,7 +142,7 @@ const Dashboard = ({
                   wallet={wallet}
                 />
                 <Contributions
-                  path="/dashboard/contributions"
+                  path={PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS}
                   network={network}
                   user={user}
                   wallet={wallet}

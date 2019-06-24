@@ -13,6 +13,11 @@ import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
 import ErrorMessage from '~core/ErrorMessage';
 import FormattedToken from '~core/FormattedToken';
 
+import {
+  getStore,
+  setStore,
+} from '~layouts/DeveloperPortalLayout/localStorage';
+
 import styles from './Statistics.module.css';
 
 const MSG = defineMessages({
@@ -33,6 +38,7 @@ const displayStatistics = 'pages.Dashboard.Account.Statistics';
 const Statistics = ({ colonyClient, network, wallet }: Props) => {
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [loadedLocal, setLoadedLocal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [statistics, setStatistics] = useState(null);
 
@@ -45,17 +51,16 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
       } = await colonyClient.tokenClient.getBalanceOf.call({
         sourceAddress: wallet.address,
       });
-      // const { localSkillId } = await colonyClient.getDomain.call({
-      //   domainId: 1,
-      // });
-      // const reputation = await colonyClient.getReputation({
-      //   skillId: localSkillId,
-      //   user: wallet.address,
-      // });
+      const { skillId } = await colonyClient.getDomain.call({
+        domainId: 1,
+      });
+      const { reputationAmount } = await colonyClient.getReputation({
+        skillId,
+        address: wallet.address,
+      });
       setStatistics({
         balance: balance.toString(),
-        // reputation,
-        reputation: 0,
+        reputation: reputationAmount || 0,
       });
       setLoaded(true);
       setLoading(false);
@@ -63,17 +68,32 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
   }, [colonyClient, wallet]);
 
   useEffect(() => {
-    if (colonyClient && !loaded && !statistics) {
+    if (!loadedLocal) {
+      const localStatistics = getStore(`${wallet.address}-${network.id}`);
+      setStatistics(localStatistics);
+      setLoadedLocal(true);
+    }
+  }, [loadedLocal, network, wallet]);
+
+  useEffect(() => setStore(`${wallet.address}-${network.id}`, statistics), [
+    network,
+    statistics,
+    wallet,
+  ]);
+
+  useEffect(() => {
+    if (colonyClient && !loaded) {
       getStatistics();
     }
-  }, [colonyClient, getStatistics, loaded, statistics]);
+  }, [colonyClient, getStatistics, loaded]);
 
   useEffect(() => {
     if (!colonyClient && loaded) {
-      setLoaded(false);
+      setLoading(true);
       setStatistics(null);
+      setLoaded(false);
     }
-  }, [colonyClient, loaded, statistics]);
+  }, [colonyClient, loaded]);
 
   if (error && !loading) {
     return <ErrorMessage error={error} />;
@@ -93,7 +113,7 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
         <FormattedToken
           amount={statistics ? statistics.balance : 0}
           appearance={{ theme: 'statistics' }}
-          loading={loading || !loaded}
+          loading={loading && !statistics}
           symbol="CDEV"
         />
       </div>
@@ -101,7 +121,7 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
         <FormattedToken
           amount={statistics ? statistics.reputation : 0}
           appearance={{ theme: 'statistics' }}
-          loading={loading || !loaded}
+          loading={loading && !statistics}
           symbol="Reputation"
         />
       </div>

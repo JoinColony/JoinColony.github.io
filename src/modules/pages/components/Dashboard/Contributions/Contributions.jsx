@@ -7,9 +7,11 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network, User } from '~types';
 
+import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import SpinnerLoader from '~core/SpinnerLoader';
 
 import IssueTableRow from '~parts/IssueTableRow';
 
@@ -17,6 +19,8 @@ import {
   getStore,
   setStore,
 } from '~layouts/DeveloperPortalLayout/localStorage';
+
+import { PAGE_DEVELOPER_PORTAL_CONTRIBUTE } from '~routes';
 
 import styles from './Contributions.module.css';
 
@@ -62,6 +66,10 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Contributions.noContributionsTitle',
     defaultMessage: 'Contribute and Earn',
   },
+  showMore: {
+    id: 'pages.Dashboard.Contributions.showMore',
+    defaultMessage: 'More',
+  },
   title: {
     id: 'pages.Dashboard.Contributions.title',
     defaultMessage: 'Contributions',
@@ -78,21 +86,13 @@ type Props = {|
 const displayName = 'pages.Dashboard.Contributions';
 
 const Contributions = ({ network, user }: Props) => {
+  const [count, setCount] = useState(10);
   const [error, setError] = useState(null);
   const [issues, setIssues] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
   const [loadedRemote, setLoadedRemote] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!loadedLocal) {
-      const localUserIssues = getStore('userIssues');
-      setIssues(localUserIssues);
-      setLoadedLocal(true);
-    }
-  }, [issues, loadedLocal]);
-
-  useEffect(() => setStore('userIssues', issues), [issues]);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const getIssues = useCallback(() => {
     setError(null);
@@ -108,7 +108,7 @@ const Contributions = ({ network, user }: Props) => {
           search(
             query: "org:JoinColony author:${user.github.username}",
             type: ISSUE,
-            last: 10
+            last: ${count}
           ) {
             edges {
               node {
@@ -135,17 +135,37 @@ const Contributions = ({ network, user }: Props) => {
         setIssues(data.search.edges);
         setLoadedRemote(true);
         setLoading(false);
+        setLoadingMore(false);
       })
       .catch(fetchError => {
         setError(fetchError.message);
       });
-  }, [user.github.username]);
+  }, [count, user]);
+
+  const handleClickMore = () => {
+    setCount(count + 10);
+    setLoadingMore(true);
+    setLoadedRemote(false);
+  };
 
   useEffect(() => {
-    if (!issues && !loading) {
+    if (!loadedLocal) {
+      const localUserIssues = getStore('userIssues');
+      setIssues(localUserIssues);
+      setLoadedLocal(true);
+    }
+  }, [issues, loadedLocal]);
+
+  useEffect(
+    () => setStore('userIssues', issues ? issues.slice(0, 10) : issues),
+    [issues],
+  );
+
+  useEffect(() => {
+    if (!loadedRemote && !loading) {
       getIssues();
     }
-  }, [issues, getIssues, loading]);
+  }, [getIssues, loadedRemote, loading]);
 
   if (!issues && !loading) {
     return (
@@ -164,7 +184,10 @@ const Contributions = ({ network, user }: Props) => {
               <FormattedMessage
                 values={{
                   noContributionsLink: (
-                    <Link href="/contribute" text={MSG.noContributionsLink} />
+                    <Link
+                      href={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
+                      text={MSG.noContributionsLink}
+                    />
                   ),
                 }}
                 {...MSG.noContributionsMessage}
@@ -222,6 +245,21 @@ const Contributions = ({ network, user }: Props) => {
                 ))}
             </tbody>
           </table>
+          <div className={styles.showMore}>
+            {loadingMore && <SpinnerLoader appearance={{ theme: 'primary' }} />}
+            <Button
+              appearance={{
+                theme: 'reset',
+                font: 'small',
+                color: 'blue',
+                weight: 'medium',
+              }}
+              disabled={loadingMore}
+              onClick={handleClickMore}
+              text={MSG.showMore}
+              type="submit"
+            />
+          </div>
         </div>
         {error && <ErrorMessage error={error} />}
       </div>
