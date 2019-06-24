@@ -58,7 +58,7 @@
 
 .section {
   margin: 80px auto;
-  max-width: 1000px;
+  max-width: 720px;
 }
 
 .sectionContent {
@@ -72,16 +72,21 @@
   font-size: 36px;
 }
 
+.subtitle {
+  font-family: 'Avenir Next Demi';
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
 .description {
   font-size: 16px;
-  max-width: 720px;
 }
 
 .issues,
 .moreWays {
   border: 0;
   font-size: 14px;
-  max-width: 720px;
 }
 
 .issues tr,
@@ -101,9 +106,12 @@
   padding: 10px;
 }
 
+.moreWays tbody td {
+  padding: 15px 20px;
+}
+
 .moreWays td:first-child {
-  padding-left: 20px;
-  width: 120px;
+  width: 160px;
 }
 
 .rewards {

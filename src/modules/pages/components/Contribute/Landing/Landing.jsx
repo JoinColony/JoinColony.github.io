@@ -12,7 +12,10 @@ import Image from '~core/Image';
 
 import Questions from './Questions';
 
-import { PAGE_DEVELOPER_PORTAL_DASHBOARD } from '~routes';
+import {
+  COLONY_GITHUB_OPEN_ISSUES,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD,
+} from '~routes';
 
 import {
   getStore,
@@ -22,6 +25,10 @@ import {
 import styles from './Landing.module.css';
 
 const MSG = defineMessages({
+  contributeTitle: {
+    id: 'pages.Contribute.Landing.contributeTitle',
+    defaultMessage: 'Start Contributing',
+  },
   faqTitle: {
     id: 'pages.Contribute.Landing.faqTitle',
     defaultMessage: 'Frequently Asked Questions',
@@ -69,13 +76,13 @@ const MSG = defineMessages({
   },
   moreWaysDescription: {
     id: 'pages.Contribute.Landing.moreWaysDescription',
-    defaultMessage: `Looking for some other ideas? Here are some more ways to
-    contribute.`,
+    defaultMessage: `Didn’t see any opportunities above? All good, there are
+    more ways to contribute.`,
   },
   moreWaysItemBugsDescription: {
     id: 'pages.Contribute.Landing.moreWaysItemBugsDescription',
-    defaultMessage: `Are you encountering any bugs while developing with our
-    tools? Help us out by opening an issue that describes the bug.`,
+    defaultMessage: `Found a bug? Help us squash it. Open an issue and describe
+    the problem. The more details, the better.`,
   },
   moreWaysItemBugsTitle: {
     id: 'pages.Contribute.Landing.moreWaysItemBugsTitle',
@@ -83,30 +90,53 @@ const MSG = defineMessages({
   },
   moreWaysItemDocsDescription: {
     id: 'pages.Contribute.Landing.moreWaysItemDocsDescription',
-    defaultMessage: `We could always use some help improving our documentation
-    and making sure everything is up-to-date and easy to understand.`,
+    defaultMessage: `Look for the "Improve this doc." section at the bottom of
+    each page to make an improvement.`,
   },
   moreWaysItemDocsTitle: {
     id: 'pages.Contribute.Landing.moreWaysItemDocsTitle',
-    defaultMessage: 'Improve Docs',
+    defaultMessage: 'Documentation',
   },
   moreWaysItemFeatureDescription: {
     id: 'pages.Contribute.Landing.moreWaysItemFeatureDescription',
     defaultMessage: `Do you have an idea for a new feature? Open an issue with
-    your feature request or open a pull request with your feature.`,
+    your feature request or a pull request with your feature.`,
   },
   moreWaysItemFeatureTitle: {
     id: 'pages.Contribute.Landing.moreWaysItemFeatureTitle',
     defaultMessage: 'New Feature',
   },
+  moreWaysItemOtherDescription: {
+    id: 'pages.Contribute.Landing.moreWaysItemOtherDescription',
+    defaultMessage: `Creative ideas abound. Let us know your by posting in
+    Discourse or adding an issue to GitHub.`,
+  },
+  moreWaysItemOtherTitle: {
+    id: 'pages.Contribute.Landing.moreWaysItemOtherTitle',
+    defaultMessage: 'Something else?',
+  },
+  moreWaysItemUserStoryDescription: {
+    id: 'pages.Contribute.Landing.moreWaysItemUserStoryDescription',
+    defaultMessage: `Use-case examples, tutorials, lessons learned—whatever it
+    is, we like user stories. Write it up and send it over. `,
+  },
+  moreWaysItemUserStoryTitle: {
+    id: 'pages.Contribute.Landing.moreWaysItemUserStoryTitle',
+    defaultMessage: 'User Stories',
+  },
   moreWaysTitle: {
     id: 'pages.Contribute.Landing.moreWaysTitle',
-    defaultMessage: 'More ways to contribute',
+    defaultMessage: 'More Ways to Contribute',
   },
   openIssuesDescription: {
     id: 'pages.Contribute.Landing.openIssuesDescription',
-    defaultMessage: `Find issues labeled “Help wanted” and "Good First Issue"
-    below or check out the repository to open a new issue or pull request.`,
+    defaultMessage: `The best way to contribute is to work on one of the issues
+    below which are open issues labeled “good first issue” or “help wanted” in
+    one of our repositories.`,
+  },
+  openIssuesMoreOpenIssues: {
+    id: 'pages.Contribute.Landing.openIssuesMoreOpenIssues',
+    defaultMessage: 'More Issues',
   },
   openIssuesHeaderDate: {
     id: 'pages.Contribute.Landing.openIssuesHeaderDate',
@@ -126,7 +156,7 @@ const MSG = defineMessages({
   },
   openIssuesTitle: {
     id: 'pages.Contribute.Landing.openIssuesTitle',
-    defaultMessage: 'Start Contributing',
+    defaultMessage: 'Good First Issue / Help Wanted',
   },
   rewardsDescription: {
     id: 'pages.Contribute.Landing.rewardsDescription',
@@ -275,8 +305,11 @@ const Landing = ({ network }: Props) => {
       </div>
       <div className={styles.section}>
         <h1 className={styles.title}>
-          <FormattedMessage {...MSG.openIssuesTitle} />
+          <FormattedMessage {...MSG.contributeTitle} />
         </h1>
+        <h2 className={styles.subtitle}>
+          <FormattedMessage {...MSG.openIssuesTitle} />
+        </h2>
         <p className={styles.description}>
           <FormattedMessage {...MSG.openIssuesDescription} />
         </p>
@@ -310,11 +343,20 @@ const Landing = ({ network }: Props) => {
           </tbody>
         </table>
         {error && <ErrorMessage error={error} />}
-      </div>
-      <div className={styles.section}>
-        <h1 className={styles.title}>
+        <Button
+          appearance={{
+            theme: 'reset',
+            font: 'small',
+            color: 'blue',
+            weight: 'medium',
+          }}
+          linkTo={COLONY_GITHUB_OPEN_ISSUES}
+          text={MSG.openIssuesMoreOpenIssues}
+          type="submit"
+        />
+        <h2 className={styles.subtitle}>
           <FormattedMessage {...MSG.moreWaysTitle} />
-        </h1>
+        </h2>
         <p className={styles.description}>
           <FormattedMessage {...MSG.moreWaysDescription} />
         </p>
@@ -342,6 +384,22 @@ const Landing = ({ network }: Props) => {
               </td>
               <td>
                 <FormattedMessage {...MSG.moreWaysItemFeatureDescription} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemUserStoryTitle} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemUserStoryDescription} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemOtherTitle} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.moreWaysItemOtherDescription} />
               </td>
             </tr>
           </tbody>
