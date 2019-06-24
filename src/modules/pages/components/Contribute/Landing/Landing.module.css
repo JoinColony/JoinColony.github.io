@@ -10,6 +10,7 @@
 .heroContent {
   max-width: 600px;
   padding-bottom: 40px;
+  padding-right: 40px;
 }
 
 .heroTitle {
@@ -25,6 +26,30 @@
 .heroImage {
   padding: 40px;
   width: 400px;
+}
+
+.overview {
+  background: #F0F5F7;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.overviewItem {
+  display: inline-block;
+  font-size: 15px;
+  padding: 40px 20px;
+  width: 340px;
+}
+
+.overviewItem span {
+  display: inline-block;
+  padding: 10px;
+}
+
+.overviewItem span:first-child {
+  font-family: 'Avenir Next Demi';
+  font-size: 18px;
 }
 
 .section {

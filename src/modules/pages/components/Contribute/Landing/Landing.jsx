@@ -22,16 +22,44 @@ import styles from './Landing.module.css';
 const MSG = defineMessages({
   heroButton: {
     id: 'pages.Contribute.Landing.heroButton',
-    defaultMessage: 'Create Account',
+    defaultMessage: 'Get Started',
   },
   heroDescription: {
     id: 'pages.Contribute.Landing.heroDescription',
-    defaultMessage: `Create a developer account so we can reward you CDEV tokens
-    and reputation for contributing to our open source projects.`,
+    defaultMessage: `Get rewarded for contributing to and maintaining the Colony
+    Developer Portal. Each successful contribution earns you CDEV tokens,
+    reputation, and a say in future decisions.`,
   },
   heroTitle: {
     id: 'pages.Contribute.Landing.heroTitle',
     defaultMessage: 'Contribute and Earn',
+  },
+  overviewStep1: {
+    id: 'pages.Contribute.Landing.overviewStep1',
+    defaultMessage: '1. Create an account',
+  },
+  overviewStep1Description: {
+    id: 'pages.Contribute.Landing.overviewStep1Description',
+    defaultMessage: `Click here, link your GitHub account, and you’re all set.
+    We need this so we can send your sweet, sweet rewards.`,
+  },
+  overviewStep2: {
+    id: 'pages.Contribute.Landing.overviewStep2',
+    defaultMessage: '2. Make a contribution',
+  },
+  overviewStep2Description: {
+    id: 'pages.Contribute.Landing.overviewStep2Description',
+    defaultMessage: `Work on a “Help Wanted” issue, report a bug, write a
+    tutorial, or more. There are plenty of ways to get involved.`,
+  },
+  overviewStep3: {
+    id: 'pages.Contribute.Landing.overviewStep3',
+    defaultMessage: '3. Get rewarded',
+  },
+  overviewStep3Description: {
+    id: 'pages.Contribute.Landing.overviewStep3Description',
+    defaultMessage: `All approved contributions are rewarded with tokens and
+    reputation. Check your account page to see your current score!`,
   },
   moreWaysDescription: {
     id: 'pages.Contribute.Landing.moreWaysDescription',
@@ -197,6 +225,20 @@ const Landing = ({ network }: Props) => {
           alt={MSG.heroTitle}
           src="/img/devPortal_banner_contribute.svg"
         />
+      </div>
+      <div className={styles.overview}>
+        <div className={styles.overviewItem}>
+          <FormattedMessage {...MSG.overviewStep1} />
+          <FormattedMessage {...MSG.overviewStep1Description} />
+        </div>
+        <div className={styles.overviewItem}>
+          <FormattedMessage {...MSG.overviewStep2} />
+          <FormattedMessage {...MSG.overviewStep2Description} />
+        </div>
+        <div className={styles.overviewItem}>
+          <FormattedMessage {...MSG.overviewStep3} />
+          <FormattedMessage {...MSG.overviewStep3Description} />
+        </div>
       </div>
       <div className={styles.section}>
         <h1 className={styles.title}>
