@@ -22,9 +22,13 @@ type Appearance = {|
   weight?: 'bold' | 'medium',
 |};
 
+type Arrow = 'right' | 'left';
+
 type Props = {
   /** Appearance object */
   appearance?: Appearance,
+  /** Arrow for links */
+  arrow?: Arrow,
   /** `children` to render (only works if `text` is not set) */
   children?: Node,
   /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
@@ -52,6 +56,7 @@ type Props = {
 const displayName = 'Button';
 
 const Button = ({
+  arrow,
   appearance = { theme: 'primary' },
   children,
   className,
@@ -82,7 +87,7 @@ const Button = ({
 
   if (linkTo) {
     return (
-      <Link className={classNames} href={linkTo} {...rest}>
+      <Link arrow={arrow} className={classNames} href={linkTo} {...rest}>
         {buttonContent}
       </Link>
     );

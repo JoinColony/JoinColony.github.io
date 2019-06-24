@@ -10,7 +10,7 @@
 
 .heroContent,
 .rewardsContent {
-  max-width: 600px;
+  max-width: 640px;
   padding-bottom: 40px;
   padding-right: 40px;
 }
@@ -23,13 +23,12 @@
 
 .heroDescription,
 .rewardsDescription {
-  font-size: 18px;
   margin-bottom: 40px;
 }
 
 .heroImage {
   padding: 40px;
-  width: 400px;
+  width: 360px;
 }
 
 .overview {
@@ -41,9 +40,9 @@
 
 .overviewItem {
   display: inline-block;
-  font-size: 15px;
+  font-size: 16px;
   padding: 40px 20px;
-  width: 340px;
+  width: 350px;
 }
 
 .overviewItem span {
@@ -84,13 +83,13 @@
 }
 
 .issues,
-.moreWays {
+.ongoing {
   border: 0;
   font-size: 14px;
 }
 
 .issues tr,
-.moreWays tr {
+.ongoing tr {
   border: 2px solid white;
 }
 
@@ -101,17 +100,18 @@
 }
 
 .issues tbody td,
-.moreWays tbody td {
+.ongoing tbody td {
   background: #F0F5F7;
   padding: 10px;
 }
 
-.moreWays tbody td {
-  padding: 15px 20px;
+.ongoing tbody td {
+  font-size: 15px;
+  padding: 20px 30px;
 }
 
-.moreWays td:first-child {
-  width: 160px;
+.ongoing td:first-child {
+  width: 200px;
 }
 
 .rewards {
@@ -126,10 +126,6 @@
 
 .rewardsTitle {
   color: #FAD250;
-}
-
-.rewardsDescription {
-  font-size: 18px;
 }
 
 .rewardsItems {
@@ -154,11 +150,11 @@
 }
 
 .rewardsItemImage {
-  width: 160px;
+  width: 150px;
 }
 
 .rewardsItemText {
-  max-width: 400px;
+  font-size: 16px;
 }
 
 .rewardsItem span {
@@ -169,14 +165,21 @@
 .rewardsItem span:first-child {
   color: #FAD250;
   font-family: 'Avenir Next Demi';
-  font-size: 18px;
+  font-size: 20px;
 }
 
-.rewardsItem span:last-child {
-  font-size: 16px;
+.faq {
+  margin: 80px auto;
+  max-width: 1000px;
+}
+
+.faqContent {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
 }
 
 .faqImage {
-  padding: 40px;
+  margin: 80px;
   width: 300px;
 }

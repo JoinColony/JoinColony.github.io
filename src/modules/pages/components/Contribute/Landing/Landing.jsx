@@ -5,12 +5,14 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network } from '~types';
 
-import ErrorMessage from '~core/ErrorMessage';
-import IssueTableRow from '~parts/IssueTableRow';
 import Button from '~core/Button';
+import ErrorMessage from '~core/ErrorMessage';
+import Heading from '~core/Heading';
 import Image from '~core/Image';
 
-import Questions from './Questions';
+import IssueTableRow from '~parts/IssueTableRow';
+
+import FAQ from './FAQ';
 
 import {
   COLONY_GITHUB_OPEN_ISSUES,
@@ -39,13 +41,97 @@ const MSG = defineMessages({
   },
   heroDescription: {
     id: 'pages.Contribute.Landing.heroDescription',
-    defaultMessage: `Get rewarded for contributing to and maintaining the Colony
-    Developer Portal. Each successful contribution earns you CDEV tokens,
-    reputation, and a say in future decisions.`,
+    defaultMessage: `Get rewarded for contributing to our developer tools. Each
+    contribution earns you CDEV tokens, reputation, and a say in future
+    decisions.`,
   },
   heroTitle: {
     id: 'pages.Contribute.Landing.heroTitle',
     defaultMessage: 'Contribute and Earn',
+  },
+  issuesDescription: {
+    id: 'pages.Contribute.Landing.issuesDescription',
+    defaultMessage: `The best way to contribute is to work on one of the issues
+    below which are open issues labeled "help wanted" or "good first issue" in
+    our open source repositories.`,
+  },
+  issuesFindMore: {
+    id: 'pages.Contribute.Landing.issuesFindMore',
+    defaultMessage: 'Find More',
+  },
+  issuesHeaderDate: {
+    id: 'pages.Contribute.Landing.issuesHeaderDate',
+    defaultMessage: 'Date',
+  },
+  issuesHeaderLink: {
+    id: 'pages.Contribute.Landing.issuesHeaderLink',
+    defaultMessage: 'Link',
+  },
+  issuesHeaderReward: {
+    id: 'pages.Contribute.Landing.issuesHeaderReward',
+    defaultMessage: 'Reward',
+  },
+  issuesHeaderTitle: {
+    id: 'pages.Contribute.Landing.issuesHeaderTitle',
+    defaultMessage: 'Title',
+  },
+  issuesTitle: {
+    id: 'pages.Contribute.Landing.issuesTitle',
+    defaultMessage: 'Open "Help Wanted" Issues',
+  },
+  ongoingDescription: {
+    id: 'pages.Contribute.Landing.ongoingDescription',
+    defaultMessage: `Didn’t see any opportunities above? All good, there are
+    more ways to contribute.`,
+  },
+  ongoingItemBugsDescription: {
+    id: 'pages.Contribute.Landing.ongoingItemBugsDescription',
+    defaultMessage: `Found a bug? Help us squash it. Open an issue and describe
+    the problem. The more details, the better.`,
+  },
+  ongoingItemBugsTitle: {
+    id: 'pages.Contribute.Landing.ongoingItemBugsTitle',
+    defaultMessage: 'Report Bugs',
+  },
+  ongoingItemDocsDescription: {
+    id: 'pages.Contribute.Landing.ongoingItemDocsDescription',
+    defaultMessage: `Look for the "Improve this doc" button at the bottom of
+    each page to make an improvement.`,
+  },
+  ongoingItemDocsTitle: {
+    id: 'pages.Contribute.Landing.ongoingItemDocsTitle',
+    defaultMessage: 'Documentation',
+  },
+  ongoingItemFeatureDescription: {
+    id: 'pages.Contribute.Landing.ongoingItemFeatureDescription',
+    defaultMessage: `Do you have an idea for a new feature? Open an issue with
+    your feature request or a pull request with your feature.`,
+  },
+  ongoingItemFeatureTitle: {
+    id: 'pages.Contribute.Landing.ongoingItemFeatureTitle',
+    defaultMessage: 'New Feature',
+  },
+  ongoingItemOtherDescription: {
+    id: 'pages.Contribute.Landing.ongoingItemOtherDescription',
+    defaultMessage: `Creative ideas abound. Let us know your by posting in
+    Discourse or adding an issue to GitHub.`,
+  },
+  ongoingItemOtherTitle: {
+    id: 'pages.Contribute.Landing.ongoingItemOtherTitle',
+    defaultMessage: 'Something else?',
+  },
+  ongoingItemUserStoryDescription: {
+    id: 'pages.Contribute.Landing.ongoingItemUserStoryDescription',
+    defaultMessage: `Use-case examples, tutorials, lessons learned—whatever it
+    is, we like user stories. Write it up and send it over. `,
+  },
+  ongoingItemUserStoryTitle: {
+    id: 'pages.Contribute.Landing.ongoingItemUserStoryTitle',
+    defaultMessage: 'User Stories',
+  },
+  ongoingTitle: {
+    id: 'pages.Contribute.Landing.ongoingTitle',
+    defaultMessage: 'Ongoing Ways to Contribute',
   },
   overviewStep1: {
     id: 'pages.Contribute.Landing.overviewStep1',
@@ -53,8 +139,8 @@ const MSG = defineMessages({
   },
   overviewStep1Description: {
     id: 'pages.Contribute.Landing.overviewStep1Description',
-    defaultMessage: `Click here, link your GitHub account, and you’re all set.
-    We need this so we can send your sweet, sweet rewards.`,
+    defaultMessage: `Connect MetaMask, link GitHub, and you’re all set. We need
+    this so we can send your sweet, sweet rewards.`,
   },
   overviewStep2: {
     id: 'pages.Contribute.Landing.overviewStep2',
@@ -62,7 +148,7 @@ const MSG = defineMessages({
   },
   overviewStep2Description: {
     id: 'pages.Contribute.Landing.overviewStep2Description',
-    defaultMessage: `Work on a “Help Wanted” issue, report a bug, write a
+    defaultMessage: `Work on a "Help Wanted" issue, report a bug, write a
     tutorial, or more. There are plenty of ways to get involved.`,
   },
   overviewStep3: {
@@ -71,92 +157,8 @@ const MSG = defineMessages({
   },
   overviewStep3Description: {
     id: 'pages.Contribute.Landing.overviewStep3Description',
-    defaultMessage: `All approved contributions are rewarded with tokens and
+    defaultMessage: `Contributions are rewarded with tokens and
     reputation. Check your account page to see your current score!`,
-  },
-  moreWaysDescription: {
-    id: 'pages.Contribute.Landing.moreWaysDescription',
-    defaultMessage: `Didn’t see any opportunities above? All good, there are
-    more ways to contribute.`,
-  },
-  moreWaysItemBugsDescription: {
-    id: 'pages.Contribute.Landing.moreWaysItemBugsDescription',
-    defaultMessage: `Found a bug? Help us squash it. Open an issue and describe
-    the problem. The more details, the better.`,
-  },
-  moreWaysItemBugsTitle: {
-    id: 'pages.Contribute.Landing.moreWaysItemBugsTitle',
-    defaultMessage: 'Report Bugs',
-  },
-  moreWaysItemDocsDescription: {
-    id: 'pages.Contribute.Landing.moreWaysItemDocsDescription',
-    defaultMessage: `Look for the "Improve this doc." section at the bottom of
-    each page to make an improvement.`,
-  },
-  moreWaysItemDocsTitle: {
-    id: 'pages.Contribute.Landing.moreWaysItemDocsTitle',
-    defaultMessage: 'Documentation',
-  },
-  moreWaysItemFeatureDescription: {
-    id: 'pages.Contribute.Landing.moreWaysItemFeatureDescription',
-    defaultMessage: `Do you have an idea for a new feature? Open an issue with
-    your feature request or a pull request with your feature.`,
-  },
-  moreWaysItemFeatureTitle: {
-    id: 'pages.Contribute.Landing.moreWaysItemFeatureTitle',
-    defaultMessage: 'New Feature',
-  },
-  moreWaysItemOtherDescription: {
-    id: 'pages.Contribute.Landing.moreWaysItemOtherDescription',
-    defaultMessage: `Creative ideas abound. Let us know your by posting in
-    Discourse or adding an issue to GitHub.`,
-  },
-  moreWaysItemOtherTitle: {
-    id: 'pages.Contribute.Landing.moreWaysItemOtherTitle',
-    defaultMessage: 'Something else?',
-  },
-  moreWaysItemUserStoryDescription: {
-    id: 'pages.Contribute.Landing.moreWaysItemUserStoryDescription',
-    defaultMessage: `Use-case examples, tutorials, lessons learned—whatever it
-    is, we like user stories. Write it up and send it over. `,
-  },
-  moreWaysItemUserStoryTitle: {
-    id: 'pages.Contribute.Landing.moreWaysItemUserStoryTitle',
-    defaultMessage: 'User Stories',
-  },
-  moreWaysTitle: {
-    id: 'pages.Contribute.Landing.moreWaysTitle',
-    defaultMessage: 'More Ways to Contribute',
-  },
-  openIssuesDescription: {
-    id: 'pages.Contribute.Landing.openIssuesDescription',
-    defaultMessage: `The best way to contribute is to work on one of the issues
-    below which are open issues labeled “good first issue” or “help wanted” in
-    one of our repositories.`,
-  },
-  openIssuesMoreOpenIssues: {
-    id: 'pages.Contribute.Landing.openIssuesMoreOpenIssues',
-    defaultMessage: 'More Issues',
-  },
-  openIssuesHeaderDate: {
-    id: 'pages.Contribute.Landing.openIssuesHeaderDate',
-    defaultMessage: 'Date',
-  },
-  openIssuesHeaderLink: {
-    id: 'pages.Contribute.Landing.openIssuesHeaderLink',
-    defaultMessage: 'Link',
-  },
-  openIssuesHeaderReward: {
-    id: 'pages.Contribute.Landing.openIssuesHeaderReward',
-    defaultMessage: 'Reward',
-  },
-  openIssuesHeaderTitle: {
-    id: 'pages.Contribute.Landing.openIssuesHeaderTitle',
-    defaultMessage: 'Title',
-  },
-  openIssuesTitle: {
-    id: 'pages.Contribute.Landing.openIssuesTitle',
-    defaultMessage: 'Good First Issue / Help Wanted',
   },
   rewardsDescription: {
     id: 'pages.Contribute.Landing.rewardsDescription',
@@ -266,9 +268,11 @@ const Landing = ({ network }: Props) => {
     <>
       <div className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            <FormattedMessage {...MSG.heroTitle} />
-          </h1>
+          <Heading
+            appearance={{ size: 'huge', theme: 'invert', weight: 'medium' }}
+            style={{ fontSize: '40px' }}
+            text={MSG.heroTitle}
+          />
           <p className={styles.heroDescription}>
             <FormattedMessage {...MSG.heroDescription} />
           </p>
@@ -308,25 +312,25 @@ const Landing = ({ network }: Props) => {
           <FormattedMessage {...MSG.contributeTitle} />
         </h1>
         <h2 className={styles.subtitle}>
-          <FormattedMessage {...MSG.openIssuesTitle} />
+          <FormattedMessage {...MSG.issuesTitle} />
         </h2>
         <p className={styles.description}>
-          <FormattedMessage {...MSG.openIssuesDescription} />
+          <FormattedMessage {...MSG.issuesDescription} />
         </p>
         <table className={styles.issues}>
           <thead>
             <tr>
               <td>
-                <FormattedMessage {...MSG.openIssuesHeaderDate} />
+                <FormattedMessage {...MSG.issuesHeaderDate} />
               </td>
               <td>
-                <FormattedMessage {...MSG.openIssuesHeaderTitle} />
+                <FormattedMessage {...MSG.issuesHeaderTitle} />
               </td>
               <td>
-                <FormattedMessage {...MSG.openIssuesHeaderLink} />
+                <FormattedMessage {...MSG.issuesHeaderLink} />
               </td>
               <td>
-                <FormattedMessage {...MSG.openIssuesHeaderReward} />
+                <FormattedMessage {...MSG.issuesHeaderReward} />
               </td>
             </tr>
           </thead>
@@ -350,56 +354,57 @@ const Landing = ({ network }: Props) => {
             color: 'blue',
             weight: 'medium',
           }}
+          arrow="right"
           linkTo={COLONY_GITHUB_OPEN_ISSUES}
-          text={MSG.openIssuesMoreOpenIssues}
+          text={MSG.issuesFindMore}
           type="submit"
         />
         <h2 className={styles.subtitle}>
-          <FormattedMessage {...MSG.moreWaysTitle} />
+          <FormattedMessage {...MSG.ongoingTitle} />
         </h2>
         <p className={styles.description}>
-          <FormattedMessage {...MSG.moreWaysDescription} />
+          <FormattedMessage {...MSG.ongoingDescription} />
         </p>
-        <table className={styles.moreWays}>
+        <table className={styles.ongoing}>
           <tbody>
             <tr>
               <td>
-                <FormattedMessage {...MSG.moreWaysItemBugsTitle} />
+                <FormattedMessage {...MSG.ongoingItemBugsTitle} />
               </td>
               <td>
-                <FormattedMessage {...MSG.moreWaysItemBugsDescription} />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FormattedMessage {...MSG.moreWaysItemDocsTitle} />
-              </td>
-              <td>
-                <FormattedMessage {...MSG.moreWaysItemDocsDescription} />
+                <FormattedMessage {...MSG.ongoingItemBugsDescription} />
               </td>
             </tr>
             <tr>
               <td>
-                <FormattedMessage {...MSG.moreWaysItemFeatureTitle} />
+                <FormattedMessage {...MSG.ongoingItemDocsTitle} />
               </td>
               <td>
-                <FormattedMessage {...MSG.moreWaysItemFeatureDescription} />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FormattedMessage {...MSG.moreWaysItemUserStoryTitle} />
-              </td>
-              <td>
-                <FormattedMessage {...MSG.moreWaysItemUserStoryDescription} />
+                <FormattedMessage {...MSG.ongoingItemDocsDescription} />
               </td>
             </tr>
             <tr>
               <td>
-                <FormattedMessage {...MSG.moreWaysItemOtherTitle} />
+                <FormattedMessage {...MSG.ongoingItemFeatureTitle} />
               </td>
               <td>
-                <FormattedMessage {...MSG.moreWaysItemOtherDescription} />
+                <FormattedMessage {...MSG.ongoingItemFeatureDescription} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <FormattedMessage {...MSG.ongoingItemUserStoryTitle} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.ongoingItemUserStoryDescription} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <FormattedMessage {...MSG.ongoingItemOtherTitle} />
+              </td>
+              <td>
+                <FormattedMessage {...MSG.ongoingItemOtherDescription} />
               </td>
             </tr>
           </tbody>
@@ -407,9 +412,11 @@ const Landing = ({ network }: Props) => {
       </div>
       <div className={styles.rewards}>
         <div className={styles.rewardsContent}>
-          <h1 className={styles.rewardsTitle}>
-            <FormattedMessage {...MSG.rewardsTitle} />
-          </h1>
+          <Heading
+            appearance={{ size: 'huge', theme: 'gold', weight: 'medium' }}
+            style={{ fontSize: '40px' }}
+            text={MSG.rewardsTitle}
+          />
           <p className={styles.rewardsDescription}>
             <FormattedMessage {...MSG.rewardsDescription} />
           </p>
@@ -439,12 +446,14 @@ const Landing = ({ network }: Props) => {
           </div>
         </div>
       </div>
-      <div className={styles.section}>
-        <h1 className={styles.title}>
-          <FormattedMessage {...MSG.faqTitle} />
-        </h1>
-        <div className={styles.sectionContent}>
-          <Questions />
+      <div className={styles.faq}>
+        <Heading
+          appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
+          style={{ fontSize: '40px' }}
+          text={MSG.faqTitle}
+        />
+        <div className={styles.faqContent}>
+          <FAQ />
           <Image
             className={styles.faqImage}
             alt={MSG.heroTitle}
