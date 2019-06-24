@@ -61,8 +61,10 @@
   max-width: 1000px;
 }
 
-.section:last-child {
-  padding-bottom: 40px;
+.sectionContent {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .title {
@@ -164,4 +166,9 @@
 
 .rewardsItem span:last-child {
   font-size: 16px;
+}
+
+.faqImage {
+  padding: 40px;
+  width: 300px;
 }

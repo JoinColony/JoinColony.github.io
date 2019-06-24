@@ -10,6 +10,8 @@ import IssueTableRow from '~parts/IssueTableRow';
 import Button from '~core/Button';
 import Image from '~core/Image';
 
+import Questions from './Questions';
+
 import { PAGE_DEVELOPER_PORTAL_DASHBOARD } from '~routes';
 
 import {
@@ -20,6 +22,10 @@ import {
 import styles from './Landing.module.css';
 
 const MSG = defineMessages({
+  faqTitle: {
+    id: 'pages.Contribute.Landing.faqTitle',
+    defaultMessage: 'Frequently Asked Questions',
+  },
   heroButton: {
     id: 'pages.Contribute.Landing.heroButton',
     defaultMessage: 'Get Started',
@@ -373,6 +379,19 @@ const Landing = ({ network }: Props) => {
               <FormattedMessage {...MSG.rewardsReputationDescription} />
             </div>
           </div>
+        </div>
+      </div>
+      <div className={styles.section}>
+        <h1 className={styles.title}>
+          <FormattedMessage {...MSG.faqTitle} />
+        </h1>
+        <div className={styles.sectionContent}>
+          <Questions />
+          <Image
+            className={styles.faqImage}
+            alt={MSG.heroTitle}
+            src="/img/contribute_faq.svg"
+          />
         </div>
       </div>
     </>
