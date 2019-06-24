@@ -1,4 +1,5 @@
-.hero {
+.hero,
+.rewards {
   align-items: center;
   background: #00284B;
   color: #FFFFFF;
@@ -7,18 +8,21 @@
   padding: 5% 10%;
 }
 
-.heroContent {
+.heroContent,
+.rewardsContent {
   max-width: 600px;
   padding-bottom: 40px;
   padding-right: 40px;
 }
 
-.heroTitle {
+.heroTitle,
+.rewardsTitle {
   font-family: 'Avenir Next Demi';
   font-size: 40px;
 }
 
-.heroDescription {
+.heroDescription,
+.rewardsDescription {
   font-size: 18px;
   margin-bottom: 40px;
 }
@@ -98,4 +102,66 @@
 .moreWays td:first-child {
   padding-left: 20px;
   width: 120px;
+}
+
+.rewards {
+  display: block;
+  padding: 7.5%;
+}
+
+.rewardsContent {
+  margin-left: 15%;
+  max-width: 700px;
+}
+
+.rewardsTitle {
+  color: #FAD250;
+}
+
+.rewardsDescription {
+  font-size: 18px;
+}
+
+.rewardsItems {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+}
+
+.rewardsItem {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  width: 500px;
+}
+
+.rewardsItemImage,
+.rewardsItemText {
+  display: inline-block;
+  margin: 0;
+  padding: 20px;
+}
+
+.rewardsItemImage {
+  width: 160px;
+}
+
+.rewardsItemText {
+  max-width: 400px;
+}
+
+.rewardsItem span {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.rewardsItem span:first-child {
+  color: #FAD250;
+  font-family: 'Avenir Next Demi';
+  font-size: 18px;
+}
+
+.rewardsItem span:last-child {
+  font-size: 16px;
 }

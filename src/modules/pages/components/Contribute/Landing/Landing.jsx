@@ -122,6 +122,33 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Landing.openIssuesTitle',
     defaultMessage: 'Start Contributing',
   },
+  rewardsDescription: {
+    id: 'pages.Contribute.Landing.rewardsDescription',
+    defaultMessage: `Contributions earn you tokens and reputation in our
+    Developer Community. The more you contribute, the higher your standing.`,
+  },
+  rewardsReputation: {
+    id: 'pages.Contribute.Landing.rewardsReputation',
+    defaultMessage: 'Reputation',
+  },
+  rewardsReputationDescription: {
+    id: 'pages.Contribute.Landing.rewardsReputationDescription',
+    defaultMessage: `Reputation measures your relative standing and influence in
+    the community. It decays over time to keep things fresh.`,
+  },
+  rewardsToken: {
+    id: 'pages.Contribute.Landing.rewardsToken',
+    defaultMessage: 'CDEV Token',
+  },
+  rewardsTokenDescription: {
+    id: 'pages.Contribute.Landing.rewardsTokenDescription',
+    defaultMessage: `The native token of our developer community, CDEV, is your
+    reward for valuable contributions.`,
+  },
+  rewardsTitle: {
+    id: 'pages.Contribute.Landing.rewardsTitle',
+    defaultMessage: 'Earn tokens and reputation',
+  },
 });
 
 type Props = {|
@@ -313,6 +340,40 @@ const Landing = ({ network }: Props) => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className={styles.rewards}>
+        <div className={styles.rewardsContent}>
+          <h1 className={styles.rewardsTitle}>
+            <FormattedMessage {...MSG.rewardsTitle} />
+          </h1>
+          <p className={styles.rewardsDescription}>
+            <FormattedMessage {...MSG.rewardsDescription} />
+          </p>
+        </div>
+        <div className={styles.rewardsItems}>
+          <div className={styles.rewardsItem}>
+            <Image
+              className={styles.rewardsItemImage}
+              alt={MSG.heroTitle}
+              src="/img/contribute_token.svg"
+            />
+            <div className={styles.rewardsItemText}>
+              <FormattedMessage {...MSG.rewardsToken} />
+              <FormattedMessage {...MSG.rewardsTokenDescription} />
+            </div>
+          </div>
+          <div className={styles.rewardsItem}>
+            <Image
+              className={styles.rewardsItemImage}
+              alt={MSG.heroTitle}
+              src="/img/contribute_reputation.svg"
+            />
+            <div className={styles.rewardsItemText}>
+              <FormattedMessage {...MSG.rewardsReputation} />
+              <FormattedMessage {...MSG.rewardsReputationDescription} />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
