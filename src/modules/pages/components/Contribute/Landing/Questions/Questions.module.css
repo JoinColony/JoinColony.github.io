@@ -1,3 +1,5 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   align-self: flex-start;
   margin-bottom: 40px;
@@ -6,7 +8,6 @@
 .main button {
   display: block;
   text-align: left;
-  width: 600px;
 }
 
 .question {
@@ -46,6 +47,19 @@
 .answerActive {
   composes: answer;
   margin-bottom: 24px;
-  max-height: 100px;
+  max-height: 220px;
   opacity: 1;
+}
+
+@media (mediumUp) {
+
+  .main button {
+    width: 600px;
+  }
+
+  .answerActive {
+    composes: answer;
+    max-height: 100px;
+  }
+
 }

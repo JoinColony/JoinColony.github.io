@@ -53,8 +53,8 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Landing.issuesHeaderTitle',
     defaultMessage: 'Title',
   },
-  issuesRewardsNetwork: {
-    id: 'pages.Contribute.Landing.issuesRewardsNetwork',
+  issuesSubtext: {
+    id: 'pages.Contribute.Landing.issuesSubtext',
     defaultMessage: '* Switch networks to check for other rewards.',
   },
   noContributionsLink: {
@@ -251,8 +251,8 @@ const Contributions = ({ network, user }: Props) => {
             </tbody>
           </table>
           {network && (
-            <div className={styles.issuesRewardsNetwork}>
-              <FormattedMessage {...MSG.issuesRewardsNetwork} />
+            <div className={styles.issuesSubtext}>
+              <FormattedMessage {...MSG.issuesSubtext} />
             </div>
           )}
           <div className={styles.showMore}>

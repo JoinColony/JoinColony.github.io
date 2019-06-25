@@ -1,48 +1,47 @@
-.hero,
-.rewards {
-  align-items: center;
+@value mediumUp from '~styles/breakpoints.css';
+
+.title {
+  font-size: 30px;
+}
+
+.hero {
   background: #00284B;
   color: #FFFFFF;
-  display: flex;
-  justify-content: center;
-  padding: 5% 10%;
+  padding: 10%;
 }
 
-.heroContent,
-.rewardsContent {
-  max-width: 640px;
-  padding-bottom: 40px;
-  padding-right: 40px;
+.heroContent {
+  max-width: auto;
 }
 
-.heroTitle,
-.rewardsTitle {
-  font-family: 'Avenir Next Demi';
-  font-size: 40px;
+.heroDescription {
+  margin-bottom: 20px;
 }
 
-.heroDescription,
-.rewardsDescription {
-  margin-bottom: 40px;
+.heroButton {
+  display: none;
 }
 
 .heroImage {
-  padding: 40px;
-  width: 360px;
+  padding: 10%;
+  width: 100%;
 }
 
 .overview {
   background: #F0F5F7;
-  display: flex;
-  justify-content: center;
   width: 100vw;
 }
 
 .overviewItem {
-  display: inline-block;
-  font-size: 16px;
-  padding: 40px 20px;
-  width: 350px;
+  padding: 5% 10%;
+}
+
+.overviewItem:first-child {
+  padding-top: 10%;
+}
+
+.overviewItem:last-child {
+  padding-bottom: 10%;
 }
 
 .overviewItem span {
@@ -56,29 +55,15 @@
 }
 
 .section {
-  margin: 80px auto;
-  max-width: 720px;
+  margin: 10%;
 }
 
-.sectionContent {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-family: 'Avenir Next Demi';
-  font-size: 36px;
-}
-
-.subtitle {
-  font-family: 'Avenir Next Demi';
-  font-size: 18px;
+.sectionSubtitle {
   margin-bottom: 20px;
   margin-top: 40px;
 }
 
-.description {
+.sectionDescription {
   font-size: 16px;
 }
 
@@ -86,6 +71,11 @@
 .ongoing {
   border: 0;
   font-size: 14px;
+}
+
+.issues td:first-child,
+.issues td:nth-child(2) {
+  display: none;
 }
 
 .issues tr,
@@ -105,62 +95,26 @@
   padding: 10px;
 }
 
-.ongoing tbody td {
-  font-size: 15px;
-  padding: 20px 30px;
-}
-
-.ongoing td:first-child {
-  width: 200px;
-}
-
-.issuesRewardsNetwork {
-  color: #788CA0;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 13px;
-  font-style: italic;
-  margin-top: -20px;
-  max-width: 720px;
+.issuesSubtext {
+  display: none;
 }
 
 .rewards {
+  composes: hero;
   display: block;
-  padding: 7.5%;
 }
 
 .rewardsContent {
-  margin-left: 15%;
-  max-width: 700px;
+  composes: heroContent;
 }
 
-.rewardsTitle {
-  color: #FAD250;
-}
-
-.rewardsItems {
-  align-items: flex-start;
-  display: flex;
-  justify-content: center;
-}
-
-.rewardsItem {
-  align-items: flex-start;
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-  width: 500px;
-}
-
-.rewardsItemImage,
-.rewardsItemText {
-  display: inline-block;
-  margin: 0;
-  padding: 20px;
+.rewardsDescription {
+  composes: heroDescription;
 }
 
 .rewardsItemImage {
-  width: 150px;
+  padding: 20px 0;
+  width: 100px;
 }
 
 .rewardsItemText {
@@ -179,17 +133,141 @@
 }
 
 .faq {
-  margin: 80px auto;
-  max-width: 1000px;
-}
-
-.faqContent {
-  align-items: flex-start;
-  display: flex;
-  justify-content: space-between;
+  margin: 10%;
 }
 
 .faqImage {
-  padding: 20px;
-  width: 300px;
+  display: none;
+}
+
+@media (mediumUp) {
+
+  .title {
+    font-size: 38px;
+  }
+
+  .hero {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+  }
+
+  .heroContent {
+    max-width: 640px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+  }
+
+  .heroDescription {
+    margin-bottom: 40px;
+  }
+
+  .heroButton {
+    display: inline-flex;
+  }
+
+  .heroImage {
+    padding: 40px;
+    width: 360px;
+  }
+
+  .overview {
+    display: flex;
+    justify-content: center;
+  }
+
+  .overviewItem,
+  .overviewItem:first-child,
+  .overviewItem:last-child {
+    padding: 40px 20px;
+    width: 350px;
+  }
+
+  .section {
+    margin: 80px auto;
+    max-width: 720px;
+  }
+
+  .issues td:first-child,
+  .issues td:nth-child(2) {
+    display: table-cell;
+  }
+
+  .ongoing tbody td {
+    font-size: 15px;
+    padding: 20px 30px;
+  }
+
+  .ongoing td:first-child {
+    width: 200px;
+  }
+
+  .issuesSubtext {
+    color: #788CA0;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: -15px;
+    max-width: 720px;
+  }
+
+  .rewards {
+    composes: hero;
+    display: block;
+  }
+
+  .rewardsContent {
+    composes: heroContent;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  .rewardsDescription {
+    composes: heroDescription;
+    margin-bottom: 60px;
+    max-width: 640px;
+  }
+
+  .rewardsItems {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+  }
+
+  .rewardsItem {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+  }
+
+  .rewardsItemImage,
+  .rewardsItemText {
+    padding: 20px;
+  }
+
+  .rewardsItemImage {
+    padding-left: 0;
+    width: 140px;
+  }
+
+  .faq {
+    margin: 80px auto;
+    max-width: 1000px;
+  }
+
+  .faqContent {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .faqImage {
+    display: block;
+    padding: 20px;
+    width: 300px;
+  }
+
 }

@@ -91,8 +91,8 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Landing.issuesHeaderTitle',
     defaultMessage: 'Title',
   },
-  issuesRewardsNetwork: {
-    id: 'pages.Contribute.Landing.issuesRewardsNetwork',
+  issuesSubtext: {
+    id: 'pages.Contribute.Landing.issuesSubtext',
     defaultMessage: '* Switch networks to check for other rewards.',
   },
   issuesTitle: {
@@ -290,8 +290,8 @@ const Landing = ({ network, user }: Props) => {
       <div className={styles.hero}>
         <div className={styles.heroContent}>
           <Heading
-            appearance={{ size: 'huge', theme: 'invert', weight: 'medium' }}
-            style={{ fontSize: '40px' }}
+            appearance={{ theme: 'invert', weight: 'medium' }}
+            className={styles.title}
             text={MSG.heroTitle}
           />
           <p className={styles.heroDescription}>
@@ -303,7 +303,8 @@ const Landing = ({ network, user }: Props) => {
               padding: 'huge',
               weight: 'medium',
             }}
-            linkTo={user ? '#contribute' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
+            className={styles.heroButton}
+            linkTo={user ? '#start' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
             text={user ? MSG.heroButtonUser : MSG.heroButton}
             type="submit"
           />
@@ -330,14 +331,16 @@ const Landing = ({ network, user }: Props) => {
       </div>
       <div id="contribute" className={styles.section}>
         <Heading
-          appearance={{ size: 'huge', theme: 'dark', weight: 'medium' }}
-          style={{ fontSize: '40px' }}
+          appearance={{ theme: 'dark', weight: 'medium' }}
+          className={styles.title}
           text={MSG.contributeTitle}
         />
-        <h2 className={styles.subtitle}>
-          <FormattedMessage {...MSG.issuesTitle} />
-        </h2>
-        <p className={styles.description}>
+        <Heading
+          appearance={{ size: 'medium', theme: 'dark', weight: 'medium' }}
+          className={styles.sectionSubtitle}
+          text={MSG.issuesTitle}
+        />
+        <p className={styles.sectionDescription}>
           <FormattedMessage {...MSG.issuesDescription} />
         </p>
         <table className={styles.issues}>
@@ -371,8 +374,8 @@ const Landing = ({ network, user }: Props) => {
           </tbody>
         </table>
         {network && (
-          <div className={styles.issuesRewardsNetwork}>
-            <FormattedMessage {...MSG.issuesRewardsNetwork} />
+          <div className={styles.issuesSubtext}>
+            <FormattedMessage {...MSG.issuesSubtext} />
           </div>
         )}
         {error && <ErrorMessage error={error} />}
@@ -388,10 +391,12 @@ const Landing = ({ network, user }: Props) => {
           text={MSG.issuesFindMore}
           type="submit"
         />
-        <h2 className={styles.subtitle}>
-          <FormattedMessage {...MSG.ongoingTitle} />
-        </h2>
-        <p className={styles.description}>
+        <Heading
+          appearance={{ size: 'medium', theme: 'dark', weight: 'medium' }}
+          className={styles.sectionSubtitle}
+          text={MSG.ongoingTitle}
+        />
+        <p className={styles.sectionDescription}>
           <FormattedMessage {...MSG.ongoingDescription} />
         </p>
         <table className={styles.ongoing}>
@@ -460,35 +465,35 @@ const Landing = ({ network, user }: Props) => {
       <div className={styles.rewards}>
         <div className={styles.rewardsContent}>
           <Heading
-            appearance={{ size: 'huge', theme: 'gold', weight: 'medium' }}
-            style={{ fontSize: '40px' }}
+            appearance={{ theme: 'gold', weight: 'medium' }}
+            className={styles.title}
             text={MSG.rewardsTitle}
           />
           <p className={styles.rewardsDescription}>
             <FormattedMessage {...MSG.rewardsDescription} />
           </p>
-        </div>
-        <div className={styles.rewardsItems}>
-          <div className={styles.rewardsItem}>
-            <Image
-              className={styles.rewardsItemImage}
-              alt={MSG.heroTitle}
-              src="/img/contribute_token.svg"
-            />
-            <div className={styles.rewardsItemText}>
-              <FormattedMessage {...MSG.rewardsToken} />
-              <FormattedMessage {...MSG.rewardsTokenDescription} />
+          <div className={styles.rewardsItems}>
+            <div className={styles.rewardsItem}>
+              <Image
+                className={styles.rewardsItemImage}
+                alt={MSG.heroTitle}
+                src="/img/contribute_token.svg"
+              />
+              <div className={styles.rewardsItemText}>
+                <FormattedMessage {...MSG.rewardsToken} />
+                <FormattedMessage {...MSG.rewardsTokenDescription} />
+              </div>
             </div>
-          </div>
-          <div className={styles.rewardsItem}>
-            <Image
-              className={styles.rewardsItemImage}
-              alt={MSG.heroTitle}
-              src="/img/contribute_reputation.svg"
-            />
-            <div className={styles.rewardsItemText}>
-              <FormattedMessage {...MSG.rewardsReputation} />
-              <FormattedMessage {...MSG.rewardsReputationDescription} />
+            <div className={styles.rewardsItem}>
+              <Image
+                className={styles.rewardsItemImage}
+                alt={MSG.heroTitle}
+                src="/img/contribute_reputation.svg"
+              />
+              <div className={styles.rewardsItemText}>
+                <FormattedMessage {...MSG.rewardsReputation} />
+                <FormattedMessage {...MSG.rewardsReputationDescription} />
+              </div>
             </div>
           </div>
         </div>
@@ -496,7 +501,7 @@ const Landing = ({ network, user }: Props) => {
       <div className={styles.faq}>
         <Heading
           appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
-          style={{ fontSize: '40px' }}
+          className={styles.title}
           text={MSG.faqTitle}
         />
         <div className={styles.faqContent}>

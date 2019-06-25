@@ -36,13 +36,13 @@
   padding: 10px;
 }
 
-.issuesRewardsNetwork {
+.issuesSubtext {
   color: #788CA0;
   display: flex;
   justify-content: flex-end;
   font-size: 13px;
   font-style: italic;
-  margin-top: -20px;
+  margin-top: -15px;
   max-width: 720px;
 }
 
