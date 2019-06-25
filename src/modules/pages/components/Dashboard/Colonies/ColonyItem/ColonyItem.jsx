@@ -119,6 +119,16 @@ const ColonyItem = ({
     }
   }, [colonyAddress, networkClient, wallet.address]);
 
+  const handleHideActions = async () => {
+    if (!removeColony) {
+      setActions(false);
+    }
+  };
+
+  const handleShowActions = async () => {
+    setActions(true);
+  };
+
   const handleCancelRemove = async () => {
     setError(null);
     setRemoveColony(false);
@@ -154,8 +164,8 @@ const ColonyItem = ({
   return (
     <div
       className={error ? styles.colonyError : styles.colony}
-      onMouseEnter={() => setActions(true)}
-      onMouseLeave={() => setActions(false)}
+      onMouseEnter={handleShowActions}
+      onMouseLeave={handleHideActions}
     >
       {colony ? (
         <>
