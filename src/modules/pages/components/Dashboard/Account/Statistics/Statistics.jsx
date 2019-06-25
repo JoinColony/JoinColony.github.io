@@ -68,18 +68,18 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
   }, [colonyClient, wallet]);
 
   useEffect(() => {
-    if (!loadedLocal) {
+    if (!loadedLocal && wallet && network) {
       const localStatistics = getStore(`${wallet.address}-${network.id}`);
       setStatistics(localStatistics);
       setLoadedLocal(true);
     }
   }, [loadedLocal, network, wallet]);
 
-  useEffect(() => setStore(`${wallet.address}-${network.id}`, statistics), [
-    network,
-    statistics,
-    wallet,
-  ]);
+  useEffect(() => {
+    if (wallet && network) {
+      setStore(`${wallet.address}-${network.id}`, statistics);
+    }
+  }, [network, statistics, wallet]);
 
   useEffect(() => {
     if (colonyClient && !loaded) {
