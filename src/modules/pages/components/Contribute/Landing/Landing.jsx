@@ -91,6 +91,10 @@ const MSG = defineMessages({
     id: 'pages.Contribute.Landing.issuesHeaderTitle',
     defaultMessage: 'Title',
   },
+  issuesRewardsNetwork: {
+    id: 'pages.Contribute.Landing.issuesRewardsNetwork',
+    defaultMessage: '* Switch networks to check for other rewards.',
+  },
   issuesTitle: {
     id: 'pages.Contribute.Landing.issuesTitle',
     defaultMessage: 'Open "Help Wanted" Issues',
@@ -350,6 +354,7 @@ const Landing = ({ network, user }: Props) => {
               </td>
               <td>
                 <FormattedMessage {...MSG.issuesHeaderReward} />
+                {network && ' *'}
               </td>
             </tr>
           </thead>
@@ -365,6 +370,11 @@ const Landing = ({ network, user }: Props) => {
               ))}
           </tbody>
         </table>
+        {network && (
+          <div className={styles.issuesRewardsNetwork}>
+            <FormattedMessage {...MSG.issuesRewardsNetwork} />
+          </div>
+        )}
         {error && <ErrorMessage error={error} />}
         <Button
           appearance={{

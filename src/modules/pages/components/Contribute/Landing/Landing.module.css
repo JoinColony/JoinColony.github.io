@@ -114,6 +114,16 @@
   width: 200px;
 }
 
+.issuesRewardsNetwork {
+  color: #788CA0;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: -20px;
+  max-width: 720px;
+}
+
 .rewards {
   display: block;
   padding: 7.5%;
