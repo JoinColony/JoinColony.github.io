@@ -311,7 +311,7 @@ const Landing = ({ network, user }: Props) => {
         <Image
           className={styles.heroImage}
           alt={MSG.heroTitle}
-          src="/img/devPortal_banner_contribute.svg"
+          src="/img/contribute_banner.svg"
         />
       </div>
       <div className={styles.overview}>
