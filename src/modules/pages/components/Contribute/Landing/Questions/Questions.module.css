@@ -1,0 +1,44 @@
+.main {
+  align-self: flex-start;
+  margin-bottom: 40px;
+}
+
+.main button {
+  display: block;
+  text-align: left;
+  width: 600px;
+}
+
+.question {
+  font-family: 'Avenir Next Demi';
+  font-size: 20px;
+  padding: 18px 0;
+}
+
+.triangleRight,
+.triangleDown {
+  display: inline-block;
+  height: 8px;
+  margin-bottom: 2px;
+  width: 8px;
+}
+
+.triangleRight {
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid #00284B;
+  border-top: 5px solid transparent;
+  margin-left: 4px;
+  margin-right: 10px;
+}
+
+.triangleDown {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #00284B;
+  margin-right: 12px;
+}
+
+.answer {
+  font-size: 16px;
+  margin: 0 0 24px 24px;
+}

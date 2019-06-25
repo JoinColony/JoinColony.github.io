@@ -13,7 +13,7 @@ import Link from '~core/Link';
 
 import IssueTableRow from '~parts/IssueTableRow';
 
-import FAQ from './FAQ';
+import Questions from './Questions';
 
 import {
   COLONY_DISCOURSE,
@@ -299,7 +299,7 @@ const Landing = ({ network, user }: Props) => {
               padding: 'huge',
               weight: 'medium',
             }}
-            linkTo={user ? '#start' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
+            linkTo={user ? '#contribute' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
             text={user ? MSG.heroButtonUser : MSG.heroButton}
             type="submit"
           />
@@ -324,7 +324,7 @@ const Landing = ({ network, user }: Props) => {
           <FormattedMessage {...MSG.overviewStep3Description} />
         </div>
       </div>
-      <div id="start" className={styles.section}>
+      <div id="contribute" className={styles.section}>
         <Heading
           appearance={{ size: 'huge', theme: 'dark', weight: 'medium' }}
           style={{ fontSize: '40px' }}
@@ -490,7 +490,7 @@ const Landing = ({ network, user }: Props) => {
           text={MSG.faqTitle}
         />
         <div className={styles.faqContent}>
-          <FAQ />
+          <Questions />
           <Image
             className={styles.faqImage}
             alt={MSG.heroTitle}

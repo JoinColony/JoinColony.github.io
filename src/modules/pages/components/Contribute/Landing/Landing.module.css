@@ -176,10 +176,10 @@
 .faqContent {
   align-items: flex-start;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .faqImage {
-  margin: 80px;
+  padding: 20px;
   width: 300px;
 }
