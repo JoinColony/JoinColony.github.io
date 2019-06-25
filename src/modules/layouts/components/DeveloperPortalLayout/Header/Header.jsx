@@ -172,8 +172,8 @@ const Header = ({
               padding: 'large',
               size: 'medium',
             }}
+            className={styles.dashboardButton}
             linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
-            style={{ marginLeft: '10px' }}
             text={wallet && user ? MSG.navButtonDashboard : MSG.navButtonLogin}
           />
         </div>

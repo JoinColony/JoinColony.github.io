@@ -99,6 +99,12 @@ const AddColony = ({
     }
   };
 
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      handleAddColony();
+    }
+  };
+
   return (
     <div className={styles.field}>
       <Input
@@ -110,6 +116,7 @@ const AddColony = ({
         id="address"
         label={MSG.labelAddress}
         onChange={handleChangeAddress}
+        onKeyDown={handleKeyDown}
         type="text"
         value={address}
       />

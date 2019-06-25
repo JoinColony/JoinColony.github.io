@@ -22,12 +22,16 @@ type Appearance = {|
   weight?: 'bold' | 'medium',
 |};
 
+type Arrow = 'right' | 'left';
+
 type Props = {
   /** Appearance object */
   appearance?: Appearance,
+  /** Arrow for links */
+  arrow?: Arrow,
   /** `children` to render (only works if `text` is not set) */
   children?: Node,
-  /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
+  /** Setting this will add className styles to the `appearance` object */
   className?: string,
   /** We need to declare "disabled" in order to combine with loading. */
   disabled?: any,
@@ -52,6 +56,7 @@ type Props = {
 const displayName = 'Button';
 
 const Button = ({
+  arrow,
   appearance = { theme: 'primary' },
   children,
   className,
@@ -66,7 +71,9 @@ const Button = ({
   type = 'button',
   ...rest
 }: Props) => {
-  const classNames = className || getMainClasses(appearance, styles);
+  const classNames = className
+    ? `${getMainClasses(appearance, styles)} ${className}`
+    : getMainClasses(appearance, styles);
   const titleText =
     typeof title == 'string'
       ? title
@@ -82,7 +89,7 @@ const Button = ({
 
   if (linkTo) {
     return (
-      <Link className={classNames} href={linkTo} {...rest}>
+      <Link arrow={arrow} className={classNames} href={linkTo} {...rest}>
         {buttonContent}
       </Link>
     );

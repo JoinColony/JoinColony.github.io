@@ -1,60 +1,85 @@
+@value mediumUp from '~styles/breakpoints.css';
+
+.title {
+  font-size: 30px;
+}
+
 .hero {
-  align-items: center;
   background: #00284B;
   color: #FFFFFF;
-  display: flex;
-  justify-content: center;
-  padding: 5% 10%;
+  padding: 10%;
 }
 
 .heroContent {
-  max-width: 600px;
-  padding-bottom: 40px;
-}
-
-.heroTitle {
-  font-family: 'Avenir Next Demi';
-  font-size: 40px;
+  max-width: auto;
 }
 
 .heroDescription {
-  font-size: 18px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+}
+
+.heroButton {
+  display: none;
 }
 
 .heroImage {
-  padding: 40px;
-  width: 400px;
+  padding: 10%;
+  width: 100%;
+}
+
+.overview {
+  background: #F0F5F7;
+  width: 100vw;
+}
+
+.overviewItem {
+  padding: 5% 10%;
+}
+
+.overviewItem:first-child {
+  padding-top: 10%;
+}
+
+.overviewItem:last-child {
+  padding-bottom: 10%;
+}
+
+.overviewItem span {
+  display: inline-block;
+  padding: 10px;
+}
+
+.overviewItem span:first-child {
+  font-family: 'Avenir Next Demi';
+  font-size: 18px;
 }
 
 .section {
-  margin: 80px auto;
-  max-width: 1000px;
+  margin: 10%;
 }
 
-.section:last-child {
-  padding-bottom: 40px;
+.sectionSubtitle {
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
-.title {
-  font-family: 'Avenir Next Demi';
-  font-size: 36px;
-}
-
-.description {
+.sectionDescription {
   font-size: 16px;
-  max-width: 720px;
 }
 
 .issues,
-.moreWays {
+.ongoing {
   border: 0;
   font-size: 14px;
-  max-width: 720px;
+}
+
+.issues td:first-child,
+.issues td:nth-child(2) {
+  display: none;
 }
 
 .issues tr,
-.moreWays tr {
+.ongoing tr {
   border: 2px solid white;
 }
 
@@ -65,12 +90,184 @@
 }
 
 .issues tbody td,
-.moreWays tbody td {
+.ongoing tbody td {
   background: #F0F5F7;
   padding: 10px;
 }
 
-.moreWays td:first-child {
-  padding-left: 20px;
-  width: 120px;
+.issuesSubtext {
+  display: none;
+}
+
+.rewards {
+  composes: hero;
+  display: block;
+}
+
+.rewardsContent {
+  composes: heroContent;
+}
+
+.rewardsDescription {
+  composes: heroDescription;
+}
+
+.rewardsItemImage {
+  padding: 20px 0;
+  width: 100px;
+}
+
+.rewardsItemText {
+  font-size: 16px;
+}
+
+.rewardsItem span {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.rewardsItem span:first-child {
+  color: #FAD250;
+  font-family: 'Avenir Next Demi';
+  font-size: 20px;
+}
+
+.faq {
+  margin: 10%;
+}
+
+.faqImage {
+  display: none;
+}
+
+@media (mediumUp) {
+
+  .title {
+    font-size: 38px;
+  }
+
+  .hero {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+  }
+
+  .heroContent {
+    max-width: 640px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+  }
+
+  .heroDescription {
+    margin-bottom: 40px;
+  }
+
+  .heroButton {
+    display: inline-flex;
+  }
+
+  .heroImage {
+    padding: 40px;
+    width: 360px;
+  }
+
+  .overview {
+    display: flex;
+    justify-content: center;
+  }
+
+  .overviewItem,
+  .overviewItem:first-child,
+  .overviewItem:last-child {
+    padding: 40px 20px;
+    width: 350px;
+  }
+
+  .section {
+    margin: 80px auto;
+    max-width: 720px;
+  }
+
+  .issues td:first-child,
+  .issues td:nth-child(2) {
+    display: table-cell;
+  }
+
+  .ongoing tbody td {
+    font-size: 15px;
+    padding: 20px 30px;
+  }
+
+  .ongoing td:first-child {
+    width: 200px;
+  }
+
+  .issuesSubtext {
+    color: #788CA0;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: -15px;
+    max-width: 720px;
+  }
+
+  .rewards {
+    composes: hero;
+    display: block;
+  }
+
+  .rewardsContent {
+    composes: heroContent;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  .rewardsDescription {
+    composes: heroDescription;
+    margin-bottom: 60px;
+    max-width: 640px;
+  }
+
+  .rewardsItems {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+  }
+
+  .rewardsItem {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+  }
+
+  .rewardsItemImage,
+  .rewardsItemText {
+    padding: 20px;
+  }
+
+  .rewardsItemImage {
+    padding-left: 0;
+    width: 140px;
+  }
+
+  .faq {
+    margin: 80px auto;
+    max-width: 1000px;
+  }
+
+  .faqContent {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .faqImage {
+    display: block;
+    padding: 20px;
+    width: 300px;
+  }
+
 }

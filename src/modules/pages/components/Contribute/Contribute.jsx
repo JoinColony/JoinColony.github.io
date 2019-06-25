@@ -9,7 +9,7 @@ import { Router } from '@reach/router';
 import { defineMessages } from 'react-intl';
 import { Helmet } from 'react-helmet';
 
-import type { Network } from '~types';
+import type { Network, User } from '~types';
 
 import SEO from '~parts/SEO';
 
@@ -39,6 +39,7 @@ type Props = {|
   network: Network,
   /* eslint-disable-next-line react/no-unused-prop-types */
   page: string,
+  user: User,
   wallet: WalletObjectType,
 |};
 
@@ -48,6 +49,7 @@ const Contribute = ({
   colonyClient,
   intl: { formatMessage },
   network,
+  user,
   wallet,
 }: Props) => {
   const title = formatMessage(MSG.pageTitle);
@@ -61,7 +63,11 @@ const Contribute = ({
       <Helmet title={title} />
       <main className={styles.main}>
         <Router primary={false}>
-          <Landing path={PAGE_DEVELOPER_PORTAL_CONTRIBUTE} network={network} />
+          <Landing
+            path={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
+            network={network}
+            user={user}
+          />
           {/* TODO Update to modal. No need to use route constant here becuase
             payment will soon be a modal */}
           <Payment

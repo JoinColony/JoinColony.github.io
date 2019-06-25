@@ -36,6 +36,16 @@
   padding: 10px;
 }
 
+.issuesSubtext {
+  color: #788CA0;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: -15px;
+  max-width: 720px;
+}
+
 .noContributions {
   color: #2E4153;
   display: block;

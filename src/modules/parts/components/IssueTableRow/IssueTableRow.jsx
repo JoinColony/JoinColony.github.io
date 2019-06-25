@@ -19,11 +19,11 @@ import styles from './IssueTableRow.module.css';
 const MSG = defineMessages({
   error: {
     id: 'pages.Contribute.Issue.error',
-    defaultMessage: 'error',
+    defaultMessage: 'Error',
   },
-  notSet: {
-    id: 'pages.Contribute.Issue.notSet',
-    defaultMessage: 'not set',
+  none: {
+    id: 'pages.Contribute.Issue.none',
+    defaultMessage: 'None',
   },
 });
 
@@ -63,7 +63,7 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
     )
       .then(res => res.json())
       .then(data => {
-        setContribution(data.contribution || { notSet: true });
+        setContribution(data.contribution || { none: true });
         setLoading(false);
       })
       .catch(fetchError => {
@@ -104,10 +104,10 @@ const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
         <Link href={issue.node.url} text={formatIssueLink(issue.node.url)} />
       </td>
       <td>
-        {contribution && contribution.notSet && (
-          <FormattedMessage {...MSG.notSet} />
+        {contribution && contribution.none && (
+          <FormattedMessage {...MSG.none} />
         )}
-        {contribution && !contribution.notSet && (
+        {contribution && !contribution.none && (
           <Link
             href={`/contribute/${contribution.type}?id=${contribution.typeId}`}
           >

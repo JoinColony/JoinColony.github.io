@@ -106,6 +106,12 @@ const Email = ({ setUser, user }: Props) => {
     }
   };
 
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      handleSaveEmail();
+    }
+  };
+
   return (
     <div className={styles.field}>
       <Input
@@ -119,6 +125,7 @@ const Email = ({ setUser, user }: Props) => {
         error={error}
         label={MSG.emailLabel}
         onChange={handleChangeEmail}
+        onKeyDown={handleKeyDown}
         type="text"
         value={email}
       />

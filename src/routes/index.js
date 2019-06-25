@@ -25,8 +25,11 @@ export const PAGE_BUG_BOUNTY = '/colonynetwork/bug-bounty-program-overview';
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
 export const COLONY_DISCOURSE = 'https://build.colony.io';
+export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
 export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;
 export const COLONY_GITHUB = 'https://github.com/JoinColony';
+export const COLONY_GITHUB_OPEN_ISSUES =
+  'https://github.com/search?p=6&q=org%3AJoinColony&state=open&type=Issues';
 export const COLONY_GITTER = 'https://gitter.im/JoinColony';
 export const COLONY_GITTER_COLONYJS = `${COLONY_GITTER}/colonyJS`;
 export const COLONY_REDDIT = 'https://www.reddit.com/r/joincolony/';

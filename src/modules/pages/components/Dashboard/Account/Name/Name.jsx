@@ -85,6 +85,12 @@ const Name = ({ setUser, user }: Props) => {
     }
   };
 
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      handleSaveName();
+    }
+  };
+
   return (
     <div>
       <div className={styles.main}>
@@ -94,6 +100,7 @@ const Name = ({ setUser, user }: Props) => {
               appearance={{ padding: 'huge', size: 'large' }}
               id="name"
               onChange={handleChangeName}
+              onKeyDown={handleKeyDown}
               style={{ marginRight: '20px', marginTop: '0' }}
               type="text"
               value={name}

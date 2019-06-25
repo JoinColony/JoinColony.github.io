@@ -9,6 +9,14 @@ import Image from '~core/Image';
 import styles from './MetaMask.module.css';
 
 const MSG = defineMessages({
+  getMetaMask: {
+    id: 'pages.Dashboard.getMetaMask',
+    defaultMessage: 'Get the extension now',
+  },
+  metamaskMobile: {
+    id: 'pages.Dashboard.metamaskMobile',
+    defaultMessage: 'Sorry! Not available on mobile... yet.',
+  },
   metamaskTitle: {
     id: 'pages.Dashboard.metamaskTitle',
     defaultMessage: 'MetaMask',
@@ -20,10 +28,6 @@ const MSG = defineMessages({
   metamaskSubText: {
     id: 'pages.Dashboard.metamaskSubText',
     defaultMessage: `Don't have MetaMask? {getMetaMask}.`,
-  },
-  getMetaMask: {
-    id: 'pages.Dashboard.getMetaMask',
-    defaultMessage: 'Get the extension now',
   },
 });
 
@@ -53,6 +57,9 @@ const MetaMask = () => (
           }}
           {...MSG.metamaskSubText}
         />
+      </p>
+      <p className={styles.mobile}>
+        <FormattedMessage {...MSG.metamaskMobile} />
       </p>
     </div>
   </div>

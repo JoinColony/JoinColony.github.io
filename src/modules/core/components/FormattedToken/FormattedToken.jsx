@@ -36,7 +36,7 @@ type Props = {|
   appearance?: Appearance,
   /** Token amount */
   amount: number,
-  /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
+  /** Setting this will add className styles to the `appearance` object */
   className?: string,
   /** Token amount */
   decimals?: number,
@@ -64,7 +64,9 @@ const FormattedToken = ({
   minimumFractionDigits,
   symbol,
 }: Props) => {
-  const classNames = className || getMainClasses(appearance, styles);
+  const classNames = className
+    ? `${getMainClasses(appearance, styles)} ${className}`
+    : getMainClasses(appearance, styles);
   const formattedAmount = amount / 10 ** (decimals || 18);
   const tokenFormat = {
     id: symbol,

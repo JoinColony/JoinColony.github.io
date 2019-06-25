@@ -65,7 +65,7 @@ const useMetaMask = (walletRequired: boolean) => {
   const [network, setNetwork] = useState<?Network>(null);
   const [wallet, setWallet] = useState<?WalletObjectType>(null);
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && window.ethereum) {
     window.ethereum.autoRefreshOnNetworkChange = false;
   }
 
@@ -140,6 +140,9 @@ const useMetaMask = (walletRequired: boolean) => {
     }
     if (window && window.ethereum) {
       window.ethereum.on('accountsChanged', handleAccountsChanged);
+    }
+    if (window && !window.ethereum) {
+      setNetwork(null);
     }
     return () => {
       if (window && window.ethereum) {

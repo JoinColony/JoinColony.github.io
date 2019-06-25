@@ -37,21 +37,25 @@ const MSG = defineMessages({
     id: 'pages.Dashboard.Contributions.description',
     defaultMessage: 'A list of your contributions to {joinColonyLink}.',
   },
-  contributionsHeaderDate: {
-    id: 'pages.Contribute.Landing.contributionsHeaderDate',
+  issuesHeaderDate: {
+    id: 'pages.Contribute.Landing.issuesHeaderDate',
     defaultMessage: 'Date',
   },
-  contributionsHeaderLink: {
-    id: 'pages.Contribute.Landing.contributionsHeaderLink',
+  issuesHeaderLink: {
+    id: 'pages.Contribute.Landing.issuesHeaderLink',
     defaultMessage: 'Link',
   },
-  contributionsHeaderReward: {
-    id: 'pages.Contribute.Landing.contributionsHeaderReward',
+  issuesHeaderReward: {
+    id: 'pages.Contribute.Landing.issuesHeaderReward',
     defaultMessage: 'Reward',
   },
-  contributionsHeaderTitle: {
-    id: 'pages.Contribute.Landing.contributionsHeaderTitle',
+  issuesHeaderTitle: {
+    id: 'pages.Contribute.Landing.issuesHeaderTitle',
     defaultMessage: 'Title',
+  },
+  issuesSubtext: {
+    id: 'pages.Contribute.Landing.issuesSubtext',
+    defaultMessage: '* Switch networks to check for other rewards.',
   },
   noContributionsLink: {
     id: 'pages.Dashboard.Contributions.noContributionsLink',
@@ -175,7 +179,7 @@ const Contributions = ({ network, user }: Props) => {
             <Image
               alt={MSG.noContributionsTitle}
               className={styles.noContributionsImage}
-              src="/img/no_contributions.svg"
+              src="/img/no_issues.svg"
             />
             <h1 className={styles.title}>
               <FormattedMessage {...MSG.noContributionsTitle} />
@@ -220,16 +224,17 @@ const Contributions = ({ network, user }: Props) => {
             <thead>
               <tr>
                 <td>
-                  <FormattedMessage {...MSG.contributionsHeaderDate} />
+                  <FormattedMessage {...MSG.issuesHeaderDate} />
                 </td>
                 <td>
-                  <FormattedMessage {...MSG.contributionsHeaderTitle} />
+                  <FormattedMessage {...MSG.issuesHeaderTitle} />
                 </td>
                 <td>
-                  <FormattedMessage {...MSG.contributionsHeaderLink} />
+                  <FormattedMessage {...MSG.issuesHeaderLink} />
                 </td>
                 <td>
-                  <FormattedMessage {...MSG.contributionsHeaderReward} />
+                  <FormattedMessage {...MSG.issuesHeaderReward} />
+                  {network && ' *'}
                 </td>
               </tr>
             </thead>
@@ -245,6 +250,11 @@ const Contributions = ({ network, user }: Props) => {
                 ))}
             </tbody>
           </table>
+          {network && (
+            <div className={styles.issuesSubtext}>
+              <FormattedMessage {...MSG.issuesSubtext} />
+            </div>
+          )}
           <div className={styles.showMore}>
             {loadingMore && <SpinnerLoader appearance={{ theme: 'primary' }} />}
             <Button

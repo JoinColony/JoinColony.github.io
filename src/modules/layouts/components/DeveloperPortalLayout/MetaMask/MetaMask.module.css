@@ -1,3 +1,5 @@
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   align-items: center;
   background-color: #00284B;
@@ -5,25 +7,25 @@
   display: flex;
   justify-content: center;
   font-family: 'Avenir Next Light';
-  min-height: 100vh;
+  min-height: 50vh;
   min-width: 100vw;
 }
 
 .content {
   padding-bottom: 10%;
   text-align: center;
-  width: 500px;
 }
 
 .text {
-  font-family: 'Avenir Next Demi';
-  font-size: 24px;
-  font-weight: bold;
-  margin: 20px auto;
-  padding: 0;
+  display: none;
 }
 
 .subtext {
+  display: none;
+}
+
+.mobile {
+  display: block;
   font-size: 15px;
   margin: 20px auto;
   padding: 0;
@@ -38,4 +40,36 @@
   margin: 25px auto;
   padding: 0;
   width: 100px;
+}
+
+@media (mediumUp) {
+
+  .main {
+    min-height: 100vh;
+  }
+
+  .content {
+    width: 500px;
+  }
+
+  .text {
+    display: block;
+    font-family: 'Avenir Next Demi';
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px auto;
+    padding: 0;
+  }
+
+  .subtext {
+    display: block;
+    font-size: 15px;
+    margin: 20px auto;
+    padding: 0;
+  }
+
+  .mobile {
+    display: none;
+  }
+
 }

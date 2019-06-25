@@ -23,7 +23,7 @@ type Appearance = {|
 type Props = {|
   /** Appearance object */
   appearance?: Appearance,
-  /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
+  /** Setting this will add className styles to the `appearance` object */
   className?: string,
   /** Error message */
   error: Error | MessageDescriptor | string,
@@ -34,7 +34,9 @@ type Props = {|
 const displayName = 'ErrorMessage';
 
 const ErrorMessage = ({ appearance, className, error, ...rest }: Props) => {
-  const classNames = className || getMainClasses(appearance, styles);
+  const classNames = className
+    ? `${getMainClasses(appearance, styles)} ${className}`
+    : getMainClasses(appearance, styles);
   const printMessage = () => {
     if (error instanceof Error) {
       return error.toString();
