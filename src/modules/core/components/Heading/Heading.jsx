@@ -32,6 +32,8 @@ type Props = {
   appearance?: Appearance,
   /** Used to extend the functionality of the component. This will not generate a title attribute on the element. */
   children?: Node,
+  /** Setting this will add className styles to the `appearance` object */
+  className?: string,
   /** Injected by `injectIntl` */
   intl: IntlShape,
   /** String that will hard set the heading element to render */
@@ -46,6 +48,7 @@ const displayName = 'Heading';
 
 const Heading = ({
   appearance = { size: 'huge' },
+  className,
   children,
   intl,
   tagName,
@@ -53,6 +56,9 @@ const Heading = ({
   textValues,
   ...props
 }: Props) => {
+  const classNames = className
+    ? `${getMainClasses(appearance, styles)} ${className}`
+    : getMainClasses(appearance, styles);
   const { size } = appearance;
   const HeadingElement =
     tagName ||
@@ -69,7 +75,7 @@ const Heading = ({
   return (
     <HeadingElement
       title={typeof value === 'string' ? value : undefined}
-      className={getMainClasses(appearance, styles)}
+      className={classNames}
       {...props}
     >
       {value}

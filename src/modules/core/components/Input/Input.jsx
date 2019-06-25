@@ -18,7 +18,7 @@ type Appearance = {|
 type Props = {
   /** Appearance object */
   appearance?: Appearance,
-  /** Overwriting class name(s). Setting this will overwrite the `appearance` object */
+  /** Setting this will add className styles to the `appearance` object */
   className?: string,
   /** Outline in red if error */
   error?: ?string,
@@ -47,7 +47,9 @@ const Input = ({
   type = 'text',
   ...rest
 }: Props) => {
-  const classNames = className || getMainClasses(appearance, styles);
+  const classNames = className
+    ? `${getMainClasses(appearance, styles)} ${className}`
+    : getMainClasses(appearance, styles);
   const labelText =
     typeof label === 'string'
       ? label
