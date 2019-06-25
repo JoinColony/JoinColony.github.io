@@ -11,34 +11,41 @@
 
 .question {
   font-family: 'Avenir Next Demi';
-  font-size: 20px;
+  font-size: 18px;
   padding: 18px 0;
-}
-
-.triangleRight,
-.triangleDown {
-  display: inline-block;
-  height: 8px;
-  margin-bottom: 2px;
-  width: 8px;
 }
 
 .triangleRight {
   border-bottom: 5px solid transparent;
   border-left: 7px solid #00284B;
   border-top: 5px solid transparent;
+  display: inline-block;
+  height: 8px;
+  margin-bottom: 2px;
   margin-left: 4px;
   margin-right: 10px;
+  transition: 0.2s;
+  width: 8px;
 }
 
 .triangleDown {
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 7px solid #00284B;
-  margin-right: 12px;
+  composes: triangleRight;
+  transform: rotate(90deg);
 }
 
 .answer {
   font-size: 16px;
-  margin: 0 0 24px 24px;
+  margin-bottom: 0;
+  margin-left: 24px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.answerActive {
+  composes: answer;
+  margin-bottom: 24px;
+  max-height: 100px;
+  opacity: 1;
 }

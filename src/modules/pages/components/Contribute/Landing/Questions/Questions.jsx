@@ -124,11 +124,13 @@ const Questions = () => {
             />
             <FormattedMessage {...MSG[`question${item}`]} />
           </div>
-          {selected.includes(item) && (
-            <div className={styles.answer}>
-              <FormattedMessage {...MSG[`answer${item}`]} />
-            </div>
-          )}
+          <div
+            className={
+              selected.includes(item) ? styles.answerActive : styles.answer
+            }
+          >
+            <FormattedMessage {...MSG[`answer${item}`]} />
+          </div>
         </Button>
       ))}
     </div>
