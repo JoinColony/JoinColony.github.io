@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import styles from './FAQ.module.css';
@@ -84,22 +84,27 @@ const MSG = defineMessages({
   },
   question8: {
     id: 'pages.Contribute.Landing.FAQ.question8',
-    defaultMessage: 'Can I transfer my reputation to another account?',
+    defaultMessage: 'How do I get started?',
   },
 });
 
 const displayName = 'pages.Contribute.Landing.FAQ';
 
 const FAQ = () => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState([]);
   const items = ['1', '2', '3', '4', '5', '6', '7', '8'];
-  const handleClick = event => {
-    if (selected === event.currentTarget.id) {
-      setSelected(null);
-    } else {
-      setSelected(event.currentTarget.id);
-    }
-  };
+  const handleClick = useCallback(
+    event => {
+      if (selected.includes(event.currentTarget.id)) {
+        const result = selected.filter(item => item !== event.currentTarget.id);
+        setSelected(result);
+      } else {
+        const result = [...selected, event.currentTarget.id];
+        setSelected(result);
+      }
+    },
+    [selected],
+  );
   return (
     <div className={styles.main}>
       {items.map(item => (
@@ -112,12 +117,14 @@ const FAQ = () => {
           <div className={styles.question}>
             <div
               className={
-                selected === item ? styles.triangleDown : styles.triangleRight
+                selected.includes(item)
+                  ? styles.triangleDown
+                  : styles.triangleRight
               }
             />
             <FormattedMessage {...MSG[`question${item}`]} />
           </div>
-          {selected === item && (
+          {selected.includes(item) && (
             <div className={styles.answer}>
               <FormattedMessage {...MSG[`answer${item}`]} />
             </div>

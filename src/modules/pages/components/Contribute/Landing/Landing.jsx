@@ -3,18 +3,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { Network } from '~types';
+import type { Network, User } from '~types';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Link from '~core/Link';
 
 import IssueTableRow from '~parts/IssueTableRow';
 
 import FAQ from './FAQ';
 
 import {
+  COLONY_DISCOURSE,
+  COLONY_DISCOURSE_PROJECTS,
+  COLONY_GITHUB,
   COLONY_GITHUB_OPEN_ISSUES,
   PAGE_DEVELOPER_PORTAL_DASHBOARD,
 } from '~routes';
@@ -37,7 +41,11 @@ const MSG = defineMessages({
   },
   heroButton: {
     id: 'pages.Contribute.Landing.heroButton',
-    defaultMessage: 'Get Started',
+    defaultMessage: "Let's Get Started",
+  },
+  heroButtonUser: {
+    id: 'pages.Contribute.Landing.heroButton',
+    defaultMessage: 'Start Contributing',
   },
   heroDescription: {
     id: 'pages.Contribute.Landing.heroDescription',
@@ -48,6 +56,14 @@ const MSG = defineMessages({
   heroTitle: {
     id: 'pages.Contribute.Landing.heroTitle',
     defaultMessage: 'Contribute and Earn',
+  },
+  linkDiscourse: {
+    id: 'pages.Contribute.Landing.linkDiscourse',
+    defaultMessage: 'Discourse',
+  },
+  linkGitHub: {
+    id: 'pages.Contribute.Landing.linkGitHub',
+    defaultMessage: 'GitHub',
   },
   issuesDescription: {
     id: 'pages.Contribute.Landing.issuesDescription',
@@ -104,8 +120,8 @@ const MSG = defineMessages({
   },
   ongoingItemFeatureDescription: {
     id: 'pages.Contribute.Landing.ongoingItemFeatureDescription',
-    defaultMessage: `Do you have an idea for a new feature? Open an issue with
-    your feature request or a pull request with your feature.`,
+    defaultMessage: `Have an idea for a new feature? Open an issue with your
+    feature request or a pull request with your feature.`,
   },
   ongoingItemFeatureTitle: {
     id: 'pages.Contribute.Landing.ongoingItemFeatureTitle',
@@ -113,8 +129,8 @@ const MSG = defineMessages({
   },
   ongoingItemOtherDescription: {
     id: 'pages.Contribute.Landing.ongoingItemOtherDescription',
-    defaultMessage: `Creative ideas abound. Let us know your by posting in
-    Discourse or adding an issue to GitHub.`,
+    defaultMessage: `Creative ideas abound. Let us know yours by posting in
+    {discourse} or opening an issue in {github}.`,
   },
   ongoingItemOtherTitle: {
     id: 'pages.Contribute.Landing.ongoingItemOtherTitle',
@@ -122,8 +138,8 @@ const MSG = defineMessages({
   },
   ongoingItemUserStoryDescription: {
     id: 'pages.Contribute.Landing.ongoingItemUserStoryDescription',
-    defaultMessage: `Use-case examples, tutorials, lessons learned—whatever it
-    is, we like user stories. Write it up and send it over. `,
+    defaultMessage: `Use-case examples, tutorials, lessons learned — whatever it
+    is, we like user stories. Write it up and post it in {discourse}.`,
   },
   ongoingItemUserStoryTitle: {
     id: 'pages.Contribute.Landing.ongoingItemUserStoryTitle',
@@ -192,11 +208,12 @@ const MSG = defineMessages({
 type Props = {|
   network: Network,
   path: string,
+  user: User,
 |};
 
 const displayName = 'pages.Contribute.Landing';
 
-const Landing = ({ network }: Props) => {
+const Landing = ({ network, user }: Props) => {
   const [issues, setIssues] = useState(null);
   const [error, setError] = useState(null);
   const [loadedLocal, setLoadedLocal] = useState(false);
@@ -282,8 +299,8 @@ const Landing = ({ network }: Props) => {
               padding: 'huge',
               weight: 'medium',
             }}
-            linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
-            text={MSG.heroButton}
+            linkTo={user ? '#start' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
+            text={user ? MSG.heroButtonUser : MSG.heroButton}
             type="submit"
           />
         </div>
@@ -307,10 +324,12 @@ const Landing = ({ network }: Props) => {
           <FormattedMessage {...MSG.overviewStep3Description} />
         </div>
       </div>
-      <div className={styles.section}>
-        <h1 className={styles.title}>
-          <FormattedMessage {...MSG.contributeTitle} />
-        </h1>
+      <div id="start" className={styles.section}>
+        <Heading
+          appearance={{ size: 'huge', theme: 'dark', weight: 'medium' }}
+          style={{ fontSize: '40px' }}
+          text={MSG.contributeTitle}
+        />
         <h2 className={styles.subtitle}>
           <FormattedMessage {...MSG.issuesTitle} />
         </h2>
@@ -396,7 +415,17 @@ const Landing = ({ network }: Props) => {
                 <FormattedMessage {...MSG.ongoingItemUserStoryTitle} />
               </td>
               <td>
-                <FormattedMessage {...MSG.ongoingItemUserStoryDescription} />
+                <FormattedMessage
+                  {...MSG.ongoingItemUserStoryDescription}
+                  values={{
+                    discourse: (
+                      <Link
+                        href={COLONY_DISCOURSE_PROJECTS}
+                        text={MSG.linkDiscourse}
+                      />
+                    ),
+                  }}
+                />
               </td>
             </tr>
             <tr>
@@ -404,7 +433,15 @@ const Landing = ({ network }: Props) => {
                 <FormattedMessage {...MSG.ongoingItemOtherTitle} />
               </td>
               <td>
-                <FormattedMessage {...MSG.ongoingItemOtherDescription} />
+                <FormattedMessage
+                  {...MSG.ongoingItemOtherDescription}
+                  values={{
+                    discourse: (
+                      <Link href={COLONY_DISCOURSE} text={MSG.linkDiscourse} />
+                    ),
+                    github: <Link href={COLONY_GITHUB} text={MSG.linkGitHub} />,
+                  }}
+                />
               </td>
             </tr>
           </tbody>

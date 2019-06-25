@@ -25,6 +25,7 @@ export const PAGE_BUG_BOUNTY = '/colonynetwork/bug-bounty-program-overview';
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
 export const COLONY_DISCOURSE = 'https://build.colony.io';
+export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
 export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;
 export const COLONY_GITHUB = 'https://github.com/JoinColony';
 export const COLONY_GITHUB_OPEN_ISSUES =
