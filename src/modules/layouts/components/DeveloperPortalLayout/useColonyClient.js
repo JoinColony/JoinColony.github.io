@@ -1,10 +1,9 @@
 /* @flow */
 
-import type {
-  ColonyClient,
-  ColonyNetworkClient,
-} from '@colony/colony-js-client';
+import type { ColonyClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
+import { getColonyClient } from '@colony/colony-js-client';
 import { useCallback, useEffect, useState } from 'react';
 
 import type { Network } from '~types';
@@ -22,63 +21,52 @@ const getColonyAddress = (networkId: number) => {
   }
 };
 
-const useColonyClient = (
-  network: ?Network,
-  networkClient: ?ColonyNetworkClient,
-) => {
+const useColonyClient = (network: ?Network, wallet: ?WalletObjectType) => {
   const [client, setClient] = useState<?ColonyClient>(null);
   const [error, setError] = useState<?string>(null);
-  const [loaded, setLoaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const getClient = useCallback(async () => {
-    if (network && supportedNetwork(network) && networkClient) {
+    if (network) {
       setError(null);
       setLoading(true);
       const colonyAddress = getColonyAddress(network.id);
-      networkClient
-        .getColonyClientByAddress(colonyAddress)
+      await getColonyClient(colonyAddress, network.slug, wallet)
         .then(result => {
           setClient(result);
           setLoading(false);
         })
-        .catch(colonyError => {
-          setError(colonyError.message);
+        .catch(clientError => {
+          setError(clientError.message);
           setLoading(false);
         });
-      setLoaded(true);
     }
-  }, [network, networkClient]);
-
-  const handleChange = useCallback(() => {
-    setClient(null);
-    setLoaded(false);
-  }, []);
+  }, [network, wallet]);
 
   useEffect(() => {
-    if (!client && !loaded && !loading) {
+    const validInputs = supportedNetwork(network) && wallet;
+    if (!client && !error && !loading && validInputs) {
       getClient();
     }
-  }, [client, getClient, loaded, loading]);
+  }, [client, error, getClient, loading, network, wallet]);
 
   useEffect(() => {
-    if (window && window.ethereum) {
-      window.ethereum.on('networkChanged', handleChange);
+    const networkMismatch =
+      client && network && client.network !== network.slug;
+    const walletMismatch =
+      // $FlowFixMe - Property address is missing in Wallet
+      client && wallet && client.adapter.wallet.address !== wallet.address;
+    if (
+      client &&
+      !error &&
+      !loading &&
+      (!network || !wallet || networkMismatch || walletMismatch)
+    ) {
+      setClient(null);
     }
-    if (window && window.ethereum) {
-      window.ethereum.on('accountsChanged', handleChange);
-    }
-    return () => {
-      if (window && window.ethereum) {
-        window.ethereum.off('networkChanged', handleChange);
-      }
-      if (window && window.ethereum) {
-        window.ethereum.off('accountsChanged', handleChange);
-      }
-    };
-  }, [handleChange]);
+  }, [client, error, loading, network, wallet]);
 
-  return { colonyClient: client, error };
+  return { colonyClient: client };
 };
 
 export default useColonyClient;

@@ -304,7 +304,7 @@ const Landing = ({ network, user }: Props) => {
               weight: 'medium',
             }}
             className={styles.heroButton}
-            linkTo={user ? '#start' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
+            linkTo={user ? '#contribute' : PAGE_DEVELOPER_PORTAL_DASHBOARD}
             text={user ? MSG.heroButtonUser : MSG.heroButton}
             type="submit"
           />

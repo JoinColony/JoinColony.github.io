@@ -10,14 +10,13 @@ import type { Network } from '~types';
 
 import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
 
-const useNetworkClient = (network: ?Network, wallet: WalletObjectType) => {
+const useNetworkClient = (network: ?Network, wallet: ?WalletObjectType) => {
   const [client, setClient] = useState<?ColonyNetworkClient>(null);
   const [error, setError] = useState<?string>(null);
-  const [loaded, setLoaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const getClient = useCallback(async () => {
-    if (network && supportedNetwork(network) && wallet) {
+    if (network) {
       setError(null);
       setLoading(true);
       await getNetworkClient(network.slug, wallet)
@@ -25,43 +24,37 @@ const useNetworkClient = (network: ?Network, wallet: WalletObjectType) => {
           setClient(result);
           setLoading(false);
         })
-        .catch(networkError => {
-          setError(networkError.message);
+        .catch(clientError => {
+          setError(clientError.message);
           setLoading(false);
         });
-      setLoaded(true);
     }
   }, [network, wallet]);
 
-  const handleChange = useCallback(() => {
-    setClient(null);
-    setLoaded(false);
-  }, []);
-
   useEffect(() => {
-    if (!client && !loaded && !loading) {
+    const validInputs = supportedNetwork(network) && wallet;
+    if (!client && !error && !loading && validInputs) {
       getClient();
     }
-  }, [getClient, loaded, loading, client]);
+  }, [client, error, getClient, loading, network, wallet]);
 
   useEffect(() => {
-    if (window && window.ethereum) {
-      window.ethereum.on('networkChanged', handleChange);
+    const networkMismatch =
+      client && network && client.network !== network.slug;
+    const walletMismatch =
+      // $FlowFixMe - Property address is missing in Wallet
+      client && wallet && client.adapter.wallet.address !== wallet.address;
+    if (
+      client &&
+      !error &&
+      !loading &&
+      (!network || !wallet || networkMismatch || walletMismatch)
+    ) {
+      setClient(null);
     }
-    if (window && window.ethereum) {
-      window.ethereum.on('accountsChanged', handleChange);
-    }
-    return () => {
-      if (window && window.ethereum) {
-        window.ethereum.off('networkChanged', handleChange);
-      }
-      if (window && window.ethereum) {
-        window.ethereum.off('accountsChanged', handleChange);
-      }
-    };
-  }, [handleChange]);
+  }, [client, error, loading, network, wallet]);
 
-  return { error, networkClient: client };
+  return { networkClient: client };
 };
 
 export default useNetworkClient;

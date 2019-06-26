@@ -31,7 +31,7 @@ const MSG = defineMessages({
 
 type Props = {|
   active: string,
-  network: Network,
+  network: ?Network,
   user: ?User,
 |};
 
@@ -55,7 +55,7 @@ const Sidebar = ({ active, network, user }: Props) => (
         href="/dashboard/contributions"
         text={MSG.contributionsLink}
       />
-      {user && user.admin && user.admin[network.slug] && (
+      {user && network && user.admin && user.admin[network.slug] && (
         <Link
           className={active === 'admin' ? styles.linkActive : styles.link}
           href="/dashboard/admin"

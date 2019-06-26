@@ -44,60 +44,53 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
 
   const getStatistics = useCallback(async () => {
     if (colonyClient) {
-      setError(null);
       setLoading(true);
-      const {
-        amount: balance,
-      } = await colonyClient.tokenClient.getBalanceOf.call({
-        sourceAddress: wallet.address,
-      });
-      const { skillId } = await colonyClient.getDomain.call({
-        domainId: 1,
-      });
-      const { reputationAmount } = await colonyClient.getReputation({
-        skillId,
-        address: wallet.address,
-      });
-      setStatistics({
-        balance: balance.toString(),
-        reputation: reputationAmount || 0,
-      });
-      setLoaded(true);
-      setLoading(false);
+      try {
+        const {
+          amount: balance,
+        } = await colonyClient.tokenClient.getBalanceOf.call({
+          sourceAddress: wallet.address,
+        });
+        const { skillId } = await colonyClient.getDomain.call({
+          domainId: 1,
+        });
+        const { reputationAmount } = await colonyClient.getReputation({
+          skillId,
+          address: wallet.address,
+        });
+        setStatistics({
+          balance: balance.toString(),
+          reputation: reputationAmount || 0,
+        });
+        setLoaded(true);
+        setLoading(false);
+      } catch (clientError) {
+        setError(clientError.message);
+        setStatistics(null);
+        setLoading(false);
+      }
     }
   }, [colonyClient, wallet]);
 
   useEffect(() => {
-    if (!loadedLocal && wallet && network) {
+    if (!loadedLocal) {
       const localStatistics = getStore(`${wallet.address}-${network.id}`);
       setStatistics(localStatistics);
       setLoadedLocal(true);
     }
   }, [loadedLocal, network, wallet]);
 
-  useEffect(() => {
-    if (wallet && network) {
-      setStore(`${wallet.address}-${network.id}`, statistics);
-    }
-  }, [network, statistics, wallet]);
+  useEffect(() => setStore(`${wallet.address}-${network.id}`, statistics), [
+    network,
+    statistics,
+    wallet,
+  ]);
 
   useEffect(() => {
-    if (colonyClient && !loaded) {
+    if (colonyClient && !error && !loaded && !loading) {
       getStatistics();
     }
-  }, [colonyClient, getStatistics, loaded]);
-
-  useEffect(() => {
-    if (!colonyClient && loaded) {
-      setLoading(true);
-      setStatistics(null);
-      setLoaded(false);
-    }
-  }, [colonyClient, loaded]);
-
-  if (error && !loading) {
-    return <ErrorMessage error={error} />;
-  }
+  }, [colonyClient, error, getStatistics, loaded, loading]);
 
   if (!supportedNetwork(network)) {
     return (
@@ -125,6 +118,7 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
           symbol="Reputation"
         />
       </div>
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };

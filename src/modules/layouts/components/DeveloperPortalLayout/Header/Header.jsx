@@ -91,7 +91,7 @@ const Header = ({
               viewBox="0 0 134 33"
             />
           </Link>
-          {wallet && network && (
+          {network && wallet && (
             <div className={styles.network}>
               <div
                 className={styles.networkDot}

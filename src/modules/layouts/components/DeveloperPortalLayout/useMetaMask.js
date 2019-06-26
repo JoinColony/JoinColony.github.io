@@ -71,20 +71,20 @@ const useMetaMask = (walletRequired: boolean) => {
 
   const getNetwork = useCallback(async () => {
     if (window && window.ethereum) {
+      setLoadedNetwork(true);
       setLoadingNetwork(true);
       const networkId = Number(window.ethereum.networkVersion);
       const result = getNetworkInfo(networkId);
       setNetwork(result);
-      setLoadedNetwork(true);
       setLoadingNetwork(false);
     }
   }, []);
 
   const getWallet = useCallback(async () => {
+    setLoadedWallet(true);
     setLoadingWallet(true);
     const result = await open();
     setWallet(result);
-    setLoadedWallet(true);
     setLoadingWallet(false);
   }, []);
 
@@ -93,6 +93,7 @@ const useMetaMask = (walletRequired: boolean) => {
       if (!accounts.length) {
         setWallet(null);
       } else if (wallet && accounts[0] !== wallet.address) {
+        setWallet(null);
         getWallet();
       }
     },
@@ -102,31 +103,48 @@ const useMetaMask = (walletRequired: boolean) => {
   const handleNetworkChanged = useCallback(
     id => {
       if (network && id !== network.id.toString()) {
-        setLoadedNetwork(false);
+        setNetwork(null);
         getNetwork();
       }
     },
     [getNetwork, network],
   );
 
+  const handleUpdate = useCallback(
+    ({ networkVersion, selectedAddress }) => {
+      if (network && !networkVersion) {
+        setNetwork(null);
+      }
+      if (
+        !loadingNetwork &&
+        (!network || (network && networkVersion !== network.id.toString()))
+      ) {
+        setNetwork(null);
+        getNetwork();
+      }
+      if (wallet && !selectedAddress) {
+        setWallet(null);
+      }
+      if (!loadingWallet && !wallet && selectedAddress) {
+        setWallet(null);
+        getWallet();
+      }
+    },
+    [getNetwork, getWallet, loadingNetwork, loadingWallet, network, wallet],
+  );
+
   useEffect(() => {
     if (!loadedLocal) {
+      setLoadedLocal(true);
       const localNetwork = getStore('network');
       const localWallet = getStore('wallet');
       setNetwork(localNetwork);
       setWallet(localWallet);
-      setLoadedLocal(true);
     }
   }, [loadedLocal]);
 
   useEffect(() => setStore('network', network), [network]);
   useEffect(() => setStore('wallet', wallet), [wallet]);
-
-  useEffect(() => {
-    if (!loadedWallet && !loadingWallet && walletRequired) {
-      getWallet();
-    }
-  }, [getWallet, loadedWallet, loadingWallet, walletRequired]);
 
   useEffect(() => {
     if (!loadedNetwork && !loadingNetwork) {
@@ -135,26 +153,29 @@ const useMetaMask = (walletRequired: boolean) => {
   }, [getNetwork, loadedNetwork, loadingNetwork]);
 
   useEffect(() => {
+    if (!loadedWallet && !loadingWallet && walletRequired) {
+      getWallet();
+    }
+  }, [getWallet, loadedWallet, loadingWallet, walletRequired]);
+
+  useEffect(() => {
     if (window && window.ethereum) {
       window.ethereum.on('networkChanged', handleNetworkChanged);
-    }
-    if (window && window.ethereum) {
       window.ethereum.on('accountsChanged', handleAccountsChanged);
-    }
-    if (window && !window.ethereum) {
-      setNetwork(null);
+      // eslint-disable-next-line no-underscore-dangle
+      window.ethereum.publicConfigStore._events.update.push(handleUpdate);
     }
     return () => {
       if (window && window.ethereum) {
         window.ethereum.off('networkChanged', handleNetworkChanged);
-      }
-      if (window && window.ethereum) {
         window.ethereum.off('accountsChanged', handleAccountsChanged);
+        // eslint-disable-next-line no-underscore-dangle
+        window.ethereum.publicConfigStore._events.update.pop(handleUpdate);
       }
     };
-  }, [handleAccountsChanged, handleNetworkChanged]);
+  }, [handleUpdate, handleAccountsChanged, handleNetworkChanged]);
 
-  return { network, wallet };
+  return { loadingWallet, network, wallet };
 };
 
 export default useMetaMask;

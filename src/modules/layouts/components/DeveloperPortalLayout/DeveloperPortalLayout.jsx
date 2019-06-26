@@ -76,9 +76,9 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
     }
     return false;
   }, [pathContribution, pathDashboard]);
-  const { network, wallet } = useMetaMask(walletRequired);
+  const { loadingWallet, network, wallet } = useMetaMask(walletRequired);
   const { networkClient } = useNetworkClient(network, wallet);
-  const { colonyClient } = useColonyClient(network, networkClient);
+  const { colonyClient } = useColonyClient(network, wallet);
   const {
     authenticate,
     disconnect,
@@ -96,7 +96,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         user={user}
         wallet={wallet}
       />
-      {!wallet && walletRequired ? (
+      {!wallet && !loadingWallet && walletRequired ? (
         <MetaMask />
       ) : (
         <div>
@@ -105,6 +105,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
                 authenticate,
                 colonyClient,
                 disconnect,
+                loadingWallet,
                 network,
                 networkClient,
                 serverError,
