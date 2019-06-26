@@ -44,28 +44,23 @@ const useColonyClient = (network: ?Network, wallet: ?WalletObjectType) => {
   }, [network, wallet]);
 
   useEffect(() => {
-    if (
-      network &&
-      supportedNetwork(network) &&
-      wallet &&
-      !client &&
-      !error &&
-      !loading
-    ) {
+    const validInputs = supportedNetwork(network) && wallet;
+    if (!client && !error && !loading && validInputs) {
       getClient();
     }
   }, [client, error, getClient, loading, network, wallet]);
 
   useEffect(() => {
+    const networkMismatch =
+      client && network && client.network !== network.slug;
+    const walletMismatch =
+      // $FlowFixMe - Property address is missing in Wallet
+      client && wallet && client.adapter.wallet.address !== wallet.address;
     if (
       client &&
       !error &&
       !loading &&
-      (!network ||
-        !wallet ||
-        (network && client.network !== network.slug) ||
-        // $FlowFixMe - Property address is missing in Wallet
-        (wallet && client.adapter.wallet.address !== wallet.address))
+      (!network || !wallet || networkMismatch || walletMismatch)
     ) {
       setClient(null);
     }
