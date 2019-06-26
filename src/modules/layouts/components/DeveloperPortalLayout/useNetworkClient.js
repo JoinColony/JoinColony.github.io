@@ -13,7 +13,6 @@ import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
 const useNetworkClient = (network: ?Network, wallet: WalletObjectType) => {
   const [client, setClient] = useState<?ColonyNetworkClient>(null);
   const [error, setError] = useState<?string>(null);
-  const [loaded, setLoaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const getClient = useCallback(async () => {
@@ -25,41 +24,24 @@ const useNetworkClient = (network: ?Network, wallet: WalletObjectType) => {
           setClient(result);
           setLoading(false);
         })
-        .catch(networkError => {
-          setError(networkError.message);
+        .catch(clientError => {
+          setError(clientError.message);
           setLoading(false);
         });
-      setLoaded(true);
     }
   }, [network, wallet]);
 
-  const handleChange = useCallback(() => {
-    setClient(null);
-    setLoaded(false);
-  }, []);
-
   useEffect(() => {
-    if (!client && !loaded && !loading) {
+    if (!client && !loading) {
       getClient();
     }
-  }, [getClient, loaded, loading, client]);
+  }, [client, getClient, loading]);
 
   useEffect(() => {
-    if (window && window.ethereum) {
-      window.ethereum.on('networkChanged', handleChange);
+    if (!network || !wallet) {
+      setClient(null);
     }
-    if (window && window.ethereum) {
-      window.ethereum.on('accountsChanged', handleChange);
-    }
-    return () => {
-      if (window && window.ethereum) {
-        window.ethereum.off('networkChanged', handleChange);
-      }
-      if (window && window.ethereum) {
-        window.ethereum.off('accountsChanged', handleChange);
-      }
-    };
-  }, [handleChange]);
+  }, [network, wallet]);
 
   return { error, networkClient: client };
 };

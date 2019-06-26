@@ -78,7 +78,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   }, [pathContribution, pathDashboard]);
   const { network, wallet } = useMetaMask(walletRequired);
   const { networkClient } = useNetworkClient(network, wallet);
-  const { colonyClient } = useColonyClient(network, networkClient);
+  const { colonyClient } = useColonyClient(network, wallet);
   const {
     authenticate,
     disconnect,
