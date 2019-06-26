@@ -179,7 +179,7 @@ const Contributions = ({ network, user }: Props) => {
             <Image
               alt={MSG.noContributionsTitle}
               className={styles.noContributionsImage}
-              src="/img/no_issues.svg"
+              src="/img/no_contributions.svg"
             />
             <h1 className={styles.title}>
               <FormattedMessage {...MSG.noContributionsTitle} />
