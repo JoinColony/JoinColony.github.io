@@ -17,3 +17,11 @@
 .content strong {
   color: #00284b;
 }
+
+.loading {
+  composes: content;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15%;
+}

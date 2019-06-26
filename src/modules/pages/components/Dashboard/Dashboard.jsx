@@ -24,6 +24,8 @@ import {
 
 import type { Network, Provider, User } from '~types';
 
+import SpinnerLoader from '~core/SpinnerLoader';
+
 import Login from './Login';
 import Sidebar from './Sidebar';
 
@@ -52,7 +54,7 @@ type Props = {|
   colonyClient: ?ColonyClient,
   disconnect: (provider: Provider) => void,
   intl: IntlShape,
-  network: Network,
+  network: ?Network,
   networkClient: ?ColonyNetworkClient,
   page: string,
   serverError?: string,
@@ -101,7 +103,7 @@ const Dashboard = ({
       */}
       <Helmet title={title} />
       <main className={styles.main}>
-        {wallet && user && (
+        {user && (
           <>
             <div className={styles.sidebar}>
               <Sidebar
@@ -110,45 +112,53 @@ const Dashboard = ({
                 user={user}
               />
             </div>
-            <div className={styles.content}>
-              <Router primary={false}>
-                <Admin
-                  path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
-                  colonyClient={colonyClient}
-                  network={network}
-                  user={user}
+            {network && wallet ? (
+              <div className={styles.content}>
+                <Router primary={false}>
+                  <Admin
+                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
+                    colonyClient={colonyClient}
+                    network={network}
+                    user={user}
+                  />
+                  <Account
+                    path={
+                      page
+                        ? PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT
+                        : PAGE_DEVELOPER_PORTAL_DASHBOARD
+                    }
+                    authenticate={authenticate}
+                    colonyClient={colonyClient}
+                    disconnect={disconnect}
+                    network={network}
+                    serverError={serverError}
+                    setUser={setUser}
+                    user={user}
+                    wallet={wallet}
+                  />
+                  <Colonies
+                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES}
+                    network={network}
+                    networkClient={networkClient}
+                    setUser={setUser}
+                    user={user}
+                    wallet={wallet}
+                  />
+                  <Contributions
+                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS}
+                    network={network}
+                    user={user}
+                    wallet={wallet}
+                  />
+                </Router>
+              </div>
+            ) : (
+              <div className={styles.loading}>
+                <SpinnerLoader
+                  appearance={{ theme: 'primary', size: 'huge' }}
                 />
-                <Account
-                  path={
-                    page
-                      ? PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT
-                      : PAGE_DEVELOPER_PORTAL_DASHBOARD
-                  }
-                  authenticate={authenticate}
-                  colonyClient={colonyClient}
-                  disconnect={disconnect}
-                  network={network}
-                  serverError={serverError}
-                  setUser={setUser}
-                  user={user}
-                  wallet={wallet}
-                />
-                <Colonies
-                  path={PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES}
-                  network={network}
-                  networkClient={networkClient}
-                  setUser={setUser}
-                  user={user}
-                  wallet={wallet}
-                />
-                <Contributions
-                  path={PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS}
-                  network={network}
-                  user={user}
-                  wallet={wallet}
-                />
-              </Router>
-            </div>
+              </div>
+            )}
           </>
         )}
       </main>

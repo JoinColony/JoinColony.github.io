@@ -10,13 +10,13 @@ import type { Network } from '~types';
 
 import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
 
-const useNetworkClient = (network: ?Network, wallet: WalletObjectType) => {
+const useNetworkClient = (network: ?Network, wallet: ?WalletObjectType) => {
   const [client, setClient] = useState<?ColonyNetworkClient>(null);
   const [error, setError] = useState<?string>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const getClient = useCallback(async () => {
-    if (network && supportedNetwork(network) && wallet) {
+    if (network) {
       setError(null);
       setLoading(true);
       await getNetworkClient(network.slug, wallet)
@@ -32,18 +32,34 @@ const useNetworkClient = (network: ?Network, wallet: WalletObjectType) => {
   }, [network, wallet]);
 
   useEffect(() => {
-    if (!client && !loading) {
+    if (
+      network &&
+      supportedNetwork(network) &&
+      wallet &&
+      !client &&
+      !error &&
+      !loading
+    ) {
       getClient();
     }
-  }, [client, getClient, loading]);
+  }, [client, error, getClient, loading, network, wallet]);
 
   useEffect(() => {
-    if (!network || !wallet) {
+    if (
+      client &&
+      !error &&
+      !loading &&
+      (!network ||
+        !wallet ||
+        (network && client.network !== network.slug) ||
+        // $FlowFixMe - Property address is missing in Wallet
+        (wallet && client.adapter.wallet.address !== wallet.address))
+    ) {
       setClient(null);
     }
-  }, [network, wallet]);
+  }, [client, error, loading, network, wallet]);
 
-  return { error, networkClient: client };
+  return { networkClient: client };
 };
 
 export default useNetworkClient;
