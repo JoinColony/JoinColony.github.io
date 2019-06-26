@@ -109,6 +109,17 @@ const useMetaMask = (walletRequired: boolean) => {
     [getNetwork, network],
   );
 
+  const handleUpdate = useCallback(
+    ({ selectedAddress }) => {
+      if (!selectedAddress) {
+        setWallet(null);
+      } else {
+        getWallet();
+      }
+    },
+    [getWallet],
+  );
+
   useEffect(() => {
     if (!loadedLocal) {
       const localNetwork = getStore('network');
@@ -135,14 +146,21 @@ const useMetaMask = (walletRequired: boolean) => {
   }, [getNetwork, loadedNetwork, loadingNetwork]);
 
   useEffect(() => {
+    if (network && window && !window.ethereum) {
+      setNetwork(null);
+    }
+  }, [network]);
+
+  useEffect(() => {
     if (window && window.ethereum) {
       window.ethereum.on('networkChanged', handleNetworkChanged);
     }
     if (window && window.ethereum) {
       window.ethereum.on('accountsChanged', handleAccountsChanged);
     }
-    if (window && !window.ethereum) {
-      setNetwork(null);
+    if (window && window.ethereum) {
+      // eslint-disable-next-line no-underscore-dangle
+      window.ethereum.publicConfigStore._events.update.push(handleUpdate);
     }
     return () => {
       if (window && window.ethereum) {
@@ -151,8 +169,12 @@ const useMetaMask = (walletRequired: boolean) => {
       if (window && window.ethereum) {
         window.ethereum.off('accountsChanged', handleAccountsChanged);
       }
+      if (window && window.ethereum) {
+        // eslint-disable-next-line no-underscore-dangle
+        window.ethereum.publicConfigStore._events.update.pop(handleUpdate);
+      }
     };
-  }, [handleAccountsChanged, handleNetworkChanged]);
+  }, [handleUpdate, handleAccountsChanged, handleNetworkChanged]);
 
   return { network, wallet };
 };
