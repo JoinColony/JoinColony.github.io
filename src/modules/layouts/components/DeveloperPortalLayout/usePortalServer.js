@@ -75,7 +75,7 @@ const usePortalServer = (wallet: WalletObjectType) => {
   useEffect(() => {
     if (!socket) {
       const newSocket = io.connect(
-        process.env.SOCKET_URL || 'https://chora.io',
+        process.env.SOCKET_URL || 'https://chora.io:8000',
       );
       newSocket.on('discourse', setUser);
       newSocket.on('github', setUser);
