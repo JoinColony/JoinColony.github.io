@@ -1,0 +1,9 @@
+@import '../../../../../../styles/variables.css';
+
+.footerMenuLink {
+  color: var(--text-blue);
+}
+
+.footerMenuLink:hover {
+  color: var(--blue-1);
+}

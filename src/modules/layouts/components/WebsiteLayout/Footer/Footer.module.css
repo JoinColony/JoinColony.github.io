@@ -1,0 +1,45 @@
+@import '../../../../../styles/variables.css';
+
+.divider {
+  border-top: 1px solid var(--grey-2);
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.main {
+  padding: var(--margin-large) 0;
+}
+
+.row {
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  margin-bottom: var(--margin-large);
+}
+
+.logo svg {
+  fill: var(--navy);
+  stroke: var(--navy);
+  width: 48px;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--margin-large);
+}
+
+.metaNavContainer a {
+  color: var(--grey-1);
+}
+
+.metaNavContainer a:hover {
+  color: var(--navy);
+}
