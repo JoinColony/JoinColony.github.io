@@ -39,6 +39,7 @@
 <url> <loc>https://docs.colony.io/colonyjs/intro-welcome</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-colony-roles</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-domains-and-skills</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/colonyjs/topics-registering-ens-labels</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-reputation-and-rewards</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-tasks-and-payments</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/colonyjs/topics-tokens-and-funding</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -72,5 +73,14 @@
 <url> <loc>https://docs.colony.io/tailor/docs-overview</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/tailor/docs-transactions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/tailor/docs-wallets</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/contribute/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/contribute/payment/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/contribute/task/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/dashboard/account/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/dashboard/admin/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/dashboard/close/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/dashboard/colonies/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/dashboard/contributions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://docs.colony.io/dashboard/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://docs.colony.io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
