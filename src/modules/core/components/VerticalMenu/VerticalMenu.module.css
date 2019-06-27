@@ -9,6 +9,12 @@
   white-space: nowrap;
 }
 
+/* alignText */
+
+.alignTextRight {
+  text-align: right;
+}
+
 /* Margins */
 .marginsNone .menu {
   column-gap: 0;
