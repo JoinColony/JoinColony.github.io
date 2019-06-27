@@ -35,7 +35,7 @@ type Props = {|
 
 const displayName = 'pages.Contribute.Issue';
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'https://chora.io';
 
 const IssueTableRow = ({ issue, loadedRemote, network }: Props) => {
   const [contribution, setContribution] = useState(null);

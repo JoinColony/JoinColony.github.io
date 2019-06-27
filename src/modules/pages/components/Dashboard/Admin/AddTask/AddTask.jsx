@@ -51,7 +51,7 @@ type Props = {|
   network: Network,
 |};
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'https://chora.io';
 
 const AddTask = ({ colonyClient, network }: Props) => {
   const [amount, setAmount] = useState(0);
