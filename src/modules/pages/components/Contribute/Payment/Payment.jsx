@@ -69,7 +69,7 @@ type Props = {|
   wallet: WalletObjectType,
 |};
 
-const server = process.env.SERVER_URL || 'http://localhost:8080';
+const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
 
 const PaymentPage = ({ colonyClient, network, wallet }: Props) => {
   const [contribution, setContribution] = useState<?Contribution>(null);
