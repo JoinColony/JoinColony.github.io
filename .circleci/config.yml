@@ -4,12 +4,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.12
-    environment:
-      COLONY_ADDRESS_GOERLI: 0x6681C20ed61058e4f76b7D6C5DBFE8817c0CaD79
-      COLONY_ADDRESS_MAINNET: 0x84bc20B584fA28a278B7a8d5D1Ec5c71224c9f7C
-      DOCS_GITHUB_TOKEN: 7c20709be27b1b6fc196e90fbd3878d6d8ff597f
-      SERVER_URL: http://178.128.59.237:8000
-      SOCKET_URL: http://178.128.59.237:8000
     working_directory: ~/repo
     steps:
       - checkout
@@ -19,7 +13,14 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: yarn install
-      - run: yarn build
+      - run:
+          command: yarn build
+          environment:
+            COLONY_ADDRESS_GOERLI: "0x6681C20ed61058e4f76b7D6C5DBFE8817c0CaD79"
+            COLONY_ADDRESS_MAINNET: "0x84bc20B584fA28a278B7a8d5D1Ec5c71224c9f7C"
+            DOCS_GITHUB_TOKEN: "7c20709be27b1b6fc196e90fbd3878d6d8ff597f"
+            SERVER_URL: "http://178.128.59.237:8000"
+            SOCKET_URL: "http://178.128.59.237:8000"
       - persist_to_workspace:
           root: .
           paths:
