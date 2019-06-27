@@ -34,7 +34,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.Name';
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'https://chora.io';
 
 const Name = ({ setUser, user }: Props) => {
   const initialName = user.name || '';

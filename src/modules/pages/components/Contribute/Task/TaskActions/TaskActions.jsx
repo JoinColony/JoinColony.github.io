@@ -92,7 +92,7 @@ type Props = {|
   wallet: WalletObjectType,
 |};
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'https://chora.io';
 
 const TaskActions = ({
   colonyClient,
