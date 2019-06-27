@@ -1,4 +1,4 @@
-@value smallDown, mediumUp, largeUp from '~styles/breakpoints.css';
+@value mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
   background-color: #021C2B;
@@ -66,46 +66,8 @@
   text-align: center;
 }
 
-.metaNavContainer {
-  font-family: 'Avenir Next Light';
-  font-size: .9rem;
-}
-
-.metaNavLink + .metaNavLink {
-  margin-left: 45px;
-}
-
 .socialIconContainer {
   margin-bottom: 40px;
-}
-
-.socialIcon {
-  display: inline-block;
-  height: 35px;
-  margin-left: 22px;
-  width: 35px;
-}
-
-.socialIcon svg {
-  fill: #A4B6C7;
-  height: 35px;
-  width: 35px;
-}
-
-a:hover .socialIcon svg {
-  fill: #788CA0;
-}
-
-@media (smallDown) {
-  .metaNavContainer nav {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .metaNavLink + .metaNavLink {
-    margin-left: 0;
-    margin-top: 15px;
-  }
 }
 
 @media (mediumUp) {
