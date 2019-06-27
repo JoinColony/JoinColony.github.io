@@ -230,7 +230,6 @@ const Landing = ({ network, user }: Props) => {
     const options = {
       method: 'POST',
       headers: {
-        // TODO Use current user authentication token from github
         Authorization: `Bearer ${process.env.DOCS_GITHUB_TOKEN || ''}`,
         'Content-Type': 'application/json',
       },
