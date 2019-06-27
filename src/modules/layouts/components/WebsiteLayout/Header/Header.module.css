@@ -1,0 +1,66 @@
+/* @TODO: Configure webpack/postcss to automatically provide variables globally */
+@import '../../../../../styles/variables.css';
+
+.navigationContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--row-width-desktop);
+  margin: 0 auto;
+}
+
+.logo svg {
+  height: 30px;
+}
+
+.navLinkBase {
+  /* This class *only* intended for composition. Do not use directly. */
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  line-height: 72px;
+}
+
+.navLinkBase + .navLinkBase {
+  margin-left: 55px;
+}
+
+.navLink {
+  composes: navLinkBase;
+}
+
+.navLinkAlt {
+  composes: navLinkBase;
+  color: var(--blue-1);
+}
+
+.navLinkAlt:hover,
+.navLinkAlt.active {
+  border-bottom-color: var(--blue-1);
+}
+
+/**
+ * Themes
+ **/
+
+.themeLight .navLink {
+  color: var(--navy);
+}
+
+.themeLight .navLink:hover,
+.themeLight .navLink.active {
+  border-bottom-color: var(--navy);
+}
+
+.themeTransparent .navLink {
+  color: var(--colony-white);
+}
+
+.themeTransparent .navLink:hover,
+.themeTransparent .navLink.active {
+  border-bottom-color: var(--colony-white);
+}
+
+.main {
+  /* default to `light` theme */
+  composes: themeLight;
+}
