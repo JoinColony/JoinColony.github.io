@@ -42,7 +42,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.Email';
 
-const server = process.env.SERVER_URL || 'http://localhost:8080';
+const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
 
 const Email = ({ setUser, user }: Props) => {
   const initialEmail = user.email || '';

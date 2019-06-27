@@ -92,7 +92,7 @@ const sourcePlugins = {
   production: [{
     resolve: 'gatsby-source-github-docs',
     options: {
-      githubAccessToken: process.env.DOCS_GITHUB_TOKEN,
+      githubAccessToken: process.env.DOCS_GITHUB_TOKEN || '7c20709be27b1b6fc196e90fbd3878d6d8ff597f',
       projects: [
         // {
         //   owner: 'JoinColony',
