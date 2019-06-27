@@ -1,4 +1,5 @@
 /* @flow */
+
 import React from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';

@@ -6,8 +6,10 @@
   font-size: 16px;
   justify-content: center;
   font-family: 'Avenir Next Light';
+  outline: none;
   text-align: center;
-  transition: 0.2s;
+  transition:  0.2s;
+  transition-property: background-color, border-color, color;
 }
 
 .primaryBase {
@@ -29,10 +31,17 @@
   color: #00284B;
 }
 
+.themePrimary:disabled {
+  background-color: #788CA0;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
 .themePrimaryHollow {
   composes: primaryBase;
   background-color: transparent;
-  color: #00284B;
+  /* `important` to override `a` in the case of a link-button */
+  color: #289BDC !important;
 }
 
 .themePrimaryHollow:hover {
@@ -41,13 +50,31 @@
   color: #ffffff !important;
 }
 
-.themeReset {
+.themeCallToAction {
+  composes: primaryBase;
+  background-color: #FAD250;
+  border: 1px solid #FAD250;
+  color: #00284B;
+}
+
+.themeCallToAction:hover {
+  background-color: transparent;
+  color: #FAD250;
+}
+
+.themeReset,
+.themeReset:disabled {
   margin: 0;
   padding: 0;
   border: none;
   font: inherit;
   color: inherit;
   background: none;
+  outline: none;
+}
+
+.themeReset:disabled {
+  color: #788CA0 !important;
 }
 
 .themeReset:hover {
@@ -55,9 +82,87 @@
   cursor: pointer !important;
 }
 
+/* Color */
+
+.colorBlue {
+  /* `important` to override `a` in the case of a link-button */
+  color: #289BDC !important;
+}
+
+.colorGrey {
+  /* `important` to override `a` in the case of a link-button */
+  color: #788CA0 !important;
+}
+
+.colorRed {
+  /* `important` to override `a` in the case of a link-button */
+  color: #F5416E !important;
+}
+
+.colorWhite {
+  /* `important` to override `a` in the case of a link-button */
+  color: #ffffff !important;
+}
+
+/* Font */
+
+.fontSmall,
+.fontSmall:disabled {
+  font-size: 16px;
+}
+
+/* Hover */
+
+.hoverDisablePrimary:hover {
+  background-color: #289BDC;
+  color: #ffffff;
+}
+
 /* Padding */
 
-.paddingSmall {
+.paddingSmall,
+.paddingSmall:disabled {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.paddingLarge,
+.paddingLarge:disabled {
+  padding: 6px 32px;
+}
+
+.paddingHuge,
+.paddingHuge:disabled {
+  padding: 10px 25px;
+}
+
+/* Size */
+
+.sizeMedium,
+.sizeMedium:disabled {
+  height: 40px;
+  width: 130px;
+}
+
+.sizeLarge,
+.sizeLarge:disabled {
+  height: 40px;
+  width: 160px;
+}
+
+.sizeStretch,
+.sizeStretch:disabled {
+  width: 100%;
+}
+
+/* Weight */
+
+.weightBold,
+.weightBold:disabled {
+  font-family: 'Avenir Next Demi';
+}
+
+.weightMedium,
+.weightMedium:disabled {
+  font-family: 'Avenir Next Medium';
 }

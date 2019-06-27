@@ -1,0 +1,9 @@
+.themeStatistics {
+  align-items: center;
+  display: flex;
+}
+
+.themeStatistics span:nth-child(2) {
+  font-family: 'Avenir Next Demi';
+  margin-left: 0.4rem;
+}

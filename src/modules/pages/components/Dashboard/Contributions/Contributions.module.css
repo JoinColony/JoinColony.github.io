@@ -1,0 +1,75 @@
+.main {
+  font-size: 16px;
+  padding: 5%;
+}
+
+.title {
+  font-family: 'Avenir Next Demi';
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  max-width: 720px;
+}
+
+.issues {
+  border: 0;
+  font-size: 14px;
+  max-width: 720px;
+}
+
+.issues tr {
+  border: 2px solid white;
+}
+
+.issues thead td {
+  color: #788CA0;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.issues tbody td {
+  background: #F0F5F7;
+  padding: 10px;
+}
+
+.issuesSubtext {
+  color: #788CA0;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: -15px;
+  max-width: 720px;
+}
+
+.noContributions {
+  color: #2E4153;
+  display: block;
+  padding: 5%;
+}
+
+.noContributionsWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.noContributionsWrapper div {
+  font-size: 16px;
+  max-width: 400px;
+}
+
+.noContributionsImage {
+  margin: 40px auto;
+  width: 260px;
+}
+
+.showMore div {
+  display: inline-block;
+  margin: 0 5px;
+}

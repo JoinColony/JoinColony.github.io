@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { ComponentType } from 'react';
 import type { CommonRouteProps } from '@reach/router';
 

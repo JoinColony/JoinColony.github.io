@@ -1,5 +1,6 @@
 /* @flow */
 /* eslint-disable import/prefer-default-export */
+
 import camelcase from 'camelcase';
 
 import { capitalize } from '../strings';

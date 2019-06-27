@@ -1,0 +1,51 @@
+.main {
+  color: #2E4153;
+  font-size: 17px;
+  padding: 5%;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  padding-bottom: 5%;
+}
+
+.photo {
+  align-self: flex-start;
+  border-radius: 50%;
+  margin: 0;
+  margin-right: 70px;
+  width: 160px;
+}
+
+.content {
+  border-top: 1px #C8D2DC solid;
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  padding: 5% 0;
+}
+
+.contentColumn:first-child {
+  max-width: 300px;
+  padding-right: 2%;
+}
+
+.field {
+  width: 480px; /* Fixed width for button expansion */
+}
+
+.contentTitle {
+  color: #00284B;
+  font-family: 'Avenir Next Demi';
+  font-size: 24px;
+}
+
+.accountButtons {
+  align-items: flex-start;
+  display: flex;
+}
+
+.accountButtons button {
+  margin-right: 40px;
+}

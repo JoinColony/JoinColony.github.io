@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { HOC } from 'recompose';
 
 import { injectIntl } from 'react-intl';

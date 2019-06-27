@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { HtmlAst } from '~types';
 
 export type DocFields = {|

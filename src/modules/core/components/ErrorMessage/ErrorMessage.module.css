@@ -1,0 +1,19 @@
+.main {
+  align-items: center;
+  color: #F5416E;
+  display: flex;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.errorDot {
+  border-radius: 50%;
+  border: 4px solid #F5416E;
+  margin-right: 8px;
+}
+
+/* Color */
+
+.colorPink {
+  color: #FFBBDC;
+}

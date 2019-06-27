@@ -1,0 +1,43 @@
+.main {
+  align-items: center;
+  background-color: #00284B;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  font-family: 'Avenir Next Light';
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.content {
+  padding-bottom: 10%;
+  width: 500px;
+}
+
+.error {
+  align-items: center;
+  color: #FFBBDC;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+}
+
+.errorDot {
+  border-radius: 50%;
+  border: 5px solid #F5416E;
+  margin-right: 10px;
+}
+
+.text {
+  font-family: 'Avenir Next Demi';
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px auto;
+  padding: 0;
+}
+
+.field {
+  margin: 20px 0;
+}

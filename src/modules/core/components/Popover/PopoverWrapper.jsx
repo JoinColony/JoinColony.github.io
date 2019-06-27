@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { Node } from 'react';
 import type { PopperArrowProps } from 'react-popper';
 import React from 'react';

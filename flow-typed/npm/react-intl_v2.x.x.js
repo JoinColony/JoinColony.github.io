@@ -1,5 +1,5 @@
-// flow-typed signature: c3aa29455eb7f759ba4d433975a4ec02
-// flow-typed version: b14d5b4826/react-intl_v2.x.x/flow_>=v0.63.x
+// flow-typed signature: 64c4a99e632b3fb8d0a4fb57ab6d9ebb
+// flow-typed version: e9421afdb2/react-intl_v2.x.x/flow_>=v0.63.x
 
 /**
  * Original implementation of this file by @marudor at https://github.com/marudor/flowInterfaces
@@ -19,6 +19,22 @@ declare module "react-intl" {
     id: string,
     description?: string,
     defaultMessage?: string
+  };
+
+  declare type $npm$ReactIntl$FormattedMessageValues = {
+    [key: string]:
+      | null
+      | void
+      | boolean
+      | number
+      | string
+      | React$ComponentType<{}>
+      | React$StatelessFunctionalComponent<{}>
+      | ChildrenArray<void | null | boolean | string | number | Element<any>>;
+  }
+
+  declare type $npm$ReactIntl$MessageValues = {
+    [key: string]: null | void | boolean | number | string | Array<*>;
   };
 
   declare type $npm$ReactIntl$IntlConfig = {
@@ -47,11 +63,11 @@ declare module "react-intl" {
     formatPlural: (value: any, options?: Object) => string,
     formatMessage: (
       messageDescriptor: $npm$ReactIntl$MessageDescriptor,
-      values?: Object
+      values?: $npm$ReactIntl$MessageValues
     ) => string,
     formatHTMLMessage: (
       messageDescriptor: $npm$ReactIntl$MessageDescriptor,
-      values?: Object
+      values?: $npm$ReactIntl$MessageValues
     ) => string
   };
 
@@ -163,11 +179,11 @@ declare module "react-intl" {
 
   declare function formatMessage(
     messageDescriptor: $npm$ReactIntl$MessageDescriptor,
-    values?: Object
+    values?: $npm$ReactIntl$MessageValues
   ): string;
   declare function formatHTMLMessage(
     messageDescriptor: $npm$ReactIntl$MessageDescriptor,
-    values?: Object
+    values?: $npm$ReactIntl$MessageValues
   ): string;
   declare function formatDate(
     value: any,
@@ -195,16 +211,14 @@ declare module "react-intl" {
 
   declare class FormattedMessage extends React$Component<
     $npm$ReactIntl$MessageDescriptor & {
-      values?: Object,
+      values?: $npm$ReactIntl$FormattedMessageValues,
       tagName?: string,
-      children?: 
-        | ((...formattedMessage: Array<React$Node>) => React$Node)
-        | (string => React$Node)
+      children?: (...formattedMessage: Array<React$Node>) => React$Node
     }
   > {}
   declare class FormattedHTMLMessage extends React$Component<
     $npm$ReactIntl$DateTimeFormatOptions & {
-      values?: Object,
+      values?: $npm$ReactIntl$FormattedMessageValues,
       tagName?: string,
       children?: (...formattedMessage: Array<React$Node>) => React$Node
     }
@@ -259,4 +273,6 @@ declare module "react-intl" {
   > {}
   declare type IntlShape = $npm$ReactIntl$IntlShape;
   declare type MessageDescriptor = $npm$ReactIntl$MessageDescriptor;
+  declare type MessageValues = $npm$ReactIntl$MessageValues;
+  declare type FormattedMessageValues = $npm$ReactIntl$FormattedMessageValues;
 }

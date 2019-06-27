@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { Doc } from './doc';
 
 type DescriptionTranslationConfig = {|

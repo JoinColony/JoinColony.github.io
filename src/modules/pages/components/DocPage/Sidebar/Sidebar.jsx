@@ -1,4 +1,5 @@
 /* @flow */
+
 import React, { createElement } from 'react';
 import { defineMessages } from 'react-intl';
 import { withProps } from 'recompose';
@@ -12,7 +13,7 @@ import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import SectionList from '~pages/DocPage/SectionList';
-import { PAGE_DEVELOPER_PORTAL } from '~routes';
+import { PAGE_DEVELOPER_PORTAL_INDEX } from '~routes';
 import { getMainClasses } from '~utils/css';
 
 import styles from './Sidebar.module.css';
@@ -100,11 +101,11 @@ const Sidebar = ({
               <Link
                 arrow="left"
                 className={styles.homeLink}
-                href={PAGE_DEVELOPER_PORTAL}
+                href={PAGE_DEVELOPER_PORTAL_INDEX}
                 text={MSG.linkHome}
               />
               <div className={styles.mobileProjectTitle}>
-                <Link href={PAGE_DEVELOPER_PORTAL}>
+                <Link href={PAGE_DEVELOPER_PORTAL_INDEX}>
                   <Icon
                     className={styles.chevron}
                     name="chevron"

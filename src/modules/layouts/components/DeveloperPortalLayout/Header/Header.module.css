@@ -29,6 +29,14 @@
   stroke: white;
 }
 
+.leftWrapper {
+  display: inline-flex;
+}
+
+.network {
+  display: none;
+}
+
 .navContainer {
   display: block;
   height: 0;
@@ -76,6 +84,10 @@
   min-width: 79px;
 }
 
+.dashboardButton {
+  display: none;
+}
+
 .navToggle {
   position: absolute;
   right: 0;
@@ -92,6 +104,27 @@
     flex-direction: row;
   }
 
+  .network {
+    align-items: center;
+    color: #EEE;
+    display: flex;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin-left: 50px;
+  }
+
+  .network:hover {
+    cursor: default;
+  }
+
+  .networkDot {
+    border: 5px solid;
+    border-radius: 5px;
+    height: 0;
+    margin-right: 10px;
+  }
+
   .navContainer {
     align-items: center;
     display: flex;
@@ -103,11 +136,11 @@
   .navigation {
     margin-top: 0;
   }
-  
+
   .navLink {
     display: inline-block;
   }
-  
+
   .navLink + .navLink {
     margin-left: 30px;
   }
@@ -119,7 +152,7 @@
   .docsDropdownParent .docsDropdownContainer {
     display: block;
   }
-  
+
   .docsDropdownParent:hover .docsDropdownContainer,
   .docsDropdownParent:focus-within .docsDropdownContainer {
     visibility: visible;
@@ -132,4 +165,10 @@
   .searchContainer {
     display: block;
   }
+
+  .dashboardButton {
+    display: inline-flex;
+    margin-left: 10px;
+  }
+
 }

@@ -5,6 +5,7 @@
 }
 
 /* Margins */
+
 .marginNone {
   /* Need to overwrite the size class */
   margin-bottom: 0 !important;
@@ -31,6 +32,7 @@
 }
 
 /* Sizing */
+
 .sizeTiny {
   font-size: 11px;
 }
@@ -65,6 +67,7 @@
 }
 
 /* Themes */
+
 .themeDark {
   color: #00284B;
 }
@@ -85,7 +88,12 @@
   color: #2E4153;
 }
 
+.themeGold {
+  color: #FAD250;
+}
+
 /* Weights */
+
 .weightThin {
   font-family: 'Avenir Next Light';
 }

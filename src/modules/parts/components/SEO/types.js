@@ -1,4 +1,5 @@
 /* @flow */
+
 import type { RouteProps } from '@reach/router';
 import type { IntlShape, MessageDescriptor } from 'react-intl';
 

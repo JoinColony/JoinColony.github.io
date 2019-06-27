@@ -1,10 +1,12 @@
 /* @flow */
+
+import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
-import type { Project } from '~types';
+import type { Network, Project, User } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -13,7 +15,12 @@ import NavigationToggle from '~core/NavigationToggle';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
-import { COLONY_DISCOURSE_SUPPORT, PAGE_DEVELOPER_PORTAL } from '~routes';
+import {
+  COLONY_DISCOURSE_SUPPORT,
+  PAGE_DEVELOPER_PORTAL_INDEX,
+  PAGE_DEVELOPER_PORTAL_CONTRIBUTE,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD,
+} from '~routes';
 
 import styles from './Header.module.css';
 
@@ -26,6 +33,10 @@ const MSG = defineMessages({
     id: 'layouts.DeveloperPortalLayout.Header.navAriaLabel',
     defaultMessage: 'Main Navigation',
   },
+  navLinkContribute: {
+    id: 'layouts.DeveloperPortalLayout.Header.navLinkContribute',
+    defaultMessage: 'Contribute',
+  },
   navLinkDocs: {
     id: 'layouts.DeveloperPortalLayout.Header.navLinkDocs',
     defaultMessage: 'Docs',
@@ -34,13 +45,24 @@ const MSG = defineMessages({
     id: 'layouts.DeveloperPortalLayout.Header.navLinkSupport',
     defaultMessage: 'Support',
   },
+  navButtonLogin: {
+    id: 'layouts.DeveloperPortalLayout.Header.navButtonLogin',
+    defaultMessage: 'Login',
+  },
+  navButtonDashboard: {
+    id: 'layouts.DeveloperPortalLayout.Header.navButtonDashboard',
+    defaultMessage: 'Dashboard',
+  },
 });
 
 type Props = {|
   coreProjects: Array<Project>,
-  /* Injected via `injectIntl` */
   intl: IntlShape,
+  network: ?Network,
   openSourceProjects: Array<Project>,
+  pathDashboard: boolean,
+  user: ?User,
+  wallet: ?WalletObjectType,
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout.Header';
@@ -49,21 +71,36 @@ const Header = ({
   coreProjects,
   intl: { formatMessage },
   intl,
+  network,
   openSourceProjects,
+  pathDashboard,
+  user,
+  wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
-        <Link href={PAGE_DEVELOPER_PORTAL}>
-          <Icon
-            className={styles.logo}
-            name="developerPortal_white"
-            title={MSG.imageAltDevPortal}
-            viewBox="0 0 134 33"
-          />
-        </Link>
+        <div className={styles.leftWrapper}>
+          <Link href={PAGE_DEVELOPER_PORTAL_INDEX}>
+            <Icon
+              className={styles.logo}
+              name="developerPortal_white"
+              title={MSG.imageAltDevPortal}
+              viewBox="0 0 134 33"
+            />
+          </Link>
+          {network && wallet && (
+            <div className={styles.network}>
+              <div
+                className={styles.networkDot}
+                style={{ borderColor: network.color }}
+              />
+              {network.name}
+            </div>
+          )}
+        </div>
         <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
             className={styles.navigation}
@@ -112,6 +149,11 @@ const Header = ({
             </span>
             <Link
               className={styles.navLink}
+              href={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
+              text={MSG.navLinkContribute}
+            />
+            <Link
+              className={styles.navLink}
               href={COLONY_DISCOURSE_SUPPORT}
               text={MSG.navLinkSupport}
             />
@@ -122,6 +164,18 @@ const Header = ({
               inputId="devPortalLayoutHeaderSearch"
             />
           </div>
+          <Button
+            appearance={{
+              theme: pathDashboard ? 'primary' : 'primaryHollow',
+              color: pathDashboard ? 'white' : undefined,
+              hover: 'disablePrimary',
+              padding: 'large',
+              size: 'medium',
+            }}
+            className={styles.dashboardButton}
+            linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
+            text={wallet && user ? MSG.navButtonDashboard : MSG.navButtonLogin}
+          />
         </div>
         <div className={styles.navToggle}>
           <NavigationToggle

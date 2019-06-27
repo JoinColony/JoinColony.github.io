@@ -1,0 +1,14 @@
+.field {
+  margin: 20px 0;
+  width: 480px; /* Fixed width for button expansion */
+}
+
+.field button {
+  margin-right: 10px;
+}
+
+.loader {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}

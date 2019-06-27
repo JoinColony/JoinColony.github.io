@@ -1,0 +1,55 @@
+.main {
+  border: 1px solid #91D2FA;
+  border-radius: 4px;
+  color: #323232;
+  font-size: 16px;
+  font-family: 'Avenir Next Light';
+  margin-right: 20px;
+  transition: 0.2s;
+}
+
+.label span {
+  display: block;
+  font-size: 16px;
+}
+
+.label input {
+  margin-top: 8px;
+}
+
+:disabled {
+  background-color: #F0F5F7;
+  border: 1px solid #F0F5F7;
+  color: #788CA0;
+}
+
+/* Display */
+
+.displayNone {
+  display: none;
+}
+
+/* Padding */
+
+.paddingSmall {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.paddingLarge {
+  padding: 5px 25px;
+}
+
+.paddingHuge {
+  padding: 10px 25px;
+}
+
+/* Size */
+
+.sizeLarge {
+  width: 340px;
+}
+
+.sizeStretch {
+  width: 100%;
+}

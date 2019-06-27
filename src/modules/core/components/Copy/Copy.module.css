@@ -1,0 +1,20 @@
+.main {
+  display: flex;
+  font-family: 'Avenir Next Light';
+  font-size: 12px;
+  width: 100px;
+}
+
+.main span {
+  color: #788CA0;
+  margin-top: -2px;
+}
+
+.copy {
+  margin: 0 10px;
+  width: 12px;
+}
+
+.copy:hover {
+  cursor: pointer;
+}

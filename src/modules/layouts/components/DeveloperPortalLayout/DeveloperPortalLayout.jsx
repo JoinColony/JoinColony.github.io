@@ -1,21 +1,28 @@
 /* @flow */
-import type { Node } from 'react';
+
+import type { Element } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import React from 'react';
+import React, { Component, cloneElement, useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import type { Project } from '~types';
 
 import { transformProjectData } from '~utils/docs';
 
+import useColonyClient from './useColonyClient';
+import useMetaMask from './useMetaMask';
+import useNetworkClient from './useNetworkClient';
+import usePortalServer from './usePortalServer';
+
 import Header from './Header';
 import Footer from './Footer';
+import MetaMask from './MetaMask';
 
-import styles from './DeveloperPortalLayout.module.css';
+import './DeveloperPortalLayout.module.css';
 
 type Props = {|
-  children: Node,
+  children: Element<typeof Component>,
   intl: IntlShape,
 |};
 
@@ -28,26 +35,92 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
       ...openSourceProjectsFragment
     }
   `);
-  const coreProjects: Array<Project> =
-    projectQueryData.coreProjects.edges.map(edge =>
-      transformProjectData(edge, locale),
-    ) || [];
-  const openSourceProjects: Array<Project> =
-    projectQueryData.openSourceProjects.edges.map(edge =>
-      transformProjectData(edge, locale),
-    ) || [];
+  const coreProjects: Array<Project> = useMemo(
+    () =>
+      projectQueryData.coreProjects.edges.map(edge =>
+        transformProjectData(edge, locale),
+      ) || [],
+    [locale, projectQueryData.coreProjects.edges],
+  );
+  const openSourceProjects: Array<Project> = useMemo(
+    () =>
+      projectQueryData.openSourceProjects.edges.map(edge =>
+        transformProjectData(edge, locale),
+      ) || [],
+    [locale, projectQueryData.openSourceProjects.edges],
+  );
+  const pathContribute: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname.split('/')[1] === 'contribute';
+    }
+    return false;
+  }, []);
+  const pathContribution: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return (
+        window.location.pathname.split('/')[1] === 'contribute' &&
+        window.location.pathname.split('/')[2]
+      );
+    }
+    return false;
+  }, []);
+  const pathDashboard: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname.split('/')[1] === 'dashboard';
+    }
+    return false;
+  }, []);
+  const walletRequired: boolean = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return pathContribution || pathDashboard;
+    }
+    return false;
+  }, [pathContribution, pathDashboard]);
+  const { loadingWallet, network, wallet } = useMetaMask(walletRequired);
+  const { networkClient } = useNetworkClient(network, wallet);
+  const { colonyClient } = useColonyClient(network, wallet);
+  const {
+    authenticate,
+    disconnect,
+    serverError,
+    setUser,
+    user,
+  } = usePortalServer(wallet);
   return (
-    <>
+    <div>
       <Header
         coreProjects={coreProjects}
+        network={network}
         openSourceProjects={openSourceProjects}
+        pathDashboard={pathDashboard}
+        user={user}
+        wallet={wallet}
       />
-      <div className={styles.body}>{children}</div>
+      {!wallet && !loadingWallet && walletRequired ? (
+        <MetaMask />
+      ) : (
+        <div>
+          {pathContribute || pathDashboard
+            ? cloneElement(children, {
+                authenticate,
+                colonyClient,
+                disconnect,
+                loadingWallet,
+                network,
+                networkClient,
+                serverError,
+                setUser,
+                user,
+                wallet,
+              })
+            : children}
+        </div>
+      )}
       <Footer
         coreProjects={coreProjects}
         openSourceProjects={openSourceProjects}
       />
-    </>
+    </div>
   );
 };
 
