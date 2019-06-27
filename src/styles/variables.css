@@ -1,0 +1,25 @@
+
+:root {
+  /* colors */
+  --blue-1: #289BDC;
+  --blue-2: #91D2FA;
+  --blue-3: #E9F6FF;
+  --colony-black: #021C2B;
+  --colony-white: #E5E5E5;
+  --grey-1: #788CA0;
+  --grey-2: #C8D2DC;
+  --grey-3: #F0F5F7;
+  --navy: #00284B;
+  --pink-1: #FFBBDC;
+  --pink-2: #FCF4F8;
+  --text-blue: #2E4153;
+  --yellow: #FAD250;
+
+  /* containers */
+  --row-width-desktop: 1170px;
+
+  /* margins */
+  --margin-small: 10px;
+  --margin-medium: 30px;
+  --margin-large: 60px;
+}
