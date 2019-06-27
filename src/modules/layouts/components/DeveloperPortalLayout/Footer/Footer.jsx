@@ -8,16 +8,9 @@ import type { Project } from '~types';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
-import {
-  COLONY_BLOG,
-  COLONY_DISCOURSE,
-  COLONY_GITHUB,
-  COLONY_GITTER,
-  COLONY_TWITTER,
-  COLONY_WEBSITE,
-  PAGE_PRIVACY_POLICY,
-  PAGE_TERMS_SERVICE,
-} from '~routes';
+import MetaNav from '~parts/MetaNav';
+import SocialNav from '~parts/SocialNav';
+import { COLONY_DISCOURSE, COLONY_WEBSITE } from '~routes';
 
 import styles from './Footer.module.css';
 
@@ -41,14 +34,6 @@ const MSG = defineMessages({
   navTitleOpenSourceTools: {
     id: 'layouts.DeveloperPortalLayout.Footer.navTitleOpenSourceTools',
     defaultMessage: 'Open Source Tools',
-  },
-  metaLinkTos: {
-    id: 'layouts.DeveloperPortalLayout.Footer.metaLinkTos',
-    defaultMessage: 'Terms & Service',
-  },
-  metaLinkPrivacy: {
-    id: 'layouts.DeveloperPortalLayout.Footer.metaLinkPrivacy',
-    defaultMessage: 'Privacy Policy',
   },
   metaLinkMediaKit: {
     id: 'layouts.DeveloperPortalLayout.Footer.metaLinkMediaKit',
@@ -123,56 +108,9 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
           </div>
         </div>
         <div className={styles.metaRow}>
-          <div className={styles.metaNavContainer}>
-            <nav className={styles.metaNav}>
-              <Link
-                href={PAGE_TERMS_SERVICE}
-                className={styles.metaNavLink}
-                text={MSG.metaLinkTos}
-              />
-              <Link
-                href={PAGE_PRIVACY_POLICY}
-                className={styles.metaNavLink}
-                text={MSG.metaLinkPrivacy}
-              />
-            </nav>
-          </div>
+          <MetaNav />
           <div className={styles.socialIconContainer}>
-            <Link alt="Ghost" href={COLONY_BLOG}>
-              <Icon
-                className={styles.socialIcon}
-                title="Ghost"
-                name="social_ghost_devPortal"
-              />
-            </Link>
-            <Link alt="Twitter" href={COLONY_TWITTER}>
-              <Icon
-                className={styles.socialIcon}
-                title="Twitter"
-                name="social_twitter_devPortal"
-              />
-            </Link>
-            <Link alt="Discourse" href={COLONY_DISCOURSE}>
-              <Icon
-                className={styles.socialIcon}
-                title="Discourse"
-                name="social_discourse_devPortal"
-              />
-            </Link>
-            <Link alt="GitHub" href={COLONY_GITHUB}>
-              <Icon
-                className={styles.socialIcon}
-                title="GitHub"
-                name="social_github_devPortal"
-              />
-            </Link>
-            <Link alt="Gitter" href={COLONY_GITTER}>
-              <Icon
-                className={styles.socialIcon}
-                title="Gitter"
-                name="social_gitter_devPortal"
-              />
-            </Link>
+            <SocialNav />
           </div>
         </div>
       </div>
