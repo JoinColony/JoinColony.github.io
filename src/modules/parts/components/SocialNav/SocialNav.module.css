@@ -1,0 +1,38 @@
+@import '../../../../styles/variables.css';
+
+.socialIcon {
+  display: inline-block;
+  height: 35px;
+  margin-left: 22px;
+  width: 35px;
+}
+
+.socialIcon svg {
+  height: 35px;
+  width: 35px;
+}
+
+/* 
+ * Themes
+ */
+
+.themeDark .socialIcon svg {
+  fill: #A4B6C7;
+}
+
+.themeDark a:hover .socialIcon svg {
+  fill: #788CA0;
+}
+
+.themeLight .socialIcon svg {
+  fill: var(--grey-2);
+}
+
+.themeLight a:hover .socialIcon svg {
+  fill: var(--navy);
+}
+
+.main {
+  /* Default to dark theme */
+  composes: themeDark;
+}
