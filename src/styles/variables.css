@@ -18,6 +18,10 @@
   /* containers */
   --row-width-desktop: 1170px;
 
+  /* font-sizes */
+  --size-small: 13px;
+  --size-medium: 20px;
+
   /* margins */
   --margin-small: 10px;
   --margin-medium: 30px;
