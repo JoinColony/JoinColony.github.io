@@ -1,0 +1,8 @@
+
+.main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding: 66px;
+}
