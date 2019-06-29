@@ -14,6 +14,7 @@ import styles from './Button.module.css';
 
 type Appearance = {|
   theme?: 'primary' | 'primaryHollow' | 'callToAction' | 'reset',
+  borderRadius?: 'none' | 'medium',
   color?: 'blue' | 'grey' | 'red' | 'white',
   font?: 'small',
   hover?: 'disablePrimary',
