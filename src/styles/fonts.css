@@ -1,51 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
 
 @font-face {
   font-family: Avenir Next Light;
-  src: url('../fonts/avenir-next-light.woff2') format('woff2'),
-       url('../fonts/avenir-next-light.woff') format('woff');
+  src: url('../fonts/avenir-next/avenir-next-light.woff2') format('woff2'),
+       url('../fonts/avenir-next/avenir-next-light.woff') format('woff');
 }
 
 @font-face {
   font-family: Avenir Next;
-  src: url('../fonts/avenir-next-regular.woff2') format('woff2'),
-       url('../fonts/avenir-next-regular.woff') format('woff');
+  src: url('../fonts/avenir-next/avenir-next-regular.woff2') format('woff2'),
+       url('../fonts/avenir-next/avenir-next-regular.woff') format('woff');
 }
 
 @font-face {
   font-family: Avenir Next Medium;
-  src: url('../fonts/avenir-next-medium.woff') format('woff');
+  src: url('../fonts/avenir-next/avenir-next-medium.woff') format('woff');
 }
 
 @font-face {
   font-family: Avenir Next Demi;
-  src: url('../fonts/avenir-next-demi.woff2') format('woff2'),
-       url('../fonts/avenir-next-demi.woff') format('woff');
+  src: url('../fonts/avenir-next/avenir-next-demi.woff2') format('woff2'),
+       url('../fonts/avenir-next/avenir-next-demi.woff') format('woff');
 }
 
 @font-face {
   font-family: Avenir Next;
-  src: url('../fonts/avenir-next-bold.woff2') format('woff2'),
-       url('../fonts/avenir-next-bold.woff') format('woff');
+  src: url('../fonts/avenir-next/avenir-next-bold.woff2') format('woff2'),
+       url('../fonts/avenir-next/avenir-next-bold.woff') format('woff');
   font-weight: 500;
 }
 
 @font-face {
   font-family: Avenir Next;
-  src: url('../fonts/avenir-next-italic.woff2') format('woff2'),
-       url('../fonts/avenir-next-italic.woff') format('woff');
+  src: url('../fonts/avenir-next/avenir-next-italic.woff2') format('woff2'),
+       url('../fonts/avenir-next/avenir-next-italic.woff') format('woff');
   font-style: italic;
 }
 
 @font-face {
   font-family: Fantasque Sans Mono;
-  src: url('../fonts/fantasque-sans-mono-italic.woff2') format('woff2'),
-       url('../fonts/fantasque-sans-mono-italic.woff') format('woff');
+  src: url('../fonts/fantasque-sans-mono/fantasque-sans-mono-italic.woff2') format('woff2'),
+       url('../fonts/fantasque-sans-mono/fantasque-sans-mono-italic.woff') format('woff');
   font-style: italic;
 }
 
 @font-face {
+  font-family: IBM Plex Mono;
+  src: url('../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: IBM Plex Mono Medium;
+  src: url('../fonts/ibm-plex-mono/IBMPlexMono-Medium.ttf') format('ttf');
+}
+
+@font-face {
  font-family: Inconsolata;
- src: url('../fonts/inconsolata.woff2') format('woff2'),
-      url('../fonts/inconsolata.woff') format('woff');
+ src: url('../fonts/inconsolata/inconsolata.woff2') format('woff2'),
+      url('../fonts/inconsolata/inconsolata.woff') format('woff');
 }
