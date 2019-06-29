@@ -30,6 +30,10 @@ type Props = {
   label?: MessageDescriptor | string,
   /** Values for loading label (react-intl interpolation) */
   labelValues?: Object,
+  /** A string or a `messageDescriptor` that make up the input's placeholder */
+  placeholder?: MessageDescriptor | string,
+  /** Values for loading placeholder (react-intl interpolation) */
+  placeholderValues?: Object,
   /** Input html type attribute */
   type?: 'date' | 'number' | 'text',
 };
@@ -44,6 +48,8 @@ const Input = ({
   intl: { formatMessage },
   label,
   labelValues,
+  placeholder,
+  placeholderValues,
   type = 'text',
   ...rest
 }: Props) => {
@@ -54,12 +60,17 @@ const Input = ({
     typeof label === 'string'
       ? label
       : label && formatMessage(label, labelValues);
+  const placeholderText =
+    typeof placeholder === 'string'
+      ? placeholder
+      : placeholder && formatMessage(placeholder, placeholderValues);
   return (
     <label htmlFor={id} className={styles.label}>
       <span>{labelText}</span>
       <input
         id={id}
         className={classNames}
+        placeholder={placeholderText}
         style={error ? { borderColor: '#F5416E' } : null}
         type={type}
         {...rest}
