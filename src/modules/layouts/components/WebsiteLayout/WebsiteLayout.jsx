@@ -2,7 +2,14 @@
 
 import type { Element } from 'react';
 
-import React, { Component, useCallback, useState, useEffect, useLayoutEffect, useRef } from 'react';
+import React, {
+  Component,
+  useCallback,
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 
 import ThemeContext from './context';
 import Footer from './Footer';
