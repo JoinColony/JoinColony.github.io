@@ -21,7 +21,8 @@ export type Appearance = {|
     | 'medium'
     | 'mediumLarge'
     | 'large'
-    | 'huge',
+    | 'huge'
+    | 'massive',
   weight?: 'thin' | 'medium' | 'bold',
 |};
 
@@ -63,6 +64,7 @@ const Heading = ({
   const HeadingElement =
     tagName ||
     {
+      massive: 'h1',
       huge: 'h1',
       large: 'h2',
       medium: 'h3',

@@ -55,6 +55,7 @@
 .sizeMediumLarge {
   font-size: 20px;
   letter-spacing: .2px;
+  line-height: 32px;
 }
 
 .sizeLarge {
@@ -66,6 +67,11 @@
   font-size: 48px;
 }
 
+.sizeMassive {
+  font-size: 72px;
+  line-height: 80px;
+}
+
 /* Themes */
 
 .themeDark {
@@ -73,7 +79,7 @@
 }
 
 .themeInvert {
-  color: #ffffff;
+  color: #F0F5F7;
 }
 
 .themeLight {
