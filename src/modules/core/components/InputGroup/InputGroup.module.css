@@ -1,0 +1,27 @@
+.main {
+  margin: 0;
+}
+
+.inputGroup {
+  display: flex;
+}
+
+.inputContainer {
+  flex-grow: 1;
+}
+
+.input {
+  background-color: var(--text-blue);
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: var(--grey-1);
+  font-size: var(--size-medium);
+  height: 100%;
+  margin: 0 !important;
+  padding: 27px 40px;
+  width: 100% !important;
+}
+
+.button {
+  height: 100%;
+}
