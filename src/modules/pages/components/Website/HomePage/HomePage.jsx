@@ -9,6 +9,7 @@ import Hero from './Hero';
 import Products from './Products';
 import TLDR from './TLDR';
 import Toolkit from './Toolkit';
+import Vision from './Vision';
 
 const displayName = 'pages.Website.HomePage';
 
@@ -18,6 +19,7 @@ const HomePage = () => (
     <TLDR />
     <Products />
     <Toolkit />
+    <Vision />
     <EtherBanner />
   </WebsiteLayout>
 );
