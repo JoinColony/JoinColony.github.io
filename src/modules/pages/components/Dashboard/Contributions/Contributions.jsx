@@ -104,8 +104,7 @@ const Contributions = ({ network, user }: Props) => {
     const options = {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${process.env.DOCS_GITHUB_TOKEN ||
-          '7c20709be27b1b6fc196e90fbd3878d6d8ff597f'}`,
+        Authorization: `Bearer ${process.env.DOCS_GITHUB_TOKEN || ''}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

@@ -13,15 +13,9 @@ import { supportedNetwork } from '~layouts/DeveloperPortalLayout/helpers';
 const getColonyAddress = (networkId: number) => {
   switch (networkId) {
     case 1:
-      return (
-        process.env.COLONY_ADDRESS_MAINNET ||
-        '0x84bc20B584fA28a278B7a8d5D1Ec5c71224c9f7C'
-      );
+      return process.env.COLONY_ADDRESS_MAINNET || '0x0';
     case 5:
-      return (
-        process.env.COLONY_ADDRESS_GOERLI ||
-        '0x6681C20ed61058e4f76b7D6C5DBFE8817c0CaD79'
-      );
+      return process.env.COLONY_ADDRESS_GOERLI || '0x0';
     default:
       return '0x0';
   }

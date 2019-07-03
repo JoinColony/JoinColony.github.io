@@ -36,7 +36,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.Discourse';
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Discourse = ({ authenticate, disconnect, serverError, user }: Props) => {
   const [error, setError] = useState(false);

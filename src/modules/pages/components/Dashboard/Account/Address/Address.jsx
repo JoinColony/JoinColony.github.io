@@ -39,7 +39,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.Address';
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const Address = ({ setUser, user, wallet }: Props) => {
   const [error, setError] = useState(null);

@@ -37,7 +37,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.DeleteAccount';
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const DeleteAccount = ({ disconnect, user }: Props) => {
   const [confirmDelete, setConfirmDelete] = useState(false);

@@ -39,7 +39,7 @@ type Props = {|
   network: Network,
 |};
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const AddAdmin = ({ colonyClient, network }: Props) => {
   const [address, setAddress] = useState('');

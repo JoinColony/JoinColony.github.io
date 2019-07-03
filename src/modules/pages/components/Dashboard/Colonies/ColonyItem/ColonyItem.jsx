@@ -69,7 +69,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Colonies.ColonyItem';
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const ColonyItem = ({
   colonyAddress,
