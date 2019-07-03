@@ -10,7 +10,7 @@ import type { Provider, User } from '~types';
 
 import { getStore, setStore } from './localStorage';
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const usePortalServer = (wallet: WalletObjectType) => {
   const [loadedLocal, setLoadedLocal] = useState<?boolean>(false);
@@ -75,7 +75,7 @@ const usePortalServer = (wallet: WalletObjectType) => {
   useEffect(() => {
     if (!socket) {
       const newSocket = io.connect(
-        process.env.SOCKET_URL || 'https://chora.io:8000',
+        process.env.SOCKET_URL || 'http://localhost:8080',
         { secure: true },
       );
       newSocket.on('discourse', setUser);

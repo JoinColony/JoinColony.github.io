@@ -35,7 +35,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Colonies.AddColony';
 
-const server = process.env.SERVER_URL || 'https://chora.io';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const AddColony = ({
   network,
