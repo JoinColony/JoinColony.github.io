@@ -127,6 +127,7 @@ const GlobalLayout = ({ children, location }: Props) => {
       }
     }
   `);
+  const trackingId = process.env.GOOGLE_ANALYTICS_TRACKING_ID || '';
   return (
     <>
       <Helmet>
@@ -136,6 +137,18 @@ const GlobalLayout = ({ children, location }: Props) => {
           href={withPrefix('/img/favicon.ico')}
         />
         <script src={withPrefix('/js/fontloader.js')} />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}
+        />
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', ${trackingId});
+          `}
+        </script>
       </Helmet>
       <FileContext.Provider value={getFileMapping(data.files.edges)}>
         <IntlProvider
