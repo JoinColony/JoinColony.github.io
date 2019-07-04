@@ -36,7 +36,7 @@ type Props = {
   /** Values for loading placeholder (react-intl interpolation) */
   placeholderValues?: Object,
   /** Input html type attribute */
-  type?: 'date' | 'number' | 'range' | 'text',
+  type?: 'date' | 'email' | 'number' | 'range' | 'text',
   /** Max value - only used for `range` type */
   max?: number | string,
   /** Min value - only used for `range` type */
