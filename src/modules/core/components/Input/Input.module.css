@@ -1,23 +1,19 @@
-.main {
+.main span {
+  display: block;
+}
+
+.main input {
   border: 1px solid #91D2FA;
   border-radius: 4px;
   color: #323232;
   font-size: 16px;
   font-family: 'Avenir Next Light';
   margin-right: 20px;
+  margin-top: 8px;
   transition: 0.2s;
 }
 
-.label span {
-  display: block;
-  font-size: 16px;
-}
-
-.label input {
-  margin-top: 8px;
-}
-
-:disabled {
+.main input:disabled {
   background-color: #F0F5F7;
   border: 1px solid #F0F5F7;
   color: #788CA0;
@@ -29,27 +25,34 @@
   display: none;
 }
 
+/* Label */
+
+.labelLight span {
+  color: #788CA0;
+  font-size: 14px;
+}
+
 /* Padding */
 
-.paddingSmall {
+.paddingSmall input {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.paddingLarge {
+.paddingLarge input {
   padding: 5px 25px;
 }
 
-.paddingHuge {
+.paddingHuge input {
   padding: 10px 25px;
 }
 
 /* Size */
 
-.sizeLarge {
+.sizeLarge input {
   width: 340px;
 }
 
-.sizeStretch {
+.sizeStretch input {
   width: 100%;
 }

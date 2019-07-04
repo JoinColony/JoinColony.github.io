@@ -17,7 +17,7 @@ import styles from './AddColony.module.css';
 const MSG = defineMessages({
   labelAddress: {
     id: 'pages.Dashboard.Colonies.AddColony.labelAddress',
-    defaultMessage: 'Colony Address',
+    defaultMessage: 'Enter a colony address ({network})',
   },
   submitAddress: {
     id: 'pages.Dashboard.Colonies.AddColony.submitAddress',
@@ -109,12 +109,14 @@ const AddColony = ({
     <div className={styles.field}>
       <Input
         appearance={{
+          label: 'light',
           padding: 'huge',
           size: 'stretch',
         }}
         error={error}
         id="address"
         label={MSG.labelAddress}
+        labelValues={{ network: network.name }}
         onChange={handleChangeAddress}
         onKeyDown={handleKeyDown}
         type="text"
