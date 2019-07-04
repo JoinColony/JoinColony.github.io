@@ -61,7 +61,6 @@
   transition: all .4s cubic-bezier(0.000, 0.795, 0.495, 1.000);
   width: 0;
   right: 0;
-  position: absolute;
   z-index: 1;
 }
 

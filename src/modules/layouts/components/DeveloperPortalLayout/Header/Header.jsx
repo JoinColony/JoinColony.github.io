@@ -3,7 +3,7 @@
 import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import type { Network, Project, User } from '~types';
@@ -78,7 +78,18 @@ const Header = ({
   wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSearchEvents, setIsSearchEvents] = useState(false);
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
+  const searchInputId = 'devPortalLayoutHeaderSearch';
+  useEffect(() => {
+    const searchInput = document.getElementById(searchInputId);
+    if (!isSearchEvents && searchInput) {
+      searchInput.addEventListener('focus', () => setIsSearchOpen(true));
+      searchInput.addEventListener('blur', () => setIsSearchOpen(false));
+      setIsSearchEvents(true);
+    }
+  }, [isSearchEvents]);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -103,7 +114,9 @@ const Header = ({
         </div>
         <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
-            className={styles.navigation}
+            className={
+              isSearchOpen ? styles.navigationHidden : styles.navigation
+            }
             role="navigation"
             aria-label={navAriaLabel}
           >
@@ -161,7 +174,7 @@ const Header = ({
           <div className={styles.searchContainer}>
             <Search
               appearance={{ theme: 'light', type: 'quickSearch' }}
-              inputId="devPortalLayoutHeaderSearch"
+              inputId={searchInputId}
             />
           </div>
           <Button
