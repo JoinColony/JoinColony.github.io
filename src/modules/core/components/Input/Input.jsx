@@ -11,6 +11,7 @@ import styles from './Input.module.css';
 
 type Appearance = {|
   display?: 'none',
+  label?: 'light',
   padding?: 'small' | 'large' | 'huge',
   size?: 'large' | 'stretch',
 |};
@@ -55,11 +56,10 @@ const Input = ({
       ? label
       : label && formatMessage(label, labelValues);
   return (
-    <label htmlFor={id} className={styles.label}>
+    <label htmlFor={id} className={classNames}>
       <span>{labelText}</span>
       <input
         id={id}
-        className={classNames}
         style={error ? { borderColor: '#F5416E' } : null}
         type={type}
         {...rest}
