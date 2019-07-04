@@ -1,4 +1,5 @@
-.main {
+
+.wrapper form {
   margin: 0;
 }
 
@@ -14,7 +15,7 @@
   background-color: var(--text-blue);
   border: 1px solid transparent;
   border-radius: 0;
-  color: var(--grey-1);
+  color: #ffffff;
   font-size: var(--size-medium);
   height: 100%;
   margin: 0 !important;
@@ -22,6 +23,25 @@
   width: 100% !important;
 }
 
-.button {
+.input::placeholder {
+  color: var(--grey-1);
+}
+
+.wrapper .button {
+  border-color: transparent;
+  color: #ffffff;
   height: 100%;
+}
+
+.wrapper .button:hover,
+.wrapper .button:active {
+  background-color: #086DA6;
+  color: #ffffff;
+}
+
+.themeLight .input {
+  color: var(--grey-1);
+  background-color: #FFFFFF;
+  border: 1px solid var(--grey-2);
+  padding: 27px 24px;
 }
