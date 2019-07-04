@@ -66,7 +66,6 @@
 
 .dropdownParent {
   display: none;
-  cursor: default;
 }
 
 .docsDropdownParent .docsDropdownContainer {
@@ -106,6 +105,7 @@
     font-size: 14px;
     padding: 5px 15px;
     margin-left: 50px;
+    width: 240px;
   }
 
   .network:hover {
@@ -128,7 +128,15 @@
   }
 
   .navigation {
+    display: flex;
     margin-top: 0;
+    height: 50px;
+  }
+
+  .navigationHidden {
+    composes: navigation;
+    overflow: hidden;
+    width: 0;
   }
 
   .navLink {
@@ -150,6 +158,10 @@
   .docsDropdownParent:hover .docsDropdownContainer,
   .docsDropdownParent:focus-within .docsDropdownContainer {
     visibility: visible;
+  }
+
+  .docsDropdownParent:focus-within {
+    color: #788CA0;
   }
 
   .mobileDocsDropdown {
