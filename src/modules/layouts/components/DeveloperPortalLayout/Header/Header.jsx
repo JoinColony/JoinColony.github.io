@@ -78,18 +78,28 @@ const Header = ({
   wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isSearchEvents, setIsSearchEvents] = useState(false);
+  const [navigationStyle, setNavigationStyle] = useState('navigation');
   const navAriaLabel = formatMessage(MSG.navAriaLabel);
   const searchInputId = 'devPortalLayoutHeaderSearch';
+  const handleOpenSearch = () => {
+    setNavigationStyle('navigationHidden');
+  };
+  const handleCloseSearch = () => {
+    setNavigationStyle('navigationAnimated');
+  };
   useEffect(() => {
     const searchInput = document.getElementById(searchInputId);
-    if (!isSearchEvents && searchInput) {
-      searchInput.addEventListener('focus', () => setIsSearchOpen(true));
-      searchInput.addEventListener('blur', () => setIsSearchOpen(false));
-      setIsSearchEvents(true);
+    if (searchInput) {
+      searchInput.addEventListener('focus', handleOpenSearch);
+      searchInput.addEventListener('blur', handleCloseSearch);
     }
-  }, [isSearchEvents]);
+    return () => {
+      if (searchInput) {
+        searchInput.removeEventListener('focus', handleOpenSearch);
+        searchInput.removeEventListener('blur', handleCloseSearch);
+      }
+    };
+  }, []);
   return (
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
@@ -114,9 +124,7 @@ const Header = ({
         </div>
         <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
-            className={
-              isSearchOpen ? styles.navigationHidden : styles.navigation
-            }
+            className={styles[navigationStyle]}
             role="navigation"
             aria-label={navAriaLabel}
           >

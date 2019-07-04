@@ -1,5 +1,16 @@
 @value mediumUp from '~styles/breakpoints.css';
 
+@keyframes show {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: auto;
+  }
+}
+
 .main {
   background-color: #021C2B;
   display: flex;
@@ -130,12 +141,18 @@
   .navigation {
     display: flex;
     margin-top: 0;
+    overflow: hidden;
     height: 50px;
   }
 
   .navigationHidden {
     composes: navigation;
-    overflow: hidden;
+    width: 0;
+  }
+
+  .navigationAnimated {
+    composes: navigation;
+    animation: show 0.4s forwards;
     width: 0;
   }
 
