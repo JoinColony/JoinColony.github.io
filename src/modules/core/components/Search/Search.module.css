@@ -113,7 +113,7 @@
 
 @media (mediumUp) {
   .typeQuickSearch:focus-within .searchInput {
-    width: 200px;
+    width: 250px;
   }
 }
 
