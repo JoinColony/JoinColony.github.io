@@ -12,6 +12,7 @@
     "@colony/purser-core": "^2.1.0",
     "@colony/purser-metamask": "^2.2.0",
     "@reach/router": "^1.2.1",
+    "@tryghost/content-api": "^1.2.5",
     "camelcase": "^5.2.0",
     "copy-to-clipboard": "^3.2.0",
     "docsearch.js": "^2.6.2",
