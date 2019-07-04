@@ -11,13 +11,13 @@ import Link from '~core/Link';
 import styles from './Sidebar.module.css';
 
 const MSG = defineMessages({
-  adminLink: {
-    id: 'pages.Dashboard.Sidebar.adminLink',
-    defaultMessage: 'Admin',
-  },
   accountLink: {
     id: 'pages.Dashboard.Sidebar.accountLink',
     defaultMessage: 'Account',
+  },
+  adminLink: {
+    id: 'pages.Dashboard.Sidebar.adminLink',
+    defaultMessage: 'Admin',
   },
   coloniesLink: {
     id: 'pages.Dashboard.Sidebar.coloniesLink',
@@ -41,11 +41,6 @@ const Sidebar = ({ active, network, user }: Props) => (
   <div className={styles.main}>
     <div>
       <Link
-        className={active === 'account' ? styles.linkActive : styles.link}
-        href="/dashboard/account"
-        text={MSG.accountLink}
-      />
-      <Link
         className={active === 'colonies' ? styles.linkActive : styles.link}
         href="/dashboard/colonies"
         text={MSG.coloniesLink}
@@ -54,6 +49,11 @@ const Sidebar = ({ active, network, user }: Props) => (
         className={active === 'contributions' ? styles.linkActive : styles.link}
         href="/dashboard/contributions"
         text={MSG.contributionsLink}
+      />
+      <Link
+        className={active === 'account' ? styles.linkActive : styles.link}
+        href="/dashboard/account"
+        text={MSG.accountLink}
       />
       {user && network && user.admin && user.admin[network.slug] && (
         <Link
