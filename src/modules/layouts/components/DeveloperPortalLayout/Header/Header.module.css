@@ -76,12 +76,6 @@
 
 .searchContainer {
   display: none;
-  /*
-   * Because search has to be lazy-loaded (use of `window`),
-   * we must create a gap so popovers line up correctly
-   * with parent nav items
-   */
-  min-width: 79px;
 }
 
 .dashboardButton {
@@ -163,7 +157,13 @@
   }
 
   .searchContainer {
-    display: block;
+    display: flex;
+    /*
+     * Because search has to be lazy-loaded (use of `window`),
+     * we must create a gap so popovers line up correctly
+     * with parent nav items
+     */
+    min-width: 79px;
   }
 
   .dashboardButton {
