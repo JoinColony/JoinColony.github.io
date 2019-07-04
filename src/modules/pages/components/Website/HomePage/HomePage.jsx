@@ -4,6 +4,7 @@ import React from 'react';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import Blog from './Blog';
 import EtherBanner from './EtherBanner';
 import Hero from './Hero';
 import Products from './Products';
@@ -21,6 +22,7 @@ const HomePage = () => (
     <Toolkit />
     <Vision />
     <EtherBanner />
+    <Blog />
   </WebsiteLayout>
 );
 
