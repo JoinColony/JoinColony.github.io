@@ -34,3 +34,7 @@
   color: var(--blue-1);
   font-size: var(--size-normal);
 }
+
+.slideImage {
+  height: 400px;
+}
