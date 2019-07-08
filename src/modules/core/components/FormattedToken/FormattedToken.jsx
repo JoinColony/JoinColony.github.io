@@ -55,6 +55,32 @@ type Props = {|
 
 const displayName = 'FormattedToken';
 
+// Formats the `amount` as a string in order to allow for a custom `decimals`
+// value (default 18) and to display the resulting `amount` in decimals.
+const getFormattedAmount = (amount, decimals) => {
+  let formatted = amount.toString();
+  if (amount < 0) {
+    formatted = formatted.substring(1, formatted.length);
+  }
+  let zeros = formatted.length - (decimals || 18);
+  if (zeros < 0) {
+    zeros = Math.abs(zeros);
+    while (zeros > 0) {
+      formatted = `0${formatted}`;
+      zeros -= 1;
+    }
+    formatted = `0.${formatted}`;
+  } else {
+    formatted = formatted.split('');
+    formatted.splice(zeros, 0, '.');
+    formatted = formatted.join('');
+  }
+  if (amount < 0) {
+    formatted = `-${formatted}`;
+  }
+  return formatted;
+};
+
 const FormattedToken = ({
   amount = 0,
   appearance,
@@ -73,28 +99,6 @@ const FormattedToken = ({
     maximumFractionDigits: maximumFractionDigits || 4,
     minimumFractionDigits: minimumFractionDigits || 0,
   };
-
-  // In order to allow for a custum `decimals` value and to ensure the result
-  // can be displayed in decimals, we are formatting the `amount` as a string.
-  let formattedAmount = amount.toString();
-  if (!formattedAmount.includes('-')) {
-    const zeros = formattedAmount.length - (decimals || 18);
-    if (zeros < 0) {
-      let count = Math.abs(zeros);
-      while (count > 0) {
-        formattedAmount = `0${formattedAmount}`;
-        count -= 1;
-      }
-      formattedAmount = `0.${formattedAmount}`;
-    } else {
-      formattedAmount = formattedAmount.split('');
-      formattedAmount.splice(zeros, 0, '.');
-      formattedAmount = formattedAmount.join('');
-    }
-  } else {
-    formattedAmount = '0';
-  }
-
   return (
     <div className={classNames}>
       {loading ? (
@@ -104,7 +108,10 @@ const FormattedToken = ({
           {...MSG.amount}
           values={{
             amount: (
-              <FormattedNumber {...tokenFormat} value={formattedAmount} />
+              <FormattedNumber
+                {...tokenFormat}
+                value={getFormattedAmount(amount, decimals)}
+              />
             ),
           }}
         />
