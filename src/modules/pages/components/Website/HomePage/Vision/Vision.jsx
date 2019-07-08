@@ -1,11 +1,15 @@
 /* @flow */
 
+import type { ComponentType } from 'react';
+
 import React, { useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Input from '~core/Input';
 import Link from '~core/Link';
+
+import { Vision0, Vision1, Vision2, Vision3, Vision4, Vision5 } from './assets';
 
 import styles from './Vision.module.css';
 
@@ -36,10 +40,21 @@ const Vision = () => {
       const {
         currentTarget: { value },
       } = evt;
-      setCurrentSlide(value);
+      setCurrentSlide(parseInt(value, 10));
     },
     [setCurrentSlide],
   );
+
+  const slides: Array<ComponentType<*>> = [
+    Vision0,
+    Vision1,
+    Vision2,
+    Vision3,
+    Vision4,
+    Vision5,
+  ];
+
+  const ActiveSlide = slides[currentSlide];
 
   return (
     <div className={styles.main}>
@@ -63,9 +78,13 @@ const Vision = () => {
           </div>
           <Link className={styles.link} href="/" text={MSG.link} />
         </div>
-        <div className={styles.canvas}>
-          <div>Graphic Here</div>
-        </div>
+        <>
+          {ActiveSlide && (
+            <div className={styles.canvas}>
+              <ActiveSlide className={styles.slideImage} />
+            </div>
+          )}
+        </>
       </div>
     </div>
   );
