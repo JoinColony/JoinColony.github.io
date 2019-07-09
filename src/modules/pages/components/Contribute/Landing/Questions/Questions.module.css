@@ -6,6 +6,7 @@
 }
 
 .main button {
+  border-bottom: 1px solid #C8D2DC;
   display: block;
   text-align: left;
 }

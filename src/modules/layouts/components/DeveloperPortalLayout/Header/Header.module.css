@@ -1,5 +1,16 @@
 @value mediumUp from '~styles/breakpoints.css';
 
+@keyframes show {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: auto;
+  }
+}
+
 .main {
   background-color: #021C2B;
   display: flex;
@@ -66,7 +77,6 @@
 
 .dropdownParent {
   display: none;
-  cursor: default;
 }
 
 .docsDropdownParent .docsDropdownContainer {
@@ -76,12 +86,6 @@
 
 .searchContainer {
   display: none;
-  /*
-   * Because search has to be lazy-loaded (use of `window`),
-   * we must create a gap so popovers line up correctly
-   * with parent nav items
-   */
-  min-width: 79px;
 }
 
 .dashboardButton {
@@ -112,6 +116,7 @@
     font-size: 14px;
     padding: 5px 15px;
     margin-left: 50px;
+    width: 240px;
   }
 
   .network:hover {
@@ -134,7 +139,21 @@
   }
 
   .navigation {
+    display: flex;
     margin-top: 0;
+    overflow: hidden;
+    height: 50px;
+  }
+
+  .navigationHidden {
+    composes: navigation;
+    width: 0;
+  }
+
+  .navigationAnimated {
+    composes: navigation;
+    animation: show 0.4s forwards;
+    width: 0;
   }
 
   .navLink {
@@ -158,12 +177,22 @@
     visibility: visible;
   }
 
+  .docsDropdownParent:focus-within {
+    color: #788CA0;
+  }
+
   .mobileDocsDropdown {
     display: none;
   }
 
   .searchContainer {
-    display: block;
+    display: flex;
+    /*
+     * Because search has to be lazy-loaded (use of `window`),
+     * we must create a gap so popovers line up correctly
+     * with parent nav items
+     */
+    min-width: 79px;
   }
 
   .dashboardButton {

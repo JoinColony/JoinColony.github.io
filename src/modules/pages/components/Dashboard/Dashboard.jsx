@@ -107,7 +107,7 @@ const Dashboard = ({
           <>
             <div className={styles.sidebar}>
               <Sidebar
-                active={page || 'account'}
+                active={page || 'colonies'}
                 network={network}
                 user={user}
               />
@@ -115,29 +115,12 @@ const Dashboard = ({
             {network && wallet ? (
               <div className={styles.content}>
                 <Router primary={false}>
-                  <Admin
-                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
-                    colonyClient={colonyClient}
-                    network={network}
-                    user={user}
-                  />
-                  <Account
+                  <Colonies
                     path={
                       page
-                        ? PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT
+                        ? PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES
                         : PAGE_DEVELOPER_PORTAL_DASHBOARD
                     }
-                    authenticate={authenticate}
-                    colonyClient={colonyClient}
-                    disconnect={disconnect}
-                    network={network}
-                    serverError={serverError}
-                    setUser={setUser}
-                    user={user}
-                    wallet={wallet}
-                  />
-                  <Colonies
-                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES}
                     network={network}
                     networkClient={networkClient}
                     setUser={setUser}
@@ -149,6 +132,23 @@ const Dashboard = ({
                     network={network}
                     user={user}
                     wallet={wallet}
+                  />
+                  <Account
+                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT}
+                    authenticate={authenticate}
+                    colonyClient={colonyClient}
+                    disconnect={disconnect}
+                    network={network}
+                    serverError={serverError}
+                    setUser={setUser}
+                    user={user}
+                    wallet={wallet}
+                  />
+                  <Admin
+                    path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
+                    colonyClient={colonyClient}
+                    network={network}
+                    user={user}
                   />
                 </Router>
               </div>
