@@ -1,6 +1,7 @@
 /* @flow */
 
 import type { IntlShape } from 'react-intl';
+import type { BigNumber } from 'web3-utils';
 
 import React from 'react';
 import {
@@ -35,7 +36,7 @@ type Props = {|
   /** Appearance object */
   appearance?: Appearance,
   /** Token amount */
-  amount: number,
+  amount?: BigNumber | number,
   /** Setting this will add className styles to the `appearance` object */
   className?: string,
   /** Token amount */
@@ -54,8 +55,34 @@ type Props = {|
 
 const displayName = 'FormattedToken';
 
+// Formats the `amount` as a string in order to allow for a custom `decimals`
+// value (default 18) and to display the resulting `amount` in decimals.
+const getFormattedAmount = (amount, decimals) => {
+  let formatted = amount.toString();
+  if (amount < 0) {
+    formatted = formatted.substring(1, formatted.length);
+  }
+  let zeros = formatted.length - (decimals || 18);
+  if (zeros < 0) {
+    zeros = Math.abs(zeros);
+    while (zeros > 0) {
+      formatted = `0${formatted}`;
+      zeros -= 1;
+    }
+    formatted = `0.${formatted}`;
+  } else {
+    formatted = formatted.split('');
+    formatted.splice(zeros, 0, '.');
+    formatted = formatted.join('');
+  }
+  if (amount < 0) {
+    formatted = `-${formatted}`;
+  }
+  return formatted;
+};
+
 const FormattedToken = ({
-  amount,
+  amount = 0,
   appearance,
   className,
   decimals,
@@ -67,7 +94,6 @@ const FormattedToken = ({
   const classNames = className
     ? `${getMainClasses(appearance, styles)} ${className}`
     : getMainClasses(appearance, styles);
-  const formattedAmount = amount / 10 ** (decimals || 18);
   const tokenFormat = {
     id: symbol,
     maximumFractionDigits: maximumFractionDigits || 4,
@@ -82,7 +108,10 @@ const FormattedToken = ({
           {...MSG.amount}
           values={{
             amount: (
-              <FormattedNumber {...tokenFormat} value={formattedAmount} />
+              <FormattedNumber
+                {...tokenFormat}
+                value={getFormattedAmount(amount, decimals)}
+              />
             ),
           }}
         />

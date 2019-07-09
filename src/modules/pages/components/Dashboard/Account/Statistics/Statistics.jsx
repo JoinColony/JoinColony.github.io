@@ -47,20 +47,22 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
       setLoading(true);
       try {
         const {
-          amount: balance,
+          amount: tokens,
         } = await colonyClient.tokenClient.getBalanceOf.call({
           sourceAddress: wallet.address,
         });
         const { skillId } = await colonyClient.getDomain.call({
           domainId: 1,
         });
-        const { reputationAmount } = await colonyClient.getReputation({
+        const {
+          reputationAmount: reputation,
+        } = await colonyClient.getReputation({
           skillId,
           address: wallet.address,
         });
         setStatistics({
-          balance: balance.toString(),
-          reputation: reputationAmount || 0,
+          tokens,
+          reputation,
         });
         setLoaded(true);
         setLoading(false);
@@ -80,11 +82,19 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
     }
   }, [loadedLocal, network, wallet]);
 
-  useEffect(() => setStore(`${wallet.address}-${network.id}`, statistics), [
-    network,
-    statistics,
-    wallet,
-  ]);
+  useEffect(
+    () =>
+      setStore(
+        `${wallet.address}-${network.id}`,
+        statistics
+          ? {
+              tokens: statistics.tokens.toString(),
+              reputation: statistics.reputation,
+            }
+          : null,
+      ),
+    [network, statistics, wallet],
+  );
 
   useEffect(() => {
     if (colonyClient && !error && !loaded && !loading) {
@@ -104,7 +114,7 @@ const Statistics = ({ colonyClient, network, wallet }: Props) => {
     <div className={styles.statistics}>
       <div className={styles.statistic}>
         <FormattedToken
-          amount={statistics ? statistics.balance : 0}
+          amount={statistics ? statistics.tokens : 0}
           appearance={{ theme: 'statistics' }}
           loading={loading && !statistics}
           symbol="CDEV"
