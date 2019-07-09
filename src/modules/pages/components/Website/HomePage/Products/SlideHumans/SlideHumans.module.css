@@ -6,18 +6,15 @@
   height: 100%;
 }
 
-.main svg {
+.image {
   display: block;
-  /* width: 100%; */
-  /* height: 100%; */
   width: 746px;
 }
 
-.main .image svg :global circle.pulse {
-  fill: black !important;
-  stroke: black;
-  animation: shadow-pulse 1s infinite;
-  opacity: 0.2;
+.handle {
+  animation: shadow-pulse 1.2s infinite;
+  cursor: pointer;
+  opacity: 0;
 }
 
 /* animations */
@@ -25,8 +22,9 @@
 @keyframes shadow-pulse {
   0% {
     box-shadow: 0 0 0 0px var(--blue-1);
+    opacity: 0.4;
   }
   100% {
-    box-shadow: 0 0 0 35px var(--blue-1);
+    box-shadow: 0 0 0 25px var(--blue-1);
   }
 }
