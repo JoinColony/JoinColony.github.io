@@ -1,0 +1,12 @@
+
+.main {
+  position: absolute;
+  right: 0;
+  width: 49%;
+  max-height: 968px;
+  max-width: 1146px;
+}
+
+.image {
+  display: block;
+}
