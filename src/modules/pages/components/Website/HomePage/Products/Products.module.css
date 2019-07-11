@@ -1,0 +1,136 @@
+
+.main {
+  display: flex;
+}
+
+.slideCanvas {
+  background-color: var(--navy);
+  flex: 1;
+  height: 519px;
+}
+
+.gutter {
+  background-color: var(--grey-3);
+  flex: 1 0 235px;
+}
+
+.gutterLink {
+  align-items: center;
+  color: var(--blue-1);
+  display: flex;
+  font-family: IBM Plex Mono Medium, monospace;
+  font-size: var(--size-small);
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.gutterLink:hover {
+  background-color: var(--blue-1);
+  color: var(--colony-white);
+}
+
+.gutterLinkText {
+  /*
+   * Absolutely positioned because white-space is calculated
+   * before transform is applied, which breaks the layout (makes
+   * this gutter wider than the other. Not cool...).
+   */
+  position: absolute;
+  right: -15px;
+  transform: rotate(270deg);
+  white-space: nowrap;
+}
+
+.carousel {
+  flex: 0 0 970px;
+}
+
+.slideActive {
+  animation: fadeIn 0.25s ease-in;
+  display: block;
+  opacity: 1;
+  height: 100%;
+}
+
+.slideInactive {
+  animation: fadeOut 0.25s;
+  display: none;
+  opacity: 0;
+}
+
+.controls {
+  display: flex;
+}
+
+.controlItem {
+  flex: 1 0 50%;
+}
+
+.controlItem button {
+  display: block;
+  height: 100%;
+}
+
+.controlItem button:disabled {
+  cursor: default !important;
+}
+
+.controlItem.active .controlItemInner {
+  background-color: var(--blue-1);
+  color: var(--colony-white);
+}
+
+.controlItem.active .controlItemInner a,
+.controlItem.active .controlItemInner .controlHeading {
+  color: var(--colony-white);
+}
+
+.controlItemInner {
+  color: var(--grey-2);
+  height: 100%;
+  padding: 56px 70px;
+  text-align: left;
+}
+
+.controlItemInner a,
+.controlItemInner .controlHeading {
+  color: var(--grey-2);
+}
+
+.controlLink {
+  margin-top: 20px;
+}
+
+/* animations */
+
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  1% {
+    display: none;
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
