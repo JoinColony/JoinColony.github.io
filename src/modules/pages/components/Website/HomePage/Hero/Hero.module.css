@@ -1,0 +1,51 @@
+@value largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: var(--navy);
+  display: flex;
+}
+
+.imageContainer {
+  align-items: flex-end;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.image {
+  margin: 0;
+}
+
+.contentContainer {
+  background-color: var(--colony-black);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.textContainer {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  padding: 20px 120px;
+}
+
+.prefixUnderline {
+  border-bottom: 1px solid var(--grey-1);
+  display: inline-block;
+  margin-right: 13px;
+  width: 49px;
+}
+
+.announcement {
+  color: var(--grey-1);
+  font-family: 'IBM Plex Mono Medium', monospace;
+  font-size: var(--size-small);
+  margin-bottom: 40px;
+}
+
+@media (largeUp) {
+  .main {
+    height: 847px;
+  }
+}
