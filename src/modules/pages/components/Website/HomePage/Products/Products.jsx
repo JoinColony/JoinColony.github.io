@@ -103,7 +103,11 @@ const Products = () => {
                 />
                 <FormattedMessage {...MSG.controlBodyDevelopers} />
                 <div className={styles.controlLink}>
-                  <Link href="/" text={MSG.controlLinkDevelopers} />
+                  {isCurrentSlide(0) ? (
+                    <Link href="/" text={MSG.controlLinkDevelopers} />
+                  ) : (
+                    <FormattedMessage {...MSG.controlLinkDevelopers} />
+                  )}
                 </div>
               </div>
             </Button>
@@ -127,7 +131,11 @@ const Products = () => {
                 />
                 <FormattedMessage {...MSG.controlBodyHumans} />
                 <div className={styles.controlLink}>
-                  <Link href="/" text={MSG.controlLinkHumans} />
+                  {isCurrentSlide(1) ? (
+                    <Link href="/" text={MSG.controlLinkHumans} />
+                  ) : (
+                    <FormattedMessage {...MSG.controlLinkHumans} />
+                  )}
                 </div>
               </div>
             </Button>
