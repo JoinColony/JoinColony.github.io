@@ -4,6 +4,7 @@ import React from 'react';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import Boundaries from './Boundaries';
 import FirmToFluid from './FirmToFluid';
 import Hero from './Hero';
 
@@ -13,6 +14,7 @@ const About = () => (
   <WebsiteLayout transparentNav>
     <Hero />
     <FirmToFluid />
+    <Boundaries />
   </WebsiteLayout>
 );
 
