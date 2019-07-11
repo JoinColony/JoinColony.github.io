@@ -64,6 +64,15 @@
   display: flex;
 }
 
+.controlItem {
+  flex: 1 0 50%;
+}
+
+.controlItem button {
+  display: block;
+  height: 100%;
+}
+
 .controlItem button:disabled {
   cursor: default !important;
 }
@@ -80,6 +89,7 @@
 
 .controlItemInner {
   color: var(--grey-2);
+  height: 100%;
   padding: 56px 70px;
   text-align: left;
 }
