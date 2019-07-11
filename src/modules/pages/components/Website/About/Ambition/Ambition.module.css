@@ -1,0 +1,39 @@
+
+.main {
+  background-color: var(--navy);
+  padding: 190px 0;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  max-width: 750px;
+  width: 52%;
+}
+
+.introText {
+  color: var(--blue-2);
+}
+
+.body {
+  color: var(--blue-2);
+  display: flex;
+  font-size: var(--size-normal);
+  justify-content: space-between;
+  margin-top: 70px;
+}
+
+.body a {
+  color: var(--blue-1);
+}
+
+.body a:hover {
+  color: var(--blue-2);
+}
+
+.body p {
+  margin-bottom: 0;
+}
+
+.bodyColumn {
+  flex: 0 0 48%;
+}
