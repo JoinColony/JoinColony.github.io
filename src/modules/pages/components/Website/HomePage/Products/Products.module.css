@@ -55,7 +55,7 @@
 }
 
 .slideInactive {
-  animation: fadeOut 0.25s ease-out;
+  animation: fadeOut 0.25s;
   display: none;
   opacity: 0;
 }
