@@ -1,0 +1,26 @@
+
+.main {
+  padding: var(--margin-huge) 0;
+}
+
+.row {
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.cols {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.colItem {
+  padding: 0 40px;
+}
+
+.colItem:first-of-type {
+  padding-left: 0;
+}
+
+.colItem:last-of-type {
+  padding-right: 0;
+}
