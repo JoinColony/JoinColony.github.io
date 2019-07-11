@@ -1,0 +1,19 @@
+
+.main {
+  background-image: url('../../../../../../../static/img/boundariesWillBlur.svg');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 86% auto;
+  padding: 340px 0 215px;
+}
+
+.contentContainer {
+  margin: 0 16% 0 auto;
+  width: 39%;
+}
+
+.body {
+  color: var(--text-blue);
+  font-size: var(--size-normal);
+  margin-top: 35px;
+}
