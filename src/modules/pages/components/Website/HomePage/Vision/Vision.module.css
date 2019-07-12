@@ -1,0 +1,40 @@
+
+.main {
+  padding: 200px 0 ;
+}
+
+.row {
+  display: flex;
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.controls {
+  flex: 0 0 calc(100% / 3);
+  padding-right: 30px;
+}
+
+.canvas {
+  align-items: center;
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+}
+
+.body {
+  color: var(--text-blue);
+  font-size: var(--size-medium);
+}
+
+.input {
+  margin: 40px 0;
+}
+
+.link {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+.slideImage {
+  height: 400px;
+}
