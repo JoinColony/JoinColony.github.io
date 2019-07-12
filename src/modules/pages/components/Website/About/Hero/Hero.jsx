@@ -3,6 +3,7 @@
 import React, { useContext } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import Announcement from '~core/Announcement';
 import Heading from '~core/Heading';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 
@@ -44,10 +45,7 @@ const Hero = () => {
       <div className={styles.inner}>
         <div style={style}>
           <div className={styles.contentContainer}>
-            <p className={styles.announcement}>
-              <span className={styles.prefixUnderline} />
-              <FormattedMessage {...MSG.announcement} />
-            </p>
+            <Announcement text={MSG.announcement} />
             <Heading appearance={{ margin: 'none', theme: 'dark' }}>
               <FormattedMessage {...MSG.title} values={{ br: <br /> }} />
             </Heading>
