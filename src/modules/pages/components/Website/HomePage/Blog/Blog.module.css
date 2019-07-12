@@ -1,0 +1,42 @@
+
+@value gridMargin: 30px;
+
+.main {
+  padding: 145px 0;
+}
+
+.row {
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.gridContainer {
+  display: flex;
+  justify-content: space-evenly;
+  /* 
+   * Negative margin to align first and last items in grid
+   */
+  margin: 110px calc(-1 * gridMargin) 0;
+}
+
+.gridItem {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 gridMargin;
+}
+
+.excerpt {
+  color: var(--text-blue);
+  font-size: var(--size-normal);
+}
+
+.link {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+.cta {
+  margin-top: 120px;
+}
