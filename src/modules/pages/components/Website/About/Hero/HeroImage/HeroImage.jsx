@@ -1,43 +1,18 @@
 /* @flow */
 /* eslint-disable max-len, prettier/prettier */
 
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useRef } from 'react';
+
+import { useElementHeight } from '../../../../../../core/hooks';
 
 import styles from './HeroImage.module.css';
 
 const displayName = 'pages.Website.About.Hero.HeroImage';
 
 const HeroImage = () => {
-  const [pathHeight, _setPathHeight] = useState(0);
-  const ref: { current: null | Element } = useRef(null);
-
-  const setPathHeight = useCallback(() => {
-    if (ref.current) {
-      // get the height of this svg path
-      _setPathHeight(ref.current.getBoundingClientRect().height);
-    }
-  }, []);
-
-  // set once window has loaded
-  useLayoutEffect(() => {
-    setPathHeight();
-  }, [setPathHeight]);
-
-  // update on resize
-  useEffect(() => {
-    const handleResize = () => setPathHeight();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
-
+  const ref = useRef(null);
+  const pathHeight = useElementHeight(ref);
+  // move the svg down so the bottom path aligns with bottom of container
   const style = { bottom: `${-1 * pathHeight}px` };
   return (
     <div className={styles.main} style={style}>
