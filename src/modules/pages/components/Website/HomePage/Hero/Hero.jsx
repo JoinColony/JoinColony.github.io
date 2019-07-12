@@ -1,8 +1,9 @@
 /* @flow */
 
 import React, { useContext } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
+import Announcement from '~core/Announcement';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import InputGroup from '~core/InputGroup';
@@ -51,10 +52,10 @@ const Hero = () => {
       <div className={styles.contentContainer} style={style}>
         <div className={styles.textContainer}>
           <div>
-            <p className={styles.announcement}>
-              <span className={styles.prefixUnderline} />
-              <FormattedMessage {...MSG.announcement} />
-            </p>
+            <Announcement
+              appearance={{ theme: 'grey' }}
+              text={MSG.announcement}
+            />
             <Heading
               appearance={{
                 margin: 'double',

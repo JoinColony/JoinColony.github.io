@@ -30,20 +30,6 @@
   padding: 20px 120px;
 }
 
-.prefixUnderline {
-  border-bottom: 1px solid var(--grey-1);
-  display: inline-block;
-  margin-right: 13px;
-  width: 49px;
-}
-
-.announcement {
-  color: var(--grey-1);
-  font-family: 'IBM Plex Mono Medium', monospace;
-  font-size: var(--size-small);
-  margin-bottom: 40px;
-}
-
 @media (largeUp) {
   .main {
     height: 847px;
