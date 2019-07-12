@@ -60,7 +60,25 @@
   border-bottom-color: var(--colony-white);
 }
 
+ /**
+ * Nav Themes
+ **/
+
+.navThemeDark .navLink {
+  color: var(--navy);
+}
+
+.navThemeDark .navLink:hover,
+.navThemeDark .navLink.active {
+  border-bottom-color: var(---navy);
+}
+
+.navThemeLight .navLink {
+  color: var(--colony-white);
+}
+
+
 .main {
   /* default to `light` theme */
-  composes: themeLight;
+  composes: themeLight navThemeDark;
 }

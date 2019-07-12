@@ -13,7 +13,13 @@ import Hero from './Hero';
 const displayName = 'pages.Website.About';
 
 const About = () => (
-  <WebsiteLayout transparentNav>
+  <WebsiteLayout
+    headerAppearance={{
+      logoTheme: 'dark',
+      navTheme: 'dark',
+      theme: 'transparent',
+    }}
+  >
     <Hero />
     <FirmToFluid />
     <Boundaries />
