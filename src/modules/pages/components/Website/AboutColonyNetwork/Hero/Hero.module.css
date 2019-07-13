@@ -1,0 +1,73 @@
+@value gutterWidth: calc(calc(100% - var(--row-width-desktop)) / 2);
+
+.main {
+  display: flex;
+  flex-direction: column;  
+}
+
+.row {
+  display: flex;
+}
+
+.row > div:first-of-type {
+  flex: 0 0 42%;
+}
+
+.row > div:nth-of-type(2) {
+  flex: 1 0;
+}
+
+.row:nth-of-type(2) > div {
+  padding-bottom: 130px;
+  padding-top: 130px;
+}
+
+.imageContainer {
+  align-items: center;
+  background-color: var(--navy);  
+  display: flex;
+  justify-content: center;
+  padding-left: gutterWidth;
+  padding-right: 144px;
+}
+
+.image {
+  height: auto;
+  margin-bottom: 0;
+  width: 232px;
+}
+
+.contentContainer {
+  align-items: center;
+  background-color: var(--blue-3);
+  display: flex;
+  padding-right: gutterWidth;
+}
+
+.contentInner {
+  padding: 190px 0 200px 144px;
+}
+
+.body {
+  margin-top: 50px;
+}
+
+.body p {
+  margin-bottom: 0;
+}
+
+.subTitleContainer {
+  background-color: var(--blue-3);
+  padding-left: gutterWidth;
+}
+
+.subBodyContainer {
+  color: var(--text-blue);
+  font-size: var(--size-medium);
+  padding-left: 144px;
+  padding-right: gutterWidth;
+}
+
+.subBodyContainer p {
+  margin-bottom: 0;
+}
