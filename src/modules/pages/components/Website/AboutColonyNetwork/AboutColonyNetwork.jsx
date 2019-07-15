@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import FeatureGrid from './FeatureGrid';
 import Hero from './Hero';
 
 const displayName = 'pages.Website.AboutColonyNetwork';
@@ -22,6 +23,7 @@ const AboutColonyNetwork = () => {
       headerAppearance={{ theme: 'transparent', navTheme: 'dark' }}
     >
       <Hero project={project} />
+      <FeatureGrid />
     </WebsiteLayout>
   );
 };
