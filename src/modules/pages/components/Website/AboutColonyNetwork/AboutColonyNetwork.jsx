@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import DecentralizedCta from './DecentralizedCta';
 import FeatureGrid from './FeatureGrid';
 import Hero from './Hero';
 import Infrastructure from './Infrastructure';
@@ -28,6 +29,7 @@ const AboutColonyNetwork = () => {
       <FeatureGrid />
       <Modules />
       <Infrastructure />
+      <DecentralizedCta />
     </WebsiteLayout>
   );
 };
