@@ -8,6 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
+import GutterSection from '~parts/GutterSection';
 
 import SlideDevelopers from './SlideDevelopers';
 import SlideHumans from './SlideHumans';
@@ -62,88 +63,78 @@ const Products = () => {
   ]);
 
   return (
-    <div className={styles.main}>
-      <div className={styles.gutter}>
-        <Link className={styles.gutterLink} href="/">
-          <div className={styles.gutterLinkText}>
-            <FormattedMessage {...MSG.gutterLinkText} />
+    <GutterSection linkLeft={{ href: '/', text: MSG.gutterLinkText }}>
+      <div className={styles.slideCanvas}>
+        {slides.map((SlideComponent, idx) => (
+          <div
+            className={
+              isCurrentSlide(idx) ? styles.slideActive : styles.slideInactive
+            }
+            key={SlideComponent.displayName}
+          >
+            <SlideComponent />
           </div>
-        </Link>
+        ))}
       </div>
-      <div className={styles.carousel}>
-        <div className={styles.slideCanvas}>
-          {slides.map((SlideComponent, idx) => (
-            <div
-              className={
-                isCurrentSlide(idx) ? styles.slideActive : styles.slideInactive
-              }
-              key={SlideComponent.displayName}
-            >
-              <SlideComponent />
+      <div className={styles.controls}>
+        <div
+          className={`${styles.controlItem} ${
+            isCurrentSlide(0) ? styles.active : ''
+          }`}
+        >
+          <Button
+            appearance={{ theme: 'reset' }}
+            className={styles.controlButton}
+            disabled={isCurrentSlide(0)}
+            onClick={() => setCurrentSlide(0)}
+          >
+            <div className={styles.controlItemInner}>
+              <Heading
+                className={styles.controlHeading}
+                appearance={{ size: 'mediumLarge', weight: 'medium' }}
+                text={MSG.controlTitleDevelopers}
+              />
+              <FormattedMessage {...MSG.controlBodyDevelopers} />
+              <div className={styles.controlLink}>
+                {isCurrentSlide(0) ? (
+                  <Link href="/" text={MSG.controlLinkDevelopers} />
+                ) : (
+                  <FormattedMessage {...MSG.controlLinkDevelopers} />
+                )}
+              </div>
             </div>
-          ))}
+          </Button>
         </div>
-        <div className={styles.controls}>
-          <div
-            className={`${styles.controlItem} ${
-              isCurrentSlide(0) ? styles.active : ''
-            }`}
+        <div
+          className={`${styles.controlItem} ${
+            isCurrentSlide(1) ? styles.active : ''
+          }`}
+        >
+          <Button
+            appearance={{ theme: 'reset' }}
+            className={styles.controlButton}
+            disabled={isCurrentSlide(1)}
+            onClick={() => setCurrentSlide(1)}
           >
-            <Button
-              appearance={{ theme: 'reset' }}
-              className={styles.controlButton}
-              disabled={isCurrentSlide(0)}
-              onClick={() => setCurrentSlide(0)}
-            >
-              <div className={styles.controlItemInner}>
-                <Heading
-                  className={styles.controlHeading}
-                  appearance={{ size: 'mediumLarge', weight: 'medium' }}
-                  text={MSG.controlTitleDevelopers}
-                />
-                <FormattedMessage {...MSG.controlBodyDevelopers} />
-                <div className={styles.controlLink}>
-                  {isCurrentSlide(0) ? (
-                    <Link href="/" text={MSG.controlLinkDevelopers} />
-                  ) : (
-                    <FormattedMessage {...MSG.controlLinkDevelopers} />
-                  )}
-                </div>
+            <div className={styles.controlItemInner}>
+              <Heading
+                className={styles.controlHeading}
+                appearance={{ size: 'mediumLarge', weight: 'medium' }}
+                text={MSG.controlTitleHumans}
+              />
+              <FormattedMessage {...MSG.controlBodyHumans} />
+              <div className={styles.controlLink}>
+                {isCurrentSlide(1) ? (
+                  <Link href="/" text={MSG.controlLinkHumans} />
+                ) : (
+                  <FormattedMessage {...MSG.controlLinkHumans} />
+                )}
               </div>
-            </Button>
-          </div>
-          <div
-            className={`${styles.controlItem} ${
-              isCurrentSlide(1) ? styles.active : ''
-            }`}
-          >
-            <Button
-              appearance={{ theme: 'reset' }}
-              className={styles.controlButton}
-              disabled={isCurrentSlide(1)}
-              onClick={() => setCurrentSlide(1)}
-            >
-              <div className={styles.controlItemInner}>
-                <Heading
-                  className={styles.controlHeading}
-                  appearance={{ size: 'mediumLarge', weight: 'medium' }}
-                  text={MSG.controlTitleHumans}
-                />
-                <FormattedMessage {...MSG.controlBodyHumans} />
-                <div className={styles.controlLink}>
-                  {isCurrentSlide(1) ? (
-                    <Link href="/" text={MSG.controlLinkHumans} />
-                  ) : (
-                    <FormattedMessage {...MSG.controlLinkHumans} />
-                  )}
-                </div>
-              </div>
-            </Button>
-          </div>
+            </div>
+          </Button>
         </div>
       </div>
-      <div className={styles.gutter} />
-    </div>
+    </GutterSection>
   );
 };
 
