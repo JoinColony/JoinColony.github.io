@@ -1,0 +1,35 @@
+@value horizontalPadding: 36px;
+
+.contentContainer {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  padding: 150px 0;
+}
+
+.introContent {
+  width: 50%;
+}
+
+.introContentBody p {
+  color: var(--text-blue);
+  font-size: var(--size-medium);
+}
+
+.gridContainer {
+  display: flex;
+  margin: 0 calc(-1 * horizontalPadding);
+}
+
+.gridItem {
+  flex: 0 0 calc(100% / 3);
+  padding: 55px horizontalPadding 0;
+}
+
+.gridItem p {
+  color: var(--text-blue);
+  font-size: var(--size-normal);
+}
+
+.gridItemImage {
+  height: 80px;
+}
