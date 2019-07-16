@@ -7,6 +7,7 @@ import WebsiteLayout from '~layouts/WebsiteLayout';
 
 import FeatureGrid from './FeatureGrid';
 import Hero from './Hero';
+import Modules from './Modules';
 
 const displayName = 'pages.Website.AboutColonyNetwork';
 
@@ -24,6 +25,7 @@ const AboutColonyNetwork = () => {
     >
       <Hero project={project} />
       <FeatureGrid />
+      <Modules />
     </WebsiteLayout>
   );
 };

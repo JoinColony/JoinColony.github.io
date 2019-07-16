@@ -1,0 +1,81 @@
+@value featureContentPadding: 90px 54px;
+
+.mainContentRow {
+  display: flex;
+}
+
+.mainContentRow p {
+  color: var(--colony-white);
+  font-size: 16px;
+}
+
+.titleContent {
+  background-color: var(--navy);
+  padding: 90px 100px;
+}
+
+.featureContent {
+  background-color: var(--blue-1);
+  flex: 0 0 calc(100% / 3);
+  padding: featureContentPadding;
+  position: relative;
+}
+
+.featureContentHover {
+  background-color: var(--blue-4);
+  color: var(--colony-white);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: featureContentPadding;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition: all .15s ease-in-out;
+  width: 100%;
+}
+
+.featureContent:hover .featureContentHover {
+  opacity: 1;
+}
+
+.budgetBoxLogo {
+  display: block;
+  margin-bottom: 48px;
+}
+
+.budgetBoxLogo svg {
+  max-width: 82px;
+}
+
+.titleBody,
+.featureBody {
+  margin-top: 40px;
+}
+
+.subContentRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subItem {
+  flex: 0 0 calc(100% / 3);
+  padding: 90px 40px;
+  transition: all .15s ease-in-out;
+}
+
+.subItem p {
+  color: var(--text-blue);
+  font-size: 16px;
+}
+
+.subItem:hover {
+  background-color: var(--blue-1);
+}
+
+.subItem:hover p,
+.subItem:hover .subItemHeading {
+  color: var(--colony-white);
+}
+
+
