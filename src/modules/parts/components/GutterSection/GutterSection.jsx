@@ -7,8 +7,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Link from '~core/Link';
+import { getMainClasses } from '~utils/css';
 
 import styles from './GutterSection.module.css';
+
+type Appearance = {|
+  theme?: 'pink',
+  oneSide?: 'left' | 'right',
+|};
 
 type LinkType = {|
   href: string,
@@ -16,20 +22,21 @@ type LinkType = {|
 |};
 
 type Props = {|
+  appearance?: Appearance,
   children: Node,
   linkLeft?: LinkType,
   linkRight?: LinkType,
 |};
 
-type GutterProps = {|
+type GutterLinkProps = {|
   side: 'left' | 'right',
   ...LinkType,
 |};
 
-const GutterLink = ({ href, side, text }: GutterProps) => (
+const GutterLink = ({ href, side, text }: GutterLinkProps) => (
   <Link
     className={`${styles.gutterLink} ${
-      side === 'left' ? styles.left : styles.right
+      side === 'left' ? styles.leftLink : styles.rightLink
     }`}
     href={href}
   >
@@ -41,8 +48,13 @@ const GutterLink = ({ href, side, text }: GutterProps) => (
 
 const displayName = 'parts.GutterSection';
 
-const GutterSection = ({ children, linkLeft, linkRight }: Props) => (
-  <div className={styles.main}>
+const GutterSection = ({
+  appearance,
+  children,
+  linkLeft,
+  linkRight,
+}: Props) => (
+  <div className={getMainClasses(appearance, styles)}>
     <div className={styles.gutter}>
       {linkLeft && <GutterLink side="left" {...linkLeft} />}
     </div>
