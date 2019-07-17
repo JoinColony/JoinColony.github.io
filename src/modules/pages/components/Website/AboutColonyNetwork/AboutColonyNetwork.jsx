@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import BuiltOn from './BuiltOn';
 import DecentralizedCta from './DecentralizedCta';
 import FeatureGrid from './FeatureGrid';
 import Hero from './Hero';
@@ -30,6 +31,7 @@ const AboutColonyNetwork = () => {
       <Modules />
       <Infrastructure />
       <DecentralizedCta />
+      <BuiltOn />
     </WebsiteLayout>
   );
 };
