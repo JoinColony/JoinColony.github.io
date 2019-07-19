@@ -2,8 +2,8 @@
 
 import { createElement } from 'react';
 
-import Developers from '~pages/Developers';
+import HomePage from '~pages/Website/HomePage';
 
-const Home = () => createElement(Developers);
+const WebsiteHomePage = () => createElement(HomePage);
 
-export default Home;
+export default WebsiteHomePage;

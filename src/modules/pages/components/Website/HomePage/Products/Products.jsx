@@ -9,6 +9,11 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 import GutterSection from '~parts/GutterSection';
+import {
+  PAGE_DEVELOPER_PORTAL_INDEX,
+  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_PLATFORM,
+} from '~routes';
 
 import SlideDevelopers from './SlideDevelopers';
 import SlideHumans from './SlideHumans';
@@ -63,7 +68,9 @@ const Products = () => {
   ]);
 
   return (
-    <GutterSection linkLeft={{ href: '/', text: MSG.gutterLinkText }}>
+    <GutterSection
+      linkLeft={{ href: PAGE_PRODUCT_PLATFORM, text: MSG.gutterLinkText }}
+    >
       <div className={styles.slideCanvas}>
         {slides.map((SlideComponent, idx) => (
           <div
@@ -97,7 +104,10 @@ const Products = () => {
               <FormattedMessage {...MSG.controlBodyDevelopers} />
               <div className={styles.controlLink}>
                 {isCurrentSlide(0) ? (
-                  <Link href="/" text={MSG.controlLinkDevelopers} />
+                  <Link
+                    href={PAGE_DEVELOPER_PORTAL_INDEX}
+                    text={MSG.controlLinkDevelopers}
+                  />
                 ) : (
                   <FormattedMessage {...MSG.controlLinkDevelopers} />
                 )}
@@ -125,7 +135,7 @@ const Products = () => {
               <FormattedMessage {...MSG.controlBodyHumans} />
               <div className={styles.controlLink}>
                 {isCurrentSlide(1) ? (
-                  <Link href="/" text={MSG.controlLinkHumans} />
+                  <Link href={PAGE_PRODUCT_DAPP} text={MSG.controlLinkHumans} />
                 ) : (
                   <FormattedMessage {...MSG.controlLinkHumans} />
                 )}
