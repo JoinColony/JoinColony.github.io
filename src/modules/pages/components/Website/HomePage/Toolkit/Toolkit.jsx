@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
 import styles from './Toolkit.module.css';
 
@@ -137,7 +138,7 @@ const Toolkit = () => (
       </div>
     </div>
     <div className={styles.gutter}>
-      <Link className={styles.gutterLink} href="/">
+      <Link className={styles.gutterLink} href={PAGE_ABOUT_COLONY_NETWORK}>
         <div className={styles.gutterLinkText}>
           <FormattedMessage {...MSG.linkSeeAll} />
         </div>
