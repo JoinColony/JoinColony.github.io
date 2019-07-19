@@ -9,7 +9,7 @@ import type { Appearance as HeaderAppearance } from './Header/types';
 import ThemeContext from './context';
 import Footer from './Footer';
 import Header from './Header';
-import { useElementHeight } from '../../../core/hooks';
+import { useElementHeight } from '~hooks';
 
 import styles from './WebsiteLayout.module.css';
 

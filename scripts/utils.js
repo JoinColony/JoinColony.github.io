@@ -42,6 +42,7 @@ const getModuleAliases = () =>
     {
       '~context': path.resolve(SITE_ROOT, 'context'),
       '~hoc': path.resolve(SITE_ROOT, 'hoc'),
+      '~hooks': path.resolve(SITE_ROOT, 'hooks'),
       '~i18n': path.resolve(SITE_ROOT, 'i18n'),
       '~i18nConfig': path.resolve(__dirname, '..', 'i18nConfig'),
       '~routes': path.resolve(SITE_ROOT, 'routes'),
