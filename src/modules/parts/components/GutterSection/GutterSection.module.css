@@ -1,0 +1,92 @@
+
+.baseStyles {
+  /* This class is intended for composition only.
+   * Do not use this class directly
+   */
+  display: flex;
+}
+
+.gutter {
+  flex: 1 0 235px;
+}
+
+.gutterLink {
+  align-items: center;
+  color: var(--blue-1);
+  display: flex;
+  font-family: IBM Plex Mono Medium, monospace;
+  font-size: var(--size-small);
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.gutterLink:hover {
+  background-color: var(--blue-1);
+  color: var(--colony-white);
+}
+
+.gutterLinkText {
+  /*
+   * Absolutely positioned because white-space is calculated
+   * before transform is applied, which breaks the layout (makes
+   * this gutter wider than the other. Not cool...).
+   */
+  position: absolute;
+  white-space: nowrap;
+}
+
+.leftLink .gutterLinkText {
+  right: -15px;
+  transform: rotate(270deg);
+}
+
+.rightLink .gutterLinkText {
+  left: -15px;
+  transform: rotate(90deg);
+}
+
+.content {
+  flex: 0 0 970px;
+}
+
+/* Themes */
+
+.themeDefault {
+  composes: baseStyles;
+}
+
+.themeDefault .gutter {
+  background-color: var(--grey-3);
+}
+
+.themePink {
+  composes: baseStyles;
+}
+
+.themePink .gutter {
+  background-color: var(--pink-2);
+}
+
+/* Single Side Gutter */
+
+.oneSideRight .content {
+  /* For alignment purposes
+   * @TODO find a better way
+   */
+  margin-left: -200px;
+  margin-right: 200px;
+  padding-left: 100px;
+}
+
+.oneSideLeft .gutter:last-of-type,
+.oneSideRight .gutter:first-of-type {
+  visibility: hidden; /* hide opposite side gutter */
+}
+
+/* Default */
+
+.main {
+  composes: themeDefault;
+}

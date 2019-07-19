@@ -1,0 +1,30 @@
+@value horizontalPadding: 36px;
+
+.main {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 62px calc(-1 * horizontalPadding);
+}
+
+.gridItem {
+  flex: 0 0 calc(100% / 3);
+  padding: 55px horizontalPadding;
+}
+
+.image {
+  height: 80px;
+}
+
+.body {
+  color: var(--text-blue);
+  font-size: var(--size-normal);
+}
+
+.body p {
+  margin-bottom: 0;
+}
