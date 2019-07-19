@@ -1,6 +1,6 @@
 
 .main {
-  background-image: url('../../../../../../../static/img/cornerShapes.svg');
+  background-image: url('/img/cornerShapes.svg');
   background-position: top right;
   background-repeat: no-repeat;
   background-size: auto 90%;
