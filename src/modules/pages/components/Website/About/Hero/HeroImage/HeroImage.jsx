@@ -9,6 +9,10 @@ import styles from './HeroImage.module.css';
 
 const displayName = 'pages.Website.About.Hero.HeroImage';
 
+/*
+ * This is simply an inline SVG, as the image itself
+ * contains a `ref` attribute on one of its `path`s.
+ */
 const HeroImage = () => {
   const ref = useRef(null);
   const pathHeight = useElementHeight(ref);
