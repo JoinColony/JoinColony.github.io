@@ -3,7 +3,7 @@
 
 import React, { useRef } from 'react';
 
-import { useElementHeight } from '../../../../../../core/hooks';
+import { useElementHeight } from '~hooks';
 
 import styles from './HeroImage.module.css';
 
