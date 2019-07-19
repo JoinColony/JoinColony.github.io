@@ -9,6 +9,7 @@ import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import GutterSection from '~parts/GutterSection';
+import { COLONY_DISCOURSE, COLONY_GITHUB_BUDGETBOX } from '~routes';
 
 import styles from './Modules.module.css';
 
@@ -91,7 +92,7 @@ const SubItem = ({
 const displayName = 'pages.Website.AboutColonyNetwork.Modules';
 
 const Modules = () => (
-  <GutterSection linkRight={{ href: '/', text: MSG.linkGutter }}>
+  <GutterSection linkRight={{ href: COLONY_DISCOURSE, text: MSG.linkGutter }}>
     <div className={styles.mainContentRow}>
       <div className={styles.titleContent}>
         <Heading
@@ -119,7 +120,10 @@ const Modules = () => (
             <FormattedMessage {...MSG.bodyBudgetBox} />
           </p>
         </div>
-        <Link className={styles.featureContentHover} href="/">
+        <Link
+          className={styles.featureContentHover}
+          href={COLONY_GITHUB_BUDGETBOX}
+        >
           <Icon
             className={styles.budgetBoxLogo}
             name="logomark_budgetbox"
