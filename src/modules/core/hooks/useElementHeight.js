@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 
 const useElementHeight = (ref: { current: null | Element }): number => {
-  const [height, _setHeight] = useState(0);
+  const [height, setHeight] = useState(0);
 
-  const setHeight = useCallback(() => {
+  const handleResize = useCallback(() => {
     if (ref.current) {
       let elementHeight = 0;
       if (ref.current.nodeName === 'path') {
@@ -14,18 +14,17 @@ const useElementHeight = (ref: { current: null | Element }): number => {
       } else {
         elementHeight = ref.current.clientHeight;
       }
-      _setHeight(elementHeight);
+      setHeight(elementHeight);
     }
   }, [ref]);
 
   // set once window has loaded
   useLayoutEffect(() => {
-    setHeight();
-  }, [setHeight]);
+    handleResize();
+  }, [handleResize]);
 
   // update on resize
   useEffect(() => {
-    const handleResize = () => setHeight();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
