@@ -7,6 +7,7 @@ import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import BlockCta from '~parts/BlockCta';
+import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
 import styles from './EtherBanner.module.css';
 
@@ -50,7 +51,11 @@ const EtherBanner = () => (
         <p className={styles.rightBlockBody}>
           <FormattedMessage {...MSG.body} />
         </p>
-        <Link className={styles.rightBlockLink} href="/" text={MSG.link} />
+        <Link
+          className={styles.rightBlockLink}
+          href={PAGE_ABOUT_COLONY_NETWORK}
+          text={MSG.link}
+        />
       </div>
     }
   />

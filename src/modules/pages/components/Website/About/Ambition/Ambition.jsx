@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
+import { PAGE_PRODUCT_PLATFORM } from '~routes';
 
 import styles from './Ambition.module.css';
 
@@ -63,7 +64,7 @@ const Ambition = () => (
               {...MSG.bodyRight}
               values={{
                 br: <br />,
-                link: <Link href="/" text={MSG.linkText} />,
+                link: <Link href={PAGE_PRODUCT_PLATFORM} text={MSG.linkText} />,
               }}
             />
           </p>
