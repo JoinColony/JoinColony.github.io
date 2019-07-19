@@ -1,0 +1,33 @@
+
+.main {
+  background-color: var(--blue-3);
+}
+
+.inner {
+  padding: 135px 140px 160px;
+  position: relative;
+}
+
+.contentContainer {
+  width: 40%;
+}
+
+.prefixUnderline {
+  border-bottom: 1px solid var(--navy);
+  display: inline-block;
+  margin-right: 13px;
+  width: 49px;
+}
+
+.announcement {
+  color: var(--navy);
+  font-family: 'IBM Plex Mono Medium', monospace;
+  font-size: var(--size-small);
+  margin-bottom: 40px;
+}
+
+.body {
+  color: var(--text-blue);
+  font-size: var(--text-normal);
+  margin: 55px 0 0;
+}

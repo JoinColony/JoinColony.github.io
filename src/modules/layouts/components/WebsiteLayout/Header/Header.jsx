@@ -8,6 +8,8 @@ import Link from '~core/Link';
 import { getMainClasses } from '~utils/css';
 import { PAGE_INDEX } from '~routes';
 
+import type { Props } from './types';
+
 import styles from './Header.module.css';
 
 const MSG = defineMessages({
@@ -29,21 +31,13 @@ const MSG = defineMessages({
   },
 });
 
-type Appearance = {|
-  theme?: 'light' | 'transparent',
-|};
-
-type Props = {|
-  appearance?: Appearance,
-|};
-
 const displayName = 'layouts.WebsiteLayout.Header';
 
 const Header = ({ appearance }: Props) => {
   const logoName =
-    appearance && appearance.theme === 'transparent'
-      ? 'colony_logo_horizontal_white'
-      : 'colony_logo_horizontal_navy';
+    appearance && appearance.logoTheme === 'dark'
+      ? 'colony_logo_horizontal_navy'
+      : 'colony_logo_horizontal_white';
   return (
     <div className={getMainClasses(appearance, styles)}>
       <div className={styles.navigationContainer}>
