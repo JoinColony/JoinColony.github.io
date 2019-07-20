@@ -1,0 +1,55 @@
+
+.main {
+  margin-top: 70px;
+  position: relative;
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 964px;
+}
+
+.contentContainer p {
+  color: var(--text-blue);
+}
+
+.introText {
+  flex: 0 0 35%;
+}
+
+.introText p {
+  font-size: var(--size-medium);
+}
+
+.contentGridContainer {
+  flex: 0 0 50%;
+  font-size: var(--size-normal);
+  margin: 10px 0 110px;
+}
+
+.gridItem {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 65px;
+}
+
+.gridItem a {
+  color: var(--blue-1);
+}
+
+.gridItemImage {
+  flex: 0 0 80px;
+}
+
+.gridItemContent {
+  flex: 0 0 calc(100% - 113px);
+}
+
+.circleImage {
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0;
+  position: absolute;
+}
