@@ -1,6 +1,6 @@
 /* @flow */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
@@ -77,7 +77,13 @@ const MSG = defineMessages({
 const displayName = 'layouts.WebsiteLayout.Footer.Menus';
 
 const Menus = () => {
-  const baseUri = window ? window.location.origin : '';
+  const [baseUri, setBaseUri] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setBaseUri(window.location.origin);
+    }
+  }, []);
   return (
     <>
       <VerticalMenu
