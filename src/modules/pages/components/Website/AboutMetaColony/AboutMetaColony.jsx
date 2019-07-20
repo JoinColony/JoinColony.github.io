@@ -4,6 +4,7 @@ import React from 'react';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import CLNY from './CLNY';
 import Econ from './Econ';
 import Hero from './Hero';
 
@@ -13,6 +14,7 @@ const AboutMetaColony = () => (
   <WebsiteLayout headerAppearance={{ navTheme: 'dark', theme: 'transparent' }}>
     <Hero />
     <Econ />
+    <CLNY />
   </WebsiteLayout>
 );
 
