@@ -10,6 +10,8 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
 
+import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
+
 import styles from './CLNY.module.css';
 
 const MSG = defineMessages({
@@ -128,7 +130,7 @@ const CLNY = () => (
               <Link
                 className={styles.standaloneLink}
                 text={MSG.bodyReputationLink}
-                href="/"
+                href={PAGE_ABOUT_COLONY_NETWORK}
               />
             ),
           }}

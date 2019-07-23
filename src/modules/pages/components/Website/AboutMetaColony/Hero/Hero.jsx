@@ -7,6 +7,7 @@ import Announcement from '~core/Announcement';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import { COLONY_GITTER } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -85,6 +86,7 @@ const Hero = () => {
           />
           <Button
             appearance={{ borderRadius: 'none', theme: 'primary' }}
+            linkTo={COLONY_GITTER}
             text={MSG.buttonText}
           />
         </div>
