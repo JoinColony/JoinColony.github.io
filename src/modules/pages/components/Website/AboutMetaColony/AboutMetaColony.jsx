@@ -7,6 +7,7 @@ import WebsiteLayout from '~layouts/WebsiteLayout';
 import CLNY from './CLNY';
 import Econ from './Econ';
 import Hero from './Hero';
+import Team from './Team';
 
 const displayName = 'pages.Website.AboutMetaColony';
 
@@ -15,6 +16,7 @@ const AboutMetaColony = () => (
     <Hero />
     <Econ />
     <CLNY />
+    <Team />
   </WebsiteLayout>
 );
 
