@@ -13,7 +13,7 @@ import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import SectionList from '~pages/DocPage/SectionList';
-import { PAGE_DEVELOPER_PORTAL_INDEX } from '~routes';
+import { PAGE_DEV_DOCS } from '~routes';
 import { getMainClasses } from '~utils/css';
 
 import styles from './Sidebar.module.css';
@@ -101,11 +101,11 @@ const Sidebar = ({
               <Link
                 arrow="left"
                 className={styles.homeLink}
-                href={PAGE_DEVELOPER_PORTAL_INDEX}
+                href={PAGE_DEV_DOCS}
                 text={MSG.linkHome}
               />
               <div className={styles.mobileProjectTitle}>
-                <Link href={PAGE_DEVELOPER_PORTAL_INDEX}>
+                <Link href={PAGE_DEV_DOCS}>
                   <Icon
                     className={styles.chevron}
                     name="chevron"
