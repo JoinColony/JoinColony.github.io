@@ -4,6 +4,6 @@ import { createElement } from 'react';
 
 import Developers from '~pages/Developers';
 
-const DocsPage = () => createElement(Developers);
+const DevelopersIndex = () => createElement(Developers);
 
-export default DocsPage;
+export default DevelopersIndex;
