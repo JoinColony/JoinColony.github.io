@@ -7,6 +7,7 @@ import { withPrefix } from 'gatsby';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import { COLONY_GITTER } from '~routes';
 
 import styles from './Team.module.css';
 
@@ -75,6 +76,7 @@ const Team = () => (
           <div className={styles.buttonContainer}>
             <Button
               appearance={{ borderRadius: 'none', theme: 'primary' }}
+              linkTo={COLONY_GITTER}
               text={MSG.button}
             />
           </div>
