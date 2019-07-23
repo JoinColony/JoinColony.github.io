@@ -11,7 +11,8 @@ import {
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_METACOLONY,
   PAGE_ABOUT_VISION,
-  PAGE_DEVELOPER_PORTAL_INDEX,
+  PAGE_DEV_DOCS,
+  PAGE_DEV_TUTORIALS, // eslint-disable-line no-unused-vars
   PAGE_MEDIA_KIT,
   PAGE_PRODUCT_DAPP,
   PAGE_PRODUCT_PLATFORM,
@@ -110,13 +111,13 @@ const Menus = () => {
         menuItems={[
           {
             className: styles.footerMenuLink,
-            href: PAGE_DEVELOPER_PORTAL_INDEX,
+            href: PAGE_DEV_DOCS,
             text: MSG.linkPortal,
           },
           // @TODO: add this back in when tutorials are implemented
           // {
           //   className: styles.footerMenuLink,
-          //   href: '/',
+          //   href: PAGE_DEV_TUTORIALS,
           //   text: MSG.linkTutorials,
           // },
           {

@@ -10,7 +10,7 @@ import Heading from '~core/Heading';
 import Link from '~core/Link';
 import GutterSection from '~parts/GutterSection';
 import {
-  PAGE_DEVELOPER_PORTAL_INDEX,
+  PAGE_DEV_DOCS,
   PAGE_PRODUCT_DAPP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
@@ -104,10 +104,7 @@ const Products = () => {
               <FormattedMessage {...MSG.controlBodyDevelopers} />
               <div className={styles.controlLink}>
                 {isCurrentSlide(0) ? (
-                  <Link
-                    href={PAGE_DEVELOPER_PORTAL_INDEX}
-                    text={MSG.controlLinkDevelopers}
-                  />
+                  <Link href={PAGE_DEV_DOCS} text={MSG.controlLinkDevelopers} />
                 ) : (
                   <FormattedMessage {...MSG.controlLinkDevelopers} />
                 )}

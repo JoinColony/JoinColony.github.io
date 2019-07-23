@@ -9,22 +9,21 @@ export const PAGE_ABOUT_COLONY_NETWORK = '/about/colony-network';
 export const PAGE_ABOUT_METACOLONY = '/about/metacolony';
 export const PAGE_PRODUCT_PLATFORM = '/product';
 export const PAGE_PRODUCT_DAPP = '/product/dapp';
-export const PAGE_DEVELOPER_PORTAL_INDEX = '/docs';
-export const PAGE_GET_STARTED_COLONYJS = '/docs/colonyjs/intro-get-started';
-export const PAGE_DEVELOPER_PORTAL_CONTRIBUTE = '/contribute';
-export const PAGE_DEVELOPER_PORTAL_DASHBOARD = '/dashboard';
-export const PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT = '/dashboard/account';
-export const PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN = '/dashboard/admin';
-export const PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES = '/dashboard/colonies';
-export const PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS =
-  '/dashboard/contributions';
+export const PAGE_DEV_DOCS = '/dev';
+export const PAGE_GET_STARTED_COLONYJS = `${PAGE_DEV_DOCS}/docs/colonyjs/intro-get-started`;
+export const PAGE_BUG_BOUNTY = `${PAGE_DEV_DOCS}/docs/colonynetwork/bug-bounty-program-overview`;
+export const PAGE_DEVELOPER_PORTAL_CONTRIBUTE = `${PAGE_DEV_DOCS}/contribute`;
+export const PAGE_DEVELOPER_PORTAL_DASHBOARD = `${PAGE_DEV_DOCS}/dashboard`;
+export const PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT = `${PAGE_DEV_DOCS}/dashboard/account`;
+export const PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN = `${PAGE_DEV_DOCS}/dashboard/admin`;
+export const PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES = `${PAGE_DEV_DOCS}/dashboard/colonies`;
+export const PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS = `${PAGE_DEV_DOCS}/dashboard/contributions`;
+export const PAGE_DEV_TUTORIALS = `${PAGE_DEV_DOCS}/tutorials`;
 export const PAGE_GET_INVOLVED = '/get-involved';
 export const PAGE_LOGIN = '/login';
 export const PAGE_MEDIA_KIT = '/media-kit';
 export const PAGE_PRIVACY_POLICY = '/terms/#privacy-policy';
 export const PAGE_TERMS_SERVICE = '/terms';
-export const PAGE_BUG_BOUNTY =
-  '/docs/colonynetwork/bug-bounty-program-overview';
 
 /*
  * Absolute
