@@ -17,7 +17,7 @@ import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
 import {
   COLONY_DISCOURSE_SUPPORT,
-  PAGE_DEVELOPER_PORTAL_INDEX,
+  PAGE_DEV_DOCS,
   PAGE_DEVELOPER_PORTAL_CONTRIBUTE,
   PAGE_DEVELOPER_PORTAL_DASHBOARD,
 } from '~routes';
@@ -83,7 +83,7 @@ const Header = ({
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
         <div className={styles.leftWrapper}>
-          <Link href={PAGE_DEVELOPER_PORTAL_INDEX}>
+          <Link href={PAGE_DEV_DOCS}>
             <Icon
               className={styles.logo}
               name="developerPortal_white"
