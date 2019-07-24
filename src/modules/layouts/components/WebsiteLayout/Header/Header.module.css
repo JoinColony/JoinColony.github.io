@@ -33,7 +33,7 @@
   color: var(--blue-1);
 }
 
-.navLinkAlt:hover,
+.navLinkAlt:not(.navDropdownParent):hover,
 .navLinkAlt.active {
   border-bottom-color: var(--blue-1);
 }
@@ -50,7 +50,7 @@
   color: var(--navy);
 }
 
-.themeLight .navLink:hover,
+.themeLight .navLink:not(.navDropdownParent):hover,
 .themeLight .navLink.active {
   border-bottom-color: var(--navy);
 }
@@ -59,7 +59,7 @@
   color: var(--colony-white);
 }
 
-.themeTransparent .navLink:hover,
+.themeTransparent .navLink:not(.navDropdownParent):hover,
 .themeTransparent .navLink.active {
   border-bottom-color: var(--colony-white);
 }
@@ -67,6 +67,7 @@
 .themeScrolled {
   composes: themeLight;
   animation: slide-down 0.15s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  border-bottom: 1px solid var(--grey-3);
   position: fixed;
   width: 100%;
   z-index: 1000;
@@ -80,7 +81,7 @@
   color: var(--navy);
 }
 
-.navThemeDark .navLink:hover,
+.navThemeDark .navLink:not(.navDropdownParent):hover,
 .navThemeDark .navLink.active {
   border-bottom-color: var(---navy);
 }
