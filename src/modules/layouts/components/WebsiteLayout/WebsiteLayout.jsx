@@ -11,6 +11,8 @@ import Footer from './Footer';
 import Header from './Header';
 import { useElementHeight } from '~hooks';
 
+import styles from './WebsiteLayout.module.css';
+
 type Props = {|
   children: Element<typeof Component>,
   headerAppearance?: HeaderAppearance,
@@ -23,8 +25,15 @@ const WebsiteLayout = ({ children, headerAppearance }: Props) => {
   const height = useElementHeight(ref);
   return (
     <ThemeContext.Provider value={{ headerHeight: height }}>
-      <div ref={ref}>
-        <Header appearance={headerAppearance} showOnScrollHeight={300} />
+      <div
+        className={
+          headerAppearance && headerAppearance.theme === 'transparent'
+            ? styles.transparentNav
+            : null
+        }
+        ref={ref}
+      >
+        <Header appearance={headerAppearance} showOnScrollHeight={0} />
       </div>
       {children}
       <Footer />

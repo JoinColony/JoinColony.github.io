@@ -8,5 +8,9 @@ export type Appearance = {|
 
 export type Props = {|
   appearance?: Appearance,
+  /**
+   * If value is smaller than header height, header height will be used
+   * instead. This prevents 2 navs from being visible at any one time.
+   */
   showOnScrollHeight?: number,
 |};
