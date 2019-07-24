@@ -1,5 +1,7 @@
 /* @flow */
 
+import type { MessageDescriptor } from 'react-intl';
+
 export type Appearance = {|
   theme?: 'light' | 'transparent' | 'scrolled',
   logoTheme?: 'light' | 'dark',
@@ -13,4 +15,10 @@ export type Props = {|
    * instead. This prevents 2 navs from being visible at any one time.
    */
   showOnScrollHeight?: number,
+|};
+
+export type DropdownNavItem = {|
+  body: MessageDescriptor,
+  href: string,
+  title: MessageDescriptor,
 |};
