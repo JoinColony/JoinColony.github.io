@@ -55,12 +55,6 @@
   border-bottom-color: var(--navy);
 }
 
-.themeTransparent {
-  position: absolute;
-  width: 100%;
-  z-index: 100;
-}
-
 .themeTransparent .navLink {
   color: var(--colony-white);
 }

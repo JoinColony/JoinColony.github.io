@@ -45,11 +45,13 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
   const [showScrolledNav, setShowScrolledNav] = useState(false);
   const { headerHeight } = useContext(ThemeContext);
 
+  const isShowOnScrollEnabled = typeof showOnScrollHeight !== 'undefined';
+
   const handleScroll = useCallback(() => {
     if (typeof window !== 'undefined') {
       const scrollTop = window.scrollTop || window.pageYOffset;
       const shouldShow =
-        showOnScrollHeight &&
+        isShowOnScrollEnabled &&
         scrollTop > headerHeight && // make sure we've scrolled past the regular top nav. Useful for responsiveness.
         scrollTop > showOnScrollHeight;
       if (shouldShow && !showScrolledNav) {
@@ -59,18 +61,23 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
         setShowScrolledNav(false);
       }
     }
-  }, [headerHeight, showOnScrollHeight, showScrolledNav]);
+  }, [
+    headerHeight,
+    isShowOnScrollEnabled,
+    showOnScrollHeight,
+    showScrolledNav,
+  ]);
 
   useLayoutEffect(() => {
     // Incase page is loaded at a scrolled position
-    if (showOnScrollHeight) {
+    if (isShowOnScrollEnabled) {
       handleScroll();
     }
-  }, [handleScroll, showOnScrollHeight]);
+  }, [handleScroll, isShowOnScrollEnabled, showOnScrollHeight]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (showOnScrollHeight) {
+      if (isShowOnScrollEnabled) {
         window.addEventListener('scroll', handleScroll);
       }
     }
@@ -79,7 +86,7 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
         window.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [handleScroll, showOnScrollHeight]);
+  }, [handleScroll, isShowOnScrollEnabled, showOnScrollHeight]);
 
   const appearance = showScrolledNav
     ? ({ logoTheme: 'dark', theme: 'scrolled' }: Appearance)
