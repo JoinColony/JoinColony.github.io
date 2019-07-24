@@ -1,9 +1,22 @@
 /* @flow */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import VerticalMenu from '~core/VerticalMenu';
+import {
+  COLONY_DISCOURSE_SUPPORT,
+  COLONY_GITHUB_BUDGETBOX,
+  PAGE_ABOUT_COLONY_NETWORK,
+  PAGE_ABOUT_METACOLONY,
+  PAGE_ABOUT_VISION,
+  PAGE_DEV_DOCS,
+  PAGE_DEV_TUTORIALS, // eslint-disable-line no-unused-vars
+  PAGE_MEDIA_KIT,
+  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_PLATFORM,
+} from '~routes';
 
 import styles from './Menus.module.css';
 
@@ -64,61 +77,104 @@ const MSG = defineMessages({
 
 const displayName = 'layouts.WebsiteLayout.Footer.Menus';
 
-const Menus = () => (
-  <>
-    <VerticalMenu
-      appearance={{ alignText: 'right', margins: 'large' }}
-      headingAppearance={{ theme: 'dark' }}
-      headingText={MSG.headingProducts}
-      menuItems={[
-        { className: styles.footerMenuLink, href: '/', text: MSG.linkDapp },
-        { className: styles.footerMenuLink, href: '/', text: MSG.linkPlatform },
-      ]}
-    />
-    <VerticalMenu
-      appearance={{ alignText: 'right', margins: 'large' }}
-      headingAppearance={{ theme: 'dark' }}
-      headingText={MSG.headingDevelopers}
-      menuItems={[
-        { className: styles.footerMenuLink, href: '/', text: MSG.linkPortal },
-        {
-          className: styles.footerMenuLink,
-          href: '/',
-          text: MSG.linkTutorials,
-        },
-        { className: styles.footerMenuLink, href: '/', text: MSG.linkSupport },
-      ]}
-    />
-    <VerticalMenu
-      appearance={{ alignText: 'right', margins: 'large' }}
-      headingAppearance={{ theme: 'dark' }}
-      headingText={MSG.headingAbout}
-      menuItems={[
-        { className: styles.footerMenuLink, href: '/', text: MSG.linkVision },
-        { className: styles.footerMenuLink, href: '/', text: 'colonyNetwork' },
-        {
-          className: styles.footerMenuLink,
-          href: '/',
-          text: MSG.linkMetaColony,
-        },
-      ]}
-    />
-    <VerticalMenu
-      appearance={{ alignText: 'right', margins: 'large' }}
-      headingAppearance={{ theme: 'dark' }}
-      headingText={MSG.headingResources}
-      menuItems={[
-        { className: styles.footerMenuLink, href: '/', text: 'BudgetBox' },
-        {
-          className: styles.footerMenuLink,
-          href: '/',
-          text: MSG.linkWhitePaper,
-        },
-        { className: styles.footerMenuLink, href: '/', text: MSG.linkMediaKit },
-      ]}
-    />
-  </>
-);
+const Menus = () => {
+  const [baseUri, setBaseUri] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setBaseUri(window.location.origin);
+    }
+  }, []);
+  return (
+    <>
+      <VerticalMenu
+        appearance={{ alignText: 'right', margins: 'large' }}
+        headingAppearance={{ theme: 'dark' }}
+        headingText={MSG.headingProducts}
+        menuItems={[
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_PRODUCT_DAPP,
+            text: MSG.linkDapp,
+          },
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_PRODUCT_PLATFORM,
+            text: MSG.linkPlatform,
+          },
+        ]}
+      />
+      <VerticalMenu
+        appearance={{ alignText: 'right', margins: 'large' }}
+        headingAppearance={{ theme: 'dark' }}
+        headingText={MSG.headingDevelopers}
+        menuItems={[
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_DEV_DOCS,
+            text: MSG.linkPortal,
+          },
+          // @TODO: add this back in when tutorials are implemented
+          // {
+          //   className: styles.footerMenuLink,
+          //   href: PAGE_DEV_TUTORIALS,
+          //   text: MSG.linkTutorials,
+          // },
+          {
+            className: styles.footerMenuLink,
+            href: COLONY_DISCOURSE_SUPPORT,
+            text: MSG.linkSupport,
+          },
+        ]}
+      />
+      <VerticalMenu
+        appearance={{ alignText: 'right', margins: 'large' }}
+        headingAppearance={{ theme: 'dark' }}
+        headingText={MSG.headingAbout}
+        menuItems={[
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_ABOUT_VISION,
+            text: MSG.linkVision,
+          },
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_ABOUT_COLONY_NETWORK,
+            text: 'colonyNetwork',
+          },
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_ABOUT_METACOLONY,
+            text: MSG.linkMetaColony,
+          },
+        ]}
+      />
+      <VerticalMenu
+        appearance={{ alignText: 'right', margins: 'large' }}
+        headingAppearance={{ theme: 'dark' }}
+        headingText={MSG.headingResources}
+        menuItems={[
+          {
+            className: styles.footerMenuLink,
+            href: COLONY_GITHUB_BUDGETBOX,
+            text: 'BudgetBox',
+          },
+          {
+            className: styles.footerMenuLink,
+            // Use full path here so `Link` knows it shouldn't be treated as a SPA route
+            href: `${baseUri}${withPrefix('pdf/whitepaper.pdf')}`,
+            text: MSG.linkWhitePaper,
+          },
+          {
+            className: styles.footerMenuLink,
+            href: PAGE_MEDIA_KIT,
+            text: MSG.linkMediaKit,
+          },
+        ]}
+      />
+    </>
+  );
+};
 
 Menus.displayName = displayName;
 

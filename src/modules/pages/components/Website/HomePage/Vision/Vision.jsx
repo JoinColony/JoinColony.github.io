@@ -8,6 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Input from '~core/Input';
 import Link from '~core/Link';
+import { PAGE_ABOUT_VISION } from '~routes';
 
 import { Vision0, Vision1, Vision2, Vision3, Vision4, Vision5 } from './assets';
 
@@ -76,7 +77,11 @@ const Vision = () => {
               type="range"
             />
           </div>
-          <Link className={styles.link} href="/" text={MSG.link} />
+          <Link
+            className={styles.link}
+            href={PAGE_ABOUT_VISION}
+            text={MSG.link}
+          />
         </div>
         <>
           {ActiveSlide && (

@@ -155,8 +155,8 @@ const sourcePlugins = {
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://docs.colony.io`,
-    title: 'Colony Open Source Docs',
+    siteUrl: `https://colony.io`,
+    title: 'Colony: A platform for open organizations',
   },
   plugins: [
     {
@@ -180,6 +180,7 @@ module.exports = {
           prefixDefaultLangKey,
         },
         projects: ['colonyJS', 'colonyNetwork', 'colonyStarter', 'purser', 'tailor'],
+        slugPrefix: 'dev/docs'
       }
     },
     {

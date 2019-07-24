@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 import BlockCta from '~parts/BlockCta';
+import { PAGE_ABOUT_METACOLONY } from '~routes';
 
 import styles from './DecentralizedCta.module.css';
 
@@ -45,7 +46,13 @@ const DecentralizedCta = () => (
           {...MSG.body}
           values={{
             br: <br />,
-            link: <Link className={styles.link} href="/" text={MSG.linkText} />,
+            link: (
+              <Link
+                className={styles.link}
+                href={PAGE_ABOUT_METACOLONY}
+                text={MSG.linkText}
+              />
+            ),
           }}
         />
       </p>
