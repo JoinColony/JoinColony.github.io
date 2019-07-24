@@ -1,0 +1,19 @@
+
+.main {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.body p {
+  color: var(--text-blue);
+  font-size: var(--size-normal);
+}
+
+.divider {
+  margin: 120px 0 60px;
+  text-align: center;
+}
+
+.dividerIcon svg {
+  width: 40px;
+}
