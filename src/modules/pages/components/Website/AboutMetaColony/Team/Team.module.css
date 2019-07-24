@@ -1,0 +1,44 @@
+@value outsideGutter: calc(calc(100% - var(--row-width-desktop)) / 2);
+@value insideGutter: 130px;
+
+.heroImage {
+  background-image: url('/img/karolin.png');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 786px;
+}
+
+.contentContainer {
+  display: flex;
+}
+
+.leftCol {
+  padding: 150px insideGutter 185px outsideGutter;
+}
+
+.parrot {
+  height: 64px;
+  margin-bottom: 0;
+}
+
+.body {
+  margin-top: 55px;
+}
+
+.body p {
+  color: var(--text-blue);
+  margin-bottom: 0;
+}
+
+.rightCol {
+  align-items: center;
+  background-color: var(--pink-2);
+  display: flex;
+  flex: 0 0 42%;
+  padding: 0 outsideGutter 0 insideGutter;
+}
+
+.buttonContainer {
+  margin-top: 40px;
+}
