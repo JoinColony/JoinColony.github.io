@@ -42,6 +42,10 @@
  * Themes
  **/
 
+.themeLight {
+  background-color: #fff;
+}
+
 .themeLight .navLink {
   color: var(--navy);
 }
@@ -58,6 +62,14 @@
 .themeTransparent .navLink:hover,
 .themeTransparent .navLink.active {
   border-bottom-color: var(--colony-white);
+}
+
+.themeScrolled {
+  composes: themeLight;
+  animation: slide-down 0.15s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 
  /**
@@ -81,4 +93,17 @@
 .main {
   /* default to `light` theme */
   composes: themeLight navThemeDark;
+}
+
+/**
+* Animations
+**/
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

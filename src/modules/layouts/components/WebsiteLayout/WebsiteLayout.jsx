@@ -33,7 +33,7 @@ const WebsiteLayout = ({ children, headerAppearance }: Props) => {
         }
         ref={ref}
       >
-        <Header appearance={headerAppearance} />
+        <Header appearance={headerAppearance} showOnScrollHeight={0} />
       </div>
       {children}
       <Footer />
