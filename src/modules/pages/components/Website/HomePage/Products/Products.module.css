@@ -57,6 +57,10 @@
   color: var(--grey-2);
 }
 
+.controlItemInner a:hover {
+  text-decoration: underline;
+}
+
 .controlItemInner .body {
   font-size: var(--size-normal);
 }
