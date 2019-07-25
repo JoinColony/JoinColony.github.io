@@ -21,6 +21,7 @@ import {
   PAGE_ABOUT_METACOLONY,
   PAGE_DEV_DOCS,
   PAGE_DEV_TUTORIALS,
+  PAGE_GET_EARLY_ACCESS,
   PAGE_INDEX,
   PAGE_PRODUCT_DAPP,
   PAGE_PRODUCT_PLATFORM,
@@ -273,8 +274,7 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
             <Link
               activeClassName={styles.active}
               className={styles.navLinkAlt}
-              // @TODO: use appropriate route
-              href="/"
+              href={PAGE_GET_EARLY_ACCESS}
               text={MSG.navLinkEarlyAccess}
             />
           </nav>
