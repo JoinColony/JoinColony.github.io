@@ -17,6 +17,11 @@
   padding: 0 40px;
 }
 
+.colItem p {
+  color: var(--text-blue);
+  font-size: var(--size-large);
+}
+
 .colItem:first-of-type {
   padding-left: 0;
 }
