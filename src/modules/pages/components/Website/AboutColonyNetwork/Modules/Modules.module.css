@@ -68,14 +68,3 @@
   color: var(--text-blue);
   font-size: 16px;
 }
-
-.subItem:hover {
-  background-color: var(--blue-1);
-}
-
-.subItem:hover p,
-.subItem:hover .subItemHeading {
-  color: var(--colony-white);
-}
-
-
