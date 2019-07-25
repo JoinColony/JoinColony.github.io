@@ -10,7 +10,7 @@
 
 .contentContainer {
   flex: 0 0 1205px;
-  padding: 143px 0;
+  padding: 143px 0 135px;
   width: 100%;
 }
 
@@ -63,7 +63,7 @@
   /*
    * Negative margin to align the first & last item of each grid row
    */
-  margin: 0 calc(-1 * gridItemMargin);
+  margin: 117px calc(-1 * gridItemMargin) 0;
 }
 
 .gridItem {
