@@ -85,7 +85,12 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
       <div className={styles.row}>
         <div className={styles.subTitleContainer}>
           <Heading
-            appearance={{ margin: 'none', theme: 'dark' }}
+            appearance={{
+              margin: 'none',
+              size: 'huge',
+              theme: 'dark',
+              weight: 'bold',
+            }}
             text={MSG.subTitle}
           />
         </div>
