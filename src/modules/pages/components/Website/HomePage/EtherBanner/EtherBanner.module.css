@@ -19,3 +19,6 @@
   font-size: var(--size-normal);
 }
 
+.rightBlockLink:hover {
+  text-decoration: underline;
+}
