@@ -32,7 +32,12 @@ const DropdownContent = ({ image, navItems, parentLinkText }: Props) => (
           <Link className={styles.itemLink} href={href}>
             <div className={styles.navItemContainer}>
               <Heading
-                appearance={{ margin: 'none', size: 'normal', theme: 'dark' }}
+                appearance={{
+                  margin: 'none',
+                  size: 'normal',
+                  theme: 'dark',
+                  weight: 'medium',
+                }}
                 text={title}
               />
               <div className={styles.itemBody}>
