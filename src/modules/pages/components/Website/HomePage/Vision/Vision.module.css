@@ -24,6 +24,7 @@
 .body {
   color: var(--text-blue);
   font-size: var(--size-medium);
+  line-height: 32px;
 }
 
 .input {
