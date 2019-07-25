@@ -129,7 +129,11 @@ const FeatureGrid = () => (
             src={withPrefix(`/img/png-icons/${iconMap[topic]}.png`)}
           />
           <Heading
-            appearance={{ size: 'mediumLarge', theme: 'dark' }}
+            appearance={{
+              size: 'mediumLarge',
+              theme: 'dark',
+              weight: 'medium',
+            }}
             text={MSG[`title${topic}`]}
           />
           <div className={styles.body}>
