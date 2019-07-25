@@ -101,13 +101,18 @@ const Products = () => {
                 appearance={{ size: 'mediumLarge', weight: 'medium' }}
                 text={MSG.controlTitleDevelopers}
               />
-              <FormattedMessage {...MSG.controlBodyDevelopers} />
-              <div className={styles.controlLink}>
-                {isCurrentSlide(0) ? (
-                  <Link href={PAGE_DEV_DOCS} text={MSG.controlLinkDevelopers} />
-                ) : (
-                  <FormattedMessage {...MSG.controlLinkDevelopers} />
-                )}
+              <div className={styles.body}>
+                <FormattedMessage {...MSG.controlBodyDevelopers} />
+                <div className={styles.controlLink}>
+                  {isCurrentSlide(0) ? (
+                    <Link
+                      href={PAGE_DEV_DOCS}
+                      text={MSG.controlLinkDevelopers}
+                    />
+                  ) : (
+                    <FormattedMessage {...MSG.controlLinkDevelopers} />
+                  )}
+                </div>
               </div>
             </div>
           </Button>
@@ -129,13 +134,18 @@ const Products = () => {
                 appearance={{ size: 'mediumLarge', weight: 'medium' }}
                 text={MSG.controlTitleHumans}
               />
-              <FormattedMessage {...MSG.controlBodyHumans} />
-              <div className={styles.controlLink}>
-                {isCurrentSlide(1) ? (
-                  <Link href={PAGE_PRODUCT_DAPP} text={MSG.controlLinkHumans} />
-                ) : (
-                  <FormattedMessage {...MSG.controlLinkHumans} />
-                )}
+              <div className={styles.body}>
+                <FormattedMessage {...MSG.controlBodyHumans} />
+                <div className={styles.controlLink}>
+                  {isCurrentSlide(1) ? (
+                    <Link
+                      href={PAGE_PRODUCT_DAPP}
+                      text={MSG.controlLinkHumans}
+                    />
+                  ) : (
+                    <FormattedMessage {...MSG.controlLinkHumans} />
+                  )}
+                </div>
               </div>
             </div>
           </Button>
