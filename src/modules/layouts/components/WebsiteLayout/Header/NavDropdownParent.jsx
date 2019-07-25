@@ -36,7 +36,6 @@ const NavDropdownParent = ({ className, image, navItems, text }: Props) => (
         )}
         isOpen
         placement="bottom-end"
-        showArrow={false}
         trigger="disabled"
         wrapperClassName={styles.dropdownContainer}
       >
