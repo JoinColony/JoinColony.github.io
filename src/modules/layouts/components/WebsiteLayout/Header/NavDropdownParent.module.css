@@ -5,6 +5,8 @@
 }
 
 .dropdownParentLink .dropdownContainer {
+  /* !important to override popper styles */
+  top: 20px !important;
   visibility: hidden;
 }
 
