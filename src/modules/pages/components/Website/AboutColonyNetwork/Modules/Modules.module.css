@@ -1,4 +1,4 @@
-@value featureContentPadding: 90px 54px;
+@value featureContentPadding: 110px 54px 90px;
 
 .mainContentRow {
   display: flex;
@@ -41,7 +41,7 @@
 
 .budgetBoxLogo {
   display: block;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 
 .budgetBoxLogo svg {

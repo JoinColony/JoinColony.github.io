@@ -130,7 +130,14 @@ const Modules = () => (
             title="BudgetBox"
             viewBox="0 0 82 82"
           />
-          <FormattedMessage {...MSG.hoverBodyBudgetBox} />
+          <Heading
+            appearance={{
+              theme: 'invert',
+              size: 'mediumLarge',
+              weight: 'thin',
+            }}
+            text={MSG.hoverBodyBudgetBox}
+          />
         </Link>
       </div>
     </div>
