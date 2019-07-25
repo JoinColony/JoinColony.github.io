@@ -16,11 +16,11 @@ const MSG = defineMessages({
     defaultMessage: `Everything in the Colony stack must, in principle,
       function without relying on any component or service that is
       hosted, owned, or otherwise ‘centralized’.
-      {br}{br}{br}
+      {br}{br}
       Not a lot of people realize what a big deal this is. It provides
       users with important guarantees that the infrastructure their
       business critically relies upon is impartial and unstoppable.
-      {br}{br}{br}
+      {br}{br}
       {link}`,
   },
   linkText: {
