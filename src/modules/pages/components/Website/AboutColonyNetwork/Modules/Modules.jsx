@@ -92,7 +92,7 @@ const SubItem = ({
 const displayName = 'pages.Website.AboutColonyNetwork.Modules';
 
 const Modules = () => (
-  <GutterSection linkRight={{ href: COLONY_DISCOURSE, text: MSG.linkGutter }}>
+  <GutterSection linkLeft={{ href: COLONY_DISCOURSE, text: MSG.linkGutter }}>
     <div className={styles.mainContentRow}>
       <div className={styles.titleContent}>
         <Heading
