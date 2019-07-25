@@ -71,7 +71,11 @@ const Blog = () => {
                   <div className={styles.postContent}>
                     <Image alt={title} src={image} />
                     <Heading
-                      appearance={{ size: 'mediumLarge', theme: 'dark' }}
+                      appearance={{
+                        size: 'mediumLarge',
+                        theme: 'dark',
+                        weight: 'medium',
+                      }}
                       text={title}
                     />
                     {excerptText && (
