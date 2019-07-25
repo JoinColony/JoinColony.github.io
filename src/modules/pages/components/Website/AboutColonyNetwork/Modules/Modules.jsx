@@ -78,7 +78,6 @@ const SubItem = ({
 }) => (
   <div className={styles.subItem}>
     <Heading
-      className={styles.subItemHeading}
       appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
     >
       <FormattedMessage {...title} values={{ br: <br /> }} />
