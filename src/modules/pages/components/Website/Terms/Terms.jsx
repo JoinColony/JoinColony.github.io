@@ -3,12 +3,13 @@
 import type { MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import type { Appearance as HeadingAppearance } from '~core/Heading';
 
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
+import Paragraph from '~core/Paragraph';
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
 import styles from './Terms.module.css';
@@ -209,9 +210,7 @@ const Section = ({
 }) => (
   <>
     <Heading appearance={headingAppearance} text={title} />
-    <p>
-      <FormattedMessage {...body} values={{ br: <br /> }} />
-    </p>
+    <Paragraph text={body} />
   </>
 );
 
