@@ -154,6 +154,14 @@ const MSG = defineMessages({
       If you do not agree to these terms of use, you must not use our
       site or apps.`,
   },
+  linkCookies: {
+    id: 'pages.Website.Terms.linkCookies',
+    defaultMessage: 'Use of Cookies',
+  },
+  linkTermsOfUse: {
+    id: 'pages.Website.Terms.linkTermsOfUse',
+    defaultMessage: 'Terms of Use',
+  },
   pageTitle: {
     id: 'pages.Website.Terms.pageTitle',
     defaultMessage: 'Terms of Service',
@@ -259,7 +267,7 @@ const Terms = () => {
               links={[
                 {
                   href: `#website-app`,
-                  text: MSG.pageTitle,
+                  text: MSG.linkTermsOfUse,
                 },
                 {
                   href: `#privacy`,
@@ -267,7 +275,7 @@ const Terms = () => {
                 },
                 {
                   href: `#cookies`,
-                  text: MSG.titleCookies,
+                  text: MSG.linkCookies,
                 },
               ]}
             />
