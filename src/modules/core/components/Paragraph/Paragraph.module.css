@@ -9,6 +9,10 @@
   color: var(--colony-white);
 }
 
+.themeGrey {
+  color: var(--grey-1);
+}
+
 /* Sizes */
 
 .sizeSmall {
