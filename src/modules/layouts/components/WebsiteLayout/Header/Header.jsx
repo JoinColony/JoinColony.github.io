@@ -14,8 +14,8 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import { getMainClasses } from '~utils/css';
 import {
-  COLONY_DAPP,
   COLONY_DISCOURSE,
+  DOCS_COLONY_JS_GET_STARTED,
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_VISION,
   PAGE_ABOUT_METACOLONY,
@@ -242,7 +242,7 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
                 },
                 {
                   body: MSG.dropdownLinkBodyDevGetStarted,
-                  href: COLONY_DAPP,
+                  href: DOCS_COLONY_JS_GET_STARTED,
                   title: MSG.dropdownLinkTitleDevGetStarted,
                 },
               ]}
