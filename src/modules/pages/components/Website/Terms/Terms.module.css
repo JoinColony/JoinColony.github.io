@@ -2,11 +2,30 @@
 .main {
   margin: 0 auto;
   max-width: var(--row-width-desktop);
+  padding: 90px 0;
 }
 
-.body p {
-  color: var(--text-blue);
-  font-size: var(--size-normal);
+.contentContainer {
+  display: flex;
+  margin-top: 80px;
+}
+
+.sidebar {
+  min-width: min-content;
+  padding-right: 20px;
+}
+
+.section {
+  position: relative;
+}
+
+.anchor {
+  left: 0;
+  position: absolute;
+}
+
+.body {
+  padding-left: 50px;
 }
 
 .divider {

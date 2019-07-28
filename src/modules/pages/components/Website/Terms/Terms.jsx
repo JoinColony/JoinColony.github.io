@@ -2,8 +2,8 @@
 
 import type { MessageDescriptor } from 'react-intl';
 
-import React from 'react';
-import { defineMessages } from 'react-intl';
+import React, { useContext } from 'react';
+import { defineMessages, FormattedDate } from 'react-intl';
 
 import type { Appearance as HeadingAppearance } from '~core/Heading';
 
@@ -11,6 +11,9 @@ import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Paragraph from '~core/Paragraph';
 import WebsiteLayout from '~layouts/WebsiteLayout';
+import ThemeContext from '~layouts/WebsiteLayout/context';
+
+import Sidebar from './Sidebar';
 
 import styles from './Terms.module.css';
 
@@ -155,8 +158,12 @@ const MSG = defineMessages({
     id: 'pages.Website.Terms.pageTitle',
     defaultMessage: 'Terms of Service',
   },
-  titleCookes: {
-    id: 'pages.Website.Terms.titleCookes',
+  textLastUpdated: {
+    id: 'pages.Website.Terms.textLastUpdated',
+    defaultMessage: 'Last Updated: {date}',
+  },
+  titleCookies: {
+    id: 'pages.Website.Terms.titleCookies',
     defaultMessage: 'Cookies',
   },
   titlePrivacyInformation: {
@@ -202,83 +209,134 @@ const subHeadingAppearance = {
 const Section = ({
   body,
   headingAppearance,
+  id,
   title,
 }: {
   body: MessageDescriptor,
   headingAppearance: HeadingAppearance,
+  id: string,
   title: MessageDescriptor,
-}) => (
-  <>
-    <Heading appearance={headingAppearance} text={title} />
-    <Paragraph text={body} />
-  </>
-);
+}) => {
+  const { headerHeight } = useContext(ThemeContext);
+  return (
+    <div className={styles.section}>
+      <span
+        className={styles.anchor}
+        id={id}
+        name={id}
+        style={{ top: `${-1 * headerHeight}px` }}
+      />
+      <Heading appearance={headingAppearance} text={title} />
+      <Paragraph text={body} />
+    </div>
+  );
+};
 
 const displayName = 'pages.Website.Terms';
 
-const Terms = () => (
-  <WebsiteLayout>
-    <div className={styles.main}>
-      <Heading appearance={{ theme: 'dark' }} text={MSG.pageTitle} />
-      <div className={styles.contentContainer}>
-        <div className={styles.sidebar} />
-        <div className={styles.body}>
-          <Section
-            body={MSG.bodyTermsService}
-            headingAppearance={sectionHeadingAppearance}
-            title={MSG.titleTermsService}
-          />
-          <Section
-            body={MSG.bodyTermsOther}
-            headingAppearance={subHeadingAppearance}
-            title={MSG.titleTermsOther}
-          />
-          <Section
-            body={MSG.bodyTermsInformation}
-            headingAppearance={subHeadingAppearance}
-            title={MSG.titleTermsInformation}
-          />
-          <Section
-            body={MSG.bodyTermsChanges}
-            headingAppearance={subHeadingAppearance}
-            title={MSG.titleTermsChanges}
-          />
-          <div className={styles.divider}>
-            <Icon
-              className={styles.dividerIcon}
-              name="divider"
-              title={MSG.titlePrivacyPolicy}
-              viewBox="0 0 39 16"
+const Terms = () => {
+  return (
+    <WebsiteLayout headerAppearance={{ logoTheme: 'dark' }}>
+      <div className={styles.main}>
+        <Heading appearance={{ theme: 'dark' }} text={MSG.pageTitle} />
+        <Paragraph
+          appearance={{ size: 'normal', theme: 'grey' }}
+          text={MSG.textLastUpdated}
+          textValues={{
+            date: (
+              <FormattedDate
+                year="numeric"
+                month="long"
+                day="numeric"
+                value={new Date(2019, 7, 1)}
+              />
+            ),
+          }}
+        />
+        <div className={styles.contentContainer}>
+          <div className={styles.sidebar}>
+            <Sidebar
+              links={[
+                {
+                  href: `#website-app`,
+                  text: MSG.pageTitle,
+                },
+                {
+                  href: `#privacy`,
+                  text: MSG.titlePrivacyPolicy,
+                },
+                {
+                  href: `#cookies`,
+                  text: MSG.titleCookies,
+                },
+              ]}
             />
           </div>
-          <Section
-            body={MSG.bodyPrivacyPolicy}
-            headingAppearance={sectionHeadingAppearance}
-            title={MSG.titlePrivacyPolicy}
-          />
-          <Section
-            body={MSG.bodyPrivacyInformation}
-            headingAppearance={subHeadingAppearance}
-            title={MSG.titlePrivacyInformation}
-          />
-          <div className={styles.divider}>
-            <Icon
-              className={styles.dividerIcon}
-              name="divider"
+          <div className={styles.body}>
+            <Section
+              body={MSG.bodyTermsService}
+              headingAppearance={sectionHeadingAppearance}
+              id="website-app"
+              title={MSG.titleTermsService}
+            />
+            <Section
+              body={MSG.bodyTermsOther}
+              headingAppearance={subHeadingAppearance}
+              id="other"
+              title={MSG.titleTermsOther}
+            />
+            <Section
+              body={MSG.bodyTermsInformation}
+              headingAppearance={subHeadingAppearance}
+              id="about-us"
+              title={MSG.titleTermsInformation}
+            />
+            <Section
+              body={MSG.bodyTermsChanges}
+              headingAppearance={subHeadingAppearance}
+              id="changes"
+              title={MSG.titleTermsChanges}
+            />
+            <div className={styles.divider}>
+              <Icon
+                className={styles.dividerIcon}
+                name="divider"
+                title={MSG.titlePrivacyPolicy}
+                viewBox="0 0 39 16"
+              />
+            </div>
+            <Section
+              body={MSG.bodyPrivacyPolicy}
+              headingAppearance={sectionHeadingAppearance}
+              id="privacy"
               title={MSG.titlePrivacyPolicy}
-              viewBox="0 0 39 16"
+            />
+            <Section
+              body={MSG.bodyPrivacyInformation}
+              headingAppearance={subHeadingAppearance}
+              id="privacy-who-we-are"
+              title={MSG.titlePrivacyInformation}
+            />
+            <div className={styles.divider}>
+              <Icon
+                className={styles.dividerIcon}
+                name="divider"
+                title={MSG.titlePrivacyPolicy}
+                viewBox="0 0 39 16"
+              />
+            </div>
+            <Section
+              body={MSG.bodyCookies}
+              headingAppearance={sectionHeadingAppearance}
+              id="cookies"
+              title={MSG.titleCookies}
             />
           </div>
-          <Section
-            body={MSG.bodyCookies}
-            headingAppearance={sectionHeadingAppearance}
-            title={MSG.titleCookes}
-          />
         </div>
       </div>
-    </div>
-  </WebsiteLayout>
-);
+    </WebsiteLayout>
+  );
+};
 
 Terms.displayName = displayName;
 
