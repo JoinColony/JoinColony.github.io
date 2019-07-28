@@ -91,7 +91,7 @@ const MSG = defineMessages({
   },
   dropdownLinkBodyProductsPlatform: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsPlatform',
-    defaultMessage: 'The fastest way to build cryptoeconomics applications.',
+    defaultMessage: 'The fastest way to build cryptoeconomic applications.',
   },
   dropdownLinkTitleAboutColonyNetwork: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleAboutColonyNetwork',
