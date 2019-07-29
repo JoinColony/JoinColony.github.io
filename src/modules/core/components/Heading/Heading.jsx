@@ -12,7 +12,14 @@ import { getChildrenOrText } from '~utils/strings';
 import styles from './Heading.module.css';
 
 export type Appearance = {|
-  theme?: 'dark' | 'light' | 'invert' | 'primary' | 'grey' | 'gold',
+  theme?:
+    | 'dark'
+    | 'light'
+    | 'invert'
+    | 'primary'
+    | 'grey'
+    | 'gold'
+    | 'lightBlue',
   margin?: 'none' | 'tiny' | 'small' | 'medium' | 'large' | 'double',
   size?:
     | 'tiny'

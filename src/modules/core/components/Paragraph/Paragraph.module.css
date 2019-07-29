@@ -5,12 +5,16 @@
   color: var(--text-blue);
 }
 
+.themeGrey {
+  color: var(--grey-1);
+}
+
 .themeInvert {
   color: var(--colony-white);
 }
 
-.themeGrey {
-  color: var(--grey-1);
+.themeLightBlue {
+  color: #91D2FA;
 }
 
 /* Sizes */
