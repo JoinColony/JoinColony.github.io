@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import GutterSection from '~parts/GutterSection';
 import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
 import styles from './Toolkit.module.css';
@@ -103,48 +104,45 @@ const iconMap = {
 const displayName = 'pages.Website.HomePage.Toolkit';
 
 const Toolkit = () => (
-  <div className={styles.main}>
-    <div className={styles.miniClearGutter} />
-    <div className={styles.contentContainer}>
-      <div className={styles.contentInner}>
-        <div className={styles.headingContainer}>
-          <Heading
-            appearance={{ margin: 'double', theme: 'dark', weight: 'bold' }}
-            text={MSG.sectionTitle}
-          />
-        </div>
-        <div className={styles.gridContainer}>
-          {TOPIC_ORDER.map(topic => (
-            <div className={styles.gridItem}>
-              <Image
-                alt={MSG[`heading${topic}`]}
-                className={styles.gridItemImage}
-                src={`/img/png-icons/${iconMap[topic]}.png`}
-              />
-              <Heading
-                appearance={{
-                  theme: 'dark',
-                  size: 'mediumLarge',
-                  weight: 'medium',
-                }}
-                text={MSG[`heading${topic}`]}
-              />
-              <p className={styles.gridItemBodyText}>
-                <FormattedMessage {...MSG[`body${topic}`]} />
-              </p>
-            </div>
-          ))}
+  <GutterSection
+    appearance={{ oneSide: 'right' }}
+    linkRight={{ href: PAGE_ABOUT_COLONY_NETWORK, text: MSG.linkSeeAll }}
+  >
+    <div className={styles.main}>
+      <div className={styles.contentContainer}>
+        <div className={styles.contentInner}>
+          <div className={styles.headingContainer}>
+            <Heading
+              appearance={{ margin: 'double', theme: 'dark', weight: 'bold' }}
+              text={MSG.sectionTitle}
+            />
+          </div>
+          <div className={styles.gridContainer}>
+            {TOPIC_ORDER.map(topic => (
+              <div className={styles.gridItem}>
+                <Image
+                  alt={MSG[`heading${topic}`]}
+                  className={styles.gridItemImage}
+                  src={`/img/png-icons/${iconMap[topic]}.png`}
+                />
+                <Heading
+                  appearance={{
+                    theme: 'dark',
+                    size: 'mediumLarge',
+                    weight: 'medium',
+                  }}
+                  text={MSG[`heading${topic}`]}
+                />
+                <p className={styles.gridItemBodyText}>
+                  <FormattedMessage {...MSG[`body${topic}`]} />
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-    <div className={styles.gutter}>
-      <Link className={styles.gutterLink} href={PAGE_ABOUT_COLONY_NETWORK}>
-        <div className={styles.gutterLinkText}>
-          <FormattedMessage {...MSG.linkSeeAll} />
-        </div>
-      </Link>
-    </div>
-  </div>
+  </GutterSection>
 );
 
 Toolkit.displayName = displayName;
