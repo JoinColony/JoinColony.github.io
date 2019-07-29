@@ -8,7 +8,6 @@
   visibility: hidden;
 }
 
-.dropdownParentLink:hover .dropdownContainer,
-.dropdownParentLink:focus-within .dropdownContainer {
+.dropdownParentLink:hover .dropdownContainer {
   visibility: visible;
 }
