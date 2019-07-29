@@ -7,6 +7,7 @@ import Link from '~core/Link';
 import {
   COLONY_BLOG,
   COLONY_DISCOURSE,
+  COLONY_DISCORD,
   COLONY_GITHUB,
   COLONY_GITTER,
   COLONY_TWITTER,
@@ -60,6 +61,13 @@ const SocialNav = ({ appearance }: Props) => (
         className={styles.socialIcon}
         title="Gitter"
         name="social_gitter_devPortal"
+      />
+    </Link>
+    <Link alt="Discord" href={COLONY_DISCORD}>
+      <Icon
+        className={styles.socialIcon}
+        title="Discord"
+        name="social_discord"
       />
     </Link>
   </div>
