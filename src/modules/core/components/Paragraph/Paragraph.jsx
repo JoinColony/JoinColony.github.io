@@ -11,7 +11,7 @@ import { getMainClasses } from '~utils/css';
 import styles from './Paragraph.module.css';
 
 type Appearance = {|
-  theme?: 'invert' | 'grey',
+  theme?: 'invert' | 'grey' | 'lightBlue',
   size?: 'small' | 'normal' | 'medium',
 |};
 
