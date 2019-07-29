@@ -1,0 +1,36 @@
+@value gutterWidth: calc(calc(100% - var(--row-width-desktop)) / 2);
+
+.main {
+  display: flex;
+}
+
+.imageContainer {
+  background-color: var(--pink-2);
+}
+
+.imageContent {
+  padding: 40px 0;
+}
+
+.contentContainer {
+  background-color: var(--navy);
+  flex: 1 0 0;
+}
+
+.content {
+  padding: 130px gutterWidth 100px 130px;
+}
+
+.titleContainer {
+  width: 60%;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+
+.stepItem {
+  flex: 0 0 28%;
+}
