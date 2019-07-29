@@ -81,7 +81,11 @@ const Hero = () => {
       <div className={styles.row}>
         <div className={styles.subTitleContainer}>
           <Heading
-            appearance={{ size: 'large', theme: 'primary' }}
+            appearance={{
+              size: 'large',
+              theme: 'primary',
+              weight: 'bold',
+            }}
             text={MSG.subTitle}
           />
           <Button
