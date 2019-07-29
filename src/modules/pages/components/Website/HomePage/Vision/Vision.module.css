@@ -36,6 +36,10 @@
   font-size: var(--size-normal);
 }
 
+.link:hover {
+  text-decoration: underline;
+}
+
 .slideImage {
   height: 400px;
 }
