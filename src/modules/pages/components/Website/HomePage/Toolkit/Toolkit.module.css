@@ -4,52 +4,12 @@
   display: flex;
 }
 
-.miniClearGutter {
-  flex: 1 0 auto;
-}
-
 .contentContainer {
-  flex: 0 0 1205px;
   padding: 143px 0 135px;
-  width: 100%;
 }
 
 .headingContainer {
   width: 55%;
-}
-
-.gutter {
-  background-color: var(--grey-3);
-  flex: 1 0 235px;
-}
-
-.gutterLink {
-  align-items: center;
-  color: var(--blue-1);
-  display: flex;
-  font-family: IBM Plex Mono Medium, monospace;
-  font-size: var(--size-small);
-  justify-content: center;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.gutterLink:hover {
-  background-color: var(--blue-1);
-  color: var(--colony-white);
-}
-
-.gutterLinkText {
-  /*
-   * Absolutely positioned because white-space is calculated
-   * before transform is applied, which breaks the layout (makes
-   * this gutter wider than the other. Not cool...).
-   */
-  position: absolute;
-  left: 37px;
-  transform: rotate(90deg);
-  white-space: nowrap;
 }
 
 .contentInner {
