@@ -227,13 +227,14 @@ const Section = ({
 }) => {
   const { headerHeight } = useContext(ThemeContext);
   return (
-    <div className={styles.section}>
-      <span
-        className={styles.anchor}
-        id={id}
-        name={id}
-        style={{ top: `${-1 * headerHeight}px` }}
-      />
+    <div
+      className={styles.section}
+      id={id}
+      style={{
+        marginTop: `${-1 * headerHeight}px`,
+        paddingTop: `${headerHeight}px`,
+      }}
+    >
       <Heading appearance={headingAppearance} text={title} />
       <Paragraph text={body} />
     </div>
