@@ -1,0 +1,19 @@
+
+.badgesGroupInner {
+  border-bottom: 1px solid var(--grey-2);
+  display: flex;
+  align-items: flex-end;
+}
+
+.badgesCol + .badgesCol {
+  margin-left: 30px;
+}
+
+.badge {
+  display: block;
+  margin-bottom: 25px;
+}
+
+.groupLabel {
+  margin-top: 24px;
+}

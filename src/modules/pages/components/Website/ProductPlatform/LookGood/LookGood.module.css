@@ -1,0 +1,25 @@
+
+.main {
+  padding: 240px 0 150px;
+}
+
+.innerContent {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.contentContainer {
+  flex: 0 0 40%;
+}
+
+.badgeGroups {
+  align-items: flex-end;
+  display: flex;
+  flex: 0 0 48%;
+}
+
+.groupItem + .groupItem {
+  margin-left: 28px;
+}
