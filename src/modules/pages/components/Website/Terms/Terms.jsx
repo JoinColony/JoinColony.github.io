@@ -17,6 +17,8 @@ import Sidebar from './Sidebar';
 
 import styles from './Terms.module.css';
 
+const DATE_LAST_UPDATED = new Date(2019, 7, 1);
+
 const MSG = defineMessages({
   bodyCookies: {
     id: 'pages.Website.Terms.bodyCookies',
@@ -257,7 +259,7 @@ const Terms = () => {
                 year="numeric"
                 month="long"
                 day="numeric"
-                value={new Date(2019, 7, 1)}
+                value={DATE_LAST_UPDATED}
               />
             ),
           }}
