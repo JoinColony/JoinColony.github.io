@@ -1,0 +1,34 @@
+
+/* Themes */
+
+.themeDark {
+  color: var(--text-blue);
+}
+
+.themeInvert {
+  color: var(--colony-white);
+}
+
+.themeGrey {
+  color: var(--grey-1);
+}
+
+/* Sizes */
+
+.sizeSmall {
+  font-size: var(--size-small);
+}
+
+.sizeNormal {
+  font-size: var(--size-normal);
+}
+
+.sizeMedium {
+  font-size: var(--size-medium);
+}
+
+/* Default */
+
+.main {
+  composes: themeDark sizeNormal;
+}
