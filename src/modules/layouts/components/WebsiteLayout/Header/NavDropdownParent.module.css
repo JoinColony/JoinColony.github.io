@@ -1,0 +1,13 @@
+
+.dropdownParent {
+  display: block;
+  line-height: normal;
+}
+
+.dropdownParentLink .dropdownContainer {
+  visibility: hidden;
+}
+
+.dropdownParentLink:hover .dropdownContainer {
+  visibility: visible;
+}

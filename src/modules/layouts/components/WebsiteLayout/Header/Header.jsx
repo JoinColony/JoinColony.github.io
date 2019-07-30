@@ -8,15 +8,29 @@ import React, {
   useState,
 } from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import { getMainClasses } from '~utils/css';
-import { PAGE_INDEX } from '~routes';
+import {
+  COLONY_DISCOURSE,
+  DOCS_COLONY_JS_GET_STARTED,
+  PAGE_ABOUT_COLONY_NETWORK,
+  PAGE_ABOUT_VISION,
+  PAGE_ABOUT_METACOLONY,
+  PAGE_DEV_DOCS,
+  PAGE_DEV_TUTORIALS,
+  PAGE_INDEX,
+  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_PLATFORM,
+} from '~routes';
 
 import type { Appearance, Props } from './types';
 
 import ThemeContext from '../context';
+
+import NavDropdownParent from './NavDropdownParent.jsx';
 
 import styles from './Header.module.css';
 
@@ -36,6 +50,84 @@ const MSG = defineMessages({
   navLinkEarlyAccess: {
     id: 'layouts.WebsiteLayout.Header.navLinkEarlyAccess',
     defaultMessage: 'Get early access',
+  },
+  dropdownLinkBodyAboutColonyNetwork: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutColonyNetwork',
+    defaultMessage: `Organize and operate with our suite of smart
+      contracts running on Ethereum.`,
+  },
+  dropdownLinkBodyAboutMetacolony: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutMetacolony',
+    defaultMessage: `Learn about the team and token that keeps Colony running.`,
+  },
+  dropdownLinkBodyAboutVision: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutVision',
+    defaultMessage: 'Read about the vision behind Colony. It gets weird.',
+  },
+  dropdownLinkBodyDevDiscourse: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevDiscourse',
+    defaultMessage: `This is the max amount of descriptor text for the
+      navigation hover state. Keep it short.`,
+  },
+  dropdownLinkBodyDevGetStarted: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevGetStarted',
+    defaultMessage: `New to Colony? Welcome! Let’s get started with
+      your first project.`,
+  },
+  dropdownLinkBodyDevPortal: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevPortal',
+    defaultMessage: `This is the max amount of descriptor text for the
+      navigation hover state. Keep it short.`,
+  },
+  dropdownLinkBodyDevTutorials: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevTutorials',
+    defaultMessage: `This is the max amount of descriptor text for the
+      navigation hover state. Keep it short.`,
+  },
+  dropdownLinkBodyProductsDapp: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsDapp',
+    defaultMessage: `Tools to organize and incentivize collaborative,
+      communities, and contingent workers.`,
+  },
+  dropdownLinkBodyProductsPlatform: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsPlatform',
+    defaultMessage: 'The fastest way to build cryptoeconomic applications.',
+  },
+  dropdownLinkTitleAboutColonyNetwork: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleAboutColonyNetwork',
+    defaultMessage: 'colonyNetwork',
+  },
+  dropdownLinkTitleAboutMetacolony: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleAboutMetacolony',
+    defaultMessage: 'The Metacolony',
+  },
+  dropdownLinkTitleAboutVision: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleAboutVision',
+    defaultMessage: 'Vision',
+  },
+  dropdownLinkTitleDevDiscourse: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevDiscourse',
+    defaultMessage: 'Discourse',
+  },
+  dropdownLinkTitleDevGetStarted: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevGetStarted',
+    defaultMessage: 'Get started',
+  },
+  dropdownLinkTitleDevPortal: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevPortal',
+    defaultMessage: 'Portal',
+  },
+  dropdownLinkTitleDevTutorials: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevTutorials',
+    defaultMessage: 'Tutorials',
+  },
+  dropdownLinkTitleProductsDapp: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsDapp',
+    defaultMessage: 'Dapp',
+  },
+  dropdownLinkTitleProductsPlatform: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsPlatform',
+    defaultMessage: 'Platform',
   },
 });
 
@@ -112,25 +204,70 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
         </div>
         <div>
           <nav>
-            <Link
-              activeClassName={styles.active}
-              className={styles.navLink}
-              // @TODO: use appropriate route
-              href="/"
+            <NavDropdownParent
+              className={`${styles.navDropdownParent} ${styles.navLink}`}
+              image={withPrefix('img/nav_products.png')}
+              navItems={[
+                {
+                  body: MSG.dropdownLinkBodyProductsDapp,
+                  href: PAGE_PRODUCT_DAPP,
+                  title: MSG.dropdownLinkTitleProductsDapp,
+                },
+                {
+                  body: MSG.dropdownLinkBodyProductsPlatform,
+                  href: PAGE_PRODUCT_PLATFORM,
+                  title: MSG.dropdownLinkTitleProductsPlatform,
+                },
+              ]}
               text={MSG.navLinkProducts}
             />
-            <Link
-              activeClassName={styles.active}
-              className={styles.navLink}
-              // @TODO: use appropriate route
-              href="/"
+            <NavDropdownParent
+              className={`${styles.navDropdownParent} ${styles.navLink}`}
+              image={withPrefix('img/nav_developers.png')}
+              navItems={[
+                {
+                  body: MSG.dropdownLinkBodyDevPortal,
+                  href: PAGE_DEV_DOCS,
+                  title: MSG.dropdownLinkTitleDevPortal,
+                },
+                {
+                  body: MSG.dropdownLinkBodyDevTutorials,
+                  href: PAGE_DEV_TUTORIALS,
+                  title: MSG.dropdownLinkTitleDevTutorials,
+                },
+                {
+                  body: MSG.dropdownLinkBodyDevDiscourse,
+                  href: COLONY_DISCOURSE,
+                  title: MSG.dropdownLinkTitleDevDiscourse,
+                },
+                {
+                  body: MSG.dropdownLinkBodyDevGetStarted,
+                  href: DOCS_COLONY_JS_GET_STARTED,
+                  title: MSG.dropdownLinkTitleDevGetStarted,
+                },
+              ]}
               text={MSG.navLinkDevelopers}
             />
-            <Link
-              activeClassName={styles.active}
-              className={styles.navLink}
-              // @TODO: use appropriate route
-              href="/"
+            <NavDropdownParent
+              className={`${styles.navDropdownParent} ${styles.navLink}`}
+              image={withPrefix('img/nav_about.png')}
+              navItems={[
+                {
+                  body: MSG.dropdownLinkBodyAboutColonyNetwork,
+                  href: PAGE_ABOUT_COLONY_NETWORK,
+                  title: MSG.dropdownLinkTitleAboutColonyNetwork,
+                },
+                {
+                  body: MSG.dropdownLinkBodyAboutMetacolony,
+                  href: PAGE_ABOUT_METACOLONY,
+                  title: MSG.dropdownLinkTitleAboutMetacolony,
+                },
+                {
+                  body: MSG.dropdownLinkBodyAboutVision,
+                  href: PAGE_ABOUT_VISION,
+                  title: MSG.dropdownLinkTitleAboutVision,
+                },
+              ]}
               text={MSG.navLinkAbout}
             />
             <Link

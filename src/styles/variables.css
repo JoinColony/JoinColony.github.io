@@ -20,6 +20,7 @@
   --row-width-desktop: 1170px;
 
   /* font-sizes */
+  --size-extraSmall: 12px;
   --size-small: 13px;
   --size-normal: 16px;
   --size-medium: 20px;
