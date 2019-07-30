@@ -1,0 +1,17 @@
+
+.baseStyles {
+  /* This class intended for composition only. Do not use directly. */
+  border-radius: 24px;
+  color: var(--navy);
+  padding: 12px 24px;
+}
+
+/* Themes */
+
+.themePrimary {
+  background-color: var(--blue-3);
+}
+
+.themeSecondary {
+  background-color: var(--pink-2);
+}
