@@ -1,0 +1,63 @@
+@value rightColWidth: 30%;
+
+.introRow {
+  display: flex;
+}
+
+.mainContent {
+  background-color: var(--grey-3);
+  padding: 80px 100px 80px 0;
+}
+
+.imageContainer {
+  align-items: center;
+  background-color: var(--navy);
+  display: flex;
+  flex: 0 0 rightColWidth;
+  justify-content: center;
+}
+
+.image {
+  max-height: 180px;
+  max-width: 180px;
+}
+
+.contentRow {
+  align-items: center;
+  display: flex;
+}
+
+.currentContent {
+  flex: 1 0 auto;
+  padding-left: 100px;
+}
+
+.contentMenu {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 rightColWidth;
+}
+
+.menuItemBase {
+  /* Intended for composition only. Do not use this class directly. */
+  border: none;
+  padding: 20px 0 20px 62px;
+  text-align: left;
+  width: 100%;
+}
+
+.menuItemBase:focus {
+  outline: none;
+}
+
+.menuItem {
+  composes: menuItemBase;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+.activeItem {
+  composes: menuItemBase;
+  background-color: var(--blue-1);
+  color: var(--colony-white);
+}
