@@ -38,6 +38,11 @@ export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;
 export const COLONY_GITHUB = 'https://github.com/JoinColony';
 export const COLONY_GITHUB_BUDGETBOX =
   'https://github.com/JoinColony/budgetBox';
+export const COLONY_GITHUB_COLONYJS = 'https://github.com/JoinColony/colonyJS';
+export const COLONY_GITHUB_COLONYNETWORK =
+  'https://github.com/JoinColony/colonyNetwork';
+export const COLONY_GITHUB_COLONYSTARTER =
+  'https://github.com/JoinColony/colonyStarter';
 export const COLONY_GITHUB_OPEN_ISSUES =
   'https://github.com/search?p=6&q=org%3AJoinColony&state=open&type=Issues';
 export const COLONY_GITTER = 'https://gitter.im/JoinColony';
@@ -57,3 +62,7 @@ export const DOCS_COLONY_JS_TOKENS_AND_FUNDING =
   'https://colony.io/docs/colonyjs/topics-tokens-and-funding';
 export const DOCS_COLONY_JS_TASKS_AND_PAYMENTS =
   'https://colony.io/docs/colonyjs/topics-tasks-and-payments';
+export const DOCS_COLONY_NETWORK =
+  'https://docs.colony.io/colonynetwork/intro-welcome';
+export const DOCS_COLONY_STARTER =
+  'https://docs.colony.io/colonystarter/docs-overview';
