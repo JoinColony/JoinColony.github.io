@@ -1,0 +1,42 @@
+@value leftPadding: 100px;
+@value gutterWidth: calc(calc(100% - 970px) / 2);
+
+.graphicRow {
+  background-color: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 130px 0 0 leftPadding;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content > div {
+  flex: 0 0 42%;
+}
+
+.image {
+  margin: 20px 0 0 0;
+}
+
+.gridRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 73px 0 20px leftPadding;
+}
+
+.gridItem {
+  flex: 0 0 30%;
+}
+
+.layoutHack {
+  /* This block covers up the bottom part of the right-hand gutter */
+  background-color: white;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  width: gutterWidth;
+}
