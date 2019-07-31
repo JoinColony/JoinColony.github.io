@@ -4,6 +4,7 @@ import React from 'react';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import DeveloperTools from './DeveloperTools';
 import Examples from './Examples';
 import Hero from './Hero';
 import LookGood from './LookGood';
@@ -17,6 +18,7 @@ const ProductPlatform = () => (
     <LookGood />
     <Examples />
     <WithColony />
+    <DeveloperTools />
   </WebsiteLayout>
 );
 
