@@ -77,6 +77,16 @@
   background-color: var(--pink-2);
 }
 
+/* Single-side themes */
+
+.themeLeftDark .gutter:first-of-type {
+  background-color: var(--navy);
+}
+
+.themeRightDark .gutter:last-of-type {
+  background-color: var(--navy);
+}
+
 /* Single Side Gutter */
 
 .oneSideRight .content {
