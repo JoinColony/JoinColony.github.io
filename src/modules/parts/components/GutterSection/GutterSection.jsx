@@ -14,6 +14,9 @@ import styles from './GutterSection.module.css';
 type Appearance = {|
   theme?: 'pink',
   oneSide?: 'left' | 'right',
+  // Specify theme for only one side
+  themeLeft?: 'dark',
+  themeRight?: 'dark',
 |};
 
 type LinkType = {|
@@ -21,12 +24,12 @@ type LinkType = {|
   text: MessageDescriptor,
 |};
 
-type Props = {|
+type Props = {
   appearance?: Appearance,
   children: Node,
   linkLeft?: LinkType,
   linkRight?: LinkType,
-|};
+};
 
 type GutterLinkProps = {|
   side: 'left' | 'right',
@@ -53,8 +56,9 @@ const GutterSection = ({
   children,
   linkLeft,
   linkRight,
+  ...rest
 }: Props) => (
-  <div className={getMainClasses(appearance, styles)}>
+  <div className={getMainClasses(appearance, styles)} {...rest}>
     <div className={styles.gutter}>
       {linkLeft && <GutterLink side="left" {...linkLeft} />}
     </div>
