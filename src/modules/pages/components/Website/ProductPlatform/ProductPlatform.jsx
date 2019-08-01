@@ -8,6 +8,7 @@ import Community from './Community';
 import DeveloperTools from './DeveloperTools';
 import Examples from './Examples';
 import Hero from './Hero';
+import KickAss from './KickAss';
 import LookGood from './LookGood';
 import TokenSupport from './TokenSupport';
 import WithColony from './WithColony';
@@ -23,6 +24,7 @@ const ProductPlatform = () => (
     <DeveloperTools />
     <TokenSupport />
     <Community />
+    <KickAss />
   </WebsiteLayout>
 );
 
