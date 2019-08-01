@@ -1,0 +1,47 @@
+
+.main {
+  padding: 180px 0 120px;
+  position: relative;
+}
+
+.circleImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.mainInner {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.mainContent {
+  max-width: 45%;
+}
+
+.gridRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 120px;
+}
+
+.gridItem {
+  display: flex;
+  flex: 0 0 30%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemImage {
+  height: 80px;
+  margin-bottom: 40px;
+}
+
+.itemLink {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+.itemLink:hover {
+  text-decoration: underline;
+}
