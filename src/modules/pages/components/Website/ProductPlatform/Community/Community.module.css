@@ -1,0 +1,29 @@
+@value gutterWidth: calc(calc(100% - 970px) / 2);
+
+.main {
+  display: flex;
+}
+
+.image {
+  background-image: url('/img/community.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex: 0 0 42%;
+}
+
+.contentContainer {
+  background-color: var(--navy);
+  padding: 120px gutterWidth 120px 130px;
+}
+
+.body {
+  margin-top: 70px;
+}
+
+.section + .section {
+  margin-top: 45px;
+}
+
+.sectionBody {
+  margin-top: 15px;
+}

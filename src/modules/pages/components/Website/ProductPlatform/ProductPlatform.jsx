@@ -4,6 +4,7 @@ import React from 'react';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import Community from './Community';
 import DeveloperTools from './DeveloperTools';
 import Examples from './Examples';
 import Hero from './Hero';
@@ -21,6 +22,7 @@ const ProductPlatform = () => (
     <WithColony />
     <DeveloperTools />
     <TokenSupport />
+    <Community />
   </WebsiteLayout>
 );
 
