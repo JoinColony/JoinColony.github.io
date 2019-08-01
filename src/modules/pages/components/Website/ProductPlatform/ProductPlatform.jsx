@@ -8,6 +8,7 @@ import DeveloperTools from './DeveloperTools';
 import Examples from './Examples';
 import Hero from './Hero';
 import LookGood from './LookGood';
+import TokenSupport from './TokenSupport';
 import WithColony from './WithColony';
 
 const displayName = 'pages.Website.ProductPlatform';
@@ -19,6 +20,7 @@ const ProductPlatform = () => (
     <Examples />
     <WithColony />
     <DeveloperTools />
+    <TokenSupport />
   </WebsiteLayout>
 );
 
