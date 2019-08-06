@@ -1,4 +1,3 @@
-@value gutterWidth: calc(calc(100% - var(--row-width-desktop)) / 2);
 
 .main {
   display: flex;
@@ -22,7 +21,7 @@
   background-color: var(--navy);  
   display: flex;
   justify-content: center;
-  padding-left: gutterWidth;
+  padding-left: var(--gutter-width);
   padding-right: 144px;
 }
 
@@ -38,7 +37,7 @@
   align-items: center;
   background-color: var(--blue-3);
   display: flex;
-  padding-right: gutterWidth;
+  padding-right: var(--gutter-width);
 }
 
 .contentInner {
@@ -55,7 +54,7 @@
 
 .subTitleContainer {
   background-color: var(--blue-3);
-  padding-left: gutterWidth;
+  padding-left: var(--gutter-width);
   display: flex;
   align-items: center;
 }
@@ -63,7 +62,7 @@
 .subBodyContainer {
   color: var(--text-blue);
   font-size: var(--size-medium);
-  padding: 103px gutterWidth 45px 144px;
+  padding: 103px var(--gutter-width) 45px 144px;
 }
 
 .subBodyContainer p {
