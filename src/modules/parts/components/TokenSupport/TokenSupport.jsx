@@ -13,28 +13,28 @@ import styles from './TokenSupport.module.css';
 
 const MSG = defineMessages({
   bullet0: {
-    id: 'pages.Website.ProductPlatform.TokenSupport.bullet0',
+    id: 'parts.ProductPlatform.TokenSupport.bullet0',
     defaultMessage: 'Easily issue your own token',
   },
   bullet1: {
-    id: 'pages.Website.ProductPlatform.TokenSupport.bullet1',
+    id: 'parts.ProductPlatform.TokenSupport.bullet1',
     defaultMessage: 'Supports any ERC20 token',
   },
   bullet2: {
-    id: 'pages.Website.ProductPlatform.TokenSupport.bullet2',
+    id: 'parts.ProductPlatform.TokenSupport.bullet2',
     defaultMessage: 'Pay users in USD stable coins',
   },
   linkLearnMore: {
-    id: 'pages.Website.ProductPlatform.TokenSupport.linkLearnMore',
+    id: 'parts.ProductPlatform.TokenSupport.linkLearnMore',
     defaultMessage: 'Learn more',
   },
   title: {
-    id: 'pages.Website.ProductPlatform.TokenSupport.title',
+    id: 'parts.ProductPlatform.TokenSupport.title',
     defaultMessage: 'Token Support',
   },
 });
 
-const displayName = 'pages.Website.ProductPlatform.TokenSupport';
+const displayName = 'parts.ProductPlatform.TokenSupport';
 
 const TokenSupport = () => (
   <div className={styles.main}>
