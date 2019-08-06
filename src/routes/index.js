@@ -45,24 +45,35 @@ export const COLONY_GITHUB_COLONYSTARTER =
   'https://github.com/JoinColony/colonyStarter';
 export const COLONY_GITHUB_OPEN_ISSUES =
   'https://github.com/search?p=6&q=org%3AJoinColony&state=open&type=Issues';
+export const COLONY_GITHUB_PINION = 'https://github.com/JoinColony/pinion';
+export const COLONY_GITHUB_PURSER = 'https://github.com/JoinColony/purser';
+export const COLONY_GITHUB_TAILOR = 'https://github.com/JoinColony/tailor';
+export const COLONY_GITHUB_TRUFFLEPIG =
+  'https://github.com/JoinColony/trufflepig';
 export const COLONY_GITTER = 'https://gitter.im/JoinColony';
 export const COLONY_GITTER_COLONYJS = `${COLONY_GITTER}/colonyJS`;
 export const COLONY_REDDIT = 'https://www.reddit.com/r/joincolony/';
 export const COLONY_TWITTER = 'https://twitter.com/joincolony';
 export const COLONY_WEBSITE = 'https://colony.io';
+export const GITHUB_SOLIDITY_COVERAGE =
+  'https://github.com/sc-forks/solidity-coverage';
 
 /*
  * Absolute Pages (we want these to open in a new tab)
  */
 export const DOCS_COLONY_JS_GET_STARTED =
-  'https://colony.io/docs/colonyjs/topics-tokens-and-funding';
+  'https://colony.io/dev/docs/colonyjs/topics-tokens-and-funding';
 export const DOCS_COLONY_JS_REGISTERING_ENS_LABELS =
-  'https://colony.io/docs/colonyjs/topics-registering-ens-labels';
+  'https://colony.io/dev/docs/colonyjs/topics-registering-ens-labels';
 export const DOCS_COLONY_JS_TOKENS_AND_FUNDING =
-  'https://colony.io/docs/colonyjs/topics-tokens-and-funding';
+  'https://colony.io/dev/docs/colonyjs/topics-tokens-and-funding';
 export const DOCS_COLONY_JS_TASKS_AND_PAYMENTS =
-  'https://colony.io/docs/colonyjs/topics-tasks-and-payments';
+  'https://colony.io/dev/docs/colonyjs/topics-tasks-and-payments';
 export const DOCS_COLONY_NETWORK =
-  'https://docs.colony.io/colonynetwork/intro-welcome';
+  'https://colony.io/dev/docs/colonynetwork/intro-welcome';
+export const DOCS_COLONY_PURSER =
+  'https://colony.io/dev/docs/purser/docs-overview';
+export const DOCS_COLONY_TAILOR =
+  'https://colony.io/dev/docs/tailor/docs-overview';
 export const DOCS_COLONY_STARTER =
-  'https://docs.colony.io/colonystarter/docs-overview';
+  'https://colony.io/dev/docs/colonystarter/docs-overview';
