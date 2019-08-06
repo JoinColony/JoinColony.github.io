@@ -4,11 +4,13 @@ import React from 'react';
 
 import WebsiteLayout from '~layouts/WebsiteLayout';
 
+import Hero from './Hero';
+
 const displayName = 'pages.Website.ProductDapp';
 
 const ProductDapp = () => (
-  <WebsiteLayout>
-    <div />
+  <WebsiteLayout headerAppearance={{ navTheme: 'dark', theme: 'transparent' }}>
+    <Hero />
   </WebsiteLayout>
 );
 
