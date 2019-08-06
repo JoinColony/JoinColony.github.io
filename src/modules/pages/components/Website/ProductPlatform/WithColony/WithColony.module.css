@@ -1,5 +1,4 @@
 @value leftPadding: 100px;
-@value gutterWidth: calc(calc(100% - 970px) / 2);
 
 .graphicRow {
   background-color: var(--navy);
@@ -38,5 +37,5 @@
   bottom: 0;
   position: absolute;
   right: 0;
-  width: gutterWidth;
+  width: var(--gutter-width-narrow);
 }

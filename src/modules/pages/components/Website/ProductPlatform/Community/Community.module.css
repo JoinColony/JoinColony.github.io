@@ -1,4 +1,3 @@
-@value gutterWidth: calc(calc(100% - 970px) / 2);
 
 .main {
   display: flex;
@@ -14,7 +13,7 @@
 
 .contentContainer {
   background-color: var(--navy);
-  padding: 120px gutterWidth 120px 130px;
+  padding: 120px var(--gutter-width-narrow) 120px 130px;
 }
 
 .body {
