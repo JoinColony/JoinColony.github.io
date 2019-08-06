@@ -5,7 +5,6 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
-import Link from '~core/Link';
 import GutterSection from '~parts/GutterSection';
 import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
