@@ -1,3 +1,5 @@
+@value gridItemPaddingHorizontal: 72px;
+@value gridItemPaddingVertical: 50px;
 
 .main {
   padding: 180px 0 230px 0;
@@ -54,15 +56,20 @@
   cursor: pointer;
 }
 
-.activeContent {
+.body {
   flex: 0 0 48%;
+}
+
+.gridWrapper {
+  margin: 190px auto 0;
+  max-width: var(--row-width-desktop);
 }
 
 .gridRow {
   display: flex;
-  justify-content: space-between;
-  margin: 190px auto 0;
-  max-width: var(--row-width-desktop);
+  flex-wrap: wrap;
+  /* Negative margins for properly aligning wrapping grid */
+  margin: calc(-1 * gridItemPaddingVertical) calc(-1 * gridItemPaddingHorizontal);
 }
 
 .gridItem {
@@ -70,6 +77,7 @@
   flex: 0 0 30%;
   flex-direction: column;
   justify-content: space-between;
+  padding: gridItemPaddingVertical gridItemPaddingHorizontal;
 }
 
 .itemImageContainer {
