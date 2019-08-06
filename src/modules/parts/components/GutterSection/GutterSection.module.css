@@ -42,9 +42,17 @@
   transform: rotate(270deg);
 }
 
+.oneSideLeft .leftLink .gutterLinkText {
+  right: 30px;
+}
+
 .rightLink .gutterLinkText {
   left: -15px;
   transform: rotate(90deg);
+}
+
+.oneSideRight .rightLink .gutterLinkText {
+  left: 40px;
 }
 
 .content {

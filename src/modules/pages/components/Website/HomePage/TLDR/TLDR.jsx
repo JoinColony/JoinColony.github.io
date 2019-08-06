@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Heading from '~core/Heading';
 
@@ -48,13 +48,19 @@ const TLDR = () => (
       </div>
       <div className={styles.cols}>
         <div className={styles.colItem}>
-          <Heading appearance={colHeadingAppearance} text={MSG.textOne} />
+          <p>
+            <FormattedMessage {...MSG.textOne} />
+          </p>
         </div>
         <div className={styles.colItem}>
-          <Heading appearance={colHeadingAppearance} text={MSG.textTwo} />
+          <p>
+            <FormattedMessage {...MSG.textTwo} />
+          </p>
         </div>
         <div className={styles.colItem}>
-          <Heading appearance={colHeadingAppearance} text={MSG.textThree} />
+          <p>
+            <FormattedMessage {...MSG.textThree} />
+          </p>
         </div>
       </div>
     </div>

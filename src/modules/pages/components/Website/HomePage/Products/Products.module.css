@@ -57,6 +57,14 @@
   color: var(--grey-2);
 }
 
+.controlItemInner a:hover {
+  text-decoration: underline;
+}
+
+.controlItemInner .body {
+  font-size: var(--size-normal);
+}
+
 .controlLink {
   margin-top: 20px;
 }

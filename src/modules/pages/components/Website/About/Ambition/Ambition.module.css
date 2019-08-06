@@ -27,7 +27,7 @@
 }
 
 .body a:hover {
-  color: var(--blue-2);
+  text-decoration: underline;
 }
 
 .body p {

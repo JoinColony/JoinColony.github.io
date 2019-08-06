@@ -7,6 +7,7 @@ export const PAGE_INDEX = '/';
 export const PAGE_ABOUT_VISION = '/about';
 export const PAGE_ABOUT_COLONY_NETWORK = '/about/colony-network';
 export const PAGE_ABOUT_METACOLONY = '/about/metacolony';
+export const PAGE_GET_EARLY_ACCESS = '/early-access';
 export const PAGE_PRODUCT_PLATFORM = '/product';
 export const PAGE_PRODUCT_DAPP = '/product/dapp';
 export const PAGE_DEV_DOCS = '/dev';
@@ -30,6 +31,7 @@ export const PAGE_TERMS_SERVICE = '/terms';
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
 export const COLONY_DAPP = 'https://colony.io/dapp';
+export const COLONY_DISCORD = 'http://clny.io/discord';
 export const COLONY_DISCOURSE = 'https://build.colony.io';
 export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
 export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;

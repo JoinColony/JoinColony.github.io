@@ -66,16 +66,17 @@ const GridItem = ({
     <Image alt={title} className={styles.gridItemImage} src={image} />
     <Heading
       appearance={{
-        margin: 'none',
         size: 'mediumLarge',
         theme: 'dark',
         weight: 'medium',
       }}
       text={title}
     />
-    <p>
-      <FormattedMessage {...body} />
-    </p>
+    <div className={styles.body}>
+      <p>
+        <FormattedMessage {...body} />
+      </p>
+    </div>
   </div>
 );
 

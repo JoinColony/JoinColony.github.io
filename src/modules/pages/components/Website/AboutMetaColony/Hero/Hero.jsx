@@ -81,11 +81,19 @@ const Hero = () => {
       <div className={styles.row}>
         <div className={styles.subTitleContainer}>
           <Heading
-            appearance={{ size: 'large', theme: 'primary' }}
+            appearance={{
+              size: 'large',
+              theme: 'primary',
+              weight: 'bold',
+            }}
             text={MSG.subTitle}
           />
           <Button
-            appearance={{ borderRadius: 'none', theme: 'primary' }}
+            appearance={{
+              borderRadius: 'none',
+              padding: 'huge',
+              theme: 'primary',
+            }}
             linkTo={COLONY_GITTER}
             text={MSG.buttonText}
           />

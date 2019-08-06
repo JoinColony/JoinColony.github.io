@@ -78,7 +78,6 @@ const SubItem = ({
 }) => (
   <div className={styles.subItem}>
     <Heading
-      className={styles.subItemHeading}
       appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
     >
       <FormattedMessage {...title} values={{ br: <br /> }} />
@@ -92,7 +91,7 @@ const SubItem = ({
 const displayName = 'pages.Website.AboutColonyNetwork.Modules';
 
 const Modules = () => (
-  <GutterSection linkRight={{ href: COLONY_DISCOURSE, text: MSG.linkGutter }}>
+  <GutterSection linkLeft={{ href: COLONY_DISCOURSE, text: MSG.linkGutter }}>
     <div className={styles.mainContentRow}>
       <div className={styles.titleContent}>
         <Heading
@@ -130,7 +129,14 @@ const Modules = () => (
             title="BudgetBox"
             viewBox="0 0 82 82"
           />
-          <FormattedMessage {...MSG.hoverBodyBudgetBox} />
+          <Heading
+            appearance={{
+              theme: 'invert',
+              size: 'mediumLarge',
+              weight: 'thin',
+            }}
+            text={MSG.hoverBodyBudgetBox}
+          />
         </Link>
       </div>
     </div>

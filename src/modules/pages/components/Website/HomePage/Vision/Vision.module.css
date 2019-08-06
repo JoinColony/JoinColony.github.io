@@ -24,6 +24,7 @@
 .body {
   color: var(--text-blue);
   font-size: var(--size-medium);
+  line-height: 32px;
 }
 
 .input {
@@ -33,6 +34,10 @@
 .link {
   color: var(--blue-1);
   font-size: var(--size-normal);
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .slideImage {

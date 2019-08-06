@@ -4,52 +4,12 @@
   display: flex;
 }
 
-.miniClearGutter {
-  flex: 1 0 auto;
-}
-
 .contentContainer {
-  flex: 0 0 1205px;
-  padding: 143px 0;
-  width: 100%;
+  padding: 143px 0 135px;
 }
 
 .headingContainer {
   width: 55%;
-}
-
-.gutter {
-  background-color: var(--grey-3);
-  flex: 1 0 235px;
-}
-
-.gutterLink {
-  align-items: center;
-  color: var(--blue-1);
-  display: flex;
-  font-family: IBM Plex Mono Medium, monospace;
-  font-size: var(--size-small);
-  justify-content: center;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.gutterLink:hover {
-  background-color: var(--blue-1);
-  color: var(--colony-white);
-}
-
-.gutterLinkText {
-  /*
-   * Absolutely positioned because white-space is calculated
-   * before transform is applied, which breaks the layout (makes
-   * this gutter wider than the other. Not cool...).
-   */
-  position: absolute;
-  left: 37px;
-  transform: rotate(270deg);
-  white-space: nowrap;
 }
 
 .contentInner {
@@ -63,7 +23,7 @@
   /*
    * Negative margin to align the first & last item of each grid row
    */
-  margin: 0 calc(-1 * gridItemMargin);
+  margin: 117px calc(-1 * gridItemMargin) 0;
 }
 
 .gridItem {
