@@ -29,7 +29,7 @@ const MSG = defineMessages({
   },
   title: {
     id: 'pages.Website.AboutColonyNetwork.DecentralizedCta.title',
-    defaultMessage: 'Fully Decentralized. No Comporomises.',
+    defaultMessage: 'Fully Decentralized. No Compromises.',
   },
 });
 
