@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { useContext } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Announcement from '~core/Announcement';
