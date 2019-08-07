@@ -119,13 +119,12 @@ const Hub = () => (
       {Array(5)
         .fill(null)
         .map((_, idx) => (
-          <div className={styles.item}>
+          <div className={styles.item} key={MSG[`bodyTopic${idx}`].id}>
             <Item
               appearance={idx % 2 ? { theme: 'block' } : undefined}
               body={MSG[`bodyTopic${idx}`]}
               bodyValues={VALUES[`topic${idx}`]}
               image={IMAGE_MAP[`topic${idx}`]}
-              key={MSG[`bodyTopic${idx}`].id}
               thumbnail={THUMBNAIL_MAP[`topic${idx}`]}
               title={MSG[`titleTopic${idx}`]}
             />
