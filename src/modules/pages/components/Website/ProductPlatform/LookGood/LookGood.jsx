@@ -3,10 +3,9 @@
 import React from 'react';
 import { defineMessages } from 'react-intl';
 
+import BadgeGroup from '~core/BadgeGroup';
 import Heading from '~core/Heading';
 import Paragraph from '~core/Paragraph';
-
-import BadgeGroup from './BadgeGroup.jsx';
 
 import styles from './LookGood.module.css';
 
