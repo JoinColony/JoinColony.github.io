@@ -1,6 +1,4 @@
 /* @TODO: Configure webpack/postcss to automatically provide variables globally */
-@import '../../../../../styles/variables.css';
-
 .navigationContainer {
   align-items: center;
   display: flex;
