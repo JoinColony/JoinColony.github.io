@@ -4,6 +4,7 @@
 }
 
 .image {
+  background-color: var(--navy);
   background-image: url('/img/community.png');
   background-position: center right;
   background-repeat: no-repeat;
