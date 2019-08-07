@@ -25,7 +25,7 @@ const MSG = defineMessages({
   },
   gridItemBody0: {
     id: 'pages.Website.ProductPlatform.WithColony.gridItemBody0',
-    defaultMessage: `Use your app’s native Token, ETH, or DAI to compensate
+    defaultMessage: `Use your app’s native token, ETH, or DAI to compensate
       the talented people who realise your vision.`,
   },
   gridItemBody1: {
