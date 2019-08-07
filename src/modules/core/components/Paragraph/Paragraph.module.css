@@ -14,7 +14,7 @@
 }
 
 .themeLightBlue {
-  color: #91D2FA;
+  color: var(--blue-2);
 }
 
 /* Sizes */
