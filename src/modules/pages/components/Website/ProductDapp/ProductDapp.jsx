@@ -7,6 +7,7 @@ import TokenSupport from '~parts/TokenSupport';
 
 import Hero from './Hero';
 import Hub from './Hub';
+import Roadmap from './Roadmap';
 
 const displayName = 'pages.Website.ProductDapp';
 
@@ -15,6 +16,7 @@ const ProductDapp = () => (
     <Hero />
     <Hub />
     <TokenSupport />
+    <Roadmap />
   </WebsiteLayout>
 );
 
