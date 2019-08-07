@@ -62,7 +62,7 @@ export const GITHUB_SOLIDITY_COVERAGE =
  * Absolute Pages (we want these to open in a new tab)
  */
 export const DOCS_COLONY_JS_GET_STARTED =
-  'https://colony.io/dev/docs/colonyjs/topics-tokens-and-funding';
+  'https://colony.io/dev/docs/colonyjs/intro-get-started';
 export const DOCS_COLONY_JS_REGISTERING_ENS_LABELS =
   'https://colony.io/dev/docs/colonyjs/topics-registering-ens-labels';
 export const DOCS_COLONY_JS_TOKENS_AND_FUNDING =
