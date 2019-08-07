@@ -15,7 +15,7 @@ type Props = {|
   messageGroups: Array<{ [key: string]: MessageDescriptor }>,
 |};
 
-const displayName = 'pages.Website.ProductPlatform.LookGood.BadgeGroup';
+const displayName = 'BadgeGroup';
 
 const BadgeGroup = ({
   badgeColor = 'primary',
