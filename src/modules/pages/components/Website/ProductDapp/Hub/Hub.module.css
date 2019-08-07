@@ -1,6 +1,6 @@
 
 .main {
-  margin: 190px auto 120px;
+  margin: 190px auto 0;
   max-width: var(--row-width-desktop);
 }
 
