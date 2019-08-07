@@ -1,0 +1,58 @@
+
+.baseStyles {
+  /* This class is intended for composition only. Do not use directly */
+  display: flex;
+}
+
+.baseStyles > div {
+  flex: 0 0 50%;
+}
+
+.imageBlock,
+.contentBlock {
+  align-items: center;
+  display: flex;
+}
+
+.imageBlock {
+  justify-content: center;
+  min-height: 565px;
+}
+
+.image {
+  margin: 0;
+}
+
+.thumbnail {
+  width: 79px;
+}
+
+
+/* Themes */
+
+.main {
+  composes: baseStyles;
+}
+
+.main .contentBlock {
+  padding: 0 180px 0 100px;
+}
+
+.main .imageBlock {
+  padding: 60px;
+}
+
+.themeBlock {
+  composes: baseStyles;
+  flex-direction: row-reverse;
+}
+
+.themeBlock .imageBlock {
+  background-color: var(--navy);
+  padding: 80px;
+}
+
+.themeBlock .contentBlock {
+  background-color: var(--blue-3);
+  padding: 0 160px 0 80px;
+}
