@@ -35,6 +35,7 @@
   /* This block covers up the bottom part of the right-hand gutter */
   background-color: white;
   bottom: 0;
+  overflow: hidden;
   position: absolute;
   right: 0;
   width: var(--gutter-width-narrow);
