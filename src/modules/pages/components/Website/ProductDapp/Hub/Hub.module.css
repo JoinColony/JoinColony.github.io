@@ -1,0 +1,25 @@
+
+.main {
+  margin: 190px auto 120px;
+  max-width: var(--row-width-desktop);
+}
+
+.introContainer {
+  text-align: center;
+}
+
+.itemList {
+  margin-top: 100px;
+}
+
+.item + .item {
+  margin-top: 90px;
+}
+
+.link {
+  color: var(--blue-1);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
