@@ -16,7 +16,7 @@ type Appearance = {|
   theme?: 'primary' | 'primaryHollow' | 'callToAction' | 'reset',
   borderRadius?: 'none' | 'medium',
   color?: 'blue' | 'grey' | 'red' | 'white',
-  font?: 'small',
+  font?: 'tiny' | 'small',
   hover?: 'disablePrimary',
   padding?: 'small' | 'large' | 'huge',
   size?: 'medium' | 'large' | 'stretch',

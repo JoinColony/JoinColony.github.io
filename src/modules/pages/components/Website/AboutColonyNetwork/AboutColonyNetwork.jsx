@@ -24,7 +24,11 @@ const AboutColonyNetwork = () => {
   `);
   return (
     <WebsiteLayout
-      headerAppearance={{ theme: 'transparent', navTheme: 'dark' }}
+      headerAppearance={{
+        logoTheme: 'light',
+        navTheme: 'dark',
+        theme: 'transparent',
+      }}
     >
       <Hero project={project} />
       <FeatureGrid />
