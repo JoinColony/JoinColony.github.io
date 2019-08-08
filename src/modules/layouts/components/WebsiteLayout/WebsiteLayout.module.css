@@ -1,6 +1,9 @@
+@value mediumUp from '~styles/breakpoints.css';
 
-.transparentNav {
-  position: absolute;
-  width: 100%;
-  z-index: 100;
+@media (mediumUp) {
+  .transparentNav {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+  }
 }

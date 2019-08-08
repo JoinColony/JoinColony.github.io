@@ -12,7 +12,13 @@ import Roadmap from './Roadmap';
 const displayName = 'pages.Website.ProductDapp';
 
 const ProductDapp = () => (
-  <WebsiteLayout headerAppearance={{ navTheme: 'dark', theme: 'transparent' }}>
+  <WebsiteLayout
+    headerAppearance={{
+      logoTheme: 'light',
+      navTheme: 'dark',
+      theme: 'transparent',
+    }}
+  >
     <Hero />
     <Hub />
     <TokenSupport />
