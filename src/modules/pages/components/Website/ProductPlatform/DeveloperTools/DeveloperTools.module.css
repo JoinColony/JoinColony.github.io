@@ -29,7 +29,9 @@
   border-right: none;
   border-top: none;
   padding: 7px 0 7px 25px;
-  font-size: 22px;
+  font-family: 'Avenir Next Demi';
+  font-size: 20px;
+  line-height: 30px;
   text-align: left;
   width: 100%;
   white-space: nowrap;
