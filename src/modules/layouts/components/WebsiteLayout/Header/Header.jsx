@@ -7,11 +7,13 @@ import React, {
   useLayoutEffect,
   useState,
 } from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
+import Button from '~core/Button';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
+import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
   COLONY_DISCOURSE,
@@ -36,6 +38,10 @@ import NavDropdownParent from './NavDropdownParent.jsx';
 import styles from './Header.module.css';
 
 const MSG = defineMessages({
+  navAriaLabel: {
+    id: 'layouts.WebsiteLayout.Header.navAriaLabel',
+    defaultMessage: 'Main Navigation',
+  },
   navLinkProducts: {
     id: 'layouts.WebsiteLayout.Header.navLinkProducts',
     defaultMessage: 'Products',
@@ -51,6 +57,10 @@ const MSG = defineMessages({
   navLinkEarlyAccess: {
     id: 'layouts.WebsiteLayout.Header.navLinkEarlyAccess',
     defaultMessage: 'Get early access',
+  },
+  navLinkNewsletter: {
+    id: 'layouts.WebsiteLayout.Header.navLinkNewsletter',
+    defaultMessage: 'Newsletter',
   },
   dropdownLinkBodyAboutColonyNetwork: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutColonyNetwork',
@@ -134,8 +144,16 @@ const MSG = defineMessages({
 
 const displayName = 'layouts.WebsiteLayout.Header';
 
-const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
+const Header = ({
+  appearance: appearanceProp,
+  intl: { formatMessage },
+  showOnScrollHeight,
+}: Props) => {
+  // Mobile nav state
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  // Scrolled nav state
   const [showScrolledNav, setShowScrolledNav] = useState(false);
+
   const { headerHeight } = useContext(ThemeContext);
 
   const isShowOnScrollEnabled = typeof showOnScrollHeight !== 'undefined';
@@ -185,99 +203,131 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
     ? ({ logoTheme: 'dark', theme: 'scrolled' }: Appearance)
     : appearanceProp;
 
-  const logoName =
-    appearance && appearance.logoTheme === 'dark'
-      ? 'colony_logo_horizontal_navy'
-      : 'colony_logo_horizontal_white';
+  const navAriaLabel = formatMessage(MSG.navAriaLabel);
 
   return (
     <div className={getMainClasses(appearance, styles)}>
-      <div className={styles.navigationContainer}>
-        <div>
-          <Link href={PAGE_INDEX}>
-            <Icon
-              className={styles.logo}
-              name={logoName}
-              title="Colony"
-              viewBox="0 0 134 33"
+      <div className={styles.wrapper}>
+        <div className={styles.navigationContainer}>
+          <div className={styles.leftWrapper}>
+            <Link href={PAGE_INDEX}>
+              <Icon
+                className={styles.logo}
+                name="colony_logo_horizontal"
+                title="Colony"
+                viewBox="0 0 134 33"
+              />
+            </Link>
+          </div>
+          <div aria-expanded={isNavOpen} className={styles.navContainer}>
+            <nav
+              aria-label={navAriaLabel}
+              className={styles.navigation}
+              role="navigation"
+            >
+              <NavDropdownParent
+                className={`${styles.navDropdownParent} ${styles.navLink}`}
+                image={withPrefix('img/nav_products.png')}
+                navItems={[
+                  {
+                    body: MSG.dropdownLinkBodyProductsDapp,
+                    href: PAGE_PRODUCT_DAPP,
+                    title: MSG.dropdownLinkTitleProductsDapp,
+                  },
+                  {
+                    body: MSG.dropdownLinkBodyProductsPlatform,
+                    href: PAGE_PRODUCT_PLATFORM,
+                    title: MSG.dropdownLinkTitleProductsPlatform,
+                  },
+                ]}
+                text={MSG.navLinkProducts}
+              />
+              <NavDropdownParent
+                className={`${styles.navDropdownParent} ${styles.navLink}`}
+                image={withPrefix('img/nav_developers.png')}
+                navItems={[
+                  {
+                    body: MSG.dropdownLinkBodyDevPortal,
+                    href: PAGE_DEV_DOCS,
+                    title: MSG.dropdownLinkTitleDevPortal,
+                  },
+                  {
+                    body: MSG.dropdownLinkBodyDevTutorials,
+                    href: PAGE_DEV_TUTORIALS,
+                    title: MSG.dropdownLinkTitleDevTutorials,
+                  },
+                  {
+                    body: MSG.dropdownLinkBodyDevDiscourse,
+                    href: COLONY_DISCOURSE,
+                    title: MSG.dropdownLinkTitleDevDiscourse,
+                  },
+                  {
+                    body: MSG.dropdownLinkBodyDevGetStarted,
+                    href: DOCS_COLONY_JS_GET_STARTED,
+                    title: MSG.dropdownLinkTitleDevGetStarted,
+                  },
+                ]}
+                text={MSG.navLinkDevelopers}
+              />
+              <NavDropdownParent
+                className={`${styles.navDropdownParent} ${styles.navLink}`}
+                image={withPrefix('img/nav_about.png')}
+                navItems={[
+                  {
+                    body: MSG.dropdownLinkBodyAboutColonyNetwork,
+                    href: PAGE_ABOUT_COLONY_NETWORK,
+                    title: MSG.dropdownLinkTitleAboutColonyNetwork,
+                  },
+                  {
+                    body: MSG.dropdownLinkBodyAboutMetacolony,
+                    href: PAGE_ABOUT_METACOLONY,
+                    title: MSG.dropdownLinkTitleAboutMetacolony,
+                  },
+                  {
+                    body: MSG.dropdownLinkBodyAboutVision,
+                    href: PAGE_ABOUT_VISION,
+                    title: MSG.dropdownLinkTitleAboutVision,
+                  },
+                ]}
+                text={MSG.navLinkAbout}
+              />
+              <Link
+                activeClassName={styles.active}
+                className={styles.navLinkAlt}
+                href={PAGE_GET_EARLY_ACCESS}
+                text={MSG.navLinkEarlyAccess}
+              />
+              <div className={styles.mobileButtons}>
+                <Button
+                  appearance={{
+                    borderRadius: 'none',
+                    font: 'tiny',
+                    theme: 'primaryHollow',
+                  }}
+                  className={styles.mobileButton}
+                  linkTo={PAGE_GET_EARLY_ACCESS}
+                  text={MSG.navLinkEarlyAccess}
+                />
+                <Button
+                  appearance={{
+                    borderRadius: 'none',
+                    font: 'tiny',
+                    theme: 'primary',
+                  }}
+                  className={styles.mobileButton}
+                  linkTo={PAGE_GET_EARLY_ACCESS}
+                  text={MSG.navLinkNewsletter}
+                />
+              </div>
+            </nav>
+          </div>
+          <div className={styles.navToggle}>
+            <NavigationToggle
+              appearance={{ hideAtSize: 'medium' }}
+              isNavOpen={isNavOpen}
+              onClick={() => setIsNavOpen(!isNavOpen)}
             />
-          </Link>
-        </div>
-        <div>
-          <nav>
-            <NavDropdownParent
-              className={`${styles.navDropdownParent} ${styles.navLink}`}
-              image={withPrefix('img/nav_products.png')}
-              navItems={[
-                {
-                  body: MSG.dropdownLinkBodyProductsDapp,
-                  href: PAGE_PRODUCT_DAPP,
-                  title: MSG.dropdownLinkTitleProductsDapp,
-                },
-                {
-                  body: MSG.dropdownLinkBodyProductsPlatform,
-                  href: PAGE_PRODUCT_PLATFORM,
-                  title: MSG.dropdownLinkTitleProductsPlatform,
-                },
-              ]}
-              text={MSG.navLinkProducts}
-            />
-            <NavDropdownParent
-              className={`${styles.navDropdownParent} ${styles.navLink}`}
-              image={withPrefix('img/nav_developers.png')}
-              navItems={[
-                {
-                  body: MSG.dropdownLinkBodyDevPortal,
-                  href: PAGE_DEV_DOCS,
-                  title: MSG.dropdownLinkTitleDevPortal,
-                },
-                {
-                  body: MSG.dropdownLinkBodyDevTutorials,
-                  href: PAGE_DEV_TUTORIALS,
-                  title: MSG.dropdownLinkTitleDevTutorials,
-                },
-                {
-                  body: MSG.dropdownLinkBodyDevDiscourse,
-                  href: COLONY_DISCOURSE,
-                  title: MSG.dropdownLinkTitleDevDiscourse,
-                },
-                {
-                  body: MSG.dropdownLinkBodyDevGetStarted,
-                  href: DOCS_COLONY_JS_GET_STARTED,
-                  title: MSG.dropdownLinkTitleDevGetStarted,
-                },
-              ]}
-              text={MSG.navLinkDevelopers}
-            />
-            <NavDropdownParent
-              className={`${styles.navDropdownParent} ${styles.navLink}`}
-              image={withPrefix('img/nav_about.png')}
-              navItems={[
-                {
-                  body: MSG.dropdownLinkBodyAboutColonyNetwork,
-                  href: PAGE_ABOUT_COLONY_NETWORK,
-                  title: MSG.dropdownLinkTitleAboutColonyNetwork,
-                },
-                {
-                  body: MSG.dropdownLinkBodyAboutMetacolony,
-                  href: PAGE_ABOUT_METACOLONY,
-                  title: MSG.dropdownLinkTitleAboutMetacolony,
-                },
-                {
-                  body: MSG.dropdownLinkBodyAboutVision,
-                  href: PAGE_ABOUT_VISION,
-                  title: MSG.dropdownLinkTitleAboutVision,
-                },
-              ]}
-              text={MSG.navLinkAbout}
-            />
-            <Link
-              activeClassName={styles.active}
-              className={styles.navLinkAlt}
-              href={PAGE_GET_EARLY_ACCESS}
-              text={MSG.navLinkEarlyAccess}
-            />
-          </nav>
+          </div>
         </div>
       </div>
     </div>
@@ -286,4 +336,4 @@ const Header = ({ appearance: appearanceProp, showOnScrollHeight }: Props) => {
 
 Header.displayName = displayName;
 
-export default Header;
+export default injectIntl(Header);

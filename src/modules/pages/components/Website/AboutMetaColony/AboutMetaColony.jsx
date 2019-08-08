@@ -12,7 +12,13 @@ import Team from './Team';
 const displayName = 'pages.Website.AboutMetaColony';
 
 const AboutMetaColony = () => (
-  <WebsiteLayout headerAppearance={{ navTheme: 'dark', theme: 'transparent' }}>
+  <WebsiteLayout
+    headerAppearance={{
+      logoTheme: 'light',
+      navTheme: 'dark',
+      theme: 'transparent',
+    }}
+  >
     <Hero />
     <Econ />
     <CLNY />

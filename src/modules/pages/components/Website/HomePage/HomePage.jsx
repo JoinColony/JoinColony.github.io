@@ -15,7 +15,9 @@ import Vision from './Vision';
 const displayName = 'pages.Website.HomePage';
 
 const HomePage = () => (
-  <WebsiteLayout headerAppearance={{ theme: 'transparent' }}>
+  <WebsiteLayout
+    headerAppearance={{ logoTheme: 'light', theme: 'transparent' }}
+  >
     <Hero />
     <TLDR />
     <Products />

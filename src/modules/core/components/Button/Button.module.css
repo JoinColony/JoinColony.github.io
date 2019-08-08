@@ -115,6 +115,11 @@
 
 /* Font */
 
+.fontTiny,
+.fontTiny:disabled {
+  font-size: var(--size-extraSmall);
+}
+
 .fontSmall,
 .fontSmall:disabled {
   font-size: 16px;

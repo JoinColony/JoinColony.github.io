@@ -1,0 +1,28 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.main {
+  height: 0;
+  visibility: hidden;
+}
+
+.main[aria-expanded="true"] {
+  height: auto;
+  visibility: visible;
+}
+
+.content {
+  background-color: var(--grey-3);
+  padding-left: var(--gutter-width-mobile);
+}
+
+.dropdownLink {
+  color: var(--navy);
+  display: block;
+}
+
+@media (mediumUp) {
+  .main {
+    display: none;
+  }
+}
