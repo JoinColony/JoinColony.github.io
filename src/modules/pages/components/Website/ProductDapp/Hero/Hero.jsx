@@ -81,7 +81,7 @@ const Hero = () => {
             appearance={{
               size: 'large',
               theme: 'primary',
-              weight: 'bold',
+              weight: 'medium',
             }}
             text={MSG.subTitle}
           />
