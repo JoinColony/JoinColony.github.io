@@ -86,7 +86,10 @@ const LookGood = () => (
   <div className={styles.main}>
     <div className={styles.innerContent}>
       <div className={styles.contentContainer}>
-        <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
+        <Heading
+          appearance={{ theme: 'dark', weight: 'bold' }}
+          text={MSG.title}
+        />
         <Paragraph text={MSG.body} />
       </div>
       <div className={styles.badgeGroups}>
