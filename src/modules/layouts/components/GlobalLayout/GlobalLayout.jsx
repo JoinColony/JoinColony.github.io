@@ -11,6 +11,7 @@ import enLocaleData from 'react-intl/locale-data/en';
 import { graphql, useStaticQuery, withPrefix } from 'gatsby';
 
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
+import '../../../../styles/variables.css';
 
 import FileContext from '~context/FileContext';
 import { CONFIGURED_LOCALES, DEFAULT_LOCALE } from '~i18nConfig';

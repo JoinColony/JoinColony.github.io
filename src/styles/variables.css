@@ -18,6 +18,10 @@
 
   /* containers */
   --row-width-desktop: 1170px;
+  
+  /* Gutters */
+  --gutter-width: calc((100vw - var(--row-width-desktop)) / 2);
+  --gutter-width-narrow: calc((100vw - 970px) / 2);
 
   /* font-sizes */
   --size-extraSmall: 12px;

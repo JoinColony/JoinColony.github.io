@@ -1,0 +1,103 @@
+@value gridItemPaddingHorizontal: 72px;
+@value gridItemPaddingVertical: 50px;
+
+.main {
+  padding: 180px 0 230px 0;
+}
+
+.introContent {
+  margin: 0 auto;
+  max-width: 970px;
+}
+
+.dynamicContent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 75px;
+}
+
+.contentMenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.baseButtonStyles {
+  /* Intended for composition only. Do not use this class directly. */
+  background-color: transparent;
+  border-left-width: 4px;
+  border-bottom: none;
+  border-right: none;
+  border-top: none;
+  padding: 7px 0 7px 25px;
+  font-size: 22px;
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.baseButtonStyles + .baseButtonStyles {
+  margin-top: 30px;
+}
+
+.baseButtonStyles:focus {
+  outline: none;
+}
+
+.activeItem {
+  composes: baseButtonStyles;
+  border-left-color: var(--blue-1);
+  color: var(--blue-1);
+}
+
+.menuItem {
+  composes: baseButtonStyles;
+  border-left-color: var(--grey-2);
+  color: var(--grey-2);
+  cursor: pointer;
+}
+
+.body {
+  flex: 0 0 48%;
+}
+
+.gridWrapper {
+  margin: 190px auto 0;
+  max-width: var(--row-width-desktop);
+}
+
+.gridRow {
+  display: flex;
+  flex-wrap: wrap;
+  /* Negative margins for properly aligning wrapping grid */
+  margin: calc(-1 * gridItemPaddingVertical) calc(-1 * gridItemPaddingHorizontal);
+}
+
+.gridItem {
+  display: flex;
+  flex: 0 0 30%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: gridItemPaddingVertical gridItemPaddingHorizontal;
+}
+
+.itemImageContainer {
+  margin-bottom: 35px;
+}
+
+.itemImage svg {
+  fill: var(--navy);
+  height: 64px;
+}
+
+.itemLinks a {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+.itemLinks a + a {
+  margin-left: 35px;
+}
+
+.itemLinks a:hover {
+  text-decoration: underline;
+}

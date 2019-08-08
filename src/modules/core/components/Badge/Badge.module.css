@@ -1,0 +1,28 @@
+
+.baseStyles {
+  /* This class intended for composition only. Do not use directly. */
+  border-radius: 24px;
+  color: var(--navy);
+  display: inline-block;
+  font-family: 'Avenir Next Demi';
+  font-size: var(--size-normal);
+  padding: 7px 19px;
+}
+
+/* Themes */
+
+.themePrimary {
+  composes: baseStyles;
+  background-color: var(--blue-3);
+}
+
+.themeSecondary {
+  composes: baseStyles;
+  background-color: var(--pink-2);
+}
+
+/* Main */
+
+.main {
+  composes: themePrimary;
+}

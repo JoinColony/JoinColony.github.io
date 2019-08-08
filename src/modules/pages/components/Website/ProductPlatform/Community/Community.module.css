@@ -1,0 +1,30 @@
+
+.main {
+  display: flex;
+}
+
+.image {
+  background-color: var(--navy);
+  background-image: url('/img/community.png');
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex: 0 0 42%;
+}
+
+.contentContainer {
+  background-color: var(--navy);
+  padding: 120px var(--gutter-width-narrow) 120px 130px;
+}
+
+.body {
+  margin-top: 70px;
+}
+
+.section + .section {
+  margin-top: 45px;
+}
+
+.sectionBody {
+  margin-top: 15px;
+}

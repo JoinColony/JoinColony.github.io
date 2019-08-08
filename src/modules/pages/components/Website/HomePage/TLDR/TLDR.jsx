@@ -31,12 +31,6 @@ const MSG = defineMessages({
 
 const displayName = 'pages.Website.HomePage.TLDR';
 
-const colHeadingAppearance = {
-  size: 'mediumLarge',
-  theme: 'dark',
-  weight: 'medium',
-};
-
 const TLDR = () => (
   <div className={styles.main}>
     <div className={styles.row}>
