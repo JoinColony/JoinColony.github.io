@@ -59,7 +59,7 @@
 }
 
 .body {
-  flex: 0 0 48%;
+  flex: 0 0 58%;
 }
 
 .gridWrapper {
@@ -80,6 +80,10 @@
   flex-direction: column;
   justify-content: space-between;
   padding: gridItemPaddingVertical gridItemPaddingHorizontal;
+}
+
+.itemHeading {
+  display: inline-block;
 }
 
 .itemImageContainer {
