@@ -95,6 +95,10 @@
   height: 64px;
 }
 
+.itemImage svg:hover {
+  fill: var(--grey-1);
+}
+
 .itemLinks a {
   color: var(--blue-1);
   font-size: var(--size-normal);
