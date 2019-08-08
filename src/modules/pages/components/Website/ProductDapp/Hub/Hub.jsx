@@ -84,7 +84,7 @@ const IMAGE_MAP = {
   topic1: withPrefix('/img/screencap_contributions.png'),
   topic2: withPrefix('/img/screenshot_trackRep_1.png'),
   topic3: withPrefix('/img/colony_logomark_circle.png'),
-  topic4: withPrefix('/img/screencap_colonyHome.png'),
+  topic4: withPrefix('/img/screencap_ColonyHome.png'),
 };
 
 const THUMBNAIL_MAP = {
