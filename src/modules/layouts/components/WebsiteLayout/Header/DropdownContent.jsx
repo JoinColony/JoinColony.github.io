@@ -28,7 +28,7 @@ const DropdownContent = ({ image, navItems, parentLinkText }: Props) => (
     </div>
     <div className={styles.contentContainer}>
       {navItems.map(({ body, href, title }) => (
-        <div className={styles.navItem}>
+        <div className={styles.navItem} key={href}>
           <Link className={styles.itemLink} href={href}>
             <div className={styles.navItemContainer}>
               <Heading

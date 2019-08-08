@@ -7,7 +7,7 @@
 
 .introContent {
   margin: 0 auto;
-  max-width: 970px;
+  max-width: var(--row-width-desktop-narrow);
 }
 
 .dynamicContent {
