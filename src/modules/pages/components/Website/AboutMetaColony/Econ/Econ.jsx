@@ -1,11 +1,12 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Paragraph from '~core/Paragraph';
 
 import styles from './Econ.module.css';
 
@@ -50,9 +51,10 @@ const Econ = () => (
         text={MSG.title}
       />
       <div className={styles.introText}>
-        <p>
-          <FormattedMessage {...MSG.introText} />
-        </p>
+        <Paragraph
+          appearance={{ margin: 'none', size: 'medium' }}
+          text={MSG.introText}
+        />
       </div>
       <Image
         alt={MSG.title}
@@ -61,19 +63,13 @@ const Econ = () => (
       />
       <div className={styles.gridContainer}>
         <div className={styles.gridItem}>
-          <p>
-            <FormattedMessage {...MSG.feeTextOne} />
-          </p>
+          <Paragraph text={MSG.feeTextOne} />
         </div>
         <div className={styles.gridItem}>
-          <p>
-            <FormattedMessage {...MSG.feeTextTwo} />
-          </p>
+          <Paragraph text={MSG.feeTextTwo} />
         </div>
         <div className={styles.gridItem}>
-          <p>
-            <FormattedMessage {...MSG.feeTextThree} />
-          </p>
+          <Paragraph text={MSG.feeTextThree} />
         </div>
       </div>
     </div>

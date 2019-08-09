@@ -43,12 +43,6 @@
   margin-top: 50px;
 }
 
-.body p {
-  color: var(--text-blue);
-  font-size: var(--size-medium);
-  margin-bottom: 0;
-}
-
 .subTitleContainer {
   background-color: var(--pink-2);
   padding-left: var(--gutter-width);
@@ -56,12 +50,7 @@
 }
 
 .subBodyContainer {
-  color: var(--text-blue);
-  font-size: var(--size-normal);
   padding-left: 144px;
   padding-right: var(--gutter-width);
 }
 
-.subBodyContainer p {
-  margin-bottom: 0;
-}
