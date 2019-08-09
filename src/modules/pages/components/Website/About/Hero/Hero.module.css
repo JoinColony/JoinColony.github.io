@@ -13,7 +13,5 @@
 }
 
 .body {
-  color: var(--text-blue);
-  font-size: var(--text-normal);
   margin: 55px 0 0;
 }

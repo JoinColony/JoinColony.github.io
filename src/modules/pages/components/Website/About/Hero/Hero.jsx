@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Announcement from '~core/Announcement';
 import Heading from '~core/Heading';
+import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 
 import HeroImage from './HeroImage';
@@ -49,9 +50,9 @@ const Hero = () => {
             <Heading appearance={{ margin: 'none', theme: 'dark' }}>
               <FormattedMessage {...MSG.title} values={{ br: <br /> }} />
             </Heading>
-            <p className={styles.body}>
-              <FormattedMessage {...MSG.body} values={{ br: <br /> }} />
-            </p>
+            <div className={styles.body}>
+              <Paragraph text={MSG.body} />
+            </div>
           </div>
         </div>
         <HeroImage />
