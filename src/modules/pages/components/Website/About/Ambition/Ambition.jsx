@@ -1,10 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import { PAGE_PRODUCT_PLATFORM } from '~routes';
 
 import styles from './Ambition.module.css';
@@ -54,20 +55,19 @@ const Ambition = () => (
       />
       <div className={styles.body}>
         <div className={styles.bodyColumn}>
-          <p>
-            <FormattedMessage {...MSG.bodyLeft} />
-          </p>
+          <Paragraph
+            appearance={{ margin: 'none', theme: 'lightBlue' }}
+            text={MSG.bodyLeft}
+          />
         </div>
         <div className={styles.bodyColumn}>
-          <p>
-            <FormattedMessage
-              {...MSG.bodyRight}
-              values={{
-                br: <br />,
-                link: <Link href={PAGE_PRODUCT_PLATFORM} text={MSG.linkText} />,
-              }}
-            />
-          </p>
+          <Paragraph
+            appearance={{ margin: 'none', theme: 'lightBlue' }}
+            text={MSG.bodyRight}
+            textValues={{
+              link: <Link href={PAGE_PRODUCT_PLATFORM} text={MSG.linkText} />,
+            }}
+          />
         </div>
       </div>
     </div>
