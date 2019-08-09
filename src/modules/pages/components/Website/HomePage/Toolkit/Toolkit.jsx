@@ -118,7 +118,7 @@ const Toolkit = () => (
           </div>
           <div className={styles.gridContainer}>
             {TOPIC_ORDER.map(topic => (
-              <div className={styles.gridItem}>
+              <div className={styles.gridItem} key={topic}>
                 <Image
                   alt={MSG[`heading${topic}`]}
                   className={styles.gridItemImage}
