@@ -3,18 +3,12 @@
   padding: 170px 0 90px;
 }
 
-.main p {
-  color: var(--text-blue);
-  margin: 0;
-}
-
 .contentContainer {
   margin: 0 auto;
   max-width: var(--row-width-desktop);
 }
 
 .introText {
-  font-size: var(--size-medium);
   width: 55%;
 }
 
@@ -29,8 +23,4 @@
 
 .gridItem {
   flex: 0 0 29%;
-}
-
-.gridItem p {
-  font-size: var(--size-normal);
 }
