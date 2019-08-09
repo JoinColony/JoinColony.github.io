@@ -12,7 +12,7 @@ import styles from './Paragraph.module.css';
 
 type Appearance = {|
   theme?: 'invert' | 'grey' | 'lightBlue',
-  size?: 'small' | 'normal' | 'medium',
+  size?: 'small' | 'normal' | 'medium' | 'large',
 |};
 
 type Props = {|
