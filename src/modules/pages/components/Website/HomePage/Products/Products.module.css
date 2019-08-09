@@ -37,23 +37,24 @@
 
 .controlItem.active .controlItemInner {
   background-color: var(--blue-1);
-  color: var(--colony-white);
 }
 
 .controlItem.active .controlItemInner a,
+.controlItem.active .controlItemInner p,
 .controlItem.active .controlItemInner .controlHeading {
   color: var(--colony-white);
 }
 
 .controlItemInner {
-  color: var(--grey-2);
   height: 100%;
   padding: 56px 70px;
   text-align: left;
 }
 
 .controlItemInner a,
-.controlItemInner .controlHeading {
+.controlItemInner p,
+.controlItemInner .controlHeading,
+.controlItemInner {
   color: var(--grey-2);
 }
 

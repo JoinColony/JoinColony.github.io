@@ -8,6 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 import {
   PAGE_DEV_DOCS,
@@ -102,7 +103,7 @@ const Products = () => {
                 text={MSG.controlTitleDevelopers}
               />
               <div className={styles.body}>
-                <FormattedMessage {...MSG.controlBodyDevelopers} />
+                <Paragraph text={MSG.controlBodyDevelopers} />
                 <div className={styles.controlLink}>
                   {isCurrentSlide(0) ? (
                     <Link
@@ -135,7 +136,7 @@ const Products = () => {
                 text={MSG.controlTitleHumans}
               />
               <div className={styles.body}>
-                <FormattedMessage {...MSG.controlBodyHumans} />
+                <Paragraph text={MSG.controlBodyHumans} />
                 <div className={styles.controlLink}>
                   {isCurrentSlide(1) ? (
                     <Link
