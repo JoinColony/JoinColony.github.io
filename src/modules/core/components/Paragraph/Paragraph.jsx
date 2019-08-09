@@ -12,6 +12,7 @@ import styles from './Paragraph.module.css';
 
 type Appearance = {|
   theme?: 'invert' | 'grey' | 'lightBlue',
+  margin?: 'none',
   size?: 'small' | 'normal' | 'medium' | 'large',
 |};
 

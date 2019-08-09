@@ -1,11 +1,12 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Paragraph from '~core/Paragraph';
 
 import styles from './FeatureGrid.module.css';
 
@@ -136,11 +137,10 @@ const FeatureGrid = () => (
             }}
             text={MSG[`title${topic}`]}
           />
-          <div className={styles.body}>
-            <p>
-              <FormattedMessage {...MSG[`body${topic}`]} />
-            </p>
-          </div>
+          <Paragraph
+            appearance={{ margin: 'none' }}
+            text={MSG[`body${topic}`]}
+          />
         </div>
       ))}
     </div>

@@ -3,9 +3,10 @@
 import type { MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
+import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 
 import styles from './BuiltOn.module.css';
@@ -76,9 +77,7 @@ const GridItem = ({
       text={title}
     />
     <div className={styles.gridItemBody}>
-      <p>
-        <FormattedMessage {...body} />
-      </p>
+      <Paragraph text={body} />
     </div>
   </div>
 );
