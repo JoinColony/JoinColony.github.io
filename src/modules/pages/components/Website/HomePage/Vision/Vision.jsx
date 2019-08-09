@@ -8,6 +8,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Input from '~core/Input';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import { PAGE_ABOUT_VISION } from '~routes';
 
 import styles from './Vision.module.css';
@@ -64,9 +65,7 @@ const Vision = () => {
           <Heading appearance={{ theme: 'dark' }}>
             <FormattedMessage {...MSG.title} values={{ br: <br /> }} />
           </Heading>
-          <p className={styles.body}>
-            <FormattedMessage {...MSG.body} />
-          </p>
+          <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
           <div className={styles.input}>
             <Input
               id={`${displayName}.slider`}

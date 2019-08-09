@@ -1,9 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
+import Paragraph from '~core/Paragraph';
 
 import styles from './TLDR.module.css';
 
@@ -42,19 +43,13 @@ const TLDR = () => (
       </div>
       <div className={styles.cols}>
         <div className={styles.colItem}>
-          <p>
-            <FormattedMessage {...MSG.textOne} />
-          </p>
+          <Paragraph appearance={{ size: 'medium' }} text={MSG.textOne} />
         </div>
         <div className={styles.colItem}>
-          <p>
-            <FormattedMessage {...MSG.textTwo} />
-          </p>
+          <Paragraph appearance={{ size: 'medium' }} text={MSG.textTwo} />
         </div>
         <div className={styles.colItem}>
-          <p>
-            <FormattedMessage {...MSG.textThree} />
-          </p>
+          <Paragraph appearance={{ size: 'medium' }} text={MSG.textThree} />
         </div>
       </div>
     </div>

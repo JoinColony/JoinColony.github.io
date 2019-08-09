@@ -1,10 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
@@ -132,9 +133,7 @@ const Toolkit = () => (
                   }}
                   text={MSG[`heading${topic}`]}
                 />
-                <p className={styles.gridItemBodyText}>
-                  <FormattedMessage {...MSG[`body${topic}`]} />
-                </p>
+                <Paragraph text={MSG[`body${topic}`]} />
               </div>
             ))}
           </div>
