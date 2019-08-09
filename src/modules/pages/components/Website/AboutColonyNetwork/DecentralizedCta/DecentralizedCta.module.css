@@ -1,10 +1,4 @@
 
-.body {
-  color: var(--text-blue);
-  font-size: var(--size-medium);
-  margin-bottom: 0;
-}
-
 .link {
   color: var(--blue-1);
   font-size: var(--size-normal);

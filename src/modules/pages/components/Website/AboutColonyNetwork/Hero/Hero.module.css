@@ -48,10 +48,6 @@
   margin-top: 50px;
 }
 
-.body p {
-  margin-bottom: 0;
-}
-
 .subTitleContainer {
   background-color: var(--blue-3);
   padding-left: var(--gutter-width);
@@ -60,11 +56,5 @@
 }
 
 .subBodyContainer {
-  color: var(--text-blue);
-  font-size: var(--size-medium);
   padding: 103px var(--gutter-width) 45px 144px;
-}
-
-.subBodyContainer p {
-  margin-bottom: 0;
 }

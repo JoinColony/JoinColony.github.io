@@ -1,10 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import BlockCta from '~parts/BlockCta';
 import { PAGE_ABOUT_METACOLONY } from '~routes';
 
@@ -41,11 +42,11 @@ const DecentralizedCta = () => (
       <Heading appearance={{ theme: 'invert' }} text={MSG.title} />
     }
     rightBlockChildren={
-      <p className={styles.body}>
-        <FormattedMessage
-          {...MSG.body}
-          values={{
-            br: <br />,
+      <>
+        <Paragraph
+          appearance={{ margin: 'none', size: 'medium' }}
+          text={MSG.body}
+          textValues={{
             link: (
               <Link
                 className={styles.link}
@@ -55,7 +56,7 @@ const DecentralizedCta = () => (
             ),
           }}
         />
-      </p>
+      </>
     }
   />
 );

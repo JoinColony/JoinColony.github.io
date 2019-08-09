@@ -8,6 +8,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 import { COLONY_DISCOURSE, COLONY_GITHUB_BUDGETBOX } from '~routes';
 
@@ -82,9 +83,7 @@ const SubItem = ({
     >
       <FormattedMessage {...title} values={{ br: <br /> }} />
     </Heading>
-    <p>
-      <FormattedMessage {...body} />
-    </p>
+    <Paragraph text={body} />
   </div>
 );
 
@@ -99,9 +98,7 @@ const Modules = () => (
           text={MSG.title}
         />
         <div className={styles.titleBody}>
-          <p>
-            <FormattedMessage {...MSG.body} />
-          </p>
+          <Paragraph appearance={{ theme: 'invert' }} text={MSG.body} />
         </div>
       </div>
       <div className={styles.featureContent}>
@@ -115,9 +112,10 @@ const Modules = () => (
           text="BudgetBox*"
         />
         <div className={styles.featureBody}>
-          <p>
-            <FormattedMessage {...MSG.bodyBudgetBox} />
-          </p>
+          <Paragraph
+            appearance={{ theme: 'invert' }}
+            text={MSG.bodyBudgetBox}
+          />
         </div>
         <Link
           className={styles.featureContentHover}
