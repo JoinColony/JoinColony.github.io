@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import Image from '~core/Image';
 
@@ -20,7 +21,7 @@ const SlideDevelopers = () => (
   <div className={styles.main}>
     <Image
       className={styles.image}
-      src="/img/code_colonyJS_grey.png"
+      src={withPrefix('/img/screenshot_codeEditor.png')}
       alt={MSG.imageAlt}
     />
   </div>
