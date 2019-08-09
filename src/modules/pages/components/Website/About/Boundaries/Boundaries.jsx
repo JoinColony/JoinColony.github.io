@@ -1,9 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
+import Paragraph from '~core/Paragraph';
 
 import styles from './Boundaries.module.css';
 
@@ -41,9 +42,7 @@ const Boundaries = () => (
         text={MSG.title}
       />
       <div className={styles.body}>
-        <p>
-          <FormattedMessage {...MSG.body} values={{ br: <br /> }} />
-        </p>
+        <Paragraph text={MSG.body} />
       </div>
     </div>
   </div>
