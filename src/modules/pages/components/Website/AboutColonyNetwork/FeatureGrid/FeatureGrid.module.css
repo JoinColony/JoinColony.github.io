@@ -19,12 +19,3 @@
 .image {
   height: 80px;
 }
-
-.body {
-  color: var(--text-blue);
-  font-size: var(--size-normal);
-}
-
-.body p {
-  margin-bottom: 0;
-}
