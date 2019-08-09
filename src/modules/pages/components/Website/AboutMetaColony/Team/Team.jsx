@@ -7,6 +7,7 @@ import { withPrefix } from 'gatsby';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Paragraph from '~core/Paragraph';
 import { COLONY_GITTER } from '~routes';
 
 import styles from './Team.module.css';
@@ -57,9 +58,10 @@ const Team = () => (
           />
         </Heading>
         <div className={styles.body}>
-          <p>
-            <FormattedMessage {...MSG.body} />
-          </p>
+          <Paragraph
+            appearance={{ margin: 'none', size: 'medium' }}
+            text={MSG.body}
+          />
         </div>
       </div>
       <div className={styles.rightCol}>

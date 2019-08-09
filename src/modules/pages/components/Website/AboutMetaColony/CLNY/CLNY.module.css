@@ -19,10 +19,6 @@
   flex: 0 0 35%;
 }
 
-.introText p {
-  font-size: var(--size-medium);
-}
-
 .contentGridContainer {
   flex: 0 0 50%;
   font-size: var(--size-normal);
