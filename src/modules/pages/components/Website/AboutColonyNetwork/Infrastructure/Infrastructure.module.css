@@ -10,11 +10,6 @@
   width: 50%;
 }
 
-.introContentBody p {
-  color: var(--text-blue);
-  font-size: var(--size-medium);
-}
-
 .gridContainer {
   display: flex;
   margin: 0 calc(-1 * horizontalPadding);
@@ -23,11 +18,6 @@
 .gridItem {
   flex: 0 0 calc(100% / 3);
   padding: 55px horizontalPadding 0;
-}
-
-.gridItem p {
-  color: var(--text-blue);
-  font-size: var(--size-normal);
 }
 
 .gridItemImage {
