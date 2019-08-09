@@ -7,6 +7,7 @@ import GhostContentAPI from '@tryghost/content-api';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import NewsletterCta from '~parts/NewsletterCta';
 
 import styles from './Blog.module.css';
@@ -78,9 +79,7 @@ const Blog = () => {
                       }}
                       text={title}
                     />
-                    {excerptText && (
-                      <p className={styles.excerpt}>{excerptText}</p>
-                    )}
+                    {excerptText && <Paragraph text={excerptText} />}
                   </div>
                   <div className={styles.postLink}>
                     <Link
