@@ -3,11 +3,11 @@
 import type { MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 
 import type { DropdownNavItem } from './types';
 
@@ -41,9 +41,10 @@ const DropdownContent = ({ image, navItems, parentLinkText }: Props) => (
                 text={title}
               />
               <div className={styles.itemBody}>
-                <p>
-                  <FormattedMessage {...body} />
-                </p>
+                <Paragraph
+                  appearance={{ margin: 'none', size: 'extraSmall' }}
+                  text={body}
+                />
               </div>
             </div>
           </Link>
