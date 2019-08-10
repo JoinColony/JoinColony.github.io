@@ -52,6 +52,7 @@
 
 .menuItem {
   composes: menuItemBase;
+  background: none;
   color: var(--navy);
   cursor: pointer;
 }
