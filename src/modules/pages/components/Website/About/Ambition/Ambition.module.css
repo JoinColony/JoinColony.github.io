@@ -15,9 +15,7 @@
 }
 
 .body {
-  color: var(--blue-2);
   display: flex;
-  font-size: var(--size-normal);
   justify-content: space-between;
   margin-top: 70px;
 }
@@ -28,10 +26,6 @@
 
 .body a:hover {
   text-decoration: underline;
-}
-
-.body p {
-  margin-bottom: 0;
 }
 
 .bodyColumn {
