@@ -9,9 +9,7 @@
 }
 
 .body {
-  color: var(--text-blue);
   display: flex;
-  font-size: var(--size-normal);
   justify-content: space-between;
   margin-top: 35px;
 }

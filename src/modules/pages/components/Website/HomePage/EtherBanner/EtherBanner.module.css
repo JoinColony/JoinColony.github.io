@@ -9,11 +9,6 @@
   height: 270px;
 }
 
-.rightBlockBody {
-  color: var(--text-blue);
-  font-size: var(--size-medium);
-}
-
 .rightBlockLink {
   color: var(--blue-1);
   font-size: var(--size-normal);
