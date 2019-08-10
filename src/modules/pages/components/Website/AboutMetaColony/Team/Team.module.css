@@ -26,11 +26,6 @@
   margin-top: 55px;
 }
 
-.body p {
-  color: var(--text-blue);
-  margin-bottom: 0;
-}
-
 .rightCol {
   align-items: center;
   background-color: var(--pink-2);
