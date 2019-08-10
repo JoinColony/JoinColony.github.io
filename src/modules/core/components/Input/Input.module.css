@@ -15,7 +15,7 @@
 .main[type="range"] {
   appearance: none;
   background-color: var(--grey-3);
-  box-shadow: inset 0px 4px 8px var(--grey-2);
+  box-shadow: inset 0px 4px 8px rgba(49, 49, 49, 0.253);
   border: none;
   border-radius: 18px;
   height: 24px;
