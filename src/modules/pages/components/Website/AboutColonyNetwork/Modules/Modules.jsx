@@ -94,7 +94,7 @@ const Modules = () => (
     <div className={styles.mainContentRow}>
       <div className={styles.titleContent}>
         <Heading
-          appearance={{ margin: 'none', theme: 'invert', weight: 'bold' }}
+          appearance={{ margin: 'none', theme: 'invert' }}
           text={MSG.title}
         />
         <div className={styles.titleBody}>

@@ -33,10 +33,7 @@ const Ants = () => (
   <div className={styles.main}>
     <div className={styles.row}>
       <div className={styles.contentContainer}>
-        <Heading
-          appearance={{ theme: 'dark', weight: 'bold' }}
-          text={MSG.title}
-        />
+        <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
         <Paragraph text={MSG.body} />
       </div>
     </div>

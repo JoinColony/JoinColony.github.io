@@ -66,7 +66,7 @@ const Hero = () => {
           <div className={styles.contentInner}>
             <Announcement text={MSG.announcement} />
             <Heading
-              appearance={{ margin: 'none', theme: 'dark', weight: 'bold' }}
+              appearance={{ margin: 'none', theme: 'dark' }}
               text={MSG.title}
             />
             <div className={styles.body}>

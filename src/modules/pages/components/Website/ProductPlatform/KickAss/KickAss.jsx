@@ -102,10 +102,7 @@ const KickAss = () => (
   <div className={styles.main}>
     <div className={styles.mainInner}>
       <div className={styles.mainContent}>
-        <Heading
-          appearance={{ theme: 'dark', weight: 'bold' }}
-          text={MSG.title}
-        />
+        <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
         <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
       </div>
       <div className={styles.gridRow}>

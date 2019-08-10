@@ -88,7 +88,6 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
               margin: 'none',
               size: 'huge',
               theme: 'dark',
-              weight: 'bold',
             }}
             text={MSG.subTitle}
           />

@@ -91,7 +91,7 @@ const Examples = () => {
         <div className={styles.introRow}>
           <div className={styles.mainContent}>
             <Heading
-              appearance={{ theme: 'dark', weight: 'bold' }}
+              appearance={{ theme: 'dark' }}
               text={MSG.title}
             />
             <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
