@@ -36,10 +36,3 @@
 .itemBody {
   margin-top: 8px;
 }
-
-.itemBody p {
-  color: var(--text-blue);
-  font-size: var(--size-extraSmall);
-  line-height: 18px;
-  margin-bottom: 0;
-}

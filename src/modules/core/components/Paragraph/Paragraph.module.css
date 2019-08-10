@@ -25,6 +25,11 @@
 
 /* Sizes */
 
+.sizeExtraSmall {
+  font-size: var(--size-extraSmall);
+  line-height: 18px;
+}
+
 .sizeSmall {
   font-size: var(--size-small);
 }
