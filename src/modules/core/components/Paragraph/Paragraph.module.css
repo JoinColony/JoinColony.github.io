@@ -44,8 +44,13 @@
   line-height: 32px;
 }
 
+p:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium) {
+  font-size: var(--size-normal);
+  line-height: 24px;
+}
+
 /* Default */
 
 .main {
-  composes: themeDark sizeNormal;
+  composes: themeDark;
 }
