@@ -38,6 +38,7 @@ const DropdownContent = ({ image, navItems, parentLinkText }: Props) => (
                   theme: 'dark',
                   weight: 'medium',
                 }}
+                className={styles.itemLinkHeading}
                 text={title}
               />
               <div className={styles.itemBody}>
