@@ -99,10 +99,7 @@ const Hero = () => {
             text={MSG.announcement}
           />
           <div className={styles.titleContainer}>
-            <Heading
-              appearance={{ theme: 'invert', weight: 'bold' }}
-              text={MSG.title}
-            />
+            <Heading appearance={{ theme: 'invert' }} text={MSG.title} />
             <Heading
               appearance={{
                 theme: 'invert',

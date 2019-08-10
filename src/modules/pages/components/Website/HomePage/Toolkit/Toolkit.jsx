@@ -113,7 +113,7 @@ const Toolkit = () => (
         <div className={styles.contentInner}>
           <div className={styles.headingContainer}>
             <Heading
-              appearance={{ margin: 'double', theme: 'dark', weight: 'bold' }}
+              appearance={{ margin: 'double', theme: 'dark' }}
               text={MSG.sectionTitle}
             />
           </div>
