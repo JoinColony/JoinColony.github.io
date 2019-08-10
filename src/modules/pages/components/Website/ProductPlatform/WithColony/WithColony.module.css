@@ -29,6 +29,8 @@
 
 .gridItem {
   flex: 0 0 30%;
+  /* to cover up layout hack if need be */
+  z-index: 100;
 }
 
 .layoutHack {
