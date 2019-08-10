@@ -110,10 +110,7 @@ const displayName = 'pages.Website.ProductDapp.Hub';
 const Hub = () => (
   <div className={styles.main}>
     <div className={styles.introContainer}>
-      <Heading
-        appearance={{ theme: 'dark', weight: 'bold' }}
-        text={MSG.title}
-      />
+      <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
     </div>
     <div className={styles.itemList}>
       {Array(5)
