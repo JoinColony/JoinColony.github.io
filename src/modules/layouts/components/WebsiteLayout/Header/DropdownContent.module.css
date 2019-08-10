@@ -29,6 +29,10 @@
   display: block;
 }
 
+.itemLink:hover .itemLinkHeading {
+  color: var(--blue-1);
+}
+
 .navItemContainer {
   width: 180px;
 }
