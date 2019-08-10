@@ -87,6 +87,11 @@ const WithColony = () => {
       linkLeft={{ href: PAGE_PRODUCT_DAPP, text: MSG.gutterLinkText }}
       style={{ position: 'relative' }}
     >
+      <div
+        className={styles.layoutHack}
+        // +1 below to align correctly with `.gridRow`... Not sure why ¯\_(ツ)_/¯
+        style={{ height: `${gridRowHeight + 1}px` }}
+      />
       <div className={styles.main}>
         <div className={styles.graphicRow}>
           <div className={styles.content}>
@@ -120,11 +125,6 @@ const WithColony = () => {
             ))}
         </div>
       </div>
-      <div
-        className={styles.layoutHack}
-        // +1 below to align correctly with `.gridRow`... Not sure why ¯\_(ツ)_/¯
-        style={{ height: `${gridRowHeight + 1}px` }}
-      />
     </GutterSection>
   );
 };
