@@ -12,7 +12,8 @@ import styles from './Paragraph.module.css';
 
 type Appearance = {|
   theme?: 'invert' | 'grey' | 'lightBlue',
-  size?: 'small' | 'normal' | 'medium',
+  margin?: 'none',
+  size?: 'extraSmall' | 'small' | 'normal' | 'medium' | 'large',
 |};
 
 type Props = {|

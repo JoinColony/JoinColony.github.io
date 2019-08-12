@@ -1,20 +1,23 @@
 /* @flow */
 
-import type { ComponentType } from 'react';
-
 import React, { useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
+import Image from '~core/Image';
 import Input from '~core/Input';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import { PAGE_ABOUT_VISION } from '~routes';
-
-import { Vision0, Vision1, Vision2, Vision3, Vision4, Vision5 } from './assets';
 
 import styles from './Vision.module.css';
 
 const MSG = defineMessages({
+  slideCounter: {
+    id: 'pages.Website.HomePage.Vision.slideCounter',
+    defaultMessage: 'Slide number: {num}',
+  },
   title: {
     id: 'pages.Website.HomePage.Vision.title',
     defaultMessage: 'Your Colony,{br}Your Rules',
@@ -31,6 +34,13 @@ const MSG = defineMessages({
   },
 });
 
+const slides: string[] = [
+  withPrefix('/img/homepage-slides/YourColonyYourRules_01.svg'),
+  withPrefix('/img/homepage-slides/YourColonyYourRules_02.svg'),
+  withPrefix('/img/homepage-slides/YourColonyYourRules_03.svg'),
+  withPrefix('/img/homepage-slides/YourColonyYourRules_04.svg'),
+];
+
 const displayName = 'pages.Website.HomePage.Vision';
 
 const Vision = () => {
@@ -46,16 +56,7 @@ const Vision = () => {
     [setCurrentSlide],
   );
 
-  const slides: Array<ComponentType<*>> = [
-    Vision0,
-    Vision1,
-    Vision2,
-    Vision3,
-    Vision4,
-    Vision5,
-  ];
-
-  const ActiveSlide = slides[currentSlide];
+  const activeImage = slides[currentSlide];
 
   return (
     <div className={styles.main}>
@@ -64,14 +65,12 @@ const Vision = () => {
           <Heading appearance={{ theme: 'dark' }}>
             <FormattedMessage {...MSG.title} values={{ br: <br /> }} />
           </Heading>
-          <p className={styles.body}>
-            <FormattedMessage {...MSG.body} />
-          </p>
+          <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
           <div className={styles.input}>
             <Input
               id={`${displayName}.slider`}
               min="0"
-              max="5"
+              max={slides.length - 1}
               onChange={handleChange}
               value={currentSlide}
               type="range"
@@ -84,9 +83,14 @@ const Vision = () => {
           />
         </div>
         <>
-          {ActiveSlide && (
+          {activeImage && (
             <div className={styles.canvas}>
-              <ActiveSlide className={styles.slideImage} />
+              <Image
+                alt={MSG.slideCounter}
+                altValues={{ num: slides.indexOf(activeImage) + 1 }}
+                className={styles.slideImage}
+                src={activeImage}
+              />
             </div>
           )}
         </>

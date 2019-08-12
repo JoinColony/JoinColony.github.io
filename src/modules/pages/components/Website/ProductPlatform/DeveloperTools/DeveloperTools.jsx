@@ -121,17 +121,22 @@ const GridItem = ({
   <div className={styles.gridItem}>
     <div>
       <div className={styles.itemImageContainer}>
-        <Icon
-          title={title}
-          className={styles.itemImage}
-          name={iconName}
-          viewBox="0 0 94 94"
-        />
+        <Link href={linkGithub}>
+          <Icon
+            title={title}
+            className={styles.itemImage}
+            name={iconName}
+            viewBox="0 0 94 94"
+          />
+        </Link>
       </div>
-      <Heading
-        appearance={{ size: 'medium', theme: 'dark', weight: 'medium' }}
-        text={title}
-      />
+      <Link href={linkGithub}>
+        <Heading
+          className={styles.itemHeading}
+          appearance={{ size: 'medium', theme: 'dark', weight: 'medium' }}
+          text={title}
+        />
+      </Link>
       <Paragraph text={body} />
     </div>
     <div className={styles.itemLinks}>

@@ -17,8 +17,3 @@
 .gridItemBody {
   margin-top: 30px;
 }
-
-.gridItemBody p {
-  color: var(--text-blue);
-  font-size: var(--size-normal);
-}

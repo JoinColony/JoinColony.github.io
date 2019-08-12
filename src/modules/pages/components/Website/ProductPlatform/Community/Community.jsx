@@ -81,7 +81,7 @@ const Community = () => (
     <div className={styles.contentContainer}>
       <div>
         <Heading
-          appearance={{ margin: 'none', theme: 'invert', weight: 'bold' }}
+          appearance={{ margin: 'none', theme: 'invert' }}
           text={MSG.title}
         />
       </div>

@@ -1,4 +1,10 @@
 
+/* Margins */
+
+.marginNone {
+  margin: 0;
+}
+
 /* Themes */
 
 .themeDark {
@@ -19,20 +25,32 @@
 
 /* Sizes */
 
+.sizeExtraSmall {
+  font-size: var(--size-extraSmall);
+  line-height: 18px;
+}
+
 .sizeSmall {
   font-size: var(--size-small);
 }
 
 .sizeNormal {
   font-size: var(--size-normal);
+  line-height: 24px;
 }
 
 .sizeMedium {
   font-size: var(--size-medium);
+  line-height: 32px;
+}
+
+p:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium) {
+  font-size: var(--size-normal);
+  line-height: 24px;
 }
 
 /* Default */
 
 .main {
-  composes: themeDark sizeNormal;
+  composes: themeDark;
 }

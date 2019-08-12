@@ -1,13 +1,14 @@
 /* @flow */
 
 import React, { useContext } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import type { Project } from '~types';
 
 import Announcement from '~core/Announcement';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 
 import styles from './Hero.module.css';
@@ -75,9 +76,7 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
               text={MSG.title}
             />
             <div className={styles.body}>
-              <p>
-                <FormattedMessage {...MSG.body} />
-              </p>
+              <Paragraph appearance={{ margin: 'none' }} text={MSG.body} />
             </div>
           </div>
         </div>
@@ -89,15 +88,15 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
               margin: 'none',
               size: 'huge',
               theme: 'dark',
-              weight: 'bold',
             }}
             text={MSG.subTitle}
           />
         </div>
         <div className={styles.subBodyContainer}>
-          <p>
-            <FormattedMessage {...MSG.subBody} values={{ br: <br /> }} />
-          </p>
+          <Paragraph
+            appearance={{ margin: 'none', size: 'medium' }}
+            text={MSG.subBody}
+          />
         </div>
       </div>
     </div>

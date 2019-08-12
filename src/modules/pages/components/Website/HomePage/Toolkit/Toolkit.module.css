@@ -34,8 +34,3 @@
 .gridItemImage {
   height: 80px;
 }
-
-.gridItemBodyText {
-  color: var(--text-blue);
-  font-size: var(--size-normal);
-}

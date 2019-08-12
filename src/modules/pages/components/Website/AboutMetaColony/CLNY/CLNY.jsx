@@ -3,12 +3,13 @@
 import type { MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 
 import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
@@ -98,9 +99,7 @@ const GridItem = ({
         appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
         text={title}
       />
-      <p>
-        <FormattedMessage {...body} values={bodyValues} />
-      </p>
+      <Paragraph text={body} textValues={bodyValues} />
     </div>
   </div>
 );
@@ -112,9 +111,7 @@ const CLNY = () => (
     <div className={styles.contentContainer}>
       <div className={styles.introText}>
         <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
-        <p>
-          <FormattedMessage {...MSG.introText} values={{ br: <br /> }} />
-        </p>
+        <Paragraph appearance={{ size: 'medium' }} text={MSG.introText} />
       </div>
       <div className={styles.contentGridContainer}>
         <GridItem

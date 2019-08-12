@@ -21,12 +21,6 @@
   justify-content: center;
 }
 
-.body {
-  color: var(--text-blue);
-  font-size: var(--size-medium);
-  line-height: 32px;
-}
-
 .input {
   margin: 40px 0;
 }

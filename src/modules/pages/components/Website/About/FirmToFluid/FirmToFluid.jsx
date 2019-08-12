@@ -1,10 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 
 import styles from './FirmToFluid.module.css';
 
@@ -50,13 +51,12 @@ const FirmToFluid = () => (
       />
       <div className={styles.body}>
         <div className={styles.bodyColumn}>
-          <FormattedMessage {...MSG.bodyLeft} values={{ br: <br /> }} />
+          <Paragraph text={MSG.bodyLeft} />
         </div>
         <div className={styles.bodyColumn}>
-          <FormattedMessage
-            {...MSG.bodyRight}
-            values={{
-              br: <br />,
+          <Paragraph
+            text={MSG.bodyRight}
+            textValues={{
               link: (
                 <Link
                   href="https://www.responsive.org/"

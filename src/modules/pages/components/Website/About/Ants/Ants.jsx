@@ -1,9 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
+import Paragraph from '~core/Paragraph';
 
 import styles from './Ants.module.css';
 
@@ -32,15 +33,8 @@ const Ants = () => (
   <div className={styles.main}>
     <div className={styles.row}>
       <div className={styles.contentContainer}>
-        <Heading
-          appearance={{ theme: 'dark', weight: 'bold' }}
-          text={MSG.title}
-        />
-        <div className={styles.body}>
-          <p>
-            <FormattedMessage {...MSG.body} values={{ br: <br /> }} />
-          </p>
-        </div>
+        <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
+        <Paragraph text={MSG.body} />
       </div>
     </div>
   </div>

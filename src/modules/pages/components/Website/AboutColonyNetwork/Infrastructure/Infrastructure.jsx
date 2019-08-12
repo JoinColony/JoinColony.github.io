@@ -3,11 +3,12 @@
 import type { MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
+import Paragraph from '~core/Paragraph';
 
 import styles from './Infrastructure.module.css';
 
@@ -73,9 +74,7 @@ const GridItem = ({
       text={title}
     />
     <div className={styles.body}>
-      <p>
-        <FormattedMessage {...body} />
-      </p>
+      <Paragraph text={body} />
     </div>
   </div>
 );
@@ -87,11 +86,7 @@ const Infrastructure = () => (
     <div className={styles.contentContainer}>
       <div className={styles.introContent}>
         <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
-        <div className={styles.introContentBody}>
-          <p>
-            <FormattedMessage {...MSG.body} values={{ br: <br /> }} />
-          </p>
-        </div>
+        <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
       </div>
       <div className={styles.gridContainer}>
         <GridItem

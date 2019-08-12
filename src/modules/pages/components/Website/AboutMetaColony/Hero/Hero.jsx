@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Announcement from '~core/Announcement';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
+import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import { COLONY_GITTER } from '~routes';
 
@@ -71,9 +72,10 @@ const Hero = () => {
               <FormattedMessage {...MSG.title} values={{ br: <br /> }} />
             </Heading>
             <div className={styles.body}>
-              <p>
-                <FormattedMessage {...MSG.body} />
-              </p>
+              <Paragraph
+                appearance={{ margin: 'none', size: 'medium' }}
+                text={MSG.body}
+              />
             </div>
           </div>
         </div>
@@ -84,7 +86,7 @@ const Hero = () => {
             appearance={{
               size: 'large',
               theme: 'primary',
-              weight: 'bold',
+              weight: 'medium',
             }}
             text={MSG.subTitle}
           />
@@ -99,9 +101,7 @@ const Hero = () => {
           />
         </div>
         <div className={styles.subBodyContainer}>
-          <p>
-            <FormattedMessage {...MSG.subBody} values={{ br: <br /> }} />
-          </p>
+          <Paragraph appearance={{ margin: 'none' }} text={MSG.subBody} />
         </div>
       </div>
     </div>

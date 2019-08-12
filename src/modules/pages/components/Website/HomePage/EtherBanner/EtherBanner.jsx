@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
+import Paragraph from '~core/Paragraph';
 import BlockCta from '~parts/BlockCta';
 import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
@@ -48,9 +49,7 @@ const EtherBanner = () => (
         <Heading appearance={{ theme: 'dark' }}>
           <FormattedMessage {...MSG.title} values={{ br: <br /> }} />
         </Heading>
-        <p className={styles.rightBlockBody}>
-          <FormattedMessage {...MSG.body} />
-        </p>
+        <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
         <Link
           className={styles.rightBlockLink}
           href={PAGE_ABOUT_COLONY_NETWORK}
