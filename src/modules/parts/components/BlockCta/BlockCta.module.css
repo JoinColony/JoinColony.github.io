@@ -1,3 +1,6 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
 @value leftDistribution: .3735;
 @value leftWidth: calc(100% * leftDistribution);
 @value leftRowPartial: calc(var(--row-width-desktop) * calc(1 / 3));
@@ -5,6 +8,7 @@
 
 .main {
   display: flex;
+  flex-direction: column;
 }
 
 .leftBlock,
@@ -16,6 +20,7 @@
   background-color: var(--navy);
   flex: 0 0 leftWidth;
   justify-content: center;
+  order: 2;
 }
 
 .leftBlockAlignment {
@@ -23,15 +28,31 @@
   display: flex;
   justify-content: center;
   width: leftRowPartial;
+  padding: 60px var(--gutter-width);
 }
 
 .rightBlock {
   background-color: var(--pink-2);
   flex: 1;
   justify-content: flex-start;
+  padding: 60px var(--gutter-width);
 }
 
-.rightBlockAlignment {
-  padding: 120px 135px;
-  width: rightRowPartial; 
+@media (mediumUp) {
+  .main {
+    flex-direction: row;
+  }
+
+  .rightBlock {
+    order: 2;
+  }
+
+  .leftBlockAlignment {
+    padding: 0;
+  }
+
+  .rightBlockAlignment {
+    padding: 120px 135px;
+    width: rightRowPartial; 
+  }
 }
