@@ -1,5 +1,5 @@
 
-@value mediumUp from '~styles/breakpoints.css';
+@value mediumUp, largeUp from '~styles/breakpoints.css';
 
 @value gridItemMargin: 15px;
 
@@ -8,7 +8,7 @@
 }
 
 .contentContainer {
-  padding: 143px 0 135px;
+  padding: 143px 0 0;
   width: 100%;
 }
 
@@ -59,5 +59,11 @@
 
   .gridItemImage {
     height: 80px;
+  }
+}
+
+@media (largeUp) {
+  .contentContainer {
+    padding-bottom: 135px;
   }
 }
