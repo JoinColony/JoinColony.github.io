@@ -1,4 +1,6 @@
 
+@value largeUp from '~styles/breakpoints.css';
+
 .main {
   align-items: flex-end;
   display: flex;
@@ -8,7 +10,7 @@
 
 .image {
   display: block;
-  width: 746px;
+  width: 90%;
 }
 
 .handle {
@@ -26,5 +28,11 @@
   }
   100% {
     box-shadow: 0 0 0 25px var(--blue-1);
+  }
+}
+
+@media (largeUp) {
+  .image {
+    width: 746px;
   }
 }
