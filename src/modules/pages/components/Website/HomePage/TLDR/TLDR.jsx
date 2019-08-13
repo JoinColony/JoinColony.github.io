@@ -43,13 +43,22 @@ const TLDR = () => (
       </div>
       <div className={styles.cols}>
         <div className={styles.colItem}>
-          <Paragraph appearance={{ size: 'medium' }} text={MSG.textOne} />
+          <Heading
+            appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
+            text={MSG.textOne}
+          />
         </div>
         <div className={styles.colItem}>
-          <Paragraph appearance={{ size: 'medium' }} text={MSG.textTwo} />
+          <Heading
+            appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
+            text={MSG.textTwo}
+          />
         </div>
         <div className={styles.colItem}>
-          <Paragraph appearance={{ size: 'medium' }} text={MSG.textThree} />
+          <Heading
+            appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
+            text={MSG.textThree}
+          />
         </div>
       </div>
     </div>
