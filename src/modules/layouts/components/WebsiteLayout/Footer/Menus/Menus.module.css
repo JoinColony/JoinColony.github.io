@@ -1,8 +1,41 @@
 
+@value smallUp, mediumUp from '~styles/breakpoints.css';
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu {
+  flex: 1 0 50%;
+  text-align: left;
+  padding: 20px 0;
+}
+
 .footerMenuLink {
   color: var(--text-blue);
 }
 
 .footerMenuLink:hover {
   color: var(--blue-1);
+}
+
+@media (smallUp) {
+  .main {
+    justify-content: space-between;
+  }
+
+  .menu {
+    flex: 0 0 20%;
+  }
+}
+
+@media (mediumUp) {
+  .main {
+    padding-left: 8%;
+  }
+
+  .menu {
+    text-align: right;
+  }
 }
