@@ -11,6 +11,7 @@ import { getMainClasses } from '~utils/css';
 import styles from './InputGroup.module.css';
 
 type Appearance = {|
+  stack?: 'mediumDown',
   theme?: 'dark' | 'light',
 |};
 

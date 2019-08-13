@@ -1,4 +1,6 @@
 
+@value mediumDown from '~styles/breakpoints.css';
+
 .wrapper form {
   margin: 0;
 }
@@ -45,3 +47,22 @@
   border: 1px solid var(--grey-2);
   padding: 27px 24px;
 }
+
+/* Stacks */
+
+@media (mediumDown) {
+  .stackMediumDown .inputGroup {
+    flex-direction: column;
+  }
+
+  .stackMediumDown .input {
+    height: 48px;
+  }
+
+  .stackMediumDown .button {
+    height: 48px;
+    margin-top: 7px;
+    width: 100%;
+  }
+}
+
