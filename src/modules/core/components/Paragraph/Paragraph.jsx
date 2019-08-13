@@ -40,7 +40,7 @@ const Paragraph = ({
     ? { ...defaultValues, ...textValuesProp }
     : defaultValues;
   return (
-    <p className={getMainClasses(appearance, styles)}>
+    <p className={`${getMainClasses(appearance, styles)} ${styles.paragraph}`}>
       {children ? (
         <>{children}</>
       ) : (
