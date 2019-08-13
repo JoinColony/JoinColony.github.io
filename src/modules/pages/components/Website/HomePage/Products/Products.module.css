@@ -25,7 +25,7 @@
 }
 
 .controlItem {
-  flex: 1 0 50%;
+  flex: 0 0 50%;
 }
 
 .controlItem button {
