@@ -1,24 +1,41 @@
 
+@value mediumDown, mediumUp, largeUp from '~styles/breakpoints.css';
+
 .baseStyles {
   /* This class is intended for composition only.
    * Do not use this class directly
    */
   display: flex;
+  flex-direction: column;
 }
 
 .gutter {
-  flex: 1 0 235px;
+  flex: 0 0 var(--gutter-width-narrow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gutter:first-of-type {
+  order: 2;
+}
+
+.gutter:last-of-type {
+  order: 3;
 }
 
 .gutterLink {
   align-items: center;
   color: var(--blue-1);
   display: flex;
+  flex: 1 0 auto;
   font-family: IBM Plex Mono Medium, monospace;
   font-size: var(--size-small);
   justify-content: center;
-  height: 100%;
+  width: 100%;
   overflow: hidden;
+  text-align: center;
   position: relative;
 }
 
@@ -27,36 +44,9 @@
   color: var(--colony-white);
 }
 
-.gutterLinkText {
-  /*
-   * Absolutely positioned because white-space is calculated
-   * before transform is applied, which breaks the layout (makes
-   * this gutter wider than the other. Not cool...).
-   */
-  position: absolute;
-  white-space: nowrap;
-}
-
-.leftLink .gutterLinkText {
-  right: -15px;
-  transform: rotate(270deg);
-}
-
-.oneSideLeft .leftLink .gutterLinkText {
-  right: 30px;
-}
-
-.rightLink .gutterLinkText {
-  left: -15px;
-  transform: rotate(90deg);
-}
-
-.oneSideRight .rightLink .gutterLinkText {
-  left: 40px;
-}
-
 .content {
   flex: 0 0 var(--row-width-desktop-narrow);
+  order: 1;
 }
 
 /* Themes */
@@ -107,4 +97,85 @@
 
 .main {
   composes: themeDefault;
+}
+
+/* State */
+
+@media (mediumDown) {
+  .gutterLink > span,
+  .gutterLinkText {
+    height: 100%;
+    width: 100%;
+    flex: 1 0 auto;
+  }
+
+  .stateHasLeftLink:not(.stateHasRightLink) .gutter:last-of-type,
+  .stateHasRightLink:not(.stateHasLeftLink) .gutter:first-of-type {
+    display: none;
+  }
+}
+
+@media (mediumUp) {
+  .baseStyles {
+    flex-direction: row;
+  }
+
+  .gutter {
+    flex-direction: row;
+  }
+
+  .gutter:first-of-type {
+    order: 1;
+  }
+
+  .gutterLink {
+    height: 100%;
+    width: auto;
+  }
+
+  .gutterLinkText {
+    /*
+    * Absolutely positioned because white-space is calculated
+    * before transform is applied, which breaks the layout (makes
+    * this gutter wider than the other. Not cool...).
+    */
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  .content {
+    order: 2;
+  }
+
+  .leftLink .gutterLinkText {
+    right: calc(-1 * (var(--gutter-width-narrow) / 2));    
+    transform: rotate(270deg);
+  }
+
+  .rightLink .gutterLinkText {
+    left: calc(-1 * (var(--gutter-width-narrow) / 2));    
+    transform: rotate(90deg);
+  }
+
+  .oneSideLeft .leftLink .gutterLinkText {
+    right: 30px;
+  }
+
+  .oneSideRight .rightLink .gutterLinkText {
+    left: 40px;
+  }
+}
+
+@media (largeUp) {
+  .gutter {
+    flex: 1 0 235px;
+  }
+
+  .leftLink .gutterLinkText {
+    right: -15px;
+  }
+
+  .rightLink .gutterLinkText {
+    left: -15px;
+  }
 }
