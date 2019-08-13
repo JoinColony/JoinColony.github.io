@@ -86,93 +86,101 @@ const Menus = () => {
     }
   }, []);
   return (
-    <>
-      <VerticalMenu
-        appearance={{ alignText: 'right', margins: 'large' }}
-        headingAppearance={{ theme: 'dark' }}
-        headingText={MSG.headingProducts}
-        menuItems={[
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_PRODUCT_DAPP,
-            text: MSG.linkDapp,
-          },
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_PRODUCT_PLATFORM,
-            text: MSG.linkPlatform,
-          },
-        ]}
-      />
-      <VerticalMenu
-        appearance={{ alignText: 'right', margins: 'large' }}
-        headingAppearance={{ theme: 'dark' }}
-        headingText={MSG.headingDevelopers}
-        menuItems={[
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_DEV_DOCS,
-            text: MSG.linkPortal,
-          },
-          // @TODO: add this back in when tutorials are implemented
-          // {
-          //   className: styles.footerMenuLink,
-          //   href: PAGE_DEV_TUTORIALS,
-          //   text: MSG.linkTutorials,
-          // },
-          {
-            className: styles.footerMenuLink,
-            href: COLONY_DISCOURSE_SUPPORT,
-            text: MSG.linkSupport,
-          },
-        ]}
-      />
-      <VerticalMenu
-        appearance={{ alignText: 'right', margins: 'large' }}
-        headingAppearance={{ theme: 'dark' }}
-        headingText={MSG.headingAbout}
-        menuItems={[
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_ABOUT_VISION,
-            text: MSG.linkVision,
-          },
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_ABOUT_COLONY_NETWORK,
-            text: 'colonyNetwork',
-          },
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_ABOUT_METACOLONY,
-            text: MSG.linkMetaColony,
-          },
-        ]}
-      />
-      <VerticalMenu
-        appearance={{ alignText: 'right', margins: 'large' }}
-        headingAppearance={{ theme: 'dark' }}
-        headingText={MSG.headingResources}
-        menuItems={[
-          {
-            className: styles.footerMenuLink,
-            href: COLONY_GITHUB_BUDGETBOX,
-            text: 'BudgetBox',
-          },
-          {
-            className: styles.footerMenuLink,
-            // Use full path here so `Link` knows it shouldn't be treated as a SPA route
-            href: `${baseUri}${withPrefix('pdf/whitepaper.pdf')}`,
-            text: MSG.linkWhitePaper,
-          },
-          {
-            className: styles.footerMenuLink,
-            href: PAGE_MEDIA_KIT,
-            text: MSG.linkMediaKit,
-          },
-        ]}
-      />
-    </>
+    <div className={styles.main}>
+      <div className={styles.menu}>
+        <VerticalMenu
+          appearance={{ margins: 'large' }}
+          headingAppearance={{ theme: 'dark' }}
+          headingText={MSG.headingProducts}
+          menuItems={[
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_PRODUCT_DAPP,
+              text: MSG.linkDapp,
+            },
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_PRODUCT_PLATFORM,
+              text: MSG.linkPlatform,
+            },
+          ]}
+        />
+      </div>
+      <div className={styles.menu}>
+        <VerticalMenu
+          appearance={{ margins: 'large' }}
+          headingAppearance={{ theme: 'dark' }}
+          headingText={MSG.headingDevelopers}
+          menuItems={[
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_DEV_DOCS,
+              text: MSG.linkPortal,
+            },
+            // @TODO: add this back in when tutorials are implemented
+            // {
+            //   className: styles.footerMenuLink,
+            //   href: PAGE_DEV_TUTORIALS,
+            //   text: MSG.linkTutorials,
+            // },
+            {
+              className: styles.footerMenuLink,
+              href: COLONY_DISCOURSE_SUPPORT,
+              text: MSG.linkSupport,
+            },
+          ]}
+        />
+      </div>
+      <div className={styles.menu}>
+        <VerticalMenu
+          appearance={{ margins: 'large' }}
+          headingAppearance={{ theme: 'dark' }}
+          headingText={MSG.headingAbout}
+          menuItems={[
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_ABOUT_VISION,
+              text: MSG.linkVision,
+            },
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_ABOUT_COLONY_NETWORK,
+              text: 'colonyNetwork',
+            },
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_ABOUT_METACOLONY,
+              text: MSG.linkMetaColony,
+            },
+          ]}
+        />
+      </div>
+      <div className={styles.menu}>
+        <VerticalMenu
+          appearance={{ margins: 'large' }}
+          headingAppearance={{ theme: 'dark' }}
+          headingText={MSG.headingResources}
+          menuItems={[
+            {
+              className: styles.footerMenuLink,
+              href: COLONY_GITHUB_BUDGETBOX,
+              text: 'BudgetBox',
+            },
+            {
+              className: styles.footerMenuLink,
+              // Use full path here so `Link` knows it shouldn't be treated as a SPA route
+              href: `${baseUri}${withPrefix('pdf/whitepaper.pdf')}`,
+              text: MSG.linkWhitePaper,
+            },
+            {
+              className: styles.footerMenuLink,
+              href: PAGE_MEDIA_KIT,
+              text: MSG.linkMediaKit,
+            },
+          ]}
+        />
+      </div>
+    </div>
   );
 };
 
