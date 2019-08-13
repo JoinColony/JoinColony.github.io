@@ -1,4 +1,4 @@
-@value largeUp from '~styles/breakpoints.css';
+@value mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
   background-color: var(--navy);
@@ -7,7 +7,7 @@
 
 .imageContainer {
   align-items: flex-end;
-  display: flex;
+  display: none;
   flex-shrink: 0;
 }
 
@@ -27,7 +27,19 @@
   align-items: center;
   display: flex;
   flex-grow: 1;
-  padding: 20px 120px;
+  max-width: var(--row-width-desktop-narrow);
+  margin: 0 auto;
+  padding: 20px 0 180px;
+}
+
+@media (mediumUp) {
+  .imageContainer {
+    display: flex;
+  }
+
+  .textContainer {
+    padding: 20px 120px;
+  }
 }
 
 @media (largeUp) {
