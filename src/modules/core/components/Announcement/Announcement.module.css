@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .baseStyles {
   /* This class is intended for composition only. Do not use directly */
   font-family: 'IBM Plex Mono Medium', monospace;
@@ -11,7 +13,7 @@
   border-bottom-width: 1px;
   display: inline-block;
   margin-right: 13px;
-  width: 49px;
+  width: 33px;
 }
 
 /* Themes */
@@ -38,4 +40,10 @@
 
 .main {
   composes: themeDark;
+}
+
+@media (mediumUp) {
+  .prefixUnderline {
+    width: 49px;
+  }
 }
