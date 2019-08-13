@@ -8,7 +8,7 @@
 .imageContainer {
   align-items: flex-end;
   display: none;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .image {
@@ -28,7 +28,7 @@
   display: flex;
   flex-grow: 1;
   max-width: var(--row-width-desktop-narrow);
-  margin: 0 auto;
+  margin: 0 auto 40px;
   padding: 20px 0 180px;
 }
 
@@ -45,5 +45,9 @@
 @media (largeUp) {
   .main {
     height: 847px;
+  }
+
+  .textContainer {
+    margin: 0 auto;
   }
 }
