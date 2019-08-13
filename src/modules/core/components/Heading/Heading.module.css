@@ -53,9 +53,8 @@
 }
 
 .sizeMediumLarge {
-  font-size: 20px;
-  letter-spacing: .2px;
-  line-height: 30px;
+  font-size: 16.5px;
+  line-height: 20px;
 }
 
 .sizeLarge {
@@ -64,8 +63,8 @@
 }
 
 .sizeHuge {
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 28px;
+  line-height: 32px;
 }
 
 .sizeMassive {
@@ -122,9 +121,20 @@
 }
 
 @media (mediumUp) {
+  .sizeMediumLarge {
+    font-size: 20px;
+    letter-spacing: .2px;
+    line-height: 30px;
+  }
+
   .sizeLarge {
     font-size: 30px;
     line-height: 40px;
+  }
+
+  .sizeHuge {
+    font-size: 40px;
+    line-height: 48px;
   }
 
   .sizeMassive {
