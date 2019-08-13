@@ -58,7 +58,13 @@ const GutterSection = ({
   linkRight,
   ...rest
 }: Props) => (
-  <div className={getMainClasses(appearance, styles)} {...rest}>
+  <div
+    className={getMainClasses(appearance, styles, {
+      hasLeftLink: !!linkLeft,
+      hasRightLink: !!linkRight,
+    })}
+    {...rest}
+  >
     <div className={styles.gutter}>
       {linkLeft && <GutterLink side="left" {...linkLeft} />}
     </div>
