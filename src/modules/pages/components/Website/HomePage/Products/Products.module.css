@@ -1,8 +1,10 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .slideCanvas {
   background-color: var(--navy);
   flex: 1;
-  height: 519px;
+  padding-top: 31px;
 }
 
 .slideActive {
@@ -99,5 +101,11 @@
   100% {
     display: none;
     opacity: 0;
+  }
+}
+
+@media (mediumUp) {
+  .slideCanvas {
+    height: 519px;
   }
 }
