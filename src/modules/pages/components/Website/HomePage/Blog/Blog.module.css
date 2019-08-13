@@ -4,7 +4,7 @@
 @value gridMargin: 30px;
 
 .main {
-  padding: 145px 0;
+  padding: 145px 0 0;
 }
 
 .row {
@@ -43,7 +43,17 @@
 }
 
 @media (smallUp) {
+  
+  .main {
+    padding-bottom: 145px;
+  }
+
   .gridItem:not(:first-of-type) {
     display: flex;
+  }
+
+  .cta {
+    margin: 120px auto 0;
+    max-width: var(--row-width-desktop);
   }
 }
