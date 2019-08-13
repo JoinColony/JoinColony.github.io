@@ -1,4 +1,4 @@
-@value mediumDown from '~styles/breakpoints.css';
+@value mediumUp from '~styles/breakpoints.css';
 
 .main {
   color: rgba(0, 0, 0, 0.8);
@@ -59,8 +59,8 @@
 }
 
 .sizeLarge {
-  font-size: 30px;
-  line-height: 40px;
+  letter-spacing: .2px;
+  line-height: 1.2em;
 }
 
 .sizeHuge {
@@ -69,8 +69,8 @@
 }
 
 .sizeMassive {
-  font-size: 72px;
-  line-height: 80px;
+  font-size: 28px;
+  line-height: 32px;
 }
 
 /* Themes */
@@ -118,8 +118,17 @@
 }
 
 @media (mediumDown) {
+  
+}
+
+@media (mediumUp) {
   .sizeLarge {
-    letter-spacing: .2px;
-    line-height: 1.2em;
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .sizeMassive {
+    font-size: 72px;
+    line-height: 80px;
   }
 }
