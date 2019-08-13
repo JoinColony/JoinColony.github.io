@@ -31,7 +31,7 @@
   /* font-sizes */
   --size-extraSmall: 12px;
   --size-small: 11px;
-  --size-normal: 16px;
+  --size-normal: 12px;
   --size-medium: 12px;
 
   /* margins */
@@ -44,6 +44,7 @@
 @media (mediumUp) {
   :root {
     --size-small: 13px;
+    --size-normal: 16px;
     --size-medium: 20px;
 
     --margin-huge: 140px;

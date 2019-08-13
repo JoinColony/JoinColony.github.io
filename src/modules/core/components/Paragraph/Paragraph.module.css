@@ -36,9 +36,10 @@
   font-size: var(--size-small);
 }
 
+.paragraph:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium),
 .sizeNormal {
   font-size: var(--size-normal);
-  line-height: 24px;
+  line-height: 18px;
 }
 
 .sizeMedium {
@@ -50,11 +51,6 @@
 
 .main {
   composes: themeDark;
-}
-
-.paragraph:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium) {
-  font-size: var(--size-normal);
-  line-height: 24px;
 }
 
 @media (mediumUp) {
