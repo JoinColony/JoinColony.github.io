@@ -1,4 +1,6 @@
 
+@value smallUp from '~styles/breakpoints.css';
+
 @value gridMargin: 30px;
 
 .main {
@@ -19,6 +21,10 @@
   margin: 110px calc(-1 * gridMargin) 0;
 }
 
+.gridItem:not(:first-of-type) {
+  display: none;
+}
+
 .gridItem {
   display: flex;
   flex: 1 1 0;
@@ -34,4 +40,10 @@
 
 .cta {
   margin-top: 120px;
+}
+
+@media (smallUp) {
+  .gridItem:not(:first-of-type) {
+    display: flex;
+  }
 }
