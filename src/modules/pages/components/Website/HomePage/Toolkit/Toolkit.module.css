@@ -1,3 +1,6 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
 @value gridItemMargin: 15px;
 
 .main {
@@ -6,19 +9,18 @@
 
 .contentContainer {
   padding: 143px 0 135px;
-}
-
-.headingContainer {
-  width: 55%;
+  width: 100%;
 }
 
 .contentInner {
   margin: 0 auto;
-  max-width: 884px;
+  /* max-width: 884px; */
+  max-width: var(--row-width-desktop);
 }
 
 .gridContainer {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   /*
    * Negative margin to align the first & last item of each grid row
@@ -27,10 +29,35 @@
 }
 
 .gridItem {
+  display: flex;
+  justify-content: space-between;
   flex: 1 0 30%;
   margin: gridItemMargin;
 }
 
-.gridItemImage {
-  height: 80px;
+.gridItem > div:first-child {
+  flex: 0 0 22%;
+}
+
+.gridItem > div:nth-child(2) {
+  flex: 0 0 64%;
+}
+
+@media (mediumUp) {
+  .headingContainer {
+    width: 55%;
+  }
+
+  .gridContainer {
+    flex-direction: row;
+  }
+
+  .gridItem {
+    flex: 1 0 40%;
+    flex-direction: column;
+  }
+
+  .gridItemImage {
+    height: 80px;
+  }
 }

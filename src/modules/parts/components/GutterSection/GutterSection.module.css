@@ -79,15 +79,6 @@
 
 /* Single Side Gutter */
 
-.oneSideRight .content {
-  /* For alignment purposes
-   * @TODO find a better way
-   */
-  margin-left: -200px;
-  margin-right: 200px;
-  padding-left: 100px;
-}
-
 .oneSideLeft .gutter:last-of-type,
 .oneSideRight .gutter:first-of-type {
   visibility: hidden; /* hide opposite side gutter */
@@ -160,9 +151,18 @@
   .oneSideLeft .leftLink .gutterLinkText {
     right: 30px;
   }
-
+  
   .oneSideRight .rightLink .gutterLinkText {
     left: 40px;
+  }
+
+  .oneSideRight .content {
+    /* For alignment purposes
+      * @TODO find a better way
+      */
+    margin-left: -200px;
+    margin-right: 200px;
+    padding-left: 100px;
   }
 }
 
