@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   padding: var(--margin-huge) 0;
 }
@@ -10,17 +12,24 @@
 
 .cols {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
 }
 
-.colItem {
-  padding: 0 40px;
-}
+@media (mediumUp) {
+  .cols {
+    flex-direction: row;
+  }
 
-.colItem:first-of-type {
-  padding-left: 0;
-}
+  .colItem {
+    padding: 0 40px;
+  }
 
-.colItem:last-of-type {
-  padding-right: 0;
+  .colItem:first-of-type {
+    padding-left: 0;
+  }
+
+  .colItem:last-of-type {
+    padding-right: 0;
+  }
 }
