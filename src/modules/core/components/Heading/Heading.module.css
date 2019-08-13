@@ -58,8 +58,9 @@
 }
 
 .sizeLarge {
+  font-size: 22px;
   letter-spacing: .2px;
-  line-height: 1.2em;
+  line-height: 28px;
 }
 
 .heading:not(.sizeTiny):not(.sizeSmall):not(.sizeNormal):not(.sizeMedium):not(.sizeMediumLarge):not(.sizeLarge):not(.sizeHuge):not(.sizeMassive),

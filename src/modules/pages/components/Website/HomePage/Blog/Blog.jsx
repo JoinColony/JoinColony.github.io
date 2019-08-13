@@ -94,9 +94,9 @@ const Blog = () => {
             },
           )}
         </div>
-        <div className={styles.cta}>
-          <NewsletterCta id={`${displayName}.newsletterCta`} />
-        </div>
+      </div>
+      <div className={styles.cta}>
+        <NewsletterCta id={`${displayName}.newsletterCta`} />
       </div>
     </div>
   );

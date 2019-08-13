@@ -49,7 +49,7 @@ const NewsletterCta = ({ id }: Props) => {
       </div>
       <div className={styles.form}>
         <InputGroup
-          appearance={{ theme: 'light' }}
+          appearance={{ stack: 'mediumDown', theme: 'light' }}
           buttonText={MSG.buttonText}
           id={id}
           onSubmit={handleSubmit}
