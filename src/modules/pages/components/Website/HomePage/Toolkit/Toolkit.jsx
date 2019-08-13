@@ -120,20 +120,24 @@ const Toolkit = () => (
           <div className={styles.gridContainer}>
             {TOPIC_ORDER.map(topic => (
               <div className={styles.gridItem} key={topic}>
-                <Image
-                  alt={MSG[`heading${topic}`]}
-                  className={styles.gridItemImage}
-                  src={`/img/png-icons/${iconMap[topic]}.png`}
-                />
-                <Heading
-                  appearance={{
-                    theme: 'dark',
-                    size: 'mediumLarge',
-                    weight: 'medium',
-                  }}
-                  text={MSG[`heading${topic}`]}
-                />
-                <Paragraph text={MSG[`body${topic}`]} />
+                <div>
+                  <Image
+                    alt={MSG[`heading${topic}`]}
+                    className={styles.gridItemImage}
+                    src={`/img/png-icons/${iconMap[topic]}.png`}
+                  />
+                </div>
+                <div>
+                  <Heading
+                    appearance={{
+                      theme: 'dark',
+                      size: 'mediumLarge',
+                      weight: 'medium',
+                    }}
+                    text={MSG[`heading${topic}`]}
+                  />
+                  <Paragraph text={MSG[`body${topic}`]} />
+                </div>
               </div>
             ))}
           </div>
