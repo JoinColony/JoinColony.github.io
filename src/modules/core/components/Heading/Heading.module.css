@@ -62,6 +62,7 @@
   line-height: 1.2em;
 }
 
+.heading:not(.sizeTiny):not(.sizeSmall):not(.sizeNormal):not(.sizeMedium):not(.sizeMediumLarge):not(.sizeLarge):not(.sizeHuge):not(.sizeMassive),
 .sizeHuge {
   font-size: 28px;
   line-height: 32px;
@@ -71,6 +72,7 @@
   font-size: 28px;
   line-height: 32px;
 }
+
 
 /* Themes */
 
@@ -132,6 +134,7 @@
     line-height: 40px;
   }
 
+  .heading:not(.sizeTiny):not(.sizeSmall):not(.sizeNormal):not(.sizeMedium):not(.sizeMediumLarge):not(.sizeLarge):not(.sizeHuge):not(.sizeMassive),
   .sizeHuge {
     font-size: 40px;
     line-height: 48px;

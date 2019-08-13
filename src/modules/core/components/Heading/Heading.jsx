@@ -84,7 +84,7 @@ const Heading = ({
   return (
     <HeadingElement
       title={typeof value === 'string' ? value : undefined}
-      className={classNames}
+      className={`${classNames} ${styles.heading}`}
       {...props}
     >
       {value}
