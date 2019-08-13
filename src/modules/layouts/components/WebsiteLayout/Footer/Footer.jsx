@@ -49,7 +49,9 @@ const Footer = () => (
             />
             {/* @TODO: input here, make heading above a label */}
           </div>
-          <Menus />
+          <div className={styles.menu}>
+            <Menus />
+          </div>
         </div>
         <div className={styles.metaRow}>
           <div className={styles.metaNavContainer}>
