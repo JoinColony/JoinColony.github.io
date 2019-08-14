@@ -2,9 +2,12 @@
 
 import React, { useContext } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
 import Announcement from '~core/Announcement';
+import Breakpoint from '~core/Breakpoint';
 import Heading from '~core/Heading';
+import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 
@@ -55,8 +58,17 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <HeroImage />
+        <Breakpoint size="medium">
+          <HeroImage />
+        </Breakpoint>
       </div>
+      <Breakpoint inclusion="down" size="small">
+        <Image
+          alt={MSG.title}
+          className={styles.smallImage}
+          src={withPrefix('/img/thingsGotWeird_mobile_white.png')}
+        />
+      </Breakpoint>
     </div>
   );
 };
