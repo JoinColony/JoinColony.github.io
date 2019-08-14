@@ -1,4 +1,16 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
+.leftBlock,
+.rightBlock {
+  align-items: center;
+  display: flex;
+  padding: 60px 0;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  width: 100%;
+}
+
 .link {
   color: var(--blue-1);
   font-size: var(--size-normal);
@@ -6,4 +18,17 @@
 
 .link:hover {
   text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .leftBlock {
+    margin: 0;
+    padding: 60px 30px 60px var(--gutter-width-wide);
+  }
+
+  .rightBlock {
+    margin: 0;
+    max-width: 100vw;
+    padding: 170px var(--gutter-width-wide) 170px 135px;
+  }
 }
