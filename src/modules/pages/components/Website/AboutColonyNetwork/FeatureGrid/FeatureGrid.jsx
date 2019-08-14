@@ -124,23 +124,27 @@ const FeatureGrid = () => (
     <div className={styles.grid}>
       {TOPIC_ORDER.map(topic => (
         <div className={styles.gridItem}>
-          <Image
-            alt={MSG[`title${topic}`]}
-            className={styles.image}
-            src={withPrefix(`/img/png-icons/${iconMap[topic]}.png`)}
-          />
-          <Heading
-            appearance={{
-              size: 'mediumLarge',
-              theme: 'dark',
-              weight: 'medium',
-            }}
-            text={MSG[`title${topic}`]}
-          />
-          <Paragraph
-            appearance={{ margin: 'none' }}
-            text={MSG[`body${topic}`]}
-          />
+          <div className={styles.imageContainer}>
+            <Image
+              alt={MSG[`title${topic}`]}
+              className={styles.image}
+              src={withPrefix(`/img/png-icons/${iconMap[topic]}.png`)}
+            />
+          </div>
+          <div className={styles.bodyContainer}>
+            <Heading
+              appearance={{
+                size: 'mediumLarge',
+                theme: 'dark',
+                weight: 'medium',
+              }}
+              text={MSG[`title${topic}`]}
+            />
+            <Paragraph
+              appearance={{ margin: 'none' }}
+              text={MSG[`body${topic}`]}
+            />
+          </div>
         </div>
       ))}
     </div>
