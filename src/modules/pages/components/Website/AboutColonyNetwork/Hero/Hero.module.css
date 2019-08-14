@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   display: flex;
   flex-direction: column;  
@@ -6,6 +8,11 @@
 
 .row {
   display: flex;
+  flex-direction: column;
+}
+
+.row:first-of-type {
+  flex-direction: column-reverse;
 }
 
 .row > div:first-of-type {
@@ -21,27 +28,26 @@
   background-color: var(--navy);  
   display: flex;
   justify-content: center;
-  padding-left: var(--gutter-width);
-  padding-right: 144px;
+  padding: 55px 0;
 }
 
 .image {
   height: auto;
   margin-bottom: 0;
-  /* Negative margin to align better with adjacent text */
-  margin-top: -47px;
-  width: 232px;
+  max-width: var(--row-width-desktop);
+  width: 100%;
 }
 
 .contentContainer {
   align-items: center;
   background-color: var(--blue-3);
   display: flex;
-  padding-right: var(--gutter-width);
 }
 
 .contentInner {
-  padding: 168px 0 200px 144px;
+  padding: 0 0 40px;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
 }
 
 .body {
@@ -49,12 +55,45 @@
 }
 
 .subTitleContainer {
-  background-color: var(--blue-3);
-  padding-left: var(--gutter-width);
+  padding: 40px var(--gutter-width) 10px;
   display: flex;
   align-items: center;
 }
 
 .subBodyContainer {
-  padding: 103px var(--gutter-width) 45px 144px;
+  padding: 20px var(--gutter-width);
+}
+
+@media (mediumUp) {
+  .row,
+  .row:first-of-type {
+    flex-direction: row;
+  }
+
+  .image {
+    /* Negative margin to align better with adjacent text */
+    margin-top: -47px;
+    max-width: 232px;
+  }
+
+  .imageContainer {
+    padding: 0 144px 0 var(--gutter-width);
+  }
+
+  .contentContainer {
+    padding-right: var(--gutter-width);
+  }
+
+  .contentInner {
+    padding: 168px 0 200px 144px;
+  }
+
+  .subTitleContainer {
+    background-color: var(--blue-3);
+    padding: 0 10px 0 var(--gutter-width);
+  }
+
+  .subBodyContainer {
+    padding: 103px var(--gutter-width) 45px 144px;
+  }
 }
