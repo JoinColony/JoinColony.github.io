@@ -19,7 +19,12 @@ const DropdownContentMobile = ({ isExpanded, navItems }: Props) => (
   <div aria-expanded={isExpanded} className={styles.main}>
     <div className={styles.content}>
       {navItems.map(({ href, title }) => (
-        <Link className={styles.dropdownLink} href={href} text={title} />
+        <Link
+          className={styles.dropdownLink}
+          href={href}
+          key={href}
+          text={title}
+        />
       ))}
     </div>
   </div>
