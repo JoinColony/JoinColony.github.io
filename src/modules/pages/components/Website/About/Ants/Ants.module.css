@@ -1,10 +1,8 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
-  background-image: url('/img/cornerShapes.svg');
-  background-position: top right;
-  background-repeat: no-repeat;
-  background-size: auto 90%;
-  padding: 200px 0;
+  padding: 50px 0;
   display: flex;
 }
 
@@ -13,7 +11,17 @@
   width: var(--row-width-desktop);
 }
 
-.contentContainer {
-  margin-left: 87px;
-  max-width: 570px;
+@media (mediumUp) {
+  .main {
+    background-image: url('/img/cornerShapes.svg');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+    padding: 200px 0;
+  }
+
+  .contentContainer {
+    margin-left: 87px;
+    max-width: 570px;
+  }
 }
