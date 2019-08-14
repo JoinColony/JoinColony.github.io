@@ -6,6 +6,7 @@ import React, { useCallback, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Button from '~core/Button';
+import Breakpoint from '~core/Breakpoint';
 import Heading from '~core/Heading';
 import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
@@ -86,60 +87,103 @@ const Products = () => {
     <GutterSection
       linkLeft={{ href: PAGE_PRODUCT_PLATFORM, text: MSG.gutterLinkText }}
     >
-      <div className={styles.slideCanvas}>
-        {Object.keys(slides).map((key, idx) => {
-          const { component: SlideComponent } = slides[key];
-          return (
-            <div
-              className={
-                isCurrentSlide(idx) ? styles.slideActive : styles.slideInactive
-              }
-              key={SlideComponent.displayName}
-            >
-              <SlideComponent />
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.controls}>
-        {Object.keys(slides).map((key, idx) => {
-          const isCurrentSlideControl = isCurrentSlide(idx);
-          const { linkHref } = slides[key];
-          return (
-            <div
-              className={`${styles.controlItem} ${
-                isCurrentSlideControl ? styles.active : ''
-              }`}
-              key={linkHref}
-            >
-              <Button
-                appearance={{ theme: 'reset' }}
-                className={styles.controlButton}
-                disabled={isCurrentSlideControl}
-                onClick={() => setCurrentSlide(idx)}
+      <Breakpoint size="medium">
+        <div className={styles.slideCanvas}>
+          {Object.keys(slides).map((key, idx) => {
+            const { component: SlideComponent } = slides[key];
+            return (
+              <div
+                className={
+                  isCurrentSlide(idx)
+                    ? styles.slideActive
+                    : styles.slideInactive
+                }
+                key={SlideComponent.displayName}
               >
-                <div className={styles.controlItemInner}>
-                  <Heading
-                    className={styles.controlHeading}
-                    appearance={{ size: 'mediumLarge', weight: 'medium' }}
-                    text={MSG[`controlTitle${key}`]}
-                  />
-                  <div className={styles.body}>
-                    <Paragraph text={MSG[`controlBody${key}`]} />
-                    <div className={styles.controlLink}>
-                      {isCurrentSlideControl ? (
-                        <Link href={linkHref} text={MSG[`controlLink${key}`]} />
-                      ) : (
-                        <FormattedMessage {...MSG[`controlLink${key}`]} />
-                      )}
+                <SlideComponent />
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.controls}>
+          {Object.keys(slides).map((key, idx) => {
+            const isCurrentSlideControl = isCurrentSlide(idx);
+            const { linkHref } = slides[key];
+            return (
+              <div
+                className={`${styles.controlItem} ${
+                  isCurrentSlideControl ? styles.active : ''
+                }`}
+                key={key}
+              >
+                <Button
+                  appearance={{ theme: 'reset' }}
+                  className={styles.controlButton}
+                  disabled={isCurrentSlideControl}
+                  onClick={() => setCurrentSlide(idx)}
+                >
+                  <div className={styles.controlItemInner}>
+                    <Heading
+                      className={styles.controlHeading}
+                      appearance={{ size: 'mediumLarge', weight: 'medium' }}
+                      text={MSG[`controlTitle${key}`]}
+                    />
+                    <div className={styles.body}>
+                      <Paragraph text={MSG[`controlBody${key}`]} />
+                      <div className={styles.controlLink}>
+                        {isCurrentSlideControl ? (
+                          <Link
+                            href={linkHref}
+                            text={MSG[`controlLink${key}`]}
+                          />
+                        ) : (
+                          <FormattedMessage {...MSG[`controlLink${key}`]} />
+                        )}
+                      </div>
                     </div>
                   </div>
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+      </Breakpoint>
+      <Breakpoint inclusion="down" size="small">
+        {Object.keys(slides)
+          .reverse()
+          // ^ content order is reversed for mobile
+          .map(key => {
+            const { component: SlideComponent, linkHref } = slides[key];
+            return (
+              <div className={styles.smallItem} key={key}>
+                <div className={styles.smallSlide}>
+                  <SlideComponent />
                 </div>
-              </Button>
-            </div>
-          );
-        })}
-      </div>
+                <div className={styles.smallContent}>
+                  <div className={styles.smallContentInner}>
+                    <Heading
+                      appearance={{
+                        size: 'mediumLarge',
+                        theme: 'invert',
+                        weight: 'medium',
+                      }}
+                      text={MSG[`controlTitle${key}`]}
+                    />
+                    <Paragraph
+                      appearance={{ theme: 'invert' }}
+                      text={MSG[`controlBody${key}`]}
+                    />
+                    <Link
+                      className={styles.smallItemLink}
+                      href={linkHref}
+                      text={MSG[`controlLink${key}`]}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+      </Breakpoint>
     </GutterSection>
   );
 };
