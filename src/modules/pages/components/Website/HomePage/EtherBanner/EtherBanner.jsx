@@ -34,6 +34,7 @@ const displayName = 'pages.Website.HomePage.EtherBanner';
 
 const EtherBanner = () => (
   <BlockCta
+    appearance={{ firstSideMobile: 'right' }}
     leftBlockChildren={
       <div className={styles.leftBlock}>
         <Icon
