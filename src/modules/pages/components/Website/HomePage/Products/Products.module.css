@@ -60,7 +60,8 @@
   color: var(--grey-2);
 }
 
-.controlItemInner a:hover {
+.controlItemInner a:hover,
+.smallItemLink:hover {
   text-decoration: underline;
 }
 
@@ -70,6 +71,28 @@
 
 .controlLink {
   margin-top: 20px;
+}
+
+/* Small stuff */
+
+.smallSlide {
+  background-color: var(--colony-black);
+  padding: 30px 20px 0 20px;
+}
+
+.smallContent {
+  background-color: var(--navy);
+  padding: 36px 0;
+}
+
+.smallContentInner {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.smallItemLink {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
 }
 
 /* animations */
