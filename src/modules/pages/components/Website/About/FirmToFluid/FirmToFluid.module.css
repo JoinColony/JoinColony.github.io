@@ -1,15 +1,18 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
-  padding: 200px 0;
+  padding: 50px 0;
 }
 
 .contentContainer {
   margin: 0 auto;
-  max-width: 780px;
+  max-width: var(--row-width-desktop);
 }
 
 .body {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 35px;
 }
@@ -24,4 +27,18 @@
 
 .bodyColumn {
   flex: 0 0 47%;
+}
+
+@media (mediumUp) {
+  .main {
+    padding: 200px 0;
+  }
+
+  .contentContainer {
+    max-width: 780px;
+  }
+
+  .body {
+    flex-direction: row;
+  }
 }
