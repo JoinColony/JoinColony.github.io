@@ -59,7 +59,21 @@ const MSG = defineMessages({
 
 const displayName = 'pages.Website.HomePage.Products';
 
-const slides: Array<ComponentType<*>> = [SlideDevelopers, SlideHumans];
+type SlideType = {|
+  component: ComponentType<*>,
+  linkHref: string,
+|};
+
+const slides: { [key: string]: SlideType } = {
+  Developers: {
+    component: SlideDevelopers,
+    linkHref: PAGE_DEV_DOCS,
+  },
+  Humans: {
+    component: SlideHumans,
+    linkHref: PAGE_PRODUCT_DAPP,
+  },
+};
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -73,84 +87,58 @@ const Products = () => {
       linkLeft={{ href: PAGE_PRODUCT_PLATFORM, text: MSG.gutterLinkText }}
     >
       <div className={styles.slideCanvas}>
-        {slides.map((SlideComponent, idx) => (
-          <div
-            className={
-              isCurrentSlide(idx) ? styles.slideActive : styles.slideInactive
-            }
-            key={SlideComponent.displayName}
-          >
-            <SlideComponent />
-          </div>
-        ))}
+        {Object.keys(slides).map((key, idx) => {
+          const { component: SlideComponent } = slides[key];
+          return (
+            <div
+              className={
+                isCurrentSlide(idx) ? styles.slideActive : styles.slideInactive
+              }
+              key={SlideComponent.displayName}
+            >
+              <SlideComponent />
+            </div>
+          );
+        })}
       </div>
       <div className={styles.controls}>
-        <div
-          className={`${styles.controlItem} ${
-            isCurrentSlide(0) ? styles.active : ''
-          }`}
-        >
-          <Button
-            appearance={{ theme: 'reset' }}
-            className={styles.controlButton}
-            disabled={isCurrentSlide(0)}
-            onClick={() => setCurrentSlide(0)}
-          >
-            <div className={styles.controlItemInner}>
-              <Heading
-                className={styles.controlHeading}
-                appearance={{ size: 'mediumLarge', weight: 'medium' }}
-                text={MSG.controlTitleDevelopers}
-              />
-              <div className={styles.body}>
-                <Paragraph text={MSG.controlBodyDevelopers} />
-                <div className={styles.controlLink}>
-                  {isCurrentSlide(0) ? (
-                    <Link
-                      href={PAGE_DEV_DOCS}
-                      text={MSG.controlLinkDevelopers}
-                    />
-                  ) : (
-                    <FormattedMessage {...MSG.controlLinkDevelopers} />
-                  )}
+        {Object.keys(slides).map((key, idx) => {
+          const isCurrentSlideControl = isCurrentSlide(idx);
+          const { linkHref } = slides[key];
+          return (
+            <div
+              className={`${styles.controlItem} ${
+                isCurrentSlideControl ? styles.active : ''
+              }`}
+              key={linkHref}
+            >
+              <Button
+                appearance={{ theme: 'reset' }}
+                className={styles.controlButton}
+                disabled={isCurrentSlideControl}
+                onClick={() => setCurrentSlide(idx)}
+              >
+                <div className={styles.controlItemInner}>
+                  <Heading
+                    className={styles.controlHeading}
+                    appearance={{ size: 'mediumLarge', weight: 'medium' }}
+                    text={MSG[`controlTitle${key}`]}
+                  />
+                  <div className={styles.body}>
+                    <Paragraph text={MSG[`controlBody${key}`]} />
+                    <div className={styles.controlLink}>
+                      {isCurrentSlideControl ? (
+                        <Link href={linkHref} text={MSG[`controlLink${key}`]} />
+                      ) : (
+                        <FormattedMessage {...MSG[`controlLink${key}`]} />
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </Button>
             </div>
-          </Button>
-        </div>
-        <div
-          className={`${styles.controlItem} ${
-            isCurrentSlide(1) ? styles.active : ''
-          }`}
-        >
-          <Button
-            appearance={{ theme: 'reset' }}
-            className={styles.controlButton}
-            disabled={isCurrentSlide(1)}
-            onClick={() => setCurrentSlide(1)}
-          >
-            <div className={styles.controlItemInner}>
-              <Heading
-                className={styles.controlHeading}
-                appearance={{ size: 'mediumLarge', weight: 'medium' }}
-                text={MSG.controlTitleHumans}
-              />
-              <div className={styles.body}>
-                <Paragraph text={MSG.controlBodyHumans} />
-                <div className={styles.controlLink}>
-                  {isCurrentSlide(1) ? (
-                    <Link
-                      href={PAGE_PRODUCT_DAPP}
-                      text={MSG.controlLinkHumans}
-                    />
-                  ) : (
-                    <FormattedMessage {...MSG.controlLinkHumans} />
-                  )}
-                </div>
-              </div>
-            </div>
-          </Button>
-        </div>
+          );
+        })}
       </div>
     </GutterSection>
   );
