@@ -64,7 +64,8 @@
 }
 
 .themePink .gutter {
-  background-color: var(--pink-2);
+  /* grey bg for smaller viewports */
+  background-color: var(--grey-3);
 }
 
 /* Single-side themes */
@@ -82,6 +83,12 @@
 .oneSideLeft .gutter:last-of-type,
 .oneSideRight .gutter:first-of-type {
   visibility: hidden; /* hide opposite side gutter */
+  display: none;
+}
+
+.oneSideLeft .content,
+.oneSideRight .content {
+  flex-grow: 1;
 }
 
 /* Default */
@@ -148,6 +155,10 @@
     transform: rotate(90deg);
   }
 
+  .themePink .gutter {
+    background-color: var(--pink-2);
+  }
+
   .oneSideLeft .leftLink .gutterLinkText {
     right: 30px;
   }
@@ -155,22 +166,9 @@
   .oneSideRight .rightLink .gutterLinkText {
     left: 40px;
   }
-
-  .oneSideRight .content {
-    /* For alignment purposes
-      * @TODO find a better way
-      */
-    margin-left: -200px;
-    margin-right: 200px;
-    padding-left: 100px;
-  }
 }
 
 @media (largeUp) {
-  .gutter {
-    flex: 1 0 235px;
-  }
-
   .leftLink .gutterLinkText {
     right: -15px;
   }

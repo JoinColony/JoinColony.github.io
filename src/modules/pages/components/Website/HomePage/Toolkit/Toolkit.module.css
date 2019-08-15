@@ -33,6 +33,12 @@
 }
 
 @media (mediumUp) {
+  .contentInner {
+    margin: 0;
+    padding: 0 60px 0 var(--gutter-width);
+    max-width: none;
+  }
+
   .headingContainer {
     width: 55%;
   }
@@ -40,9 +46,5 @@
   .gridContainer {
     flex-direction: row;
     margin-top: 117px;
-  }
-
-  .gridItem {
-    flex: 1 0 40%;
   }
 }
