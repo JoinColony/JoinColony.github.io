@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { defineMessages } from 'react-intl';
+import { withPrefix } from 'gatsby';
 
+import GridItem from '~core/GridItem';
 import Heading from '~core/Heading';
-import Image from '~core/Image';
-import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
 
@@ -120,24 +120,11 @@ const Toolkit = () => (
           <div className={styles.gridContainer}>
             {TOPIC_ORDER.map(topic => (
               <div className={styles.gridItem} key={topic}>
-                <div>
-                  <Image
-                    alt={MSG[`heading${topic}`]}
-                    className={styles.gridItemImage}
-                    src={`/img/png-icons/${iconMap[topic]}.png`}
-                  />
-                </div>
-                <div>
-                  <Heading
-                    appearance={{
-                      theme: 'dark',
-                      size: 'mediumLarge',
-                      weight: 'medium',
-                    }}
-                    text={MSG[`heading${topic}`]}
-                  />
-                  <Paragraph text={MSG[`body${topic}`]} />
-                </div>
+                <GridItem
+                  body={MSG[`body${topic}`]}
+                  image={withPrefix(`/img/png-icons/${iconMap[topic]}.png`)}
+                  title={MSG[`heading${topic}`]}
+                />
               </div>
             ))}
           </div>
