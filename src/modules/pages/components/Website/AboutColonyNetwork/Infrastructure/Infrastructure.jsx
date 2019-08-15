@@ -1,13 +1,11 @@
 /* @flow */
 
-import type { MessageDescriptor } from 'react-intl';
-
 import React from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
+import GridItem from '~core/GridItem';
 import Heading from '~core/Heading';
-import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 
 import styles from './Infrastructure.module.css';
@@ -54,31 +52,6 @@ const MSG = defineMessages({
   },
 });
 
-const GridItem = ({
-  body,
-  image,
-  title,
-}: {
-  body: MessageDescriptor,
-  image: string,
-  title: MessageDescriptor,
-}) => (
-  <div className={styles.gridItem}>
-    <Image alt={title} className={styles.gridItemImage} src={image} />
-    <Heading
-      appearance={{
-        size: 'mediumLarge',
-        theme: 'dark',
-        weight: 'medium',
-      }}
-      text={title}
-    />
-    <div className={styles.body}>
-      <Paragraph text={body} />
-    </div>
-  </div>
-);
-
 const displayName = 'pages.Website.AboutColonyNetwork.Infrastructure';
 
 const Infrastructure = () => (
@@ -89,21 +62,27 @@ const Infrastructure = () => (
         <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
       </div>
       <div className={styles.gridContainer}>
-        <GridItem
-          body={MSG.bodyPermissionless}
-          image={withPrefix('/img/png-icons/icon_permissionless.png')}
-          title={MSG.titlePermissionless}
-        />
-        <GridItem
-          body={MSG.bodyModular}
-          image={withPrefix('/img/png-icons/icon_modular.png')}
-          title={MSG.titleModular}
-        />
-        <GridItem
-          body={MSG.bodySelfSovereign}
-          image={withPrefix('/img/png-icons/icon_community.png')}
-          title={MSG.titleSelfSovereign}
-        />
+        <div className={styles.gridItem}>
+          <GridItem
+            body={MSG.bodyPermissionless}
+            image={withPrefix('/img/png-icons/icon_permissionless.png')}
+            title={MSG.titlePermissionless}
+          />
+        </div>
+        <div className={styles.gridItem}>
+          <GridItem
+            body={MSG.bodyModular}
+            image={withPrefix('/img/png-icons/icon_modular.png')}
+            title={MSG.titleModular}
+          />
+        </div>
+        <div className={styles.gridItem}>
+          <GridItem
+            body={MSG.bodySelfSovereign}
+            image={withPrefix('/img/png-icons/icon_community.png')}
+            title={MSG.titleSelfSovereign}
+          />
+        </div>
       </div>
     </div>
   </div>
