@@ -15,31 +15,13 @@
 }
 
 .gridItem {
-  display: flex;
   flex: 0 0 100%;
-  justify-content: space-between;
   padding: 25px horizontalPadding;
-}
-
-.image {
-  height: auto;
-}
-
-.imageContainer {
-  flex: 0 0 60px;
-}
-
-.bodyContainer {
-  flex-basis: calc((100% - 60px) - 20px);
 }
 
 @media (mediumUp) {
   .gridItem {
     flex-basis: calc(100% / 2);
-  }
-
-  .image {
-    width: 70px;
   }
 }
 
@@ -53,10 +35,5 @@
     display: block;
     flex-basis: calc(100% / 3);
     padding: 55px horizontalPadding;
-  }
-
-  .image {
-    height: 80px;
-    width: auto;
   }
 }
