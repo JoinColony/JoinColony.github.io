@@ -2,8 +2,11 @@
 .socialIcon {
   display: inline-block;
   height: 35px;
-  margin-left: 22px;
   width: 35px;
+}
+
+.inner a + a .socialIcon {
+  margin-left: 22px;
 }
 
 .socialIcon svg {
