@@ -8,7 +8,7 @@
 }
 
 .contentContainer {
-  padding: 143px 0 0;
+  padding: var(--margin-huge) 0 0;
   width: 100%;
 }
 
@@ -25,7 +25,7 @@
   /*
    * Negative margin to align the first & last item of each grid row
    */
-  margin: 117px calc(-1 * gridItemMargin) 0;
+  margin: 30px calc(-1 * gridItemMargin) 0;
 }
 
 .gridItem {
@@ -50,6 +50,7 @@
 
   .gridContainer {
     flex-direction: row;
+    margin-top: 117px;
   }
 
   .gridItem {
@@ -59,11 +60,5 @@
 
   .gridItemImage {
     height: 80px;
-  }
-}
-
-@media (largeUp) {
-  .contentContainer {
-    padding-bottom: 135px;
   }
 }

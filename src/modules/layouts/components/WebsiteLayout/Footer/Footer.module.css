@@ -29,7 +29,7 @@
 }
 
 .logoContainer {
-  margin-bottom: var(--margin-large);
+  margin-bottom: var(--margin-medium);
 }
 
 .logo svg {
