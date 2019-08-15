@@ -1,0 +1,45 @@
+
+@value smallUp, mediumUp from '~styles/breakpoints.css';
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main > div:first-child {
+  flex: 0 0 22%;
+}
+
+.main > div:nth-child(2) {
+  flex: 0 0 64%;
+}
+
+.image {
+  height: auto;
+  width: 60px;
+}
+
+@media (smallUp) {
+  .image {
+    width: 70px;
+  }
+
+  .main > div:first-child {
+    flex: 0 0 22%;
+  }
+  
+  .main > div:nth-child(2) {
+    flex: 0 0 74%;
+  }
+}
+
+@media (mediumUp) {
+  .main {
+    flex-direction: column;
+  }
+
+  .image {
+    height: 80px;
+    width: auto;
+  }
+}
