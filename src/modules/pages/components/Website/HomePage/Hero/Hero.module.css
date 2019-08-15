@@ -29,7 +29,7 @@
   flex-grow: 1;
   max-width: var(--row-width-desktop-narrow);
   margin: 0 auto 40px;
-  padding: 20px 0 130px;
+  padding: 20px 0 80px;
 }
 
 @media (mediumUp) {
