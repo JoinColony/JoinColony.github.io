@@ -1,6 +1,6 @@
 
 .main {
-  padding: 170px 0 90px;
+  padding: var(--margin-huge) 0 0;
 }
 
 .contentContainer {
@@ -8,19 +8,35 @@
   max-width: var(--row-width-desktop);
 }
 
-.introText {
-  width: 55%;
+.image {
+  margin: var(--margin-large) 0;
+  max-width: 100%;
 }
 
-.image {
-  margin: 95px 0;
+.gridItem .image {
+  margin: var(--margin-small) 0;
 }
 
 .gridContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 .gridItem {
-  flex: 0 0 29%;
+  flex: 0 0 100%;
+}
+
+@media (mediumUp) {
+  .introText {
+    width: 55%;
+  }
+
+  .gridContainer {
+    flex-direction: row;
+  }
+
+  .gridItem {
+    flex-basis: 29%;
+  }
 }
