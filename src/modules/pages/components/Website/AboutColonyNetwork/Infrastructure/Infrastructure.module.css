@@ -6,7 +6,7 @@
 .contentContainer {
   margin: 0 auto;
   max-width: var(--row-width-desktop);
-  padding: 40px 0;
+  padding: var(--margin-huge) 0;
 }
 
 .gridContainer {
@@ -26,7 +26,7 @@
 
 @media (mediumUp) {
   .contentContainer {
-    padding: 150px 0;
+    /* padding: 150px 0; */
   }
 
   .gridContainer {
