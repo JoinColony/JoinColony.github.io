@@ -1,17 +1,26 @@
 
+@value smallUp from '~styles/breakpoints.css';
+
+@value horizontalMarginTiny: 6px;
+@value horizontalMargin: 11px;
+@value iconSizeTiny: 25px;
+@value iconSize: 35px;
+
 .socialIcon {
   display: inline-block;
-  height: 35px;
-  width: 35px;
+  height: iconSizeTiny;
+  margin: 0 horizontalMarginTiny;
+  width: iconSizeTiny;
 }
 
-.inner a + a .socialIcon {
-  margin-left: 22px;
+.inner {
+  /* Negative margin for alignment with wrapping */
+  margin: 0 calc(-1 * horizontalMarginTiny);
 }
 
 .socialIcon svg {
-  height: 35px;
-  width: 35px;
+  height: iconSizeTiny;
+  width: iconSizeTiny;
 }
 
 /* 
@@ -37,4 +46,22 @@
 .main {
   /* Default to dark theme */
   composes: themeDark;
+}
+
+@media (smallUp) {
+  .socialIcon {
+    height: iconSize;
+    margin: 0 horizontalMargin;
+    width: iconSize;
+  }
+
+  .socialIcon svg {
+    height: iconSize;
+    width: iconSize;
+  }
+
+  .inner {
+    /* Negative margin for alignment with wrapping */
+    margin: 0 calc(-1 * horizontalMargin);
+  }
 }
