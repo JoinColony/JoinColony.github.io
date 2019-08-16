@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   display: flex;
   flex-direction: column;  
@@ -6,6 +8,11 @@
 
 .row {
   display: flex;
+  flex-direction: column;
+}
+
+.row:first-of-type {
+  flex-direction: column-reverse;
 }
 
 .row > div:first-of-type {
@@ -16,27 +23,25 @@
   flex: 1 0;
 }
 
-.row:nth-of-type(2) > div {
-  padding-bottom: 130px;
-  padding-top: 130px;
-}
-
 .imageContainer {
   background-color: var(--navy);  
   background-image: url('/img/ethBerlin.png');
   background-size: cover;
   background-position: right center;
+  min-height: 100vw;
 }
 
 .contentContainer {
   align-items: center;
   background-color: var(--blue-3);
   display: flex;
-  padding-right: var(--gutter-width);
+  padding: var(--margin-large) 0;
 }
 
 .contentInner {
-  padding: 190px 0 200px 144px;
+  padding: 0 0 40px;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
 }
 
 .body {
@@ -45,12 +50,36 @@
 
 .subTitleContainer {
   background-color: var(--pink-2);
-  padding-left: var(--gutter-width);
-  padding-right: 70px;
+  padding: var(--margin-large) var(--gutter-width);
 }
 
 .subBodyContainer {
-  padding-left: 144px;
-  padding-right: var(--gutter-width);
+  padding: 20px var(--gutter-width);
 }
 
+@media (mediumUp) {
+  .row,
+  .row:first-of-type {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    min-height: 0;
+  }
+
+  .contentContainer {
+    padding-right: var(--gutter-width);
+  }
+
+  .contentInner {
+    padding: 168px 0 200px 144px;
+  }
+  
+  .subTitleContainer {
+    padding: var(--margin-large) 10px var(--margin-large) var(--gutter-width);
+  }
+
+  .subBodyContainer {
+    padding: 103px var(--gutter-width) 45px 144px;
+  }
+}
