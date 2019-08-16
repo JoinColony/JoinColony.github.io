@@ -1,4 +1,6 @@
 
+@value largeUp, mediumUp from '~styles/breakpoints.css';
+
 :root {
   /* colors */
   --blue-1: #289BDC;
@@ -17,22 +19,43 @@
   --yellow: #FAD250;
 
   /* containers */
-  --row-width-desktop: 1170px;
-  --row-width-desktop-narrow: 970px;
+  --row-width-mobile: 84vw;
+  --row-width-desktop: 85vw;
+  --row-width-desktop-narrow: 70vw;
   
   /* Gutters */
+  --gutter-width-mobile: calc((100vw - var(--row-width-mobile)) / 2);
   --gutter-width: calc((100vw - var(--row-width-desktop)) / 2);
   --gutter-width-narrow: calc((100vw - var(--row-width-desktop-narrow)) / 2);
 
   /* font-sizes */
   --size-extraSmall: 12px;
-  --size-small: 13px;
-  --size-normal: 16px;
-  --size-medium: 20px;
+  --size-small: 11px;
+  --size-normal: 12px;
+  --size-medium: 12px;
 
   /* margins */
   --margin-small: 10px;
   --margin-medium: 30px;
-  --margin-large: 60px;
-  --margin-huge: 140px;
+  --margin-large: 40px;
+  --margin-huge: 50px;
+}
+
+@media (mediumUp) {
+  :root {
+    --size-small: 13px;
+    --size-normal: 16px;
+    --size-medium: 20px;
+
+    --margin-medium: 60px;
+    --margin-large: 110px;
+    --margin-huge: 140px;
+  }
+}
+
+@media (largeUp) {
+  :root {
+    --row-width-desktop: 1170px;
+    --row-width-desktop-narrow: 970px;
+  }
 }

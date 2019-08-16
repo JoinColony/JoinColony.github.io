@@ -1,11 +1,13 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
-  display: flex;
   height: 246px;
   text-align: left;
+  display: none;
 }
 
 .image {
@@ -39,4 +41,10 @@
 
 .itemBody {
   margin-top: 8px;
+}
+
+@media (mediumUp) {
+  .main {
+    display: flex;
+  }
 }

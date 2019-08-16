@@ -28,48 +28,50 @@ const displayName = 'parts.SocialNav';
 
 const SocialNav = ({ appearance }: Props) => (
   <div className={getMainClasses(appearance, styles)}>
-    <Link alt="Ghost" href={COLONY_BLOG}>
-      <Icon
-        className={styles.socialIcon}
-        title="Ghost"
-        name="social_ghost_devPortal"
-      />
-    </Link>
-    <Link alt="Twitter" href={COLONY_TWITTER}>
-      <Icon
-        className={styles.socialIcon}
-        title="Twitter"
-        name="social_twitter_devPortal"
-      />
-    </Link>
-    <Link alt="Discourse" href={COLONY_DISCOURSE}>
-      <Icon
-        className={styles.socialIcon}
-        title="Discourse"
-        name="social_discourse_devPortal"
-      />
-    </Link>
-    <Link alt="GitHub" href={COLONY_GITHUB}>
-      <Icon
-        className={styles.socialIcon}
-        title="GitHub"
-        name="social_github_devPortal"
-      />
-    </Link>
-    <Link alt="Gitter" href={COLONY_GITTER}>
-      <Icon
-        className={styles.socialIcon}
-        title="Gitter"
-        name="social_gitter_devPortal"
-      />
-    </Link>
-    <Link alt="Discord" href={COLONY_DISCORD}>
-      <Icon
-        className={styles.socialIcon}
-        title="Discord"
-        name="social_discord"
-      />
-    </Link>
+    <div className={styles.inner}>
+      <Link alt="Ghost" href={COLONY_BLOG}>
+        <Icon
+          className={styles.socialIcon}
+          title="Ghost"
+          name="social_ghost_devPortal"
+        />
+      </Link>
+      <Link alt="Twitter" href={COLONY_TWITTER}>
+        <Icon
+          className={styles.socialIcon}
+          title="Twitter"
+          name="social_twitter_devPortal"
+        />
+      </Link>
+      <Link alt="Discourse" href={COLONY_DISCOURSE}>
+        <Icon
+          className={styles.socialIcon}
+          title="Discourse"
+          name="social_discourse_devPortal"
+        />
+      </Link>
+      <Link alt="GitHub" href={COLONY_GITHUB}>
+        <Icon
+          className={styles.socialIcon}
+          title="GitHub"
+          name="social_github_devPortal"
+        />
+      </Link>
+      <Link alt="Gitter" href={COLONY_GITTER}>
+        <Icon
+          className={styles.socialIcon}
+          title="Gitter"
+          name="social_gitter_devPortal"
+        />
+      </Link>
+      <Link alt="Discord" href={COLONY_DISCORD}>
+        <Icon
+          className={styles.socialIcon}
+          title="Discord"
+          name="social_discord"
+        />
+      </Link>
+    </div>
   </div>
 );
 

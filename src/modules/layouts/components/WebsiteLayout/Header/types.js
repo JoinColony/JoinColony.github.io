@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { MessageDescriptor } from 'react-intl';
+import type { IntlShape, MessageDescriptor } from 'react-intl';
 
 export type Appearance = {|
   theme?: 'light' | 'transparent' | 'scrolled',
@@ -10,6 +10,7 @@ export type Appearance = {|
 
 export type Props = {|
   appearance?: Appearance,
+  intl: IntlShape,
   /**
    * If value is smaller than header height, header height will be used
    * instead. This prevents 2 navs from being visible at any one time.

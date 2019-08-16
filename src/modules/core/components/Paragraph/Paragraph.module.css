@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 /* Margins */
 
 .marginNone {
@@ -34,23 +36,25 @@
   font-size: var(--size-small);
 }
 
+.paragraph:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium),
 .sizeNormal {
   font-size: var(--size-normal);
-  line-height: 24px;
+  line-height: 18px;
 }
 
 .sizeMedium {
   font-size: var(--size-medium);
-  line-height: 32px;
-}
-
-p:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium) {
-  font-size: var(--size-normal);
-  line-height: 24px;
+  line-height: 18px;
 }
 
 /* Default */
 
 .main {
   composes: themeDark;
+}
+
+@media (mediumUp) {
+  .sizeMedium {
+    line-height: 32px;
+  }
 }

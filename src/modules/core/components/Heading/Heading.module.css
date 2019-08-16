@@ -1,4 +1,4 @@
-@value mediumDown from '~styles/breakpoints.css';
+@value mediumUp, largeUp from '~styles/breakpoints.css';
 
 .main {
   color: rgba(0, 0, 0, 0.8);
@@ -53,25 +53,27 @@
 }
 
 .sizeMediumLarge {
-  font-size: 20px;
-  letter-spacing: .2px;
-  line-height: 30px;
+  font-size: 16.5px;
+  line-height: 20px;
 }
 
 .sizeLarge {
-  font-size: 30px;
-  line-height: 40px;
+  font-size: 22px;
+  letter-spacing: .2px;
+  line-height: 28px;
 }
 
+.heading:not(.sizeTiny):not(.sizeSmall):not(.sizeNormal):not(.sizeMedium):not(.sizeMediumLarge):not(.sizeLarge):not(.sizeHuge):not(.sizeMassive),
 .sizeHuge {
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 28px;
+  line-height: 32px;
 }
 
 .sizeMassive {
-  font-size: 72px;
-  line-height: 80px;
+  font-size: 28px;
+  line-height: 32px;
 }
+
 
 /* Themes */
 
@@ -117,9 +119,33 @@
   font-weight: 500;
 }
 
-@media (mediumDown) {
-  .sizeLarge {
+@media (mediumUp) {
+  .sizeMediumLarge {
+    font-size: 20px;
     letter-spacing: .2px;
-    line-height: 1.2em;
+    line-height: 30px;
+  }
+
+  .sizeLarge {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .heading:not(.sizeTiny):not(.sizeSmall):not(.sizeNormal):not(.sizeMedium):not(.sizeMediumLarge):not(.sizeLarge):not(.sizeHuge):not(.sizeMassive),
+  .sizeHuge {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .sizeMassive {
+    font-size: 50px;
+    line-height: 56px;
+  }
+}
+
+@media (largeUp) {
+  .sizeMassive {
+    font-size: 72px;
+    line-height: 80px;
   }
 }

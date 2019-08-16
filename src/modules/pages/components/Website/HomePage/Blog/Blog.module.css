@@ -1,8 +1,10 @@
 
+@value smallUp, mediumUp from '~styles/breakpoints.css';
+
 @value gridMargin: 30px;
 
 .main {
-  padding: 145px 0;
+  padding: var(--margin-huge) 0 0;
 }
 
 .row {
@@ -16,7 +18,11 @@
   /* 
    * Negative margin to align first and last items in grid
    */
-  margin: 110px calc(-1 * gridMargin) 0;
+  margin: var(--margin-large) calc(-1 * gridMargin) 0;
+}
+
+.gridItem:not(:first-of-type) {
+  display: none;
 }
 
 .gridItem {
@@ -33,5 +39,25 @@
 }
 
 .cta {
-  margin-top: 120px;
+  margin: var(--margin-huge) auto 0;
+}
+
+@media (smallUp) {
+  .main {
+    padding-bottom: var(--margin-huge);
+  }
+
+  .gridItem:nth-of-type(2) {
+    display: flex;
+  }
+
+  .cta {
+    max-width: var(--row-width-desktop);
+  }
+}
+
+@media (mediumUp) {
+  .gridItem:not(:first-of-type) {
+    display: flex;
+  }
 }

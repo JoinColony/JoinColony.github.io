@@ -23,7 +23,7 @@ const MSG = defineMessages({
   },
 });
 
-const apiKey = process.env.GHOST_CONTENT_API_KEY || '';
+const apiKey = process.env.GHOST_CONTENT_API_KEY || 'd16b83be344ceec36b007c34b0';
 
 const displayName = 'pages.Website.HomePage.Blog';
 
@@ -94,9 +94,9 @@ const Blog = () => {
             },
           )}
         </div>
-        <div className={styles.cta}>
-          <NewsletterCta id={`${displayName}.newsletterCta`} />
-        </div>
+      </div>
+      <div className={styles.cta}>
+        <NewsletterCta id={`${displayName}.newsletterCta`} />
       </div>
     </div>
   );

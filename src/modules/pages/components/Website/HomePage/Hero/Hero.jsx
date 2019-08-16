@@ -7,6 +7,7 @@ import Announcement from '~core/Announcement';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import InputGroup from '~core/InputGroup';
+import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 
 import styles from './Hero.module.css';
@@ -64,13 +65,8 @@ const Hero = () => {
               }}
               text={MSG.title}
             />
-            <Heading
-              appearance={{
-                margin: 'none',
-                size: 'mediumLarge',
-                theme: 'invert',
-                weight: 'thin',
-              }}
+            <Paragraph
+              appearance={{ margin: 'none', size: 'medium', theme: 'invert' }}
               text={MSG.description}
             />
           </div>

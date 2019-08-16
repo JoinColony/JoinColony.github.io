@@ -1,4 +1,6 @@
 
+@value smallDown, mediumUp from '~styles/breakpoints.css';
+
 .divider {
   border-top: 1px solid var(--grey-2);
   margin: 0 auto;
@@ -15,12 +17,19 @@
 }
 
 .contentContainer {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  text-align: center;
+}
+
+.menu {
+  width: 100%;
 }
 
 .logoContainer {
-  margin-bottom: var(--margin-large);
+  margin-bottom: var(--margin-medium);
 }
 
 .logo svg {
@@ -31,8 +40,10 @@
 
 .metaRow {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: var(--margin-large);
+  text-align: center;
 }
 
 .metaNavContainer a {
@@ -41,4 +52,31 @@
 
 .metaNavContainer a:hover {
   color: var(--navy);
+}
+
+.socialNavContainer {
+  margin-top: 40px;
+}
+
+@media (smallDown) {
+  .divider {
+    width: 100%;
+  }
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    align-items: flex-start;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .metaRow {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .socialNavContainer {
+    margin-top: 0;
+  }
 }
