@@ -7,7 +7,7 @@
 }
 
 .inner {
-  padding: 40px 0 130px;
+  padding: var(--margin-large) 0 130px;
   position: relative;
   margin: 0 auto;
   max-width: var(--row-width-desktop-narrow);
@@ -32,7 +32,7 @@
 
 @media (mediumUp) {
   .inner {
-    padding: 135px 0 160px;
+    padding: var(--margin-large) 0;
   }
 
   .contentContainer {
