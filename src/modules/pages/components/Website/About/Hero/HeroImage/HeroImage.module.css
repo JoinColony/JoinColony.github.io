@@ -1,12 +1,20 @@
 
+@value largeUp from '~styles/breakpoints.css';
+
 .main {
   position: absolute;
   right: 0;
-  width: 49%;
+  width: 60%;
   max-height: 968px;
   max-width: 1146px;
 }
 
 .image {
   display: block;
+}
+
+@media (largeUp) {
+  .main {
+    width: 49%;
+  }
 }

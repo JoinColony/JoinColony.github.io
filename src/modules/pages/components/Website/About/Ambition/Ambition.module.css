@@ -1,13 +1,14 @@
 
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 .main {
   background-color: var(--navy);
-  padding: 190px 0;
+  padding: var(--margin-huge) 0;
 }
 
 .contentContainer {
   margin: 0 auto;
-  max-width: 750px;
-  width: 52%;
+  max-width: var(--row-width-desktop);
 }
 
 .introText {
@@ -16,8 +17,9 @@
 
 .body {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-top: 70px;
+  margin-top: 20px;
 }
 
 .body a {
@@ -28,6 +30,33 @@
   text-decoration: underline;
 }
 
-.bodyColumn {
-  flex: 0 0 48%;
+.bodyColumn + .bodyColumn {
+  margin-top: 15px;
+}
+
+
+@media (mediumUp) {
+  .contentContainer {
+    max-width: var(--row-width-desktop-narrow);
+  }
+
+  .body {
+    flex-direction: row;
+    margin-top: 70px;
+  }
+
+  .bodyColumn {
+    flex: 0 0 48%;
+  }
+
+  .bodyColumn + .bodyColumn {
+    margin-top: 0;
+  }
+}
+
+@media (largeUp) {
+  .contentContainer {
+    max-width: 750px;
+    width: 52%;
+  }
 }
