@@ -97,7 +97,10 @@ const Modules = () => (
           text={MSG.title}
         />
         <div className={styles.titleBody}>
-          <Paragraph appearance={{ theme: 'invert' }} text={MSG.body} />
+          <Paragraph
+            appearance={{ margin: 'none', theme: 'invert' }}
+            text={MSG.body}
+          />
         </div>
       </div>
       <div className={styles.featureContent}>
@@ -112,7 +115,7 @@ const Modules = () => (
         />
         <div className={styles.featureBody}>
           <Paragraph
-            appearance={{ theme: 'invert' }}
+            appearance={{ margin: 'none', theme: 'invert' }}
             text={MSG.bodyBudgetBox}
           />
         </div>
