@@ -1,14 +1,17 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
-  margin-top: 70px;
   position: relative;
 }
 
 .contentContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 964px;
+  max-width: var(--row-width-desktop);
+  padding: var(--margin-medium) 0 0;
 }
 
 .contentContainer p {
@@ -22,13 +25,13 @@
 .contentGridContainer {
   flex: 0 0 50%;
   font-size: var(--size-normal);
-  margin: 10px 0 110px;
+  margin: 10px 0 var(--margin-large);
 }
 
 .gridItem {
   display: flex;
   justify-content: space-between;
-  margin-top: 65px;
+  margin-top: var(--margin-medium);
 }
 
 .gridItem a {
@@ -45,6 +48,7 @@
 
 .circleImage {
   bottom: 0;
+  display: none;
   left: 0;
   margin-bottom: 0;
   position: absolute;
@@ -52,4 +56,15 @@
 
 .standaloneLink:hover {
   text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    flex-direction: row;
+    max-width: 964px;
+  }
+
+  .circleImage {
+    display: block;
+  }
 }
