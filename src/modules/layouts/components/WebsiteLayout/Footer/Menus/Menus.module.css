@@ -7,9 +7,10 @@
 }
 
 .menu {
-  flex: 1 0 50%;
+  flex: 0 0 50%;
   text-align: left;
-  padding: 20px 0;
+  /* left padding to make menus appear more centered */
+  padding: 20px 0 20px 10%;
 }
 
 .footerMenuLink {
@@ -27,6 +28,7 @@
 
   .menu {
     flex: 0 0 20%;
+    padding: 0;
   }
 }
 
