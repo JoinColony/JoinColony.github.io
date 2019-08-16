@@ -1,5 +1,5 @@
 
-@value mediumDown, mediumUp, largeUp from '~styles/breakpoints.css';
+@value mediumDown, mediumUp from '~styles/breakpoints.css';
 
 .baseStyles {
   /* This class is intended for composition only.
@@ -146,34 +146,18 @@
   }
 
   .leftLink .gutterLinkText {
-    right: calc(-1 * (var(--gutter-width-narrow) / 2));    
+    left: var(--gutter-width-wide);
+    right: -15px;
     transform: rotate(270deg);
   }
 
   .rightLink .gutterLinkText {
-    left: calc(-1 * (var(--gutter-width-narrow) / 2));    
+    left: -15px;
+    right: var(--gutter-width-wide);
     transform: rotate(90deg);
   }
 
   .themePink .gutter {
     background-color: var(--pink-2);
-  }
-
-  .oneSideLeft .leftLink .gutterLinkText {
-    right: 30px;
-  }
-  
-  .oneSideRight .rightLink .gutterLinkText {
-    left: 40px;
-  }
-}
-
-@media (largeUp) {
-  .leftLink .gutterLinkText {
-    right: -15px;
-  }
-
-  .rightLink .gutterLinkText {
-    left: -15px;
   }
 }
