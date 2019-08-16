@@ -4,6 +4,7 @@ import React from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
+import Breakpoint from '~core/Breakpoint';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
@@ -56,19 +57,42 @@ const Econ = () => (
           text={MSG.introText}
         />
       </div>
-      <Image
-        alt={MSG.title}
-        className={styles.image}
-        src={withPrefix('/img/diagram_clnyEcon.png')}
-      />
+      <Breakpoint size="medium">
+        <Image
+          alt={MSG.title}
+          className={styles.image}
+          src={withPrefix('/img/diagram_clnyEcon.png')}
+        />
+      </Breakpoint>
       <div className={styles.gridContainer}>
         <div className={styles.gridItem}>
+          <Breakpoint inclusion="down" size="small">
+            <Image
+              alt={MSG.feeTextOne}
+              className={styles.image}
+              src={withPrefix('/img/diagram_clnyEcon_mobile_1.png')}
+            />
+          </Breakpoint>
           <Paragraph text={MSG.feeTextOne} />
         </div>
         <div className={styles.gridItem}>
+          <Breakpoint inclusion="down" size="small">
+            <Image
+              alt={MSG.feeTextTwo}
+              className={styles.image}
+              src={withPrefix('/img/diagram_clnyEcon_mobile_2.png')}
+            />
+          </Breakpoint>
           <Paragraph text={MSG.feeTextTwo} />
         </div>
         <div className={styles.gridItem}>
+          <Breakpoint inclusion="down" size="small">
+            <Image
+              alt={MSG.feeTextThree}
+              className={styles.image}
+              src={withPrefix('/img/diagram_clnyEcon_mobile_3.png')}
+            />
+          </Breakpoint>
           <Paragraph text={MSG.feeTextThree} />
         </div>
       </div>
