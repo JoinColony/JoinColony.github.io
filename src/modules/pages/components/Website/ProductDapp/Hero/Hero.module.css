@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   display: flex;
   flex-direction: column;  
@@ -6,6 +8,7 @@
 
 .row {
   display: flex;
+  flex-direction: column;
 }
 
 .row > div:first-of-type {
@@ -17,8 +20,7 @@
 }
 
 .row:nth-of-type(2) > div {
-  padding-bottom: 130px;
-  padding-top: 130px;
+  padding: var(--margin-large) var(--gutter-width);
 }
 
 .imageContainer {
@@ -35,16 +37,25 @@
   align-items: center;
   background-color: var(--blue-3);
   display: flex;
-  padding-right: var(--gutter-width);
 }
 
 .contentInner {
-  padding: 190px 0 200px 144px;
+  padding: var(--margin-huge) var(--gutter-width);
 }
 
 .body {
-  margin-top: 50px;
-  padding-right: 50px;
+  margin-top: var(--margin-medium);
+}
+
+.mobileImageContainer {
+  background-color: var(--navy);
+  padding-top: var(--margin-large);
+}
+
+.mobileImage {
+  display: block;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
 }
 
 .subTitleContainer {
@@ -63,5 +74,24 @@
 }
 
 .button {
-  margin-top: 50px;
+  margin-top: var(--margin-medium);
+}
+
+@media (mediumUp) {
+  .row {
+    flex-direction: row;
+  }
+
+  .contentInner {
+    padding: var(--margin-huge) 0 var(--margin-huge) 144px;
+  }
+
+  .contentContainer {
+    padding-right: var(--gutter-width);
+  }
+
+  .body {
+    margin-top: 50px;
+    padding-right: 50px;
+  }
 }
