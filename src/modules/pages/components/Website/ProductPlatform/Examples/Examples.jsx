@@ -91,7 +91,10 @@ const Examples = () => {
         <div className={styles.introRow}>
           <div className={styles.mainContent}>
             <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
-            <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
+            <Paragraph
+              appearance={{ margin: 'none', size: 'medium' }}
+              text={MSG.body}
+            />
           </div>
           <div className={styles.imageContainer}>
             <Image
