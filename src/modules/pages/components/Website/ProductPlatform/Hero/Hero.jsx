@@ -85,6 +85,7 @@ const Hero = () => {
         <div className={styles.imageContent}>
           <Image
             alt={MSG.announcement}
+            className={styles.image}
             src={withPrefix('/img/yellowTriangle.svg')}
           />
         </div>
