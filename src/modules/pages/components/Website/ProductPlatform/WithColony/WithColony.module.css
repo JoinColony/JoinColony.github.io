@@ -1,15 +1,23 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
 @value leftPadding: 100px;
+
+.main {
+  background-color: var(--navy);
+}
 
 .graphicRow {
   background-color: var(--navy);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 130px 0 0 leftPadding;
+  padding: var(--margin-huge) var(--gutter-width) 0  var(--gutter-width);
 }
 
 .content {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -22,23 +30,30 @@
 }
 
 .gridRow {
+  background-color: var(--colony-white);
   display: flex;
   justify-content: space-between;
-  padding: 73px 0 20px leftPadding;
+  flex-direction: column;
+  margin: 0 var(--gutter-width);
+  padding: var(--margin-medium) var(--gutter-width-wide);
 }
 
 .gridItem {
   flex: 0 0 30%;
-  /* to cover up layout hack if need be */
-  z-index: 100;
 }
 
-.layoutHack {
-  /* This block covers up the bottom part of the right-hand gutter */
-  background-color: white;
-  bottom: 0;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  width: var(--gutter-width-narrow);
+@media (mediumUp) {
+  .graphicRow {
+    padding: var(--margin-huge) var(--gutter-width-narrow) 0 leftPadding;
+  }
+
+  .content {
+    flex-direction: row;
+  }
+
+  .gridRow {
+    flex-direction: row;
+    margin: 0;
+    padding: var(--margin-medium) var(--gutter-width-narrow) var(--margin-small) leftPadding;
+  }
 }
