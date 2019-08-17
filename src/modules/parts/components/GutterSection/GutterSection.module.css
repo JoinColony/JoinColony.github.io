@@ -45,7 +45,7 @@
 }
 
 .content {
-  flex: 0 0 var(--row-width-desktop-narrow);
+  flex: 0 0 auto;
   order: 1;
 }
 
@@ -142,6 +142,7 @@
   }
 
   .content {
+    flex: 0 0 var(--row-width-desktop-narrow);
     order: 2;
   }
 

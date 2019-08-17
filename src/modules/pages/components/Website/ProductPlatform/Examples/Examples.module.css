@@ -1,12 +1,19 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 @value rightColWidth: 30%;
+
+.main {
+  background-color: var(--grey-3);
+}
 
 .introRow {
   display: flex;
+  flex-direction: column;
 }
 
 .mainContent {
-  background-color: var(--grey-3);
-  padding: 80px 100px 80px 0;
+  padding: var(--margin-medium) var(--gutter-width) var(--margin-medium);
 }
 
 .imageContainer {
@@ -15,35 +22,49 @@
   display: flex;
   flex: 0 0 rightColWidth;
   justify-content: center;
+  margin: 0 var(--gutter-width);
+  padding: 25px 0;
 }
 
 .image {
-  max-height: 180px;
-  max-width: 180px;
+  max-height: 55px;
+  margin: 0;
+  height: 100%;
+  width: auto;
 }
 
 .contentRow {
   align-items: center;
   display: flex;
+  flex-direction: column-reverse;
 }
 
 .currentContent {
+  background-color: var(--colony-white);
   flex: 1 0 auto;
-  padding-left: 100px;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  width: 100%;
+  padding: 0 var(--gutter-width-wide);
 }
 
 .contentMenu {
+  background-color: var(--colony-white);
   display: flex;
-  flex-direction: column;
   flex: 0 0 rightColWidth;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  width: 100%;
+  padding: 30px var(--gutter-width-wide);
 }
 
 .menuItemBase {
   /* Intended for composition only. Do not use this class directly. */
   border: none;
-  padding: 20px 0 20px 62px;
+  flex: 0 0 50%;
   text-align: left;
-  width: 100%;
+  padding: var(--margin-small) 0;
 }
 
 .menuItemBase:focus {
@@ -53,12 +74,64 @@
 .menuItem {
   composes: menuItemBase;
   background: none;
-  color: var(--navy);
   cursor: pointer;
+  color: var(--navy);
 }
 
 .activeItem {
   composes: menuItemBase;
-  background-color: var(--blue-1);
-  color: var(--colony-white);
+  background: none;
+  color: var(--blue-1);
+}
+
+@media (mediumUp) {
+  .introRow {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    margin: 0;
+  }
+
+  .image {
+    max-height: 180px;
+    max-width: 180px;
+  }
+
+  .contentRow {
+    background-color: var(--colony-white);
+    flex-direction: row;
+  }
+
+  .mainContent {
+    padding: var(--margin-medium) 100px var(--margin-medium) 0;
+  }
+
+  .contentMenu {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .currentContent {
+    padding-left: 100px;
+    width: auto;
+  }
+
+  .menuItemBase {
+    /* Intended for composition only. Do not use this class directly. */
+    padding-left: 20px;
+    width: 100%;
+  }
+
+  .activeItem {
+    background-color: var(--blue-1);
+    color: var(--colony-white);
+  }
+}
+
+@media (largeUp) {
+  .menuItemBase {
+    /* Intended for composition only. Do not use this class directly. */
+    padding-left: 62px;
+  }
 }
