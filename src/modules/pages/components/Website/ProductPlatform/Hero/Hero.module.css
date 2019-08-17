@@ -1,14 +1,25 @@
 
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
 .main {
   display: flex;
 }
 
 .imageContainer {
   background-color: var(--pink-2);
+  display: none;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(var(--gutter-width) + 300px);
 }
 
 .imageContent {
   padding: 40px 0;
+}
+
+.image {
+  width: 100%;
+  max-height: 850px;
 }
 
 .contentContainer {
@@ -17,19 +28,37 @@
 }
 
 .content {
-  padding: 130px var(--gutter-width) 100px 130px;
-}
-
-.titleContainer {
-  width: 70%;
+  padding: var(--margin-huge) var(--gutter-width) 100px var(--gutter-width);
 }
 
 .steps {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-top: 100px;
+  margin-top: var(--margin-large);
 }
 
 .stepItem {
   flex: 0 0 28%;
+}
+
+@media (mediumUp) {
+  .imageContainer {
+    display: block;
+  }
+
+  .content {
+    padding: 130px var(--gutter-width) 100px 130px;
+  }
+
+
+  .titleContainer {
+    width: 70%;
+  }
+}
+
+@media (largeUp) {
+  .steps {
+    flex-direction: row;
+  }
 }
