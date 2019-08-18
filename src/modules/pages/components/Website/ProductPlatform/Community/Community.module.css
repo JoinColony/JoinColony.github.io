@@ -1,7 +1,10 @@
 
+@value smallUp, mediumUp from '~styles/breakpoints.css';
+
 .main {
   display: flex;
-  margin-top: 165px;
+  flex-direction: column-reverse;
+  margin-top: var(--margin-huge);
 }
 
 .image {
@@ -11,21 +14,42 @@
   background-repeat: no-repeat;
   background-size: cover;
   flex: 0 0 42%;
+  min-height: 200px;
 }
 
 .contentContainer {
   background-color: var(--navy);
-  padding: 120px var(--gutter-width-narrow) 120px 130px;
+  padding: var(--margin-large) var(--gutter-width);
 }
 
 .body {
-  margin-top: 70px;
+  margin-top: var(--margin-medium);
 }
 
 .section + .section {
-  margin-top: 45px;
+  margin-top: calc(var(--size-medium) * 2);
 }
 
 .sectionBody {
   margin-top: 15px;
+}
+
+@media (smallUp) {
+  .image {
+    min-height: 400px;
+  }
+}
+
+@media (mediumUp) {
+  .main {
+    flex-direction: row;
+  }
+
+  .contentContainer {
+    padding: var(--margin-large) var(--gutter-width-narrow) var(--margin-large) var(--margin-large);
+  }
+
+  .image {
+    min-height: none;
+  }
 }
