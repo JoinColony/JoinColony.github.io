@@ -1,14 +1,12 @@
 /* @flow */
 
-import type { MessageDescriptor } from 'react-intl';
-
 import React from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
+import GridItem from '~core/GridItem';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
-import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
 import { PAGE_DEV_DOCS, COLONY_DISCOURSE, COLONY_GITHUB } from '~routes';
 
@@ -68,34 +66,6 @@ const MSG = defineMessages({
   },
 });
 
-const GridItem = ({
-  body,
-  image,
-  linkHref,
-  linkText,
-  title,
-}: {|
-  body: MessageDescriptor,
-  image: string,
-  linkHref: string,
-  linkText: MessageDescriptor,
-  title: MessageDescriptor,
-|}) => (
-  <div className={styles.gridItem}>
-    <div>
-      <Image alt={title} className={styles.itemImage} src={image} />
-      <Heading
-        appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
-        text={title}
-      />
-      <Paragraph text={body} />
-    </div>
-    <div>
-      <Link className={styles.itemLink} href={linkHref} text={linkText} />
-    </div>
-  </div>
-);
-
 const displayName = 'pages.Website.ProductPlatform.KickAss';
 
 const KickAss = () => (
@@ -106,27 +76,30 @@ const KickAss = () => (
         <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
       </div>
       <div className={styles.gridRow}>
-        <GridItem
-          body={MSG.bodyTopic0}
-          image={withPrefix('/img/icon_docsDelight.png')}
-          linkHref={PAGE_DEV_DOCS}
-          linkText={MSG.linkTopic0}
-          title={MSG.titleTopic0}
-        />
-        <GridItem
-          body={MSG.bodyTopic1}
-          image={withPrefix('/img/icon_github.png')}
-          linkHref={COLONY_GITHUB}
-          linkText={MSG.linkTopic1}
-          title={MSG.titleTopic1}
-        />
-        <GridItem
-          body={MSG.bodyTopic2}
-          image={withPrefix('/img/icon_conversation.png')}
-          linkHref={COLONY_DISCOURSE}
-          linkText={MSG.linkTopic2}
-          title={MSG.titleTopic2}
-        />
+        <div className={styles.gridItem}>
+          <GridItem
+            body={MSG.bodyTopic0}
+            image={withPrefix('/img/icon_docsDelight.png')}
+            links={[{ href: PAGE_DEV_DOCS, text: MSG.linkTopic0 }]}
+            title={MSG.titleTopic0}
+          />
+        </div>
+        <div className={styles.gridItem}>
+          <GridItem
+            body={MSG.bodyTopic1}
+            image={withPrefix('/img/icon_github.png')}
+            links={[{ href: COLONY_GITHUB, text: MSG.linkTopic1 }]}
+            title={MSG.titleTopic1}
+          />
+        </div>
+        <div className={styles.gridItem}>
+          <GridItem
+            body={MSG.bodyTopic2}
+            image={withPrefix('/img/icon_conversation.png')}
+            links={[{ href: COLONY_DISCOURSE, text: MSG.linkTopic2 }]}
+            title={MSG.titleTopic2}
+          />
+        </div>
       </div>
     </div>
     <Image
