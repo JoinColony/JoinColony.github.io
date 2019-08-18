@@ -1,19 +1,17 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
-  margin: 190px auto;
-  max-width: var(--row-width-desktop);
+  margin: var(--margin-huge) auto;
 }
 
 .introContainer {
-  text-align: center;
-}
-
-.itemList {
-  margin-top: 100px;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
 }
 
 .item + .item {
-  margin-top: 90px;
+  margin-top: var(--margin-large);
 }
 
 .link {
@@ -22,4 +20,14 @@
 
 .link:hover {
   text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .main {
+    max-width: var(--row-width-desktop);
+  }
+
+  .introContainer {
+    text-align: center;
+  }
 }
