@@ -39,15 +39,19 @@ const Item = ({
       <Image alt={title} className={styles.image} src={image} />
     </div>
     <div className={styles.contentBlock}>
-      <div>
+      <div className={styles.contentInner}>
         {thumbnail && (
-          <Image alt={title} className={styles.thumbnail} src={thumbnail} />
+          <div className={styles.thumbnailContainer}>
+            <Image alt={title} className={styles.thumbnail} src={thumbnail} />
+          </div>
         )}
-        <Heading
-          appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
-          text={title}
-        />
-        <Paragraph text={body} textValues={bodyValues} />
+        <div className={styles.bodyContainer}>
+          <Heading
+            appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
+            text={title}
+          />
+          <Paragraph text={body} textValues={bodyValues} />
+        </div>
       </div>
     </div>
   </div>
