@@ -1,19 +1,22 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
 @value gridItemPaddingHorizontal: 72px;
-@value gridItemPaddingVertical: 50px;
 
 .main {
-  padding: 180px 0 230px 0;
+  padding: var(--margin-huge) 0;
 }
 
 .introContent {
   margin: 0 auto;
-  max-width: var(--row-width-desktop-narrow);
+  max-width: var(--row-width-desktop);
 }
 
 .dynamicContent {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-top: 75px;
+  margin-top: var(--margin-medium);
 }
 
 .contentMenu {
@@ -24,21 +27,18 @@
 .baseButtonStyles {
   /* Intended for composition only. Do not use this class directly. */
   background-color: transparent;
-  border-left-width: 4px;
+  border-left-color: transparent;
   border-bottom: none;
   border-right: none;
   border-top: none;
-  padding: 7px 0 7px 25px;
-  font-family: 'Avenir Next Demi';
-  font-size: 20px;
+  display: flex;
+  font-size: var(--size-medium);
+  justify-content: space-between;
   line-height: 30px;
+  padding: 10px 0;
   text-align: left;
   width: 100%;
   white-space: nowrap;
-}
-
-.baseButtonStyles + .baseButtonStyles {
-  margin-top: 30px;
 }
 
 .baseButtonStyles:focus {
@@ -47,39 +47,57 @@
 
 .activeItem {
   composes: baseButtonStyles;
-  border-left-color: var(--blue-1);
   color: var(--blue-1);
 }
 
 .menuItem {
   composes: baseButtonStyles;
-  border-left-color: var(--grey-2);
-  color: var(--grey-2);
   cursor: pointer;
+}
+
+.chevron {
+  margin-top: 4px;
+}
+
+.chevron svg {
+  width: 15px;
+  transform: rotate(90deg);
+}
+
+.activeItem .chevron svg {
+  fill: var(--blue-1);
 }
 
 .body {
   flex: 0 0 58%;
+  margin: 20px 0 0;
 }
 
 .gridWrapper {
-  margin: 190px auto 0;
+  margin: var(--margin-large) auto 0;
   max-width: var(--row-width-desktop);
 }
 
 .gridRow {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   /* Negative margins for properly aligning wrapping grid */
-  margin: calc(-1 * gridItemPaddingVertical) calc(-1 * gridItemPaddingHorizontal);
+  margin: calc(-1 * var(--margin-medium)) calc(-1 * gridItemPaddingHorizontal);
 }
 
 .gridItem {
   display: flex;
-  flex: 0 0 30%;
-  flex-direction: column;
+  flex-basis: calc(100% / 3);
   justify-content: space-between;
-  padding: gridItemPaddingVertical gridItemPaddingHorizontal;
+  padding: var(--margin-medium) gridItemPaddingHorizontal;
+}
+
+.itemContent {
+  display: flex;
+  flex: 0 0 80%;
+  flex-direction: column;
+  padding-left: 10px;
 }
 
 .itemHeading {
@@ -99,6 +117,10 @@
   fill: var(--grey-1);
 }
 
+.itemLinks {
+  margin-top: auto;
+}
+
 .itemLinks a {
   color: var(--blue-1);
   font-size: var(--size-normal);
@@ -110,4 +132,54 @@
 
 .itemLinks a:hover {
   text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .introContent {
+    max-width: var(--row-width-desktop-narrow);
+  }
+
+  .dynamicContent {
+    flex-direction: row;
+  }
+
+  .baseButtonStyles {
+    border-left-width: 4px;
+    font-family: 'Avenir Next Demi';
+    padding: 7px 0 7px 25px;
+  }
+
+  .baseButtonStyles + .baseButtonStyles {
+    margin-top: 30px;
+  }
+
+  .activeItem {
+    border-left-color: var(--blue-1);
+  }
+
+  .menuItem {
+    border-left-color: var(--grey-2);
+    color: var(--grey-2);
+  }
+
+  .chevron {
+    display: none;
+  }
+
+  .body {
+    margin: 0;
+  }
+
+  .gridRow {
+    flex-direction: row;
+  }
+
+  .gridItem {
+    flex-direction: column;
+  }
+
+  .itemContent {
+    flex: 1 0 auto;
+    padding-left: 0;
+  }
 }

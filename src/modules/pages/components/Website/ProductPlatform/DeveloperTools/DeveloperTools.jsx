@@ -5,6 +5,7 @@ import type { MessageDescriptor } from 'react-intl';
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
+import Breakpoint from '~core/Breakpoint';
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
@@ -34,12 +35,12 @@ const MSG = defineMessages({
       we build generic open source solutions. It’s the least we can do
       to support a movement from which we all benefit daily.`,
   },
-  buttonTopic0: {
-    id: 'pages.Website.ProductPlatform.DeveloperTools.buttonTopic0',
+  titleTopic0: {
+    id: 'pages.Website.ProductPlatform.DeveloperTools.titleTopic0',
     defaultMessage: 'Core Tools',
   },
-  buttonTopic1: {
-    id: 'pages.Website.ProductPlatform.DeveloperTools.buttonTopic1',
+  titleTopic1: {
+    id: 'pages.Website.ProductPlatform.DeveloperTools.titleTopic1',
     defaultMessage: 'Community Tools',
   },
   linkTextDocs: {
@@ -130,6 +131,8 @@ const GridItem = ({
           />
         </Link>
       </div>
+    </div>
+    <div className={styles.itemContent}>
       <Link href={linkGithub}>
         <Heading
           className={styles.itemHeading}
@@ -138,10 +141,10 @@ const GridItem = ({
         />
       </Link>
       <Paragraph text={body} />
-    </div>
-    <div className={styles.itemLinks}>
-      {linkDocs && <Link href={linkDocs} text={MSG.linkTextDocs} />}
-      <Link href={linkGithub} text={MSG.linkTextGithub} />
+      <div className={styles.itemLinks}>
+        {linkDocs && <Link href={linkDocs} text={MSG.linkTextDocs} />}
+        <Link href={linkGithub} text={MSG.linkTextGithub} />
+      </div>
     </div>
   </div>
 );
@@ -167,11 +170,22 @@ const DeveloperTools = () => {
                   onClick={() => setActiveItem(idx)}
                   type="button"
                 >
-                  <FormattedMessage {...MSG[`buttonTopic${idx}`]} />
+                  <FormattedMessage {...MSG[`titleTopic${idx}`]} />
+                  <Icon
+                    className={styles.chevron}
+                    name="chevron"
+                    title={MSG[`titleTopic${idx}`]}
+                  />
                 </button>
               ))}
           </div>
           <div className={styles.body}>
+            <Breakpoint inclusion="down" size="small">
+              <Heading
+                appearance={{ size: 'large', weight: 'thin' }}
+                text={MSG[`titleTopic${activeItem}`]}
+              />
+            </Breakpoint>
             <Paragraph text={MSG.body} />
           </div>
         </div>
