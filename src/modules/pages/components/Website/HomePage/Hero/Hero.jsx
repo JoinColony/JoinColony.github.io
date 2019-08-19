@@ -19,7 +19,7 @@ const MSG = defineMessages({
   },
   description: {
     id: 'pages.Website.HomePage.Hero.description',
-    defaultMessage: `Create, operate, and monetize digital companies that
+    defaultMessage: `Create, operate, and monetize Digital Companies that
       succeed through self-organization.`,
   },
   announcement: {
