@@ -26,7 +26,7 @@ const MSG = defineMessages({
     id: 'pages.Website.HomePage.Vision.body',
     defaultMessage: `From benevolent dictatorship to democratic cooperative,
       Colony is modular and customisable, giving you total flexibility,
-      and enabling safe experimentation and gradual change.`,
+      and enabling safe experimentation and gradual adoption.`,
   },
   link: {
     id: 'pages.Website.HomePage.Vision.link',

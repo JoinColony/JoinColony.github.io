@@ -33,8 +33,8 @@ const MSG = defineMessages({
     id: 'pages.Website.HomePage.Products.controlBodyHumans',
     defaultMessage: `Spin up a colony, issue a token, and get
       started in minutes. Building an app on Colony? Build it
-      using Colony! Think of your app as store-front, and ours
-      as back-office.`,
+      using our app! Think of your app as the store-front and
+      ours as the back-office.`,
   },
   controlLinkDevelopers: {
     id: 'pages.Website.HomePage.Products.controlLinkDevelopers',
@@ -42,7 +42,7 @@ const MSG = defineMessages({
   },
   controlLinkHumans: {
     id: 'pages.Website.HomePage.Products.controlLinkHumans',
-    defaultMessage: 'Build with Colony',
+    defaultMessage: 'Show me around!',
   },
   controlTitleDevelopers: {
     id: 'pages.Website.HomePage.Products.controlTitleDevelopers',

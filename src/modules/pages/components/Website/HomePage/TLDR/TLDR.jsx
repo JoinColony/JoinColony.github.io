@@ -4,7 +4,6 @@ import React from 'react';
 import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
-import Paragraph from '~core/Paragraph';
 
 import styles from './TLDR.module.css';
 
@@ -15,18 +14,19 @@ const MSG = defineMessages({
   },
   textOne: {
     id: 'pages.Website.HomePage.TLDR.textOne',
-    defaultMessage: `Colony is a platform for internet-native
-      companies that succeed through self-organization.`,
+    defaultMessage: `A colony is a new kind of digital company where rules
+      are enforced by software instead of management.`,
   },
   textTwo: {
     id: 'pages.Website.HomePage.TLDR.textTwo',
-    defaultMessage: `It enables you to coordinate work, manage
-      money, and make decisions, meritocratically.`,
+    defaultMessage: `That means a lot of business administration-like
+      authority, budgeting, and payments—can be streamlined or even automated.`,
   },
   textThree: {
     id: 'pages.Website.HomePage.TLDR.textThree',
-    defaultMessage: `It's not a company; it's organizational
-      infrastructure for the internet. Which means it'll last forever.`,
+    defaultMessage: `A colony's rules help people self-organize, meaning fewer
+      people can get more done because less management and administration is
+      required.`,
   },
 });
 
