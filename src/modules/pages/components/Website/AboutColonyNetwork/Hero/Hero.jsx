@@ -10,6 +10,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import { PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -82,7 +83,10 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
         </div>
       </div>
       <div className={styles.row}>
-        <div className={styles.subTitleContainer}>
+        <div
+          className={styles.subTitleContainer}
+          id={PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES}
+        >
           <Heading
             appearance={{
               margin: 'none',

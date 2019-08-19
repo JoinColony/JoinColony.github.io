@@ -7,7 +7,10 @@ import { withPrefix } from 'gatsby';
 import GridItem from '~core/GridItem';
 import Heading from '~core/Heading';
 import GutterSection from '~parts/GutterSection';
-import { PAGE_ABOUT_COLONY_NETWORK } from '~routes';
+import {
+  PAGE_ABOUT_COLONY_NETWORK,
+  PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES as CAPABILITIES_ANCHOR,
+} from '~routes';
 
 import styles from './Toolkit.module.css';
 
@@ -24,13 +27,13 @@ const MSG = defineMessages({
   },
   bodyPayments: {
     id: 'pages.Website.HomePage.Toolkit.bodyPayments',
-    defaultMessage: `Continuous performance review keeps track of
-      the work people did, and how well they did it.`,
+    defaultMessage: `From gigs and tips, to salaries and revenue sharing
+      Colony simplifies compensation complexity.`,
   },
   bodyPerformance: {
     id: 'pages.Website.HomePage.Toolkit.bodyPerformance',
     defaultMessage: `Doing great work earns you Reputation for the
-      skills you used and domains in which you contributed.`,
+      skills you used and domains to which you contributed.`,
   },
   bodyStructure: {
     id: 'pages.Website.HomePage.Toolkit.bodyStructure',
@@ -40,7 +43,7 @@ const MSG = defineMessages({
   bodyWork: {
     id: 'pages.Website.HomePage.Toolkit.bodyWork',
     defaultMessage: `Define, incentivize, and coordinate delivery
-      of the outputs that provide your colony’s value.  `,
+      of the product that provides your colony's value.`,
   },
   headingAuthority: {
     id: 'pages.Website.HomePage.Toolkit.headingAuthority',
@@ -106,7 +109,10 @@ const displayName = 'pages.Website.HomePage.Toolkit';
 const Toolkit = () => (
   <GutterSection
     appearance={{ oneSide: 'right' }}
-    linkRight={{ href: PAGE_ABOUT_COLONY_NETWORK, text: MSG.linkSeeAll }}
+    linkRight={{
+      href: `${PAGE_ABOUT_COLONY_NETWORK}#${CAPABILITIES_ANCHOR}`,
+      text: MSG.linkSeeAll,
+    }}
   >
     <div className={styles.main}>
       <div className={styles.contentContainer}>
