@@ -77,3 +77,8 @@ export const DOCS_COLONY_TAILOR =
   'https://colony.io/dev/docs/tailor/docs-overview';
 export const DOCS_COLONY_STARTER =
   'https://colony.io/dev/docs/colonystarter/docs-overview';
+
+/*
+ * Page Anchor Ids
+ */
+export const PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES = 'capabilities';
