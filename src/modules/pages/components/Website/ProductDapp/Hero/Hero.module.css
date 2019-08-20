@@ -40,7 +40,7 @@
 }
 
 .contentInner {
-  padding: var(--margin-huge) var(--gutter-width);
+  padding: 0 var(--gutter-width) var(--margin-huge);
 }
 
 .body {
