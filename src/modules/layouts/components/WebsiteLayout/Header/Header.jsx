@@ -64,21 +64,23 @@ const MSG = defineMessages({
   },
   dropdownLinkBodyAboutColonyNetwork: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutColonyNetwork',
-    defaultMessage: `Organize and operate with our suite of smart
-      contracts running on Ethereum.`,
+    defaultMessage: `All about the features, how Colony works, and the
+      technology it's built on.`,
   },
   dropdownLinkBodyAboutMetacolony: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutMetacolony',
-    defaultMessage: `Learn about the team and token that keeps Colony running.`,
+    defaultMessage: `All about the Colony colony: the economics, it's
+      token—CLNY, and how you can contribute.`,
   },
   dropdownLinkBodyAboutVision: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutVision',
-    defaultMessage: 'Read about the vision behind Colony. It gets weird.',
+    defaultMessage: `Read about Colony's vision for the future of the firm. It
+      get's weird.`,
   },
   dropdownLinkBodyDevDiscourse: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevDiscourse',
-    defaultMessage: `This is the max amount of descriptor text for the
-      navigation hover state. Keep it short.`,
+    defaultMessage: `Come and join the community on Discourse. Discuss projects,
+      technical questions, and more.`,
   },
   dropdownLinkBodyDevGetStarted: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevGetStarted',
@@ -87,22 +89,23 @@ const MSG = defineMessages({
   },
   dropdownLinkBodyDevPortal: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevPortal',
-    defaultMessage: `This is the max amount of descriptor text for the
-      navigation hover state. Keep it short.`,
+    defaultMessage: `Developer docs for all of Colony's core and community
+      open-source tools.`,
   },
   dropdownLinkBodyDevTutorials: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevTutorials',
-    defaultMessage: `This is the max amount of descriptor text for the
-      navigation hover state. Keep it short.`,
+    defaultMessage: `Grok key Colony concepts quickly with clear tutorials
+      to help you learn by doing.`,
   },
   dropdownLinkBodyProductsDapp: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsDapp',
-    defaultMessage: `Tools to organize and incentivize collaborative,
-      communities, and contingent workers.`,
+    defaultMessage: `Tools to organize and incentivize collaborators,
+      contributors, and communities.`,
   },
   dropdownLinkBodyProductsPlatform: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsPlatform',
-    defaultMessage: 'The fastest way to build cryptoeconomic applications.',
+    defaultMessage: `The fastest way to build and deploy cryptoeconomic
+      applications.`,
   },
   dropdownLinkTitleAboutColonyNetwork: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleAboutColonyNetwork',
