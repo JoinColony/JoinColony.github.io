@@ -12,14 +12,16 @@ import styles from './LookGood.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.ProductPlatform.LookGood.body',
-    defaultMessage: `Building a great dapp is hard, slow, and
+    defaultMessage: `Building a great DApp is hard, slow, and
       expensive. Building on Colony takes care of all the unsexy
       grunt work, allowing you to focus on your special sauce,
-      and get from idea to users fast.`,
+      and get from idea to users fast.
+      {br}{br}
+      Building with Colony gives you:`,
   },
   title: {
     id: 'pages.Website.ProductPlatform.LookGood.title',
-    defaultMessage: 'Here to Make You Look Good',
+    defaultMessage: 'Here to Make You Look Good.',
   },
   textColony: {
     id: 'pages.Website.ProductPlatform.LookGood.textColony',

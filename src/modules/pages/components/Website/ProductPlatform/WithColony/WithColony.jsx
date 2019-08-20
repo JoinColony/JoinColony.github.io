@@ -17,15 +17,15 @@ import styles from './WithColony.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.ProductPlatform.WithColony.body',
-    defaultMessage: `Colony’s app provides powerful tools to coordinate
-      and incentivize your team, contributors, and community; enabling
-      you to build your app using our app. Think of it like shop-front
-      and back-office.`,
+    defaultMessage: `Colony's app provides powerful tools to coordinate and
+      incentivize your team, contributors, and community; enabling you to
+      build your app using our app. Think of your app as the store-front
+      and ours as the back-office.`,
   },
   gridItemBody0: {
     id: 'pages.Website.ProductPlatform.WithColony.gridItemBody0',
-    defaultMessage: `Use your app’s native token, ETH, or DAI to compensate
-      the talented people who realise your vision.`,
+    defaultMessage: `Use your app's native Token, ETH, or DAI to compensate
+      the talented people who realize your vision.`,
   },
   gridItemBody1: {
     id: 'pages.Website.ProductPlatform.WithColony.gridItemBody1',
@@ -34,8 +34,8 @@ const MSG = defineMessages({
   },
   gridItemBody2: {
     id: 'pages.Website.ProductPlatform.WithColony.gridItemBody2',
-    defaultMessage: `Tokens and Reputation allow decision authority to
-      devolve to the community safely over time.`,
+    defaultMessage: `That’s right. Build your dapp on Colony, get on chain
+      governance right out the box. Boom.`,
   },
   gridItemTitle0: {
     id: 'pages.Website.ProductPlatform.WithColony.gridItemTitle0',
@@ -51,7 +51,7 @@ const MSG = defineMessages({
   },
   gutterLinkText: {
     id: 'pages.Website.ProductPlatform.WithColony.gutterLinkText',
-    defaultMessage: 'To the product please!',
+    defaultMessage: 'Check out the dapp',
   },
   title: {
     id: 'pages.Website.ProductPlatform.WithColony.title',

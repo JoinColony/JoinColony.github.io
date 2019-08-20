@@ -20,7 +20,7 @@ const MSG = defineMessages({
   bodyStep1: {
     id: 'pages.Website.ProductPlatform.Hero.bodyStep1',
     defaultMessage: `Coordinate and incentivise desired user
-      behaviours using a mixture of prebuilt and custom modules.`,
+      behaviors using a mixture of prebuilt and custom modules.`,
   },
   bodyStep2: {
     id: 'pages.Website.ProductPlatform.Hero.bodyStep2',
@@ -34,12 +34,12 @@ const MSG = defineMessages({
   },
   title: {
     id: 'pages.Website.ProductPlatform.Hero.title',
-    defaultMessage: `The Fastest Way to Build Cryptoeconomic Applications`,
+    defaultMessage: `The Fastest Way to Build Cryptoeconomic Applications.`,
   },
   subTitle: {
     id: 'pages.Website.ProductPlatform.Hero.subTitle',
-    defaultMessage: `Build applications that incentivize effort, generate
-      revenue, and drive growth, autonomously. Here’s how:`,
+    defaultMessage: `Build applications that incentivize engagement, generate
+      revenue, and drive growth, autonomously. Here's how:`,
   },
   titleStep1: {
     id: 'pages.Website.ProductPlatform.Hero.titleStep1',
