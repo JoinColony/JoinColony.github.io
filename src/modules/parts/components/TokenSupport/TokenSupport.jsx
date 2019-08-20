@@ -18,11 +18,11 @@ const MSG = defineMessages({
   },
   bullet1: {
     id: 'parts.ProductPlatform.TokenSupport.bullet1',
-    defaultMessage: 'Supports any ERC20 token',
+    defaultMessage: 'Supports all existing ERC20 tokens',
   },
   bullet2: {
     id: 'parts.ProductPlatform.TokenSupport.bullet2',
-    defaultMessage: 'Pay users in USD stable coins',
+    defaultMessage: 'Pay people in USD using DAI',
   },
   linkLearnMore: {
     id: 'parts.ProductPlatform.TokenSupport.linkLearnMore',
