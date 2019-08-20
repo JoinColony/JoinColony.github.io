@@ -15,38 +15,33 @@ import styles from './Hub.module.css';
 const MSG = defineMessages({
   bodyTopic0: {
     id: 'pages.Website.ProductDapp.Hub.bodyTopic0',
-    defaultMessage: `At vero eos et accusamus et iusto odio
-      dignissimos ducimus qui blanditiis praesentium voluptatum
-      deleniti atque corrupti quos dolores et quas molestias
-      excepturi sint occaecati`,
+    defaultMessage: `Use domains to group work together. You can think
+      of them as projects, departments, teams, circles, or whatever makes
+      sense for your colony.`,
   },
   bodyTopic1: {
     id: 'pages.Website.ProductDapp.Hub.bodyTopic1',
-    defaultMessage: `At vero eos et accusamus et iusto odio
-      dignissimos ducimus qui blanditiis praesentium voluptatum
-      deleniti atque corrupti quos dolores et quas molestias
-      excepturi sint occaecati`,
+    defaultMessage: `Create tasks, manage delivery of work, and make payments
+      using digital currencies and even your own token. Workers can easily
+      cash out to their bank.`,
   },
   bodyTopic2: {
     id: 'pages.Website.ProductDapp.Hub.bodyTopic2',
-    defaultMessage: `At vero eos et accusamus et iusto odio
-      dignissimos ducimus qui blanditiis praesentium voluptatum
-      deleniti atque corrupti quos dolores et quas molestias
-      excepturi sint occaecati`,
+    defaultMessage: `It doesn't matter who you are, or where you come from; only
+      how good you are. When you get paid for doing work, you earn Reputation in
+      your colony.`,
   },
   bodyTopic3: {
     id: 'pages.Website.ProductDapp.Hub.bodyTopic3',
-    defaultMessage: `At vero eos et accusamus et iusto odio
-      dignissimos ducimus qui blanditiis praesentium voluptatum
-      deleniti atque corrupti quos dolores et quas molestias
-      excepturi sint occaecati`,
+    defaultMessage: `Create your colony's landing page to express your brand,
+      your mission, and tell people where to go to discover more about your
+      work.`,
   },
   bodyTopic4: {
     id: 'pages.Website.ProductDapp.Hub.bodyTopic4',
-    defaultMessage: `At vero eos et accusamus et iusto odio
-      dignissimos ducimus qui blanditiis praesentium voluptatum
-      deleniti atque corrupti quos dolores et quas molestias
-      excepturi sint occaecati
+    defaultMessage: `Assemble your team of trusted talent excited and inspired
+      by your mission and values. Build belonging in a community forged of
+      shared effort and common objectives.
       {br}{br}{link}`,
   },
   linkTopic4: {
@@ -67,7 +62,7 @@ const MSG = defineMessages({
   },
   titleTopic2: {
     id: 'pages.Website.ProductDapp.Hub.titleTopic2',
-    defaultMessage: 'Track Reputation',
+    defaultMessage: 'Track reputation',
   },
   titleTopic3: {
     id: 'pages.Website.ProductDapp.Hub.titleTopic3',
