@@ -38,12 +38,10 @@ const MSG = defineMessages({
   subBody: {
     id: 'pages.Website.AboutColonyNetwork.Hero.subBody',
     defaultMessage: `Every organization is different, so like a
-      computer’s operating system, the Colony Network is use-case
+      computer's operating system, the Colony Network is use-case
       agnostic, enabling organizations to customize their Colony
       with smart contract modules providing the rules their
-      organization requires.
-      {br}{br}
-      *Coming soon!`,
+      organization requires.`,
   },
 });
 
