@@ -19,6 +19,33 @@
   width: 60px;
 }
 
+.itemLink {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+.itemLink:hover {
+  text-decoration: underline;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentInner {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  flex: 1 0 auto;
+}
+
+.links {
+  margin-top: auto;
+}
+
 @media (smallUp) {
   .image {
     width: 70px;

@@ -2,14 +2,13 @@
 
 import type { MessageDescriptor } from 'react-intl';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
-import { useElementHeight } from '~hooks';
 import GutterSection from '~parts/GutterSection';
 import { PAGE_PRODUCT_DAPP } from '~routes';
 
@@ -78,56 +77,47 @@ const GridItem = ({
 
 const displayName = 'pages.Website.ProductPlatform.WithColony';
 
-const WithColony = () => {
-  const gridRowRef = useRef(null);
-  const gridRowHeight = useElementHeight(gridRowRef);
-  return (
-    <GutterSection
-      appearance={{ themeRight: 'dark' }}
-      linkLeft={{ href: PAGE_PRODUCT_DAPP, text: MSG.gutterLinkText }}
-      style={{ position: 'relative' }}
-    >
-      <div
-        className={styles.layoutHack}
-        // +1 below to align correctly with `.gridRow`... Not sure why ¯\_(ツ)_/¯
-        style={{ height: `${gridRowHeight + 1}px` }}
-      />
-      <div className={styles.main}>
-        <div className={styles.graphicRow}>
-          <div className={styles.content}>
-            <div>
-              <Heading appearance={{ theme: 'invert' }} text={MSG.title} />
-            </div>
-            <div>
-              <Paragraph
-                appearance={{ size: 'normal', theme: 'invert' }}
-                text={MSG.body}
-              />
-            </div>
+const WithColony = () => (
+  <GutterSection
+    appearance={{ oneSide: 'left' }}
+    linkLeft={{ href: PAGE_PRODUCT_DAPP, text: MSG.gutterLinkText }}
+    style={{ position: 'relative' }}
+  >
+    <div className={styles.main}>
+      <div className={styles.graphicRow}>
+        <div className={styles.content}>
+          <div>
+            <Heading appearance={{ theme: 'invert' }} text={MSG.title} />
           </div>
-          <Image
-            alt={MSG.title}
-            className={styles.image}
-            src={withPrefix('/img/ColonyHome_mockup.png')}
-          />
+          <div>
+            <Paragraph
+              appearance={{ size: 'normal', theme: 'invert' }}
+              text={MSG.body}
+            />
+          </div>
         </div>
-        <div className={styles.gridRow} ref={gridRowRef}>
-          {Array(3)
-            .fill(null)
-            .map((_, idx) => (
-              <GridItem
-                body={MSG[`gridItemBody${idx}`]}
-                // `disable` below b/c these will never be reordered, thus React will survive.
-                // eslint-disable-next-line react/no-array-index-key
-                key={idx}
-                title={MSG[`gridItemTitle${idx}`]}
-              />
-            ))}
-        </div>
+        <Image
+          alt={MSG.title}
+          className={styles.image}
+          src={withPrefix('/img/ColonyHome_mockup.png')}
+        />
       </div>
-    </GutterSection>
-  );
-};
+      <div className={styles.gridRow}>
+        {Array(3)
+          .fill(null)
+          .map((_, idx) => (
+            <GridItem
+              body={MSG[`gridItemBody${idx}`]}
+              // `disable` below b/c these will never be reordered, thus React will survive.
+              // eslint-disable-next-line react/no-array-index-key
+              key={idx}
+              title={MSG[`gridItemTitle${idx}`]}
+            />
+          ))}
+      </div>
+    </div>
+  </GutterSection>
+);
 
 WithColony.displayName = displayName;
 

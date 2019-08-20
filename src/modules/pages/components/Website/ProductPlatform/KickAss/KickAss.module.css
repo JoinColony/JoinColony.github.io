@@ -1,6 +1,8 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
-  padding: 180px 0 120px;
+  padding: var(--margin-huge) 0 var(--margin-large);
   position: relative;
 }
 
@@ -13,35 +15,36 @@
 .mainInner {
   margin: 0 auto;
   max-width: var(--row-width-desktop);
-}
-
-.mainContent {
-  max-width: 45%;
+  position: relative;
+  z-index: 50;
 }
 
 .gridRow {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-top: 120px;
+  margin-top: var(--margin-large);
 }
 
 .gridItem {
-  display: flex;
   flex: 0 0 30%;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: var(--margin-small) 0;
 }
 
-.itemImage {
-  height: 80px;
-  margin-bottom: 40px;
+.gridItem > div {
+  height: 100%;
 }
 
-.itemLink {
-  color: var(--blue-1);
-  font-size: var(--size-normal);
+.content {
+  display: flex;
 }
 
-.itemLink:hover {
-  text-decoration: underline;
+@media (mediumUp) {
+  .mainContent {
+    max-width: 45%;
+  }
+
+  .gridRow {
+    flex-direction: row;
+  }
 }
