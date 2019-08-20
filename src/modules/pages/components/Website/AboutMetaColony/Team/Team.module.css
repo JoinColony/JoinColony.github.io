@@ -1,4 +1,6 @@
-@value outsideGutter: calc(calc(100% - var(--row-width-desktop)) / 2);
+
+@value mediumUp from '~styles/breakpoints.css';
+
 @value insideGutter: 130px;
 
 .heroImage {
@@ -6,15 +8,16 @@
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 786px;
+  height: 400px;
 }
 
 .contentContainer {
   display: flex;
+  flex-direction: column;
 }
 
 .leftCol {
-  padding: 150px insideGutter 185px outsideGutter;
+  padding: var(--margin-huge) var(--gutter-width);
 }
 
 .parrot {
@@ -31,9 +34,27 @@
   background-color: var(--pink-2);
   display: flex;
   flex: 0 0 42%;
-  padding: 0 outsideGutter 0 insideGutter;
+  padding: var(--margin-huge) var(--gutter-width);
 }
 
 .buttonContainer {
   margin-top: 40px;
+}
+
+@media (mediumUp) {
+  .heroImage {
+    height: 786px;
+  }
+
+  .contentContainer {
+    flex-direction: row;
+  }
+
+  .leftCol {
+    padding-right: insideGutter;
+  }
+
+  .rightCol {
+    padding-left: insideGutter;
+  }
 }
