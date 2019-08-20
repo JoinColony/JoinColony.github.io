@@ -34,8 +34,8 @@ const MSG = defineMessages({
       to pay people to work for it. 
       {br}{br}The world got weird.
       {br}{br}Ideas about work, occupation, and even companies are
-      changing. But then, to paraphrase a wise man: “Companies?
-      Where we’re going, we don’t need companies.”`,
+      changing. But then, to paraphrase a wise man: "Companies?
+      Where we're going, we don't need companies."`,
   },
 });
 
