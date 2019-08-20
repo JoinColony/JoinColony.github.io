@@ -8,6 +8,7 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import SEO from '~parts/SEO';
 import { COLONY_GITTER } from '~routes';
 
 import styles from './Hero.module.css';
@@ -53,6 +54,10 @@ const MSG = defineMessages({
       The Metacolony will launch under the aegis of Colony Foundation
       Ltd., which will gradually cede control to the Metacolony's members.`,
   },
+  seoTitle: {
+    id: 'pages.Website.AboutMetaColony.Hero.seoTitle',
+    defaultMessage: `Colony isn't a company. It's a colony.`,
+  },
 });
 
 const displayName = 'pages.Website.AboutMetaColony.Hero';
@@ -62,6 +67,7 @@ const Hero = () => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
   return (
     <div className={styles.main}>
+      <SEO description={MSG.body} title={MSG.seoTitle} />
       <div className={styles.row}>
         <div className={styles.imageContainer} style={style} />
         <div className={styles.contentContainer} style={style}>
