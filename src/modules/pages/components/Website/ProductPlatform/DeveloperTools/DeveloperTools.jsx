@@ -31,9 +31,10 @@ import styles from './DeveloperTools.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.body',
-    defaultMessage: `Where we have a need not met by existing tooling,
-      we build generic open source solutions. It’s the least we can do
-      to support a movement from which we all benefit daily.`,
+    defaultMessage: `Whether you're building the future of the gig economy,
+      a peer-to-peer marketplace, or a social network, Colony’s powerful
+      smart contracts, and straightforward JavaScript libraries give you
+      the tools you need to succeed.`,
   },
   titleTopic0: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.titleTopic0',
