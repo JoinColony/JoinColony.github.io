@@ -30,7 +30,7 @@ const MSG_SOON_BADGES = defineMessages({
   },
   reputationVoting: {
     id: 'pages.Website.ProductDapp.Roadmap.reputationVoting',
-    defaultMessage: 'Reputation-weighted voting',
+    defaultMessage: 'Reputation Weighted Voting',
   },
   suggestions: {
     id: 'pages.Website.ProductDapp.Roadmap.suggestions',
@@ -38,22 +38,22 @@ const MSG_SOON_BADGES = defineMessages({
   },
   permissions: {
     id: 'pages.Website.ProductDapp.Roadmap.permissions',
-    defaultMessage: 'Domain-level permissions',
+    defaultMessage: 'Domain Level Permissions',
   },
   funding: {
     id: 'pages.Website.ProductDapp.Roadmap.funding',
-    defaultMessage: 'Domain-level funding',
+    defaultMessage: 'Domain Level Funding',
   },
 });
 
 const MSG_LESS_SOON_BADGES = defineMessages({
   queues: {
     id: 'pages.Website.ProductDapp.Roadmap.queues',
-    defaultMessage: 'Funding queues',
+    defaultMessage: 'Funding Queues',
   },
   tokenVoting: {
     id: 'pages.Website.ProductDapp.Roadmap.tokenVoting',
-    defaultMessage: 'Token-weighted voting',
+    defaultMessage: 'Token Weighted Voting',
   },
   budgetBox: {
     id: 'pages.Website.ProductDapp.Roadmap.budgetBox',
@@ -61,7 +61,7 @@ const MSG_LESS_SOON_BADGES = defineMessages({
   },
   disputes: {
     id: 'pages.Website.ProductDapp.Roadmap.disputes',
-    defaultMessage: 'Objections & disputes',
+    defaultMessage: 'Objections & Disputes',
   },
   control: {
     id: 'pages.Website.ProductDapp.Roadmap.control',
