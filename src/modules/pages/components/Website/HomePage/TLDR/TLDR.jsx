@@ -8,25 +8,36 @@ import Heading from '~core/Heading';
 import styles from './TLDR.module.css';
 
 const MSG = defineMessages({
+  headingOne: {
+    id: 'pages.Website.HomePage.TLDR.headingOne',
+    defaultMessage: 'As easy as a web forum.',
+  },
+  headingTwo: {
+    id: 'pages.Website.HomePage.TLDR.headingTwo',
+    defaultMessage: 'Software eats middle management',
+  },
+  headingThree: {
+    id: 'pages.Website.HomePage.TLDR.headingThree',
+    defaultMessage: 'Incentivize global talent',
+  },
   title: {
     id: 'pages.Website.HomePage.TLDR.title',
     defaultMessage: 'The TL;DR',
   },
   textOne: {
     id: 'pages.Website.HomePage.TLDR.textOne',
-    defaultMessage: `A colony is a new kind of digital company where rules
-      are enforced by software instead of management.`,
+    defaultMessage: `A colony is a new kind of internet-native digital
+      company where rules are enforced by software instead of hierarchy.`,
   },
   textTwo: {
     id: 'pages.Website.HomePage.TLDR.textTwo',
-    defaultMessage: `That means a lot of business administration-like
-      authority, budgeting, and payments—can be streamlined or even automated.`,
+    defaultMessage: `Streamlining and automating business administration,
+      and distributing authority, means fewer people can get more done.`,
   },
   textThree: {
     id: 'pages.Website.HomePage.TLDR.textThree',
-    defaultMessage: `A colony's rules help people self-organize, meaning fewer
-      people can get more done because less management and administration is
-      required.`,
+    defaultMessage: `Issue your colony's token, bootstrap its value, and
+      reward people for work instantly, internationally, for free.`,
   },
 });
 
@@ -44,17 +55,41 @@ const TLDR = () => (
       <div className={styles.cols}>
         <div className={styles.colItem}>
           <Heading
+            appearance={{
+              margin: 'none',
+              size: 'medium',
+              theme: 'dark',
+            }}
+            text={MSG.headingOne}
+          />
+          <Heading
             appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
             text={MSG.textOne}
           />
         </div>
         <div className={styles.colItem}>
           <Heading
+            appearance={{
+              margin: 'none',
+              size: 'medium',
+              theme: 'dark',
+            }}
+            text={MSG.headingTwo}
+          />
+          <Heading
             appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
             text={MSG.textTwo}
           />
         </div>
         <div className={styles.colItem}>
+          <Heading
+            appearance={{
+              margin: 'none',
+              size: 'medium',
+              theme: 'dark',
+            }}
+            text={MSG.headingThree}
+          />
           <Heading
             appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
             text={MSG.textThree}
