@@ -1,25 +1,43 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
 @value horizontalPadding: 36px;
 
 .contentContainer {
   margin: 0 auto;
   max-width: var(--row-width-desktop);
-  padding: 150px 0;
-}
-
-.introContent {
-  width: 50%;
+  padding: var(--margin-huge) 0;
 }
 
 .gridContainer {
   display: flex;
+  flex-direction: column;
   margin: 0 calc(-1 * horizontalPadding);
 }
 
 .gridItem {
   flex: 0 0 calc(100% / 3);
-  padding: 55px horizontalPadding 0;
+  padding: 25px horizontalPadding 0;
 }
 
 .gridItemImage {
   height: 80px;
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    /* padding: 150px 0; */
+  }
+
+  .gridContainer {
+    flex-direction: row;
+  }
+
+  .gridItem {
+    padding: 55px horizontalPadding 0;
+  }
+
+  .introContent {
+    width: 50%;
+  }
 }

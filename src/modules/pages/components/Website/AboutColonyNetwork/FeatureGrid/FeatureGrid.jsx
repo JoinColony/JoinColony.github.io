@@ -4,6 +4,7 @@ import React from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
+import GridItem from '~core/GridItem';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
@@ -123,23 +124,11 @@ const FeatureGrid = () => (
   <div className={styles.main}>
     <div className={styles.grid}>
       {TOPIC_ORDER.map(topic => (
-        <div className={styles.gridItem}>
-          <Image
-            alt={MSG[`title${topic}`]}
-            className={styles.image}
-            src={withPrefix(`/img/png-icons/${iconMap[topic]}.png`)}
-          />
-          <Heading
-            appearance={{
-              size: 'mediumLarge',
-              theme: 'dark',
-              weight: 'medium',
-            }}
-            text={MSG[`title${topic}`]}
-          />
-          <Paragraph
-            appearance={{ margin: 'none' }}
-            text={MSG[`body${topic}`]}
+        <div className={styles.gridItem} key={topic}>
+          <GridItem
+            body={MSG[`body${topic}`]}
+            image={withPrefix(`/img/png-icons/${iconMap[topic]}.png`)}
+            title={MSG[`title${topic}`]}
           />
         </div>
       ))}

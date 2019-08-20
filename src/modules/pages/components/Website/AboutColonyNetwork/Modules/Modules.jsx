@@ -58,15 +58,15 @@ const MSG = defineMessages({
   },
   titleFunding: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
-    defaultMessage: 'Funding{br}queues*',
+    defaultMessage: 'Funding queues*',
   },
   titleReputation: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleReputation',
-    defaultMessage: 'Reputation{br}weighted voting*',
+    defaultMessage: 'Reputation weighted voting*',
   },
   titleToken: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleToken',
-    defaultMessage: 'Token weighted{br}voting*',
+    defaultMessage: 'Token weighted voting*',
   },
 });
 
@@ -80,9 +80,8 @@ const SubItem = ({
   <div className={styles.subItem}>
     <Heading
       appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
-    >
-      <FormattedMessage {...title} values={{ br: <br /> }} />
-    </Heading>
+      text={title}
+    />
     <Paragraph text={body} />
   </div>
 );
@@ -98,7 +97,10 @@ const Modules = () => (
           text={MSG.title}
         />
         <div className={styles.titleBody}>
-          <Paragraph appearance={{ theme: 'invert' }} text={MSG.body} />
+          <Paragraph
+            appearance={{ margin: 'none', theme: 'invert' }}
+            text={MSG.body}
+          />
         </div>
       </div>
       <div className={styles.featureContent}>
@@ -113,7 +115,7 @@ const Modules = () => (
         />
         <div className={styles.featureBody}>
           <Paragraph
-            appearance={{ theme: 'invert' }}
+            appearance={{ margin: 'none', theme: 'invert' }}
             text={MSG.bodyBudgetBox}
           />
         </div>

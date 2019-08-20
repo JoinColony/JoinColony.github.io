@@ -39,10 +39,15 @@ const displayName = 'pages.Website.AboutColonyNetwork.DecentralizedCta';
 const DecentralizedCta = () => (
   <BlockCta
     leftBlockChildren={
-      <Heading appearance={{ theme: 'invert' }} text={MSG.title} />
+      <div className={styles.leftBlock}>
+        <Heading
+          appearance={{ margin: 'none', theme: 'invert' }}
+          text={MSG.title}
+        />
+      </div>
     }
     rightBlockChildren={
-      <>
+      <div className={styles.rightBlock}>
         <Paragraph
           appearance={{ margin: 'none', size: 'medium' }}
           text={MSG.body}
@@ -56,7 +61,7 @@ const DecentralizedCta = () => (
             ),
           }}
         />
-      </>
+      </div>
     }
   />
 );

@@ -1,5 +1,5 @@
 
-@value mediumDown, mediumUp, largeUp from '~styles/breakpoints.css';
+@value mediumDown, mediumUp from '~styles/breakpoints.css';
 
 .baseStyles {
   /* This class is intended for composition only.
@@ -64,7 +64,8 @@
 }
 
 .themePink .gutter {
-  background-color: var(--pink-2);
+  /* grey bg for smaller viewports */
+  background-color: var(--grey-3);
 }
 
 /* Single-side themes */
@@ -82,6 +83,12 @@
 .oneSideLeft .gutter:last-of-type,
 .oneSideRight .gutter:first-of-type {
   visibility: hidden; /* hide opposite side gutter */
+  display: none;
+}
+
+.oneSideLeft .content,
+.oneSideRight .content {
+  flex-grow: 1;
 }
 
 /* Default */
@@ -139,43 +146,18 @@
   }
 
   .leftLink .gutterLinkText {
-    right: calc(-1 * (var(--gutter-width-narrow) / 2));    
+    left: var(--gutter-width-wide);
+    right: -15px;
     transform: rotate(270deg);
   }
 
   .rightLink .gutterLinkText {
-    left: calc(-1 * (var(--gutter-width-narrow) / 2));    
+    left: -15px;
+    right: var(--gutter-width-wide);
     transform: rotate(90deg);
   }
 
-  .oneSideLeft .leftLink .gutterLinkText {
-    right: 30px;
-  }
-  
-  .oneSideRight .rightLink .gutterLinkText {
-    left: 40px;
-  }
-
-  .oneSideRight .content {
-    /* For alignment purposes
-      * @TODO find a better way
-      */
-    margin-left: -200px;
-    margin-right: 200px;
-    padding-left: 100px;
-  }
-}
-
-@media (largeUp) {
-  .gutter {
-    flex: 1 0 235px;
-  }
-
-  .leftLink .gutterLinkText {
-    right: -15px;
-  }
-
-  .rightLink .gutterLinkText {
-    left: -15px;
+  .themePink .gutter {
+    background-color: var(--pink-2);
   }
 }

@@ -14,7 +14,6 @@
 
 .contentInner {
   margin: 0 auto;
-  /* max-width: 884px; */
   max-width: var(--row-width-desktop);
 }
 
@@ -28,22 +27,18 @@
   margin: 30px calc(-1 * gridItemMargin) 0;
 }
 
-.gridItem {
-  display: flex;
-  justify-content: space-between;
+.gridItem {  
   flex: 1 0 30%;
   margin: gridItemMargin;
 }
 
-.gridItem > div:first-child {
-  flex: 0 0 22%;
-}
-
-.gridItem > div:nth-child(2) {
-  flex: 0 0 64%;
-}
-
 @media (mediumUp) {
+  .contentInner {
+    margin: 0;
+    padding: 0 60px 0 var(--gutter-width);
+    max-width: none;
+  }
+
   .headingContainer {
     width: 55%;
   }
@@ -51,14 +46,5 @@
   .gridContainer {
     flex-direction: row;
     margin-top: 117px;
-  }
-
-  .gridItem {
-    flex: 1 0 40%;
-    flex-direction: column;
-  }
-
-  .gridItemImage {
-    height: 80px;
   }
 }
