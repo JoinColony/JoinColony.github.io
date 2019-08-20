@@ -21,12 +21,12 @@ const MSG = defineMessages({
   },
   bodyModular: {
     id: 'pages.Website.AboutColonyNetwork.Infrastructure.bodyModular',
-    defaultMessage: `Colony is modular and extensible, allowing
-      developers to create modules which enable desired functionality.`,
+    defaultMessage: `Colony is modular and extensible. Developers
+      can easily create modules to provide desired functionality.`,
   },
   bodyPermissionless: {
     id: 'pages.Website.AboutColonyNetwork.Infrastructure.bodyPermissionless',
-    defaultMessage: `Anyone may create and operate a colony without
+    defaultMessage: `Anyone can create and operate a colony without the
       possibility of censorship or third party interference.`,
   },
   bodySelfSovereign: {
@@ -48,7 +48,7 @@ const MSG = defineMessages({
   },
   titleSelfSovereign: {
     id: 'pages.Website.AboutColonyNetwork.Infrastructure.titleSelfSovereign',
-    defaultMessage: 'Self-sovereign',
+    defaultMessage: 'Self Sovereign',
   },
 });
 
