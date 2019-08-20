@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   padding: var(--margin-huge) 0 0;
 }
