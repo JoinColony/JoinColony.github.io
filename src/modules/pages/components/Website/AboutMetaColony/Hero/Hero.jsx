@@ -36,7 +36,9 @@ const MSG = defineMessages({
   },
   subTitle: {
     id: 'pages.Website.AboutMetaColony.Hero.subTitle',
-    defaultMessage: `Meet the Metacolony. In fact, join it.`,
+    defaultMessage: `Meet the Metacolony.{br}In fact, join it. There's always
+      room for talented people who want to make the world a little more
+      awesome.`,
   },
   subBody: {
     id: 'pages.Website.AboutMetaColony.Hero.subBody',
@@ -93,8 +95,9 @@ const Hero = () => {
               theme: 'primary',
               weight: 'medium',
             }}
-            text={MSG.subTitle}
-          />
+          >
+            <FormattedMessage {...MSG.subTitle} values={{ br: <br /> }} />
+          </Heading>
           <Button
             appearance={{
               borderRadius: 'none',
