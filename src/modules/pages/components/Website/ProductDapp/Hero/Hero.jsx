@@ -28,7 +28,7 @@ const MSG = defineMessages({
   },
   buttonText: {
     id: 'pages.Website.ProductDapp.Hero.buttonText',
-    defaultMessage: 'Apply',
+    defaultMessage: 'Get early access',
   },
   subBody: {
     id: 'pages.Website.ProductDapp.Hero.subBody',
@@ -39,7 +39,8 @@ const MSG = defineMessages({
   },
   subTitle: {
     id: 'pages.Website.ProductDapp.Hero.subTitle',
-    defaultMessage: 'Join the Beta',
+    defaultMessage: `Colony's beta is live on Ethereum mainnet! Got a
+      usecase? Get in touch to request early access!`,
   },
   title: {
     id: 'pages.Website.ProductDapp.Hero.title',
