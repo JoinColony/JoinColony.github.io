@@ -17,7 +17,7 @@ import styles from './Modules.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.AboutColonyNetwork.Modules.body',
-    defaultMessage: `Modules extend the Colony Network’s
+    defaultMessage: `Modules extend the Colony Network's
       functionality with new stuff for different contexts,
       like smart contracts to do different kinds of voting,
       or what the appeal and escalation rules in disputes
@@ -56,19 +56,33 @@ const MSG = defineMessages({
     id: 'pages.Website.AboutColonyNetwork.Modules.linkGutter',
     defaultMessage: 'Tell us what you want',
   },
+  textComingSoon: {
+    id: 'pages.Website.AboutColonyNetwork.Modules.textComingSoon',
+    defaultMessage: '{br}(coming soon)',
+  },
+  titleBudgetBox: {
+    id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
+    defaultMessage: 'Budgetbox{comingSoon}',
+  },
   titleFunding: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
-    defaultMessage: 'Funding queues*',
+    defaultMessage: 'Funding queues{comingSoon}',
   },
   titleReputation: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleReputation',
-    defaultMessage: 'Reputation weighted voting*',
+    defaultMessage: 'Reputation weighted voting{comingSoon}',
   },
   titleToken: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleToken',
-    defaultMessage: 'Token weighted voting*',
+    defaultMessage: 'Token weighted voting{comingSoon}',
   },
 });
+
+const ComingSoonText = () => (
+  <small>
+    <FormattedMessage {...MSG.textComingSoon} values={{ br: <br /> }} />
+  </small>
+);
 
 const SubItem = ({
   title,
@@ -80,8 +94,14 @@ const SubItem = ({
   <div className={styles.subItem}>
     <Heading
       appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
-      text={title}
-    />
+    >
+      <FormattedMessage
+        {...title}
+        values={{
+          comingSoon: <ComingSoonText />,
+        }}
+      />
+    </Heading>
     <Paragraph text={body} />
   </div>
 );
@@ -111,8 +131,14 @@ const Modules = () => (
             theme: 'invert',
             weight: 'medium',
           }}
-          text="BudgetBox*"
-        />
+        >
+          <FormattedMessage
+            {...MSG.titleBudgetBox}
+            values={{
+              comingSoon: <ComingSoonText />,
+            }}
+          />
+        </Heading>
         <div className={styles.featureBody}>
           <Paragraph
             appearance={{ margin: 'none', theme: 'invert' }}
