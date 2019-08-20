@@ -59,6 +59,7 @@ const FirmToFluid = () => (
             textValues={{
               link: (
                 <Link
+                  className={styles.link}
                   href="https://www.responsive.org/"
                   text="Responsive.org"
                 />
