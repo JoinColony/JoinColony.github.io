@@ -24,20 +24,20 @@ const MSG = defineMessages({
   feeTextTwo: {
     id: 'pages.Website.AboutMetaColony.Econ.feeTextTwo',
     defaultMessage: `Fees paid in ETH or DAI go to the Metacolony
-      to sustain ongoing development, security, and Colony’s
+      to sustain ongoing development, security, and Colony's
       ecosystem incentive mechanism: BudgetBox.`,
   },
   feeTextThree: {
     id: 'pages.Website.AboutMetaColony.Econ.feeTextThree',
     defaultMessage: `Fees paid in other ERC20 tokens go to auctions.
-      There, token buyers can purchase ERC20 tokens using Colony’s
-      Native Token, CLNY. The CLNY is then burned.`,
+    There, token buyers can purchase ERC20 tokens using Colony's
+    Native Token, CLNY. The CLNY is then burned.`,
   },
   introText: {
     id: 'pages.Website.AboutMetaColony.Econ.introText',
-    defaultMessage: `Since Colony isn’t a private company, the
-      network fee won’t go to one either. Fees go to the Metacolony
-      to sustain ongoing development, security, and Colony’s
+    defaultMessage: `Since Colony isn't a private company, the
+      network fee won't go to one either. Fees go to the Metacolony
+      to sustain ongoing development, security, and Colony's
       ecosystem incentive mechanism: BudgetBox.`,
   },
 });
