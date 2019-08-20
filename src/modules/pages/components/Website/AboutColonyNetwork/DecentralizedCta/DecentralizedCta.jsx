@@ -46,19 +46,21 @@ const DecentralizedCta = () => (
     }
     rightBlockChildren={
       <div className={styles.rightBlock}>
-        <Paragraph
-          appearance={{ margin: 'none', size: 'medium' }}
-          text={MSG.body}
-          textValues={{
-            link: (
-              <Link
-                className={styles.link}
-                href={PAGE_ABOUT_METACOLONY}
-                text={MSG.linkText}
-              />
-            ),
-          }}
-        />
+        <div className={styles.rightBlockInner}>
+          <Paragraph
+            appearance={{ margin: 'none', size: 'medium' }}
+            text={MSG.body}
+            textValues={{
+              link: (
+                <Link
+                  className={styles.link}
+                  href={PAGE_ABOUT_METACOLONY}
+                  text={MSG.linkText}
+                />
+              ),
+            }}
+          />
+        </div>
       </div>
     }
   />
