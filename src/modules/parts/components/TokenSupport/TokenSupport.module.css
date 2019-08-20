@@ -12,6 +12,7 @@
 
 .imageContainer {
   flex: 0 0 40%;
+  padding: 0 var(--gutter-width-narrow);
 }
 
 .image {
@@ -54,6 +55,10 @@
   .innerContainer {
     flex-direction: row;
     max-width: var(--row-width-desktop-narrow);
+  }
+
+  .imageContainer {
+    padding: 0;
   }
 
   .link {
