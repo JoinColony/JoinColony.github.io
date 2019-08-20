@@ -9,6 +9,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import SEO from '~parts/SEO';
 
 import styles from './Hero.module.css';
 
@@ -78,6 +79,7 @@ const Hero = () => {
   const { headerHeight } = useContext(ThemeContext);
   return (
     <div className={styles.main}>
+      <SEO description={MSG.subTitle} title={MSG.title} />
       <div
         className={styles.imageContainer}
         style={{ paddingTop: headerHeight }}
