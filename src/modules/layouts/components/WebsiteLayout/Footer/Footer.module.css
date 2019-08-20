@@ -58,6 +58,26 @@
   margin-top: 40px;
 }
 
+.form {
+  margin: 0;
+  position: relative;
+}
+
+.input {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid var(--grey-2);
+  border-radius: 0;
+  width: 100%;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  top: 9px;
+}
+
 @media (smallDown) {
   .divider {
     width: 100%;
