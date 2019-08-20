@@ -1,13 +1,18 @@
 /* @flow */
 
 /*
+ * Temp
+ */
+export const PAGE_GET_EARLY_ACCESS =
+  'https://share.hsforms.com/1jjT2B9U1QuuLNDj7azGrSQ2vvap';
+
+/*
  * Pages
  */
 export const PAGE_INDEX = '/';
 export const PAGE_ABOUT_VISION = '/about';
 export const PAGE_ABOUT_COLONY_NETWORK = '/about/colony-network';
 export const PAGE_ABOUT_METACOLONY = '/about/metacolony';
-export const PAGE_GET_EARLY_ACCESS = '/early-access';
 export const PAGE_PRODUCT_PLATFORM = '/product';
 export const PAGE_PRODUCT_DAPP = '/product/dapp';
 export const PAGE_DEV_DOCS = '/dev';
