@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { defineMessages } from 'react-intl';
 
 import Announcement from '~core/Announcement';
@@ -10,6 +10,7 @@ import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
+import { PAGE_GET_EARLY_ACCESS } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -42,6 +43,14 @@ const displayName = 'pages.Website.HomePage.Hero';
 const Hero = () => {
   const { headerHeight } = useContext(ThemeContext);
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
+
+  const handleSubmit = useCallback((email: string) => {
+    const endpoint = `${PAGE_GET_EARLY_ACCESS}?email=${email}`;
+    if (window !== 'undefined') {
+      window.open(endpoint, '_blank');
+    }
+  }, []);
+
   return (
     <div className={styles.main}>
       <SEO description={MSG.description} title={MSG.title} />
@@ -76,10 +85,9 @@ const Hero = () => {
         <InputGroup
           buttonText={MSG.buttonSubmit}
           id={`${displayName}.earlyAccess`}
-          onSubmit={value => {
-            alert(value);
-          }}
+          onSubmit={handleSubmit}
           placeholder={MSG.inputPlaceholder}
+          type="email"
         />
       </div>
     </div>
