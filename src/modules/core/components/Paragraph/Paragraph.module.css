@@ -54,6 +54,11 @@
 }
 
 @media (mediumUp) {
+  .paragraph:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium),
+  .sizeNormal {
+    line-height: 24px;
+  }
+
   .sizeMedium {
     line-height: 32px;
   }
