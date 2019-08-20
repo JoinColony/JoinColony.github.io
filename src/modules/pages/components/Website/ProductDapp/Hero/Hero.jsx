@@ -5,6 +5,7 @@ import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Announcement from '~core/Announcement';
+import Breakpoint from '~core/Breakpoint';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
@@ -55,13 +56,15 @@ const Hero = () => {
   return (
     <div className={styles.main}>
       <div className={styles.row}>
-        <div className={styles.imageContainer} style={style}>
-          <Image
-            alt={MSG.title}
-            className={styles.image}
-            src={withPrefix('/img/ColonyHome_mockup_half.png')}
-          />
-        </div>
+        <Breakpoint size="medium">
+          <div className={styles.imageContainer} style={style}>
+            <Image
+              alt={MSG.title}
+              className={styles.image}
+              src={withPrefix('/img/ColonyHome_mockup_half.png')}
+            />
+          </div>
+        </Breakpoint>
         <div className={styles.contentContainer} style={style}>
           <div className={styles.contentInner}>
             <Announcement text={MSG.announcement} />
@@ -74,11 +77,21 @@ const Hero = () => {
             </div>
           </div>
         </div>
+        <Breakpoint inclusion="down" size="small">
+          <div className={styles.mobileImageContainer} style={style}>
+            <Image
+              alt={MSG.title}
+              className={styles.mobileImage}
+              src={withPrefix('/img/ColonyHome_mockup.png')}
+            />
+          </div>
+        </Breakpoint>
       </div>
       <div className={styles.row}>
         <div className={styles.subTitleContainer}>
           <Heading
             appearance={{
+              margin: 'none',
               size: 'large',
               theme: 'primary',
               weight: 'medium',

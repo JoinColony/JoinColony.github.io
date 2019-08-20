@@ -1,14 +1,18 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .innerContainer {
   align-items: center;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: var(--row-width-desktop-narrow);
+  max-width: var(--row-width-desktop);
 }
 
 .imageContainer {
   flex: 0 0 40%;
+  padding: 0 var(--gutter-width-narrow);
 }
 
 .image {
@@ -40,8 +44,24 @@
 
 .link {
   color: var(--blue-1);
+  display: none;
 }
 
 .link:hover {
   text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .innerContainer {
+    flex-direction: row;
+    max-width: var(--row-width-desktop-narrow);
+  }
+
+  .imageContainer {
+    padding: 0;
+  }
+
+  .link {
+    display: inline;
+  }
 }
