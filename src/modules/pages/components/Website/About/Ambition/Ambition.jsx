@@ -30,7 +30,7 @@ const MSG = defineMessages({
   bodyRight: {
     id: 'pages.Website.About.Ambition.bodyRight',
     defaultMessage: `In others, you may not even think of what
-      you’re doing as “work”. You will just be using an app you
+      you're doing as "work". You will just be using an app you
       enjoy, or playing a game. It will just be that the better
       you play this game, or use this app, the more you earn.
       And maybe even, the more of a say you have in how the
@@ -39,7 +39,7 @@ const MSG = defineMessages({
   },
   linkText: {
     id: 'pages.Website.About.Ambition.linkText',
-    defaultMessage: 'The possibilities are endless.',
+    defaultMessage: 'What will you build?',
   },
 });
 

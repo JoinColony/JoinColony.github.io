@@ -13,6 +13,7 @@
 .body {
   display: flex;
   flex-direction: column;
+  font-style: italic;
   justify-content: space-between;
   margin-top: 35px;
 }
@@ -23,6 +24,10 @@
 
 .body a:hover {
   text-decoration: underline;
+}
+
+.body .link {
+  font-style: normal;
 }
 
 .bodyColumn {
