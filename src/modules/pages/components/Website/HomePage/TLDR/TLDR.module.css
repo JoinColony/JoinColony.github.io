@@ -13,7 +13,7 @@
 .cols {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 @media (mediumUp) {
@@ -22,7 +22,7 @@
   }
 
   .colItem {
-    padding: 0 40px;
+    flex: 0 0 28%;
   }
 
   .colItem:first-of-type {
