@@ -13,7 +13,7 @@ import {
   PAGE_ABOUT_VISION,
   PAGE_DEV_DOCS,
   PAGE_DEV_TUTORIALS, // eslint-disable-line no-unused-vars
-  PAGE_MEDIA_KIT,
+  PAGE_MEDIA_KIT, // eslint-disable-line no-unused-vars
   PAGE_PRODUCT_DAPP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
@@ -172,11 +172,12 @@ const Menus = () => {
               href: `${baseUri}${withPrefix('pdf/whitepaper.pdf')}`,
               text: MSG.linkWhitePaper,
             },
-            {
-              className: styles.footerMenuLink,
-              href: PAGE_MEDIA_KIT,
-              text: MSG.linkMediaKit,
-            },
+            // @TODO add once media kit exists
+            // {
+            //   className: styles.footerMenuLink,
+            //   href: PAGE_MEDIA_KIT,
+            //   text: MSG.linkMediaKit,
+            // },
           ]}
         />
       </div>
