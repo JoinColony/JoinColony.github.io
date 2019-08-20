@@ -3,7 +3,7 @@
 import type { MessageDescriptor } from 'react-intl';
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
