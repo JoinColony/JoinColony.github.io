@@ -17,7 +17,7 @@ const MSG = defineMessages({
     id: 'pages.Website.AboutMetaColony.Team.body',
     defaultMessage: `Colony is built by a distributed team of passionate
       nerds putting in blood, sweat, and pull requests all around the
-      world. We’re always open to welcoming kickass contributors.`,
+      world. We're always open to welcoming kickass contributors.`,
   },
   button: {
     id: 'pages.Website.AboutMetaColony.Team.button',

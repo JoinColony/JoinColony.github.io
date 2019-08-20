@@ -19,7 +19,7 @@ const MSG = defineMessages({
   },
   title: {
     id: 'pages.Website.AboutMetaColony.Hero.title',
-    defaultMessage: `Colony Isn’t a Company.{br}It’s a Colony.`,
+    defaultMessage: `Colony isn't a company.{br}It's a colony.`,
   },
   body: {
     id: 'pages.Website.AboutMetaColony.Hero.body',
@@ -35,14 +35,13 @@ const MSG = defineMessages({
   },
   subTitle: {
     id: 'pages.Website.AboutMetaColony.Hero.subTitle',
-    defaultMessage: `Meet the Metacolony. In fact, join it. We’re
-      always looking for something something clever individuals.`,
+    defaultMessage: `Meet the Metacolony. In fact, join it.`,
   },
   subBody: {
     id: 'pages.Website.AboutMetaColony.Hero.subBody',
     defaultMessage: `The Colony Network is designed as a
       self-sustaining public utility: a digital commons available
-      to all, in which permission isn’t needed and censorship not
+      to all, in which permission isn't needed and censorship not
       possible. We think of it as infrastructure for next gen firms.
       {br}{br}
       Nevertheless, infrastructure requires upkeep. Ongoing management
@@ -52,7 +51,7 @@ const MSG = defineMessages({
       contribute, and it will be opening for business real soon.
       {br}{br}
       The Metacolony will launch under the aegis of Colony Foundation
-      Ltd., which will gradually cede control to the Metacolony’s members.`,
+      Ltd., which will gradually cede control to the Metacolony's members.`,
   },
 });
 
