@@ -27,24 +27,23 @@ const MSG = defineMessages({
   },
   buttonText: {
     id: 'pages.Website.ProductDapp.Hero.buttonText',
-    defaultMessage: 'Get early access',
+    defaultMessage: 'Apply',
   },
   subBody: {
     id: 'pages.Website.ProductDapp.Hero.subBody',
-    defaultMessage: `Colony’s beta is live on Ethereum mainnet! It’s just
-      a baby, so features are limited, but if you’re super keen, and
+    defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
+      a baby, so features are limited, but if you're super keen, and
       committed to helping shape development, we are accepting beta users
       with suitable use cases.`,
   },
   subTitle: {
     id: 'pages.Website.ProductDapp.Hero.subTitle',
-    defaultMessage: `Colony’s beta is live on Ethereum mainnet! It
-      would be great to have another sentence here to fill this box out.`,
+    defaultMessage: 'Join the Beta',
   },
   title: {
     id: 'pages.Website.ProductDapp.Hero.title',
     defaultMessage: `Tools to Organize and Incentivize Collaborators,
-      Communities, and Contingent Workers`,
+      Contributors, and Communities.`,
   },
 });
 
