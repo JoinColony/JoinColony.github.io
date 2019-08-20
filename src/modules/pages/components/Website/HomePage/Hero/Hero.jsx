@@ -9,6 +9,7 @@ import Image from '~core/Image';
 import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import SEO from '~parts/SEO';
 
 import styles from './Hero.module.css';
 
@@ -43,6 +44,7 @@ const Hero = () => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
   return (
     <div className={styles.main}>
+      <SEO description={MSG.description} title={MSG.title} />
       <div className={styles.imageContainer} style={style}>
         <Image
           alt={MSG.title}

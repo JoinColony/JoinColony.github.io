@@ -11,6 +11,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import SEO from '~parts/SEO';
 import { PAGE_GET_EARLY_ACCESS } from '~routes';
 
 import styles from './Hero.module.css';
@@ -54,6 +55,7 @@ const Hero = () => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
   return (
     <div className={styles.main}>
+      <SEO description={MSG.body} title={MSG.title} />
       <div className={styles.row}>
         <Breakpoint size="medium">
           <div className={styles.imageContainer} style={style}>
