@@ -56,11 +56,11 @@ const MSG = defineMessages({
   },
   titleContract: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.titleContract',
-    defaultMessage: 'Contract execution (coming soon)',
+    defaultMessage: 'Contract execution*',
   },
   titleDisputes: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.titleDisputes',
-    defaultMessage: 'Disputes (coming soon)',
+    defaultMessage: 'Disputes*',
   },
   titleDomains: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.titleDomains',

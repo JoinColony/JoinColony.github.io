@@ -42,7 +42,9 @@ const MSG = defineMessages({
       computer's operating system, the Colony Network is use-case
       agnostic, enabling organizations to customize their Colony
       with smart contract modules providing the rules their
-      organization requires.`,
+      organization requires.
+      {br}{br}
+      *Coming soon!`,
   },
 });
 

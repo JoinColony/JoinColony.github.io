@@ -56,33 +56,23 @@ const MSG = defineMessages({
     id: 'pages.Website.AboutColonyNetwork.Modules.linkGutter',
     defaultMessage: 'Tell us what you want',
   },
-  textComingSoon: {
-    id: 'pages.Website.AboutColonyNetwork.Modules.textComingSoon',
-    defaultMessage: '{br}(coming soon)',
-  },
   titleBudgetBox: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
-    defaultMessage: 'Budgetbox{comingSoon}',
+    defaultMessage: 'Budgetbox*',
   },
   titleFunding: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
-    defaultMessage: 'Funding queues{comingSoon}',
+    defaultMessage: 'Funding{br}queues*',
   },
   titleReputation: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleReputation',
-    defaultMessage: 'Reputation weighted voting{comingSoon}',
+    defaultMessage: 'Reputation{br}weighted voting*',
   },
   titleToken: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleToken',
-    defaultMessage: 'Token weighted voting{comingSoon}',
+    defaultMessage: 'Token weighted{br}voting*',
   },
 });
-
-const ComingSoonText = () => (
-  <small>
-    <FormattedMessage {...MSG.textComingSoon} values={{ br: <br /> }} />
-  </small>
-);
 
 const SubItem = ({
   title,
@@ -95,12 +85,7 @@ const SubItem = ({
     <Heading
       appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
     >
-      <FormattedMessage
-        {...title}
-        values={{
-          comingSoon: <ComingSoonText />,
-        }}
-      />
+      <FormattedMessage {...title} values={{ br: <br /> }} />
     </Heading>
     <Paragraph text={body} />
   </div>
@@ -131,14 +116,8 @@ const Modules = () => (
             theme: 'invert',
             weight: 'medium',
           }}
-        >
-          <FormattedMessage
-            {...MSG.titleBudgetBox}
-            values={{
-              comingSoon: <ComingSoonText />,
-            }}
-          />
-        </Heading>
+          text={MSG.titleBudgetBox}
+        />
         <div className={styles.featureBody}>
           <Paragraph
             appearance={{ margin: 'none', theme: 'invert' }}
