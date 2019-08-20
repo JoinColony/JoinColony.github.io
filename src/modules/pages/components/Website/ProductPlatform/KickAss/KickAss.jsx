@@ -28,7 +28,7 @@ const MSG = defineMessages({
   bodyTopic1: {
     id: 'pages.Website.ProductPlatform.KickAss.bodyTopic1',
     defaultMessage: `Where we have a need not met by existing tooling,
-      we build generic open source solutions. It’s really the least we
+      we build generic open source solutions. It's really the least we
       can do.`,
   },
   bodyTopic2: {
@@ -50,19 +50,19 @@ const MSG = defineMessages({
   },
   title: {
     id: 'pages.Website.ProductPlatform.KickAss.title',
-    defaultMessage: 'Helping You Kick Ass and Chew Bubblegum',
+    defaultMessage: 'Here to Help You Kick Ass and Chew Bubblegum.',
   },
   titleTopic0: {
     id: 'pages.Website.ProductPlatform.KickAss.titleTopic0',
-    defaultMessage: 'Delightful documentation',
+    defaultMessage: 'Delightful Documentation',
   },
   titleTopic1: {
     id: 'pages.Website.ProductPlatform.KickAss.titleTopic1',
-    defaultMessage: 'Committed to open source',
+    defaultMessage: 'Committed to Open Source',
   },
   titleTopic2: {
     id: 'pages.Website.ProductPlatform.KickAss.titleTopic2',
-    defaultMessage: 'Join the conversation',
+    defaultMessage: 'Join the Conversation',
   },
 });
 

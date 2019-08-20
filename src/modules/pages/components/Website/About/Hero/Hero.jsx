@@ -10,6 +10,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import SEO from '~parts/SEO';
 
 import HeroImage from './HeroImage';
 
@@ -34,8 +35,16 @@ const MSG = defineMessages({
       to pay people to work for it. 
       {br}{br}The world got weird.
       {br}{br}Ideas about work, occupation, and even companies are
-      changing. But then, to paraphrase a wise man: “Companies?
-      Where we’re going, we don’t need companies.”`,
+      changing. But then, to paraphrase a wise man: "Companies?
+      Where we're going, we don't need companies."`,
+  },
+  seoTitle: {
+    id: 'pages.Website.About.Hero.seoTitle',
+    defaultMessage: 'About the Colony Vision',
+  },
+  seoDescription: {
+    id: 'pages.Website.About.Hero.seoDescription',
+    defaultMessage: 'The Rat Race Can Go Fork Itself.',
   },
 });
 
@@ -46,6 +55,7 @@ const Hero = () => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
   return (
     <div className={styles.main}>
+      <SEO description={MSG.seoDescription} title={MSG.seoTitle} />
       <div className={styles.inner}>
         <div style={style}>
           <div className={styles.contentContainer}>

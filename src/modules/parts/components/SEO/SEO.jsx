@@ -10,7 +10,7 @@ import type { OutProps as Props } from './types';
 const MSG = defineMessages({
   siteName: {
     id: 'parts.SEO.siteName',
-    defaultMessage: 'Colony Open Source Docs',
+    defaultMessage: 'Colony',
   },
 });
 
@@ -123,6 +123,7 @@ const SEO = ({
       {imagePaths.map(imagePath => (
         <meta name="twitter:image" content={imagePath} key={imagePath} />
       ))}
+      <title>{title}</title>
     </Helmet>
   );
 };

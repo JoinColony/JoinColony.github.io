@@ -17,7 +17,7 @@ import styles from './Modules.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.AboutColonyNetwork.Modules.body',
-    defaultMessage: `Modules extend the Colony Network’s
+    defaultMessage: `Modules extend the Colony Network's
       functionality with new stuff for different contexts,
       like smart contracts to do different kinds of voting,
       or what the appeal and escalation rules in disputes
@@ -56,17 +56,21 @@ const MSG = defineMessages({
     id: 'pages.Website.AboutColonyNetwork.Modules.linkGutter',
     defaultMessage: 'Tell us what you want',
   },
+  titleBudgetBox: {
+    id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
+    defaultMessage: 'Budgetbox*',
+  },
   titleFunding: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleFunding',
-    defaultMessage: 'Funding queues*',
+    defaultMessage: 'Funding{br}queues*',
   },
   titleReputation: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleReputation',
-    defaultMessage: 'Reputation weighted voting*',
+    defaultMessage: 'Reputation{br}weighted voting*',
   },
   titleToken: {
     id: 'pages.Website.AboutColonyNetwork.Modules.titleToken',
-    defaultMessage: 'Token weighted voting*',
+    defaultMessage: 'Token weighted{br}voting*',
   },
 });
 
@@ -80,8 +84,9 @@ const SubItem = ({
   <div className={styles.subItem}>
     <Heading
       appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'medium' }}
-      text={title}
-    />
+    >
+      <FormattedMessage {...title} values={{ br: <br /> }} />
+    </Heading>
     <Paragraph text={body} />
   </div>
 );
@@ -111,7 +116,7 @@ const Modules = () => (
             theme: 'invert',
             weight: 'medium',
           }}
-          text="BudgetBox*"
+          text={MSG.titleBudgetBox}
         />
         <div className={styles.featureBody}>
           <Paragraph

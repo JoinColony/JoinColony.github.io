@@ -39,11 +39,11 @@ const MSG = defineMessages({
   },
   gutterLink: {
     id: 'pages.Website.AboutColonyNetwork.BuiltOn.gutterLink',
-    defaultMessage: 'Visit Ethereum.org',
+    defaultMessage: 'Ethereum',
   },
   title: {
     id: 'pages.Website.AboutColonyNetwork.BuiltOn.title',
-    defaultMessage: 'Colony is built on',
+    defaultMessage: 'Colony is built on:',
   },
   titleEthereum: {
     id: 'pages.Website.AboutColonyNetwork.BuiltOn.titleEthereum',
@@ -87,7 +87,10 @@ const displayName = 'pages.Website.AboutColonyNetwork.BuiltOn';
 const BuiltOn = () => (
   <GutterSection
     appearance={{ oneSide: 'right', theme: 'pink' }}
-    linkRight={{ href: 'https://ethereum.org/', text: MSG.gutterLink }}
+    linkRight={{
+      href: 'https://ethereum.org/beginners/',
+      text: MSG.gutterLink,
+    }}
   >
     <div className={styles.main}>
       <div className={styles.contentContainer}>

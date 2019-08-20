@@ -5,17 +5,14 @@ import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import GridItem from '~core/GridItem';
-import Heading from '~core/Heading';
-import Image from '~core/Image';
-import Paragraph from '~core/Paragraph';
 
 import styles from './FeatureGrid.module.css';
 
 const MSG = defineMessages({
   bodyBudgeting: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyBudgeting',
-    defaultMessage: `Budgets may be allocated to Domains which may
-      manage funds via rules appropriate to that domain.`,
+    defaultMessage: `Budgets can be allocated to Domains to manage
+      funds via a given set of rules.`,
   },
   bodyContract: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyContract',
@@ -25,7 +22,7 @@ const MSG = defineMessages({
   bodyDisputes: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyDisputes',
     defaultMessage: `Raise objections, resolve disagreements, and
-      incentivize a colony to self-regulate.`,
+      incentivize a colony to self regulate.`,
   },
   bodyDomains: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyDomains',
@@ -41,17 +38,17 @@ const MSG = defineMessages({
   bodyPermissions: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyPermissions',
     defaultMessage: `Distribute authority over distinct aspects of
-      business administration. Assign them to people, bots, or contracts.`,
+      business administration. Assign it to people, bots, or smart contracts.`,
   },
   bodyReputation: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyReputation',
-    defaultMessage: `Who did what work, what skills they used, which
-      domains it was in, how valuable it was, and how well they did it.`,
+    defaultMessage: `Reflecting who did what work, what skills they used,
+      how valuable it was, and how well they did it.`,
   },
   bodyRevenue: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.bodyRevenue',
-    defaultMessage: `Share revenue between a colony’s members
-      proportional to their combined Tokens and Reputation.`,
+    defaultMessage: `Share revenue between a colony's members
+      proportional to the value of their contribution.`,
   },
   titleBudgeting: {
     id: 'pages.Website.AboutColonyNetwork.FeatureGrid.titleBudgeting',

@@ -15,11 +15,9 @@ const MSG = defineMessages({
   body: {
     id: 'pages.Website.AboutColonyNetwork.DecentralizedCta.body',
     defaultMessage: `Everything in the Colony stack must, in principle,
-      function without relying on any component or service that is
-      hosted, owned, or otherwise ‘centralized’.
-      {br}{br}
-      Not a lot of people realize what a big deal this is. It provides
-      users with important guarantees that the infrastructure their
+      function without relying on any component that is hosted, owned,
+      or otherwise 'centralized'. It's easy to miss what a big deal that
+      is: it provides users with guarantees that the infrastructure their
       business critically relies upon is impartial and unstoppable.
       {br}{br}
       {link}`,
@@ -48,19 +46,21 @@ const DecentralizedCta = () => (
     }
     rightBlockChildren={
       <div className={styles.rightBlock}>
-        <Paragraph
-          appearance={{ margin: 'none', size: 'medium' }}
-          text={MSG.body}
-          textValues={{
-            link: (
-              <Link
-                className={styles.link}
-                href={PAGE_ABOUT_METACOLONY}
-                text={MSG.linkText}
-              />
-            ),
-          }}
-        />
+        <div className={styles.rightBlockInner}>
+          <Paragraph
+            appearance={{ margin: 'none', size: 'medium' }}
+            text={MSG.body}
+            textValues={{
+              link: (
+                <Link
+                  className={styles.link}
+                  href={PAGE_ABOUT_METACOLONY}
+                  text={MSG.linkText}
+                />
+              ),
+            }}
+          />
+        </div>
       </div>
     }
   />

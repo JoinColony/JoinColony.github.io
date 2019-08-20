@@ -10,6 +10,8 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import { PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES } from '~routes';
+import SEO from '~parts/SEO';
 
 import styles from './Hero.module.css';
 
@@ -37,7 +39,7 @@ const MSG = defineMessages({
   subBody: {
     id: 'pages.Website.AboutColonyNetwork.Hero.subBody',
     defaultMessage: `Every organization is different, so like a
-      computer’s operating system, the Colony Network is use-case
+      computer's operating system, the Colony Network is use-case
       agnostic, enabling organizations to customize their Colony
       with smart contract modules providing the rules their
       organization requires.
@@ -57,6 +59,7 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
   return (
     <div className={styles.main}>
+      <SEO description={MSG.body} title={MSG.title} />
       <div className={styles.row}>
         <div className={styles.imageContainer} style={style}>
           <div className={styles.imageInner}>
@@ -82,7 +85,10 @@ const Hero = ({ project: { name, logoSmall } }: Props) => {
         </div>
       </div>
       <div className={styles.row}>
-        <div className={styles.subTitleContainer}>
+        <div
+          className={styles.subTitleContainer}
+          id={PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES}
+        >
           <Heading
             appearance={{
               margin: 'none',

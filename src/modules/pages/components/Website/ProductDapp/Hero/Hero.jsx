@@ -11,6 +11,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
+import SEO from '~parts/SEO';
 import { PAGE_GET_EARLY_ACCESS } from '~routes';
 
 import styles from './Hero.module.css';
@@ -31,20 +32,20 @@ const MSG = defineMessages({
   },
   subBody: {
     id: 'pages.Website.ProductDapp.Hero.subBody',
-    defaultMessage: `Colony’s beta is live on Ethereum mainnet! It’s just
-      a baby, so features are limited, but if you’re super keen, and
+    defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
+      a baby, so features are limited, but if you're super keen, and
       committed to helping shape development, we are accepting beta users
       with suitable use cases.`,
   },
   subTitle: {
     id: 'pages.Website.ProductDapp.Hero.subTitle',
-    defaultMessage: `Colony’s beta is live on Ethereum mainnet! It
-      would be great to have another sentence here to fill this box out.`,
+    defaultMessage: `Colony's beta is live on Ethereum mainnet! Got a
+      usecase? Get in touch to request early access!`,
   },
   title: {
     id: 'pages.Website.ProductDapp.Hero.title',
     defaultMessage: `Tools to Organize and Incentivize Collaborators,
-      Communities, and Contingent Workers`,
+      Contributors, and Communities.`,
   },
 });
 
@@ -55,6 +56,7 @@ const Hero = () => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
   return (
     <div className={styles.main}>
+      <SEO description={MSG.body} title={MSG.title} />
       <div className={styles.row}>
         <Breakpoint size="medium">
           <div className={styles.imageContainer} style={style}>

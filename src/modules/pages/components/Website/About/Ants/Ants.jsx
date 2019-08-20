@@ -11,19 +11,19 @@ import styles from './Ants.module.css';
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.About.Ants.title',
-    defaultMessage: 'Ants, Not Empires',
+    defaultMessage: 'Ants, not empires',
   },
   body: {
     id: 'pages.Website.About.Ants.body',
-    defaultMessage: `Colony is inspired by complex adaptive systems, like
+    defaultMessage: `Colony is inspired by complex adaptive systems like
       ant colonies: dynamic networks of agents which react and adapt to
       stimuli from each other and their environment. From simple rules
       emerges collective behaviour and self-organization of the system
-      as a whole. 
+      as a whole.  
       {br}{br}
-      Colony applies these principles to human organizations—enforcing simple
-      rules of interaction between people which help them self-organize by
-      aligning incentives around a shared goal.`,
+      Colony applies these principles to human organizations—effecting
+      simple rules between people to help them self-organize by aligning
+      incentives around a shared goal.`,
   },
 });
 
