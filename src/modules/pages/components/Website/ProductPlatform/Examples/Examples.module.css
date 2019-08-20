@@ -40,8 +40,7 @@
 }
 
 .currentContent {
-  background-color: var(--colony-white);
-  flex: 1 0 auto;
+  background-color: var(--colony-white);  
   margin: 0 auto;
   max-width: var(--row-width-desktop);
   width: 100%;
@@ -110,16 +109,18 @@
   .contentMenu {
     flex-direction: column;
     padding: 0;
+    flex: 1 0 rightColWidth;
   }
 
   .currentContent {
-    padding-left: 100px;
+    flex: 1 0 70%;
+    padding-left: 60px;
     width: auto;
   }
 
   .menuItemBase {
     /* Intended for composition only. Do not use this class directly. */
-    padding-left: 20px;
+    padding: 30px 0 30px 20px;
     width: 100%;
   }
 

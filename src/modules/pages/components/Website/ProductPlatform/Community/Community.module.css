@@ -34,6 +34,14 @@
   margin-top: 15px;
 }
 
+.link {
+  color: var(--blue-1);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 @media (smallUp) {
   .image {
     min-height: 400px;
