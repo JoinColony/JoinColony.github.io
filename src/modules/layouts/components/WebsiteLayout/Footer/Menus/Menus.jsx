@@ -169,7 +169,7 @@ const Menus = () => {
             {
               className: styles.footerMenuLink,
               // Use full path here so `Link` knows it shouldn't be treated as a SPA route
-              href: `${baseUri}${withPrefix('pdf/whitepaper.pdf')}`,
+              href: `${baseUri}${withPrefix('/whitepaper.pdf')}`,
               text: MSG.linkWhitePaper,
             },
             // @TODO add once media kit exists
