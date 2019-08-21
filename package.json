@@ -43,7 +43,7 @@
     "flow": "flow check",
     "lint": "eslint --fix 'src/**/*.{js,jsx}' 'scripts/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -b master -d public"
+    "deploy": "bash ./scripts/deploy.sh"
   },
   "devDependencies": {
     "@colony/eslint-config-colony": "^7.0.0",
