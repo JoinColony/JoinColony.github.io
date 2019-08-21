@@ -9,7 +9,6 @@ import {
   COLONY_DISCOURSE,
   COLONY_DISCORD,
   COLONY_GITHUB,
-  COLONY_GITTER,
   COLONY_TWITTER,
 } from '~routes';
 import { getMainClasses } from '~utils/css';
@@ -55,13 +54,6 @@ const SocialNav = ({ appearance }: Props) => (
           className={styles.socialIcon}
           title="GitHub"
           name="social_github_devPortal"
-        />
-      </Link>
-      <Link alt="Gitter" href={COLONY_GITTER}>
-        <Icon
-          className={styles.socialIcon}
-          title="Gitter"
-          name="social_gitter_devPortal"
         />
       </Link>
       <Link alt="Discord" href={COLONY_DISCORD}>

@@ -9,7 +9,7 @@ import Heading from '~core/Heading';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { COLONY_GITTER } from '~routes';
+import { COLONY_DISCORD } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -104,7 +104,7 @@ const Hero = () => {
               padding: 'huge',
               theme: 'primary',
             }}
-            linkTo={COLONY_GITTER}
+            linkTo={COLONY_DISCORD}
             text={MSG.buttonText}
           />
         </div>
