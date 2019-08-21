@@ -1,8 +1,8 @@
 /* @flow */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import { defineMessages } from 'react-intl';
-import GhostContentAPI from '@tryghost/content-api';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
@@ -23,47 +23,30 @@ const MSG = defineMessages({
   },
 });
 
-const apiKey = process.env.GHOST_CONTENT_API_KEY || '';
-
 const displayName = 'pages.Website.HomePage.Blog';
 
 const Blog = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    try {
-      const api = new GhostContentAPI({
-        url: 'https://blog.colony.io',
-        key: apiKey,
-        version: 'v2',
-      });
-
-      api.posts
-        .browse({ limit: 3 })
-        .then(fetchedPosts => {
-          setPosts(fetchedPosts);
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } catch (caughtError) {
-      console.warn(caughtError);
+  const { posts } = useStaticQuery(graphql`
+    {
+      ...threeBlogPostsFragment
     }
-  }, []);
+  `);
 
   return (
     <div className={styles.main}>
       <div className={styles.row}>
         <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
         <div className={styles.gridContainer}>
-          {posts.map(
+          {posts.edges.map(
             ({
-              id,
-              custom_excerpt: customExcerpt,
-              excerpt,
-              feature_image: image,
-              title,
-              url,
+              node: {
+                id,
+                custom_excerpt: customExcerpt,
+                excerpt,
+                feature_image: image,
+                title,
+                url,
+              },
             }) => {
               const excerptText =
                 customExcerpt || `${excerpt.substring(0, 85)}...`;
