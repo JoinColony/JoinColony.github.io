@@ -1,5 +1,3 @@
-yarn
-yarn run build
 export BLUE_DISK=`kubectl get deployment nginx-blue -o json | jq -r '.spec.template.spec.volumes | .[] | select( .name | contains("site-source")) | .gcePersistentDisk.pdName'`
 export GREEN_DISK=`kubectl get deployment nginx-green -o json | jq -r '.spec.template.spec.volumes | .[] | select( .name | contains("site-source")) | .gcePersistentDisk.pdName'`
 export RED_DISK=`kubectl get deployment nginx-red -o json | jq -r '.spec.template.spec.volumes | .[] | select( .name | contains("site-source")) | .gcePersistentDisk.pdName'`
