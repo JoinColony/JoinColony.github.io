@@ -46,7 +46,12 @@ const FirmToFluid = () => (
   <div className={styles.main}>
     <div className={styles.contentContainer}>
       <Heading
-        appearance={{ margin: 'none', size: 'large', theme: 'dark' }}
+        appearance={{
+          margin: 'none',
+          size: 'large',
+          theme: 'dark',
+          weight: 'medium',
+        }}
         text={MSG.title}
       />
       <div className={styles.body}>

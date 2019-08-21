@@ -11,7 +11,7 @@ import styles from './Ants.module.css';
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.About.Ants.title',
-    defaultMessage: 'Ants, not empires',
+    defaultMessage: 'Ants, not Empires',
   },
   body: {
     id: 'pages.Website.About.Ants.body',
@@ -19,7 +19,7 @@ const MSG = defineMessages({
       ant colonies: dynamic networks of agents which react and adapt to
       stimuli from each other and their environment. From simple rules
       emerges collective behaviour and self-organization of the system
-      as a whole.  
+      as a whole.
       {br}{br}
       Colony applies these principles to human organizations—effecting
       simple rules between people to help them self-organize by aligning
@@ -33,7 +33,10 @@ const Ants = () => (
   <div className={styles.main}>
     <div className={styles.row}>
       <div className={styles.contentContainer}>
-        <Heading appearance={{ theme: 'dark' }} text={MSG.title} />
+        <Heading
+          appearance={{ theme: 'dark' }}
+          text={MSG.title}
+        />
         <Paragraph text={MSG.body} />
       </div>
     </div>

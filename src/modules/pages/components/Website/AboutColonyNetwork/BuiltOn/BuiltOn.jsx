@@ -39,7 +39,7 @@ const MSG = defineMessages({
   },
   gutterLink: {
     id: 'pages.Website.AboutColonyNetwork.BuiltOn.gutterLink',
-    defaultMessage: 'Ethereum',
+    defaultMessage: 'Visit ethereum.org',
   },
   title: {
     id: 'pages.Website.AboutColonyNetwork.BuiltOn.title',

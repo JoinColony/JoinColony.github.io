@@ -20,7 +20,7 @@ const MSG = defineMessages({
   },
   title: {
     id: 'pages.Website.AboutMetaColony.Hero.title',
-    defaultMessage: `Colony isn't a company.{br}It's a colony.`,
+    defaultMessage: `Colony Isn't a Company.{br}It's a Colony.`,
   },
   body: {
     id: 'pages.Website.AboutMetaColony.Hero.body',
