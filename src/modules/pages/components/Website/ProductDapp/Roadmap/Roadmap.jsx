@@ -65,7 +65,7 @@ const MSG_LESS_SOON_BADGES = defineMessages({
   },
   control: {
     id: 'pages.Website.ProductDapp.Roadmap.control',
-    defaultMessage: 'Contract control',
+    defaultMessage: 'Contract Control',
   },
 });
 

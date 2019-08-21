@@ -72,6 +72,13 @@
   }
 }
 
+@media (largeUp) {
+  .subBodyContainer {
+    padding-left: var(--gutter-width-mobile) !important;
+    padding-right: var(--gutter-width-mobile) !important;
+  }
+}
+
 .subBodyContainer {
   padding-left: 144px;
   padding-right: var(--gutter-width);
