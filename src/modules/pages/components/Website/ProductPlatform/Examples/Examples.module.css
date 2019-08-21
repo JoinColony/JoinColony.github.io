@@ -40,11 +40,21 @@
 }
 
 .currentContent {
-  background-color: var(--colony-white);  
+  background-color: var(--colony-white);
   margin: 0 auto;
   max-width: var(--row-width-desktop);
   width: 100%;
   padding: 0 var(--gutter-width-wide);
+}
+
+@media (largeUp ) {
+  .currentContent {
+    background-color: var(--colony-white);
+    margin: 0 auto;
+    max-width: var(--row-width-desktop);
+    width: 100%;
+    padding: 0 118px;
+  }
 }
 
 .contentMenu {
@@ -75,6 +85,11 @@
   background: none;
   cursor: pointer;
   color: var(--navy);
+}
+
+.menuItem:hover{
+  background: var(--blue-1);
+  color: white;
 }
 
 .activeItem {

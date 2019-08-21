@@ -33,11 +33,11 @@ const MSG = defineMessages({
   },
   headingCommunity: {
     id: 'pages.Website.ProductPlatform.Community.headingCommunity',
-    defaultMessage: 'A Community, not a Company.',
+    defaultMessage: 'A Community, not a company.',
   },
   headingPays: {
     id: 'pages.Website.ProductPlatform.Community.headingPays',
-    defaultMessage: 'It Literally Pays to Build with Colony',
+    defaultMessage: 'It literally pays to build with Colony',
   },
   headingSeat: {
     id: 'pages.Website.ProductPlatform.Community.headingSeat',

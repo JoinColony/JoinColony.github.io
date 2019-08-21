@@ -170,12 +170,16 @@ const Examples = () => {
         <div className={styles.contentRow}>
           <div className={styles.currentContent}>
             <Heading
-              appearance={{ size: 'large', theme: 'dark' }}
+              appearance={{ size: 'large', theme: 'dark', weight: 'medium' }}
               text={MSG[`linkTopic${activeItem}`]}
             />
             <Paragraph text={MSG[`bodyTopic${activeItem}`]} />
             <Heading
-              appearance={{ size: 'mediumLarge', theme: 'dark' }}
+              appearance={{
+                size: 'mediumLarge',
+                theme: 'dark',
+                weight: 'medium',
+              }}
               text={MSG[`titleExampleTopic${activeItem}`]}
             />
             <Paragraph text={MSG[`bodyExampleTopic${activeItem}`]} />

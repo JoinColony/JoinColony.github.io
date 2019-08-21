@@ -17,6 +17,7 @@
 .image {
   height: auto;
   width: 60px;
+  margin-bottom: 67px;
 }
 
 .itemLink {
@@ -54,7 +55,7 @@
   .main > div:first-child {
     flex: 0 0 22%;
   }
-  
+
   .main > div:nth-child(2) {
     flex: 0 0 74%;
   }
