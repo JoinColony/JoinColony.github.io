@@ -3,7 +3,7 @@
 
 .main {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 
 .row {
@@ -25,7 +25,7 @@
 
 .imageContainer {
   align-items: center;
-  background-color: var(--navy);  
+  background-color: var(--navy);
   display: flex;
   justify-content: center;
   padding: 55px 0;
@@ -74,7 +74,7 @@
   .image {
     /* Negative margin to align better with adjacent text */
     margin-top: -47px;
-    max-width: 232px;
+    width: 232px;
   }
 
   .imageContainer {
