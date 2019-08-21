@@ -1,5 +1,5 @@
 
-@value smallDown, mediumUp from '~styles/breakpoints.css';
+@value smallDown, mediumUp, mediumDown from '~styles/breakpoints.css';
 
 .divider {
   border-top: 1px solid var(--grey-2);
@@ -69,7 +69,19 @@
   border-top: none;
   border-bottom: 1px solid var(--grey-2);
   border-radius: 0;
-  width: 100%;
+  width: 300px;
+}
+
+@media (smallDown) {
+  .input {
+    margin-bottom: 35px;
+  }
+}
+
+@media (mediumDown) {
+  .input {
+    margin-bottom: 35px;
+  }
 }
 
 .button {
