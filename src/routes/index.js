@@ -36,7 +36,7 @@ export const PAGE_TERMS_SERVICE = '/terms';
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
 export const COLONY_DAPP = 'https://colony.io/dapp';
-export const COLONY_DISCORD = 'http://clny.io/discord';
+export const COLONY_DISCORD = 'https://discord.gg/PDEQvrC';
 export const COLONY_DISCOURSE = 'https://build.colony.io';
 export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
 export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;
@@ -55,8 +55,6 @@ export const COLONY_GITHUB_PURSER = 'https://github.com/JoinColony/purser';
 export const COLONY_GITHUB_TAILOR = 'https://github.com/JoinColony/tailor';
 export const COLONY_GITHUB_TRUFFLEPIG =
   'https://github.com/JoinColony/trufflepig';
-export const COLONY_GITTER = 'https://gitter.im/JoinColony';
-export const COLONY_GITTER_COLONYJS = `${COLONY_GITTER}/colonyJS`;
 export const COLONY_REDDIT = 'https://www.reddit.com/r/joincolony/';
 export const COLONY_TWITTER = 'https://twitter.com/joincolony';
 export const COLONY_WEBSITE = 'https://colony.io';
