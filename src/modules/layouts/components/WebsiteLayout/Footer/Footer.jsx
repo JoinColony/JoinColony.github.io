@@ -5,7 +5,6 @@ import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Button from '~core/Button';
-import Heading from '~core/Heading';
 import Input from '~core/Input';
 import Icon from '~core/Icon';
 import Image from '~core/Image';
