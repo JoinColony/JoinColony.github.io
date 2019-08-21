@@ -21,15 +21,11 @@ import styles from './Footer.module.css';
 const MSG = defineMessages({
   placeholder: {
     id: 'layouts.WebsiteLayout.Footer.placeholder',
-    defaultMessage: 'Email, please',
+    defaultMessage: 'Subscribe to our newsletter',
   },
   submit: {
     id: 'layouts.WebsiteLayout.Footer.submit',
     defaultMessage: 'Submit',
-  },
-  textSubscribe: {
-    id: 'layouts.WebsiteLayout.Footer.textSubscribe',
-    defaultMessage: 'Subscribe to our newsletter',
   },
 });
 
@@ -83,14 +79,6 @@ const Footer = () => {
                   />
                 </Link>
               </div>
-              <Heading
-                appearance={{
-                  size: 'mediumLarge',
-                  theme: 'grey',
-                  weight: 'thin',
-                }}
-                text={MSG.textSubscribe}
-              />
               <form className={styles.form} onSubmit={handleSubmit}>
                 <Input
                   className={styles.input}
