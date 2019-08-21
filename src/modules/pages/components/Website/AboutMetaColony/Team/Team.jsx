@@ -8,7 +8,7 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
-import { COLONY_GITTER } from '~routes';
+import { COLONY_DISCORD } from '~routes';
 
 import styles from './Team.module.css';
 
@@ -82,7 +82,7 @@ const Team = () => (
                 padding: 'huge',
                 theme: 'primary',
               }}
-              linkTo={COLONY_GITTER}
+              linkTo={COLONY_DISCORD}
               text={MSG.button}
             />
           </div>
