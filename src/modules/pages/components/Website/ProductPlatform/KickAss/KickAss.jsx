@@ -54,15 +54,15 @@ const MSG = defineMessages({
   },
   titleTopic0: {
     id: 'pages.Website.ProductPlatform.KickAss.titleTopic0',
-    defaultMessage: 'Delightful Documentation',
+    defaultMessage: 'Delightful documentation',
   },
   titleTopic1: {
     id: 'pages.Website.ProductPlatform.KickAss.titleTopic1',
-    defaultMessage: 'Committed to Open Source',
+    defaultMessage: 'Committed to open source',
   },
   titleTopic2: {
     id: 'pages.Website.ProductPlatform.KickAss.titleTopic2',
-    defaultMessage: 'Join the Conversation',
+    defaultMessage: 'Join the conversation',
   },
 });
 

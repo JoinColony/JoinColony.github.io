@@ -40,6 +40,7 @@
 .sizeNormal {
   font-size: var(--size-normal);
   line-height: 18px;
+  font-family: 'Avenir Next Light';
 }
 
 .sizeMedium {

@@ -29,7 +29,14 @@ import {
 import styles from './DeveloperTools.module.css';
 
 const MSG = defineMessages({
-  body: {
+  bodyCoreTools: {
+    id: 'pages.Website.ProductPlatform.DeveloperTools.body',
+    defaultMessage: `Whether you're building the future of the gig economy,
+      a peer-to-peer marketplace, or a social network, Colony’s powerful
+      smart contracts, and straightforward JavaScript libraries give you
+      the tools you need to succeed.`,
+  },
+  bodyCommunityTools: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.body',
     defaultMessage: `Whether you're building the future of the gig economy,
       a peer-to-peer marketplace, or a social network, Colony’s powerful
@@ -185,7 +192,11 @@ const DeveloperTools = () => {
                 text={MSG[`titleTopic${activeItem}`]}
               />
             </Breakpoint>
-            <Paragraph text={MSG.body} />
+            <Paragraph
+              text={
+                activeItem === 0 ? MSG.bodyCoreTools : MSG.bodyCommunityTools
+              }
+            />
           </div>
         </div>
       </div>

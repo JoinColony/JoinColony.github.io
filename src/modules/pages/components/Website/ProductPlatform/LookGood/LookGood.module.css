@@ -38,6 +38,7 @@
 
 @media (mediumUp) {
   .innerContent {
+    margin-top: 180px;
     flex-direction: row;
   }
 }
