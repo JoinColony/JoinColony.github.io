@@ -80,9 +80,7 @@ const MSG_COMMUNITY = defineMessages({
   },
   bodySolidityCoverage: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.bodySolidityCoverage',
-    defaultMessage: `Boilerplates and examples to get started. Spin up an
-      application in minutes or create an extension for the Colony Network
-      smart contracts.`,
+    defaultMessage: `Code coverage for Solidity smart-contracts`,
   },
 });
 
