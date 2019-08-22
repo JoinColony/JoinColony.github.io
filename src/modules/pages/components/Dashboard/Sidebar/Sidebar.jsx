@@ -6,6 +6,13 @@ import { defineMessages } from 'react-intl';
 
 import type { Network, User } from '~types';
 
+import {
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES,
+  PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS,
+} from '~routes';
+
 import Link from '~core/Link';
 
 import styles from './Sidebar.module.css';
@@ -42,23 +49,23 @@ const Sidebar = ({ active, network, user }: Props) => (
     <div>
       <Link
         className={active === 'colonies' ? styles.linkActive : styles.link}
-        href="/dashboard/colonies"
+        href={PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES}
         text={MSG.coloniesLink}
       />
       <Link
         className={active === 'contributions' ? styles.linkActive : styles.link}
-        href="/dashboard/contributions"
+        href={PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS}
         text={MSG.contributionsLink}
       />
       <Link
         className={active === 'account' ? styles.linkActive : styles.link}
-        href="/dashboard/account"
+        href={PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT}
         text={MSG.accountLink}
       />
       {user && network && user.admin && user.admin[network.slug] && (
         <Link
           className={active === 'admin' ? styles.linkActive : styles.link}
-          href="/dashboard/admin"
+          href={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
           text={MSG.adminLink}
         />
       )}
