@@ -31,8 +31,7 @@
 
 @media (mediumUp) {
   .leftBlock {
-    margin: 0;
-    padding: 100px 60px 100px var(--gutter-width-narrow);
+    margin: 0 auto;
   }
 
   .rightBlock {

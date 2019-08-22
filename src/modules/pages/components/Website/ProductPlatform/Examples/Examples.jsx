@@ -42,17 +42,16 @@ const MSG = defineMessages({
   },
   bodyExampleTopic3: {
     id: 'pages.Website.ProductPlatform.Examples.bodyExampleTopic3',
-    defaultMessage: `Anybody can propose an edit A member with Reputation must
+    defaultMessage: `Anybody can propose an edit. A member with Reputation must
       back it with Tokens to publish the edit. After 14 days uncontested, both
-      the Proposer and the Backer receive tokens and reputation. Generates
-      revenue from donations.`,
+      the Proposer and the Backer receive tokens and reputation.`,
   },
   bodyExampleTopic4: {
     id: 'pages.Website.ProductPlatform.Examples.bodyExampleTopic4',
-    defaultMessage: `Tasks to evaluate claims are created. Evaluators
-      participate in a voting game designed to elicit truthful responses by
-      punishing dishonest ones. Honest evaluators earn cash payment for each
-      successfully evaluated claim.`,
+    defaultMessage: `Tasks are created to evaluate claims. Evaluators
+    participate in a voting game to elicits truthful responses and punish
+    dishonest ones. Honest evaluators earn DAI for each successfully evaluated
+    claim.`,
   },
   bodyTopic0: {
     id: 'pages.Website.ProductPlatform.Examples.bodyTopic0',
