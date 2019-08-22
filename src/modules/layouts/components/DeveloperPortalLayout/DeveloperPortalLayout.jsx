@@ -51,22 +51,22 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
   );
   const pathContribute: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
-      return window.location.pathname.split('/')[1] === 'contribute';
+      return window.location.pathname.split('/')[2] === 'contribute';
     }
     return false;
   }, []);
   const pathContribution: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
       return (
-        window.location.pathname.split('/')[1] === 'contribute' &&
-        window.location.pathname.split('/')[2]
+        window.location.pathname.split('/')[2] === 'contribute' &&
+        window.location.pathname.split('/')[3]
       );
     }
     return false;
   }, []);
   const pathDashboard: boolean = useMemo(() => {
     if (typeof window !== 'undefined') {
-      return window.location.pathname.split('/')[1] === 'dashboard';
+      return window.location.pathname.split('/')[2] === 'dashboard';
     }
     return false;
   }, []);
