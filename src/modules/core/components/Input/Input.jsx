@@ -11,7 +11,6 @@ import styles from './Input.module.css';
 
 type Appearance = {|
   display?: 'none',
-  label?: 'light',
   padding?: 'small' | 'large' | 'huge',
   size?: 'large' | 'stretch',
 |};
@@ -97,7 +96,7 @@ const Input = ({
     setStyleProps(newStyles);
   }, [type, error, value, min, max]);
   return (
-    <label htmlFor={id} className={classNames}>
+    <label htmlFor={id} className={styles.label}>
       <span>{labelText}</span>
       <input
         id={id}

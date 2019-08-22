@@ -1,3 +1,4 @@
+
 @value errorBorderColor: #F5416E;
 @value rangeFillColor: var(--blue-1);
 
@@ -44,10 +45,9 @@
 
 .label input {
   margin-top: 8px;
-  transition: 0.2s;
 }
 
-.main input:disabled {
+:disabled {
   background-color: #F0F5F7;
   border: 1px solid #F0F5F7;
   color: #788CA0;
@@ -59,34 +59,28 @@
   display: none;
 }
 
-/* Label */
-
-.labelLight span {
-  color: #788CA0;
-  font-size: 14px;
-}
-
 /* Padding */
 
-.paddingSmall input {
+.paddingSmall {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.paddingLarge input {
+.paddingLarge {
   padding: 5px 25px;
 }
 
-.paddingHuge input {
+.paddingHuge {
   padding: 10px 25px;
 }
 
 /* Size */
 
-.sizeLarge input {
+.sizeLarge {
   width: 340px;
 }
 
-.sizeStretch input {
+.sizeStretch {
   width: 100%;
 }
+
