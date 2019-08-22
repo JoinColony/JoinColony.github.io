@@ -10,6 +10,7 @@ import styles from './Link.module.css';
 const displayName = 'Link';
 
 const Link = ({
+  activeClassName,
   arrow,
   children,
   className,
