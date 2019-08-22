@@ -57,4 +57,4 @@ workflows:
             - build
           filters:
             branches:
-              only: website-temp
+              only: generator
