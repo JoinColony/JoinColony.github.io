@@ -1,13 +1,13 @@
-const path = require('path')
-const dotenv = require('dotenv')
-const fs = require('fs')
+const path = require('path');
+const dotenv = require('dotenv');
+const fs = require('fs');
 
 const i18nConfig = require('./i18nConfig');
 const utils = require('./scripts/utils');
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 const { CONFIGURED_LOCALES, DEFAULT_LOCALE } = i18nConfig;
 
@@ -29,7 +29,7 @@ const sourcePlugins = {
       options: {
         name: 'colonyJS',
         path: path.resolve(__dirname, '..', 'colonyJS', 'docs'),
-        ignore: [ '**/templates/*' ],
+        ignore: ['**/templates/*'],
       },
     },
     {
@@ -37,7 +37,7 @@ const sourcePlugins = {
       options: {
         name: 'colonyNetwork',
         path: path.resolve(__dirname, '..', 'colonyNetwork', 'docs'),
-        ignore: [ '**/templates/*' ],
+        ignore: ['**/templates/*'],
       },
     },
     {
@@ -45,7 +45,7 @@ const sourcePlugins = {
       options: {
         name: 'colonyStarter',
         path: path.resolve(__dirname, '..', 'colonyStarter', 'docs'),
-        ignore: [ '**/templates/*' ],
+        ignore: ['**/templates/*'],
       },
     },
     // {
@@ -61,7 +61,7 @@ const sourcePlugins = {
       options: {
         name: 'purser',
         path: path.resolve(__dirname, '..', 'purser', 'docs'),
-        ignore: [ '**/templates/*' ],
+        ignore: ['**/templates/*'],
       },
     },
     // {
@@ -77,7 +77,7 @@ const sourcePlugins = {
       options: {
         name: 'tailor',
         path: path.resolve(__dirname, '..', 'tailor', 'docs'),
-        ignore: [ '**/templates/*' ],
+        ignore: ['**/templates/*'],
       },
     },
     // {
@@ -88,75 +88,91 @@ const sourcePlugins = {
     //     ignore: [ '**/templates/*' ],
     //   },
     // },
-  ],
-  production: [{
-    resolve: 'gatsby-source-github-docs',
-    options: {
-      githubAccessToken: process.env.DOCS_GITHUB_TOKEN,
-      projects: [
-        // {
-        //   owner: 'JoinColony',
-        //   repo: 'budgetBox',
-        //   expression: 'master:docs/',
-        //   name: 'budgetBox',
-        // },
-        {
-          owner: 'JoinColony',
-          repo: 'colonyNetwork',
-          expression: 'master:docs/',
-          name: 'colonyNetwork',
-        },
-        {
-          owner: 'JoinColony',
-          repo: 'colonyJS',
-          expression: 'master:docs/',
-          name: 'colonyJS',
-        },
-        {
-          owner: 'JoinColony',
-          repo: 'colonyStarter',
-          expression: 'master:docs/',
-          name: 'colonyStarter',
-        },
-        // {
-        //   owner: 'JoinColony',
-        //   repo: 'pinion',
-        //   expression: 'master:docs/',
-        //   name: 'pinion',
-        // },
-        {
-          owner: 'JoinColony',
-          repo: 'purser',
-          expression: 'master:docs/',
-          name: 'purser',
-        },
-        // {
-        //   owner: 'JoinColony',
-        //   repo: 'solcover',
-        //   expression: 'master:docs/',
-        //   name: 'solcover',
-        // },
-        {
-          owner: 'JoinColony',
-          repo: 'tailor',
-          expression: 'master:docs/',
-          name: 'tailor',
-        },
-        // {
-        //   owner: 'JoinColony',
-        //   repo: 'trufflepig',
-        //   expression: 'master:docs/',
-        //   name: 'trufflepig',
-        // },
-      ],
+    {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: 'https://blog.colony.io',
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+      },
     },
-  }],
-}
+  ],
+  production: [
+    {
+      resolve: 'gatsby-source-github-docs',
+      options: {
+        githubAccessToken: process.env.DOCS_GITHUB_TOKEN,
+        projects: [
+          // {
+          //   owner: 'JoinColony',
+          //   repo: 'budgetBox',
+          //   expression: 'master:docs/',
+          //   name: 'budgetBox',
+          // },
+          {
+            owner: 'JoinColony',
+            repo: 'colonyNetwork',
+            expression: 'master:docs/',
+            name: 'colonyNetwork',
+          },
+          {
+            owner: 'JoinColony',
+            repo: 'colonyJS',
+            expression: 'master:docs/',
+            name: 'colonyJS',
+          },
+          {
+            owner: 'JoinColony',
+            repo: 'colonyStarter',
+            expression: 'master:docs/',
+            name: 'colonyStarter',
+          },
+          // {
+          //   owner: 'JoinColony',
+          //   repo: 'pinion',
+          //   expression: 'master:docs/',
+          //   name: 'pinion',
+          // },
+          {
+            owner: 'JoinColony',
+            repo: 'purser',
+            expression: 'master:docs/',
+            name: 'purser',
+          },
+          // {
+          //   owner: 'JoinColony',
+          //   repo: 'solcover',
+          //   expression: 'master:docs/',
+          //   name: 'solcover',
+          // },
+          {
+            owner: 'JoinColony',
+            repo: 'tailor',
+            expression: 'master:docs/',
+            name: 'tailor',
+          },
+          // {
+          //   owner: 'JoinColony',
+          //   repo: 'trufflepig',
+          //   expression: 'master:docs/',
+          //   name: 'trufflepig',
+          // },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: 'https://blog.colony.io',
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+      },
+    },
+  ],
+};
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://docs.colony.io`,
-    title: 'Colony Open Source Docs',
+    siteUrl: `https://colony.io`,
+    title: 'Colony: A platform for open organizations',
   },
   plugins: [
     {
@@ -165,7 +181,7 @@ module.exports = {
         langKeyDefault: defaultLangKey,
         useLangKeyLayout: false,
         prefixDefault: prefixDefaultLangKey,
-      }
+      },
     },
     'gatsby-plugin-react-helmet',
     ...sourcePlugins[process.env.NODE_ENV],
@@ -179,8 +195,15 @@ module.exports = {
           defaultLangKey,
           prefixDefaultLangKey,
         },
-        projects: ['colonyJS', 'colonyNetwork', 'colonyStarter', 'purser', 'tailor'],
-      }
+        projects: [
+          'colonyJS',
+          'colonyNetwork',
+          'colonyStarter',
+          'purser',
+          'tailor',
+        ],
+        slugPrefix: 'dev/docs',
+      },
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -215,8 +238,8 @@ module.exports = {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: utils.getModuleAliases(),
-        extensions: []
-      }
+        extensions: [],
+      },
     },
   ],
-}
+};

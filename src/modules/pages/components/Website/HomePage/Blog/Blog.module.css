@@ -1,0 +1,63 @@
+
+@value smallUp, mediumUp from '~styles/breakpoints.css';
+
+@value gridMargin: 30px;
+
+.main {
+  padding: var(--margin-huge) 0 0;
+}
+
+.row {
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.gridContainer {
+  display: flex;
+  justify-content: space-evenly;
+  /* 
+   * Negative margin to align first and last items in grid
+   */
+  margin: var(--margin-large) calc(-1 * gridMargin) 0;
+}
+
+.gridItem:not(:first-of-type) {
+  display: none;
+}
+
+.gridItem {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 gridMargin;
+}
+
+.link {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+.cta {
+  margin: var(--margin-huge) auto 0;
+}
+
+@media (smallUp) {
+  .main {
+    padding-bottom: var(--margin-huge);
+  }
+
+  .gridItem:nth-of-type(2) {
+    display: flex;
+  }
+
+  .cta {
+    max-width: var(--row-width-desktop);
+  }
+}
+
+@media (mediumUp) {
+  .gridItem:not(:first-of-type) {
+    display: flex;
+  }
+}

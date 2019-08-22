@@ -1,0 +1,32 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  padding: var(--margin-large) 0 calc(var(--margin-large) / 2);
+  display: flex;
+}
+
+.row {
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+@media (mediumUp) {
+  .main {
+    background-image: url('/img/cornerShapes.svg');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+  }
+
+  .contentContainer {
+    margin-left: 87px;
+    max-width: 570px;
+  }
+}
+
+@media (largeUp) {
+  .main {
+    padding: 200px 0;
+  }
+}

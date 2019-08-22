@@ -1,0 +1,114 @@
+
+@value smallDown, mediumUp, mediumDown from '~styles/breakpoints.css';
+
+.divider {
+  border-top: 1px solid var(--grey-2);
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.main {
+  padding: var(--margin-large) 0;
+}
+
+.row {
+  margin: 0 auto;
+  width: var(--row-width-desktop);
+}
+
+.contentContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.menu {
+  width: 100%;
+}
+
+.logoContainer {
+  margin-bottom: var(--margin-medium);
+}
+
+.logo svg {
+  fill: var(--navy);
+  stroke: var(--navy);
+  width: 48px;
+}
+
+.metaRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: var(--margin-large);
+  text-align: center;
+}
+
+.metaNavContainer a {
+  color: var(--grey-1);
+}
+
+.metaNavContainer a:hover {
+  color: var(--navy);
+}
+
+.socialNavContainer {
+  margin-top: 40px;
+}
+
+.form {
+  margin: 0;
+  position: relative;
+}
+
+.input {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid var(--grey-2);
+  border-radius: 0;
+  width: 300px;
+}
+
+@media (smallDown) {
+  .input {
+    margin-bottom: 35px;
+  }
+}
+
+@media (mediumDown) {
+  .input {
+    margin-bottom: 35px;
+  }
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  top: 9px;
+}
+
+@media (smallDown) {
+  .divider {
+    width: 100%;
+  }
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    align-items: flex-start;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .metaRow {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .socialNavContainer {
+    margin-top: 0;
+  }
+}

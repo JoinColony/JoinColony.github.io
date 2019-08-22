@@ -1,0 +1,49 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.baseStyles {
+  /* This class is intended for composition only. Do not use directly */
+  font-family: 'IBM Plex Mono Medium', monospace;
+  font-size: var(--size-small);
+  margin-bottom: 40px;
+}
+
+.prefixUnderline {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  display: inline-block;
+  margin-right: 13px;
+  width: 33px;
+}
+
+/* Themes */
+
+.themeDark {
+  composes: baseStyles;
+  color: var(--navy);
+}
+
+.themeDark .prefixUnderline {
+  border-bottom-color: var(--navy);
+}
+
+.themeGrey {
+  composes: baseStyles;
+  color: var(--grey-1);
+}
+
+.themeGrey .prefixUnderline {
+  border-bottom-color: var(--grey-1);
+}
+
+/* Default */
+
+.main {
+  composes: themeDark;
+}
+
+@media (mediumUp) {
+  .prefixUnderline {
+    width: 49px;
+  }
+}

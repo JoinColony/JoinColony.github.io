@@ -1,0 +1,21 @@
+
+.sidebarContent {
+  border-right: 1px solid var(--grey-2);
+  padding-right: 15px;
+  position: sticky;
+}
+
+.link {
+  color: var(--text-blue);
+  display: block;
+  font-size: var(--size-normal);
+  white-space: nowrap;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link + .link {
+  margin-top: 20px;
+}

@@ -1,0 +1,62 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: var(--navy);
+  padding: var(--margin-huge) 0;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.introText {
+  color: var(--blue-2);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.body a {
+  color: var(--blue-1);
+}
+
+.body a:hover {
+  text-decoration: underline;
+}
+
+.bodyColumn + .bodyColumn {
+  margin-top: 15px;
+}
+
+
+@media (mediumUp) {
+  .contentContainer {
+    max-width: var(--row-width-desktop-narrow);
+  }
+
+  .body {
+    flex-direction: row;
+    margin-top: 70px;
+  }
+
+  .bodyColumn {
+    flex: 0 0 48%;
+  }
+
+  .bodyColumn + .bodyColumn {
+    margin-top: 0;
+  }
+}
+
+@media (largeUp) {
+  .contentContainer {
+    max-width: 750px;
+    width: 52%;
+  }
+}

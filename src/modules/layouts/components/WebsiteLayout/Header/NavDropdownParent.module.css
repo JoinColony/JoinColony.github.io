@@ -1,0 +1,48 @@
+@value mediumUp from '~styles/breakpoints.css';
+
+.dropdownParent {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  line-height: normal;
+  max-width: var(--row-width-mobile);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dropdownParentLink .dropdownContainer {
+  /* !important to override popper styles */
+  top: 20px !important;
+  visibility: hidden;
+}
+
+.buttonLink {
+  display: block;
+  height: 40px;
+  width: 100%;
+}
+
+.chevron svg {
+  width: 20px;
+  transition: transform .1s;
+  transform: rotate(90deg);
+}
+
+.chevron.expandedIcon svg {
+  transform: rotate(270deg);
+}
+
+@media (mediumUp) {
+  .dropdownParentLink:hover .dropdownContainer {
+    visibility: visible;
+  }
+
+  .buttonLink {
+    display: inline-block;
+    height: 40px;
+  }
+
+  .chevron {
+    display: none;
+  }
+}

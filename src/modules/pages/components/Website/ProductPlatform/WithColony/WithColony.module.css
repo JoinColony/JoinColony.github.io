@@ -1,0 +1,59 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+@value leftPadding: 100px;
+
+.main {
+  background-color: var(--navy);
+}
+
+.graphicRow {
+  background-color: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--margin-huge) var(--gutter-width) 0  var(--gutter-width);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content > div {
+  flex: 0 0 42%;
+}
+
+.image {
+  margin: 20px 0 0 0;
+}
+
+.gridRow {
+  background-color: var(--colony-white);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 var(--gutter-width);
+  padding: var(--margin-medium) var(--gutter-width-wide);
+}
+
+.gridItem {
+  flex: 0 0 30%;
+}
+
+@media (mediumUp) {
+  .graphicRow {
+    padding: var(--margin-huge) var(--gutter-width-narrow) 0 leftPadding;
+  }
+
+  .content {
+    flex-direction: row;
+  }
+
+  .gridRow {
+    flex-direction: row;
+    margin: 0;
+    padding: var(--margin-medium) var(--gutter-width-narrow) var(--margin-small) leftPadding;
+  }
+}

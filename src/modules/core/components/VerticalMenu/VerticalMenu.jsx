@@ -23,6 +23,7 @@ const MSG = defineMessages({
 });
 
 type Appearance = {|
+  alignText?: 'right',
   /*
    * Only has impact if `numColumns` is provided, and > 1.
    *

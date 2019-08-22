@@ -1,0 +1,50 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(120, 140, 160, 0.2);
+  height: 246px;
+  text-align: left;
+  display: none;
+}
+
+.image {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.contentContainer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-row-gap: 20px;
+  grid-template-rows: repeat(2, auto);
+  padding: 28px 32px 22px 0;
+}
+
+.navItem {
+  margin-left: 32px;
+}
+
+.itemLink {
+  display: block;
+}
+
+.itemLink:hover .itemLinkHeading {
+  color: var(--blue-1);
+}
+
+.navItemContainer {
+  width: 180px;
+}
+
+.itemBody {
+  margin-top: 8px;
+}
+
+@media (mediumUp) {
+  .main {
+    display: flex;
+  }
+}

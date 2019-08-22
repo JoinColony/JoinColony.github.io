@@ -1,0 +1,70 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.main {
+  position: relative;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  padding: var(--margin-medium) 0 0;
+}
+
+.contentContainer p {
+  color: var(--text-blue);
+}
+
+.introText {
+  flex: 0 0 35%;
+}
+
+.contentGridContainer {
+  flex: 0 0 50%;
+  font-size: var(--size-normal);
+  margin: 10px 0 var(--margin-large);
+}
+
+.gridItem {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--margin-medium);
+}
+
+.gridItem a {
+  color: var(--blue-1);
+}
+
+.gridItemImage {
+  flex: 0 0 80px;
+}
+
+.gridItemContent {
+  flex: 0 0 calc(100% - 113px);
+}
+
+.circleImage {
+  bottom: 0;
+  display: none;
+  left: 0;
+  margin-bottom: 0;
+  position: absolute;
+}
+
+.standaloneLink:hover {
+  text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    flex-direction: row;
+    max-width: 964px;
+  }
+
+  .circleImage {
+    display: block;
+  }
+}

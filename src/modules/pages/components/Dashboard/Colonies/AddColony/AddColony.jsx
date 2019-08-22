@@ -35,7 +35,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Colonies.AddColony';
 
-const server = process.env.SERVER_URL || 'http://localhost:8080';
+const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
 
 const AddColony = ({
   network,
@@ -109,7 +109,6 @@ const AddColony = ({
     <div className={styles.field}>
       <Input
         appearance={{
-          label: 'light',
           padding: 'huge',
           size: 'stretch',
         }}

@@ -1,0 +1,60 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+@value insideGutter: 130px;
+
+.heroImage {
+  background-image: url('/img/karolin.png');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftCol {
+  padding: var(--margin-huge) var(--gutter-width);
+}
+
+.parrot {
+  height: 64px;
+  margin-bottom: 0;
+}
+
+.body {
+  margin-top: 55px;
+}
+
+.rightCol {
+  align-items: center;
+  background-color: var(--pink-2);
+  display: flex;
+  flex: 0 0 42%;
+  padding: var(--margin-huge) var(--gutter-width);
+}
+
+.buttonContainer {
+  margin-top: 40px;
+}
+
+@media (mediumUp) {
+  .heroImage {
+    height: 786px;
+  }
+
+  .contentContainer {
+    flex-direction: row;
+  }
+
+  .leftCol {
+    padding-right: insideGutter;
+  }
+
+  .rightCol {
+    padding-left: insideGutter;
+  }
+}

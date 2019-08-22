@@ -1,0 +1,34 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+@value horizontalPadding: 36px;
+
+.main {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: var(--margin-medium) calc(-1 * horizontalPadding);
+}
+
+.gridItem {
+  flex: 0 0 100%;
+  padding: 25px horizontalPadding;
+}
+
+@media (mediumUp) {
+  .gridItem {
+    flex-basis: calc(100% / 2);
+  }
+}
+
+@media (largeUp) {
+  .gridItem {
+    display: block;
+    flex-basis: calc(100% / 3);
+    padding: 55px horizontalPadding;
+  }
+}

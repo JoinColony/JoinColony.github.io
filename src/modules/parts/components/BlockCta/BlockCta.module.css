@@ -1,0 +1,37 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+@value leftDistribution: .35;
+@value leftWidth: calc(100% * leftDistribution);
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstSideMobileRight {
+  flex-direction: column-reverse
+}
+
+.leftBlock,
+.rightBlock {
+  display: flex;
+}
+
+.leftBlock {
+  background-color: var(--navy);
+  flex-basis: leftWidth;
+}
+
+.rightBlock {
+  background-color: var(--pink-2);
+  flex-basis: calc(100% - leftWidth);
+}
+
+@media (mediumUp) {
+  .main,
+  .firstSideMobile {
+    flex-direction: row;
+  }
+}
+

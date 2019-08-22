@@ -1,0 +1,164 @@
+
+@value mediumDown, mediumUp from '~styles/breakpoints.css';
+
+.baseStyles {
+  /* This class is intended for composition only.
+   * Do not use this class directly
+   */
+  display: flex;
+  flex-direction: column;
+}
+
+.gutter {
+  flex: 0 0 var(--gutter-width-narrow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gutter:first-of-type {
+  order: 2;
+}
+
+.gutter:last-of-type {
+  order: 3;
+}
+
+.gutterLink {
+  align-items: center;
+  color: var(--blue-1);
+  display: flex;
+  flex: 1 0 auto;
+  font-family: IBM Plex Mono Medium, monospace;
+  font-size: var(--size-small);
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+}
+
+.gutterLink:hover {
+  background-color: var(--blue-1);
+  color: var(--colony-white);
+}
+
+.content {
+  flex: 0 0 auto;
+  order: 1;
+}
+
+/* Themes */
+
+.themeDefault {
+  composes: baseStyles;
+}
+
+.themeDefault .gutter {
+  background-color: var(--grey-3);
+}
+
+.themePink {
+  composes: baseStyles;
+}
+
+.themePink .gutter {
+  /* grey bg for smaller viewports */
+  background-color: var(--grey-3);
+}
+
+/* Single-side themes */
+
+.themeLeftDark .gutter:first-of-type {
+  background-color: var(--navy);
+}
+
+.themeRightDark .gutter:last-of-type {
+  background-color: var(--navy);
+}
+
+/* Single Side Gutter */
+
+.oneSideLeft .gutter:last-of-type,
+.oneSideRight .gutter:first-of-type {
+  visibility: hidden; /* hide opposite side gutter */
+  display: none;
+}
+
+.oneSideLeft .content,
+.oneSideRight .content {
+  flex-grow: 1;
+}
+
+/* Default */
+
+.main {
+  composes: themeDefault;
+}
+
+/* State */
+
+@media (mediumDown) {
+  .gutterLink > span,
+  .gutterLinkText {
+    height: 100%;
+    width: 100%;
+    flex: 1 0 auto;
+  }
+
+  .stateHasLeftLink:not(.stateHasRightLink) .gutter:last-of-type,
+  .stateHasRightLink:not(.stateHasLeftLink) .gutter:first-of-type {
+    display: none;
+  }
+}
+
+@media (mediumUp) {
+  .baseStyles {
+    flex-direction: row;
+  }
+
+  .gutter {
+    flex-direction: row;
+  }
+
+  .gutter:first-of-type {
+    order: 1;
+  }
+
+  .gutterLink {
+    height: 100%;
+    width: auto;
+  }
+
+  .gutterLinkText {
+    /*
+    * Absolutely positioned because white-space is calculated
+    * before transform is applied, which breaks the layout (makes
+    * this gutter wider than the other. Not cool...).
+    */
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  .content {
+    flex: 0 0 var(--row-width-desktop-narrow);
+    order: 2;
+  }
+
+  .leftLink .gutterLinkText {
+    left: var(--gutter-width-wide);
+    right: -15px;
+    transform: rotate(270deg);
+  }
+
+  .rightLink .gutterLinkText {
+    left: -15px;
+    right: var(--gutter-width-wide);
+    transform: rotate(90deg);
+  }
+
+  .themePink .gutter {
+    background-color: var(--pink-2);
+  }
+}

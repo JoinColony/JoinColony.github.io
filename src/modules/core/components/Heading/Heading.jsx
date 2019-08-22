@@ -12,7 +12,14 @@ import { getChildrenOrText } from '~utils/strings';
 import styles from './Heading.module.css';
 
 export type Appearance = {|
-  theme?: 'dark' | 'light' | 'invert' | 'primary' | 'grey' | 'gold',
+  theme?:
+    | 'dark'
+    | 'light'
+    | 'invert'
+    | 'primary'
+    | 'grey'
+    | 'gold'
+    | 'lightBlue',
   margin?: 'none' | 'tiny' | 'small' | 'medium' | 'large' | 'double',
   size?:
     | 'tiny'
@@ -21,7 +28,8 @@ export type Appearance = {|
     | 'medium'
     | 'mediumLarge'
     | 'large'
-    | 'huge',
+    | 'huge'
+    | 'massive',
   weight?: 'thin' | 'medium' | 'bold',
 |};
 
@@ -63,6 +71,7 @@ const Heading = ({
   const HeadingElement =
     tagName ||
     {
+      massive: 'h1',
       huge: 'h1',
       large: 'h2',
       medium: 'h3',
@@ -75,7 +84,7 @@ const Heading = ({
   return (
     <HeadingElement
       title={typeof value === 'string' ? value : undefined}
-      className={classNames}
+      className={`${classNames} ${styles.heading}`}
       {...props}
     >
       {value}

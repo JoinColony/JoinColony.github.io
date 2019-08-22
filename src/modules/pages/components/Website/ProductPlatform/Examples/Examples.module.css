@@ -1,0 +1,153 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+@value rightColWidth: 30%;
+
+.main {
+  background-color: var(--grey-3);
+}
+
+.introRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  padding: var(--margin-medium) var(--gutter-width) var(--margin-medium);
+}
+
+.imageContainer {
+  align-items: center;
+  background-color: var(--navy);
+  display: flex;
+  flex: 0 0 rightColWidth;
+  justify-content: center;
+  margin: 0 var(--gutter-width);
+  padding: 25px 0;
+}
+
+.image {
+  max-height: 55px;
+  margin: 0;
+  height: 100%;
+  width: auto;
+}
+
+.contentRow {
+  align-items: center;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.currentContent {
+  background-color: var(--colony-white);
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  width: 100%;
+  padding: 0 var(--gutter-width-wide);
+}
+
+@media (largeUp ) {
+  .currentContent {
+    background-color: var(--colony-white);
+    margin: 0 auto;
+    max-width: var(--row-width-desktop);
+    width: 100%;
+    padding: 0 118px;
+  }
+}
+
+.contentMenu {
+  background-color: var(--colony-white);
+  display: flex;
+  flex: 0 0 rightColWidth;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  width: 100%;
+  padding: 30px var(--gutter-width-wide);
+}
+
+.menuItemBase {
+  /* Intended for composition only. Do not use this class directly. */
+  border: none;
+  flex: 0 0 50%;
+  text-align: left;
+  padding: var(--margin-small) 0;
+}
+
+.menuItemBase:focus {
+  outline: none;
+}
+
+.menuItem {
+  composes: menuItemBase;
+  background: none;
+  cursor: pointer;
+  color: var(--navy);
+}
+
+.menuItem:hover{
+  background: var(--blue-1);
+  color: white;
+}
+
+.activeItem {
+  composes: menuItemBase;
+  background: none;
+  color: var(--blue-1);
+}
+
+@media (mediumUp) {
+  .introRow {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    margin: 0;
+  }
+
+  .image {
+    max-height: 180px;
+    max-width: 180px;
+  }
+
+  .contentRow {
+    background-color: var(--colony-white);
+    flex-direction: row;
+  }
+
+  .mainContent {
+    padding: var(--margin-medium) 100px var(--margin-medium) 0;
+  }
+
+  .contentMenu {
+    flex-direction: column;
+    padding: 0;
+    flex: 1 0 rightColWidth;
+  }
+
+  .currentContent {
+    flex: 1 0 70%;
+    padding-left: 60px;
+    width: auto;
+  }
+
+  .menuItemBase {
+    /* Intended for composition only. Do not use this class directly. */
+    padding: 30px 0 30px 20px;
+    width: 100%;
+  }
+
+  .activeItem {
+    background-color: var(--blue-1);
+    color: var(--colony-white);
+  }
+}
+
+@media (largeUp) {
+  .menuItemBase {
+    /* Intended for composition only. Do not use this class directly. */
+    padding-left: 62px;
+  }
+}

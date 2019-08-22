@@ -1,0 +1,44 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.main {
+  padding: var(--margin-huge) 0 0;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.image {
+  margin: var(--margin-large) 0;
+  max-width: 100%;
+}
+
+.gridItem .image {
+  margin: var(--margin-small) 0;
+}
+
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gridItem {
+  flex: 0 0 100%;
+}
+
+@media (mediumUp) {
+  .introText {
+    width: 55%;
+  }
+
+  .gridContainer {
+    flex-direction: row;
+  }
+
+  .gridItem {
+    flex-basis: 29%;
+  }
+}

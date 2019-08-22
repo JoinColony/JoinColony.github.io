@@ -1,0 +1,40 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+@value gridItemPadding: 10px;
+
+.main {
+  padding: var(--margin-large) 0;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.gridItem {
+  flex: 0 0 30%;
+}
+
+.gridItemBody {
+  margin-top: 30px;
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    margin: 0 80px 0 var(--gutter-width);
+    max-width: none;
+  }
+
+  .gridContainer {
+    flex-direction: row;
+    margin: 60px auto 0;
+  }
+}

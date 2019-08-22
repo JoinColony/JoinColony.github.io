@@ -29,9 +29,6 @@ jobs:
       - image: circleci/node:10.1
     working_directory: ~/repo
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "c5:db:e3:05:41:9b:7e:de:b4:33:7a:33:fc:86:14:02"
       - checkout
       - restore_cache:
           keys:
@@ -45,10 +42,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: git config --global user.email "github@colony.io"
-      - run: git config --global user.name "Colony Superuser"
+      - run: echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+      - run: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+      - run: sudo apt-get update && sudo apt-get install google-cloud-sdk
+      - run: bash ./scripts/authGoogle.sh
       - run: yarn deploy
-
 workflows:
   version: 2
   build-and-deploy:

@@ -1,0 +1,50 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  padding: var(--margin-large) 0 var(--margin-huge);
+}
+
+.innerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.contentContainer {
+  flex: 0 0 38%;
+}
+
+.badgeGroups {
+  align-items: flex-end;
+  display: flex;
+  flex: 0 0 58%;
+}
+
+.groupItem {
+  flex: 1 1 auto;
+}
+
+.groupItem:first-of-type {
+  flex-grow: 0;
+  flex-basis: calc(100% * (2 / 3));
+}
+
+.groupItem + .groupItem {
+  margin-left: 28px;
+}
+
+@media (mediumUp) {
+  .innerContent {
+    margin-top: 180px;
+    flex-direction: row;
+  }
+}
+
+@media (largeUp) {
+  .badgeGroups {
+    flex-basis: 48%;
+  }
+}

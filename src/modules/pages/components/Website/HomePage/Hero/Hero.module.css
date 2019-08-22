@@ -1,0 +1,53 @@
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: var(--navy);
+  display: flex;
+}
+
+.imageContainer {
+  align-items: flex-end;
+  display: none;
+  flex-shrink: 1;
+}
+
+.image {
+  margin: 0;
+}
+
+.contentContainer {
+  background-color: var(--colony-black);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.textContainer {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  max-width: var(--row-width-desktop-narrow);
+  margin: 0 auto 40px;
+  padding: 20px 0 80px;
+}
+
+@media (mediumUp) {
+  .imageContainer {
+    display: flex;
+  }
+
+  .textContainer {
+    padding: 20px 280px 20px 120px;
+  }
+}
+
+@media (largeUp) {
+  .main {
+    height: 847px;
+  }
+
+  .textContainer {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,45 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.main {
+  padding: calc(var(--margin-huge) * 2) 0 var(--margin-huge);
+}
+
+.innerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.contentContainer {
+  flex: 0 0 40%;
+}
+
+.badgeGroups {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 60%;
+}
+
+.groupItem {
+  flex: 0 0 48%;
+}
+
+@media (mediumUp) {
+  .innerContent {
+    flex-direction: row;
+    max-width: var(--row-width-desktop-narrow);
+  }
+
+  .badgeGroups {
+    justify-content: flex-end;
+  }
+
+  .groupItem + .groupItem {
+    margin-left: 28px;
+  }
+
+}

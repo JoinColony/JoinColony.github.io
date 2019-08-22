@@ -1,0 +1,134 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.slideCanvas {
+  background-color: var(--navy);
+  flex: 1;
+  padding-top: 31px;
+}
+
+.slideActive {
+  animation: fadeIn 0.25s ease-in;
+  display: block;
+  opacity: 1;
+  height: 100%;
+}
+
+.slideInactive {
+  animation: fadeOut 0.25s;
+  display: none;
+  opacity: 0;
+}
+
+.controls {
+  display: flex;
+}
+
+.controlItem {
+  flex: 0 0 50%;
+}
+
+.controlItem button {
+  display: block;
+  height: 100%;
+}
+
+.controlItem button:disabled {
+  cursor: default !important;
+}
+
+.controlItem.active .controlItemInner {
+  background-color: var(--blue-1);
+}
+
+.controlItem.active .controlItemInner a,
+.controlItem.active .controlItemInner p,
+.controlItem.active .controlItemInner .controlHeading {
+  color: var(--colony-white);
+}
+
+.controlItemInner {
+  height: 100%;
+  padding: 56px 70px;
+  text-align: left;
+}
+
+.controlItemInner a,
+.controlItemInner p,
+.controlItemInner .controlHeading,
+.controlItemInner {
+  color: var(--grey-2);
+}
+
+.controlItemInner a:hover,
+.smallItemLink:hover {
+  text-decoration: underline;
+}
+
+.controlItemInner .body {
+  font-size: var(--size-normal);
+}
+
+.controlLink {
+  margin-top: 20px;
+}
+
+/* Small stuff */
+
+.smallSlide {
+  background-color: var(--colony-black);
+  padding: 30px 20px 0 20px;
+}
+
+.smallContent {
+  background-color: var(--navy);
+  padding: 36px 0;
+}
+
+.smallContentInner {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+}
+
+.smallItemLink {
+  color: var(--blue-1);
+  font-size: var(--size-normal);
+}
+
+/* animations */
+
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  1% {
+    display: none;
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@media (mediumUp) {
+  .slideCanvas {
+    height: 519px;
+  }
+}

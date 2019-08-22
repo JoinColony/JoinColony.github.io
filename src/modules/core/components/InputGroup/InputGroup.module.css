@@ -1,0 +1,68 @@
+
+@value mediumDown from '~styles/breakpoints.css';
+
+.wrapper form {
+  margin: 0;
+}
+
+.inputGroup {
+  display: flex;
+}
+
+.inputContainer {
+  flex-grow: 1;
+}
+
+.input {
+  background-color: var(--text-blue);
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: var(--size-medium);
+  height: 100%;
+  margin: 0 !important;
+  padding: 27px 40px;
+  width: 100% !important;
+}
+
+.input::placeholder {
+  color: var(--grey-1);
+}
+
+.wrapper .button {
+  border-color: transparent;
+  color: #ffffff;
+  height: 100%;
+}
+
+.wrapper .button:hover,
+.wrapper .button:active {
+  background-color: #086DA6;
+  color: #ffffff;
+}
+
+.themeLight .input {
+  color: var(--grey-1);
+  background-color: #FFFFFF;
+  border: 1px solid var(--grey-2);
+  padding: 27px 24px;
+}
+
+/* Stacks */
+
+@media (mediumDown) {
+  .stackMediumDown .inputGroup {
+    flex-direction: column;
+  }
+
+  .stackMediumDown .input {
+    height: 48px;
+  }
+
+  .stackMediumDown .button {
+    height: 48px;
+    margin-top: 7px;
+    width: 100%;
+  }
+}
+

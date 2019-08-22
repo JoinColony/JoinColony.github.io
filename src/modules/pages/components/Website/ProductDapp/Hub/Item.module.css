@@ -1,0 +1,119 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.baseStyles {
+  /* This class is intended for composition only. Do not use directly */
+  display: flex;
+  flex-direction: column;
+}
+
+.imageBlock,
+.contentBlock {
+  align-items: center;
+  display: flex;
+  flex: 0 0 50%;
+}
+
+.imageBlock {
+  justify-content: center;
+}
+
+.image {
+  margin: 0;
+}
+
+.thumbnailContainer {
+  flex: 0 0 60px;
+  margin-bottom: 60px;
+}
+
+.thumbnail {
+  height: auto;
+  margin: 0;
+  width: 60px;
+}
+
+.thumbnailContainer + .bodyContainer {
+  padding-left: 30px;
+}
+
+/* Themes */
+
+.main {
+  composes: baseStyles;
+  padding: 0 var(--gutter-width);
+}
+
+.main .contentBlock .contentInner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main .imageBlock {
+  padding: 20px;
+}
+
+.themeBlock {
+  composes: baseStyles;
+}
+
+.themeBlock .imageBlock {
+  background-color: var(--navy);
+  padding: 80px;
+}
+
+.themeBlock .contentBlock {
+  background-color: var(--blue-3);
+  padding: 60px var(--gutter-width);
+  height: 565px;
+}
+
+.themeBlock .contentBlock p {
+  margin-bottom: 0;
+}
+
+@media (mediumUp) {
+  .main {
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .main .imageBlock {
+    min-height: 565px;
+  }
+
+  .themeBlock {
+    flex-direction: row-reverse;
+  }
+
+  .main .contentBlock .contentInner {
+    flex-direction: column;
+  }
+
+  .themeBlock .contentBlock {
+    padding: 0 var(--margin-large) 0;
+  }
+
+  .thumbnailContainer {
+    flex: 0 0 79px;
+  }
+
+  .thumbnail {
+    height: auto;
+    width: 79px;
+  }
+
+  .thumbnailContainer + .bodyContainer {
+    padding-left: 0;
+  }
+}
+
+@media (largeUp) {
+  .main .contentBlock {
+    padding: 0 var(--margin-huge) 0 var(--margin-large);
+  }
+
+  .main .imageBlock {
+    padding: 60px;
+  }
+}

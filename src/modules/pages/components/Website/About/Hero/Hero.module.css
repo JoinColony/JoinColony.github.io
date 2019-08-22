@@ -1,0 +1,48 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: var(--blue-3);
+  position: relative;
+}
+
+.inner {
+  padding: var(--margin-large) 0 130px;
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--row-width-desktop-narrow);
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 50;
+}
+
+.body {
+  margin: 55px 0 0;
+}
+
+.smallImage {
+  bottom: 0;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  width: 85vw;
+}
+
+@media (mediumUp) {
+  .inner {
+    padding: var(--margin-large) 0;
+  }
+
+  .contentContainer {
+    width: 60%;
+  }
+}
+
+@media (largeUp) {
+  .contentContainer {
+    width: 49%;
+  }
+}
+

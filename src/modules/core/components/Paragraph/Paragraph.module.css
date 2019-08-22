@@ -1,0 +1,66 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+/* Margins */
+
+.marginNone {
+  margin: 0;
+}
+
+/* Themes */
+
+.themeDark {
+  color: var(--text-blue);
+}
+
+.themeGrey {
+  color: var(--grey-1);
+}
+
+.themeInvert {
+  color: var(--colony-white);
+}
+
+.themeLightBlue {
+  color: var(--blue-2);
+}
+
+/* Sizes */
+
+.sizeExtraSmall {
+  font-size: var(--size-extraSmall);
+  line-height: 18px;
+}
+
+.sizeSmall {
+  font-size: var(--size-small);
+}
+
+.paragraph:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium),
+.sizeNormal {
+  font-size: var(--size-normal);
+  line-height: 18px;
+  font-family: 'Avenir Next Light';
+}
+
+.sizeMedium {
+  font-size: var(--size-medium);
+  line-height: 18px;
+}
+
+/* Default */
+
+.main {
+  composes: themeDark;
+}
+
+@media (mediumUp) {
+  .paragraph:not(.sizeExtraSmall):not(.sizeSmall):not(.sizeMedium),
+  .sizeNormal {
+    line-height: 24px;
+  }
+
+  .sizeMedium {
+    line-height: 32px;
+  }
+}

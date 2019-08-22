@@ -1,0 +1,99 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+@value featureContentPadding: 110px 54px 90px;
+
+.mainContentRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleContent {
+  background-color: var(--navy);
+  padding: 40px var(--gutter-width);
+}
+
+.featureContent {
+  background-color: var(--blue-1);
+  flex: 0 0 calc(100% / 3);
+  position: relative;
+  padding: 40px var(--gutter-width);
+}
+
+.featureContentHover {
+  background-color: var(--blue-4);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: 40px var(--gutter-width);
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition: all .15s ease-in-out;
+  width: 100%;
+}
+
+.featureContent:hover .featureContentHover {
+  opacity: 1;
+}
+
+.budgetBoxLogo {
+  display: block;
+  margin-bottom: 28px;
+}
+
+.budgetBoxLogo svg {
+  max-width: 82px;
+}
+
+.titleBody,
+.featureBody {
+  margin-top: 40px;
+}
+
+.subContentRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.subItem {
+  flex: 0 0 calc(100% / 3);
+  transition: all .15s ease-in-out;
+  padding: 10px var(--gutter-width);
+}
+
+@media (mediumUp) {
+  .subContentRow {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  .subItem {
+    padding: 60px 20px
+  }
+}
+
+/* custom media query since this is within a gutter section */
+@media (min-width: 1052px) {
+  .mainContentRow {
+    flex-direction: row;
+  }
+
+  .featureContent {
+    padding: featureContentPadding;
+  }
+
+  .featureContentHover {
+    padding: featureContentPadding;
+  }
+
+  .subItem {
+    padding: 90px 40px;
+  }
+
+  .titleContent {
+    padding: 90px 100px;
+  }
+}

@@ -1,0 +1,37 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-image: url('/img/boundariesWillBlur.svg');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 86% auto;
+  padding: var(--margin-huge) 0;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  max-width: var(--row-width-desktop);
+  width: 100%;
+}
+
+.body {
+  margin-top: 35px;
+}
+
+@media (mediumUp) {
+  .contentContainer {
+    width: 70%;
+  }
+}
+
+@media (largeUp) {
+  .main {
+    padding: 340px 0 215px;
+  }
+
+  .contentContainer {
+    margin: 0 var(--gutter-width) 0 auto;
+    width: 39%;
+  }
+}

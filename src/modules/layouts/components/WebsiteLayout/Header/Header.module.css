@@ -1,0 +1,230 @@
+@value mediumUp, mediumDown from '~styles/breakpoints.css';
+
+.wrapper {
+  padding: 10px 0;
+}
+
+.navigationContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.leftWrapper {
+  padding-left: var(--gutter-width-mobile);
+}
+
+.logo {
+  display: block;
+  height: 30px;
+}
+
+.logo svg {
+  fill: var(--navy);
+  height: 30px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  margin-top: 11px;
+}
+
+.navContainer {
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.navContainer[aria-expanded="true"] {
+  height: auto;
+  visibility: visible;
+}
+
+.navLinkBase {
+  /* This class *only* intended for composition. Do not use directly. */
+  font-size: var(--size-extraSmall);
+  line-height: 46px;
+}
+
+.navLink {
+  composes: navLinkBase;
+  display: inline-block;
+}
+
+.navLinkAlt {
+  composes: navLinkBase;
+  color: var(--blue-1);
+  display: none;
+}
+
+.navLinkAlt:not(.navDropdownParent):hover,
+.navLinkAlt.active {
+  border-bottom-color: var(--blue-1);
+}
+
+.navToggle {
+  position: absolute;
+  right: var(--gutter-width-mobile);
+  top: 16px;
+}
+
+.mobileButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: var(--row-width-mobile);
+}
+
+.mobileButton {
+  flex: 0 0 46%;
+  padding: 10px 2px;
+}
+
+/**
+ * Themes
+ **/
+
+.themeLight {
+  background-color: #fff;
+}
+
+.themeLight .navLink {
+  color: var(--navy);
+}
+
+.themeLight .navLink:not(.navDropdownParent):hover,
+.themeLight .navLink.active {
+  border-bottom-color: var(--navy);
+}
+
+.themeTransparent .navLink:not(.navDropdownParent):hover,
+.themeTransparent .navLink.active {
+  border-bottom-color: var(--colony-white);
+}
+
+.themeScrolled {
+  composes: themeLight;
+  animation: slide-down 0.15s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  border-bottom: 1px solid var(--grey-3);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+@media (mediumUp) {
+  .themeTransparent .navLink {
+    color: var(--colony-white);
+  }
+}
+
+ /**
+ * Nav Themes
+ **/
+
+.navThemeDark .navLink {
+  color: var(--navy);
+}
+
+.navThemeDark .navLink:not(.navDropdownParent):hover,
+.navThemeDark .navLink.active {
+  border-bottom-color: var(---navy);
+}
+
+
+@media (mediumUp) {
+  .navThemeLight .navLink {
+    color: var(--colony-white);
+  }
+}
+
+.main {
+  /* default to `light` theme */
+  composes: themeLight navThemeDark;
+}
+
+/**
+ * Logo Themes
+ **/
+
+@media (mediumUp) {
+  .logoThemeLight .logo svg {
+    fill: var(--colony-white);
+  }
+}
+
+.logoThemeDark .logo svg {
+  fill: var(--navy);
+}
+
+/**
+* Animations
+**/
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@media (mediumUp) {
+  .wrapper {
+    padding: 0;
+  }
+
+  .navigationContainer {
+    align-items: center;
+    flex-direction: row;
+    max-width: var(--row-width-desktop);
+  }
+
+  .leftWrapper {
+    padding-left: 0;
+  }
+
+  .navContainer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    height: auto;
+    visibility: visible;
+  }
+
+  .navigation {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  .navLinkBase {
+    font-size: var(--size-normal);
+    line-height: 72px;
+  }
+
+  .navLinkBase + .navLinkBase {
+    margin-left: 55px;
+  }
+
+  .navLinkBase {
+    border-bottom: 2px solid transparent;
+  }
+
+  .navLinkAlt {
+    display: inline-block;
+  }
+
+  .mobileButtons {
+    display: none;
+  }
+
+}
+
+@media (mediumDown) {
+  .navContainer[aria-expanded="false"] * {
+    /* Hide submenus which have `visibility: visible` */
+    visibility: hidden;
+  }
+}

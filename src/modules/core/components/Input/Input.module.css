@@ -1,19 +1,53 @@
-.main span {
-  display: block;
-}
 
-.main input {
+@value errorBorderColor: #F5416E;
+@value rangeFillColor: var(--blue-1);
+
+.main {
   border: 1px solid #91D2FA;
   border-radius: 4px;
   color: #323232;
   font-size: 16px;
   font-family: 'Avenir Next Light';
   margin-right: 20px;
-  margin-top: 8px;
   transition: 0.2s;
 }
 
-.main input:disabled {
+.main[type="range"] {
+  appearance: none;
+  background-color: var(--grey-3);
+  box-shadow: inset 0px 4px 8px rgba(49, 49, 49, 0.253);
+  border: none;
+  border-radius: 18px;
+  height: 24px;
+  margin: 30px 0;
+  outline: none;
+  width: 100%;
+}
+
+.main[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 12px var(--grey-2);
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+}
+
+.main[type="range"]::-moz-range-progress {
+  background-color: var(--blue-1);
+}
+
+.label span {
+  display: block;
+  font-size: 16px;
+}
+
+.label input {
+  margin-top: 8px;
+}
+
+:disabled {
   background-color: #F0F5F7;
   border: 1px solid #F0F5F7;
   color: #788CA0;
@@ -25,34 +59,28 @@
   display: none;
 }
 
-/* Label */
-
-.labelLight span {
-  color: #788CA0;
-  font-size: 14px;
-}
-
 /* Padding */
 
-.paddingSmall input {
+.paddingSmall {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.paddingLarge input {
+.paddingLarge {
   padding: 5px 25px;
 }
 
-.paddingHuge input {
+.paddingHuge {
   padding: 10px 25px;
 }
 
 /* Size */
 
-.sizeLarge input {
+.sizeLarge {
   width: 340px;
 }
 
-.sizeStretch input {
+.sizeStretch {
   width: 100%;
 }
+
