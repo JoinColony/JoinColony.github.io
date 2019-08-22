@@ -109,7 +109,6 @@ const AddColony = ({
     <div className={styles.field}>
       <Input
         appearance={{
-          label: 'light',
           padding: 'huge',
           size: 'stretch',
         }}
