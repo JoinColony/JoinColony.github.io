@@ -147,7 +147,7 @@ const GlobalLayout = ({ children, location }: Props) => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', ${trackingId});
+            gtag('config', '${trackingId}');
           `}
         </script>
       </Helmet>
