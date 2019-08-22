@@ -10,7 +10,7 @@ import styles from './TLDR.module.css';
 const MSG = defineMessages({
   headingOne: {
     id: 'pages.Website.HomePage.TLDR.headingOne',
-    defaultMessage: 'As easy as a web forum.',
+    defaultMessage: 'As easy as a web forum',
   },
   headingTwo: {
     id: 'pages.Website.HomePage.TLDR.headingTwo',
