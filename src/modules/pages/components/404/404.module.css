@@ -1,21 +1,10 @@
+
 .main {
-  box-sizing: border-box;
-  padding: 100px 9.5% 120px;
+  padding: var(--margin-large) var(--gutter-width);
 }
 
 .content {
   composes: prettylink from '~styles/mixins.module.css';
 
   display: block;
-}
-
-a {
-  text-decoration: none;
-}
-
-@media screen and (min-width: 1450px) {
-  .content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
 }

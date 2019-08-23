@@ -1,11 +1,13 @@
 /* @flow */
 
 import React from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
-import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
+import Paragraph from '~core/Paragraph';
+import WebsiteLayout from '~layouts/WebsiteLayout';
+import SEO from '~parts/SEO';
 import { PAGE_INDEX } from '~routes';
 
 import styles from './404.module.css';
@@ -17,7 +19,7 @@ const MSG = defineMessages({
   },
   title: {
     id: 'pages.NotFoundPage.title',
-    defaultMessage: 'NOT FOUND',
+    defaultMessage: 'Not Found',
   },
   linkHome: {
     id: 'pages.NotFoundPage.linkHome',
@@ -28,17 +30,19 @@ const MSG = defineMessages({
 const displayName = 'pages.NotFoundPage';
 
 const NotFoundPage = () => (
-  <DeveloperPortalLayout>
+  <WebsiteLayout>
+    <SEO description={MSG.contentExplanation} title={MSG.title} />
     <main className={styles.main}>
       <div className={styles.content}>
         <Heading text={MSG.title} />
-        <p>
-          <FormattedMessage {...MSG.contentExplanation} />
-        </p>
+        <Paragraph
+          appearance={{ size: 'medium' }}
+          text={MSG.contentExplanation}
+        />
         <Link href={PAGE_INDEX} text={MSG.linkHome} />
       </div>
     </main>
-  </DeveloperPortalLayout>
+  </WebsiteLayout>
 );
 
 NotFoundPage.displayName = displayName;
