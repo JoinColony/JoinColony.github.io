@@ -1,0 +1,26 @@
+
+@value mediumUp from '~styles/breakpoints.css';
+
+.actionContainer {
+  text-align: right;
+}
+
+.inline {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inline > div:first-of-type {
+  flex: 0 0 48%;
+}
+
+.inline > div:nth-of-type(2) {
+  flex: 0 0 48%;
+}
+
+@media (mediumUp) {
+  .inline {
+    flex-direction: row;
+  }
+}

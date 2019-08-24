@@ -1,0 +1,55 @@
+
+@value mediumUp, largeUp from '~styles/breakpoints.css';
+
+.main {
+  background-color: var(--grey-3);
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: var(--margin-large) var(--gutter-width) var(--margin-large) var(--gutter-width);
+}
+
+.formContainer {
+  flex: 0 0 53%;
+  width: 100%;
+}
+
+.contentContainer {
+  flex: 0 0 43%;
+}
+
+.form {
+  background-color: var(--colony-white);
+  padding: 50px 30px;
+  width: 100%;
+}
+
+.link {
+  color: var(--blue-1);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+@media (mediumUp) {
+  .row {
+    flex-direction: row;
+  }
+
+  .image {
+    width: 80px;
+  }
+}
+
+@media (largeUp) {
+  .contentContainer {
+    flex: 0 0 35%;
+  }
+}
