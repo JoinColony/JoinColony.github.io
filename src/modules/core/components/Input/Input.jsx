@@ -13,6 +13,7 @@ type Appearance = {|
   display?: 'none',
   padding?: 'small' | 'large' | 'huge',
   size?: 'large' | 'stretch',
+  theme?: 'minimal',
 |};
 
 type Props = {
@@ -21,7 +22,7 @@ type Props = {
   /** Setting this will add className styles to the `appearance` object */
   className?: string,
   /** Outline in red if error */
-  error?: ?string,
+  error?: ?string | ?MessageDescriptor,
   /** Injected by `injectIntl` */
   intl: IntlShape,
   /** ID required to connect label and input */
@@ -34,6 +35,8 @@ type Props = {
   placeholder?: MessageDescriptor | string,
   /** Values for loading placeholder (react-intl interpolation) */
   placeholderValues?: Object,
+  /** Will display error text below the input (if it exists) */
+  showErrorText?: boolean,
   /** Input html type attribute */
   type?: 'date' | 'email' | 'number' | 'range' | 'text',
   /** Max value - only used for `range` type */
@@ -58,6 +61,7 @@ const Input = ({
   min,
   placeholder,
   placeholderValues,
+  showErrorText,
   type = 'text',
   value,
   ...rest
@@ -65,8 +69,10 @@ const Input = ({
   const [styleProps, setStyleProps] = useState({});
 
   const classNames = className
-    ? `${getMainClasses(appearance, styles)} ${className}`
-    : getMainClasses(appearance, styles);
+    ? `${getMainClasses(appearance, styles, {
+        hasError: !!error,
+      })} ${className}`
+    : getMainClasses(appearance, styles, { hasError: !!error });
   const labelText =
     typeof label === 'string'
       ? label
@@ -75,6 +81,8 @@ const Input = ({
     typeof placeholder === 'string'
       ? placeholder
       : placeholder && formatMessage(placeholder, placeholderValues);
+  const errorText =
+    typeof error === 'string' ? error : error && formatMessage(error);
 
   const toNumber = (val: number | string): number => parseInt(val, 10);
 
@@ -90,14 +98,11 @@ const Input = ({
         ${styles.rangeFillColor} ${percent}%,
         transparent ${percent}%)`;
     }
-    if (error) {
-      newStyles.borderColor = styles.errorBorderColor;
-    }
     setStyleProps(newStyles);
   }, [type, error, value, min, max]);
   return (
     <label htmlFor={id} className={styles.label}>
-      <span>{labelText}</span>
+      {labelText && <span>{labelText}</span>}
       <input
         id={id}
         className={classNames}
@@ -109,6 +114,12 @@ const Input = ({
         value={value}
         {...rest}
       />
+      {showErrorText && (
+        // Always render this div so the UI doesn't shift once an error message exists
+        <div className={styles.errorMessage}>
+          {errorText && <small>{errorText}</small>}
+        </div>
+      )}
     </label>
   );
 };
