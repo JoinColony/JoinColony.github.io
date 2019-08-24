@@ -1,0 +1,32 @@
+
+.main {
+  border: 1px solid var(--grey-2);
+  color: var(--text-blue);
+  margin-top: 8px;
+  /* Negative margin to match `Input`s */
+  margin-bottom: -6px;
+  outline: none;
+  resize: vertical;
+  width: 100%;
+}
+
+.errorMessage {
+  color: var(--pink-3);
+  font-size: var(--size-extraSmall);
+  height: 28px;
+}
+
+.label {
+  color: var(--grey-1);
+  display: block;
+  margin-top: 10px;
+}
+
+.label:focus-within .main {
+  border-color: var(--blue-1);
+  color: var(--navy);
+}
+
+.stateHasError {
+  border-color: var(--pink-3);
+}
