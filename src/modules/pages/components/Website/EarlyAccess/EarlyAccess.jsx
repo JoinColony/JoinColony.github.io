@@ -46,7 +46,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  location: {
+  location?: {
     state?: { email?: string },
   },
 |};
@@ -55,7 +55,9 @@ const displayName = 'pages.Website.EarlyAccess';
 
 const EarlyAccess = ({ location }: Props) => {
   const email =
-    location.state && location.state.email ? location.state.email : '';
+    location && location.state && location.state.email
+      ? location.state.email
+      : '';
   return (
     <WebsiteLayout>
       <SEO description={MSG.seoBody} title={MSG.title} />
