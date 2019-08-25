@@ -25,6 +25,10 @@
   color: var(--blue-2);
 }
 
+.themeDanger {
+  color: var(--pink-3);
+}
+
 /* Sizes */
 
 .sizeExtraSmall {

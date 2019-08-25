@@ -46,6 +46,10 @@ const MSG = defineMessages({
     id: 'pages.Website.EarlyAccess.Form.placeholderWebsiteUrl',
     defaultMessage: 'Website URL',
   },
+  textError: {
+    id: 'pages.Website.EarlyAccess.Form.textError',
+    defaultMessage: 'There was an error signing up.',
+  },
   textSuccess: {
     id: 'pages.Website.EarlyAccess.Form.textSuccess',
     defaultMessage: 'Thanks for signing up!',
@@ -84,6 +88,7 @@ const validationSchema = yup.object().shape({
 const displayName = 'pages.Website.EarlyAccess.Form';
 
 const Form = ({ initialValues }: Props) => {
+  const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const portalId = '4846129';
@@ -129,8 +134,13 @@ const Form = ({ initialValues }: Props) => {
       })
         .then()
         .then(() => {
+          setShowError(true);
           setShowSuccess(true);
           resetForm();
+        })
+        .catch(() => {
+          setShowSuccess(false);
+          setShowError(true);
         });
     },
     [endpoint],
@@ -281,6 +291,12 @@ const Form = ({ initialValues }: Props) => {
                 <Paragraph
                   appearance={{ theme: 'lightBlue' }}
                   text={MSG.textSuccess}
+                />
+              )}
+              {showError && (
+                <Paragraph
+                  appearance={{ theme: 'danger' }}
+                  text={MSG.textError}
                 />
               )}
             </div>
