@@ -2,6 +2,7 @@
 
 import React, { useCallback, useContext } from 'react';
 import { defineMessages } from 'react-intl';
+import { navigate } from '@reach/router';
 
 import Announcement from '~core/Announcement';
 import Heading from '~core/Heading';
@@ -45,10 +46,8 @@ const Hero = () => {
   const style = headerHeight ? { paddingTop: `${headerHeight}px` } : {};
 
   const handleSubmit = useCallback((email: string) => {
-    const endpoint = `${PAGE_GET_EARLY_ACCESS}?email=${email}`;
-    if (window !== 'undefined') {
-      window.open(endpoint, '_blank');
-    }
+    // $FlowFixMe - flow type state below
+    navigate(PAGE_GET_EARLY_ACCESS, { state: { email } });
   }, []);
 
   return (

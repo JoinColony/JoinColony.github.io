@@ -45,16 +45,26 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  location: {
+    state: { email?: string },
+  },
+|};
+
 const displayName = 'pages.Website.EarlyAccess';
 
-const EarlyAccess = () => (
+const EarlyAccess = ({
+  location: {
+    state: { email },
+  },
+}: Props) => (
   <WebsiteLayout>
     <SEO description={MSG.seoBody} title={MSG.title} />
     <div className={styles.main}>
       <div className={styles.row}>
         <div className={styles.formContainer}>
           <div className={styles.form}>
-            <Form />
+            <Form initialValues={{ email }} />
           </div>
         </div>
         <div className={styles.contentContainer}>

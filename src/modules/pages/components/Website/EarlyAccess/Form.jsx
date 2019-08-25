@@ -64,6 +64,10 @@ const MSG = defineMessages({
   },
 });
 
+type Props = {|
+  initialValues: { email?: string },
+|};
+
 const validationSchema = yup.object().shape({
   companyName: yup.string().required(MSG.validationTextRequired),
   companySize: yup.string().required(MSG.validationTextRequired),
@@ -79,7 +83,7 @@ const validationSchema = yup.object().shape({
 
 const displayName = 'pages.Website.EarlyAccess.Form';
 
-const Form = () => {
+const Form = ({ initialValues }: Props) => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const portalId = '4846129';
@@ -142,6 +146,7 @@ const Form = () => {
         nameLast: '',
         useCase: '',
         websiteUrl: '',
+        ...initialValues,
       }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
