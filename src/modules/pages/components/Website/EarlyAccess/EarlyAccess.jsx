@@ -47,53 +47,53 @@ const MSG = defineMessages({
 
 type Props = {|
   location: {
-    state: { email?: string },
+    state?: { email?: string },
   },
 |};
 
 const displayName = 'pages.Website.EarlyAccess';
 
-const EarlyAccess = ({
-  location: {
-    state: { email },
-  },
-}: Props) => (
-  <WebsiteLayout>
-    <SEO description={MSG.seoBody} title={MSG.title} />
-    <div className={styles.main}>
-      <div className={styles.row}>
-        <div className={styles.formContainer}>
-          <div className={styles.form}>
-            <Form initialValues={{ email }} />
+const EarlyAccess = ({ location }: Props) => {
+  const email =
+    location.state && location.state.email ? location.state.email : '';
+  return (
+    <WebsiteLayout>
+      <SEO description={MSG.seoBody} title={MSG.title} />
+      <div className={styles.main}>
+        <div className={styles.row}>
+          <div className={styles.formContainer}>
+            <div className={styles.form}>
+              <Form initialValues={{ email }} />
+            </div>
+          </div>
+          <div className={styles.contentContainer}>
+            <Image
+              alt={MSG.title}
+              className={styles.image}
+              src={withPrefix('/img/png-icons/icon_access.png')}
+            />
+            <Heading
+              appearance={{ size: 'large', theme: 'dark' }}
+              text={MSG.title}
+            />
+            <Paragraph
+              text={MSG.body}
+              textValues={{
+                sayHiLink: (
+                  <Link
+                    className={styles.link}
+                    href={COLONY_DISCOURSE}
+                    text={MSG.linkSayHiText}
+                  />
+                ),
+              }}
+            />
           </div>
         </div>
-        <div className={styles.contentContainer}>
-          <Image
-            alt={MSG.title}
-            className={styles.image}
-            src={withPrefix('/img/png-icons/icon_access.png')}
-          />
-          <Heading
-            appearance={{ size: 'large', theme: 'dark' }}
-            text={MSG.title}
-          />
-          <Paragraph
-            text={MSG.body}
-            textValues={{
-              sayHiLink: (
-                <Link
-                  className={styles.link}
-                  href={COLONY_DISCOURSE}
-                  text={MSG.linkSayHiText}
-                />
-              ),
-            }}
-          />
-        </div>
       </div>
-    </div>
-  </WebsiteLayout>
-);
+    </WebsiteLayout>
+  );
+};
 
 EarlyAccess.displayName = displayName;
 

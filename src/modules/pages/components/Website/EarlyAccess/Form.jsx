@@ -69,7 +69,7 @@ const MSG = defineMessages({
 });
 
 type Props = {|
-  initialValues: { email?: string },
+  initialValues: { email: string },
 |};
 
 const validationSchema = yup.object().shape({
@@ -134,7 +134,7 @@ const Form = ({ initialValues }: Props) => {
       })
         .then()
         .then(() => {
-          setShowError(true);
+          setShowError(false);
           setShowSuccess(true);
           resetForm();
         })
