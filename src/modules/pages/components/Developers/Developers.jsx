@@ -4,7 +4,6 @@ import type { IntlShape } from 'react-intl';
 
 import React from 'react';
 import { defineMessages } from 'react-intl';
-import { Helmet } from 'react-helmet';
 
 import SEO from '~parts/SEO';
 import SupportCta from '~parts/SupportCta';
@@ -41,9 +40,6 @@ const Developers = ({ intl: { formatMessage } }: Props) => {
   return (
     <>
       <SEO description={MSG.pageDescription} title={title} />
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
       <main className={styles.main}>
         <Hero />
         <CoreProducts />
