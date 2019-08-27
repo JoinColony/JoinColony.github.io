@@ -4,6 +4,7 @@ import { createElement } from 'react';
 
 import Dashboard from '~pages/Dashboard';
 
-const Contributions = () => createElement(Dashboard, { page: 'contributions' });
+const Contributions = (props: Object) =>
+  createElement(Dashboard, { page: 'contributions', ...props });
 
 export default Contributions;

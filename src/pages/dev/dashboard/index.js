@@ -4,6 +4,6 @@ import { createElement } from 'react';
 
 import Dashboard from '~pages/Dashboard';
 
-const Index = () => createElement(Dashboard);
+const Index = (props: Object) => createElement(Dashboard, props);
 
 export default Index;

@@ -4,6 +4,6 @@ import { createElement } from 'react';
 
 import NotFoundPage from '~pages/404';
 
-const NotFound = () => createElement(NotFoundPage);
+const NotFound = (props: Object) => createElement(NotFoundPage, props);
 
 export default NotFound;
