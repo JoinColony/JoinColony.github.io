@@ -20,7 +20,7 @@ const enhance: HOC<*, InProps> = compose(
     isDocPage: false,
   }),
   withProps(() => ({
-    baseUrl: 'https://docs.colony.io',
+    baseUrl: 'https://colony.io',
   })),
   withHandlers({
     getAbsoluteImagePath: ({ baseUrl, files, project }) => (
@@ -36,7 +36,7 @@ const enhance: HOC<*, InProps> = compose(
     },
   }),
   withProps(({ getAbsoluteImagePath }) => ({
-    siteLogo: getAbsoluteImagePath('/img/colonyDocs_combomark.svg'),
+    siteLogo: getAbsoluteImagePath('/img/colony-twitter-image.png'),
   })),
 );
 
