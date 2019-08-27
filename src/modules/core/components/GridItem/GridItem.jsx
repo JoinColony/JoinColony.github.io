@@ -13,7 +13,7 @@ import styles from './GridItem.module.css';
 
 type Props = {|
   body: MessageDescriptor,
-  image: string,
+  image?: string,
   links?: Array<{ href: string, text: MessageDescriptor }>,
   title: MessageDescriptor,
 |};
@@ -22,9 +22,11 @@ const displayName = 'GridItem';
 
 const GridItem = ({ body, image, links = [], title }: Props) => (
   <div className={styles.main}>
-    <div>
-      <Image alt={title} className={styles.image} src={image} />
-    </div>
+    {image && (
+      <div className={styles.imageContainer}>
+        <Image alt={title} className={styles.image} src={image} />
+      </div>
+    )}
     <div className={styles.content}>
       <div className={styles.contentInner}>
         <div className={styles.heading}>
