@@ -68,11 +68,10 @@ const Input = ({
 }: Props) => {
   const [styleProps, setStyleProps] = useState({});
 
-  const classNames = className
-    ? `${getMainClasses(appearance, styles, {
-        hasError: !!error,
-      })} ${className}`
-    : getMainClasses(appearance, styles, { hasError: !!error });
+  const baseClasses = getMainClasses(appearance, styles, {
+    hasError: !!error,
+  });
+
   const labelText =
     typeof label === 'string'
       ? label
@@ -105,7 +104,7 @@ const Input = ({
       {labelText && <span>{labelText}</span>}
       <input
         id={id}
-        className={classNames}
+        className={className ? `${baseClasses} ${className}` : baseClasses}
         max={max}
         min={min}
         placeholder={placeholderText}
