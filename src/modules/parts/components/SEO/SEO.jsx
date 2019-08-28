@@ -1,9 +1,11 @@
 /* @flow */
 
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 import { defineMessages } from 'react-intl';
 import Helmet from 'react-helmet';
 import { withPrefix } from 'gatsby';
+
+import FileContext from '~context/FileContext';
 
 import type { OutProps as Props } from './types';
 
@@ -17,18 +19,36 @@ const MSG = defineMessages({
 const displayName = 'parts.SEO';
 
 const SEO = ({
-  baseUrl,
   description: descriptionContent,
   descriptionValues,
-  getAbsoluteImagePath,
   intl: { formatMessage },
-  isDocPage,
+  isDocPage = false,
   location,
-  siteLogo,
+  project,
   title: titleContent,
   titleValues,
-  images = [siteLogo],
+  images: imagesProp,
 }: Props) => {
+  const baseUrl = 'https://colony.io';
+
+  const files = useContext(FileContext);
+
+  const getAbsoluteImagePath = useCallback(
+    (imagePath: string) => {
+      return imagePath.startsWith('http')
+        ? imagePath
+        : `${baseUrl}${
+            files && project && files[`${project}/${imagePath}`]
+              ? files[`${project}/${imagePath}`]
+              : imagePath
+          }`;
+    },
+    [files, project],
+  );
+
+  const siteLogo = getAbsoluteImagePath('/img/colony-twitter-image.png');
+  const images = imagesProp || [siteLogo];
+
   const absolutePath = location && `${baseUrl}${withPrefix(location.pathname)}`;
   const imagePaths = images.map(getAbsoluteImagePath);
   if (imagePaths.indexOf(siteLogo) < 0) imagePaths.push(siteLogo);
@@ -86,7 +106,13 @@ const SEO = ({
   }
 
   return (
-    <Helmet>
+    <Helmet
+      defaultTitle={siteName}
+      // Helmet title must be a prop to work with react hooks.
+      // See https://github.com/nfl/react-helmet/issues/437
+      title={title}
+      titleTemplate={`%s | ${siteName}`}
+    >
       {/* General tags */}
       <meta name="description" content={description} />
       {imagePaths.map(imagePath => (
@@ -123,7 +149,6 @@ const SEO = ({
       {imagePaths.map(imagePath => (
         <meta name="twitter:image" content={imagePath} key={imagePath} />
       ))}
-      <title>{title}</title>
     </Helmet>
   );
 };
