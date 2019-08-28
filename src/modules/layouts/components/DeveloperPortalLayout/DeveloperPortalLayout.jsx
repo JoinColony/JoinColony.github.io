@@ -96,7 +96,7 @@ const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
         user={user}
         wallet={wallet}
       />
-      {!wallet && !loadingWallet && walletRequired ? (
+      {!wallet && walletRequired ? (
         <MetaMask />
       ) : (
         <div>
