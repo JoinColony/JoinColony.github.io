@@ -4,6 +4,7 @@ import { createElement } from 'react';
 
 import Dashboard from '~pages/Dashboard';
 
-const Account = () => createElement(Dashboard, { page: 'account' });
+const Account = (props: Object) =>
+  createElement(Dashboard, { page: 'account', ...props });
 
 export default Account;

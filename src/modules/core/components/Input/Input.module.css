@@ -1,5 +1,4 @@
 
-@value errorBorderColor: #F5416E;
 @value rangeFillColor: var(--blue-1);
 
 .main {
@@ -84,3 +83,42 @@
   width: 100%;
 }
 
+/* Theme */
+
+.themeMinimal {
+  background: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--grey-2);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  color: var(--text-blue);
+  display: block;
+  padding: 15px 0;
+}
+
+.themeMinimal::placeholder {
+  color: var(--grey-1);
+  opacity: 1;
+}
+
+.themeMinimal:focus-within {
+  border-bottom-color: var(--blue-1);
+  color: var(--navy);
+}
+
+.themeMinimal {
+  outline: none;
+}
+
+.label .errorMessage {
+  color: var(--pink-3);
+  font-size: var(--size-extraSmall);
+  height: 28px;
+}
+
+/* State */
+
+.stateHasError {
+  border-color: var(--pink-3);
+}

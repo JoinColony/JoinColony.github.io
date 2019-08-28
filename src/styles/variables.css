@@ -15,6 +15,7 @@
   --navy: #00284B;
   --pink-1: #FFBBDC;
   --pink-2: #FCF4F8;
+  --pink-3: #F5416E;
   --text-blue: #2E4153;
   --yellow: #FAD250;
 
@@ -31,7 +32,7 @@
   --gutter-width-wide: calc((100vw - var(--row-width-desktop-wide)) / 2);
 
   /* font-sizes */
-  --size-extraSmall: 12px;
+  --size-extraSmall: 10px;
   --size-small: 11px;
   --size-normal: 12px;
   --size-medium: 12px;
@@ -45,6 +46,7 @@
 
 @media (mediumUp) {
   :root {
+    --size-extraSmall: 12px;
     --size-small: 13px;
     --size-normal: 16px;
     --size-medium: 20px;

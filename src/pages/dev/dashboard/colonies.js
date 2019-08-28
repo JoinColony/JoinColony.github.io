@@ -4,6 +4,7 @@ import { createElement } from 'react';
 
 import Dashboard from '~pages/Dashboard';
 
-const Colonies = () => createElement(Dashboard, { page: 'colonies' });
+const Colonies = (props: Object) =>
+  createElement(Dashboard, { page: 'colonies', ...props });
 
 export default Colonies;
