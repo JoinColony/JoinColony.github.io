@@ -4,7 +4,6 @@ import type { IntlShape } from 'react-intl';
 
 import React, { Fragment } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
-import Helmet from 'react-helmet';
 
 import type { Project } from '~types';
 
@@ -58,9 +57,6 @@ const HomePageContent = ({
   const title = formatMessage(MSG.title);
   return (
     <Fragment>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
       <SEO title={title} description={MSG.contentIntroText} />
       <main className={styles.content}>
         <section className={styles.heroContainer}>

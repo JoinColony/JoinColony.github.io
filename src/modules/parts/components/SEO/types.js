@@ -3,8 +3,6 @@
 import type { RouteProps } from '@reach/router';
 import type { IntlShape, MessageDescriptor } from 'react-intl';
 
-import type { FileContext as FileContextType } from '~types';
-
 export type InProps = {|
   description: MessageDescriptor | string,
   descriptionValues?: Object,
@@ -17,10 +15,6 @@ export type InProps = {|
 
 export type OutProps = RouteProps &
   InProps & {
-    baseUrl: string,
     /** Injected by `injectIntl` */
     intl: IntlShape,
-    files?: FileContextType,
-    getAbsoluteImagePath: (imagePath: string) => string,
-    siteLogo: string,
   };

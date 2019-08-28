@@ -2,7 +2,6 @@
 
 import React, { Component, createElement } from 'react';
 import RehypeReact from 'rehype-react';
-import Helmet from 'react-helmet';
 import { withProps } from 'recompose';
 import { graphql } from 'gatsby';
 import slugify from 'slugify';
@@ -211,9 +210,6 @@ class DocPage extends Component<Props> {
     const seoImages = this.getAllImages(doc.htmlAst, [project.logo]);
     return (
       <DeveloperPortalLayout>
-        <Helmet>
-          <title>{metaTitle}</title>
-        </Helmet>
         <SEO
           title={metaTitle}
           description={seoDescription}

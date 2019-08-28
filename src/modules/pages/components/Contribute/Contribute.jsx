@@ -7,7 +7,6 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React from 'react';
 import { Router } from '@reach/router';
 import { defineMessages } from 'react-intl';
-import { Helmet } from 'react-helmet';
 
 import type { Network, User } from '~types';
 
@@ -56,11 +55,6 @@ const Contribute = ({
   return (
     <>
       <SEO description={MSG.pageDescription} title={title} />
-      {/*
-        Helmet title must be a prop to work with react hooks.
-        See https://github.com/nfl/react-helmet/issues/437
-      */}
-      <Helmet title={title} />
       <main className={styles.main}>
         <Router primary={false}>
           <Landing
