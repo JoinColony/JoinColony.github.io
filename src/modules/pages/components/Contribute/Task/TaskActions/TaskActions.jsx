@@ -9,7 +9,9 @@ import { sha3 } from 'web3-utils';
 
 import type { Contribution } from '~types';
 
-import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
+// See https://github.com/JoinColony/JoinColony.github.io/issues/132
+// See https://github.com/JoinColony/JoinColony.github.io/pull/133
+// import ipfs from '~utils/ipfs';
 
 import Button from '~core/Button';
 import Input from '~core/Input';
@@ -273,13 +275,14 @@ const TaskActions = ({
   };
 
   const handleSubmitWork = async () => {
-    await ipfs.init();
-    const deliverableHash = await ipfs.saveHash(pullRequest);
-    await ipfs.stop();
+    // await ipfs.init();
+    // const deliverableHash = await ipfs.saveHash(pullRequest);
+    // await ipfs.stop();
     await colonyClient.submitTaskDeliverable.send(
       {
         taskId: task.id,
-        deliverableHash,
+        // deliverableHash,
+        deliverableHash: '',
       },
       {},
     );
