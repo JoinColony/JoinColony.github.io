@@ -37,7 +37,7 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Account.DeleteAccount';
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const DeleteAccount = ({ disconnect, user }: Props) => {
   const [confirmDelete, setConfirmDelete] = useState(false);

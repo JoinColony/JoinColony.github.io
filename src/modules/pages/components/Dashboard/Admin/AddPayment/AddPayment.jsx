@@ -57,7 +57,7 @@ type Props = {|
   network: Network,
 |};
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
 const AddPayment = ({ colonyClient, network }: Props) => {
   const [amount, setAmount] = useState(0);
