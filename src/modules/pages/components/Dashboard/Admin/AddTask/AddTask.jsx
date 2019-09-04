@@ -8,7 +8,9 @@ import { BN } from 'web3-utils';
 
 import type { Network } from '~types';
 
-import ipfs from '~utils/ipfs';
+// See https://github.com/JoinColony/JoinColony.github.io/issues/132
+// See https://github.com/JoinColony/JoinColony.github.io/pull/133
+// import ipfs from '~utils/ipfs';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
@@ -63,12 +65,13 @@ const AddTask = ({ colonyClient, network }: Props) => {
 
   const handleAddTask = async () => {
     if (colonyClient && amount && dueDate && issue && skillId) {
-      await ipfs.init();
-      const specificationHash = await ipfs.saveHash(issue);
-      await ipfs.stop();
+      // await ipfs.init();
+      // const specificationHash = await ipfs.saveHash(issue);
+      // await ipfs.stop();
       const addTaskResponse = await colonyClient.addTask.send(
         {
-          specificationHash,
+          // specificationHash,
+          specificationHash: '',
           domainId: 1,
           skillId: Number(skillId),
           dueDate: new Date(dueDate),
