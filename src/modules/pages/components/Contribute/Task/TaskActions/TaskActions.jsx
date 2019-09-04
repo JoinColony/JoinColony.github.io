@@ -9,7 +9,7 @@ import { sha3 } from 'web3-utils';
 
 import type { Contribution } from '~types';
 
-import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
+import ipfs from '~utils/ipfs';
 
 import Button from '~core/Button';
 import Input from '~core/Input';

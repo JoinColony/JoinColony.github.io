@@ -8,7 +8,7 @@ import { BN } from 'web3-utils';
 
 import type { Network } from '~types';
 
-import ipfs from '~layouts/DeveloperPortalLayout/ipfs';
+import ipfs from '~utils/ipfs';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
