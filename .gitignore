@@ -1,10 +1,13 @@
-# Project dependencies
-.cache
+# Dependencies
 node_modules
-yarn-error.log
 
-# Build directory
+# Environment
+.env.development
+.env.production
+
+# Build Output
+.cache
 /public
 
-# Configuration
-.env.*
+# Logs
+yarn-error.log
