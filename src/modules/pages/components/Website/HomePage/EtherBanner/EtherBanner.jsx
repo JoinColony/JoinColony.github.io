@@ -15,7 +15,7 @@ import styles from './EtherBanner.module.css';
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.HomePage.EtherBanner.title',
-    defaultMessage: 'Not in the cloud;{br}In the Ether',
+    defaultMessage: 'Not in the Cloud;{br}in the Ether',
   },
   body: {
     id: 'pages.Website.HomePage.EtherBanner.body',

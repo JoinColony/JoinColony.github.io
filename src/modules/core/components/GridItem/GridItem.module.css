@@ -6,12 +6,8 @@
   justify-content: space-between;
 }
 
-.main > div:first-child {
+.imageContainer {
   flex: 0 0 22%;
-}
-
-.main > div:nth-child(2) {
-  flex: 0 0 64%;
 }
 
 .image {
@@ -34,6 +30,10 @@
   flex-direction: column;
 }
 
+.imageContainer + .content {
+  flex: 0 0 64%;
+}
+
 .contentInner {
   display: flex;
   flex-direction: column;
@@ -52,11 +52,11 @@
     width: 70px;
   }
 
-  .main > div:first-child {
+  .imageContainer {
     flex: 0 0 22%;
   }
 
-  .main > div:nth-child(2) {
+  .imageContainer + .content {
     flex: 0 0 74%;
   }
 }

@@ -1,5 +1,5 @@
 
-@value mediumUp from '~styles/breakpoints.css';
+@value largeUp from '~styles/breakpoints.css';
 
 .slideCanvas {
   background-color: var(--navy);
@@ -127,7 +127,7 @@
   }
 }
 
-@media (mediumUp) {
+@media (largeUp) {
   .slideCanvas {
     height: 519px;
   }

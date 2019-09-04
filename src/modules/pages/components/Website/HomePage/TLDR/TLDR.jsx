@@ -4,6 +4,7 @@ import React from 'react';
 import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
+import GridItem from '~core/GridItem';
 
 import styles from './TLDR.module.css';
 
@@ -54,46 +55,13 @@ const TLDR = () => (
       </div>
       <div className={styles.cols}>
         <div className={styles.colItem}>
-          <Heading
-            appearance={{
-              margin: 'none',
-              size: 'medium',
-              theme: 'dark',
-            }}
-            text={MSG.headingOne}
-          />
-          <Heading
-            appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
-            text={MSG.textOne}
-          />
+          <GridItem body={MSG.textOne} title={MSG.headingOne} />
         </div>
         <div className={styles.colItem}>
-          <Heading
-            appearance={{
-              margin: 'none',
-              size: 'medium',
-              theme: 'dark',
-            }}
-            text={MSG.headingTwo}
-          />
-          <Heading
-            appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
-            text={MSG.textTwo}
-          />
+          <GridItem body={MSG.textTwo} title={MSG.headingTwo} />
         </div>
         <div className={styles.colItem}>
-          <Heading
-            appearance={{
-              margin: 'none',
-              size: 'medium',
-              theme: 'dark',
-            }}
-            text={MSG.headingThree}
-          />
-          <Heading
-            appearance={{ size: 'mediumLarge', theme: 'dark', weight: 'thin' }}
-            text={MSG.textThree}
-          />
+          <GridItem body={MSG.textThree} title={MSG.headingThree} />
         </div>
       </div>
     </div>

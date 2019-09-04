@@ -1,4 +1,6 @@
 
+@value mediumUp from '~styles/breakpoints.css';
+
 .main {
   align-items: flex-end;
   display: flex;
@@ -8,6 +10,12 @@
 
 .image {
   margin-bottom: 0;
-  max-height: 90%;
+  max-height: 98%;
   max-width: 95%;
+}
+
+@media (mediumUp) {
+  .image {
+    max-height: 90%;
+  }
 }
