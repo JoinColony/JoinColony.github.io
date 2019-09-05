@@ -50,7 +50,7 @@ type Props = {|
 
 const Admin = ({ colonyClient, network, wallet }: Props) => {
   const [visible, setVisible] = useState('AddAdmin');
-  const { admin, loading } = useColonyRoles(colonyClient, wallet);
+  const { admin, loading, root } = useColonyRoles(colonyClient, wallet);
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -65,17 +65,6 @@ const Admin = ({ colonyClient, network, wallet }: Props) => {
     <>
       <div className={styles.main}>
         <div className={styles.menu}>
-          <Button
-            appearance={{
-              theme: 'reset',
-              font: 'small',
-              color: visible === 'AddAdmin' ? 'blue' : 'grey',
-              weight: 'medium',
-            }}
-            onClick={() => setVisible('AddAdmin')}
-            text={MSG.buttonAddAdmin}
-            type="submit"
-          />
           <Button
             appearance={{
               theme: 'reset',
@@ -98,16 +87,27 @@ const Admin = ({ colonyClient, network, wallet }: Props) => {
             text={MSG.buttonAddTask}
             type="submit"
           />
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: visible === 'AddAdmin' ? 'blue' : 'grey',
+              weight: 'medium',
+            }}
+            onClick={() => setVisible('AddAdmin')}
+            text={MSG.buttonAddAdmin}
+            type="submit"
+          />
         </div>
         <div className={styles.content}>
-          {visible === 'AddAdmin' && (
-            <AddAdmin colonyClient={colonyClient} network={network} />
-          )}
           {visible === 'AddPayment' && (
             <AddPayment colonyClient={colonyClient} network={network} />
           )}
           {visible === 'AddTask' && (
             <AddTask colonyClient={colonyClient} network={network} />
+          )}
+          {visible === 'AddAdmin' && (
+            <AddAdmin colonyClient={colonyClient} root={root} />
           )}
         </div>
       </div>

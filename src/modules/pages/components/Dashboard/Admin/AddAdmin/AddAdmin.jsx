@@ -5,8 +5,6 @@ import type { ColonyClient } from '@colony/colony-js-client';
 import React, { useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import type { Network } from '~types';
-
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
 import Input from '~core/Input';
@@ -36,20 +34,17 @@ const displayName = 'pages.Contribute.AddAdmin';
 
 type Props = {|
   colonyClient: ?ColonyClient,
-  network: Network,
+  root: boolean,
 |};
 
-const server = process.env.SERVER_URL || 'http://localhost:8080';
-
-const AddAdmin = ({ colonyClient, network }: Props) => {
+const AddAdmin = ({ colonyClient, root }: Props) => {
   const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [username, setUsername] = useState('');
 
   const handleAddAdmin = async () => {
-    if (colonyClient && address && username) {
-      await colonyClient.setRootRole.send(
+    if (colonyClient && address) {
+      await colonyClient.setAdministrationRole.send(
         {
           address,
           domainId: 1,
@@ -57,19 +52,6 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
         },
         {},
       );
-      const options = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ network: network.slug, username }),
-      };
-      // eslint-disable-next-line no-undef
-      fetch(`${server}/api/user/admin`, options)
-        .then(() => {
-          setSuccess(true);
-        })
-        .catch(fetchError => {
-          setError(fetchError.message);
-        });
     }
   };
 
@@ -77,12 +59,6 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
     if (success) setSuccess(false);
     if (error) setError(null);
     setAddress(event.currentTarget.value);
-  };
-
-  const handleChangeUsername = event => {
-    if (success) setSuccess(false);
-    if (error) setError(null);
-    setUsername(event.currentTarget.value);
   };
 
   return (
@@ -101,26 +77,13 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
         />
       </div>
       <div className={styles.field}>
-        <Input
-          appearance={{
-            padding: 'huge',
-            size: 'stretch',
-          }}
-          id="username"
-          label={MSG.labelUsername}
-          onChange={handleChangeUsername}
-          type="text"
-          value={username}
-        />
-      </div>
-      <div className={styles.field}>
         <Button
           appearance={{
             theme: 'primary',
             padding: 'huge',
             size: 'stretch',
           }}
-          disabled={!address || !username}
+          disabled={!address || !root}
           onClick={handleAddAdmin}
           text={MSG.buttonAddAdmin}
           type="submit"
@@ -132,6 +95,7 @@ const AddAdmin = ({ colonyClient, network }: Props) => {
         </div>
       )}
       {error && <ErrorMessage error={error} />}
+      {!root && <ErrorMessage error="You are not authorized to add admin" />}
     </div>
   );
 };
