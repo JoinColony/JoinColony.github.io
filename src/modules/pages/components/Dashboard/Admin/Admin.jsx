@@ -1,14 +1,17 @@
 /* @flow */
 
 import type { ColonyClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 
-import type { Network, User } from '~types';
+import type { Network } from '~types';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
+import SpinnerLoader from '~core/SpinnerLoader';
+import useColonyRoles from '~layouts/DeveloperPortalLayout/useColonyRoles';
 
 import AddAdmin from './AddAdmin';
 import AddPayment from './AddPayment';
@@ -42,12 +45,20 @@ type Props = {|
   network: Network,
   /* eslint-disable-next-line react/no-unused-prop-types */
   path: string,
-  user: User,
+  wallet: WalletObjectType,
 |};
 
-const Admin = ({ colonyClient, network, user }: Props) => {
+const Admin = ({ colonyClient, network, wallet }: Props) => {
   const [visible, setVisible] = useState('AddAdmin');
-  if (!user || !user.admin || !user.admin[network.slug]) {
+  const { admin, loading } = useColonyRoles(colonyClient, wallet);
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <SpinnerLoader appearance={{ theme: 'primary', size: 'huge' }} />
+      </div>
+    );
+  }
+  if (!admin) {
     return <ErrorMessage error={MSG.unauthorized} />;
   }
   return (

@@ -142,7 +142,7 @@ const Dashboard = ({
                     path={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
                     colonyClient={colonyClient}
                     network={network}
-                    user={user}
+                    wallet={wallet}
                   />
                 </Router>
               </div>
