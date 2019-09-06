@@ -3,6 +3,7 @@
 import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useCallback, useEffect, useState } from 'react';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import type { Network, User } from '~types';
 
@@ -13,6 +14,37 @@ import {
 } from '~layouts/DeveloperPortalLayout/localStorage';
 
 import styles from './Accounts.module.css';
+
+const MSG = defineMessages({
+  labelColoniesGoerli: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelColoniesGoerli',
+    defaultMessage: 'Colonies (goerli)',
+  },
+  labelColoniesMainnet: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelColoniesMainnet',
+    defaultMessage: 'Colonies (mainnet)',
+  },
+  labelEmail: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelEmail',
+    defaultMessage: 'Email',
+  },
+  labelDiscourse: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelDiscourse',
+    defaultMessage: 'Discourse',
+  },
+  labelGitHub: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelGitHub',
+    defaultMessage: 'GitHub',
+  },
+  labelName: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelName',
+    defaultMessage: 'Name',
+  },
+  labelWalletAddresses: {
+    id: 'pages.Dashboard.Admin.AddAdmin.labelWalletAddresses',
+    defaultMessage: 'Wallet Addresses',
+  },
+});
 
 const displayName = 'pages.Contribute.Accounts';
 
@@ -76,21 +108,59 @@ const Accounts = ({ network, user, wallet }: Props) => {
 
   return (
     <div className={styles.main}>
-      <table className={styles.accounts}>
-        <thead>
-          <tr>
-            <td>Name</td>
-          </tr>
-        </thead>
-        <tbody>
-          {accounts &&
-            accounts.map(account => (
-              <tr>
-                <td>{account.name}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      {accounts &&
+        accounts.map(account => (
+          <div className={styles.account}>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelName} />{' '}
+              </strong>
+              {account.name}
+            </div>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelEmail} />{' '}
+              </strong>
+              {account.email}
+            </div>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelGitHub} />{' '}
+              </strong>
+              {account.github.username}
+            </div>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelDiscourse} />{' '}
+              </strong>
+              {account.discourse && account.discourse.username}
+            </div>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelWalletAddresses} />{' '}
+              </strong>
+              {account.addresses.map(address => (
+                <div>{address}</div>
+              ))}
+            </div>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelColoniesMainnet} />{' '}
+              </strong>
+              {account.colonies.mainnet.map(address => (
+                <div>{address}</div>
+              ))}
+            </div>
+            <div>
+              <strong>
+                <FormattedMessage {...MSG.labelColoniesGoerli} />{' '}
+              </strong>
+              {account.colonies.goerli.map(address => (
+                <div>{address}</div>
+              ))}
+            </div>
+          </div>
+        ))}
       {error && <ErrorMessage error={error} />}
     </div>
   );
