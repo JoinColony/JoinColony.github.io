@@ -1,12 +1,13 @@
 /* @flow */
 
 import type { ColonyClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useCallback, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
-import type { Network } from '~types';
+import type { Network, User } from '~types';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
@@ -55,11 +56,13 @@ const displayName = 'pages.Contribute.AddPayment';
 type Props = {|
   colonyClient: ?ColonyClient,
   network: Network,
+  user: User,
+  wallet: WalletObjectType,
 |};
 
 const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddPayment = ({ colonyClient, network }: Props) => {
+const AddPayment = ({ colonyClient, network, user, wallet }: Props) => {
   const [amount, setAmount] = useState(0);
   const [contribution, setContribution] = useState(null);
   const [error, setError] = useState(null);
@@ -105,7 +108,11 @@ const AddPayment = ({ colonyClient, network }: Props) => {
         }),
       };
       // eslint-disable-next-line no-undef
-      fetch(`${server}/api/contribution`, options)
+      fetch(
+        // eslint-disable-next-line max-len
+        `${server}/api/contribution?sessionID=${user.session.id}&address=${wallet.address}&network=${network.slug}`,
+        options,
+      )
         .then(res => res.json())
         .then(data => {
           setContribution(data.contribution);

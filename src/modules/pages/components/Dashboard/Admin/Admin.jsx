@@ -121,10 +121,20 @@ const Admin = ({ colonyClient, network, user, wallet }: Props) => {
             <Accounts network={network} user={user} wallet={wallet} />
           )}
           {visible === 'AddPayment' && (
-            <AddPayment colonyClient={colonyClient} network={network} />
+            <AddPayment
+              colonyClient={colonyClient}
+              network={network}
+              user={user}
+              wallet={wallet}
+            />
           )}
           {visible === 'AddTask' && (
-            <AddTask colonyClient={colonyClient} network={network} />
+            <AddTask
+              colonyClient={colonyClient}
+              network={network}
+              user={user}
+              wallet={wallet}
+            />
           )}
           {visible === 'AddAdmin' && (
             <AddAdmin colonyClient={colonyClient} root={root} />
