@@ -6,13 +6,14 @@ import type { WalletObjectType } from '@colony/purser-core';
 import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
 
-import type { Network } from '~types';
+import type { Network, User } from '~types';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
 import SpinnerLoader from '~core/SpinnerLoader';
 import useColonyRoles from '~layouts/DeveloperPortalLayout/useColonyRoles';
 
+import Accounts from './Accounts';
 import AddAdmin from './AddAdmin';
 import AddPayment from './AddPayment';
 import AddTask from './AddTask';
@@ -20,6 +21,10 @@ import AddTask from './AddTask';
 import styles from './Admin.module.css';
 
 const MSG = defineMessages({
+  buttonAccounts: {
+    id: 'pages.Dashboard.Admin.buttonAccounts',
+    defaultMessage: 'Accounts',
+  },
   buttonAddAdmin: {
     id: 'pages.Dashboard.Admin.buttonAddAdmin',
     defaultMessage: 'Add Admin',
@@ -45,11 +50,12 @@ type Props = {|
   network: Network,
   /* eslint-disable-next-line react/no-unused-prop-types */
   path: string,
+  user: User,
   wallet: WalletObjectType,
 |};
 
-const Admin = ({ colonyClient, network, wallet }: Props) => {
-  const [visible, setVisible] = useState('AddAdmin');
+const Admin = ({ colonyClient, network, user, wallet }: Props) => {
+  const [visible, setVisible] = useState('Accounts');
   const { admin, loading, root } = useColonyRoles(colonyClient, wallet);
   if (loading) {
     return (
@@ -65,6 +71,17 @@ const Admin = ({ colonyClient, network, wallet }: Props) => {
     <>
       <div className={styles.main}>
         <div className={styles.menu}>
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: visible === 'Accounts' ? 'blue' : 'grey',
+              weight: 'medium',
+            }}
+            onClick={() => setVisible('Accounts')}
+            text={MSG.buttonAccounts}
+            type="submit"
+          />
           <Button
             appearance={{
               theme: 'reset',
@@ -100,6 +117,9 @@ const Admin = ({ colonyClient, network, wallet }: Props) => {
           />
         </div>
         <div className={styles.content}>
+          {visible === 'Accounts' && (
+            <Accounts network={network} user={user} wallet={wallet} />
+          )}
           {visible === 'AddPayment' && (
             <AddPayment colonyClient={colonyClient} network={network} />
           )}
