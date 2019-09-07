@@ -54,8 +54,10 @@ type Props = {|
   wallet: WalletObjectType,
 |};
 
+type view = 'Accounts' | 'AddAdmin' | 'AddPayment' | 'AddTask';
+
 const Admin = ({ colonyClient, network, user, wallet }: Props) => {
-  const [visible, setVisible] = useState('Accounts');
+  const [visible, setVisible] = useState<view>('Accounts');
   const { admin, loading, root } = useColonyRoles(colonyClient, wallet);
   if (loading) {
     return (

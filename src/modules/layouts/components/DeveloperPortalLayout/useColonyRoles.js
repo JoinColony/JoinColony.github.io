@@ -3,6 +3,11 @@
 import type { ColonyClient } from '@colony/colony-js-client';
 import type { WalletObjectType } from '@colony/purser-core';
 
+import {
+  COLONY_ROLE_ADMINISTRATION,
+  COLONY_ROLE_ROOT,
+} from '@colony/colony-js-client';
+
 import { useCallback, useEffect, useState } from 'react';
 
 const useColonyRoles = (
@@ -19,12 +24,12 @@ const useColonyRoles = (
       const { hasRole: hasRoleRoot } = await colonyClient.hasColonyRole.call({
         address: wallet.address,
         domainId: 1,
-        role: 'ROOT',
+        role: COLONY_ROLE_ROOT,
       });
       const { hasRole: hasRoleAdmin } = await colonyClient.hasColonyRole.call({
         address: wallet.address,
         domainId: 1,
-        role: 'ADMINISTRATION',
+        role: COLONY_ROLE_ADMINISTRATION,
       });
       setAdmin(hasRoleAdmin);
       setRoot(hasRoleRoot);
