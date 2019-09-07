@@ -1,0 +1,15 @@
+.main {
+  padding: 5% 0;
+  width: 800px;
+}
+
+.account {
+  background: #F0F5F7;
+  font-size: 14px;
+  margin: 30px 0;
+  padding: 20px;
+}
+
+.account strong {
+  margin-right: 2px;
+}

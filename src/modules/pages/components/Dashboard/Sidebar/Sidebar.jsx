@@ -62,13 +62,6 @@ const Sidebar = ({ active, network, user }: Props) => (
         href={PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT}
         text={MSG.accountLink}
       />
-      {user && network && user.admin && user.admin[network.slug] && (
-        <Link
-          className={active === 'admin' ? styles.linkActive : styles.link}
-          href={PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN}
-          text={MSG.adminLink}
-        />
-      )}
     </div>
   </div>
 );

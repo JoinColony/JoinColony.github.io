@@ -143,6 +143,7 @@ const Dashboard = ({
                     colonyClient={colonyClient}
                     network={network}
                     user={user}
+                    wallet={wallet}
                   />
                 </Router>
               </div>

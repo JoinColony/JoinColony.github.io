@@ -1,6 +1,7 @@
 /* @flow */
 
 import type { ColonyClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useState } from 'react';
 import { defineMessages } from 'react-intl';
@@ -9,7 +10,10 @@ import type { Network, User } from '~types';
 
 import Button from '~core/Button';
 import ErrorMessage from '~core/ErrorMessage';
+import SpinnerLoader from '~core/SpinnerLoader';
+import useColonyRoles from '~layouts/DeveloperPortalLayout/useColonyRoles';
 
+import Accounts from './Accounts';
 import AddAdmin from './AddAdmin';
 import AddPayment from './AddPayment';
 import AddTask from './AddTask';
@@ -17,6 +21,10 @@ import AddTask from './AddTask';
 import styles from './Admin.module.css';
 
 const MSG = defineMessages({
+  buttonAccounts: {
+    id: 'pages.Dashboard.Admin.buttonAccounts',
+    defaultMessage: 'Accounts',
+  },
   buttonAddAdmin: {
     id: 'pages.Dashboard.Admin.buttonAddAdmin',
     defaultMessage: 'Add Admin',
@@ -43,11 +51,22 @@ type Props = {|
   /* eslint-disable-next-line react/no-unused-prop-types */
   path: string,
   user: User,
+  wallet: WalletObjectType,
 |};
 
-const Admin = ({ colonyClient, network, user }: Props) => {
-  const [visible, setVisible] = useState('AddAdmin');
-  if (!user || !user.admin || !user.admin[network.slug]) {
+type view = 'Accounts' | 'AddAdmin' | 'AddPayment' | 'AddTask';
+
+const Admin = ({ colonyClient, network, user, wallet }: Props) => {
+  const [visible, setVisible] = useState<view>('Accounts');
+  const { admin, loading, root } = useColonyRoles(colonyClient, wallet);
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <SpinnerLoader appearance={{ theme: 'primary', size: 'huge' }} />
+      </div>
+    );
+  }
+  if (!admin) {
     return <ErrorMessage error={MSG.unauthorized} />;
   }
   return (
@@ -58,11 +77,11 @@ const Admin = ({ colonyClient, network, user }: Props) => {
             appearance={{
               theme: 'reset',
               font: 'small',
-              color: visible === 'AddAdmin' ? 'blue' : 'grey',
+              color: visible === 'Accounts' ? 'blue' : 'grey',
               weight: 'medium',
             }}
-            onClick={() => setVisible('AddAdmin')}
-            text={MSG.buttonAddAdmin}
+            onClick={() => setVisible('Accounts')}
+            text={MSG.buttonAccounts}
             type="submit"
           />
           <Button
@@ -87,16 +106,40 @@ const Admin = ({ colonyClient, network, user }: Props) => {
             text={MSG.buttonAddTask}
             type="submit"
           />
+          <Button
+            appearance={{
+              theme: 'reset',
+              font: 'small',
+              color: visible === 'AddAdmin' ? 'blue' : 'grey',
+              weight: 'medium',
+            }}
+            onClick={() => setVisible('AddAdmin')}
+            text={MSG.buttonAddAdmin}
+            type="submit"
+          />
         </div>
         <div className={styles.content}>
-          {visible === 'AddAdmin' && (
-            <AddAdmin colonyClient={colonyClient} network={network} />
+          {visible === 'Accounts' && (
+            <Accounts network={network} user={user} wallet={wallet} />
           )}
           {visible === 'AddPayment' && (
-            <AddPayment colonyClient={colonyClient} network={network} />
+            <AddPayment
+              colonyClient={colonyClient}
+              network={network}
+              user={user}
+              wallet={wallet}
+            />
           )}
           {visible === 'AddTask' && (
-            <AddTask colonyClient={colonyClient} network={network} />
+            <AddTask
+              colonyClient={colonyClient}
+              network={network}
+              user={user}
+              wallet={wallet}
+            />
+          )}
+          {visible === 'AddAdmin' && (
+            <AddAdmin colonyClient={colonyClient} root={root} />
           )}
         </div>
       </div>

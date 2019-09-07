@@ -1,12 +1,13 @@
 /* @flow */
 
 import type { ColonyClient } from '@colony/colony-js-client';
+import type { WalletObjectType } from '@colony/purser-core';
 
 import React, { useCallback, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { BN } from 'web3-utils';
 
-import type { Network } from '~types';
+import type { Network, User } from '~types';
 
 // See https://github.com/JoinColony/JoinColony.github.io/issues/132
 // See https://github.com/JoinColony/JoinColony.github.io/pull/133
@@ -51,11 +52,13 @@ const displayName = 'pages.Contribute.AddTask';
 type Props = {|
   colonyClient: ?ColonyClient,
   network: Network,
+  user: User,
+  wallet: WalletObjectType,
 |};
 
-const server = process.env.SERVER_URL || 'http://178.128.59.237:8000';
+const server = process.env.SERVER_URL || 'http://localhost:8080';
 
-const AddTask = ({ colonyClient, network }: Props) => {
+const AddTask = ({ colonyClient, network, user, wallet }: Props) => {
   const [amount, setAmount] = useState(0);
   const [contribution, setContribution] = useState(null);
   const [dueDate, setDueDate] = useState('');
@@ -102,7 +105,11 @@ const AddTask = ({ colonyClient, network }: Props) => {
         }),
       };
       // eslint-disable-next-line no-undef
-      fetch(`${server}/api/contribution`, options)
+      fetch(
+        // eslint-disable-next-line max-len
+        `${server}/api/contribution?sessionID=${user.session.id}&address=${wallet.address}&network=${network.slug}`,
+        options,
+      )
         .then(res => res.json())
         .then(data => {
           setContribution(data.contribution);
