@@ -6,6 +6,7 @@ import { withPrefix } from 'gatsby';
 
 import VerticalMenu from '~core/VerticalMenu';
 import {
+  COLONY_BLOG,
   COLONY_DISCOURSE_SUPPORT,
   COLONY_GITHUB_BUDGETBOX,
   PAGE_ABOUT_COLONY_NETWORK,
@@ -36,6 +37,10 @@ const MSG = defineMessages({
   headingResources: {
     id: 'layouts.WebsiteLayout.Footer.Menus.headingResources',
     defaultMessage: 'Resources',
+  },
+  linkBlog: {
+    id: 'layouts.WebsiteLayout.Footer.Menus.linkBlog',
+    defaultMessage: 'Blog',
   },
   linkDapp: {
     id: 'layouts.WebsiteLayout.Footer.Menus.linkDapp',
@@ -161,6 +166,11 @@ const Menus = () => {
           headingAppearance={{ theme: 'dark' }}
           headingText={MSG.headingResources}
           menuItems={[
+            {
+              className: styles.footerMenuLink,
+              href: COLONY_BLOG,
+              text: MSG.linkBlog,
+            },
             {
               className: styles.footerMenuLink,
               href: COLONY_GITHUB_BUDGETBOX,
