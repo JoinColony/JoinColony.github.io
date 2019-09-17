@@ -1,0 +1,41 @@
+@value discordDarkGrey: #26262b;
+
+.main {
+  text-align: center;
+}
+
+.link {
+  background-color: discordDarkGrey;
+  display: block;
+  padding: 15px 0;
+  transition: all 100ms ease-in-out;
+}
+
+.link:hover {
+  background-color: #656568;
+}
+
+.link > span {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.link p {
+  color: var(--colony-white);
+}
+
+.icon {
+  display: block;
+  margin-right: 10px;
+}
+
+.icon,
+.icon svg {
+  height: 20px;
+  width: 20px;
+}
+
+.icon svg {
+  fill: var(--grey-2);
+}
