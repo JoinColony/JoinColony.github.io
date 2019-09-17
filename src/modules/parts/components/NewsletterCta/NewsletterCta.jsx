@@ -39,9 +39,10 @@ const NewsletterCta = ({ id }: Props) => {
     formData.append('subscribe', value);
     // eslint-disable-next-line no-undef
     fetch(formEndpoint, {
-      method: 'POST',
       body: formData,
       headers: { 'content-type': 'multipart/form-data' },
+      method: 'POST',
+      mode: 'no-cors',
     });
   }, []);
 
