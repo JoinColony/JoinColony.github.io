@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { defineMessages } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
@@ -9,6 +9,7 @@ import Input from '~core/Input';
 import Icon from '~core/Icon';
 import Image from '~core/Image';
 import Link from '~core/Link';
+import { useHubspotForm } from '~hooks';
 import MetaNav from '~parts/MetaNav';
 import SocialNav from '~parts/SocialNav';
 import { PAGE_INDEX } from '~routes';
@@ -39,28 +40,26 @@ const Footer = () => {
     [],
   );
 
+  const { error, response, submitForm } = useHubspotForm({
+    formGuid: 'd0e98a7b-aba5-412b-8c12-ace04835bad9',
+    pageName: '*Any Page (Footer)',
+    pageUri: 'https://colony.io/*',
+    portalId: '4846129',
+  });
+
   const handleSubmit = useCallback(
     (event: SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const formEndpoint =
-        // eslint-disable-next-line max-len
-        '//colony.us9.list-manage.com/subscribe/post?u=f4d1f0850fe4aaa32124d89ca&id=fef68720b5';
-      // eslint-disable-next-line no-undef
-      const formData = new FormData();
-      formData.append('subscribe', email);
-      // eslint-disable-next-line no-undef
-      fetch(formEndpoint, {
-        method: 'POST',
-        body: formData,
-        headers: { 'content-type': 'multipart/form-data' },
-      })
-        .then()
-        .then(() => {
-          setEmail('');
-        });
+      submitForm({ email });
     },
-    [email],
+    [email, submitForm],
   );
+
+  useEffect(() => {
+    if (!!response && !error) {
+      setEmail('');
+    }
+  }, [error, response]);
 
   return (
     <>

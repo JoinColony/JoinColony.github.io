@@ -5,6 +5,7 @@ import { defineMessages } from 'react-intl';
 
 import Heading from '~core/Heading';
 import InputGroup from '~core/InputGroup';
+import { useHubspotForm } from '~hooks';
 
 import styles from './NewsletterCta.module.css';
 
@@ -25,26 +26,29 @@ const MSG = defineMessages({
 
 type Props = {|
   id: string,
+  // Used for form analytics
+  pageName: string,
+  // Used for form analytics
+  pageUri: string,
 |};
 
 const displayName = 'parts.NewsletterCta';
 
-const NewsletterCta = ({ id }: Props) => {
-  const handleSubmit = useCallback((value: string) => {
-    const formEndpoint =
-      // eslint-disable-next-line max-len
-      '//colony.us9.list-manage.com/subscribe/post?u=f4d1f0850fe4aaa32124d89ca&id=fef68720b5';
-    // eslint-disable-next-line no-undef
-    const formData = new FormData();
-    formData.append('subscribe', value);
-    // eslint-disable-next-line no-undef
-    fetch(formEndpoint, {
-      body: formData,
-      headers: { 'content-type': 'multipart/form-data' },
-      method: 'POST',
-      mode: 'no-cors',
-    });
-  }, []);
+const NewsletterCta = ({ id, pageName, pageUri }: Props) => {
+  const { submitForm } = useHubspotForm({
+    formGuid: 'd0e98a7b-aba5-412b-8c12-ace04835bad9',
+    pageName,
+    pageUri,
+    portalId: '4846129',
+  });
+
+  const handleSubmit = useCallback(
+    (value: string) => {
+      const formData = { email: value };
+      submitForm(formData);
+    },
+    [submitForm],
+  );
 
   return (
     <div className={styles.main}>
