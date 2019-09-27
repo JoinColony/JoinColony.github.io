@@ -1,4 +1,4 @@
 /* @flow */
 
-// eslint-disable-next-line import/prefer-default-export
 export { default as useElementHeight } from './useElementHeight';
+export { default as useHubspotForm } from './useHubspotForm';
