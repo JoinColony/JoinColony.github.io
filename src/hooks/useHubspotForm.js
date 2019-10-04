@@ -18,17 +18,17 @@ type FormData = {
   [fieldName: string]: string,
 };
 
-type HubspotFieldsData = Array<{
+type HubspotFieldsData = Array<{|
   name: string,
   value: string,
-}>;
+|}>;
 
 type Status = {| error: string |} | {| response: Object |} | void;
 
 type OnError = () => void;
 type OnSuccess = () => void;
 
-type HookReturn = {
+type HookReturn = {|
   error: ?string,
   response: ?Object,
   submitForm: (
@@ -36,7 +36,7 @@ type HookReturn = {
     onSuccess?: OnSuccess,
     onError?: OnError,
   ) => void,
-};
+|};
 
 const useHubspotForm = ({
   formGuid,
