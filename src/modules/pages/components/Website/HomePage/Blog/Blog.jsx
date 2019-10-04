@@ -9,6 +9,7 @@ import Image from '~core/Image';
 import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
 import NewsletterCta from '~parts/NewsletterCta';
+import { PAGE_INDEX } from '~routes';
 
 import styles from './Blog.module.css';
 
@@ -79,7 +80,11 @@ const Blog = () => {
         </div>
       </div>
       <div className={styles.cta}>
-        <NewsletterCta id={`${displayName}.newsletterCta`} />
+        <NewsletterCta
+          id={`${displayName}.newsletterCta`}
+          pageName="Home Page (Blog Section)"
+          pageUri={`https://colony.io${PAGE_INDEX}`}
+        />
       </div>
     </div>
   );

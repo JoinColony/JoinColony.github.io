@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { defineMessages } from 'react-intl';
 import { Formik, Form as FormikForm } from 'formik';
 import * as yup from 'yup';
@@ -9,6 +9,7 @@ import Button from '~core/Button';
 import Input from '~core/Input';
 import Paragraph from '~core/Paragraph';
 import Textarea from '~core/Textarea';
+import { useHubspotForm } from '~hooks';
 import { PAGE_GET_EARLY_ACCESS } from '~routes';
 
 import styles from './Form.module.css';
@@ -88,13 +89,12 @@ const validationSchema = yup.object().shape({
 const displayName = 'pages.Website.EarlyAccess.Form';
 
 const Form = ({ initialValues }: Props) => {
-  const [showError, setShowError] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  const portalId = '4846129';
-  const formGuid = '8e34f607-d535-42eb-8b34-38fb6b31ab49';
-  // eslint-disable-next-line max-len
-  const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
+  const { error, response, submitForm } = useHubspotForm({
+    formGuid: '8e34f607-d535-42eb-8b34-38fb6b31ab49',
+    pageName: 'Get Early Access',
+    pageUri: `https://colony.io${PAGE_GET_EARLY_ACCESS}`,
+    portalId: '4846129',
+  });
 
   const handleSubmit = useCallback(
     (
@@ -109,41 +109,18 @@ const Form = ({ initialValues }: Props) => {
       },
       { resetForm },
     ) => {
-      const fields: Array<{ name: string, value: string }> = [
-        { name: 'company', value: companyName },
-        { name: 'company_size', value: companySize },
-        { name: 'email', value: email },
-        { name: 'how_do_you_plan_to_use_colony_', value: useCase },
-        { name: 'firstname', value: nameFirst },
-        { name: 'lastname', value: nameLast },
-        { name: 'website', value: websiteUrl },
-      ];
-      // eslint-disable-next-line no-undef
-      fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          context: {
-            pageUri: `https://colony.io${PAGE_GET_EARLY_ACCESS}`,
-            pageName: 'Get Early Access',
-          },
-          fields,
-        }),
-      })
-        .then()
-        .then(() => {
-          setShowError(false);
-          setShowSuccess(true);
-          resetForm();
-        })
-        .catch(() => {
-          setShowSuccess(false);
-          setShowError(true);
-        });
+      const formData = {
+        company: companyName,
+        company_size: companySize,
+        email,
+        how_do_you_plan_to_use_colony_: useCase,
+        firstname: nameFirst,
+        lastname: nameLast,
+        website: websiteUrl,
+      };
+      submitForm(formData, resetForm);
     },
-    [endpoint],
+    [submitForm],
   );
 
   return (
@@ -287,13 +264,13 @@ const Form = ({ initialValues }: Props) => {
                 text={MSG.buttonSubmit}
                 type="submit"
               />
-              {showSuccess && (
+              {!!response && (
                 <Paragraph
                   appearance={{ theme: 'lightBlue' }}
                   text={MSG.textSuccess}
                 />
               )}
-              {showError && (
+              {!!error && (
                 <Paragraph
                   appearance={{ theme: 'danger' }}
                   text={MSG.textError}
