@@ -3,9 +3,8 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 
-import { getMainClasses } from '~utils/css';
-
 import type { IntlShape, MessageDescriptor, MessageValues } from 'react-intl';
+import { getMainClasses } from '~utils/css';
 
 import styles from './SpinnerLoader.module.css';
 

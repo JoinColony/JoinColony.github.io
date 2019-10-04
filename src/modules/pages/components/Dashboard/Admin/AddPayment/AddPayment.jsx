@@ -110,9 +110,7 @@ const AddPayment = ({ colonyClient, network, user, wallet }: Props) => {
       // eslint-disable-next-line no-undef
       fetch(
         // eslint-disable-next-line max-len
-        `${server}/api/contribution?sessionID=${user.session.id}&address=${
-          wallet.address
-        }&network=${network.slug}`,
+        `${server}/api/contribution?sessionID=${user.session.id}&address=${wallet.address}&network=${network.slug}`,
         options,
       )
         .then(res => res.json())
