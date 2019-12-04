@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { HtmlAst } from '~types';
+import type { HtmlAst } from '~types/htmlAst';
 
 export type DocFields = {|
   locale: string,
