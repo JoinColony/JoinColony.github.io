@@ -2,6 +2,7 @@
 .*/public/.*
 .*/node_modules/oboe/test/*
 .*/node_modules/module-deps/test/*
+.*/node_modules/@colony/purser-core/es/utils.js.flow
 
 [include]
 .*/scripts/.*

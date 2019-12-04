@@ -162,15 +162,19 @@ const useMetaMask = (walletRequired: boolean) => {
     if (window && window.ethereum) {
       window.ethereum.on('networkChanged', handleNetworkChanged);
       window.ethereum.on('accountsChanged', handleAccountsChanged);
-      // eslint-disable-next-line no-underscore-dangle
-      window.ethereum.publicConfigStore._events.update.push(handleUpdate);
+      if (window.ethereum.publicConfigStore) {
+        // eslint-disable-next-line no-underscore-dangle
+        window.ethereum.publicConfigStore._events.update.push(handleUpdate);
+      }
     }
     return () => {
       if (window && window.ethereum) {
         window.ethereum.off('networkChanged', handleNetworkChanged);
         window.ethereum.off('accountsChanged', handleAccountsChanged);
-        // eslint-disable-next-line no-underscore-dangle
-        window.ethereum.publicConfigStore._events.update.pop(handleUpdate);
+        if (window.ethereum.publicConfigStore) {
+          // eslint-disable-next-line no-underscore-dangle
+          window.ethereum.publicConfigStore._events.update.pop(handleUpdate);
+        }
       }
     };
   }, [handleUpdate, handleAccountsChanged, handleNetworkChanged]);
