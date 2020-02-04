@@ -10,7 +10,7 @@ import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
 import WebsiteLayout from '~layouts/WebsiteLayout';
 import SEO from '~parts/SEO';
-import { COLONY_DISCOURSE } from '~routes';
+import { COLONY_DISCORD } from '~routes';
 
 import Form from './Form.jsx';
 
@@ -19,14 +19,13 @@ import styles from './Contact.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.Contact.body',
-    defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
-      a baby, so features are limited, but if you're super keen, and committed
-      to helping shape development, we are accepting beta users with suitable
-      use cases.
+    defaultMessage: `Colony's app is live! Not quite sure where to start or
+      would like some more information? Leave your details here and we'll get
+      back to you.
       {br}{br}
       Want to learn more before diving in?
       {br}
-      {sayHiLink} over in Discourse.`,
+      {sayHiLink} over in our Discord.`,
   },
   linkSayHiText: {
     id: 'pages.Website.Contact.linkSayHiText',
@@ -34,14 +33,13 @@ const MSG = defineMessages({
   },
   seoBody: {
     id: 'pages.Website.Contact.body',
-    defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
-      a baby, so features are limited, but if you're super keen, and committed
-      to helping shape development, we are accepting beta users with suitable
-      use cases.`,
+    defaultMessage: `Colony's app is live! Not quite sure where to start or
+      would like some more information? Leave your details here and we'll get
+      back to you.`,
   },
   title: {
     id: 'pages.Website.Contact.title',
-    defaultMessage: 'Get early access to Colony.',
+    defaultMessage: 'Need help getting started?',
   },
 });
 
@@ -84,7 +82,7 @@ const Contact = ({ location }: Props) => {
                 sayHiLink: (
                   <Link
                     className={styles.link}
-                    href={COLONY_DISCOURSE}
+                    href={COLONY_DISCORD}
                     text={MSG.linkSayHiText}
                   />
                 ),
