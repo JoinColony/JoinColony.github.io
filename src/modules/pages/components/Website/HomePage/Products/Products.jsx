@@ -66,13 +66,13 @@ type SlideType = {|
 |};
 
 const slides: { [key: string]: SlideType } = {
-  Developers: {
-    component: SlideDevelopers,
-    linkHref: PAGE_DEV_DOCS,
-  },
   Humans: {
     component: SlideHumans,
     linkHref: PAGE_PRODUCT_APP,
+  },
+  Developers: {
+    component: SlideDevelopers,
+    linkHref: PAGE_DEV_DOCS,
   },
 };
 
@@ -149,40 +149,37 @@ const Products = () => {
         </div>
       </Breakpoint>
       <Breakpoint inclusion="down" size="small">
-        {Object.keys(slides)
-          .reverse()
-          // ^ content order is reversed for mobile
-          .map(key => {
-            const { component: SlideComponent, linkHref } = slides[key];
-            return (
-              <div className={styles.smallItem} key={key}>
-                <div className={styles.smallSlide}>
-                  <SlideComponent />
-                </div>
-                <div className={styles.smallContent}>
-                  <div className={styles.smallContentInner}>
-                    <Heading
-                      appearance={{
-                        size: 'mediumLarge',
-                        theme: 'invert',
-                        weight: 'medium',
-                      }}
-                      text={MSG[`controlTitle${key}`]}
-                    />
-                    <Paragraph
-                      appearance={{ theme: 'invert' }}
-                      text={MSG[`controlBody${key}`]}
-                    />
-                    <Link
-                      className={styles.smallItemLink}
-                      href={linkHref}
-                      text={MSG[`controlLink${key}`]}
-                    />
-                  </div>
+        {Object.keys(slides).map(key => {
+          const { component: SlideComponent, linkHref } = slides[key];
+          return (
+            <div className={styles.smallItem} key={key}>
+              <div className={styles.smallSlide}>
+                <SlideComponent />
+              </div>
+              <div className={styles.smallContent}>
+                <div className={styles.smallContentInner}>
+                  <Heading
+                    appearance={{
+                      size: 'mediumLarge',
+                      theme: 'invert',
+                      weight: 'medium',
+                    }}
+                    text={MSG[`controlTitle${key}`]}
+                  />
+                  <Paragraph
+                    appearance={{ theme: 'invert' }}
+                    text={MSG[`controlBody${key}`]}
+                  />
+                  <Link
+                    className={styles.smallItemLink}
+                    href={linkHref}
+                    text={MSG[`controlLink${key}`]}
+                  />
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
       </Breakpoint>
     </GutterSection>
   );
