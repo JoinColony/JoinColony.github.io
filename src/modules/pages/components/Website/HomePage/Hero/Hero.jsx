@@ -5,13 +5,14 @@ import { defineMessages } from 'react-intl';
 import { navigate } from '@reach/router';
 
 import Announcement from '~core/Announcement';
+import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { PAGE_GET_EARLY_ACCESS } from '~routes';
+import { COLONY_APP, PAGE_GET_EARLY_ACCESS } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -36,6 +37,10 @@ const MSG = defineMessages({
   buttonSubmit: {
     id: 'pages.Website.HomePage.Hero.buttonSubmit',
     defaultMessage: 'Get in touch',
+  },
+  buttonGetStarted: {
+    id: 'pages.Website.HomePage.Hero.buttonGetStarted',
+    defaultMessage: 'Get Started',
   },
 });
 
@@ -76,8 +81,18 @@ const Hero = () => {
               text={MSG.title}
             />
             <Paragraph
-              appearance={{ margin: 'none', size: 'medium', theme: 'invert' }}
+              appearance={{ size: 'medium', theme: 'invert' }}
               text={MSG.description}
+            />
+            <Button
+              appearance={{
+                borderRadius: 'none',
+                size: 'large',
+                theme: 'primary',
+              }}
+              className={styles.button}
+              linkTo={COLONY_APP}
+              text={MSG.buttonGetStarted}
             />
           </div>
         </div>
