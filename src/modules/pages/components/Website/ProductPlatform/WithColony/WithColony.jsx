@@ -10,7 +10,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
-import { PAGE_PRODUCT_DAPP } from '~routes';
+import { PAGE_PRODUCT_APP } from '~routes';
 
 import styles from './WithColony.module.css';
 
@@ -34,7 +34,7 @@ const MSG = defineMessages({
   },
   gridItemBody2: {
     id: 'pages.Website.ProductPlatform.WithColony.gridItemBody2',
-    defaultMessage: `That’s right. Build your dapp on Colony, get on chain
+    defaultMessage: `That’s right. Build your app on Colony, get on chain
       governance right out the box. Boom.`,
   },
   gridItemTitle0: {
@@ -51,7 +51,7 @@ const MSG = defineMessages({
   },
   gutterLinkText: {
     id: 'pages.Website.ProductPlatform.WithColony.gutterLinkText',
-    defaultMessage: 'Check out the dapp',
+    defaultMessage: 'Check out the app',
   },
   title: {
     id: 'pages.Website.ProductPlatform.WithColony.title',
@@ -80,7 +80,7 @@ const displayName = 'pages.Website.ProductPlatform.WithColony';
 const WithColony = () => (
   <GutterSection
     appearance={{ oneSide: 'left' }}
-    linkLeft={{ href: PAGE_PRODUCT_DAPP, text: MSG.gutterLinkText }}
+    linkLeft={{ href: PAGE_PRODUCT_APP, text: MSG.gutterLinkText }}
     style={{ position: 'relative' }}
   >
     <div className={styles.main}>

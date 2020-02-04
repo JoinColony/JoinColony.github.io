@@ -9,9 +9,9 @@ import Hero from './Hero';
 import Hub from './Hub';
 import Roadmap from './Roadmap';
 
-const displayName = 'pages.Website.ProductDapp';
+const displayName = 'pages.Website.ProductApp';
 
-const ProductDapp = () => (
+const ProductApp = () => (
   <WebsiteLayout
     headerAppearance={{
       logoTheme: 'light',
@@ -26,6 +26,6 @@ const ProductDapp = () => (
   </WebsiteLayout>
 );
 
-ProductDapp.displayName = displayName;
+ProductApp.displayName = displayName;
 
-export default ProductDapp;
+export default ProductApp;

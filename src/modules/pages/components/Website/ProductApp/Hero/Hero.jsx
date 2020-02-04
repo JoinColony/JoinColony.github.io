@@ -18,38 +18,38 @@ import styles from './Hero.module.css';
 
 const MSG = defineMessages({
   announcement: {
-    id: 'pages.Website.ProductDapp.Hero.announcement',
+    id: 'pages.Website.ProductApp.Hero.announcement',
     defaultMessage: 'Now live on Ethereum Mainnet!',
   },
   body: {
-    id: 'pages.Website.ProductDapp.Hero.body',
+    id: 'pages.Website.ProductApp.Hero.body',
     defaultMessage: `Organize your colony into teams, projects,
       departments, or whatever structure suits you.`,
   },
   buttonText: {
-    id: 'pages.Website.ProductDapp.Hero.buttonText',
+    id: 'pages.Website.ProductApp.Hero.buttonText',
     defaultMessage: 'Get early access',
   },
   subBody: {
-    id: 'pages.Website.ProductDapp.Hero.subBody',
+    id: 'pages.Website.ProductApp.Hero.subBody',
     defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
       a baby, so features are limited, but if you're super keen, and
       committed to helping shape development, we are accepting beta users
       with suitable use cases.`,
   },
   subTitle: {
-    id: 'pages.Website.ProductDapp.Hero.subTitle',
+    id: 'pages.Website.ProductApp.Hero.subTitle',
     defaultMessage: `Colony's beta is live on Ethereum mainnet! Got a
       usecase? Get in touch to request early access!`,
   },
   title: {
-    id: 'pages.Website.ProductDapp.Hero.title',
+    id: 'pages.Website.ProductApp.Hero.title',
     defaultMessage: `Tools to Organize and Incentivize Collaborators,
       Contributors, and Communities.`,
   },
 });
 
-const displayName = 'pages.Website.ProductDapp.Hero';
+const displayName = 'pages.Website.ProductApp.Hero';
 
 const Hero = () => {
   const { headerHeight } = useContext(ThemeContext);

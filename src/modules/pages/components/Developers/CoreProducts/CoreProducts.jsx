@@ -24,7 +24,7 @@ const MSG = defineMessages({
     id: 'pages.Developers.CoreProducts.sectionText',
     defaultMessage:
       // eslint-disable-next-line max-len
-      'Engage with Colony to manage work, shared funds, and reputation. Integrate directly with the smart contracts, use colonyJS to build Colony into your dapp, or fire up the colonyStarter for boilerplates and implementation examples.',
+      'Engage with Colony to manage work, shared funds, and reputation. Integrate directly with the smart contracts, use colonyJS to build Colony into your app, or fire up the colonyStarter for boilerplates and implementation examples.',
   },
 });
 

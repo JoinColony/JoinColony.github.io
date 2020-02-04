@@ -26,7 +26,7 @@ import {
   PAGE_DEV_DOCS,
   // PAGE_DEV_TUTORIALS,
   PAGE_INDEX,
-  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
 
@@ -98,8 +98,8 @@ const MSG = defineMessages({
     defaultMessage: `Grok key Colony concepts quickly with clear tutorials
       to help you learn by doing.`,
   },
-  dropdownLinkBodyProductsDapp: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsDapp',
+  dropdownLinkBodyProductsApp: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsApp',
     defaultMessage: `Tools to organize and incentivize collaborators,
       contributors, and communities.`,
   },
@@ -136,9 +136,9 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevTutorials',
     defaultMessage: 'Tutorials',
   },
-  dropdownLinkTitleProductsDapp: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsDapp',
-    defaultMessage: 'Dapp',
+  dropdownLinkTitleProductsApp: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsApp',
+    defaultMessage: 'App',
   },
   dropdownLinkTitleProductsPlatform: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsPlatform',
@@ -234,9 +234,9 @@ const Header = ({
                 image={withPrefix('img/nav_products.png')}
                 navItems={[
                   {
-                    body: MSG.dropdownLinkBodyProductsDapp,
-                    href: PAGE_PRODUCT_DAPP,
-                    title: MSG.dropdownLinkTitleProductsDapp,
+                    body: MSG.dropdownLinkBodyProductsApp,
+                    href: PAGE_PRODUCT_APP,
+                    title: MSG.dropdownLinkTitleProductsApp,
                   },
                   {
                     body: MSG.dropdownLinkBodyProductsPlatform,

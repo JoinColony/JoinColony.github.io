@@ -14,62 +14,62 @@ import styles from './Hub.module.css';
 
 const MSG = defineMessages({
   bodyTopic0: {
-    id: 'pages.Website.ProductDapp.Hub.bodyTopic0',
+    id: 'pages.Website.ProductApp.Hub.bodyTopic0',
     defaultMessage: `Use domains to group work together. You can think
       of them as projects, departments, teams, circles, or whatever makes
       sense for your colony.`,
   },
   bodyTopic1: {
-    id: 'pages.Website.ProductDapp.Hub.bodyTopic1',
+    id: 'pages.Website.ProductApp.Hub.bodyTopic1',
     defaultMessage: `Create tasks, manage delivery of work, and make payments
       using digital currencies and even your own token. Workers can easily
       cash out to their bank.`,
   },
   bodyTopic2: {
-    id: 'pages.Website.ProductDapp.Hub.bodyTopic2',
+    id: 'pages.Website.ProductApp.Hub.bodyTopic2',
     defaultMessage: `It doesn't matter who you are, or where you come from; only
       how good you are. When you get paid for doing work, you earn Reputation in
       your colony.`,
   },
   bodyTopic3: {
-    id: 'pages.Website.ProductDapp.Hub.bodyTopic3',
+    id: 'pages.Website.ProductApp.Hub.bodyTopic3',
     defaultMessage: `Create your colony's landing page to express your brand,
       your mission, and tell people where to go to discover more about your
       work.`,
   },
   bodyTopic4: {
-    id: 'pages.Website.ProductDapp.Hub.bodyTopic4',
+    id: 'pages.Website.ProductApp.Hub.bodyTopic4',
     defaultMessage: `Assemble your team of trusted talent excited and inspired
       by your mission and values. Build belonging in a community forged of
       shared effort and common objectives.
       {br}{br}{link}`,
   },
   linkTopic4: {
-    id: 'pages.Website.ProductDapp.Hub.linkTopic4',
+    id: 'pages.Website.ProductApp.Hub.linkTopic4',
     defaultMessage: 'Visit the forums!',
   },
   title: {
-    id: 'pages.Website.ProductDapp.Hub.title',
+    id: 'pages.Website.ProductApp.Hub.title',
     defaultMessage: 'Your Community Contribution Hub',
   },
   titleTopic0: {
-    id: 'pages.Website.ProductDapp.Hub.titleTopic0',
+    id: 'pages.Website.ProductApp.Hub.titleTopic0',
     defaultMessage: 'Structure domains',
   },
   titleTopic1: {
-    id: 'pages.Website.ProductDapp.Hub.titleTopic1',
+    id: 'pages.Website.ProductApp.Hub.titleTopic1',
     defaultMessage: 'Incentivize contribution',
   },
   titleTopic2: {
-    id: 'pages.Website.ProductDapp.Hub.titleTopic2',
+    id: 'pages.Website.ProductApp.Hub.titleTopic2',
     defaultMessage: 'Track reputation',
   },
   titleTopic3: {
-    id: 'pages.Website.ProductDapp.Hub.titleTopic3',
+    id: 'pages.Website.ProductApp.Hub.titleTopic3',
     defaultMessage: 'Customize your colony',
   },
   titleTopic4: {
-    id: 'pages.Website.ProductDapp.Hub.titleTopic4',
+    id: 'pages.Website.ProductApp.Hub.titleTopic4',
     defaultMessage: 'Build your community',
   },
 });
@@ -100,7 +100,7 @@ const VALUES = {
   },
 };
 
-const displayName = 'pages.Website.ProductDapp.Hub';
+const displayName = 'pages.Website.ProductApp.Hub';
 
 const Hub = () => (
   <div className={styles.main}>

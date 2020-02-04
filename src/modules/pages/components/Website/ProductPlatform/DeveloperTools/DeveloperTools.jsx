@@ -78,7 +78,7 @@ const MSG_COMMUNITY = defineMessages({
   bodyTailor: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.bodyTailor',
     defaultMessage: `A JavaScript library that provides an easy-to-use
-      layer between lower-level libraries and your dapp`,
+      layer between lower-level libraries and your app`,
   },
   bodyTrufflePig: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.bodyTrufflePig',

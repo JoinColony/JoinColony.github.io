@@ -13,7 +13,7 @@ import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 import {
   PAGE_DEV_DOCS,
-  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
 
@@ -72,7 +72,7 @@ const slides: { [key: string]: SlideType } = {
   },
   Humans: {
     component: SlideHumans,
-    linkHref: PAGE_PRODUCT_DAPP,
+    linkHref: PAGE_PRODUCT_APP,
   },
 };
 
