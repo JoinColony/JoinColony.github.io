@@ -17,6 +17,7 @@ import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
   COLONY_APP,
+  COLONY_DISCORD,
   COLONY_DISCOURSE,
   DOCS_COLONY_JS_GET_STARTED,
   PAGE_ABOUT_COLONY_NETWORK,
@@ -58,6 +59,10 @@ const MSG = defineMessages({
   navLinkApp: {
     id: 'layouts.WebsiteLayout.Header.navLinkApp',
     defaultMessage: 'Go to app',
+  },
+  navLinkCommunity: {
+    id: 'layouts.WebsiteLayout.Header.navLinkCommunity',
+    defaultMessage: 'Community',
   },
   navLinkNewsletter: {
     id: 'layouts.WebsiteLayout.Header.navLinkNewsletter',
@@ -297,7 +302,11 @@ const Header = ({
                 text={MSG.navLinkAbout}
               />
               <Link
-                activeClassName={styles.active}
+                className={`${styles.navLink} ${styles.navLinkStandard}`}
+                href={COLONY_DISCORD}
+                text={MSG.navLinkCommunity}
+              />
+              <Link
                 className={styles.navLinkAlt}
                 href={COLONY_APP}
                 text={MSG.navLinkApp}

@@ -53,6 +53,19 @@
   display: inline-block;
 }
 
+.navLink.navLinkStandard {
+  display: block;
+  height: 40px;
+  width: 100%;
+  color: var(--navy);
+}
+
+.navLink.navLinkStandard > span {
+  display: block;
+  max-width: var(--row-width-mobile);
+  margin: 0 auto;
+}
+
 .navLinkAlt {
   composes: navLinkBase;
   color: var(--blue-1);
@@ -214,6 +227,12 @@
 
   .navLinkAlt {
     display: inline-block;
+  }
+
+  .navLink.navLinkStandard {
+    display: inline-block;
+    height: auto;
+    width: auto;
   }
 
   .mobileButtons {
