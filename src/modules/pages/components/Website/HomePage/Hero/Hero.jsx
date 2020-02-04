@@ -19,12 +19,11 @@ import styles from './Hero.module.css';
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.HomePage.Hero.title',
-    defaultMessage: 'Organizations, for the Internet',
+    defaultMessage: 'Colony: a platform for community collaboration.',
   },
   description: {
     id: 'pages.Website.HomePage.Hero.description',
-    defaultMessage: `Create, operate, and monetize Digital Companies that
-      succeed through self-organization.`,
+    defaultMessage: `Do work, make decisions, and manage money, together.`,
   },
   announcement: {
     id: 'pages.Website.HomePage.Hero.announcement',
