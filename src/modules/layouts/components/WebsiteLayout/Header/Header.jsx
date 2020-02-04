@@ -16,14 +16,15 @@ import Link from '~core/Link';
 import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
+  COLONY_APP,
   COLONY_DISCOURSE,
   DOCS_COLONY_JS_GET_STARTED,
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_VISION,
   PAGE_ABOUT_METACOLONY,
+  PAGE_ANCHOR_NEWSLETTER,
   PAGE_DEV_DOCS,
   // PAGE_DEV_TUTORIALS,
-  PAGE_GET_EARLY_ACCESS,
   PAGE_INDEX,
   PAGE_PRODUCT_DAPP,
   PAGE_PRODUCT_PLATFORM,
@@ -54,9 +55,9 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Header.navLinkAbout',
     defaultMessage: 'About',
   },
-  navLinkEarlyAccess: {
-    id: 'layouts.WebsiteLayout.Header.navLinkEarlyAccess',
-    defaultMessage: 'Get early access',
+  navLinkApp: {
+    id: 'layouts.WebsiteLayout.Header.navLinkApp',
+    defaultMessage: 'Go to app',
   },
   navLinkNewsletter: {
     id: 'layouts.WebsiteLayout.Header.navLinkNewsletter',
@@ -298,8 +299,8 @@ const Header = ({
               <Link
                 activeClassName={styles.active}
                 className={styles.navLinkAlt}
-                href={PAGE_GET_EARLY_ACCESS}
-                text={MSG.navLinkEarlyAccess}
+                href={COLONY_APP}
+                text={MSG.navLinkApp}
               />
               <div className={styles.mobileButtons}>
                 <Button
@@ -309,8 +310,8 @@ const Header = ({
                     theme: 'primaryHollow',
                   }}
                   className={styles.mobileButton}
-                  linkTo={PAGE_GET_EARLY_ACCESS}
-                  text={MSG.navLinkEarlyAccess}
+                  linkTo={COLONY_APP}
+                  text={MSG.navLinkApp}
                 />
                 <Button
                   appearance={{
@@ -319,7 +320,7 @@ const Header = ({
                     theme: 'primary',
                   }}
                   className={styles.mobileButton}
-                  linkTo={PAGE_GET_EARLY_ACCESS}
+                  linkTo={`${PAGE_INDEX}#${PAGE_ANCHOR_NEWSLETTER}`}
                   text={MSG.navLinkNewsletter}
                 />
               </div>
