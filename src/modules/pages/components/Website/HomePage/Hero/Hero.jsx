@@ -12,7 +12,7 @@ import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { COLONY_APP, PAGE_GET_EARLY_ACCESS } from '~routes';
+import { COLONY_APP, PAGE_CONTACT } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -51,7 +51,7 @@ const Hero = () => {
 
   const handleSubmit = useCallback((email: string) => {
     // $FlowFixMe - flow type state below
-    navigate(PAGE_GET_EARLY_ACCESS, { state: { email } });
+    navigate(PAGE_CONTACT, { state: { email } });
   }, []);
 
   return (

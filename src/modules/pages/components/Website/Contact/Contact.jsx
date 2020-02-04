@@ -14,11 +14,11 @@ import { COLONY_DISCOURSE } from '~routes';
 
 import Form from './Form.jsx';
 
-import styles from './EarlyAccess.module.css';
+import styles from './Contact.module.css';
 
 const MSG = defineMessages({
   body: {
-    id: 'pages.Website.EarlyAccess.body',
+    id: 'pages.Website.Contact.body',
     defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
       a baby, so features are limited, but if you're super keen, and committed
       to helping shape development, we are accepting beta users with suitable
@@ -29,18 +29,18 @@ const MSG = defineMessages({
       {sayHiLink} over in Discourse.`,
   },
   linkSayHiText: {
-    id: 'pages.Website.EarlyAccess.linkSayHiText',
+    id: 'pages.Website.Contact.linkSayHiText',
     defaultMessage: 'Say hi',
   },
   seoBody: {
-    id: 'pages.Website.EarlyAccess.body',
+    id: 'pages.Website.Contact.body',
     defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
       a baby, so features are limited, but if you're super keen, and committed
       to helping shape development, we are accepting beta users with suitable
       use cases.`,
   },
   title: {
-    id: 'pages.Website.EarlyAccess.title',
+    id: 'pages.Website.Contact.title',
     defaultMessage: 'Get early access to Colony.',
   },
 });
@@ -51,9 +51,9 @@ type Props = {|
   },
 |};
 
-const displayName = 'pages.Website.EarlyAccess';
+const displayName = 'pages.Website.Contact';
 
-const EarlyAccess = ({ location }: Props) => {
+const Contact = ({ location }: Props) => {
   const email =
     location && location.state && location.state.email
       ? location.state.email
@@ -97,6 +97,6 @@ const EarlyAccess = ({ location }: Props) => {
   );
 };
 
-EarlyAccess.displayName = displayName;
+Contact.displayName = displayName;
 
-export default EarlyAccess;
+export default Contact;
