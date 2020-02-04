@@ -6,11 +6,13 @@ import { withPrefix } from 'gatsby';
 
 import Announcement from '~core/Announcement';
 import Breakpoint from '~core/Breakpoint';
+import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
+import { COLONY_APP } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -28,6 +30,10 @@ const MSG = defineMessages({
     id: 'pages.Website.ProductApp.Hero.title',
     defaultMessage: `Tools to Organize and Incentivize Collaborators,
       Contributors, and Communities.`,
+  },
+  buttonText: {
+    id: 'pages.Website.ProductApp.Hero.buttonText',
+    defaultMessage: 'Get Started',
   },
 });
 
@@ -58,6 +64,16 @@ const Hero = () => {
             />
             <div className={styles.body}>
               <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
+              <Button
+                appearance={{
+                  borderRadius: 'none',
+                  size: 'large',
+                  theme: 'primary',
+                }}
+                className={styles.button}
+                linkTo={COLONY_APP}
+                text={MSG.buttonText}
+              />
             </div>
           </div>
         </div>
