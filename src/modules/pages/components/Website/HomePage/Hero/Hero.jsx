@@ -31,11 +31,11 @@ const MSG = defineMessages({
   },
   inputPlaceholder: {
     id: 'pages.Website.HomePage.Hero.inputPlaceholder',
-    defaultMessage: 'Get early access to the beta.',
+    defaultMessage: 'Need help getting started?',
   },
   buttonSubmit: {
     id: 'pages.Website.HomePage.Hero.buttonSubmit',
-    defaultMessage: 'See you there',
+    defaultMessage: 'Get in touch',
   },
 });
 
