@@ -90,8 +90,8 @@ const displayName = 'pages.Website.Contact.Form';
 
 const Form = ({ initialValues }: Props) => {
   const { error, response, submitForm } = useHubspotForm({
-    formGuid: '8e34f607-d535-42eb-8b34-38fb6b31ab49',
-    pageName: 'Get Early Access',
+    formGuid: '6bcced45-41e7-40eb-b3ec-42ac313eed0a',
+    pageName: 'Contact',
     pageUri: `https://colony.io${PAGE_CONTACT}`,
     portalId: '4846129',
   });
