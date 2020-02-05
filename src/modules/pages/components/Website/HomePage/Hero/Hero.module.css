@@ -32,6 +32,13 @@
   padding: 20px 0 80px;
 }
 
+.main .button:hover,
+.main .button:active {
+  background-color: #086DA6;
+  border-color: #086DA6;
+  color: #ffffff;
+}
+
 @media (mediumUp) {
   .imageContainer {
     display: flex;

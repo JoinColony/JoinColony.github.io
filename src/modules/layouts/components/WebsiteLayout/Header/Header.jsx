@@ -16,16 +16,18 @@ import Link from '~core/Link';
 import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
+  COLONY_APP,
+  COLONY_DISCORD,
   COLONY_DISCOURSE,
   DOCS_COLONY_JS_GET_STARTED,
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_VISION,
   PAGE_ABOUT_METACOLONY,
+  PAGE_ANCHOR_NEWSLETTER,
   PAGE_DEV_DOCS,
   // PAGE_DEV_TUTORIALS,
-  PAGE_GET_EARLY_ACCESS,
   PAGE_INDEX,
-  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
 
@@ -54,9 +56,13 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Header.navLinkAbout',
     defaultMessage: 'About',
   },
-  navLinkEarlyAccess: {
-    id: 'layouts.WebsiteLayout.Header.navLinkEarlyAccess',
-    defaultMessage: 'Get early access',
+  navLinkApp: {
+    id: 'layouts.WebsiteLayout.Header.navLinkApp',
+    defaultMessage: 'Go to app',
+  },
+  navLinkCommunity: {
+    id: 'layouts.WebsiteLayout.Header.navLinkCommunity',
+    defaultMessage: 'Community',
   },
   navLinkNewsletter: {
     id: 'layouts.WebsiteLayout.Header.navLinkNewsletter',
@@ -97,8 +103,8 @@ const MSG = defineMessages({
     defaultMessage: `Grok key Colony concepts quickly with clear tutorials
       to help you learn by doing.`,
   },
-  dropdownLinkBodyProductsDapp: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsDapp',
+  dropdownLinkBodyProductsApp: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsApp',
     defaultMessage: `Tools to organize and incentivize collaborators,
       contributors, and communities.`,
   },
@@ -135,9 +141,9 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevTutorials',
     defaultMessage: 'Tutorials',
   },
-  dropdownLinkTitleProductsDapp: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsDapp',
-    defaultMessage: 'Dapp',
+  dropdownLinkTitleProductsApp: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsApp',
+    defaultMessage: 'App',
   },
   dropdownLinkTitleProductsPlatform: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsPlatform',
@@ -233,9 +239,9 @@ const Header = ({
                 image={withPrefix('img/nav_products.png')}
                 navItems={[
                   {
-                    body: MSG.dropdownLinkBodyProductsDapp,
-                    href: PAGE_PRODUCT_DAPP,
-                    title: MSG.dropdownLinkTitleProductsDapp,
+                    body: MSG.dropdownLinkBodyProductsApp,
+                    href: PAGE_PRODUCT_APP,
+                    title: MSG.dropdownLinkTitleProductsApp,
                   },
                   {
                     body: MSG.dropdownLinkBodyProductsPlatform,
@@ -296,10 +302,14 @@ const Header = ({
                 text={MSG.navLinkAbout}
               />
               <Link
-                activeClassName={styles.active}
+                className={`${styles.navLink} ${styles.navLinkStandard}`}
+                href={COLONY_DISCORD}
+                text={MSG.navLinkCommunity}
+              />
+              <Link
                 className={styles.navLinkAlt}
-                href={PAGE_GET_EARLY_ACCESS}
-                text={MSG.navLinkEarlyAccess}
+                href={COLONY_APP}
+                text={MSG.navLinkApp}
               />
               <div className={styles.mobileButtons}>
                 <Button
@@ -309,8 +319,8 @@ const Header = ({
                     theme: 'primaryHollow',
                   }}
                   className={styles.mobileButton}
-                  linkTo={PAGE_GET_EARLY_ACCESS}
-                  text={MSG.navLinkEarlyAccess}
+                  linkTo={COLONY_APP}
+                  text={MSG.navLinkApp}
                 />
                 <Button
                   appearance={{
@@ -319,7 +329,7 @@ const Header = ({
                     theme: 'primary',
                   }}
                   className={styles.mobileButton}
-                  linkTo={PAGE_GET_EARLY_ACCESS}
+                  linkTo={`${PAGE_INDEX}#${PAGE_ANCHOR_NEWSLETTER}`}
                   text={MSG.navLinkNewsletter}
                 />
               </div>

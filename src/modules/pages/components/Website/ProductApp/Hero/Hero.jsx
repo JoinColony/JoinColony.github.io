@@ -12,44 +12,32 @@ import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { PAGE_GET_EARLY_ACCESS } from '~routes';
+import { COLONY_APP } from '~routes';
 
 import styles from './Hero.module.css';
 
 const MSG = defineMessages({
   announcement: {
-    id: 'pages.Website.ProductDapp.Hero.announcement',
+    id: 'pages.Website.ProductApp.Hero.announcement',
     defaultMessage: 'Now live on Ethereum Mainnet!',
   },
   body: {
-    id: 'pages.Website.ProductDapp.Hero.body',
+    id: 'pages.Website.ProductApp.Hero.body',
     defaultMessage: `Organize your colony into teams, projects,
       departments, or whatever structure suits you.`,
   },
-  buttonText: {
-    id: 'pages.Website.ProductDapp.Hero.buttonText',
-    defaultMessage: 'Get early access',
-  },
-  subBody: {
-    id: 'pages.Website.ProductDapp.Hero.subBody',
-    defaultMessage: `Colony's beta is live on Ethereum mainnet! It's just
-      a baby, so features are limited, but if you're super keen, and
-      committed to helping shape development, we are accepting beta users
-      with suitable use cases.`,
-  },
-  subTitle: {
-    id: 'pages.Website.ProductDapp.Hero.subTitle',
-    defaultMessage: `Colony's beta is live on Ethereum mainnet! Got a
-      usecase? Get in touch to request early access!`,
-  },
   title: {
-    id: 'pages.Website.ProductDapp.Hero.title',
+    id: 'pages.Website.ProductApp.Hero.title',
     defaultMessage: `Tools to Organize and Incentivize Collaborators,
       Contributors, and Communities.`,
   },
+  buttonText: {
+    id: 'pages.Website.ProductApp.Hero.buttonText',
+    defaultMessage: 'Get Started',
+  },
 });
 
-const displayName = 'pages.Website.ProductDapp.Hero';
+const displayName = 'pages.Website.ProductApp.Hero';
 
 const Hero = () => {
   const { headerHeight } = useContext(ThemeContext);
@@ -76,6 +64,16 @@ const Hero = () => {
             />
             <div className={styles.body}>
               <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
+              <Button
+                appearance={{
+                  borderRadius: 'none',
+                  size: 'large',
+                  theme: 'primary',
+                }}
+                className={styles.button}
+                linkTo={COLONY_APP}
+                text={MSG.buttonText}
+              />
             </div>
           </div>
         </div>
@@ -88,33 +86,6 @@ const Hero = () => {
             />
           </div>
         </Breakpoint>
-      </div>
-      <div className={styles.row}>
-        <div className={styles.subTitleContainer}>
-          <Heading
-            appearance={{
-              margin: 'none',
-              size: 'large',
-              theme: 'primary',
-              weight: 'medium',
-            }}
-            text={MSG.subTitle}
-          />
-        </div>
-        <div className={styles.subBodyContainer}>
-          <Paragraph appearance={{ size: 'medium' }} text={MSG.subBody} />
-          <div className={styles.button}>
-            <Button
-              appearance={{
-                borderRadius: 'none',
-                padding: 'huge',
-                theme: 'primary',
-              }}
-              linkTo={PAGE_GET_EARLY_ACCESS}
-              text={MSG.buttonText}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );

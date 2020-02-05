@@ -24,7 +24,7 @@ type Props = {|
   thumbnail?: string,
 |};
 
-const displayName = 'pages.Website.ProductDapp.Hub.Item';
+const displayName = 'pages.Website.ProductApp.Hub.Item';
 
 const Item = ({
   appearance,

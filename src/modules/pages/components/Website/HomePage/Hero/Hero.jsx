@@ -5,25 +5,25 @@ import { defineMessages } from 'react-intl';
 import { navigate } from '@reach/router';
 
 import Announcement from '~core/Announcement';
+import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { PAGE_GET_EARLY_ACCESS } from '~routes';
+import { COLONY_APP, PAGE_CONTACT } from '~routes';
 
 import styles from './Hero.module.css';
 
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.HomePage.Hero.title',
-    defaultMessage: 'Organizations, for the Internet',
+    defaultMessage: 'Colony: a platform for community collaboration.',
   },
   description: {
     id: 'pages.Website.HomePage.Hero.description',
-    defaultMessage: `Create, operate, and monetize Digital Companies that
-      succeed through self-organization.`,
+    defaultMessage: `Do work, make decisions, and manage money, together.`,
   },
   announcement: {
     id: 'pages.Website.HomePage.Hero.announcement',
@@ -31,11 +31,15 @@ const MSG = defineMessages({
   },
   inputPlaceholder: {
     id: 'pages.Website.HomePage.Hero.inputPlaceholder',
-    defaultMessage: 'Get early access to the beta.',
+    defaultMessage: 'Need help getting started?',
   },
   buttonSubmit: {
     id: 'pages.Website.HomePage.Hero.buttonSubmit',
-    defaultMessage: 'See you there',
+    defaultMessage: 'Get in touch',
+  },
+  buttonGetStarted: {
+    id: 'pages.Website.HomePage.Hero.buttonGetStarted',
+    defaultMessage: 'Get Started',
   },
 });
 
@@ -47,7 +51,7 @@ const Hero = () => {
 
   const handleSubmit = useCallback((email: string) => {
     // $FlowFixMe - flow type state below
-    navigate(PAGE_GET_EARLY_ACCESS, { state: { email } });
+    navigate(PAGE_CONTACT, { state: { email } });
   }, []);
 
   return (
@@ -76,8 +80,18 @@ const Hero = () => {
               text={MSG.title}
             />
             <Paragraph
-              appearance={{ margin: 'none', size: 'medium', theme: 'invert' }}
+              appearance={{ size: 'medium', theme: 'invert' }}
               text={MSG.description}
+            />
+            <Button
+              appearance={{
+                borderRadius: 'none',
+                size: 'large',
+                theme: 'primary',
+              }}
+              className={styles.button}
+              linkTo={COLONY_APP}
+              text={MSG.buttonGetStarted}
             />
           </div>
         </div>

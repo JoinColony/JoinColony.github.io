@@ -12,7 +12,7 @@ import styles from './LookGood.module.css';
 const MSG = defineMessages({
   body: {
     id: 'pages.Website.ProductPlatform.LookGood.body',
-    defaultMessage: `Building a great DApp is hard, slow, and
+    defaultMessage: `Building a great App is hard, slow, and
       expensive. Building on Colony takes care of all the unsexy
       grunt work, allowing you to focus on your special sauce,
       and get from idea to users fast.

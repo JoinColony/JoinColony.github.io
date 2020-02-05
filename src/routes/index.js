@@ -1,15 +1,21 @@
 /* @flow */
 
 /*
+ * Colony app
+ */
+
+export const COLONY_APP = 'https://colony.io/connect';
+
+/*
  * Pages
  */
 export const PAGE_INDEX = '/';
 export const PAGE_ABOUT_VISION = '/about';
 export const PAGE_ABOUT_COLONY_NETWORK = '/about/colony-network';
 export const PAGE_ABOUT_METACOLONY = '/about/metacolony';
-export const PAGE_GET_EARLY_ACCESS = '/early-access';
+export const PAGE_CONTACT = '/contact';
 export const PAGE_PRODUCT_PLATFORM = '/product';
-export const PAGE_PRODUCT_DAPP = '/product/dapp';
+export const PAGE_PRODUCT_APP = '/product/app';
 export const PAGE_DEV_DOCS = '/dev';
 export const PAGE_GET_STARTED_COLONYJS = `${PAGE_DEV_DOCS}/docs/colonyjs/intro-get-started`;
 export const PAGE_BUG_BOUNTY = `${PAGE_DEV_DOCS}/docs/colonynetwork/bug-bounty-program-overview`;
@@ -30,7 +36,6 @@ export const PAGE_TERMS_SERVICE = '/terms';
  * Absolute
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
-export const COLONY_DAPP = 'https://colony.io/dapp';
 export const COLONY_DISCORD = 'https://discord.gg/PDEQvrC';
 export const COLONY_DISCOURSE = 'https://build.colony.io';
 export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
@@ -80,3 +85,4 @@ export const DOCS_COLONY_STARTER =
  * Page Anchor Ids
  */
 export const PAGE_ANCHOR_ABOUT_COLONY_NETWORK_CAPABILITIES = 'capabilities';
+export const PAGE_ANCHOR_NEWSLETTER = 'newsletter';

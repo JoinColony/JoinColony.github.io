@@ -15,7 +15,7 @@ import {
   PAGE_DEV_DOCS,
   PAGE_DEV_TUTORIALS, // eslint-disable-line no-unused-vars
   PAGE_MEDIA_KIT, // eslint-disable-line no-unused-vars
-  PAGE_PRODUCT_DAPP,
+  PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
 
@@ -42,9 +42,9 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Footer.Menus.linkBlog',
     defaultMessage: 'Blog',
   },
-  linkDapp: {
-    id: 'layouts.WebsiteLayout.Footer.Menus.linkDapp',
-    defaultMessage: 'Dapp',
+  linkApp: {
+    id: 'layouts.WebsiteLayout.Footer.Menus.linkApp',
+    defaultMessage: 'App',
   },
   linkPlatform: {
     id: 'layouts.WebsiteLayout.Footer.Menus.linkPlatform',
@@ -100,8 +100,8 @@ const Menus = () => {
           menuItems={[
             {
               className: styles.footerMenuLink,
-              href: PAGE_PRODUCT_DAPP,
-              text: MSG.linkDapp,
+              href: PAGE_PRODUCT_APP,
+              text: MSG.linkApp,
             },
             {
               className: styles.footerMenuLink,

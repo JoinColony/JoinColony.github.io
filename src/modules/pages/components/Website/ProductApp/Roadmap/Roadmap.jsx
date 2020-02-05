@@ -10,66 +10,66 @@ import styles from './Roadmap.module.css';
 
 const MSG = defineMessages({
   labelLessSoon: {
-    id: 'pages.Website.ProductDapp.Roadmap.labelLessSoon',
+    id: 'pages.Website.ProductApp.Roadmap.labelLessSoon',
     defaultMessage: 'Coming less soon',
   },
   labelSoon: {
-    id: 'pages.Website.ProductDapp.Roadmap.labelSoon',
+    id: 'pages.Website.ProductApp.Roadmap.labelSoon',
     defaultMessage: 'Coming soon',
   },
   title: {
-    id: 'pages.Website.ProductDapp.Roadmap.title',
+    id: 'pages.Website.ProductApp.Roadmap.title',
     defaultMessage: 'Roadmap',
   },
 });
 
 const MSG_SOON_BADGES = defineMessages({
   integrations: {
-    id: 'pages.Website.ProductDapp.Roadmap.integrations',
+    id: 'pages.Website.ProductApp.Roadmap.integrations',
     defaultMessage: 'Integrations',
   },
   reputationVoting: {
-    id: 'pages.Website.ProductDapp.Roadmap.reputationVoting',
+    id: 'pages.Website.ProductApp.Roadmap.reputationVoting',
     defaultMessage: 'Reputation Weighted Voting',
   },
   suggestions: {
-    id: 'pages.Website.ProductDapp.Roadmap.suggestions',
+    id: 'pages.Website.ProductApp.Roadmap.suggestions',
     defaultMessage: 'Suggestions',
   },
   permissions: {
-    id: 'pages.Website.ProductDapp.Roadmap.permissions',
+    id: 'pages.Website.ProductApp.Roadmap.permissions',
     defaultMessage: 'Domain Level Permissions',
   },
   funding: {
-    id: 'pages.Website.ProductDapp.Roadmap.funding',
+    id: 'pages.Website.ProductApp.Roadmap.funding',
     defaultMessage: 'Domain Level Funding',
   },
 });
 
 const MSG_LESS_SOON_BADGES = defineMessages({
   queues: {
-    id: 'pages.Website.ProductDapp.Roadmap.queues',
+    id: 'pages.Website.ProductApp.Roadmap.queues',
     defaultMessage: 'Funding Queues',
   },
   tokenVoting: {
-    id: 'pages.Website.ProductDapp.Roadmap.tokenVoting',
+    id: 'pages.Website.ProductApp.Roadmap.tokenVoting',
     defaultMessage: 'Token Weighted Voting',
   },
   budgetBox: {
-    id: 'pages.Website.ProductDapp.Roadmap.budgetBox',
+    id: 'pages.Website.ProductApp.Roadmap.budgetBox',
     defaultMessage: 'Budget Box',
   },
   disputes: {
-    id: 'pages.Website.ProductDapp.Roadmap.disputes',
+    id: 'pages.Website.ProductApp.Roadmap.disputes',
     defaultMessage: 'Objections & Disputes',
   },
   control: {
-    id: 'pages.Website.ProductDapp.Roadmap.control',
+    id: 'pages.Website.ProductApp.Roadmap.control',
     defaultMessage: 'Contract Control',
   },
 });
 
-const displayName = 'pages.Website.ProductDapp.Roadmap';
+const displayName = 'pages.Website.ProductApp.Roadmap';
 
 const Roadmap = () => (
   <div className={styles.main}>

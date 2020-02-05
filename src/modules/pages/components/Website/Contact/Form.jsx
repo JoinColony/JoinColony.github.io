@@ -10,61 +10,61 @@ import Input from '~core/Input';
 import Paragraph from '~core/Paragraph';
 import Textarea from '~core/Textarea';
 import { useHubspotForm } from '~hooks';
-import { PAGE_GET_EARLY_ACCESS } from '~routes';
+import { PAGE_CONTACT } from '~routes';
 
 import styles from './Form.module.css';
 
 const MSG = defineMessages({
   buttonSubmit: {
-    id: 'pages.Website.EarlyAccess.Form.buttonSubmit',
+    id: 'pages.Website.Contact.Form.buttonSubmit',
     defaultMessage: 'Submit',
   },
   labelUseCase: {
-    id: 'pages.Website.EarlyAccess.Form.labelUseCase',
+    id: 'pages.Website.Contact.Form.labelUseCase',
     defaultMessage: 'How do you plan to use Colony?',
   },
   placeholderCompanyName: {
-    id: 'pages.Website.EarlyAccess.Form.placeholderCompanyName',
+    id: 'pages.Website.Contact.Form.placeholderCompanyName',
     defaultMessage: 'Company/Project name',
   },
   placeholderCompanySize: {
-    id: 'pages.Website.EarlyAccess.Form.placeholderCompanySize',
+    id: 'pages.Website.Contact.Form.placeholderCompanySize',
     defaultMessage: 'Company/Project size',
   },
   placeholderEmail: {
-    id: 'pages.Website.EarlyAccess.Form.placeholderEmail',
+    id: 'pages.Website.Contact.Form.placeholderEmail',
     defaultMessage: 'Email',
   },
   placeholderNameFirst: {
-    id: 'pages.Website.EarlyAccess.Form.placeholderNameFirst',
+    id: 'pages.Website.Contact.Form.placeholderNameFirst',
     defaultMessage: 'First name',
   },
   placeholderNameLast: {
-    id: 'pages.Website.EarlyAccess.Form.placeholderNameLast',
+    id: 'pages.Website.Contact.Form.placeholderNameLast',
     defaultMessage: 'Last name',
   },
   placeholderWebsiteUrl: {
-    id: 'pages.Website.EarlyAccess.Form.placeholderWebsiteUrl',
+    id: 'pages.Website.Contact.Form.placeholderWebsiteUrl',
     defaultMessage: 'Website URL',
   },
   textError: {
-    id: 'pages.Website.EarlyAccess.Form.textError',
+    id: 'pages.Website.Contact.Form.textError',
     defaultMessage: 'There was an error signing up.',
   },
   textSuccess: {
-    id: 'pages.Website.EarlyAccess.Form.textSuccess',
+    id: 'pages.Website.Contact.Form.textSuccess',
     defaultMessage: 'Thanks for signing up!',
   },
   validationTextEmail: {
-    id: 'pages.Website.EarlyAccess.Form.validationTextEmail',
+    id: 'pages.Website.Contact.Form.validationTextEmail',
     defaultMessage: 'Please enter a valid email address',
   },
   validationTextRequired: {
-    id: 'pages.Website.EarlyAccess.Form.validationTextRequired',
+    id: 'pages.Website.Contact.Form.validationTextRequired',
     defaultMessage: 'This field is required',
   },
   validationTextUrl: {
-    id: 'pages.Website.EarlyAccess.Form.validationTextUrl',
+    id: 'pages.Website.Contact.Form.validationTextUrl',
     defaultMessage: 'Please enter a valid URL',
   },
 });
@@ -86,13 +86,13 @@ const validationSchema = yup.object().shape({
   websiteUrl: yup.string().url(MSG.validationTextUrl),
 });
 
-const displayName = 'pages.Website.EarlyAccess.Form';
+const displayName = 'pages.Website.Contact.Form';
 
 const Form = ({ initialValues }: Props) => {
   const { error, response, submitForm } = useHubspotForm({
-    formGuid: '8e34f607-d535-42eb-8b34-38fb6b31ab49',
-    pageName: 'Get Early Access',
-    pageUri: `https://colony.io${PAGE_GET_EARLY_ACCESS}`,
+    formGuid: '6bcced45-41e7-40eb-b3ec-42ac313eed0a',
+    pageName: 'Contact',
+    pageUri: `https://colony.io${PAGE_CONTACT}`,
     portalId: '4846129',
   });
 
