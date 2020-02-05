@@ -19,7 +19,7 @@ import styles from './Hero.module.css';
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.HomePage.Hero.title',
-    defaultMessage: 'Colony: a platform for community collaboration.',
+    defaultMessage: 'A platform for community collaboration.',
   },
   description: {
     id: 'pages.Website.HomePage.Hero.description',
