@@ -5,6 +5,7 @@
  */
 
 export const COLONY_APP = 'https://colony.io/connect';
+export const COLONY_APP_BETA_COLONY = 'https://colony.io/colony/beta';
 
 /*
  * Pages

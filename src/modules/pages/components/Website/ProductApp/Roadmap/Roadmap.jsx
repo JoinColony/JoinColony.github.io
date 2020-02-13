@@ -32,18 +32,6 @@ const MSG_SOON_BADGES = defineMessages({
     id: 'pages.Website.ProductApp.Roadmap.reputationVoting',
     defaultMessage: 'Reputation Weighted Voting',
   },
-  suggestions: {
-    id: 'pages.Website.ProductApp.Roadmap.suggestions',
-    defaultMessage: 'Suggestions',
-  },
-  permissions: {
-    id: 'pages.Website.ProductApp.Roadmap.permissions',
-    defaultMessage: 'Domain Level Permissions',
-  },
-  funding: {
-    id: 'pages.Website.ProductApp.Roadmap.funding',
-    defaultMessage: 'Domain Level Funding',
-  },
 });
 
 const MSG_LESS_SOON_BADGES = defineMessages({

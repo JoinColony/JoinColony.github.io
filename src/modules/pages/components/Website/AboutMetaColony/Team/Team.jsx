@@ -8,7 +8,7 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
-import { COLONY_DISCORD } from '~routes';
+import { COLONY_APP_BETA_COLONY } from '~routes';
 
 import styles from './Team.module.css';
 
@@ -82,7 +82,7 @@ const Team = () => (
                 padding: 'huge',
                 theme: 'primary',
               }}
-              linkTo={COLONY_DISCORD}
+              linkTo={COLONY_APP_BETA_COLONY}
               text={MSG.button}
             />
           </div>
