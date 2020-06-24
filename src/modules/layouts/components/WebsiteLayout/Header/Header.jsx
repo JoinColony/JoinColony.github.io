@@ -16,7 +16,7 @@ import Link from '~core/Link';
 import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
-  COLONY_APP,
+  COLONY_APP_BETA_COLONY,
   COLONY_DISCORD,
   COLONY_DISCOURSE,
   DOCS_COLONY_JS_GET_STARTED,
@@ -56,9 +56,9 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Header.navLinkAbout',
     defaultMessage: 'About',
   },
-  navLinkApp: {
-    id: 'layouts.WebsiteLayout.Header.navLinkApp',
-    defaultMessage: 'Go to app',
+  navLinkBetaColony: {
+    id: 'layouts.WebsiteLayout.Header.navLinkBetaColony',
+    defaultMessage: 'Go to the Betacolony',
   },
   navLinkCommunity: {
     id: 'layouts.WebsiteLayout.Header.navLinkCommunity',
@@ -308,8 +308,8 @@ const Header = ({
               />
               <Link
                 className={styles.navLinkAlt}
-                href={COLONY_APP}
-                text={MSG.navLinkApp}
+                href={COLONY_APP_BETA_COLONY}
+                text={MSG.navLinkBetaColony}
               />
               <div className={styles.mobileButtons}>
                 <Button
@@ -319,8 +319,8 @@ const Header = ({
                     theme: 'primaryHollow',
                   }}
                   className={styles.mobileButton}
-                  linkTo={COLONY_APP}
-                  text={MSG.navLinkApp}
+                  linkTo={COLONY_APP_BETA_COLONY}
+                  text={MSG.navLinkBetaColony}
                 />
                 <Button
                   appearance={{
