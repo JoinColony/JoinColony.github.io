@@ -75,8 +75,8 @@ const MSG = defineMessages({
   },
   dropdownLinkBodyAboutMetacolony: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutMetacolony',
-    defaultMessage: `All about the Colony colony: the economics, it's
-      token—CLNY, and how you can contribute.`,
+    defaultMessage: `All about the Colony colony: the economics, its
+      token — CLNY, and how you can contribute.`,
   },
   dropdownLinkBodyAboutVision: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyAboutVision',
