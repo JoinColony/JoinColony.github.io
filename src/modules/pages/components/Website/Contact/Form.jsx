@@ -9,8 +9,7 @@ import Button from '~core/Button';
 import Input from '~core/Input';
 import Paragraph from '~core/Paragraph';
 import Textarea from '~core/Textarea';
-import { useHubspotForm } from '~hooks';
-import { PAGE_CONTACT } from '~routes';
+import { useDiscordWebhook } from '~hooks';
 
 import styles from './Form.module.css';
 
@@ -23,28 +22,28 @@ const MSG = defineMessages({
     id: 'pages.Website.Contact.Form.labelUseCase',
     defaultMessage: 'How do you plan to use Colony?',
   },
-  placeholderCompanyName: {
-    id: 'pages.Website.Contact.Form.placeholderCompanyName',
+  placeholderProject: {
+    id: 'pages.Website.Contact.Form.placeholderProject',
     defaultMessage: 'Company/Project name',
   },
-  placeholderCompanySize: {
-    id: 'pages.Website.Contact.Form.placeholderCompanySize',
+  placeholderProjectSize: {
+    id: 'pages.Website.Contact.Form.placeholderProjectSize',
     defaultMessage: 'Company/Project size',
   },
   placeholderEmail: {
     id: 'pages.Website.Contact.Form.placeholderEmail',
     defaultMessage: 'Email',
   },
-  placeholderNameFirst: {
-    id: 'pages.Website.Contact.Form.placeholderNameFirst',
+  placeholderFirstName: {
+    id: 'pages.Website.Contact.Form.placeholderFirstName',
     defaultMessage: 'First name',
   },
-  placeholderNameLast: {
-    id: 'pages.Website.Contact.Form.placeholderNameLast',
+  placeholderLastName: {
+    id: 'pages.Website.Contact.Form.placeholderLastName',
     defaultMessage: 'Last name',
   },
-  placeholderWebsiteUrl: {
-    id: 'pages.Website.Contact.Form.placeholderWebsiteUrl',
+  placeholderWebsite: {
+    id: 'pages.Website.Contact.Form.placeholderWebsite',
     defaultMessage: 'Website URL',
   },
   textError: {
@@ -74,51 +73,29 @@ type Props = {|
 |};
 
 const validationSchema = yup.object().shape({
-  companyName: yup.string().required(MSG.validationTextRequired),
-  companySize: yup.string().required(MSG.validationTextRequired),
+  project: yup.string().required(MSG.validationTextRequired),
+  projectSize: yup.string().required(MSG.validationTextRequired),
   email: yup
     .string()
     .email(MSG.validationTextEmail)
     .required(MSG.validationTextRequired),
-  nameFirst: yup.string().required(MSG.validationTextRequired),
-  nameLast: yup.string().required(MSG.validationTextRequired),
+  firstName: yup.string().required(MSG.validationTextRequired),
+  lastName: yup.string().required(MSG.validationTextRequired),
   useCase: yup.string().required(MSG.validationTextRequired),
-  websiteUrl: yup.string().url(MSG.validationTextUrl),
+  website: yup.string().url(MSG.validationTextUrl),
 });
 
 const displayName = 'pages.Website.Contact.Form';
 
 const Form = ({ initialValues }: Props) => {
-  const { error, response, submitForm } = useHubspotForm({
-    formGuid: '6bcced45-41e7-40eb-b3ec-42ac313eed0a',
-    pageName: 'Contact',
-    pageUri: `https://colony.io${PAGE_CONTACT}`,
-    portalId: '4846129',
+  const { error, response, submitForm } = useDiscordWebhook({
+    webhookId: process.env.DISCORD_WEBHOOK_ID_CONTACT_FORM || '',
+    webhookToken: process.env.DISCORD_WEBHOOK_TOKEN_CONTACT_FORM || '',
   });
 
   const handleSubmit = useCallback(
-    (
-      {
-        companyName,
-        companySize,
-        email,
-        nameFirst,
-        nameLast,
-        useCase,
-        websiteUrl,
-      },
-      { resetForm },
-    ) => {
-      const formData = {
-        company: companyName,
-        company_size: companySize,
-        email,
-        how_do_you_plan_to_use_colony_: useCase,
-        firstname: nameFirst,
-        lastname: nameLast,
-        website: websiteUrl,
-      };
-      submitForm(formData, resetForm);
+    (values, { resetForm }) => {
+      submitForm(values, resetForm);
     },
     [submitForm],
   );
@@ -126,13 +103,13 @@ const Form = ({ initialValues }: Props) => {
   return (
     <Formik
       initialValues={{
-        companyName: '',
-        companySize: '',
+        project: '',
+        projectSize: '',
         email: '',
-        nameFirst: '',
-        nameLast: '',
+        firstName: '',
+        lastName: '',
         useCase: '',
-        websiteUrl: '',
+        website: '',
         ...initialValues,
       }}
       onSubmit={handleSubmit}
@@ -144,13 +121,13 @@ const Form = ({ initialValues }: Props) => {
         isValid,
         touched,
         values: {
-          companyName,
-          companySize,
+          project,
+          projectSize,
           email,
-          nameFirst,
-          nameLast,
+          firstName,
+          lastName,
           useCase,
-          websiteUrl,
+          website,
         },
       }) => {
         const inputProps = {
@@ -174,70 +151,68 @@ const Form = ({ initialValues }: Props) => {
                 <Input
                   {...inputProps}
                   error={
-                    errors.nameFirst && touched.nameFirst
-                      ? errors.nameFirst
+                    errors.firstName && touched.firstName
+                      ? errors.firstName
                       : undefined
                   }
-                  id={`${displayName}.nameFirst`}
-                  name="nameFirst"
-                  placeholder={MSG.placeholderNameFirst}
-                  value={nameFirst}
+                  id={`${displayName}.firstName`}
+                  name="firstName"
+                  placeholder={MSG.placeholderFirstName}
+                  value={firstName}
                 />
               </div>
               <div>
                 <Input
                   {...inputProps}
                   error={
-                    errors.nameLast && touched.nameLast
-                      ? errors.nameLast
+                    errors.lastName && touched.lastName
+                      ? errors.lastName
                       : undefined
                   }
-                  id={`${displayName}.nameLast`}
-                  name="nameLast"
-                  placeholder={MSG.placeholderNameLast}
-                  value={nameLast}
+                  id={`${displayName}.lastName`}
+                  name="lastName"
+                  placeholder={MSG.placeholderLastName}
+                  value={lastName}
                 />
               </div>
             </div>
             <Input
               {...inputProps}
               error={
-                errors.websiteUrl && touched.websiteUrl
-                  ? errors.websiteUrl
-                  : undefined
+                errors.website && touched.website ? errors.website : undefined
               }
-              id={`${displayName}.websiteUrl`}
-              name="websiteUrl"
-              placeholder={MSG.placeholderWebsiteUrl}
-              value={websiteUrl}
+              id={`${displayName}.website`}
+              name="website"
+              placeholder={MSG.placeholderWebsite}
+              value={website}
             />
             <div className={styles.inline}>
               <div>
                 <Input
                   {...inputProps}
                   error={
-                    errors.companyName && touched.companyName
-                      ? errors.companyName
+                    errors.project && touched.project
+                      ? errors.project
                       : undefined
                   }
-                  id={`${displayName}.companyName`}
-                  name="companyName"
-                  placeholder={MSG.placeholderCompanyName}
-                  value={companyName}
+                  id={`${displayName}.project`}
+                  name="project"
+                  placeholder={MSG.placeholderProject}
+                  value={project}
                 />
               </div>
               <div>
                 <Input
                   {...inputProps}
                   error={
-                    errors.companySize && touched.companySize
-                      ? errors.companySize
+                    errors.projectSize && touched.projectSize
+                      ? errors.projectSize
                       : undefined
                   }
-                  id={`${displayName}.companySize`}
-                  name="companySize"
-                  placeholder={MSG.placeholderCompanySize}
-                  value={companySize}
+                  id={`${displayName}.projectSize`}
+                  name="projectSize"
+                  placeholder={MSG.placeholderProjectSize}
+                  value={projectSize}
                 />
               </div>
             </div>
