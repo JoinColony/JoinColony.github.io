@@ -9,6 +9,8 @@ import type { Network, User } from '~types';
 
 import {
   PAGE_DEVELOPER_PORTAL_DASHBOARD_ACCOUNT,
+  // Temporarily disable next import
+  // eslint-disable-next-line no-unused-vars
   PAGE_DEVELOPER_PORTAL_DASHBOARD_ADMIN,
   PAGE_DEVELOPER_PORTAL_DASHBOARD_COLONIES,
   PAGE_DEVELOPER_PORTAL_DASHBOARD_CONTRIBUTIONS,
@@ -45,6 +47,8 @@ type Props = {|
 
 const displayName = 'pages.Dashboard.Sidebar';
 
+// Temporarily disable unused props
+// eslint-disable-next-line no-unused-vars
 const Sidebar = ({ active, network, user }: Props) => (
   <div className={styles.main}>
     <div>

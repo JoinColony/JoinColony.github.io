@@ -14,6 +14,7 @@ import Button from '~core/Button';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
 import NavigationToggle from '~core/NavigationToggle';
+import DiscordBanner from '~parts/DiscordBanner';
 import { getMainClasses } from '~utils/css';
 import {
   COLONY_APP_BETA_COLONY,
@@ -216,6 +217,7 @@ const Header = ({
 
   return (
     <div className={getMainClasses(appearance, styles)}>
+      <DiscordBanner />
       <div className={styles.wrapper}>
         <div className={styles.navigationContainer}>
           <div className={styles.leftWrapper}>
