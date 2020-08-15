@@ -44,7 +44,7 @@ const GridItem = ({ body, image, links = [], title }: Props) => (
         </div>
       </div>
       {links.map(({ href, text }) => (
-        <div className={styles.links}>
+        <div className={styles.links} key={href}>
           <Link className={styles.itemLink} href={href} text={text} />
         </div>
       ))}

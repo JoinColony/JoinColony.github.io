@@ -1,12 +1,11 @@
 /* @flow */
 
-import type { WalletObjectType } from '@colony/purser-core';
 import type { IntlShape } from 'react-intl';
 
 import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
-import type { Network, Project, User } from '~types';
+import type { Project } from '~types';
 
 import Button from '~core/Button';
 import Icon from '~core/Icon';
@@ -15,12 +14,7 @@ import NavigationToggle from '~core/NavigationToggle';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
-import {
-  COLONY_DISCOURSE_SUPPORT,
-  PAGE_DEV_DOCS,
-  PAGE_DEVELOPER_PORTAL_CONTRIBUTE,
-  PAGE_DEVELOPER_PORTAL_DASHBOARD,
-} from '~routes';
+import { COLONY_DISCOURSE_SUPPORT, PAGE_INDEX } from '~routes';
 
 import styles from './Header.module.css';
 
@@ -58,11 +52,7 @@ const MSG = defineMessages({
 type Props = {|
   coreProjects: Array<Project>,
   intl: IntlShape,
-  network: ?Network,
   openSourceProjects: Array<Project>,
-  pathDashboard: boolean,
-  user: ?User,
-  wallet: ?WalletObjectType,
 |};
 
 const displayName = 'layouts.DeveloperPortalLayout.Header';
@@ -71,11 +61,7 @@ const Header = ({
   coreProjects,
   intl: { formatMessage },
   intl,
-  network,
   openSourceProjects,
-  pathDashboard,
-  user,
-  wallet,
 }: Props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [navigationStyle, setNavigationStyle] = useState('navigation');
@@ -104,7 +90,7 @@ const Header = ({
     <div className={styles.main}>
       <div className={styles.menuWrapper}>
         <div className={styles.leftWrapper}>
-          <Link href={PAGE_DEV_DOCS}>
+          <Link href={PAGE_INDEX}>
             <Icon
               className={styles.logo}
               name="developerPortal_white"
@@ -112,15 +98,6 @@ const Header = ({
               viewBox="0 0 134 33"
             />
           </Link>
-          {network && wallet && (
-            <div className={styles.network}>
-              <div
-                className={styles.networkDot}
-                style={{ borderColor: network.color }}
-              />
-              {network.name}
-            </div>
-          )}
         </div>
         <div aria-expanded={isNavOpen} className={styles.navContainer}>
           <nav
@@ -170,11 +147,6 @@ const Header = ({
             </span>
             <Link
               className={styles.navLink}
-              href={PAGE_DEVELOPER_PORTAL_CONTRIBUTE}
-              text={MSG.navLinkContribute}
-            />
-            <Link
-              className={styles.navLink}
               href={COLONY_DISCOURSE_SUPPORT}
               text={MSG.navLinkSupport}
             />
@@ -185,18 +157,6 @@ const Header = ({
               inputId={searchInputId}
             />
           </div>
-          <Button
-            appearance={{
-              theme: pathDashboard ? 'primary' : 'primaryHollow',
-              color: pathDashboard ? 'white' : undefined,
-              hover: 'disablePrimary',
-              padding: 'large',
-              size: 'medium',
-            }}
-            className={styles.dashboardButton}
-            linkTo={PAGE_DEVELOPER_PORTAL_DASHBOARD}
-            text={wallet && user ? MSG.navButtonDashboard : MSG.navButtonLogin}
-          />
         </div>
         <div className={styles.navToggle}>
           <NavigationToggle

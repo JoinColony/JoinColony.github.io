@@ -6,11 +6,7 @@ import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
-import {
-  COLONY_DISCOURSE,
-  COLONY_GITHUB,
-  PAGE_GET_STARTED_COLONYJS,
-} from '~routes';
+import { COLONY_DISCOURSE, COLONY_GITHUB, DOCS_COLONYJS } from '~routes';
 
 import HeroFeatureItem from '../HeroFeatureItem';
 
@@ -78,7 +74,7 @@ const Hero = () => (
             contentText={MSG.heroFeatureGetStartedText}
             headingText={MSG.heroFeatureGetStartedTitle}
             linkText={MSG.heroFeatureGetStartedLinkText}
-            linkUrl={PAGE_GET_STARTED_COLONYJS}
+            linkUrl={DOCS_COLONYJS}
           />
         </div>
         <div className={styles.heroFeatureItem}>

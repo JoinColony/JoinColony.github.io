@@ -12,7 +12,7 @@ import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
 import {
-  PAGE_DEV_DOCS,
+  DOCS_COLONY_NETWORK,
   PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
@@ -72,7 +72,7 @@ const slides: { [key: string]: SlideType } = {
   },
   Developers: {
     component: SlideDevelopers,
-    linkHref: PAGE_DEV_DOCS,
+    linkHref: DOCS_COLONY_NETWORK,
   },
 };
 

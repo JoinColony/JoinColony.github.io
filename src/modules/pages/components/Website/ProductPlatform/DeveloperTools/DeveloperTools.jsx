@@ -11,14 +11,12 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
 import {
-  DOCS_COLONY_JS_GET_STARTED,
+  DOCS_COLONYJS,
   DOCS_COLONY_NETWORK,
   DOCS_COLONY_PURSER,
-  DOCS_COLONY_STARTER,
   DOCS_COLONY_TAILOR,
   COLONY_GITHUB_COLONYJS,
   COLONY_GITHUB_COLONYNETWORK,
-  COLONY_GITHUB_COLONYSTARTER,
   COLONY_GITHUB_PINION,
   COLONY_GITHUB_PURSER,
   COLONY_GITHUB_TAILOR,
@@ -98,12 +96,6 @@ const MSG_CORE = defineMessages({
       interface for application-layer integrations with the colonyNetwork
       smart contracts.`,
   },
-  bodyColonyStarter: {
-    id: 'pages.Website.ProductPlatform.DeveloperTools.bodyColonyStarter',
-    defaultMessage: `Boilerplates and examples to get started. Spin up an
-      application in minutes or create an extension for the Colony Network
-      smart contracts.`,
-  },
   bodyColonyNetwork: {
     id: 'pages.Website.ProductPlatform.DeveloperTools.bodyColonyNetwork',
     // @TODO update copy with colonyNetwork text
@@ -173,6 +165,9 @@ const DeveloperTools = () => {
                   className={
                     activeItem === idx ? styles.activeItem : styles.menuItem
                   }
+                  // It's okay to use `idx` for the key here, as these will never be reordered
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={idx}
                   onClick={() => setActiveItem(idx)}
                   type="button"
                 >
@@ -207,16 +202,9 @@ const DeveloperTools = () => {
               <GridItem
                 body={MSG_CORE.bodyColonyJS}
                 iconName="logomark_colonyjs"
-                linkDocs={DOCS_COLONY_JS_GET_STARTED}
+                linkDocs={DOCS_COLONYJS}
                 linkGithub={COLONY_GITHUB_COLONYJS}
                 title="colonyJS"
-              />
-              <GridItem
-                body={MSG_CORE.bodyColonyStarter}
-                iconName="logomark_colonystarter"
-                linkDocs={DOCS_COLONY_STARTER}
-                linkGithub={COLONY_GITHUB_COLONYSTARTER}
-                title="colonyStarter"
               />
               <GridItem
                 body={MSG_CORE.bodyColonyNetwork}
