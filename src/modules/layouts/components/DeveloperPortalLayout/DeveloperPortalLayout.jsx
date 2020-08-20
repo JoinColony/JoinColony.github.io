@@ -3,12 +3,9 @@
 import type { Element } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import React, { Component, useMemo } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import React, { Component } from 'react';
 
-import type { Project } from '~types';
-
-import { transformProjectData } from '~utils/docs';
+import { useDocsLinks } from '~hooks';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -22,27 +19,8 @@ type Props = {|
 
 const displayName = 'layouts.DeveloperPortalLayout';
 
-const DeveloperPortalLayout = ({ children, intl: { locale } }: Props) => {
-  const projectQueryData = useStaticQuery(graphql`
-    {
-      ...coreProjectsFragment
-      ...openSourceProjectsFragment
-    }
-  `);
-  const coreProjects: Array<Project> = useMemo(
-    () =>
-      projectQueryData.coreProjects.edges.map(edge =>
-        transformProjectData(edge, locale),
-      ) || [],
-    [locale, projectQueryData.coreProjects.edges],
-  );
-  const openSourceProjects: Array<Project> = useMemo(
-    () =>
-      projectQueryData.openSourceProjects.edges.map(edge =>
-        transformProjectData(edge, locale),
-      ) || [],
-    [locale, projectQueryData.openSourceProjects.edges],
-  );
+const DeveloperPortalLayout = ({ children, intl }: Props) => {
+  const { coreProjects, openSourceProjects } = useDocsLinks(intl);
 
   return (
     <div>

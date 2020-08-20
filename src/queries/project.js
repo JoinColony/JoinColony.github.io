@@ -56,9 +56,7 @@ export const allProjectsFragment = graphql`
 
 export const coreProjectsFragment = graphql`
   fragment coreProjectsFragment on Query {
-    coreProjects: allProject(
-      filter: { name: { in: ["colonyJS", "colonyNetwork", "colonyStarter"] } }
-    ) {
+    coreProjects: allProject(filter: { name: { in: ["colonyNetwork"] } }) {
       edges {
         node {
           slug
@@ -94,19 +92,29 @@ export const coreProjectsFragment = graphql`
   }
 `;
 
+export const externalProjectsFragment = graphql`
+  fragment externalProjectsFragment on Query {
+    site {
+      siteMetadata {
+        externalDocs {
+          entryPoint
+          logo
+          logoSmall
+          name
+          repoUrl
+          type
+        }
+      }
+    }
+  }
+`;
+
 export const openSourceProjectsFragment = graphql`
   fragment openSourceProjectsFragment on Query {
     openSourceProjects: allProject(
       filter: {
         name: {
-          in: [
-            "budgetBox"
-            "tailor"
-            "pinion"
-            "trufflepig"
-            "purser"
-            "solcover"
-          ]
+          in: ["budgetBox", "tailor", "pinion", "trufflepig", "solcover"]
         }
       }
     ) {

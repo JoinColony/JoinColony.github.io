@@ -61,6 +61,24 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://colony.io`,
     title: 'Colony: A platform for open organizations',
+    externalDocs: [
+      {
+        entryPoint: 'https://joincolony.github.io/colonyJS',
+        logo: '/img/logomark_colonyJS_color.svg',
+        logoSmall: '/img/logomark_colonyJS_red.svg',
+        name: 'colonyJS',
+        repoUrl: 'https://github.com/JoinColony/colonyJS',
+        type: 'core',
+      },
+      {
+        entryPoint: 'https://joincolony.github.io/purser',
+        logo: '/img/purser_color.svg',
+        logoSmall: '/img/logomark_purser_green.svg',
+        name: 'purser',
+        repoUrl: 'https://github.com/JoinColony/purser',
+        type: 'tool',
+      }
+    ]
   },
   plugins: [
     {
