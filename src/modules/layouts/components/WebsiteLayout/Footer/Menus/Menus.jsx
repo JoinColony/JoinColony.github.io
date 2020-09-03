@@ -12,9 +12,6 @@ import {
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_METACOLONY,
   PAGE_ABOUT_VISION,
-  PAGE_DEV_DOCS,
-  PAGE_DEV_TUTORIALS, // eslint-disable-line no-unused-vars
-  PAGE_MEDIA_KIT, // eslint-disable-line no-unused-vars
   PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
 } from '~routes';
@@ -49,14 +46,6 @@ const MSG = defineMessages({
   linkPlatform: {
     id: 'layouts.WebsiteLayout.Footer.Menus.linkPlatform',
     defaultMessage: 'Platform',
-  },
-  linkPortal: {
-    id: 'layouts.WebsiteLayout.Footer.Menus.linkPortal',
-    defaultMessage: 'Portal',
-  },
-  linkTutorials: {
-    id: 'layouts.WebsiteLayout.Footer.Menus.linkTutorials',
-    defaultMessage: 'Tutorials',
   },
   linkSupport: {
     id: 'layouts.WebsiteLayout.Footer.Menus.linkSupport',
@@ -117,17 +106,6 @@ const Menus = () => {
           headingAppearance={{ theme: 'dark' }}
           headingText={MSG.headingDevelopers}
           menuItems={[
-            {
-              className: styles.footerMenuLink,
-              href: PAGE_DEV_DOCS,
-              text: MSG.linkPortal,
-            },
-            // @TODO: add this back in when tutorials are implemented
-            // {
-            //   className: styles.footerMenuLink,
-            //   href: PAGE_DEV_TUTORIALS,
-            //   text: MSG.linkTutorials,
-            // },
             {
               className: styles.footerMenuLink,
               href: COLONY_DISCOURSE_SUPPORT,

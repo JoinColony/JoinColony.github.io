@@ -19,13 +19,11 @@ import {
   COLONY_APP_BETA_COLONY,
   COLONY_DISCORD,
   COLONY_DISCOURSE,
-  DOCS_COLONY_JS_GET_STARTED,
+  DOCS_COLONYJS,
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_VISION,
   PAGE_ABOUT_METACOLONY,
   PAGE_ANCHOR_NEWSLETTER,
-  PAGE_DEV_DOCS,
-  // PAGE_DEV_TUTORIALS,
   PAGE_INDEX,
   PAGE_PRODUCT_APP,
   PAGE_PRODUCT_PLATFORM,
@@ -93,16 +91,6 @@ const MSG = defineMessages({
     defaultMessage: `New to Colony? Welcome! Let’s get started with
       your first project.`,
   },
-  dropdownLinkBodyDevPortal: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevPortal',
-    defaultMessage: `Developer docs for all of Colony's core and community
-      open-source tools.`,
-  },
-  dropdownLinkBodyDevTutorials: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevTutorials',
-    defaultMessage: `Grok key Colony concepts quickly with clear tutorials
-      to help you learn by doing.`,
-  },
   dropdownLinkBodyProductsApp: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyProductsApp',
     defaultMessage: `Tools to organize and incentivize collaborators,
@@ -132,14 +120,6 @@ const MSG = defineMessages({
   dropdownLinkTitleDevGetStarted: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevGetStarted',
     defaultMessage: 'Get started',
-  },
-  dropdownLinkTitleDevPortal: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevPortal',
-    defaultMessage: 'Portal',
-  },
-  dropdownLinkTitleDevTutorials: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevTutorials',
-    defaultMessage: 'Tutorials',
   },
   dropdownLinkTitleProductsApp: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleProductsApp',
@@ -256,24 +236,13 @@ const Header = ({
                 image={withPrefix('img/nav_developers.png')}
                 navItems={[
                   {
-                    body: MSG.dropdownLinkBodyDevPortal,
-                    href: PAGE_DEV_DOCS,
-                    title: MSG.dropdownLinkTitleDevPortal,
-                  },
-                  // @TODO: uncomment once tutorials exist
-                  // {
-                  //   body: MSG.dropdownLinkBodyDevTutorials,
-                  //   href: PAGE_DEV_TUTORIALS,
-                  //   title: MSG.dropdownLinkTitleDevTutorials,
-                  // },
-                  {
                     body: MSG.dropdownLinkBodyDevDiscourse,
                     href: COLONY_DISCOURSE,
                     title: MSG.dropdownLinkTitleDevDiscourse,
                   },
                   {
                     body: MSG.dropdownLinkBodyDevGetStarted,
-                    href: DOCS_COLONY_JS_GET_STARTED,
+                    href: DOCS_COLONYJS,
                     title: MSG.dropdownLinkTitleDevGetStarted,
                   },
                 ]}

@@ -88,7 +88,7 @@ const BuiltOn = () => (
   <GutterSection
     appearance={{ oneSide: 'right', theme: 'pink' }}
     linkRight={{
-      href: 'https://ethereum.org/beginners/',
+      href: 'https://ethereum.org/what-is-ethereum/',
       text: MSG.gutterLink,
     }}
   >

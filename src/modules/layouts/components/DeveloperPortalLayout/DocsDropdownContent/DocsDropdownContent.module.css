@@ -103,4 +103,8 @@
   .menuContent a {
     color: #00284B;
   }
+
+  .menuContainer + .menuContainer {
+    margin-left: 20px;
+  }
 }

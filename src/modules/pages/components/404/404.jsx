@@ -10,7 +10,7 @@ import Paragraph from '~core/Paragraph';
 import DeveloperPortalLayout from '~layouts/DeveloperPortalLayout';
 import WebsiteLayout from '~layouts/WebsiteLayout';
 import SEO from '~parts/SEO';
-import { PAGE_DEV_DOCS, PAGE_INDEX } from '~routes';
+import { DOCS_COLONY_NETWORK, PAGE_DEV_DOCS, PAGE_INDEX } from '~routes';
 
 import styles from './404.module.css';
 
@@ -48,7 +48,7 @@ const NotFoundPage = () => (
                 appearance={{ size: 'medium' }}
                 text={MSG.contentExplanation}
               />
-              <Link href={PAGE_DEV_DOCS} text={MSG.linkDevPortalHome} />
+              <Link href={DOCS_COLONY_NETWORK} text={MSG.linkDevPortalHome} />
             </div>
           </main>
         </DeveloperPortalLayout>

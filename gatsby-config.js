@@ -16,22 +16,6 @@ const prefixDefaultLangKey = false;
 
 const sourcePlugins = {
   development: [
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'budgetBox',
-    //     path: path.resolve(__dirname, '..', 'budgetBox', 'docs'),
-    //     ignore: [ '**/templates/*' ],
-    //   },
-    // },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'colonyJS',
-        path: path.resolve(__dirname, '..', 'colonyJS', 'docs'),
-        ignore: ['**/templates/*'],
-      },
-    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -43,56 +27,9 @@ const sourcePlugins = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'colonyStarter',
-        path: path.resolve(__dirname, '..', 'colonyStarter', 'docs'),
-        ignore: ['**/templates/*'],
-      },
-    },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'pinion',
-    //     path: path.resolve(__dirname, '..', 'pinion', 'docs'),
-    //     ignore: [ '**/templates/*' ],
-    //   },
-    // },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'purser',
-        path: path.resolve(__dirname, '..', 'purser', 'docs'),
-        ignore: ['**/templates/*'],
-      },
-    },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'solcover',
-    //     path: path.resolve(__dirname, '..', 'solcover', 'docs'),
-    //     ignore: [ '**/templates/*' ],
-    //   },
-    // },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
         name: 'tailor',
         path: path.resolve(__dirname, '..', 'tailor', 'docs'),
         ignore: ['**/templates/*'],
-      },
-    },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'trufflepig',
-    //     path: path.resolve(__dirname, '..', 'trufflepig', 'docs'),
-    //     ignore: [ '**/templates/*' ],
-    //   },
-    // },
-    {
-      resolve: `gatsby-source-ghost`,
-      options: {
-        apiUrl: 'https://blog.colony.io',
-        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
       },
     },
   ],
@@ -102,12 +39,6 @@ const sourcePlugins = {
       options: {
         githubAccessToken: process.env.DOCS_GITHUB_TOKEN,
         projects: [
-          // {
-          //   owner: 'JoinColony',
-          //   repo: 'budgetBox',
-          //   expression: 'master:docs/',
-          //   name: 'budgetBox',
-          // },
           {
             owner: 'JoinColony',
             repo: 'colonyNetwork',
@@ -116,54 +47,11 @@ const sourcePlugins = {
           },
           {
             owner: 'JoinColony',
-            repo: 'colonyJS',
-            expression: 'master:docs/',
-            name: 'colonyJS',
-          },
-          {
-            owner: 'JoinColony',
-            repo: 'colonyStarter',
-            expression: 'master:docs/',
-            name: 'colonyStarter',
-          },
-          // {
-          //   owner: 'JoinColony',
-          //   repo: 'pinion',
-          //   expression: 'master:docs/',
-          //   name: 'pinion',
-          // },
-          {
-            owner: 'JoinColony',
-            repo: 'purser',
-            expression: 'master:docs/',
-            name: 'purser',
-          },
-          // {
-          //   owner: 'JoinColony',
-          //   repo: 'solcover',
-          //   expression: 'master:docs/',
-          //   name: 'solcover',
-          // },
-          {
-            owner: 'JoinColony',
             repo: 'tailor',
             expression: 'master:docs/',
             name: 'tailor',
           },
-          // {
-          //   owner: 'JoinColony',
-          //   repo: 'trufflepig',
-          //   expression: 'master:docs/',
-          //   name: 'trufflepig',
-          // },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-source-ghost`,
-      options: {
-        apiUrl: 'https://blog.colony.io',
-        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
       },
     },
   ],
@@ -173,6 +61,24 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://colony.io`,
     title: 'Colony: A platform for open organizations',
+    externalDocs: [
+      {
+        entryPoint: 'https://joincolony.github.io/colonyJS',
+        logo: '/img/logomark_colonyJS_color.svg',
+        logoSmall: '/img/logomark_colonyJS_red.svg',
+        name: 'colonyJS',
+        repoUrl: 'https://github.com/JoinColony/colonyJS',
+        type: 'core',
+      },
+      {
+        entryPoint: 'https://joincolony.github.io/purser',
+        logo: '/img/purser_color.svg',
+        logoSmall: '/img/logomark_purser_green.svg',
+        name: 'purser',
+        repoUrl: 'https://github.com/JoinColony/purser',
+        type: 'tool',
+      }
+    ]
   },
   plugins: [
     {
@@ -196,10 +102,7 @@ module.exports = {
           prefixDefaultLangKey,
         },
         projects: [
-          'colonyJS',
           'colonyNetwork',
-          'colonyStarter',
-          'purser',
           'tailor',
         ],
         slugPrefix: 'dev/docs',
@@ -231,6 +134,13 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: 'https://blog.colony.io',
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
       },
     },
     'gatsby-plugin-flow',
