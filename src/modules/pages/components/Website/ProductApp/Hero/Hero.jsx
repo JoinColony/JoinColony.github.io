@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { useContext } from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
 import Announcement from '~core/Announcement';
@@ -10,9 +10,9 @@ import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
+import Popover from '~core/Popover';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { COLONY_APP } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -34,6 +34,11 @@ const MSG = defineMessages({
   buttonText: {
     id: 'pages.Website.ProductApp.Hero.buttonText',
     defaultMessage: 'Get Started',
+  },
+  tooltipColonyCreationDisabled: {
+    id: 'users.CreateColonyWizard.StepColonyName.tooltipColonyCreationDisabled',
+    // eslint-disable-next-line max-len
+    defaultMessage: `Due to the extraordinarily high Ethereum gas prices, we’ve decided to disable colony creation to prevent new users from incurring unexpectedly high costs. A new and improved Colony V2 will be available on xDai soon!`,
   },
 });
 
@@ -64,16 +69,46 @@ const Hero = () => {
             />
             <div className={styles.body}>
               <Paragraph appearance={{ size: 'medium' }} text={MSG.body} />
-              <Button
-                appearance={{
-                  borderRadius: 'none',
-                  size: 'large',
-                  theme: 'primary',
-                }}
-                className={styles.button}
-                linkTo={COLONY_APP}
-                text={MSG.buttonText}
-              />
+              <span className={styles.docsDropdownParent}>
+                <Popover
+                  appearance={{ theme: 'dark' }}
+                  content={() => (
+                    <div className={styles.colonyCreationDisabled}>
+                      <FormattedMessage
+                        {...MSG.tooltipColonyCreationDisabled}
+                      />
+                    </div>
+                  )}
+                  /*
+                   * `isOpen` is always true for a11y purposes. This ensures the dropdown
+                   * menu is always in the DOM, and visibility is controlled via CSS.
+                   */
+                  isOpen
+                  placement="top"
+                  popperProps={{
+                    modifiers: {
+                      offset: {
+                        offset: '0, 15px',
+                      },
+                    },
+                  }}
+                  trigger="disabled"
+                  wrapperClassName={styles.docsDropdownContainer}
+                >
+                  <span>
+                    <Button
+                      appearance={{
+                        borderRadius: 'none',
+                        size: 'large',
+                        theme: 'primary',
+                      }}
+                      className={styles.button}
+                      text={MSG.buttonText}
+                      disabled
+                    />
+                  </span>
+                </Popover>
+              </span>
             </div>
           </div>
         </div>

@@ -4,12 +4,10 @@ import React, { useContext } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import Announcement from '~core/Announcement';
-import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { COLONY_APP_BETA_COLONY } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -98,15 +96,6 @@ const Hero = () => {
           >
             <FormattedMessage {...MSG.subTitle} values={{ br: <br /> }} />
           </Heading>
-          <Button
-            appearance={{
-              borderRadius: 'none',
-              padding: 'huge',
-              theme: 'primary',
-            }}
-            linkTo={COLONY_APP_BETA_COLONY}
-            text={MSG.buttonText}
-          />
         </div>
         <div className={styles.subBodyContainer}>
           <Paragraph appearance={{ margin: 'none' }} text={MSG.subBody} />

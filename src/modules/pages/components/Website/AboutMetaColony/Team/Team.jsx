@@ -4,11 +4,9 @@ import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { withPrefix } from 'gatsby';
 
-import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
-import { COLONY_APP_BETA_COLONY } from '~routes';
 
 import styles from './Team.module.css';
 
@@ -75,17 +73,6 @@ const Team = () => (
             }}
             text={MSG.subTitle}
           />
-          <div className={styles.buttonContainer}>
-            <Button
-              appearance={{
-                borderRadius: 'none',
-                padding: 'huge',
-                theme: 'primary',
-              }}
-              linkTo={COLONY_APP_BETA_COLONY}
-              text={MSG.button}
-            />
-          </div>
         </div>
       </div>
     </div>

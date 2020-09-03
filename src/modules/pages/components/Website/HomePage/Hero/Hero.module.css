@@ -39,6 +39,23 @@
   color: #ffffff;
 }
 
+.main .button:disabled:hover,
+.main .button:disabled:active {
+  background-color: #788CA0;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.docsDropdownParent .docsDropdownContainer {
+  display: none;
+  visibility: hidden;
+}
+
+.colonyCreationDisabled {
+  width: 420px;
+  padding: 15px;
+}
+
 @media (mediumUp) {
   .imageContainer {
     display: flex;
@@ -46,6 +63,15 @@
 
   .textContainer {
     padding: 20px 280px 20px 120px;
+  }
+
+   .docsDropdownParent .docsDropdownContainer {
+    display: block;
+  }
+
+  .docsDropdownParent:hover .docsDropdownContainer,
+  .docsDropdownParent:focus-within .docsDropdownContainer {
+    visibility: visible;
   }
 }
 

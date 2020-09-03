@@ -16,7 +16,6 @@ import Link from '~core/Link';
 import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
-  COLONY_APP_BETA_COLONY,
   COLONY_DISCORD,
   COLONY_DISCOURSE,
   DOCS_COLONYJS,
@@ -275,22 +274,7 @@ const Header = ({
                 href={COLONY_DISCORD}
                 text={MSG.navLinkCommunity}
               />
-              <Link
-                className={styles.navLinkAlt}
-                href={COLONY_APP_BETA_COLONY}
-                text={MSG.navLinkBetaColony}
-              />
               <div className={styles.mobileButtons}>
-                <Button
-                  appearance={{
-                    borderRadius: 'none',
-                    font: 'tiny',
-                    theme: 'primaryHollow',
-                  }}
-                  className={styles.mobileButton}
-                  linkTo={COLONY_APP_BETA_COLONY}
-                  text={MSG.navLinkBetaColony}
-                />
                 <Button
                   appearance={{
                     borderRadius: 'none',
