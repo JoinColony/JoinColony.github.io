@@ -20,11 +20,11 @@ import styles from './Hero.module.css';
 const MSG = defineMessages({
   title: {
     id: 'pages.Website.HomePage.Hero.title',
-    defaultMessage: 'A platform for community collaboration.',
+    defaultMessage: 'Organizations, for the Internet.',
   },
   description: {
     id: 'pages.Website.HomePage.Hero.description',
-    defaultMessage: `Do work, make decisions, and manage money, together.`,
+    defaultMessage: `Colony makes it easy for people all over the world to build organizations together, online.`,
   },
   announcement: {
     id: 'pages.Website.HomePage.Hero.announcement',
