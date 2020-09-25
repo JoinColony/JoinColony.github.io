@@ -11,15 +11,15 @@ import styles from './TLDR.module.css';
 const MSG = defineMessages({
   headingOne: {
     id: 'pages.Website.HomePage.TLDR.headingOne',
-    defaultMessage: 'As easy as a web forum',
+    defaultMessage: 'DAOs made easy',
   },
   headingTwo: {
     id: 'pages.Website.HomePage.TLDR.headingTwo',
-    defaultMessage: 'Software eats middle management',
+    defaultMessage: 'Powerful on-chain governance',
   },
   headingThree: {
     id: 'pages.Website.HomePage.TLDR.headingThree',
-    defaultMessage: 'Incentivize global talent',
+    defaultMessage: 'Open, flexible, and extensible',
   },
   title: {
     id: 'pages.Website.HomePage.TLDR.title',
@@ -27,18 +27,18 @@ const MSG = defineMessages({
   },
   textOne: {
     id: 'pages.Website.HomePage.TLDR.textOne',
-    defaultMessage: `A colony is a new kind of internet-native digital
-      company where rules are enforced by software instead of hierarchy.`,
+    defaultMessage: `Start an organization, give it structure, incentivize
+    contributors, award reputation, and manage funds. No coding required.`,
   },
   textTwo: {
     id: 'pages.Website.HomePage.TLDR.textTwo',
-    defaultMessage: `Streamlining and automating business administration,
-      and distributing authority, means fewer people can get more done.`,
+    defaultMessage: `Smart, social decision making mechanisms help your
+    organization get stuff done, avoiding voting where possible.`,
   },
   textThree: {
     id: 'pages.Website.HomePage.TLDR.textThree',
-    defaultMessage: `Issue your colony's token, bootstrap its value, and
-      reward people for work instantly, internationally, for free.`,
+    defaultMessage: `Colony is open source and modular, enabling you to
+    plug-in extensions to run your organisation your way.`,
   },
 });
 
