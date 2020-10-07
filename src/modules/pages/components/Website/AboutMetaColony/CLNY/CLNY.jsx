@@ -44,9 +44,9 @@ const MSG = defineMessages({
   },
   bodyRevenue: {
     id: 'pages.Website.AboutMetaColony.CLNY.bodyRevenue',
-    defaultMessage: `The Colony Network levies a 2.77% fee on all
-      Payments and Rewards payouts. Fees denominated in ETH or
-      DAI are revenue, and are split between the Metacolony's working
+    defaultMessage: `The Colony Network levies a small fee on funds
+      exiting a colony to an external address. Fees denominated in ETH
+      are revenue, and are split between the Metacolony's working
       capital pot and its Rewards pot. Accounts holding both CLNY
       and Reputation in the Metacolony may claim a proportional share
       of its Rewards pot.`,
