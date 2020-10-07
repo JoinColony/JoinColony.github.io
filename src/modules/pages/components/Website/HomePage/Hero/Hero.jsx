@@ -24,6 +24,7 @@ const MSG = defineMessages({
   },
   description: {
     id: 'pages.Website.HomePage.Hero.description',
+    // eslint-disable-next-line max-len
     defaultMessage: `Colony makes it easy for people all over the world to build organizations together, online.`,
   },
   announcement: {
