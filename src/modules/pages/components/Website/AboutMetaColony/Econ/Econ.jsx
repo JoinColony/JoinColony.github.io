@@ -18,8 +18,8 @@ const MSG = defineMessages({
   },
   feeTextOne: {
     id: 'pages.Website.AboutMetaColony.Econ.feeTextOne',
-    defaultMessage: `The Colony Network levies a 2.77% fee on all
-      Payments from each colony.`,
+    defaultMessage: `The Colony Network levies a small fee on
+      Payments leaving a colony to an external address.`,
   },
   feeTextTwo: {
     id: 'pages.Website.AboutMetaColony.Econ.feeTextTwo',
