@@ -4,6 +4,9 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.12
+        auth:
+          username: colonyci
+          password: $COLONYCI_DOCKERHUB_PASSWORD
     working_directory: ~/repo
     steps:
       - checkout
@@ -27,6 +30,9 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:10.1
+        auth:
+          username: colonyci
+          password: $COLONYCI_DOCKERHUB_PASSWORD
     working_directory: ~/repo
     steps:
       - checkout
@@ -51,8 +57,10 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
+      - build:
+          context: dockerhub-credentials
       - deploy:
+          context: dockerhub-credentials
           requires:
             - build
           filters:
