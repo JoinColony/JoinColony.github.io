@@ -64,6 +64,9 @@ export const DOCS_COLONY_PURSER = 'https://joincolony.github.io/purser/';
 export const DOCS_COLONY_TAILOR =
   'https://colony.io/dev/docs/tailor/docs-overview';
 
+export const EARLY_ACCESS_FORM_LINK =
+  'https://form.typeform.com/to/EMRdhzCa?typeform-medium=embed-sdk&typeform-embed=embed-widget&typeform-source=blog.colony.io&typeform-embed-id=0ir1g'; // eslint-disable-line max-len
+
 /*
  * Page Anchor Ids
  */

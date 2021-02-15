@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { useCallback, useContext } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { navigate } from '@reach/router';
 
 import Announcement from '~core/Announcement';
@@ -10,10 +10,9 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
-import Popover from '~core/Popover';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { PAGE_CONTACT } from '~routes';
+import { PAGE_CONTACT, EARLY_ACCESS_FORM_LINK } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -93,6 +92,7 @@ const Hero = () => {
                 }}
                 className={styles.button}
                 text={MSG.buttonGetStarted}
+                linkTo={EARLY_ACCESS_FORM_LINK}
               />
             </span>
           </div>
