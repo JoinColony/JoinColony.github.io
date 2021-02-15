@@ -41,8 +41,8 @@ const MSG = defineMessages({
   },
   buttonGetStarted: {
     id: 'pages.Website.HomePage.Hero.buttonGetStarted',
-    defaultMessage: 'Get Started',
-  }
+    defaultMessage: 'Get early access',
+  },
 });
 
 const displayName = 'pages.Website.HomePage.Hero';
@@ -89,7 +89,6 @@ const Hero = () => {
               <Button
                 appearance={{
                   borderRadius: 'none',
-                  size: 'large',
                   theme: 'primary',
                 }}
                 className={styles.button}
