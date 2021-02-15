@@ -8,7 +8,6 @@ import Announcement from '~core/Announcement';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
-import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
@@ -29,14 +28,6 @@ const MSG = defineMessages({
   announcement: {
     id: 'pages.Website.HomePage.Hero.announcement',
     defaultMessage: 'Glider is live on mainnet!',
-  },
-  inputPlaceholder: {
-    id: 'pages.Website.HomePage.Hero.inputPlaceholder',
-    defaultMessage: 'Need help getting started?',
-  },
-  buttonSubmit: {
-    id: 'pages.Website.HomePage.Hero.buttonSubmit',
-    defaultMessage: 'Get in touch',
   },
   buttonGetStarted: {
     id: 'pages.Website.HomePage.Hero.buttonGetStarted',
@@ -97,13 +88,6 @@ const Hero = () => {
             </span>
           </div>
         </div>
-        <InputGroup
-          buttonText={MSG.buttonSubmit}
-          id={`${displayName}.earlyAccess`}
-          onSubmit={handleSubmit}
-          placeholder={MSG.inputPlaceholder}
-          type="email"
-        />
       </div>
     </div>
   );
