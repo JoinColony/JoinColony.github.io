@@ -1,19 +1,17 @@
 /* @flow */
 
 import React, { useCallback, useContext } from 'react';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { navigate } from '@reach/router';
 
 import Announcement from '~core/Announcement';
 import Button from '~core/Button';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
-import InputGroup from '~core/InputGroup';
 import Paragraph from '~core/Paragraph';
-import Popover from '~core/Popover';
 import ThemeContext from '~layouts/WebsiteLayout/context';
 import SEO from '~parts/SEO';
-import { PAGE_CONTACT } from '~routes';
+import { PAGE_CONTACT, EARLY_ACCESS_FORM_LINK } from '~routes';
 
 import styles from './Hero.module.css';
 
@@ -31,22 +29,9 @@ const MSG = defineMessages({
     id: 'pages.Website.HomePage.Hero.announcement',
     defaultMessage: 'Glider is live on mainnet!',
   },
-  inputPlaceholder: {
-    id: 'pages.Website.HomePage.Hero.inputPlaceholder',
-    defaultMessage: 'Need help getting started?',
-  },
-  buttonSubmit: {
-    id: 'pages.Website.HomePage.Hero.buttonSubmit',
-    defaultMessage: 'Get in touch',
-  },
   buttonGetStarted: {
     id: 'pages.Website.HomePage.Hero.buttonGetStarted',
-    defaultMessage: 'Get Started',
-  },
-  tooltipColonyCreationDisabled: {
-    id: 'users.CreateColonyWizard.StepColonyName.tooltipColonyCreationDisabled',
-    // eslint-disable-next-line max-len
-    defaultMessage: `Due to the extraordinarily high Ethereum gas prices, we’ve decided to disable colony creation to prevent new users from incurring unexpectedly high costs. A new and improved Colony V2 will be available on xDai soon!`,
+    defaultMessage: 'Get early access',
   },
 });
 
@@ -91,52 +76,18 @@ const Hero = () => {
               text={MSG.description}
             />
             <span className={styles.docsDropdownParent}>
-              <Popover
-                appearance={{ theme: 'grey' }}
-                content={() => (
-                  <div className={styles.colonyCreationDisabled}>
-                    <FormattedMessage {...MSG.tooltipColonyCreationDisabled} />
-                  </div>
-                )}
-                /*
-                 * `isOpen` is always true for a11y purposes. This ensures the dropdown
-                 * menu is always in the DOM, and visibility is controlled via CSS.
-                 */
-                isOpen
-                placement="top"
-                popperProps={{
-                  modifiers: {
-                    offset: {
-                      offset: '0, 15px',
-                    },
-                  },
+              <Button
+                appearance={{
+                  borderRadius: 'none',
+                  theme: 'primary',
                 }}
-                trigger="disabled"
-                wrapperClassName={styles.docsDropdownContainer}
-              >
-                <span>
-                  <Button
-                    appearance={{
-                      borderRadius: 'none',
-                      size: 'large',
-                      theme: 'primary',
-                    }}
-                    className={styles.button}
-                    text={MSG.buttonGetStarted}
-                    disabled
-                  />
-                </span>
-              </Popover>
+                className={styles.button}
+                text={MSG.buttonGetStarted}
+                linkTo={EARLY_ACCESS_FORM_LINK}
+              />
             </span>
           </div>
         </div>
-        <InputGroup
-          buttonText={MSG.buttonSubmit}
-          id={`${displayName}.earlyAccess`}
-          onSubmit={handleSubmit}
-          placeholder={MSG.inputPlaceholder}
-          type="email"
-        />
       </div>
     </div>
   );

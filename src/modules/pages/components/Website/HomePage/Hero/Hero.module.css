@@ -46,6 +46,10 @@
   color: #ffffff;
 }
 
+.button {
+  height: 40px;
+}
+
 .docsDropdownParent .docsDropdownContainer {
   display: none;
   visibility: hidden;
