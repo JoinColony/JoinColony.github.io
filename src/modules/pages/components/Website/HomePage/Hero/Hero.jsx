@@ -42,12 +42,7 @@ const MSG = defineMessages({
   buttonGetStarted: {
     id: 'pages.Website.HomePage.Hero.buttonGetStarted',
     defaultMessage: 'Get Started',
-  },
-  tooltipColonyCreationDisabled: {
-    id: 'users.CreateColonyWizard.StepColonyName.tooltipColonyCreationDisabled',
-    // eslint-disable-next-line max-len
-    defaultMessage: `Due to the extraordinarily high Ethereum gas prices, we’ve decided to disable colony creation to prevent new users from incurring unexpectedly high costs. A new and improved Colony V2 will be available on xDai soon!`,
-  },
+  }
 });
 
 const displayName = 'pages.Website.HomePage.Hero';
@@ -91,42 +86,15 @@ const Hero = () => {
               text={MSG.description}
             />
             <span className={styles.docsDropdownParent}>
-              <Popover
-                appearance={{ theme: 'grey' }}
-                content={() => (
-                  <div className={styles.colonyCreationDisabled}>
-                    <FormattedMessage {...MSG.tooltipColonyCreationDisabled} />
-                  </div>
-                )}
-                /*
-                 * `isOpen` is always true for a11y purposes. This ensures the dropdown
-                 * menu is always in the DOM, and visibility is controlled via CSS.
-                 */
-                isOpen
-                placement="top"
-                popperProps={{
-                  modifiers: {
-                    offset: {
-                      offset: '0, 15px',
-                    },
-                  },
+              <Button
+                appearance={{
+                  borderRadius: 'none',
+                  size: 'large',
+                  theme: 'primary',
                 }}
-                trigger="disabled"
-                wrapperClassName={styles.docsDropdownContainer}
-              >
-                <span>
-                  <Button
-                    appearance={{
-                      borderRadius: 'none',
-                      size: 'large',
-                      theme: 'primary',
-                    }}
-                    className={styles.button}
-                    text={MSG.buttonGetStarted}
-                    disabled
-                  />
-                </span>
-              </Popover>
+                className={styles.button}
+                text={MSG.buttonGetStarted}
+              />
             </span>
           </div>
         </div>
