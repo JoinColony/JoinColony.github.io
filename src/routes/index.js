@@ -29,7 +29,7 @@ export const PAGE_TERMS_SERVICE = '/terms';
  * Absolute
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
-export const COLONY_DISCORD = 'https://discord.gg/PDEQvrC';
+export const COLONY_DISCORD = 'https://discord.gg/Qjupxvg';
 export const COLONY_DISCOURSE = 'https://build.colony.io';
 export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
 export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;
