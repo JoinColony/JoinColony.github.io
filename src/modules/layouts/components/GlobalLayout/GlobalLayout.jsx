@@ -128,7 +128,8 @@ const GlobalLayout = ({ children, location }: Props) => {
       }
     }
   `);
-  const trackingId = process.env.GOOGLE_ANALYTICS_TRACKING_ID || '';
+  const GoogleTagManagerId = process.env.GOOGLE_ANALYTICS_TRACKING_ID || '';
+  const SumoId = process.env.SUMO_TRACKING_ID || '';
   return (
     <>
       <Helmet>
@@ -138,20 +139,21 @@ const GlobalLayout = ({ children, location }: Props) => {
           href={withPrefix('/img/favicon.ico')}
         />
         <script src={withPrefix('/js/fontloader.js')} />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}
-        />
-        <script>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${trackingId}');
-          `}
-        </script>
       </Helmet>
       <FileContext.Provider value={getFileMapping(data.files.edges)}>
+        <noscript>
+          <iframe
+            title="googletagmanager"
+            // eslint-disable-next-line max-len
+            src={`https://www.googletagmanager.com/ns.html?id=${GoogleTagManagerId}`}
+            height="0"
+            width="0"
+            style={{
+              display: 'none',
+              visibility: 'hidden',
+            }}
+          />
+        </noscript>
         <IntlProvider
           locale={locale}
           defaultLocale={DEFAULT_LOCALE}
@@ -160,6 +162,16 @@ const GlobalLayout = ({ children, location }: Props) => {
           {children}
         </IntlProvider>
       </FileContext.Provider>
+      <script async>
+        {`function(s,u,m,o,j,v) {
+            j = u.createElement(m);
+            v=u.getElementsByTagName(m)[0];
+            j.async=1;
+            j.src=o;
+            j.dataset.sumoSiteId='${SumoId}';
+            v.parentNode.insertBefore(j,v);
+          })(window,document,'script','//load.sumo.com/');`}
+      </script>
     </>
   );
 };
