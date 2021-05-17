@@ -128,7 +128,8 @@ const GlobalLayout = ({ children, location }: Props) => {
       }
     }
   `);
-  const trackingId = process.env.GOOGLE_ANALYTICS_TRACKING_ID || '';
+  const GoogleTagManagerId = process.env.GOOGLE_ANALYTICS_TRACKING_ID || '';
+  const SumoId = process.env.SUMO_TRACKING_ID || '';
   return (
     <>
       <Helmet>
@@ -143,7 +144,8 @@ const GlobalLayout = ({ children, location }: Props) => {
         <noscript>
           <iframe
             title="googletagmanager"
-            src={`https://www.googletagmanager.com/ns.html?id=${trackingId}`}
+            // eslint-disable-next-line max-len
+            src={`https://www.googletagmanager.com/ns.html?id=${GoogleTagManagerId}`}
             height="0"
             width="0"
             style={{
@@ -160,6 +162,16 @@ const GlobalLayout = ({ children, location }: Props) => {
           {children}
         </IntlProvider>
       </FileContext.Provider>
+      <script async>
+        {`function(s,u,m,o,j,v) {
+            j = u.createElement(m);
+            v=u.getElementsByTagName(m)[0];
+            j.async=1;
+            j.src=o;
+            j.dataset.sumoSiteId='${SumoId}';
+            v.parentNode.insertBefore(j,v);
+          })(window,document,'script','//load.sumo.com/');`}
+      </script>
     </>
   );
 };
