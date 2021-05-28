@@ -10,7 +10,7 @@ import Link from '~core/Link';
 import VerticalMenu from '~core/VerticalMenu';
 import MetaNav from '~parts/MetaNav';
 import SocialNav from '~parts/SocialNav';
-import { COLONY_DISCOURSE, COLONY_WEBSITE } from '~routes';
+import { COLONY_DISCORD, COLONY_WEBSITE } from '~routes';
 
 import { coreProjectSortOrder } from '~pages/Developers/CoreProducts';
 import { openSourceProjectSortOrder } from '~pages/Developers/OpenSource';
@@ -97,7 +97,7 @@ const Footer = ({ coreProjects, openSourceProjects }: Props) => {
                 headingText={MSG.navTitleGetStarted}
                 menuItems={[
                   {
-                    href: COLONY_DISCOURSE,
+                    href: COLONY_DISCORD,
                     text: MSG.navLinkSupport,
                   },
                 ]}

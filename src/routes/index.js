@@ -30,9 +30,6 @@ export const PAGE_TERMS_SERVICE = '/terms';
  */
 export const COLONY_BLOG = 'https://blog.colony.io';
 export const COLONY_DISCORD = 'https://discord.gg/Qjupxvg';
-export const COLONY_DISCOURSE = 'https://build.colony.io';
-export const COLONY_DISCOURSE_PROJECTS = `${COLONY_DISCOURSE}/c/projects`;
-export const COLONY_DISCOURSE_SUPPORT = `${COLONY_DISCOURSE}/c/support`;
 export const COLONY_GITHUB = 'https://github.com/JoinColony';
 export const COLONY_GITHUB_BUDGETBOX =
   'https://github.com/JoinColony/budgetBox';

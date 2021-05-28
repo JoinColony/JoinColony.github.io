@@ -8,7 +8,7 @@ import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
-import { COLONY_DISCOURSE } from '~routes';
+import { COLONY_DISCORD } from '~routes';
 
 import styles from './Examples.module.css';
 
@@ -147,7 +147,7 @@ const Examples = () => {
 
   return (
     <GutterSection
-      linkRight={{ href: COLONY_DISCOURSE, text: MSG.gutterLinkText }}
+      linkRight={{ href: COLONY_DISCORD, text: MSG.gutterLinkText }}
     >
       <div className={styles.main}>
         <div className={styles.introRow}>
