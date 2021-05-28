@@ -3,7 +3,7 @@
 import React from 'react';
 import { defineMessages } from 'react-intl';
 
-import { COLONY_DISCOURSE_SUPPORT } from '~routes';
+import { COLONY_DISCORD } from '~routes';
 
 import CtaItem from './CtaItem';
 
@@ -52,7 +52,7 @@ const DevRelCta = ({ editUrl }: Props) => (
         contentText={MSG.supportContent}
         headingText={MSG.supportHeading}
         linkText={MSG.supportLinkText}
-        linkUrl={COLONY_DISCOURSE_SUPPORT}
+        linkUrl={COLONY_DISCORD}
       />
     </div>
     <div className={styles.ctaItem}>

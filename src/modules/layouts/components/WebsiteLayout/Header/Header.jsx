@@ -17,7 +17,6 @@ import NavigationToggle from '~core/NavigationToggle';
 import { getMainClasses } from '~utils/css';
 import {
   COLONY_DISCORD,
-  COLONY_DISCOURSE,
   DOCS_COLONYJS,
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_VISION,
@@ -80,9 +79,9 @@ const MSG = defineMessages({
     defaultMessage: `Read about Colony's vision for the future of the firm. It
       get's weird.`,
   },
-  dropdownLinkBodyDevDiscourse: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevDiscourse',
-    defaultMessage: `Come and join the community on Discourse. Discuss projects,
+  dropdownLinkBodyDevDiscord: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkBodyDevDiscord',
+    defaultMessage: `Come and join the community on Discord. Discuss projects,
       technical questions, and more.`,
   },
   dropdownLinkBodyDevGetStarted: {
@@ -112,9 +111,9 @@ const MSG = defineMessages({
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleAboutVision',
     defaultMessage: 'Vision',
   },
-  dropdownLinkTitleDevDiscourse: {
-    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevDiscourse',
-    defaultMessage: 'Discourse',
+  dropdownLinkTitleDevDiscord: {
+    id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevDiscord',
+    defaultMessage: 'Discord',
   },
   dropdownLinkTitleDevGetStarted: {
     id: 'layouts.WebsiteLayout.Header.dropdownLinkTitleDevGetStarted',
@@ -235,9 +234,9 @@ const Header = ({
                 image={withPrefix('img/nav_developers.png')}
                 navItems={[
                   {
-                    body: MSG.dropdownLinkBodyDevDiscourse,
-                    href: COLONY_DISCOURSE,
-                    title: MSG.dropdownLinkTitleDevDiscourse,
+                    body: MSG.dropdownLinkBodyDevDiscord,
+                    href: COLONY_DISCORD,
+                    title: MSG.dropdownLinkTitleDevDiscord,
                   },
                   {
                     body: MSG.dropdownLinkBodyDevGetStarted,

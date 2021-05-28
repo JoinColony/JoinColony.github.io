@@ -10,7 +10,7 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import Paragraph from '~core/Paragraph';
 import GutterSection from '~parts/GutterSection';
-import { COLONY_DISCOURSE, COLONY_GITHUB_BUDGETBOX } from '~routes';
+import { COLONY_DISCORD, COLONY_GITHUB_BUDGETBOX } from '~routes';
 
 import styles from './Modules.module.css';
 
@@ -94,7 +94,7 @@ const SubItem = ({
 const displayName = 'pages.Website.AboutColonyNetwork.Modules';
 
 const Modules = () => (
-  <GutterSection linkLeft={{ href: COLONY_DISCOURSE, text: MSG.linkGutter }}>
+  <GutterSection linkLeft={{ href: COLONY_DISCORD, text: MSG.linkGutter }}>
     <div className={styles.mainContentRow}>
       <div className={styles.titleContent}>
         <Heading

@@ -7,7 +7,7 @@ import { withPrefix } from 'gatsby';
 import VerticalMenu from '~core/VerticalMenu';
 import {
   COLONY_BLOG,
-  COLONY_DISCOURSE_SUPPORT,
+  COLONY_DISCORD,
   COLONY_GITHUB_BUDGETBOX,
   PAGE_ABOUT_COLONY_NETWORK,
   PAGE_ABOUT_METACOLONY,
@@ -108,7 +108,7 @@ const Menus = () => {
           menuItems={[
             {
               className: styles.footerMenuLink,
-              href: COLONY_DISCOURSE_SUPPORT,
+              href: COLONY_DISCORD,
               text: MSG.linkSupport,
             },
           ]}

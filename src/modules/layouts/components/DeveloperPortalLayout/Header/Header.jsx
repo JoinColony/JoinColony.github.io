@@ -14,7 +14,7 @@ import NavigationToggle from '~core/NavigationToggle';
 import Popover from '~core/Popover';
 import Search from '~core/Search';
 import DocsDropdownContent from '~layouts/DeveloperPortalLayout/DocsDropdownContent';
-import { COLONY_DISCOURSE_SUPPORT, PAGE_INDEX } from '~routes';
+import { COLONY_DISCORD, PAGE_INDEX } from '~routes';
 
 import styles from './Header.module.css';
 
@@ -147,7 +147,7 @@ const Header = ({
             </span>
             <Link
               className={styles.navLink}
-              href={COLONY_DISCOURSE_SUPPORT}
+              href={COLONY_DISCORD}
               text={MSG.navLinkSupport}
             />
           </nav>

@@ -6,7 +6,6 @@ import Icon from '~core/Icon';
 import Link from '~core/Link';
 import {
   COLONY_BLOG,
-  COLONY_DISCOURSE,
   COLONY_DISCORD,
   COLONY_GITHUB,
   COLONY_TWITTER,
@@ -40,13 +39,6 @@ const SocialNav = ({ appearance }: Props) => (
           className={styles.socialIcon}
           title="Twitter"
           name="social_twitter_devPortal"
-        />
-      </Link>
-      <Link alt="Discourse" href={COLONY_DISCOURSE}>
-        <Icon
-          className={styles.socialIcon}
-          title="Discourse"
-          name="social_discourse_devPortal"
         />
       </Link>
       <Link alt="GitHub" href={COLONY_GITHUB}>

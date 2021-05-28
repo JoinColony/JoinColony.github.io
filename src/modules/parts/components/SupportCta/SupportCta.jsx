@@ -6,7 +6,7 @@ import { defineMessages } from 'react-intl';
 import Heading from '~core/Heading';
 import Icon from '~core/Icon';
 import Link from '~core/Link';
-import { COLONY_DISCOURSE, COLONY_GITHUB, COLONY_DISCORD } from '~routes';
+import { COLONY_GITHUB, COLONY_DISCORD } from '~routes';
 
 import styles from './SupportCta.module.css';
 
@@ -31,9 +31,6 @@ const SupportCta = () => (
         text={MSG.sectionTitle}
       />
       <div className={styles.iconRow}>
-        <Link className={styles.iconItemLink} href={COLONY_DISCOURSE}>
-          <Icon name="social_discourse" title="Discourse" />
-        </Link>
         <Link className={styles.iconItemLink} href={COLONY_GITHUB}>
           <Icon name="social_github" title="GitHub" />
         </Link>
