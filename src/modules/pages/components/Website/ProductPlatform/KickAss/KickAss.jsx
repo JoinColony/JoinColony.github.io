@@ -8,7 +8,7 @@ import GridItem from '~core/GridItem';
 import Heading from '~core/Heading';
 import Image from '~core/Image';
 import Paragraph from '~core/Paragraph';
-import { DOCS_COLONY_NETWORK, COLONY_DISCOURSE, COLONY_GITHUB } from '~routes';
+import { DOCS_COLONY_NETWORK, COLONY_DISCORD, COLONY_GITHUB } from '~routes';
 
 import styles from './KickAss.module.css';
 
@@ -96,7 +96,7 @@ const KickAss = () => (
           <GridItem
             body={MSG.bodyTopic2}
             image={withPrefix('/img/icon_conversation.png')}
-            links={[{ href: COLONY_DISCOURSE, text: MSG.linkTopic2 }]}
+            links={[{ href: COLONY_DISCORD, text: MSG.linkTopic2 }]}
             title={MSG.titleTopic2}
           />
         </div>

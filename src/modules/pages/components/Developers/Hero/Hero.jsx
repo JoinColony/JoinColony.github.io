@@ -6,7 +6,7 @@ import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Image from '~core/Image';
-import { COLONY_DISCOURSE, COLONY_GITHUB, DOCS_COLONYJS } from '~routes';
+import { COLONY_DISCORD, COLONY_GITHUB, DOCS_COLONYJS } from '~routes';
 
 import HeroFeatureItem from '../HeroFeatureItem';
 
@@ -89,8 +89,8 @@ const Hero = () => (
           <HeroFeatureItem
             contentText={MSG.heroFeatureForumText}
             headingText={MSG.heroFeatureForumTitle}
-            linkText="Discourse"
-            linkUrl={COLONY_DISCOURSE}
+            linkText="Discord"
+            linkUrl={COLONY_DISCORD}
           />
         </div>
       </div>

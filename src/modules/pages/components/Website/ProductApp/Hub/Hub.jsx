@@ -6,7 +6,7 @@ import { withPrefix } from 'gatsby';
 
 import Heading from '~core/Heading';
 import Link from '~core/Link';
-import { COLONY_DISCOURSE } from '~routes';
+import { COLONY_DISCORD } from '~routes';
 
 import Item from './Item.jsx';
 
@@ -93,7 +93,7 @@ const VALUES = {
     link: (
       <Link
         className={styles.link}
-        href={COLONY_DISCOURSE}
+        href={COLONY_DISCORD}
         text={MSG.linkTopic4}
       />
     ),
