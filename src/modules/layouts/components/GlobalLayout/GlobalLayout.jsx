@@ -139,21 +139,21 @@ const GlobalLayout = ({ children, location }: Props) => {
           href={withPrefix('/img/favicon.ico')}
         />
         <script src={withPrefix('/js/fontloader.js')} />
+        <script
+          async
+          /* eslint-disable-next-line max-len */
+          src={`https://www.googletagmanager.com/gtag/js?id=${GoogleTagManagerId}`}
+        />
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GoogleTagManagerId}');
+          `}
+        </script>
       </Helmet>
       <FileContext.Provider value={getFileMapping(data.files.edges)}>
-        <noscript>
-          <iframe
-            title="googletagmanager"
-            // eslint-disable-next-line max-len
-            src={`https://www.googletagmanager.com/ns.html?id=${GoogleTagManagerId}`}
-            height="0"
-            width="0"
-            style={{
-              display: 'none',
-              visibility: 'hidden',
-            }}
-          />
-        </noscript>
         <IntlProvider
           locale={locale}
           defaultLocale={DEFAULT_LOCALE}
