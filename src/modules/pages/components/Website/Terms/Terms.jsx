@@ -43,30 +43,20 @@ const MSG = defineMessages({
   bodyPrivacyInformation: {
     id: 'pages.Website.Terms.bodyPrivacyInformation',
     defaultMessage: `The data controller who is responsible for your personal
-      data is Collectively Intelligent Ltd, 3 Butler House, 49-51 Curtain Rd,
-      London, EC2A 3PT.
+      data is Metacolony Inc. We are registered in the Republic of Panama under company number 2021—21624, and have our registered office at First Floor, Advanced Tower Building, Ricardo Arlas Street, Panama City, Republic of Panama.
       {br}{br}
       If you have any questions or concerns relating to your personal data or
       this Policy, please contact us using the following contact details:
       {br}{br}
       Data Controller: privacy@colony.io
       {br}{br}
-      Collectively Intelligent Ltd,
-      {br}
-      3 Butler House,
-      {br}
-      49-51 Curtain Rd,
-      {br}
-      London EC2A 3PT,
-      {br}
-      England
       {br}{br}
       Whilst you have the right to make a complaint at any time to the
       Informational Commissioner’s Office (www.ico.org.uk), we would like to
       have a chance to deal with any concerns before you approach the ICO.
       {br}{br}
       Changes to This Policy and Your Duty to Let Us Know of Changes
-      This Policy was last updated on 29th June 2018. We may need to make
+      This Policy was last updated on 24th January 2024. We may need to make
       updates or changes to this Policy from time to time. We will inform you
       of any such
       changes.
@@ -76,9 +66,7 @@ const MSG = defineMessages({
   },
   bodyPrivacyPolicy: {
     id: 'pages.Website.Terms.bodyPrivacyPolicy',
-    defaultMessage: `Colony Foundation Limited of c/o McGrath Tonner
-      Corporate Services Limited, 5th Floor, Genesis Building, Genesis Close,
-      PO BOX 446, Grand Cayman, KY1-1106 Cayman Islands ("we" or “us”) are
+    defaultMessage: We at Metacolony Inc. We registered in the Republic of Panama under company number 2021—21624, and have our registered office at First Floor, Advanced Tower Building, Ricardo Arlas Street, Panama City, Republic of Panama. Colony ("we" or “us”) are
       committed to protecting and respecting your privacy.
       {br}{br}
       This policy (together with our terms of use) sets out the limited
@@ -109,12 +97,11 @@ const MSG = defineMessages({
   },
   bodyTermsInformation: {
     id: 'pages.Website.Terms.bodyTermsInformation',
-    defaultMessage: `Our Site is a site operated by The Colony Foundation
-      Limited (we, our or us). We are registered in the Cayman Islands under
-      company number 325182, and have our registered office at 5th Floor,
-      Genesis Building, Genesis Close, PO Box 446, Grand Cayman, KY1-1106
+    defaultMessage: `Our Site is a site operated by Metacolony Inc. (we, our or us). We are registered in the Republic of Panama under
+      company number 2021-21624, and have our registered office at First Floor,
+      Advanced Tower Building, Ricardo Arlas Street, Panama City, Republic of Panama.
       {br}{br}
-      We are a limited company and Colony is our trading name.`,
+      We are a limited company and Colony is our trading name.
   },
   bodyTermsOther: {
     id: 'pages.Website.Terms.bodyTermsOther',
